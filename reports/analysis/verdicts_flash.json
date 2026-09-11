@@ -1,0 +1,538 @@
+[
+  {
+    "handle": "883Ismygovtname",
+    "source_file": "@883Ismygovtname_quant_profile.md",
+    "archetype": "The Covered Call Cashflow Farmer & Dividend Siphon",
+    "primary_classification": "RETAIL_DIVIDEND_VALUE_ACCUMULATOR",
+    "secondary_classification": "THE_WHEEL_MICRO_HARVESTER",
+    "tertiary_classification": null,
+    "alpha_score": 79,
+    "alpha_score_note": "derived from 5 category scores, no composite stated",
+    "alpha_score_basis": "derived",
+    "subscores": [
+      {
+        "category": "Cashflow Generation Score",
+        "score": 88
+      },
+      {
+        "category": "Capital Preservation Score",
+        "score": 95
+      },
+      {
+        "category": "Large-Cap Wheel Execution",
+        "score": 84
+      },
+      {
+        "category": "Low-Float Speculative Alpha",
+        "score": 28
+      },
+      {
+        "category": "Sentiment / Community Utility",
+        "score": 98
+      }
+    ],
+    "expectancy": null,
+    "directives": {
+      "firewall": [
+        "Engine Trigger: Post mentions buying calls, long-dated LEAPs, or warrants on micro-cap equities under $5 market price ($QBTS, $NVTS, $OPEN, $KULR, $GRYP)",
+        "Algorithmic Action",
+        "100% Signal Discard"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 2374,
+      "posts_per_week": 46.2
+    },
+    "has_verdict_section": true,
+    "lines": 397,
+    "missing": [
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "ALLOY",
+    "source_file": "@ALLOY_quant_profile.md",
+    "archetype": "The Cem Karsan Disciple",
+    "primary_classification": "DEALER_GAMMA_AND_VOLATILITY_SURFACE_ARCHITECT",
+    "secondary_classification": "ENERGY_AND_INFRASTRUCTURE_BOTTLENECK_SCOUT",
+    "tertiary_classification": null,
+    "alpha_score": null,
+    "alpha_score_note": null,
+    "alpha_score_basis": null,
+    "subscores": [],
+    "expectancy": null,
+    "directives": {},
+    "posting": {
+      "lifetime_posts": 2139,
+      "posts_per_week": 72.0
+    },
+    "has_verdict_section": true,
+    "lines": 526,
+    "missing": [
+      "alpha_score",
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "AtypicallyErect",
+    "source_file": "@AtypicallyErect_quant_profile.md",
+    "archetype": "The Subversive Microstructure Scientist",
+    "primary_classification": "ASYMMETRIC_MICROCAP_EXPLOITER",
+    "secondary_classification": "MICROSTRUCTURE_ARBITRAGEUR",
+    "tertiary_classification": "PHYSICAL_SUPPLY_OSINT_SWINGER",
+    "alpha_score": 64,
+    "alpha_score_note": "HIGH-TIER INTELLIGENCE ENGINE / EXTREME RISK EXECUTION",
+    "alpha_score_basis": "stated",
+    "subscores": [
+      {
+        "category": "Raw Idea Generation & Edge",
+        "score": 88
+      },
+      {
+        "category": "Microstructure & Mechanics",
+        "score": 85
+      },
+      {
+        "category": "Execution & Risk Discipline",
+        "score": 32
+      },
+      {
+        "category": "Capital Extraction Discipline",
+        "score": 78
+      },
+      {
+        "category": "Sentiment & Noise Filtering",
+        "score": 82
+      }
+    ],
+    "expectancy": {
+      "win_rate_pct": 44.0,
+      "payoff_ratio": "8.5 : 1",
+      "expected_value_r": "+2.18",
+      "qualitative": null
+    },
+    "directives": {
+      "ingest": [
+        "Harvest Physical Bottlenecks: Ingest his macro infrastructure research immediately",
+        "Harvest Hard-to-Borrow (HTB) Lending Telemetry: Utilize his mentions of 20%+ borrow fee assets to flag potential short-squeeze candidates and passive yield opportunities"
+      ],
+      "firewall": [
+        "FIREWALL: Zero Unhedged Penny Stock Bagholding: The Artemis Engine must strictly prohibit holding illiquid sub-$1.00 equities without a hard stop-loss",
+        "FIREWALL: Margin Leverage Prohibition: Never execute margin borrowing on low-liquidity micro-caps"
+      ],
+      "exit": [
+        "The 2x Capital Recovery Rule: Upon a position advancing +100%, automatically liquidate 50% of the principal, moving the stop-loss on the remainder to breakeven",
+        "The Parabolic Trailing Stop: When a position advances >+300% ($QUBT, $POET, $QMCO), activate a dynamic 15% trailing stop based on VWAP to prevent round-tripping massive windfalls",
+        "The Hard Capital Stop: Enforce a mandatory -15.0% stop-loss on all speculative equity entries, completely rectifying his psychological tolerance for catastrophic drawdowns"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 380,
+      "posts_per_week": 3.05
+    },
+    "has_verdict_section": true,
+    "lines": 593,
+    "missing": []
+  },
+  {
+    "handle": "Dallaslongcall",
+    "source_file": "@Dallaslongcall_quant_profile.md",
+    "archetype": "The Sub-PDT Supply-Chain Cartographer",
+    "primary_classification": "SEMICONDUCTOR_SUPPLY_CHAIN_RADAR",
+    "secondary_classification": "SUB_PDT_OVERLEVERAGED_BAGHOLDER",
+    "tertiary_classification": null,
+    "alpha_score": 12,
+    "alpha_score_note": "Deep Negative Expectancy",
+    "alpha_score_basis": "stated",
+    "subscores": [
+      {
+        "category": "Supply Chain Taxonomy Quality",
+        "score": 89
+      },
+      {
+        "category": "Sub-Sector Rotation Prediction",
+        "score": 78
+      },
+      {
+        "category": "Contrarian Macro Fade Score",
+        "score": 85
+      }
+    ],
+    "expectancy": null,
+    "directives": {
+      "firewall": [
+        "Engine Trigger: Post suggests specific strike prices, expirations, or option structures (e.g., \"175/185 CDS 2-3 weeks out\", \"370C 8/1\", \"weekly calls\")",
+        "Algorithmic Action",
+        "100% Signal Discard"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 820,
+      "posts_per_week": 27.0
+    },
+    "has_verdict_section": true,
+    "lines": 482,
+    "missing": [
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "Drone_Daddy",
+    "source_file": "@Drone_Daddy_quant_profile.md",
+    "archetype": "The Paternal Supply-Chain Quant",
+    "primary_classification": "THEMATIC_SUPPLY_CHAIN_SCOUT",
+    "secondary_classification": "MACRO_VOLATILITY_HEDGER",
+    "tertiary_classification": null,
+    "alpha_score": 72,
+    "alpha_score_note": "TIER-1 THEMATIC SCOUT WITH MANDATORY LEVERAGE FILTER",
+    "alpha_score_basis": "rescaled_from_10",
+    "subscores": [],
+    "expectancy": null,
+    "directives": {
+      "firewall": [
+        "Hard Filter Rule: STRICTLY BLACKLIST any algorithmic mirroring of leveraged exchange-traded products ($ONDL, 2x/3x bull ETFs) recommended or held by Drone Daddy",
+        "Options Delta Rule: Prohibit copying short-dated out-of-the-money options during corporate dilution or shelf-offering phases"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 988,
+      "posts_per_week": 10.96
+    },
+    "has_verdict_section": true,
+    "lines": 541,
+    "missing": [
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "Freeballer",
+    "source_file": "@Freeballer_quant_profile.md",
+    "archetype": "The Folk Sheriff & Degenerate Socialite",
+    "primary_classification": "HIGH_FREQUENCY_NOISE_GENERATOR",
+    "secondary_classification": "RETAIL_SENTIMENT_POLARIZER",
+    "tertiary_classification": null,
+    "alpha_score": 18,
+    "alpha_score_note": "Deep Negative Expectancy",
+    "alpha_score_basis": "stated",
+    "subscores": [
+      {
+        "category": "Sentiment Polarity Score",
+        "score": 88
+      },
+      {
+        "category": "Contrarian Fade Reliability",
+        "score": 84
+      }
+    ],
+    "expectancy": null,
+    "directives": {},
+    "posting": {
+      "lifetime_posts": 2517,
+      "posts_per_week": 30.7
+    },
+    "has_verdict_section": true,
+    "lines": 398,
+    "missing": [
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "Legitimate_Risk",
+    "source_file": "@Legitimate_Risk_quant_profile.md",
+    "archetype": "The Stoic QA Refugee Turned \"Retard ETF\" Architect",
+    "primary_classification": "TACTICAL_EQUITY_SWING_ACCUMULATOR",
+    "secondary_classification": "MACRO_CASH_SENTIMENT_BAROMETER",
+    "tertiary_classification": null,
+    "alpha_score": 68,
+    "alpha_score_note": "Statistically Positive",
+    "alpha_score_basis": "stated",
+    "subscores": [
+      {
+        "category": "Sentiment Polarity Score",
+        "score": 42
+      },
+      {
+        "category": "Contrarian Fade Reliability",
+        "score": 24
+      }
+    ],
+    "expectancy": null,
+    "directives": {},
+    "posting": {
+      "lifetime_posts": null,
+      "posts_per_week": 25.0
+    },
+    "has_verdict_section": true,
+    "lines": 531,
+    "missing": [
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "MarketVictor",
+    "source_file": "@MarketVictor_quant_profile.md",
+    "archetype": "The Low-Beta Casino Operator",
+    "primary_classification": "SYSTEMATIC_PREMIUM_HARVESTER",
+    "secondary_classification": "MACRO_REGIME_FILTER_INDEX",
+    "tertiary_classification": null,
+    "alpha_score": 88,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": null,
+    "directives": {
+      "ingest": [
+        "Macro Regime Mirroring: Automatically ingest Victor's daily $SPY Short-Term sentiment reading"
+      ],
+      "fade": [
+        "Zero Fade on Victor: Unlike emotional retail creators, Victor's personal trade signals should never be faded"
+      ],
+      "firewall": [
+        "Leveraged ETF Blacklist: Do not execute options or equity swings on leveraged ETFs ($TQQQ, $SOXL, $ONDL). Restrict all operations to single-stock equities and $SPY"
+      ],
+      "exit": [
+        "Covered Call Discipline: When assigned equity, write covered calls at a strike equal to or higher than the net assignment cost basis"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 1038,
+      "posts_per_week": 12.17
+    },
+    "has_verdict_section": true,
+    "lines": 612,
+    "missing": [
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "NewFishBigPond",
+    "source_file": "@NewFishBigPond_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "RETAIL_MOMENTUM_AMPLIFIER",
+    "secondary_classification": "LATE_STAGE_ILLIQUIDITY_CHASER",
+    "tertiary_classification": null,
+    "alpha_score": 24,
+    "alpha_score_note": "Negative Expectancy Long",
+    "alpha_score_basis": "stated",
+    "subscores": [
+      {
+        "category": "Contrarian Fade Reliability",
+        "score": 78
+      }
+    ],
+    "expectancy": null,
+    "directives": {},
+    "posting": {
+      "lifetime_posts": null,
+      "posts_per_week": null
+    },
+    "has_verdict_section": true,
+    "lines": 227,
+    "missing": [
+      "archetype",
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "RoyaltyTradez",
+    "source_file": "@RoyaltyTradez_quant_profile.md",
+    "archetype": "The Kingdom Patriarch",
+    "primary_classification": null,
+    "secondary_classification": null,
+    "tertiary_classification": null,
+    "alpha_score": null,
+    "alpha_score_note": null,
+    "alpha_score_basis": null,
+    "subscores": [],
+    "expectancy": null,
+    "directives": {
+      "firewall": [
+        "Condition: Any data ingestion evaluating RoyaltyTradez's portfolio size, verified balance ($0.00 / $0.27), or historical win/loss tags (1 Loss)",
+        "Execution: HARD FILTER. Zero weighting"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 2076,
+      "posts_per_week": 16.76
+    },
+    "has_verdict_section": true,
+    "lines": 489,
+    "missing": [
+      "primary_classification",
+      "secondary_classification",
+      "alpha_score",
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "RyanLP",
+    "source_file": "@RyanLP_quant_profile.md",
+    "archetype": "The Systematic Casino Operator",
+    "primary_classification": null,
+    "secondary_classification": null,
+    "tertiary_classification": null,
+    "alpha_score": 89,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": 92.3,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": null
+    },
+    "directives": {
+      "ingest": [
+        "The 45 DTE Systematic Credit Harvest: Ingest RyanLP's 45 DTE monthly expiration framework for SPX, /ES, and /NQ. Sell 15 to 25 Delta short strikes",
+        "Red Day Short Put Scaling: Route automatic short put orders into /ES or SPX when equity indices drop >1.0% in a single session, capitalizing on volatility skew",
+        "Mechanical 50% Profit Harvesting: Set hard profit-taking limit orders at 50% of maximum credit received immediately upon order fill"
+      ],
+      "firewall": [
+        "The 21 DTE Tail-Risk Firewall: Hard-stop rule: No short option contract may be held past 21 DTE into expiration week",
+        "Zero Roll-for-Pennies Firewall: Forbid rolling deeply ITM options across stock splits or extended durations if the net credit received is < 0.25% of position value"
+      ],
+      "exit": [
+        "Standard Exit: Liquidate at 50% max profit",
+        "Accelerated Exit: If 25% of max profit is achieved within the first 48 hours of entry, close immediately (annualized ROC anomaly)",
+        "Adverse Move Adjustment: At 21 DTE, if the short strike is breached, test extrinsic value",
+        "If extrinsic value remains, roll out to the next monthly cycle for a net credit",
+        "If rolling yields a net debit, close the position and absorb the loss"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 193,
+      "posts_per_week": 2.5
+    },
+    "has_verdict_section": true,
+    "lines": 660,
+    "missing": [
+      "primary_classification",
+      "secondary_classification"
+    ]
+  },
+  {
+    "handle": "TRON",
+    "source_file": "@TRON_quant_profile.md",
+    "archetype": null,
+    "primary_classification": null,
+    "secondary_classification": null,
+    "tertiary_classification": null,
+    "alpha_score": null,
+    "alpha_score_note": null,
+    "alpha_score_basis": null,
+    "subscores": [],
+    "expectancy": null,
+    "directives": {
+      "firewall": [
+        "Condition: Any position entered via @TRON signals",
+        "Execution: Enforce strict, automated exit protocols",
+        "Trailing Stop-Loss: Dynamic 2.5 ATR stop on underlying equity",
+        "Options Time Decay Rule: Mandated liquidation of long call options at 45 DTE or -35% premium drawdown to prevent the 95% theta drawdowns that crippled his 2025-2026 account",
+        "Systematic Scale-Out: Sell 50% of position at +100% gain; lock profits incrementally"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 2401,
+      "posts_per_week": 25.7
+    },
+    "has_verdict_section": true,
+    "lines": 289,
+    "missing": [
+      "archetype",
+      "primary_classification",
+      "secondary_classification",
+      "alpha_score",
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "mphinance",
+    "source_file": "@mphinance_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "STRUCTURAL_VEGA_THETA_PROVIDER",
+    "secondary_classification": "VOLATILITY_HARVEST_ANCHOR",
+    "tertiary_classification": null,
+    "alpha_score": 92,
+    "alpha_score_note": "Institutional Grade Sell-Side",
+    "alpha_score_basis": "stated",
+    "subscores": [
+      {
+        "category": "Signal Integrity & Transparency",
+        "score": 99
+      },
+      {
+        "category": "Emotional Tilt Resilience",
+        "score": 88
+      },
+      {
+        "category": "Alpha Decay Resistance",
+        "score": 94
+      }
+    ],
+    "expectancy": null,
+    "directives": {},
+    "posting": {
+      "lifetime_posts": null,
+      "posts_per_week": null
+    },
+    "has_verdict_section": false,
+    "lines": 361,
+    "missing": [
+      "archetype",
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "terridactil",
+    "source_file": "@terridactil_quant_profile.md",
+    "archetype": "The Alt-Data Supply Chain Matriarch",
+    "primary_classification": "ALT_DATA_SUPPLY_CHAIN_SCOUT",
+    "secondary_classification": "DEFENSE_AND_SPACE_CATALYST_RADAR",
+    "tertiary_classification": null,
+    "alpha_score": 84,
+    "alpha_score_note": "TIER-1 ALTERNATIVE DATA & SUPPLY-CHAIN RADAR",
+    "alpha_score_basis": "rescaled_from_10",
+    "subscores": [],
+    "expectancy": null,
+    "directives": {
+      "firewall": [
+        "Filter Rule: Do NOT mirror her intraday 0-DTE or short-DTE scalp entries"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 132,
+      "posts_per_week": 14.0
+    },
+    "has_verdict_section": true,
+    "lines": 465,
+    "missing": [
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "trynamakeit",
+    "source_file": "@trynamakeit_quant_profile.md",
+    "archetype": "From Fired Phone-Addict Gambler to \"The Kingdom\" Chart Master",
+    "primary_classification": null,
+    "secondary_classification": null,
+    "tertiary_classification": null,
+    "alpha_score": null,
+    "alpha_score_note": null,
+    "alpha_score_basis": null,
+    "subscores": [],
+    "expectancy": null,
+    "directives": {},
+    "posting": {
+      "lifetime_posts": 2682,
+      "posts_per_week": 30.9
+    },
+    "has_verdict_section": true,
+    "lines": 392,
+    "missing": [
+      "primary_classification",
+      "secondary_classification",
+      "alpha_score",
+      "expectancy"
+    ]
+  }
+]

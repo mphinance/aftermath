@@ -1,0 +1,12 @@
+# Dashboard & Visualization
+streamlit>=1.35.0
+pandas>=2.0.0
+altair>=5.0.0
+
+# Computer Vision & OCR (Artemis Native Capture Pipeline)
+opencv-python>=4.8.0
+numpy>=1.24.0
+pytesseract>=0.3.10
+
+# Testing & Dev
+pytest>=8.0.0

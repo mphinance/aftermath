@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches & test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Redundant archives & OS junk
+afterhour.zip
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Local recordings buffer (generated during ADB capture)
+recordings/

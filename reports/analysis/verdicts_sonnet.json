@@ -1,0 +1,2074 @@
+[
+  {
+    "handle": "883Ismygovtname",
+    "source_file": "@883Ismygovtname_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "COVERED_CALL_WHEEL_COMPOUNDER",
+    "secondary_classification": "DIVERSIFIED_SATELLITE_SPECULATOR",
+    "tertiary_classification": null,
+    "alpha_score": 58,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "Two distinct regimes, and they should be scored and ingested separately:"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Implement the 70–90%-profit-decay covered-call buyback rule as a standalone, ticker-agnostic exit heuristic inside any Artemis wheel/income module"
+      ],
+      "fade": [
+        "Fade her own profit-taking on high-beta speculative LEAPS specifically",
+        "Do not treat her broad, 360-ticker universe as a diversified \"buy list\""
+      ],
+      "firewall": [
+        "Never interpret amount_k = 0.0 for any post dated 2025-06-30 or later as a real account balance",
+        "Never treat the tag/gain_loss structured fields as a P&L ledger for this source",
+        "Blacklist copying entry mechanics from the BloFin leveraged-crypto or copy-trading experiment",
+        "Do not weight relationship/persona-drama content (\"AH husband,\" romantic bits with named peers) as trading signal"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": null,
+      "posts_per_week": 25.0
+    },
+    "has_verdict_section": true,
+    "lines": 222,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "ALLOY",
+    "source_file": "@ALLOY_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "GEX_POSITIONING_OPERATOR",
+    "secondary_classification": "SIGNAL_VENDOR_GURU",
+    "tertiary_classification": "MACRO_NARRATIVE_ENGAGEMENT_BAIT",
+    "alpha_score": 47,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": null,
+    "directives": {
+      "ingest": [
+        "Treat @ALLOY's GEX sign, gamma-flip level, and OI-wall calls as a candidate cross-validation input against Artemis's own dealer-positioning module"
+      ],
+      "fade": [
+        "Never treat a \"Gain\"-tagged bragpost as evidence of a repeatable edge",
+        "Treat unresolved narrative threads (a big account, a bold prediction) that simply stop being mentioned as an implicit \"this went badly\"",
+        "Discount macro/geopolitical mega-theses for direct trade sizing"
+      ],
+      "firewall": [
+        "Never size any position off his self-reported dollar or percentage PnL",
+        "Firewall any signal sourced from a post that also contains Prism promotional content (giveaways, \"ask me about Prism,\" scarcity countdowns)",
+        "Do not treat his post cadence as a market-volatility proxy"
+      ],
+      "exit": [
+        "Any GEX-level or gamma-flip signal ingested from this account should carry the Engine's own independently-derived stop and target levels",
+        "If his automated dashboard format matures into a consistent, ongoing daily feed, re-score this profile's Alpha Score upward"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 2139,
+      "posts_per_week": 22.6
+    },
+    "has_verdict_section": true,
+    "lines": 239,
+    "missing": [
+      "archetype",
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "AtypicallyErect",
+    "source_file": "@AtypicallyErect_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "MICROCAP_HALT_SNIPER",
+    "secondary_classification": "QUANTUM_THEMATIC_BAGHOLDER",
+    "tertiary_classification": "NO_STOPLOSS_MARGIN_ESCALATOR",
+    "alpha_score": 34,
+    "alpha_score_note": "Composite (weighted 40/60 toward execution, since a signal is worthless if the source can't exit it)",
+    "alpha_score_basis": "stated",
+    "subscores": [
+      {
+        "category": "Idea-Sourcing Alpha",
+        "score": 58
+      },
+      {
+        "category": "Execution/Risk Alpha",
+        "score": 22
+      }
+    ],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy per idea (small, capped position)",
+          "read": "Modestly positive"
+        },
+        {
+          "scope": "Expectancy at his own portfolio/account level",
+          "read": "Flat to negative"
+        },
+        {
+          "scope": "Expectancyper idea (small, capped position)",
+          "read": "| Modestly positive | Fat right tail (100%–4,500%+ hits) on tiny position sizes is real and repeatable if capped and exited systematically |"
+        },
+        {
+          "scope": "Expectancyat his own portfolio/account level",
+          "read": "| Flat to negative | The one period with hard numbers (Q4'24–Q1'25) shows a ~$190k peak give back ~$80k/$30k realized within roughly 10 weeks; subsequent claims are unverifiable |"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Mirror the halt-list scan, not the halt-list buy",
+        "Harvest his stock-lending-fee methodology as a standing squeeze-candidate signal",
+        "Treat his 2026 OSINT/macro theses as an idea-generation feed, independently underwritten",
+        "Log the reverse-split rounding-arbitrage mechanism as a standing structural watchlist rule, not a copy-trade signal"
+      ],
+      "fade": [
+        "Fade escalating superlative language as a local-top proxy",
+        "Fade \"no stop loss\" declarations specifically",
+        "Treat his persecution/manipulation narratives as noise, not signal",
+        "Discount post-disconnection PnL claims to near-zero evidentiary weight"
+      ],
+      "firewall": [
+        "Hard blacklist: copying his position sizing",
+        "Hard blacklist: copying his margin behavior",
+        "Toxic-habit flag: \"algorithm did it\" claims with no disclosed methodology",
+        "Toxic-habit flag: his own disclaimers (\"NFA,\" \"🎲 Responsibly!\") are inversely correlated with actual risk control in this trader's specific case"
+      ],
+      "exit": [
+        "Mechanical partial-profit rule: on any halt-list/reverse-split idea sourced from him, take 50%+ off at the first +50–100% mark",
+        "No averaging into halted/illiquid losers",
+        "Treat any of his positions still open after 12+ months with no stated thesis update as stale"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 380,
+      "posts_per_week": 3.05
+    },
+    "has_verdict_section": true,
+    "lines": 317,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "Cynce",
+    "source_file": "@Cynce_quant_profile.md",
+    "archetype": null,
+    "primary_classification": null,
+    "secondary_classification": null,
+    "tertiary_classification": null,
+    "alpha_score": 34,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "ExpectancyUnknowable / Not Computable.",
+          "read": "Unlike other AfterHour dossiers in this series that carry a connected-portfolio series, @Cynce has zero verified balance data across the entire 562-day sample. All quantified figures (the $200k/⅓-loss, the $6-7k premium weeks, the SNAP loss-offset math) are internally consistent self-reports, not au"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Treat his NAV/sum-of-parts DD (KSS real-estate-vs-operations breakdown) as a template methodology for screening hated/complex-structure names"
+      ],
+      "fade": [
+        "Fade his covered-call strike selection into strength",
+        "Fade \"hate the company, love the stock\" contrarian buys as a possible value trap unless independently confirmed",
+        "Fade averaging-down language dressed as conviction (\"💎✋ don't sell,\" doubling a position after a binary catalyst crash)"
+      ],
+      "firewall": [
+        "Cap or exclude levered/inverse VIX-futures ETPs (UVIX/SVIX/VIXI) from any mirrored allocation beyond a short-tactical-hedge sleeve",
+        "Firewall the entire 2025-09-22 → 2026-04-13 silent window and all content from the Substack-pivot era from being scored as trading signal",
+        "Exclude single-share \"DD-only\" positions (e.g., his 1-share KSS post) from position-following logic entirely"
+      ],
+      "exit": [
+        "Impose a hard stop or defined risk unit on any name sourced from his conviction posts",
+        "Cap averaging-down to one add, hard stop thereafter, specifically for binary-catalyst names (biotech trial outcomes, single-name event risk)",
+        "Apply a decay-aware time stop to any vol-ETP position mirrored from his UVIX/SVIX/VIXI activity"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 57,
+      "posts_per_week": 0.71
+    },
+    "has_verdict_section": true,
+    "lines": 214,
+    "missing": [
+      "archetype",
+      "primary_classification",
+      "secondary_classification"
+    ]
+  },
+  {
+    "handle": "Dallaslongcall",
+    "source_file": "@Dallaslongcall_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "THEMATIC_MOMENTUM_LONG_CALLS",
+    "secondary_classification": "REGIONAL_SUPPLY_CHAIN_RESEARCHER",
+    "tertiary_classification": "SELECTIVE_DISCLOSURE_POSTER",
+    "alpha_score": 34,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "ExpectancyRegime-dependent, sharply bimodal.",
+          "read": "During a trending, momentum-friendly tape for his core AI-infrastructure theme, expectancy is demonstrably strongly positive (the Jul–Aug 2025 run). The moment that regime breaks, expectancy on the aggregate, unhedged book is catastrophically negative (-98% in 5 weeks). Narrowly filtered to his DD/r"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Treat his AI-data-center power/supply-chain DD posts (AMAT/AXTI/AAOI/LITE/COHR/AVGO/ANET/CRDO/VST/NVTS/VRT/APLD/FRMI) as a standing watchlist-generation source",
+        "Log his GLD \"safe/inelastic\" hedge entries as a soft de-risking timing signal, particularly when they appear shortly after a documented drawdown in his own account"
+      ],
+      "fade": [
+        "A sudden multi-week spike in his post cadence (materially above his ~9-11/wk baseline) should be read as a possible late-cycle/euphoria signal, not rising conviction",
+        "Never weight a Gain-tagged post as evidence of a working strategy",
+        "Fade broad, undiversified concentration signals"
+      ],
+      "firewall": [
+        "Never inherit his position sizing or total thematic exposure",
+        "Never treat a Gain/Loss tag as ground truth for performance scoring",
+        "Firewall any signal sourced from this account during a documented multi-week cadence spike",
+        "Do not copy his exit timing"
+      ],
+      "exit": [
+        "Any idea sourced from his AI-infrastructure/power-supply-chain DD posts should be paired with an Engine-defined stop-loss and profit-take band from entry",
+        "Apply a hard portfolio-level concentration cap to any strategy inspired by this account's ticker universe",
+        "Treat his GLD-hedge-initiation timing as an optional trailing-stop trigger overlay",
+        "Re-score this profile if his amount_k series ever shows a sustained, multi-month recovery off the ~$500-700 2026 plateau"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 820,
+      "posts_per_week": 9.3
+    },
+    "has_verdict_section": true,
+    "lines": 239,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "DocHollywood",
+    "source_file": "@DocHollywood_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "MACRO_NARRATIVE_MEGACAP_CORE",
+    "secondary_classification": "SCANDAL_ADJACENT_BAGHOLDER",
+    "tertiary_classification": null,
+    "alpha_score": 61,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": null,
+    "directives": {
+      "ingest": [
+        "Track the DIP Index basket live (currently: MU, NVDA, TSM, MRVL, AVGO, AAPL, LITE, COHR, CLS, AAOI as of the May 2026 update) as a standing thematic-rotation signal",
+        "Whenever a rare, specific, self-disclosed loss/transparency post appears (the \"Portfolio L's\" format), ingest it at high priority"
+      ],
+      "fade": [
+        "Fade fresh conviction posts on structurally-impaired or scandal-adjacent names",
+        "Discount his self-applied Gain tag",
+        "Treat his reassurance-during-panic posts (\"DO NOT PANIC\") as a crowd-sentiment indicator, not a trading signal"
+      ],
+      "firewall": [
+        "Firewall any signal sourced from this account on a name carrying an active fraud, accounting-restatement, or research-misconduct headline",
+        "Never size a position off his self-reported percentage performance claims (DIP Index returns, podcast trade recaps) without independent price verification",
+        "Do not treat a gap or absence in his posting as a market-calm signal"
+      ],
+      "exit": [
+        "Any idea sourced from his DIP Index should still carry the Engine's own independent stop-loss and rebalance rules, not his",
+        "Re-score this profile positively if he ever publishes a second \"Portfolio L's\"-style transparency post with an updated satellite-sleeve tally"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 1186,
+      "posts_per_week": 9.6
+    },
+    "has_verdict_section": true,
+    "lines": 240,
+    "missing": [
+      "archetype",
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "Drone_Daddy",
+    "source_file": "@Drone_Daddy_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "THEMATIC_SUPPLY_CHAIN_DD_CONCENTRATOR",
+    "secondary_classification": null,
+    "tertiary_classification": "AFFILIATE_MONETIZER",
+    "alpha_score": 41,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancycharacterization",
+          "read": "Positive idea-generation expectancy within the drone/CUAS/defense-optics niche specifically; deeply negative account-level expectancy when followed at his own concentration and leverage. His individual catalyst calls, taken independently and exited on discipline, likely carry real edge. His tracked "
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Treat @Drone_Daddy as a specialist screener for the drone/CUAS/defense-optics/onshoring supply chain",
+        "His defense-policy catalyst tracking (Sec Def actions, NDAA/China-parts restrictions, FAA rule changes) is a genuine, sourced macro-thematic input"
+      ],
+      "fade": [
+        "Fade euphoric/meme-tagged posts at or near a stated local account high",
+        "Fade any post that pre-announces a further average-down level (\"Last average down will occur at $9\")",
+        "Fade retail herd enthusiasm cross-amplified across his pod (@TRON, @YungEmber, @Drone_Daddy simultaneously promoting the same $ONDS/$UMAC names)"
+      ],
+      "firewall": [
+        "Never size a mirrored position to his stated conviction or LEAPS-concentration levels in $ONDS, $UMAC, or $LPTH",
+        "Treat his Gain/Loss self-tags as unreliable for backtesting or performance-attribution models",
+        "Exclude any content carrying a ?ref= link, a paid-service/Substack/Discord mention, or a livestream promotion from signal ingestion",
+        "Toxic pattern flag: prolonged silence following a loud, high-conviction thematic call",
+        "The amount_k series must be used only as the \"Challenge Port\" sleeve it is"
+      ],
+      "exit": [
+        "Impose an external, staged profit-take rule on any idea sourced from him (e.g., trim 25% at +50%, another 25% at +100%)",
+        "Impose a hard stop (e.g., −25% from entry) on any mirrored $ONDS/$UMAC/$LPTH position, independent of his own plan",
+        "Re-run this dossier's affiliate-content filter (§Ingestion/Firewall #3) on a rolling basis"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 988,
+      "posts_per_week": 10.96
+    },
+    "has_verdict_section": true,
+    "lines": 238,
+    "missing": [
+      "archetype",
+      "secondary_classification"
+    ]
+  },
+  {
+    "handle": "Freeballer",
+    "source_file": "@Freeballer_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "COMMUNITY_TICKER_EVANGELIST_ONDS",
+    "secondary_classification": "0DTE_SPX_SPY_SCALPER_RULES_BASED",
+    "tertiary_classification": null,
+    "alpha_score": 33,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": null,
+    "directives": {
+      "ingest": [
+        "Treat his named scam/pump callouts as a standing contrarian-fade watchlist input"
+      ],
+      "fade": [
+        "Fade specific $ONDS price targets ($15/$20/$25-style calls) as promotional rather than analytical",
+        "Discount any bullish thesis that coincides with a CEO-interview or webinar announcement for the same name"
+      ],
+      "firewall": [
+        "Never size a position off his self-reported SPX/SPY dollar \"receipts\"",
+        "Firewall any $ONDS-specific signal sourced from this account from being treated as independent",
+        "Do not attribute commentary on $BYND/$ORBS/$HUBC/$SPCX/$PUSA to him as trading positions",
+        "Do not treat post-cadence spikes as a volatility or opportunity proxy for this trader"
+      ],
+      "exit": [
+        "If he ever publicly closes out and reconciles the $500-to-$5,000 SPX challenge account with a full, dated equity curve, re-score this profile"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 2517,
+      "posts_per_week": 30.7
+    },
+    "has_verdict_section": true,
+    "lines": 230,
+    "missing": [
+      "archetype",
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "Legitimate_Risk",
+    "source_file": "@Legitimate_Risk_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "QUALITY_PYRAMID_SWING_ACCUMULATOR",
+    "secondary_classification": "SIGNAL_AGGREGATOR_COPY_TRADER",
+    "tertiary_classification": "TACTICAL_CASH_TIMER",
+    "alpha_score": 58,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy(qualitative)",
+          "read": "Positive, moderate. His documented behavior (cut losers slowly but let winners run on a rules-based trailing stop, size small and add on confirmation) is a textbook positive-expectancy shape when followed, but the one clean drawdown event (−$61K in 5 weeks) shows the tactical cash-timing overlay can"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Ingest his entry ticker + price + stated rationale the day it posts",
+        "Track his trailing-stop exits as a secondary confirmation signal for names Artemis already holds",
+        "Use his named-source attributions (BobDog, Tron, MASTERGROOVE, Freeballer, Madam_Dee) as a pointer graph",
+        "His quality/dividend large-cap sleeve (JNJ, LLY, ASML, DAL, FDX, COKE) is his most defensible, differentiated basket relative to the more herd-driven small-cap momentum names"
+      ],
+      "fade": [
+        "Fade his cash-timing calls when they persist past 2 quarters",
+        "Discount any \"3-year journey\" or aggregate net-worth milestone post by default"
+      ],
+      "firewall": [
+        "Do not inherit his income/yield-product exposure uncritically (MSTY, ULTY, similar synthetic-covered-call income ETFs)",
+        "Do not treat his self-reported win rate (70–75%, sourced from his own AI assistant) as validated",
+        "Firewall all posts dated 2026-03 onward that contain subscriber/pricing/testimonial language from any performance-attribution model",
+        "Do not copy his loss-realization timing"
+      ],
+      "exit": [
+        "Mirror his trailing-stop-after-profit mechanic (raise stop once position is +30–40%, not before) as a generic exit-discipline template",
+        "Override his hold decisions on stale losers",
+        "Rebalance sizing away from his \"feeler $500–$1,000\" convention where account size differs materially"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 875,
+      "posts_per_week": 10.1
+    },
+    "has_verdict_section": true,
+    "lines": 280,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "MarketVictor",
+    "source_file": "@MarketVictor_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "MECHANICAL_PREMIUM_SELLER",
+    "secondary_classification": "CONCEALED_CONCENTRATION_RISK",
+    "tertiary_classification": "SCOPE_LIMITED_SELF_REPORT",
+    "alpha_score": 31,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "The disclosed tactical sleeve shows genuine, believable positive expectancy — high win rate, small systematic losses, real profit-taking discipline. But it is a small fraction of his total capital-at-risk. The capital-weighted, whole-account expectancy is strongly negative: -32.3% lifetime, -52.1% p"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Harvest the daily AVWAP-Q / SMA-stack / Heikin-Ashi scorecard as a reusable, legible technical regime filter",
+        "Use the Fair Value / FCF / Cash-to-Debt / Debt-to-EBITDA / Interest Coverage checklist as a standalone fundamental pre-screen for any CSP or long-hold candidate universe"
+      ],
+      "fade": [
+        "Fade the implied safety of any \"I'm freed up / fully de-risked\" claim from this trader",
+        "Fade paid-product launch/relaunch posts as a cyclical-top marker, not a credibility signal",
+        "Do not treat his stated refusal to sell \"long-term holdings\" during a flagged macro-risk window as a bullish conviction signal"
+      ],
+      "firewall": [
+        "Firewall any \"Weekly Trade Summary\" win-rate/P&L figure from being read as whole-account performance",
+        "Blacklist copy-signal usage of his \"long-term holdings\" / conviction-hold positions entirely",
+        "Never surface his self-reported \"Total YTD Profit\" figure to end users without an appended note that it excludes his largest, least-transparent position bucket",
+        "Flag any month where his self-reported win rate is rising or flat while amount_k is falling (documented Dec 2025"
+      ],
+      "exit": [
+        "If ever mirroring his disclosed CSP/CC entries, cap position sizing at what his own \"Weekly Trade Summary\" premium figures imply (typically low hundreds to low thousands per name)",
+        "Require an explicit, dated, ticker-level disclosure of the \"long-term holdings\" bucket before assigning it any weight in a conviction/sentiment model"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 1038,
+      "posts_per_week": 12.17
+    },
+    "has_verdict_section": true,
+    "lines": 235,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "Mikki4Shikki",
+    "source_file": "@Mikki4Shikki_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "NARRATIVE_BAGHOLDER_NO_STOPS",
+    "secondary_classification": "SOCIAL_AMPLIFIER_LOW_ORIGINATION",
+    "tertiary_classification": "RETAIL_SENTIMENT_BAROMETER",
+    "alpha_score": 18,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "Negative and verified. Unlike accounts that show a fat-tailed but net-positive lifetime curve, this account's amount_k series is a sustained bleed from $107.9K to $45.96K with no full recovery at any point after the Feb '25 peak. There is no dollar-weighted evidence of a repeatable edge to harvest d"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Use her amplification posts purely as routing pointers",
+        "Flag any future $CVU-style original DD (sourced financials, named contracts, explicit backlog figures, self-aware uncertainty framing) for an independent Artemis fundamental screen",
+        "Her plain-share, no-options disclosure style makes any position size she reveals easy to verify against price action"
+      ],
+      "fade": [
+        "Fade any post where she addresses a held ticker emotionally (\"why do you hate me,\" \"toying with my emotions,\" \"everything is fine\")",
+        "Fade \"buying the dip as a silver lining\" framing ($ONDS at $9.33, Feb '26)",
+        "Fade crowd-sourced \"sell or hold?\" posts as evidence the underlying name has an unusually large contingent of framework-less retail holders, not as a read on fair value"
+      ],
+      "firewall": [
+        "Never mirror her position sizing or averaging-down behavior",
+        "Firewall all broker-affiliate/gamified-promo content sourced from her posts ($HOOD Holidays, \"Alpha\" app referral)",
+        "Blacklist simultaneous common+leveraged product pairing ($ONDS+$ONDL) as a sizing cue",
+        "Treat any extended portfolio-link blackout as a hidden-drawdown flag, not a data gap to ignore"
+      ],
+      "exit": [
+        "Because zero exit-discipline vocabulary appears anywhere in 85 posts, any strategy referencing her tickers must run its own independent exit logic",
+        "Use her rare, genuine capitulation language (\"I just want OUT,\" 3+ months into a held loser) as a small, hard-capped contrarian entry trigger only",
+        "Any position opened on the back of her $ONDS amplification of @Freeballer's calls should carry an explicit leverage firewall"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 85,
+      "posts_per_week": 1.02
+    },
+    "has_verdict_section": true,
+    "lines": 226,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "NewFishBigPond",
+    "source_file": "@NewFishBigPond_quant_profile.md",
+    "archetype": null,
+    "primary_classification": null,
+    "secondary_classification": null,
+    "tertiary_classification": null,
+    "alpha_score": 24,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "The verified telemetry shows a genuine high-water mark of $57.79K (Jul 2025) against the last two verified readings of $21.60-22.92K (Jun 2026) — a ~60-63% drawdown from peak, corroborated independently by confirmed loss events in his own text (the $8,600 DVLT realization, multiple blown futures com"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Auto-flag any sub-$5 or newly-IPO'd ticker he posts within the first 24-48h of a premarket-volume or short-interest citation (Fintel-sourced)",
+        "Build a relay network map: when he credits a named user for a call, log that user as a potential independent signal source",
+        "Treat his 20-30%-options-exit rule itself (not his execution of it) as a usable default profit-target parameter for any Artemis strategy trading similar short-dated momentum names"
+      ],
+      "fade": [
+        "Fade \"diamond hands\"/defiance posts during an active drawdown on his largest position",
+        "Fade escalating combative/defensive posts",
+        "Fade breakout-chase posts on names already up double digits intraday ($BYND at $4.20 after-hours, momentum names post-pop)",
+        "Fade the retail-herd effect of his follower-milestone/engagement-bait content as a standalone signal"
+      ],
+      "firewall": [
+        "Hard cap single-name concentration at 5-8% in any Artemis-derived basket sourced from his content, full stop",
+        "Blacklist averaging-down as a mirrored behavior",
+        "Firewall all gambling-adjacent content (sports parlays, roulette/numerology posts) from any ingestion pipeline",
+        "Blacklist illiquid sub-$2 \"hot garbage\" penny stocks sourced purely from his premarket volume call-outs without independent float/liquidity verification",
+        "Treat any period of amount_k telemetry blackout as an automatic risk-off flag for that trader's entire content stream until sync resumes"
+      ],
+      "exit": [
+        "Mechanically enforce his own stated rule for him: 20-30% profit-take on any options position mirrored from his calls, with no discretionary override",
+        "Impose a one-add maximum on any averaging-down mirrored from his conviction posts, with a hard stop at -25% from the second entry",
+        "Exclude MSTR/BTC-proxy-complex positions from his \"exempt from rules\" framing entirely"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 1813,
+      "posts_per_week": 17.85
+    },
+    "has_verdict_section": true,
+    "lines": 283,
+    "missing": [
+      "archetype",
+      "primary_classification",
+      "secondary_classification"
+    ]
+  },
+  {
+    "handle": "RM20252029",
+    "source_file": "@RM20252029_quant_profile.md",
+    "archetype": null,
+    "primary_classification": null,
+    "secondary_classification": null,
+    "tertiary_classification": null,
+    "alpha_score": 38,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "The wheel-only expectancy is genuinely positive and estimable — average logged weekly premium in the $5,900–$7,200 range against $50K–$500K deployed capital (roughly 1.2%–2.5% weekly on capital at risk, consistent with typical short-premium theta income). But this is not the account's true expectanc"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Log the wheel's structural parameters as a strategy template, not a copy-trade signal: weekly ITM/ATM CSP/CC cycling, $50K-$500K capital bands, mentor-sourced discipline",
+        "Track his weekly realized-P&L cadence as a account-health proxy only"
+      ],
+      "fade": [
+        "Fade any pre-announced \"going heavy on YOLO/leaps/buying options\" post immediately and completely",
+        "Fade the \"cores stay put till they break even\" framing as a top/bottom-agnostic risk signal, not a bullish one",
+        "Treat his syndicated mega-cap DD posts (AAPL/TSLA/META/NVDA) as retail-consensus noise, not proprietary insight"
+      ],
+      "firewall": [
+        "Never mirror the undisclosed wheel underlyings speculatively",
+        "Never inherit his selective-disclosure pattern"
+      ],
+      "exit": [
+        "Impose a hard mark-to-market discipline on anything modeled off his book: unrealized losses must be included in expectancy calculations from day one"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 257,
+      "posts_per_week": 2.65
+    },
+    "has_verdict_section": true,
+    "lines": 198,
+    "missing": [
+      "archetype",
+      "primary_classification",
+      "secondary_classification"
+    ]
+  },
+  {
+    "handle": "Rise",
+    "source_file": "@Rise_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "THETA_INCOME_WHEEL_OPERATOR",
+    "secondary_classification": "RETAIL_EDUCATOR_CONTENT_ENGINE",
+    "tertiary_classification": null,
+    "alpha_score": 71,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "On the wheel core (RDDT-class names), realized win characteristics approximate ~2-4% weekly premium yield on deployed capital, annualizing to roughly 65-125% on his own repeatedly-cited weekly-return prints (1.07%-5% weekly observed range), with an estimated >90% of individual option legs closed at "
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Treat his macro-regime posture (cash %, ITM-CC tilt direction) as a sentiment/positioning overlay input, not a standalone trade signal"
+      ],
+      "fade": [
+        "Fade his Tier-3 speculative sleeve entries (QUBT-class quantum names, penny drone/meme names): these are explicitly sized-down \"gambles\" he himself later regrets",
+        "Discount \"Theta Daddies community result\" posts entirely as an individual-trader alpha signal"
+      ],
+      "firewall": [
+        "Blacklist: naked long options as a mirrored instrument class",
+        "Firewall on the amount_k telemetry field for this trader specifically: exclude from any automated equity-curve, drawdown, or Sharpe calculation",
+        "Data-continuity firewall: flag the Jul 2025–Apr 2026 window as low-confidence / sparse-signal for this trader",
+        "Position-sizing floor: never let mirrored single-name exposure exceed his own stated caps (10% per trade, 20% per position)"
+      ],
+      "exit": [
+        "Adopt his 50%-profit/50%-time rule as a baseline exit heuristic for mirrored CSP/CC legs"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 543,
+      "posts_per_week": 5.7
+    },
+    "has_verdict_section": true,
+    "lines": 275,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "RoyaltyTradez",
+    "source_file": "@RoyaltyTradez_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "LEVEL_BASED_INDEX_SCALPER",
+    "secondary_classification": "MOMENTUM_MEGA_CAP_SWING",
+    "tertiary_classification": "RETAIL_SENTIMENT_AGGREGATOR",
+    "alpha_score": 42,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "Cannot be computed to a defensible confidence level from public data — treat any inferred expectancy as qualitative-only (\"more often directionally right on liquid index/mega-cap levels than wrong, based on engagement and follow-through screenshots, but magnitude and consistency are unverifiable\"). "
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Ingest his daily SPY/QQQ/IWM pre-market level calls as one weighted input into a multi-trader consensus/breadth signal",
+        "Ingest explicit, fully-specified options callouts (ticker + strike + expiry + entry price + SL) only",
+        "Harvest his loss-recovery percentage table and 30%-cut rule as a static risk-management module (correct, reusable, source-agnostic)",
+        "Treat elevated posting cadence spikes (e.g., 150+ posts/month) as a crude retail-attention/volatility proxy"
+      ],
+      "fade": [
+        "Fade \"discount\" framing at climactic extension, not at initial pullback",
+        "Fade parabolic long-tail momentum names (ASTS, SPCX, SKHY, MRAM, ONDS-style bursts) once his post frequency on a single small/mid-cap ticker spikes within a short window",
+        "Discount % return claims made in hindsight (post-facto \"up 300%\" framing without a prior disclosed entry)"
+      ],
+      "firewall": [
+        "BLACKLIST the amount_k / platform-verified-PnL field entirely for this trader",
+        "BLACKLIST any inference of \"verified\" performance",
+        "FIREWALL Kingdom/Patreon promotional posts from any signal-scoring pipeline",
+        "FIREWALL Topstep/prop-futures posts"
+      ],
+      "exit": [
+        "Cap position confidence decay on any of his callouts after 2 dated-contract expiries pass with no follow-up post",
+        "For consensus-signal purposes, weight his SPY/QQQ pre-market bias higher on trend-continuation days and lower on reversal/gap-fade days"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": null,
+      "posts_per_week": 16.8
+    },
+    "has_verdict_section": true,
+    "lines": 248,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "RyanLP",
+    "source_file": "@RyanLP_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "PREMIUM_SELLER_MECHANICAL",
+    "secondary_classification": "UNDEFINED_RISK_TAIL_GAMBLER",
+    "tertiary_classification": null,
+    "alpha_score": 14,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "Per-trade, self-reported expectancy looks attractive — 25/27 winning weeks, mean weekly closed P/L ≈ +$2,320 — but this is calculated only on trades he chooses to close. The true, capital-weighted expectancy (using the verified amount_k series) is catastrophic: ≈ -97.8% peak-to-trough over 51 weeks,"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Harvest his IV Rank / IV-mean-reversion framework as a generic vol-regime heuristic (sell premium when IVR is elevated, buy when depressed)",
+        "Track his 1256-contract / SPAN-margin instrument selection (SPX/XSP, index and ag futures) as a curated liquid-underlying watchlist",
+        "Use his weekly \"Opened/Managed/Closed/Open Positions\" counts as a rough activity/leverage-creep gauge for the wider Kingdom cohort he represents"
+      ],
+      "fade": [
+        "Fade any post where he sells undefined-risk premium into a stated \"bloodbath\" or \"welcome the volatility\" framing",
+        "Fade his single-name \"conviction\" buys sourced from vibes/AI summaries (SRFM, MNMD, HIMS-style narrative longs)"
+      ],
+      "firewall": [
+        "Blacklist \"manage at 21 DTE\" as practiced (i.e., roll-forever)",
+        "Firewall his Portfolio Margin leverage regime from any position-sizing model Artemis derives from his stated 1-3%/5% rules",
+        "Do not surface his weekly recap PnL headline numbers to end users without an appended verified-drawdown disclaimer"
+      ],
+      "exit": [
+        "If ever mirroring his premium-selling entries, impose a hard-stop at 200% of credit received on every leg, defined or undefined",
+        "Cap any single-session correlated exposure across index products (ES/NQ/RTY/SPX family) to a single unified risk budget, not per-instrument",
+        "Force realization (no rolling) of any short-premium position that has doubled against him",
+        "Treat any account-value drop >30% in a rolling 5-day window (as both his flash events showed) as an automatic kill-switch trigger for any strategy built on his signals"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 193,
+      "posts_per_week": 2.5
+    },
+    "has_verdict_section": true,
+    "lines": 251,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "SE83",
+    "source_file": "@SE83_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "MANIPULATION_THESIS_CONTRARIAN",
+    "secondary_classification": "EVENT_DRIVEN_GAMMA_SCALPER",
+    "tertiary_classification": "DISCIPLINED_FUTURES_SCALPER",
+    "alpha_score": 46,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": null,
+    "directives": {
+      "ingest": [
+        "Pull his insider Form-4 cluster call-outs as raw tips for independent SEC-filing verification",
+        "Track his gap-fill and 200-SMA levels on SPY/QQQ/mega-caps as candidate support/resistance inputs, re-verified against the Engine's own technical stack before acting",
+        "Log his NVDA post-earnings-fade thesis as a standing seasonal bias flag around NVDA earnings dates, weighted lightly"
+      ],
+      "fade": [
+        "Fade his individual options entries directly",
+        "Fade any RXRX/OPEN/VERI/TTD-style distressed bottom-fish call he makes",
+        "Treat his high-engagement \"called it\" / validation posts as retail-crowd euphoria markers, not alpha"
+      ],
+      "firewall": [
+        "Never size a position off his self-reported percentage returns (e.g. \"+1000%,\" \"+650%\")",
+        "Blacklist copy-trading his penny/distressed single-name calls (RXRX, OPEN, VERI, and similar sub-institutional-quality names he self-identifies as a weakness)",
+        "Do not ingest his futures (MNQ) setups into live execution without independent backtesting",
+        "Firewall geopolitical/war-headline posts entirely from the trading pipeline"
+      ],
+      "exit": [
+        "If harvesting his technical levels (gap fills, SMA reclaims), apply the Engine's own profit-taking discipline rather than his",
+        "Cross-check his insider-flow and OI-based calls against a second independent data source before any live sizing"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 273,
+      "posts_per_week": 3.2
+    },
+    "has_verdict_section": true,
+    "lines": 246,
+    "missing": [
+      "archetype",
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "SonnySide",
+    "source_file": "@SonnySide_quant_profile.md",
+    "archetype": null,
+    "primary_classification": null,
+    "secondary_classification": null,
+    "tertiary_classification": null,
+    "alpha_score": 29,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "Based on the verified connected-account series, realized expectancy over the full 614-day sample is approximately breakeven to slightly negative ($24.76K → $24.90K, +0.6% total, ~+0.03%/week) despite a +243% favorable move being available and captured at the interim peak. The gap between the best ma"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Auto-flag any ticker he posts within 48h of first mention with an unusned-volume/insider-buy rationale",
+        "Relay filed-catalyst posts (13F/13G, earnings, contracts) as verified-news pass-through only",
+        "Log his options-structure choices (LEAPS entry, CSP-to-wheel pivot) as strategy templates to evaluate on Artemis's own risk engine, decoupled from his position sizing"
+      ],
+      "fade": [
+        "Fade escalating combativeness on an existing large position",
+        "Fade \"good news, still down\" sequences",
+        "Fade the \"$500 Challenge\"/gamified-small-account posts as a herd-sentiment proxy"
+      ],
+      "firewall": [
+        "Never mirror single-name concentration",
+        "Blacklist thinly-traded sub-$10 tickers sourced purely from his \"insider buying\" or \"most actives\" call-outs (e.g., $LOOP, $TRUG, $VRME, $BURU, $SWMR) from any automated ingestion",
+        "Firewall anything tagged with ZHG/community/meetup context",
+        "Never inherit his options-assignment passivity"
+      ],
+      "exit": [
+        "Impose a mechanical trailing-stop / partial-profit ladder on any position sized off his conviction calls",
+        "Hard time/drawdown circuit breaker: if a mirrored position draws down >30% from its post-entry high, force a review/reduction regardless of his continued bullish posting"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 339,
+      "posts_per_week": 3.86
+    },
+    "has_verdict_section": true,
+    "lines": 196,
+    "missing": [
+      "archetype",
+      "primary_classification",
+      "secondary_classification"
+    ]
+  },
+  {
+    "handle": "TRON",
+    "source_file": "@TRON_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "THEMATIC_MOMENTUM_DISCOVERY",
+    "secondary_classification": "CONCENTRATED_OPTIONS_BAGHOLDER",
+    "tertiary_classification": "SELF_DIAGNOSED_NON_CORRECTOR",
+    "alpha_score": 46,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancycharacterization",
+          "read": "Positive raw idea expectancy, deeply negative risk-adjusted (Kelly-violating) expectancy. His picks, taken at first mention and exited on a disciplined rule, would likely show a positive edge. His picks, followed at his own sizing and holding period, have a fat left tail that erases years of gains i"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Treat @TRON as a discovery/screener feed for small-cap thematic and SPAC-conversion names, not an execution model"
+      ],
+      "fade": [
+        "Fade any \"rolled my calls further out\" or \"diamond-handing\" post in his flagship name of the moment",
+        "Fade retail herd enthusiasm when his engagement metrics spike (reactions/comments materially above his trailing average) on a single ticker",
+        "Fade, don't follow, any post where he says he \"added on the way down\" / \"not really worried\""
+      ],
+      "firewall": [
+        "Never size a position to match his stated conviction language (\"all in,\" \"would sell my whole port,\" \"tattoo if it hits $100\")",
+        "Never mirror options duration extensions (rolls) as a reason to add",
+        "Treat his self-applied [Gain]/[Loss] tags as unreliable for backtesting",
+        "The amount_k series itself must be sanitized before use",
+        "Toxic instrument flag: $ONDS options, specifically"
+      ],
+      "exit": [
+        "Impose a hard stop (e.g., −20% from entry) on any position inspired by his content, independent of his own holding behavior",
+        "Treat any options roll-to-further-expiry in his flagship name as a mandatory Artemis exit trigger for a mirrored position, not a hold signal",
+        "Re-evaluate exposure whenever his community engagement metrics spike"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 2401,
+      "posts_per_week": 25.7
+    },
+    "has_verdict_section": true,
+    "lines": 219,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "TheRealChad",
+    "source_file": "@TheRealChad_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "COPY_TRADE_SIGNAL_AMPLIFIER",
+    "secondary_classification": "CONCENTRATED_THEME_BAGHOLDER",
+    "tertiary_classification": null,
+    "alpha_score": 32,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": null,
+    "directives": {
+      "ingest": [
+        "Harvest scale-out cadence, not entries",
+        "Use his DD posts as an idea-sourcing net, then re-verify independently",
+        "Treat his four-sub-account monthly report cards as a lightweight retail-cohort performance benchmark (e.g., his Feb 2025 +4%–+38% range vs"
+      ],
+      "fade": [
+        "Fade concentration bravado",
+        "Fade his post-cadence spikes as a crowd-panic proxy",
+        "Fade, don't follow, his @ThetaTard/@SirJack-sourced entries directly"
+      ],
+      "firewall": [
+        "Blacklist thinly-traded/illiquid narrative micro-caps sourced from this account without independent liquidity/fundamental verification (MTPLF, KULR, LUNR, ONDS-tier names)"
+      ],
+      "exit": [
+        "Time-box thematic conviction trades",
+        "Mirror his exhaustion-driven de-risking behavior structurally, not emotionally"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 505,
+      "posts_per_week": 4.2
+    },
+    "has_verdict_section": true,
+    "lines": 287,
+    "missing": [
+      "archetype",
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "The_Golden_Calf",
+    "source_file": "@The_Golden_Calf_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "DILUTION_BOUNCE_SCALPER",
+    "secondary_classification": "NARRATIVE_MOMENTUM_CHASER",
+    "tertiary_classification": "EVENT_DRIVEN_OPTIONS_DEGEN",
+    "alpha_score": 34,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancycharacterization",
+          "read": "Positive raw post-count win rate (79% Gain-tagged) masks a strongly negative-skew payoff distribution — many small-to-moderate wins funding a small number of catastrophic options losses (-1,185%, -2,605% on individual trades) and prolonged capital lockup in dead money (HURA). Net account-level resul"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Harvest his first DD post on any new ticker as an early retail-flow timestamp",
+        "Track his thematic series launches (a self-branded multi-post DD arc, e.g. \"Drone Summer,\" \"Space Summer\") as a sector-rotation early-warning flag with a 2-4 week lead",
+        "Use his congressional/insider-trade-sourced biotech screens as one input into a broader politician-trade cross-reference model",
+        "His tranche-based profit-taking style (scale out 50-75% into strength, hold a small runner) is worth encoding as a rule, decoupled from his specific tickers"
+      ],
+      "fade": [
+        "Fade \"always buy under $X\" mechanical dip calls once the underlying breaks that level with volume",
+        "Fade continued conviction posts on a name he has held >90 days underwater (HURA is the canonical case)",
+        "Fade retail enthusiasm at \"Wonderful week\" / milestone-follower posts"
+      ],
+      "firewall": [
+        "Blacklist any mirroring of naked/uncovered option-selling",
+        "Blacklist copy-sizing off his position language (\"I have almost $4K of $AIRO,\" \"3K+ shares... over half my portfolio\")",
+        "Firewall micro-cap serial-diluters (HURA, UMAC, CLBR-class names) from any auto-hold logic",
+        "Firewall any position he has held longer than his own median hold time on a \"catalyst\" name (biotech binary events especially) once the catalyst date has already slipped once"
+      ],
+      "exit": [
+        "Encode his own stated rule he fails to follow: \"have a clear exit price\"",
+        "Cap synthetic position \"hold time\" on any name sourced from his DD at 60-90 days absent a fresh, un-slipped catalyst confirmation",
+        "Use his multi-week silence as an automatic de-risk trigger on any open synthetic position tied to his flow"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": null,
+      "posts_per_week": null
+    },
+    "has_verdict_section": true,
+    "lines": 234,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "ThetaMaestro",
+    "source_file": "@ThetaMaestro_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "MOMENTUM_SWING_LEAPS_TRADER",
+    "secondary_classification": "NARRATIVE_CULT_BAGHOLDER",
+    "tertiary_classification": "SOCIAL_DD_AGGREGATOR",
+    "alpha_score": 38,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "- Early-career core strategy (Aug 2024–Apr 2025), if isolated and copied mechanically with his own stated rules (25% cap, 90+DTE, catalyst-gated, hard stop on momentum loss): positive expectancy, plausibly +0.3R to +0.8R per idea, driven by a small number of large winners (WMT, UBER, TTD) funding se"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Harvest his covered-call-income and earnings-straddle tactics as standalone, reusable options structures independent of his ticker theses",
+        "Use his mega-cap/large-cap momentum entries (NVDA, UBER, WMT, TTD-class names) as a secondary confirming signal only when catalyst-driven and options-based"
+      ],
+      "fade": [
+        "Fade continuation on any post exhibiting the 🚀🌕💎🙌 emoji cluster combined with single-name concentration language (\"core holding,\" \"multi-year hold,\" \"keep cooking\")",
+        "Fade/heavily discount any post that is substantively a reposted company press release (BTC-acquisition announcements, \"Yield %\" stats)",
+        "Treat hostile, insult-laden defenses of an underwater position (\"braindead,\" \"low IQ,\" \"stfu\") as a high-confidence local-top/capitulation-proximity signal"
+      ],
+      "firewall": [
+        "Blacklist NAV-premium Bitcoin-treasury micro-caps as a category for position mirroring (MTPLF, and by extension KULR/similar names he championed pre-MTPLF)",
+        "Never mirror leverage-funding proposals",
+        "Firewall single-instrument concentration above the trader's own stated rules",
+        "Discount aggregated/imported DD"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 488,
+      "posts_per_week": 31.0
+    },
+    "has_verdict_section": true,
+    "lines": 219,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "Tiger_",
+    "source_file": "@Tiger__quant_profile.md",
+    "archetype": null,
+    "primary_classification": "FUNDAMENTAL_QUALITY_COMPOUNDER",
+    "secondary_classification": "LEVERAGED_CONTRARIAN_DIP_BUYER",
+    "tertiary_classification": null,
+    "alpha_score": 68,
+    "alpha_score_note": "Alpha Score (0–100)",
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "Positive, high-variance"
+        },
+        {
+          "scope": "Expectancy",
+          "read": "| Positive, high-variance | Net +11% over 10 disclosed months against a -38.5%/+134% round trip — payoff shape is \"long a fat right tail on 2–3 concentrated names, funded by tolerating deep, undefended drawdowns.\" Never observed to be net short volatility or a stable per-trade grinder. |"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Auto-tag any ticker he moves into \"Untouchable\" tier or above 10% disclosed portfolio weight as a high-quality long candidate for independent fundamental verification",
+        "Treat his rare, explicit \"leverage/margin ON\" statements as a high-conviction contrarian-bottom signal on broad risk sentiment",
+        "His 2026 short theses are catalyst-anchored (launch dates, earnings, funding-gap analyses)"
+      ],
+      "fade": [
+        "Fade his trim/rotation timing specifically, not his stock selection"
+      ],
+      "firewall": [
+        "No stop-loss discipline exists in this trader's process",
+        "Leverage/margin usage is real and has hit 120% gross on a single name",
+        "Concentration risk is structural to his style (single names routinely 20–50% of book)",
+        "His short book (2026) is new, small-sample, and philosophically inconsistent with 8+ years of stated long-only fundamental discipline",
+        "Self-admitted history of catastrophic loss chasing low-quality, cash-burning names (2021/22)"
+      ],
+      "exit": [
+        "Use a tiered trim rule once a Tiger_-sourced position appreciates materially: bank a portion at +50%, more at +100%, remainder on a trailing stop"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 406,
+      "posts_per_week": 5.3
+    },
+    "has_verdict_section": true,
+    "lines": 239,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "Tradeless",
+    "source_file": "@Tradeless_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "PERMA_BEAR_MACRO_HEDGER",
+    "secondary_classification": "THEMATIC_LIST_AGGREGATOR",
+    "tertiary_classification": null,
+    "alpha_score": 12,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy(directional call quality, index/macro calls only)",
+          "read": "Materially negative. Of 23 explicit \"crash imminent\" alarm posts against an index that was net positive across almost the entire window, roughly ~4–5% realized hit rate on timing, with the one correct call (Mar 2026) arriving so many cycles after the first false alarm that a strategy of following hi"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Scrape his thematic sector/ticker list posts as a free, timely universe-expansion feed for the internal screener stack",
+        "Backtest the disclosed \"ABC FOMC\" fade-then-follow-the-presser framework as a standalone, mechanically testable strategy"
+      ],
+      "fade": [
+        "Treat a cluster of his bearish index-put disclosures during an uptrend as a sentiment-extreme tell"
+      ],
+      "firewall": [
+        "Blacklist any signal generated during or after a TILT_REVENGE_BLOWUP state",
+        "Never ingest sizing, entry mechanics, or stop-loss placement from his disclosed trades",
+        "Hard-blacklist instrument class: uncapped-size 0DTE index options used as a directional hedge/gamble",
+        "Treat any post containing \"tips please,\" \"tip me,\" or similar monetization prompts as a conflict-of-interest flag on the surrounding content's objectivity"
+      ],
+      "exit": [
+        "If ingesting his thematic lists as a universe seed, apply Artemis's own trailing-stop/profit-taking logic",
+        "Re-evaluate his THEMATIC_LIST_AGGREGATOR weighting quarterly"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": null,
+      "posts_per_week": 4.75
+    },
+    "has_verdict_section": true,
+    "lines": 207,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "Trading_with_Art",
+    "source_file": "@Trading_with_Art_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "CSP_WHEEL_INCOME_SELLER_DISCLOSED_WINDOW",
+    "secondary_classification": "SAAS_FOUNDER_CONTENT_MARKETER",
+    "tertiary_classification": null,
+    "alpha_score": 38,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": null,
+    "directives": {
+      "fade": [
+        "Fade the \"Power 5\" broad sector-dump content",
+        "Discount any market commentary explicitly sourced from \"Trader Daddy Pro\" / TraderMatrix from 2026-03-10 onward"
+      ],
+      "firewall": [
+        "Never size off this account's PnL for any date after 2026-03-26",
+        "Firewall all TraderDaddy Pro / TraderMatrix / Vespryx-branded content as commercially motivated; do not treat platform-sourced data citations as independent third-party validation",
+        "Net the disclosed misses against the disclosed wins before crediting the CSP-wheel strategy",
+        "Do not credit the Feb 2026 \"-14% drawdown, survived on position sizing\" narrative as proof of disciplined risk management in isolation"
+      ],
+      "exit": [
+        "If dated, dollar-denominated trade disclosure ever resumes on this account, re-open this dossier"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 122,
+      "posts_per_week": 3.1
+    },
+    "has_verdict_section": true,
+    "lines": 212,
+    "missing": [
+      "archetype",
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "WarrenBuffett",
+    "source_file": "@WarrenBuffett_quant_profile.md",
+    "archetype": null,
+    "primary_classification": null,
+    "secondary_classification": null,
+    "tertiary_classification": null,
+    "alpha_score": 19,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "Negative at the account level. Per-trade expectancy on isolated, defined-risk setups (his named debit spreads) may be modestly positive to breakeven; multiplied through his position-sizing behavior (concentrating a large fraction of net liquidity in short-dated, undefined-max-loss options), the comp"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Options-Mechanics Templates: His \"Poor Man's Covered Call\" and debit-spread structuring posts are mechanically sound, generic templates (high community engagement confirms clarity)"
+      ],
+      "exit": [
+        "Hard Time-Box on Any Harvested Setup: His genuine setup-selection skill (per the Trade # series) operates on 1-4 week option-spread horizons"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": null,
+      "posts_per_week": 10.1
+    },
+    "has_verdict_section": true,
+    "lines": 346,
+    "missing": [
+      "archetype",
+      "primary_classification",
+      "secondary_classification"
+    ]
+  },
+  {
+    "handle": "YungEmber",
+    "source_file": "@YungEmber_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "CONCENTRATED_STORY_STOCK_HODLER",
+    "secondary_classification": "DD_DRIVEN_MOMENTUM_SWINGER",
+    "tertiary_classification": "MEME_SQUEEZE_TOURIST",
+    "alpha_score": 58,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "Positive over the observed 522-day sample (net capital growth), but with a fat left tail — two round-trip drawdowns of comparable magnitude to the total gain. A strategy that mechanically copies his entries but imposes exogenous exit discipline (see §5.4) would very likely outperform his own realize"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Treat every new @YungEmber multi-part DD series launch as a research trigger, not a trade trigger",
+        "His catalyst timing on dilution/cash-runway events is worth tracking as a leading indicator even when his own directional call is wrong",
+        "Options contract/strike disclosures on his core names are usable as real-time retail options-flow confirmation for names already on an Artemis watchlist"
+      ],
+      "fade": [
+        "Fade any \"conviction unchanged\" or address-the-ticker-directly post made during a >20% drawdown from a recent peak in that name",
+        "Fade micro-float/extreme-SI squeeze entries (HUBC-type)",
+        "Fade \"up $X since last update\" milestone posts as a near-term top signal, not a momentum-continuation signal"
+      ],
+      "firewall": [
+        "Never size-mirror his position disclosures",
+        "Blacklist sub-$1 / sub-2M-float squeeze names sourced from his posts (HUBC-class)",
+        "Do not treat \"sold X to buy Y\" rotation posts as risk-off signals",
+        "Firewall his prediction-market / entertainment-gambling disclosures entirely"
+      ],
+      "exit": [
+        "Because he has no observed profit-taking discipline, any Artemis strategy that ingests his entries must impose its own exit logic",
+        "Use his peak-milestone posts as the trim trigger for any position the engine is running in a name he's also concentrated in"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 448,
+      "posts_per_week": 6.0
+    },
+    "has_verdict_section": true,
+    "lines": 246,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "browndog",
+    "source_file": "@browndog_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "UNDISCIPLINED_LOTTO_GAMBLER",
+    "secondary_classification": "SINGLE_TICKER_BAGHOLDER_ONDS",
+    "tertiary_classification": null,
+    "alpha_score": 21,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "ExpectancyNEGATIVE, in aggregate, on the primary book.",
+          "read": "The amount_k series is close to a full, continuous equity curve for this trader (rare in this cohort) and it resolves to a clean, unambiguous answer: total capital destruction. Narrowly filtered to his catalyst-DD calls (IXHL/LTRX-style) and metals-hedge timing (GLD/SLV), expectancy is plausibly mod"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Use his $GLD/$SLV entry and exit timing as a soft overlay signal on the Engine's own metals/inflation-hedge module",
+        "Log any future AI-assisted signal-generation posts (he has already built one Claude-based agent) as a leading indicator of retail-side AI-agent adoption"
+      ],
+      "fade": [
+        "Treat any fresh $ONDS conviction post as a contrarian signal, not a follow signal",
+        "Fade his earnings-week binary option entries directly",
+        "When he posts a leveraged-ETF position with no stated stop-loss, treat that specific absence as the risk signal itself"
+      ],
+      "firewall": [
+        "Blacklist $ONDS-adjacent leveraged products ($ONDL, $ONDG) from any copy-signal pipeline sourced from this account",
+        "Never size a position off his self-reported percentage returns (e.g., \"266% profit,\" \"+50%\")",
+        "Firewall any signal sourced from this trader during a documented margin/liquidity-stress window (his Feb 2026 near-margin-call period)",
+        "Do not treat post-cadence as a volatility proxy for this trader"
+      ],
+      "exit": [
+        "Any idea sourced from his microcap DD call-outs should carry a hard, pre-defined stop-loss and profit-take band set by the Engine, never inherited from him",
+        "If the Browndog5-style small, equal-weighted, stop-governed pattern ever reappears at scale on his primary account, re-score this profile"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 152,
+      "posts_per_week": 3.2
+    },
+    "has_verdict_section": true,
+    "lines": 227,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "daren",
+    "source_file": "@daren_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "HERD_SENTIMENT_AGGREGATOR",
+    "secondary_classification": "MOMENTUM_FOMO_HOLDER",
+    "tertiary_classification": "SILENT_BAGHOLDER",
+    "alpha_score": 22,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "A conventional per-trade expectancy cannot be computed — genuine trade-level disclosure covers well under 10% of the corpus. The capital-weighted, ground-truth expectancy (using the verified amount_k series) is: +157x baseline over 25 months, entirely attributable to two isolated hero trades, agains"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Harvest the weekly poll-winner feed as a standalone retail-sentiment product",
+        "Track his personal \"I FOMO'd into X\" posts as lagging momentum-confirmation events"
+      ],
+      "fade": [
+        "Fade the crowd",
+        "Fade any of his own trade mentions that immediately follow a documented multi-week silence during a falling amount_k trend",
+        "Discount his [Gain] milestone posts as marketing, not performance evidence"
+      ],
+      "firewall": [
+        "Blacklist copying his simultaneous multi-directional single-name positioning (the FFIE pattern: long shares + long calls + long puts on one ticker at once)",
+        "Firewall the \"8.5 mil of Sir Jack's money\" paper-account posts entirely from any real-capital modeling",
+        "Blacklist \"averaging down on a leveraged option\" as a pattern",
+        "Never surface a poll-winner ticker as a \"Daren conviction call\" without explicitly labeling it as crowd-sourced"
+      ],
+      "exit": [
+        "Impose a mechanical partial-profit-taking rule on any strategy that mirrors his entry timing: e.g., trim 30–50% of a Daren-style momentum-FOMO position after a 2x move",
+        "Impose a hard time-based or drawdown-based exit (e.g., -20% from position peak) on any mirrored trade, since he demonstrably holds through silence rather than cutting",
+        "Cap any position sizing derived from his \"FOMO'd into X\" language at a fraction of his implied size"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 1463,
+      "posts_per_week": 11.1
+    },
+    "has_verdict_section": true,
+    "lines": 250,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "dick",
+    "source_file": "@dick_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "THEMATIC_MULTIBAGGER_HUNTER",
+    "secondary_classification": "SURVIVORSHIP_BIASED_CONTENT_FUNNEL",
+    "tertiary_classification": null,
+    "alpha_score": 51,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "Two distinct expectancy regimes must be scored separately:"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Use his rivalry-driven picks (anything explicitly framed as a response to @sirjack or another named AH peer) as a lower-confidence tertiary lead only"
+      ],
+      "fade": [
+        "Fade the \"at peak\" framing specifically"
+      ],
+      "firewall": [
+        "Never treat any self-reported performance statistic (Year-in-Review, DICKINDEX™️ update, \"up X% YTD,\" \"+X% at peak\") as a verified capital or P&L data point",
+        "Discard the amount_k structured field entirely for this source",
+        "Blacklist copying entry mechanics, size, or cost basis from the options-swing disclosures (BBWI, LDI, BITF calls)",
+        "Do not weight monetization-adjacent posts (anything containing \"subscribe,\" \"kindly,\" \"dolla a day,\" \"spots left,\" or similar funnel language) as trading signal"
+      ],
+      "exit": [
+        "Any position sourced from a @dick catalyst-lead should carry a hard, independently-derived stop-loss at initiation",
+        "Because his public track record is curated by omission (names quietly disappear from recaps rather than being marked closed"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": null,
+      "posts_per_week": 1.63
+    },
+    "has_verdict_section": true,
+    "lines": 207,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "gr8_ripple",
+    "source_file": "@gr8_ripple_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "RETAIL_NARRATIVE_BAGHOLDER",
+    "secondary_classification": "NOVICE_THETA_WHEEL_FARMER",
+    "tertiary_classification": "AI_COPILOT_DEPENDENT_EXECUTOR",
+    "alpha_score": 24,
+    "alpha_score_note": "Alpha Score (0–100)",
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "Roughly flat to mildly positive, high behavioral noise"
+        },
+        {
+          "scope": "Expectancy",
+          "read": "| Roughly flat to mildly positive, high behavioral noise | Real trading capital (excluding the IRA rollover and the Aug 2025 data anomaly) grew ~$700 → ~$5,000 over 12 months — driven by one lucky first trade, one fresh deposit, dividend income, and slow conviction-building in a single name, not a r"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Treat any post where he names a specific AI copilot tool + a specific trade (strikes, expiry, entry rationale) as a distinct, higher-confidence signal class",
+        "Independently verify and ingest the underlying catalyst data behind his deepest original DD (insider/board appointments, 13F/institutional stake changes on small-caps)",
+        "Use his disclosed CSP/CC strikes on speculative small-caps (ONDS, ACHR, DDD, TE) as a retail floor-support tell",
+        "Crawl the named mentors and communities he credits (Theta Daddies/Ripple Report, The Kingdom, TRON, Bobdog, mygreenknight, FridgeFinancials, CarlyBme) as upstream sources"
+      ],
+      "fade": [
+        "Fade his panic-exits on names he has stated high conviction on",
+        "Fade his FOMO second-guessing, not his original exit",
+        "Never treat his own technical commentary as an independent confirming signal",
+        "Discount any theoretical AI-generated hedge basket he discusses but does not fund (MSTY/BITI/SHY/KBWD)"
+      ],
+      "firewall": [
+        "0DTE index options",
+        "Long-dated VIX \"hedge\" calls",
+        "Single-stock option-income ETFs (YieldMax-style, e.g., MSTY)",
+        "Years-held, thesis-stale legacy bags (the INMB pattern: no fresh catalyst, sunk-cost holding)",
+        "The 2025-12-19 amount_k step-change (401k→IRA rollover) and the 2025-08-10/08-20 anomaly must be excluded from any automated NAV/return/Sharpe computation on this trader"
+      ],
+      "exit": [
+        "He has stated a real profit-taking rule (+20% target) and followed it exactly once before abandoning it to FOMO",
+        "Cap ingestion of his CSP/CC wheel activity to the exact small notional he discloses",
+        "Time-box any AI-copilot-sourced trade mirrored from him to a short holding window (days, not weeks) matching his one clean example (MRVL, 3-day hold)"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 98,
+      "posts_per_week": 1.12
+    },
+    "has_verdict_section": true,
+    "lines": 237,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "internetdialup",
+    "source_file": "@internetdialup_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "LEAPS_EXERCISE_ACCUMULATOR",
+    "secondary_classification": "MOMENTUM_SWING_SCALPER",
+    "tertiary_classification": "THEMATIC_CATALYST_CHASER",
+    "alpha_score": 58,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "Positive and plausible on the LEAPS-exercise mechanic specifically (multiple repeated, disclosed successes at different strikes/names over 18+ months, consistent with a genuine buy-quality-dips-and-hold edge in a rising market). Expectancy on the short-duration swing sleeve is unverifiable but direc"
+        }
+      ]
+    },
+    "directives": {
+      "fade": [
+        "Fade clusters of high rocket/moon-emoji, \"we only go up,\" blow-off-top language",
+        "Fade \"buy the dip / discount season\" calls specifically when they appear during a structural macro break (tariff/geopolitical shock) rather than routine chop",
+        "Treat his self-tagged 94.6% \"Gain\" ratio as a sentiment/selection-bias artifact, not a real win rate"
+      ],
+      "firewall": [
+        "Blacklist sizing/leverage inheritance entirely",
+        "Firewall the 2025-09-10 → 2025-10-11 amount_k readings ($2.78K–$4.27K) from all trend and drawdown calculations",
+        "Hard-blacklist the meme-coin/hype-instrument class (TRUMP/MELANIA inauguration coin YOLO)",
+        "Do not treat his self-built \"Diamondhands\" auto-trading bot (2026) as a validated signal source",
+        "Do not inherit his \"exercise into shares\" behavior wholesale"
+      ],
+      "exit": [
+        "Any position sourced from his LEAPS-mechanic or thematic-catalyst ideas should carry Artemis's own hard invalidation level and trailing-stop logic from initiation",
+        "Apply the harvested take-profit rule (≥90% of expected move → close) mechanically on any option position, independent of source",
+        "Treat a posting-cadence collapse to <1 post/month lasting 60+ days as a data-availability flag requiring cross-verification, not a tilt/blow-up kill-switch"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": null,
+      "posts_per_week": 1.34
+    },
+    "has_verdict_section": true,
+    "lines": 224,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "longwashere",
+    "source_file": "@longwashere_quant_profile.md",
+    "archetype": null,
+    "primary_classification": null,
+    "secondary_classification": null,
+    "tertiary_classification": null,
+    "alpha_score": 41,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy(qualitative)",
+          "read": "Positive but fat-tailed and negatively skewed at the account level once losing cycles are included — large, catalyst-driven wins punctuated by rare, severe, slow-bleed drawdowns from unhedged concentration. Per-trade expectancy on the isolated \"catalyst options\" subclass (Fed/CPI/tariff/earnings 0-5"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Supply-Chain / Rumor-Arbitrage Pattern: His DELL/SMCI Blackwell-overheating trade is a template worth encoding generically"
+      ],
+      "fade": [
+        "Numeric Reconciliation Check: Any of his self-reported account totals should be treated as directional only"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 584,
+      "posts_per_week": 4.6
+    },
+    "has_verdict_section": true,
+    "lines": 331,
+    "missing": [
+      "archetype",
+      "primary_classification",
+      "secondary_classification"
+    ]
+  },
+  {
+    "handle": "moloch",
+    "source_file": "@moloch_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "THEMATIC_MOMENTUM_ROTATOR",
+    "secondary_classification": "QUANT_TOOLING_HOBBYIST",
+    "tertiary_classification": null,
+    "alpha_score": 39,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": null,
+    "directives": {
+      "ingest": [
+        "Auto-flag any ticker he rotates into on the same day he abandons a bad-news large-cap",
+        "Treat his \"[Chart]\"/\"[Dd]\" proprietary-level calls as a leading indicator of an eventual large move, with an expected adverse excursion first",
+        "Use his LPPLS/bubble-oscillator research as a pointer to a legitimate quant technique (Sornette log-periodic power law) worth Artemis independently implementing and backtesting"
+      ],
+      "fade": [
+        "Fade any \"[Gain]\"-tagged post as an entry trigger",
+        "Fade the basket-diversification instinct, not the underlying names",
+        "Fade anything he explicitly labels \"chance play\" or \"hunch.\" He is telling you, in his own words, that the thesis has no depth",
+        "Fade retail momentum-chasing into his named microcaps after a big printed run"
+      ],
+      "firewall": [
+        "Sub-$5 / low-float microcaps sourced from this trader require independent liquidity, float, and short-interest screening before any auto-sizing",
+        "Never treat his silence as a hold signal",
+        "Firewall the amount_k portfolio-value series from being read as a clean, deposit-adjusted return stream",
+        "Cap any options/leverage replication at a symbolic sleeve size",
+        "Out-of-scope: Kalshi/prediction-market and crypto exposure"
+      ],
+      "exit": [
+        "Impose a mechanical trailing stop (20-25% off post-entry high) on any position sourced from a @moloch signal, since Artemis cannot rely on him to ever disclose an exit",
+        "Scale out in tranches (e.g., trim 1/3 at +50%, 1/3 at +100%, trail the remainder) rather than mirroring an assumed buy-and-hold",
+        "Time-box the thesis: 90 days of silence = stale",
+        "Never buy the \"[Gain]\" post itself"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 10,
+      "posts_per_week": 0.11
+    },
+    "has_verdict_section": true,
+    "lines": 241,
+    "missing": [
+      "archetype",
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "mphinance",
+    "source_file": "@mphinance_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "SYSTEMATIC_THETA_HARVESTER",
+    "secondary_classification": "MULTI_ENTITY_CAPITAL_NOISE",
+    "tertiary_classification": "RECOVERY_NARRATIVE_CREATOR",
+    "alpha_score": 58,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancycharacterization",
+          "read": "Small, positive, high-frequency expectancy on the wheel sleeve (premium collection on liquid, dividend-paying, low-priced underlyings, documented at roughly 11.6% over 9 weeks / ~67% annualized on the BTG example, unlevered) — a genuinely harvestable, low-drama edge. Neutral-to-negative expectancy o"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Mirror the wheel methodology, not the specific tickers",
+        "Use his gold/macro-hedge commentary and trailing-stop experiments as candidate risk-overlay rules for a backtest, not as live signals"
+      ],
+      "fade": [
+        "Fade the inherited community-basket names (the AH Naughty List tail) when they spike in his post volume",
+        "Do not treat a high amount_k reading on this handle as bullish confirmation of anything",
+        "Be skeptical of any single-name conviction call made during a documented high-cadence content-production burst (Aug 2025–Jan 2026, ~120 posts/month)"
+      ],
+      "firewall": [
+        "Never compute a lifetime return, Sharpe ratio, or drawdown from the raw amount_k series for this handle",
+        "Toxic-instrument flag: none identified at the position level",
+        "Do not use his self-applied [Gain]/[Loss] tags as a naive backtest ground truth without noting the June 2025 collapse is untagged (no [Loss] post exists for the $147K→$2K move)",
+        "Firewall: any signal sourced from a post coincident with a personal-crisis disclosure (grief, health, platform-trust rupture) should be down-weighted or excluded"
+      ],
+      "exit": [
+        "Re-evaluate exposure to any name entering his content during a high-cadence burst period"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 1174,
+      "posts_per_week": 13.9
+    },
+    "has_verdict_section": true,
+    "lines": 248,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "smartguyac",
+    "source_file": "@smartguyac_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "DEGENERATE_MOMENTUM_GAMBLER",
+    "secondary_classification": "VIBES_BASED_MACRO_CALLER",
+    "tertiary_classification": "ACCOUNT_BLOWUP_TERMINAL",
+    "alpha_score": 14,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "Strongly negative and terminal. Unlike a peer profile that round-trips large gains and survives with a positive lifetime number, this account's realized lifetime outcome is a 100% loss of tracked capital. The two multi-bagger windows (GME rescue, BTC-MACD run) are not evidence of edge to copy — they"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "When this account posts a named-indicator technical setup (Bollinger compression, MACD/signal cross, short-interest divergence, options-flow debit-spread reads)",
+        "Treat any call-out crediting an external source (e.g., \"@dick\" on $BITF) as a pointer to that source, not to this trader"
+      ],
+      "fade": [
+        "Fade euphoric/relief milestone posts as a near-term top signal",
+        "Fade \"just a feeling\" directional calls outright"
+      ],
+      "firewall": [
+        "Never size-mirror anything from this account",
+        "Blacklist all politically-framed narrative posts (Trump/Xi, MAGA rate-cut framing, \"Don would approve,\" Fed-speech memes) as non-actionable noise",
+        "Blacklist all social-drama/grievance posts as trading inputs entirely",
+        "Hard-stop ingestion once linked balance reads $0.00 for two or more consecutive posts (as occurred Aug 2026)",
+        "Do not use the tickers structured field alone for this account"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 57,
+      "posts_per_week": 0.81
+    },
+    "has_verdict_section": true,
+    "lines": 252,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "terridactil",
+    "source_file": "@terridactil_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "EDUCATOR_MOMENTUM_NARRATOR",
+    "secondary_classification": "THEMATIC_SPECULATIVE_SWING_TAGGER",
+    "tertiary_classification": "LAGGING_SENTIMENT_MARKER",
+    "alpha_score": 24,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": null,
+    "directives": {
+      "ingest": [
+        "Calendar feed only",
+        "Congressional-trade correlation leads",
+        "Defined-level swing triggers",
+        "Thematic watchlist seeding"
+      ],
+      "fade": [
+        "Fade the \"already moved\" post",
+        "Discount high-volume/high-drama weeks",
+        "Fade retail-herd euphoria clusters"
+      ],
+      "firewall": [
+        "Never mirror her actual options entries/exits",
+        "Blacklist copy-trading of SPX/SPY/NVDA short-dated (\"lotto\") options",
+        "Ignore all no-trigger predictive/thesis content (e.g., \"SpaceX becomes the largest S&P company,\" Anthropic-vs-Nvidia valuation musings, \"which stock survives 69 more years\" polls)",
+        "Hard-filter the 61% untagged lifestyle/motivational corpus out of any ticker-universe or sentiment-scoring pipeline entirely",
+        "Never scale position size off her disclosed dollar figures",
+        "Flag joint-attribution risk"
+      ],
+      "exit": [
+        "Any position opened off a Terridactil-sourced thematic idea ($RDW, $ESE-style multi-year narrative plays) should carry a hard time-stop and small/lotto-only sizing",
+        "For defined-level breakout ideas ($CELH-style), use her own stated level as the invalidation stop (e.g., failure to hold $30)",
+        "Any position opened contemporaneously with one of her \"already-moved\" reactive posts should default to an automatic tight trailing stop / scalp-only exit, never a swing hold",
+        "Systematically downweight allocation during her high-post-frequency/high-drama windows"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 132,
+      "posts_per_week": 4.8
+    },
+    "has_verdict_section": true,
+    "lines": 293,
+    "missing": [
+      "archetype",
+      "expectancy"
+    ]
+  },
+  {
+    "handle": "trynamakeit",
+    "source_file": "@trynamakeit_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "SPY_INDEX_OPTIONS_TA_SCALPER",
+    "secondary_classification": "MOMENTUM_THEME_CHASER",
+    "tertiary_classification": "SELF_REPORT_SURVIVORSHIP_BIASED",
+    "alpha_score": 24,
+    "alpha_score_note": null,
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "The visible, self-reported win sample (47 Gain-tagged posts, small dollar amounts, real but modest) implies a positive per-trade expectancy in isolation. The capital-weighted expectancy, using the verified amount_k telemetry, is far worse: an account that has been reduced to double-digit dollars twi"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Track his thematic rotation basket (uranium/UEC, space/ASTS, nuclear/OKLO, rare earth/MP, AI infra/NOW) as an early theme-discovery watchlist"
+      ],
+      "fade": [
+        "Fade posts that frame active drawdowns as pure community opportunity (\"Kingdom Smells Blood,\" \"Elevator mode,\" toasting 🥂 through red days)",
+        "Fade his \"who else caught that\" retroactive victory-lap posts",
+        "Fade single-name conviction calls sourced from Kingdom-member tips (e.g., CLOV/VIVK \"brought to my attention by a member\")"
+      ],
+      "firewall": [
+        "Blacklist any position-sizing inference drawn from his account",
+        "Firewall his self-tagged Gain/loss-free track record from any trust or reputation scoring",
+        "Blacklist \"no stop loss\" behavior as practiced, not preached",
+        "Do not surface promotional/discount-code content to any downstream consumer as trading signal under any circumstance"
+      ],
+      "exit": [
+        "If ever referencing his level calls for entries, impose an independent, non-discretionary stop",
+        "Treat any unexplained data gap greater than 30 days on this or comparably-tracked traders as an automatic \"unverifiable period\" flag",
+        "Cap any thematic-basket exposure sourced from his picks to a small, clearly labeled \"idea generation\" bucket, separate from any core signal"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 2682,
+      "posts_per_week": 21.9
+    },
+    "has_verdict_section": true,
+    "lines": 299,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "wallhawk",
+    "source_file": "@wallhawk_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "RETAIL_MOMENTUM_CHASER",
+    "secondary_classification": "SOCIAL_SIGNAL_RELAY",
+    "tertiary_classification": "LOTTO_OPTIONS_GAMBLER",
+    "alpha_score": 22,
+    "alpha_score_note": "Alpha Score (0–100)",
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "Likely flat-to-negative on a real-dollar basis"
+        },
+        {
+          "scope": "Expectancy",
+          "read": "| Likely flat-to-negative on a real-dollar basis | The only fully quantified capital arc in the dataset is a peak-to-bust round trip; the only numbered loss ($3k) arrives at the peak of his best month; small real wins are genuine but modest ($500, 20%, a $5→$200 lotto) against an unquantifiable but "
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "When he explicitly credits a named third party, route the signal to that person's own tracked profile (e.g., @RoyaltyTradez, @trynamakeit) rather than crediting wallhawk"
+      ],
+      "fade": [
+        "Fade any no-thesis, hype-only single-ticker post (\"let's ride,\" \"feeling frisky,\" \"🚀🌙\" with no catalyst) on a micro-cap",
+        "Fade the \"squeeze?\" framing specifically (used on $LDI, $CGC, $BYND)",
+        "Treat his binary-catalyst straddles as evidence the retail herd around a given event has no real directional conviction"
+      ],
+      "firewall": [
+        "No sizing off his lotto/short-dated OTM options structures ($TQQQ 90P bought one day pre-expiry, $MDB $5→$200 lotto)",
+        "Discount his self-reported win-rate entirely",
+        "Exclude all Phase 2 posts (2025-11-07 onward) from quantitative ingestion",
+        "Firewall against his politically-motivated catalyst framing bleeding into position sizing"
+      ],
+      "exit": [
+        "On any name he does disclose a real gain-taking mechanic for (partial sell + let a runner ride, e.g. $LDI, $BYND), mirror the scale-out point, not the runner",
+        "Impose a hard 2-week time-stop on any Artemis position sourced from a no-follow-up wallhawk post",
+        "On binary-catalyst straddle posts, exit both legs of any mirrored structure on the catalyst date regardless of outcome"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 76,
+      "posts_per_week": 0.97
+    },
+    "has_verdict_section": true,
+    "lines": 220,
+    "missing": [
+      "archetype"
+    ]
+  },
+  {
+    "handle": "x52x",
+    "source_file": "@x52x_quant_profile.md",
+    "archetype": null,
+    "primary_classification": "EXTREME_LEVERAGE_MOMENTUM_GAMBLER",
+    "secondary_classification": "SERIAL_BOOM_BUST_CYCLICAL",
+    "tertiary_classification": "PARASOCIAL_CONTENT_MONETIZER",
+    "alpha_score": 14,
+    "alpha_score_note": "Alpha Score (0–100)",
+    "alpha_score_basis": "stated",
+    "subscores": [],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "Expectancy",
+          "read": "Strongly negative on a real-dollar, multi-cycle basis"
+        },
+        {
+          "scope": "Expectancy",
+          "read": "| Strongly negative on a real-dollar, multi-cycle basis | Verified life-scale collateral damage (IRS debt, credit-card debt, home foreclosure) disclosed as a direct consequence of the trading, not as unrelated context — this is the clearest real-world negative-expectancy confirmation available in th"
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Treat @x52x as a leading momentum-entry indicator, not a position to mirror",
+        "Use his amount_k series as a live volatility/euphoria thermometer for the broader retail options crowd he represents, not as a return template",
+        "Log every \"post-silence restart\" event (100+ day gap followed by a small new deposit) as a discrete, dateable behavioral marker"
+      ],
+      "fade": [
+        "Fade continued size-adds into an already-large, already-extended position",
+        "Fade \"Universe\"/round-number target posts as directional signals entirely",
+        "Treat \"I'm #1 on the leaderboard\" posts as a local-top marker for retail conviction, not as validation to add"
+      ],
+      "firewall": [
+        "Never size a position off his stated dollar amounts or account percentages",
+        "Zero weight on his options structures specifically (no stops used, continuous rolling into strength, no LEAPs, near-100% short-dated concentration)",
+        "Discount his self-reported win framing on any post that omits a subsequent resolution",
+        "Exclude all monetization-link posts (Patreon/Discord/Twitch/etc.) from quantitative ingestion"
+      ],
+      "exit": [
+        "Impose a hard, non-negotiable profit-taking rule on any Artemis position sourced from an @x52x-flagged entry once it has moved 2–3x from entry",
+        "Treat any amount_k reading that has round-tripped more than 50% off a recent local high as a hard stop for any mirrored idea, regardless of his own continued posting/conviction"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 1092,
+      "posts_per_week": 6.58
+    },
+    "has_verdict_section": true,
+    "lines": 257,
+    "missing": [
+      "archetype"
+    ]
+  }
+]
