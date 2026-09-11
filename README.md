@@ -1,6 +1,6 @@
 # 🧬 AfterMath: AfterHour Forensic Autopsy & Signal Intelligence Engine
 
-> Conducting quantitative forensic autopsies on retail social trading feeds. Measuring the disclosure gap, auditing follow-through reality, and extracting mechanical signal flow across 33,000+ posts.
+> A quantitative forensic scraper and analytics engine for retail social trading feeds. We pull 100% of a trader's lifetime posts, measure the disclosure gap, audit follow-through reality, and extract mechanical signal flow.
 
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](pyproject.toml)
@@ -8,13 +8,13 @@
 
 ---
 
-## 🎯 The Core Thesis: In Data We Trust
+## 🎯 What is AfterMath?
 
-Have you ever decided somebody could trade based on one screenshot? Have you ever unfollowed a trader over a bad call in a week you were also wrong? Have you ever trusted the loudest account in the room because they were hilarious on a green day?
+Social trading feeds are full of noise. AfterMath is an engine built to stop grading traders by vibe and start grading them by math. 
 
-We stopped grading traders by vibe. Using **Artemis** (autonomous Android device automation) and AfterHour's public feed architecture, we pulled the complete lifetime post history of **40 followed traders**—not a sample, not the green months, but all **33,090 posts** from day one to the present.
+Using **Artemis** (autonomous device automation) and public feed architecture, we scraped the complete lifetime post history of **40 active retail traders**. We didn't take a sample or just look at their green months. We pulled all **33,090 posts** from day one to the present.
 
-Then we ran every trader through a standardized, unsparing forensic autopsy:
+Then we ran every trader through a standardized, unsparing forensic autopsy to measure their actual exit discipline, gain-to-loss disclosure ratio, and structural trading behavior:
 
 ```text
 You are a senior quantitative trading analyst conducting a deep forensic
