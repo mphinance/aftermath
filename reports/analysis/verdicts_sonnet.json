@@ -167,6 +167,68 @@
     ]
   },
   {
+    "handle": "Bobdog",
+    "source_file": "@Bobdog_quant_profile.md",
+    "archetype": "The Systematic Theta Wheel Sovereign",
+    "primary_classification": "THETA_WHEEL_OPERATOR",
+    "secondary_classification": "HIGH_BETA_MOMENTUM_SPECULATOR",
+    "tertiary_classification": null,
+    "alpha_score": 74,
+    "alpha_score_note": "GRADE: B+ (STRONG SIGNAL",
+    "alpha_score_basis": "stated",
+    "subscores": [
+      {
+        "category": "Systematic Strategy Integrity",
+        "score": 82
+      },
+      {
+        "category": "Ticker Curation & Alpha Discovery",
+        "score": 85
+      },
+      {
+        "category": "Exit Discipline & Disclosures",
+        "score": 54
+      },
+      {
+        "category": "Psychological Resilience",
+        "score": 75
+      }
+    ],
+    "expectancy": {
+      "win_rate_pct": 76.0,
+      "payoff_ratio": null,
+      "expected_value_r": "+0.62",
+      "qualitative": null
+    },
+    "directives": {
+      "ingest": [
+        "Harvest his thematic asset discovery radar",
+        "Use his Blue Star weekly regime shifts as a trend-continuation bias overlay for equity and crypto swing portfolios"
+      ],
+      "fade": [
+        "Fade his emotional revenge-trading declarations",
+        "Fade short-dated earnings option gambles"
+      ],
+      "firewall": [
+        "Hard Firewall against unverified multi-account Plaid telemetry",
+        "Blacklist directional long call purchases exceeding 30 DTE without a defined exit stop",
+        "Zero-Margin Firewall: Strictly enforce his own stated rule: never deploy portfolio margin on speculative growth names"
+      ],
+      "exit": [
+        "Enforce a strict 50% max-profit take on all mirrored CSP positions rather than holding into expiration week gamma risk",
+        "Mandatory 21 DTE management: Close or roll all short option legs at 21 DTE to eliminate terminal gamma volatility",
+        "Implement automated trailing stops on all speculative equity entries sourced from his radar (recommended: 15% trailing stop on small-cap momentum)"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": 2694,
+      "posts_per_week": 27.41
+    },
+    "has_verdict_section": true,
+    "lines": 172,
+    "missing": []
+  },
+  {
     "handle": "Cynce",
     "source_file": "@Cynce_quant_profile.md",
     "archetype": null,

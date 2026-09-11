@@ -1,5 +1,18 @@
 [
   {
+    "handle": "Bobdog",
+    "posts": 2694,
+    "entry_posts": 624,
+    "exit_posts": 428,
+    "entry_exit_ratio": 1.46,
+    "tickers_announced_as_buys": 275,
+    "tickers_ever_closed_publicly": 115,
+    "followthrough_pct": 41.8,
+    "gain_tagged_posts": 101,
+    "loss_tagged_posts": 27,
+    "gain_loss_tag_ratio": 3.74
+  },
+  {
     "handle": "trynamakeit",
     "posts": 2682,
     "entry_posts": 241,
