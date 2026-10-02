@@ -53,9 +53,12 @@ def fetch_user_portfolio(u):
         positions = []
         for p in data.get("positionSnapshots", []):
             sid = p.get("securityId")
-            ticker = sec_id_to_ticker.get(sid, sid)
+            ticker = p.get("tickerSymbol") or sec_id_to_ticker.get(sid) or p.get("rootTickerSymbol") or sid
+            sec_name = p.get("securityName") or ticker
             positions.append({
                 "ticker": ticker,
+                "name": sec_name,
+                "security_id": sid,
                 "quantity": p.get("quantity", 0),
                 "value": p.get("value", 0),
                 "cost_basis": p.get("costBasis", 0),

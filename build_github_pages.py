@@ -4,10 +4,11 @@ Generates the next-generation, institutional-grade AfterHour Alpha Terminal.
 Includes:
 - All 500 securities with quantitative ranking metrics (Whale Capital, Total Value, Owners, Gainers, Chat)
 - Asset segregation: ETFs (64) vs Equities (436)
-- 395 verified whales ($169M+ AUM)
+- 395 verified whales ($169M+ AUM) with real resolved ticker symbols and company names
+- Complete visual sitemap directory (/sitemap) & standard XML sitemap (sitemap.xml)
 - Full Inverted Index: Every stock lists all verified whales who own it
 - Over-time historical candlestick / line charts (44-day OHLCV daily bars)
-- URL Slugs & Client-Side SPA routing (/ticker/:symbol, /@:username, /stonks, /etfs, /whales, /shadow, /all)
+- URL Slugs & Client-Side SPA routing (/ticker/:symbol, /@:username, /stonks, /etfs, /whales, /shadow, /sitemap, /all)
 - Static API endpoints (/api/stonks.json, /api/whales.json, /api/etfs.json, /api/shadow.json, /api/ticker/:symbol.json)
 - TraderMatrix Pro referral funnel integration throughout (ref=MPHINANCE)
 """
@@ -30,7 +31,7 @@ TICKER_API_DIR.mkdir(parents=True, exist_ok=True)
 with open(DATA_DIR / "stock_leaderboard.json", encoding="utf-8") as f:
     board_data = json.load(f)
 
-# 2. Load ranked whales
+# 2. Load ranked whales (swept with real tickerSymbol & securityName)
 with open(DATA_DIR / "all_verified_whales_ranked.json", encoding="utf-8") as f:
     whale_data = json.load(f)
 
@@ -40,8 +41,10 @@ with open(DATA_DIR / "historic_prices_sample.json", encoding="utf-8") as f:
 
 whales = whale_data.get("whales", [])
 
-# Build Inverted Index: Ticker -> List of Whales holding it
+# Build Inverted Index: Ticker -> List of Whales holding it & Name registry
 ticker_to_whales = {}
+ticker_extra_names = {}
+
 for w in whales:
     flw = max(1, w.get("followers", 0))
     w["shadow_ratio"] = round(w["total_value"] / flw, 2)
@@ -50,6 +53,14 @@ for w in whales:
         t = p.get("ticker")
         if not t:
             continue
+        # Clean up any leftover sec_ IDs if they ever occur
+        if t.startswith("sec_"):
+            t = p.get("name") or "UNLISTED"
+            p["ticker"] = t
+
+        if p.get("name") and t not in ticker_extra_names:
+            ticker_extra_names[t] = p.get("name")
+
         if t not in ticker_to_whales:
             ticker_to_whales[t] = []
         ticker_to_whales[t].append({
@@ -73,7 +84,7 @@ for s in raw_securities:
     sec = s.get("security", {})
     info = sec.get("security", {})
     ticker = info.get("tickerSymbol") or info.get("name")
-    if not ticker:
+    if not ticker or ticker.startswith("sec_"):
         continue
     price_obj = sec.get("price", {})
     sess = price_obj.get("session", {})
@@ -91,9 +102,14 @@ for s in raw_securities:
     w_cnt = len(w_list)
     top_whale = w_list[0] if w_list else None
 
+    # Name fallback
+    comp_name = info.get("name") or ticker_extra_names.get(ticker) or ticker
+    if comp_name.startswith("sec_"):
+        comp_name = info.get("friendlyName") or ticker
+
     stocks_raw.append({
         "ticker": ticker,
-        "name": info.get("name") or ticker,
+        "name": comp_name,
         "friendlyName": info.get("friendlyName") or ticker,
         "type": sec_type,
         "isETF": is_etf,
@@ -114,43 +130,35 @@ for s in raw_securities:
     })
 
 # Compute explicit rankings across the universe
-# 1. Rank by Whale Capital ($)
 stocks_by_whale = sorted(stocks_raw, key=lambda x: (x["whalesValue"], x["totalValue"]), reverse=True)
 for i, s in enumerate(stocks_by_whale, 1):
     s["rankWhaleCapital"] = i
 
-# 2. Rank by Total Platform Value ($)
 stocks_by_val = sorted(stocks_raw, key=lambda x: x["totalValue"], reverse=True)
 for i, s in enumerate(stocks_by_val, 1):
     s["rankPlatformValue"] = i
 
-# 3. Rank by Owner Count
 stocks_by_owners = sorted(stocks_raw, key=lambda x: x["owners"], reverse=True)
 for i, s in enumerate(stocks_by_owners, 1):
     s["rankOwners"] = i
 
-# 4. Rank by 24h Gainers
 stocks_by_gainers = sorted(stocks_raw, key=lambda x: x["changePercent"], reverse=True)
 for i, s in enumerate(stocks_by_gainers, 1):
     s["rankGainers"] = i
 
-# 5. Rank by Matrix Chat
 stocks_by_chat = sorted(stocks_raw, key=lambda x: x["chatroomMembers"], reverse=True)
 for i, s in enumerate(stocks_by_chat, 1):
     s["rankChat"] = i
 
-# Assign default rank & construct explicit "Why It's Top" badges
 stocks = stocks_by_whale  # Default institutional view is verified whale capital
 
 for s in stocks:
     badges = []
     reasons = []
     
-    # Asset type badge
     if s["isETF"]:
         badges.append({"label": "ETF", "color": "amber"})
     
-    # Whale capital badges
     if s["whalesValue"] >= 5_000_000:
         badges.append({"label": f"#{s['rankWhaleCapital']} WHALE BACKED", "color": "purple"})
         reasons.append(f"${s['whalesValue']/1_000_000:.1f}M whale capital ({s['whalesCount']} whales)")
@@ -161,7 +169,6 @@ for s in stocks:
         badges.append({"label": "WHALE CONSENSUS", "color": "cyan"})
         reasons.append(f"{s['whalesCount']} verified whales")
 
-    # Owners badge
     if s["rankOwners"] <= 5:
         badges.append({"label": f"#{s['rankOwners']} MOST OWNED", "color": "amber"})
         reasons.append(f"{s['owners']:,} verified holders")
@@ -171,7 +178,6 @@ for s in stocks:
     elif s["owners"] >= 40:
         badges.append({"label": "POPULAR RETAIL", "color": "amber"})
 
-    # Performance
     if s["changePercent"] >= 4.0:
         badges.append({"label": "TOP 24H SURGE", "color": "green"})
         reasons.append(f"+{s['changePercent']:.1f}% intraday move")
@@ -179,7 +185,6 @@ for s in stocks:
         badges.append({"label": "HIGH VOL DIP", "color": "red"})
         reasons.append(f"{s['changePercent']:.1f}% pullback")
         
-    # Chatroom
     if s["chatroomMembers"] >= 5000:
         badges.append({"label": "VIRAL CHAT", "color": "cyan"})
         reasons.append(f"{s['chatroomMembers']:,} chat members")
@@ -194,11 +199,13 @@ for s in stocks:
 
     s["badges"] = badges
     s["whyTop"] = " &bull; ".join(reasons) if reasons else f"Rank #{s['rankWhaleCapital']} by verified capital"
-    s["rank"] = s["rankWhaleCapital"]  # Initial default rank
+    s["rank"] = s["rankWhaleCapital"]
 
 total_whale_val = sum(w["total_value"] for w in whales)
-millionaires_count = len([w for w in whales if w["total_value"] >= 1_000_000])
-etfs_count = len([s for s in stocks if s["isETF"]])
+millionaires = [w for w in whales if w["total_value"] >= 1_000_000]
+millionaires_count = len(millionaires)
+etfs_list = [s for s in stocks if s["isETF"]]
+etfs_count = len(etfs_list)
 equities_count = len(stocks) - etfs_count
 
 # Export static JSON API files
@@ -206,7 +213,7 @@ with open(API_DIR / "stonks.json", "w", encoding="utf-8") as f:
     json.dump({"total": len(stocks), "securities": stocks}, f, indent=2)
 
 with open(API_DIR / "etfs.json", "w", encoding="utf-8") as f:
-    json.dump({"total": etfs_count, "securities": [s for s in stocks if s["isETF"]]}, f, indent=2)
+    json.dump({"total": etfs_count, "securities": etfs_list}, f, indent=2)
 
 with open(API_DIR / "whales.json", "w", encoding="utf-8") as f:
     json.dump({"total": len(whales), "whales": whales}, f, indent=2)
@@ -225,9 +232,39 @@ for s in stocks:
     with open(TICKER_API_DIR / f"{ticker}.json", "w", encoding="utf-8") as f:
         json.dump(ticker_payload, f)
 
-print(f"[+] Exported static API files to {API_DIR}")
+# Generate standard XML Sitemap (sitemap.xml)
+sitemap_urls = [
+    ("https://ah.mphinance.com/", "1.0", "hourly"),
+    ("https://ah.mphinance.com/stonks", "0.9", "hourly"),
+    ("https://ah.mphinance.com/etfs", "0.9", "daily"),
+    ("https://ah.mphinance.com/whales", "0.9", "daily"),
+    ("https://ah.mphinance.com/shadow", "0.8", "daily"),
+    ("https://ah.mphinance.com/sitemap", "0.8", "daily"),
+    ("https://ah.mphinance.com/all", "0.7", "weekly"),
+    ("https://ah.mphinance.com/api/stonks.json", "0.7", "hourly"),
+    ("https://ah.mphinance.com/api/etfs.json", "0.7", "daily"),
+    ("https://ah.mphinance.com/api/whales.json", "0.7", "daily"),
+    ("https://ah.mphinance.com/api/shadow.json", "0.7", "daily"),
+]
 
-# Build the complete responsive single-page application HTML
+for s in stocks:
+    sitemap_urls.append((f"https://ah.mphinance.com/ticker/{s['ticker']}", "0.8", "hourly"))
+
+for w in whales[:100]:
+    sitemap_urls.append((f"https://ah.mphinance.com/@{w['username']}", "0.7", "daily"))
+
+sitemap_xml = ['<?xml version="1.0" encoding="UTF-8"?>']
+sitemap_xml.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+for url, prio, freq in sitemap_urls:
+    sitemap_xml.append(f"  <url><loc>{url}</loc><changefreq>{freq}</changefreq><priority>{prio}</priority></url>")
+sitemap_xml.append('</urlset>')
+
+with open(BASE_DIR / "sitemap.xml", "w", encoding="utf-8") as f:
+    f.write("\n".join(sitemap_xml))
+
+print(f"[+] Exported sitemap.xml with {len(sitemap_urls)} URLs")
+
+# HTML Content Builder
 html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -333,6 +370,18 @@ html_content = f"""<!DOCTYPE html>
   }}
   @keyframes pulse {{ 0% {{ opacity: 0.4; }} 50% {{ opacity: 1; }} 100% {{ opacity: 0.4; }} }}
   
+  .sitemap-header-btn {{
+    display: flex; align-items: center; gap: 6px;
+    background: var(--bg-card); border: 1px solid rgba(0, 240, 255, 0.3);
+    padding: 6px 14px; border-radius: 20px; font-size: 12px; font-family: var(--font-mono);
+    color: var(--cyan); text-decoration: none; font-weight: 700;
+    cursor: pointer; transition: all 0.2s ease;
+  }}
+  .sitemap-header-btn:hover {{
+    background: rgba(0, 240, 255, 0.15); border-color: var(--cyan);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+  }}
+
   .tm-header-btn {{
     display: flex; align-items: center; gap: 8px;
     background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(168, 85, 247, 0.15));
@@ -814,10 +863,101 @@ html_content = f"""<!DOCTYPE html>
     font-family: var(--font-mono);
     color: var(--text-secondary);
     transition: all 0.15s ease;
+    cursor: pointer;
   }}
   .holding-chip:hover {{
     border-color: var(--cyan);
     color: var(--cyan);
+  }}
+
+  /* SITEMAP / DIRECTORY STYLES */
+  .sitemap-section {{
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }}
+  .sitemap-header {{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }}
+  .sitemap-header h3 {{
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }}
+  .sitemap-grid {{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+  }}
+  .sitemap-chip-cloud {{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }}
+  .sitemap-card {{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+  }}
+  .sitemap-card:hover {{
+    border-color: var(--cyan);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }}
+  .sitemap-card-title {{
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--cyan);
+    margin-bottom: 4px;
+    font-family: var(--font-mono);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }}
+  .sitemap-card-desc {{
+    font-size: 12px;
+    color: var(--text-secondary);
+  }}
+  .sitemap-chip {{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }}
+  .sitemap-chip:hover {{
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: rgba(0, 240, 255, 0.08);
+  }}
+  .sitemap-chip-meta {{
+    font-size: 10px;
+    color: var(--text-muted);
   }}
 
   /* MODALS */
@@ -930,6 +1070,10 @@ html_content = f"""<!DOCTYPE html>
         <div class="live-dot"></div>
         LIVE ALT-DATA
       </div>
+      <button class="sitemap-header-btn" onclick="switchRoute('/sitemap')">
+        <span>&#x1F5FA;&#xFE0F;</span>
+        <span>Sitemap</span>
+      </button>
       <a href="https://www.tradermatrix.pro/?ref=MPHINANCE" target="_blank" class="tm-header-btn">
         <img src="https://www.tradermatrix.pro/brand/app-icon-180.png" width="16" height="16" style="border-radius: 4px;" alt="">
         <span>TraderMatrix Pro</span>
@@ -1006,11 +1150,13 @@ html_content = f"""<!DOCTYPE html>
     <button class="tab-btn" id="tabNav-shadow" onclick="switchRoute('/shadow')">
       <span>&#x1F916;</span> Shadow Whales (Under-Followed)
     </button>
+    <button class="tab-btn" id="tabNav-sitemap" onclick="switchRoute('/sitemap')">
+      <span>&#x1F5FA;&#xFE0F;</span> Directory &amp; Sitemap
+    </button>
   </div>
 
   <!-- TAB 1: TOP STONKS & TAXONOMY -->
   <div id="view-stonks" class="tab-pane active">
-    <!-- RANK SELECTOR STRIP -->
     <div class="rank-selector-strip">
       <span class="rank-selector-label">&#x26A1; Rank Universe By:</span>
       <button class="rank-btn active" id="rankBtn-whale" onclick="setRankMode('whale')">🐋 Whale Capital ($)</button>
@@ -1021,7 +1167,6 @@ html_content = f"""<!DOCTYPE html>
       <button class="rank-btn" id="rankBtn-chat" onclick="setRankMode('chat')">💬 Chatroom Heat</button>
     </div>
 
-    <!-- CONTROLS & FILTER PILLS -->
     <div class="controls-bar">
       <input type="text" id="stockSearch" class="search-input" placeholder="Search 500 securities by ticker or company name (e.g. NVDA, AAPL, QQQ, ASTS)..." oninput="filterStocks()">
       <div class="filter-group">
@@ -1096,10 +1241,113 @@ html_content = f"""<!DOCTYPE html>
     </div>
   </div>
 
+  <!-- TAB 4: SITEMAP & DIRECTORY -->
+  <div id="view-sitemap" class="tab-pane">
+    <!-- CORE VIEWS -->
+    <div class="sitemap-section">
+      <div class="sitemap-header">
+        <h3><span>&#x1F6F0;&#xFE0F;</span> Terminal Views &amp; Primary Routes</h3>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--cyan);">5 Direct Navigation Endpoints</span>
+      </div>
+      <div class="sitemap-grid">
+        <a class="sitemap-card" onclick="switchRoute('/stonks')">
+          <div class="sitemap-card-title">/stonks <span>&rarr;</span></div>
+          <div class="sitemap-card-desc">Top 500 securities universe ranked by Whale Capital, Value, Owners, and Momentum.</div>
+        </a>
+        <a class="sitemap-card" onclick="switchRoute('/etfs')">
+          <div class="sitemap-card-title">/etfs <span>&rarr;</span></div>
+          <div class="sitemap-card-desc">Dedicated index and sector funds directory with 64 segregated ETFs.</div>
+        </a>
+        <a class="sitemap-card" onclick="switchRoute('/whales')">
+          <div class="sitemap-card-title">/whales <span>&rarr;</span></div>
+          <div class="sitemap-card-desc">Whale Radar featuring 395 verified portfolios controlling $169.0M+ AUM.</div>
+        </a>
+        <a class="sitemap-card" onclick="switchRoute('/shadow')">
+          <div class="sitemap-card-title">/shadow <span>&rarr;</span></div>
+          <div class="sitemap-card-desc">The Clout Inversion index sorting under-followed high-net-worth accounts.</div>
+        </a>
+        <a class="sitemap-card" onclick="switchRoute('/all')">
+          <div class="sitemap-card-title">/all <span>&rarr;</span></div>
+          <div class="sitemap-card-desc">Complete unpaginated securities leaderboard with multi-column sorting.</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- VERIFIED MILLIONAIRE DIRECTORY -->
+    <div class="sitemap-section">
+      <div class="sitemap-header">
+        <h3><span>&#x1F40B;</span> Verified Millionaires Directory ({millionaires_count} Accounts &bull; $110.8M AUM)</h3>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--green);">Click handle to open Whale Dossier</span>
+      </div>
+      <div class="sitemap-chip-cloud">
+        {' '.join([f'<a class="sitemap-chip" onclick="openWhaleModal(\'{w["username"]}\')"><strong style="color: var(--cyan);">@{w["username"]}</strong><span class="sitemap-chip-meta">${w["total_value"]/1_000_000:.2f}M</span></a>' for w in millionaires])}
+      </div>
+    </div>
+
+    <!-- ALL 64 ETFS DIRECTORY -->
+    <div class="sitemap-section">
+      <div class="sitemap-header">
+        <h3><span>&#x1F3DB;&#xFE0F;</span> All 64 ETFs &amp; Index Funds Directory</h3>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--amber);">Click ticker to open ETF Deep-Dive</span>
+      </div>
+      <div class="sitemap-chip-cloud">
+        {' '.join([f'<a class="sitemap-chip" onclick="openTickerModal(\'{s["ticker"]}\')"><strong style="color: var(--amber);">${s["ticker"]}</strong><span class="sitemap-chip-meta">${s["whalesValue"]/1_000_000:.1f}M Whale</span></a>' for s in etfs_list])}
+      </div>
+    </div>
+
+    <!-- TOP MEGA-CAPITAL EQUITIES -->
+    <div class="sitemap-section">
+      <div class="sitemap-header">
+        <h3><span>&#x1F4C8;</span> Top Mega-Capital Equities (Whale Favorites)</h3>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--purple);">Click ticker to open Stock Deep-Dive</span>
+      </div>
+      <div class="sitemap-chip-cloud">
+        {' '.join([f'<a class="sitemap-chip" onclick="openTickerModal(\'{s["ticker"]}\')"><strong style="color: var(--cyan);">${s["ticker"]}</strong><span class="sitemap-chip-meta">${s["whalesValue"]/1_000_000:.1f}M</span></a>' for s in [x for x in stocks if not x['isETF']][:45]])}
+      </div>
+    </div>
+
+    <!-- SUB-MILLISECOND STATIC JSON APIS -->
+    <div class="sitemap-section">
+      <div class="sitemap-header">
+        <h3><span>&#x26A1;</span> Sub-Millisecond Static JSON API Endpoints</h3>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">Direct Public Machine Endpoints</span>
+      </div>
+      <div class="sitemap-grid">
+        <a class="sitemap-card" href="/api/stonks.json" target="_blank">
+          <div class="sitemap-card-title">/api/stonks.json <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">All 500 securities with quantitative rankings, whale capital, owners, and change %.</div>
+        </a>
+        <a class="sitemap-card" href="/api/etfs.json" target="_blank">
+          <div class="sitemap-card-title">/api/etfs.json <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">All 64 ETFs segregated with verified holder stats and platform values.</div>
+        </a>
+        <a class="sitemap-card" href="/api/whales.json" target="_blank">
+          <div class="sitemap-card-title">/api/whales.json <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">All 395 verified whales ranked by Net Worth, Shadow Ratio, and P&L.</div>
+        </a>
+        <a class="sitemap-card" href="/api/shadow.json" target="_blank">
+          <div class="sitemap-card-title">/api/shadow.json <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">The Clout Inversion index sorted by $/follower ratio asymmetry.</div>
+        </a>
+        <a class="sitemap-card" href="/api/ticker/NVDA.json" target="_blank">
+          <div class="sitemap-card-title">/api/ticker/:symbol.json <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">Standalone ticker JSON endpoints available for all 500 securities.</div>
+        </a>
+        <a class="sitemap-card" href="/sitemap.xml" target="_blank">
+          <div class="sitemap-card-title">/sitemap.xml <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">Standard XML sitemap index for search engines and web crawlers.</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <div>&copy; 2026 Momentum Phinance &bull; Built with radical transparency</div>
-    <div>Institutional options flow &amp; GEX data via <a href="https://www.tradermatrix.pro/?ref=MPHINANCE" target="_blank">TraderMatrix Pro (Code: MPHINANCE)</a></div>
+    <div>
+      <a href="javascript:void(0)" onclick="switchRoute('/sitemap')" style="margin-right: 14px;">&#x1F5FA;&#xFE0F; Complete Terminal Directory &amp; Sitemap</a>
+      Institutional options flow via <a href="https://www.tradermatrix.pro/?ref=MPHINANCE" target="_blank">TraderMatrix Pro (Code: MPHINANCE)</a>
+    </div>
   </footer>
 </div>
 
@@ -1114,18 +1362,14 @@ html_content = f"""<!DOCTYPE html>
       <button class="close-btn" onclick="hideModal('tickerModal')">&times;</button>
     </div>
     <div class="modal-body">
-      <!-- PERMALINK SLUG BAR -->
       <div class="slug-permalink-bar">
         <span>Permalink Slug: <strong id="tickerModalSlugText" style="color: var(--cyan);"></strong></span>
         <button class="slug-copy-btn" id="tickerCopyBtn" onclick="copyTickerSlug()">📋 Copy Slug Link</button>
       </div>
 
       <div id="tickerModalStrip" class="modal-stat-strip"></div>
-      
-      <!-- OVER-TIME HISTORICAL CHART (IF AVAILABLE) -->
       <div id="tickerChartContainer" style="display: none;"></div>
 
-      <!-- TraderMatrix Pro contextual CTA inside modal -->
       <div style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(168, 85, 247, 0.1)); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap;">
         <div>
           <div style="font-size: 13px; font-weight: 700; color: var(--cyan);">Institutional Order Flow &amp; Gamma Walls</div>
@@ -1169,7 +1413,6 @@ html_content = f"""<!DOCTYPE html>
       <button class="close-btn" onclick="hideModal('whaleModal')">&times;</button>
     </div>
     <div class="modal-body">
-      <!-- PERMALINK SLUG BAR -->
       <div class="slug-permalink-bar">
         <span>Permalink Slug: <strong id="whaleModalSlugText" style="color: var(--cyan);"></strong></span>
         <button class="slug-copy-btn" id="whaleCopyBtn" onclick="copyWhaleSlug()">📋 Copy Slug Link</button>
@@ -1180,7 +1423,8 @@ html_content = f"""<!DOCTYPE html>
         <table>
           <thead>
             <tr>
-              <th>Ticker (Click to View)</th>
+              <th>Ticker / Holding</th>
+              <th>Asset Name</th>
               <th>Quantity</th>
               <th>Position Value</th>
               <th>Cost Basis</th>
@@ -1198,12 +1442,13 @@ html_content = f"""<!DOCTYPE html>
 const STOCKS_DATA = {json.dumps(stocks)};
 const WHALES_DATA = {json.dumps(whales)};
 const TICKER_WHALES = {json.dumps(ticker_to_whales)};
+const EXTRA_TICKER_NAMES = {json.dumps(ticker_extra_names)};
 const HISTORIC_DATA = {json.dumps(historic_data)};
 
 let currentRoute = '/stonks';
-let currentRankMode = 'whale'; // 'whale', 'value', 'owners', 'gainers', 'dips', 'chat'
-let currentStockFilter = 'all'; // 'all', 'whales', 'etfs', 'stocks', 'owners', 'gainers', 'chat'
-let currentWhaleSort = 'value'; // 'value', 'ratio', 'pnl'
+let currentRankMode = 'whale';
+let currentStockFilter = 'all';
+let currentWhaleSort = 'value';
 
 let activeSortColumn = 'whalesValue';
 let activeSortAsc = false;
@@ -1217,8 +1462,6 @@ let currentOpenWhale = null;
 function parseInitialRoute() {{
   const path = window.location.pathname.replace(/\\/index\\.html$/, '');
   const hash = window.location.hash.replace(/^#/, '');
-  
-  // Prefer hash if present (e.g. #/ticker/NVDA), else check pathname
   const route = hash || path || '/stonks';
   navigateRoute(route, false);
 }}
@@ -1229,13 +1472,10 @@ function switchRoute(slug, pushHistory = true) {{
 
 function navigateRoute(slug, pushHistory = true) {{
   if (!slug || slug === '/' || slug === '') slug = '/stonks';
-  
-  // Clean slug
   slug = slug.trim();
   if (slug.startsWith('#')) slug = slug.substring(1);
   if (!slug.startsWith('/')) slug = '/' + slug;
 
-  // Check ticker slug: /ticker/:symbol or /stonk/:symbol
   const tickerMatch = slug.match(/^\\/(?:ticker|stonk)\\/([A-Za-z0-9_.-]+)$/i);
   if (tickerMatch) {{
     const sym = tickerMatch[1].toUpperCase();
@@ -1244,7 +1484,6 @@ function navigateRoute(slug, pushHistory = true) {{
     return;
   }}
 
-  // Check whale slug: /@:username or /whale/:username
   const whaleMatch = slug.match(/^\\/(?:@|whale\\/)([A-Za-z0-9_.-]+)$/i);
   if (whaleMatch) {{
     const u = whaleMatch[1];
@@ -1253,7 +1492,10 @@ function navigateRoute(slug, pushHistory = true) {{
     return;
   }}
 
-  // Check top-level routes
+  if (slug === '/sitemap') {{
+    activateTab('sitemap', pushHistory, '/sitemap');
+    return;
+  }}
   if (slug === '/all') {{
     activateTab('stonks', pushHistory, '/all');
     setStockFilter('all');
@@ -1273,7 +1515,6 @@ function navigateRoute(slug, pushHistory = true) {{
     return;
   }}
 
-  // Default: /stonks
   activateTab('stonks', pushHistory, '/stonks');
 }}
 
@@ -1282,7 +1523,10 @@ function activateTab(tabId, pushHistory = true, newSlug = null) {{
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
 
-  const navBtn = document.getElementById('tabNav-' + (tabId === 'stonks' && currentStockFilter === 'etfs' ? 'etfs' : tabId)) || document.getElementById('tabNav-' + tabId);
+  let navBtn = document.getElementById('tabNav-' + tabId);
+  if (tabId === 'stonks' && currentStockFilter === 'etfs') {{
+    navBtn = document.getElementById('tabNav-etfs');
+  }}
   if (navBtn) navBtn.classList.add('active');
 
   const pane = document.getElementById('view-' + tabId);
@@ -1304,19 +1548,12 @@ function setRankMode(mode) {{
   const btn = document.getElementById('rankBtn-' + mode);
   if (btn) btn.classList.add('active');
 
-  if (mode === 'whale') {{
-    activeSortColumn = 'whalesValue'; activeSortAsc = false;
-  }} else if (mode === 'value') {{
-    activeSortColumn = 'totalValue'; activeSortAsc = false;
-  }} else if (mode === 'owners') {{
-    activeSortColumn = 'owners'; activeSortAsc = false;
-  }} else if (mode === 'gainers') {{
-    activeSortColumn = 'changePercent'; activeSortAsc = false;
-  }} else if (mode === 'dips') {{
-    activeSortColumn = 'changePercent'; activeSortAsc = true;
-  }} else if (mode === 'chat') {{
-    activeSortColumn = 'chatroomMembers'; activeSortAsc = false;
-  }}
+  if (mode === 'whale') {{ activeSortColumn = 'whalesValue'; activeSortAsc = false; }}
+  else if (mode === 'value') {{ activeSortColumn = 'totalValue'; activeSortAsc = false; }}
+  else if (mode === 'owners') {{ activeSortColumn = 'owners'; activeSortAsc = false; }}
+  else if (mode === 'gainers') {{ activeSortColumn = 'changePercent'; activeSortAsc = false; }}
+  else if (mode === 'dips') {{ activeSortColumn = 'changePercent'; activeSortAsc = true; }}
+  else if (mode === 'chat') {{ activeSortColumn = 'chatroomMembers'; activeSortAsc = false; }}
 
   updateHeaderSortIndicators();
   filterStocks();
@@ -1473,7 +1710,7 @@ function filterWhales() {{
   filteredWhales = WHALES_DATA.filter(w => {{
     if (!q) return true;
     if (w.username.toLowerCase().includes(q)) return true;
-    return (w.top_positions || []).some(p => p.ticker && p.ticker.toLowerCase().includes(q));
+    return (w.all_positions || []).some(p => p.ticker && p.ticker.toLowerCase().includes(q));
   }});
 
   if (currentWhaleSort === 'value') {{
@@ -1495,7 +1732,7 @@ function renderWhales() {{
   }}
 
   container.innerHTML = filteredWhales.map((w, idx) => {{
-    const topHoldings = (w.top_positions || []).slice(0, 3).map(p => {{
+    const topHoldings = (w.all_positions || []).slice(0, 3).map(p => {{
       const t = p.ticker || 'N/A';
       const k = Math.round((p.value || 0)/1000);
       return `<span class="holding-chip" onclick="event.stopPropagation(); openTickerModal('${{t}}')">${{t}}: $${{k}}k</span>`;
@@ -1539,7 +1776,7 @@ function renderShadowWhales() {{
   const sorted = [...WHALES_DATA].sort((a, b) => b.shadow_ratio - a.shadow_ratio).slice(0, 60);
 
   body.innerHTML = sorted.map((w, idx) => {{
-    const topHoldings = (w.top_positions || []).slice(0, 3).map(p => {{
+    const topHoldings = (w.all_positions || []).slice(0, 3).map(p => {{
       const t = p.ticker || 'N/A';
       return `<span class="holding-chip" onclick="event.stopPropagation(); openTickerModal('${{t}}')">${{t}}</span>`;
     }}).join(' ');
@@ -1561,18 +1798,44 @@ function renderShadowWhales() {{
   }}).join('');
 }}
 
-// TICKER MODAL & HISTORICAL CHART
+// TICKER MODAL & HISTORICAL CHART (CLEAN RESOLUTION)
 function openTickerModal(ticker, pushHistory = true) {{
-  currentOpenTicker = ticker;
-  const s = STOCKS_DATA.find(x => x.ticker.toUpperCase() === ticker.toUpperCase()) || {{
-    ticker: ticker, name: ticker, price: 0, changePercent: 0, owners: 0, totalValue: 0, isETF: false
-  }};
+  let cleanTicker = (ticker || '').toUpperCase();
+  let cleanName = cleanTicker;
 
-  const whales = TICKER_WHALES[ticker] || [];
+  // Sanitize any raw sec_ ID if encountered
+  if (cleanTicker.startsWith('SEC_') || cleanTicker.includes('SEC_')) {{
+    cleanTicker = 'UNLISTED';
+    cleanName = EXTRA_TICKER_NAMES[ticker] || 'Private / Unlisted Security';
+  }} else if (EXTRA_TICKER_NAMES[cleanTicker]) {{
+    cleanName = EXTRA_TICKER_NAMES[cleanTicker];
+  }}
+
+  currentOpenTicker = cleanTicker;
+  
+  const whales = TICKER_WHALES[ticker] || TICKER_WHALES[cleanTicker] || [];
   const totalWhaleVal = whales.reduce((acc, x) => acc + x.value, 0);
 
+  let s = STOCKS_DATA.find(x => x.ticker.toUpperCase() === cleanTicker);
+  if (!s) {{
+    // Calculate estimate from whale holdings if not in top 500 board
+    let estPrice = 0;
+    const sampleWhale = whales.find(w => w.shares > 0 && w.value > 0);
+    if (sampleWhale) estPrice = sampleWhale.value / sampleWhale.shares;
+
+    s = {{
+      ticker: cleanTicker,
+      name: cleanName,
+      price: estPrice,
+      changePercent: 0,
+      owners: whales.length,
+      totalValue: totalWhaleVal,
+      isETF: false
+    }};
+  }}
+
   document.getElementById('tickerModalTitle').innerText = `$${{s.ticker}} • ${{s.name}}`;
-  document.getElementById('tickerModalSub').innerText = `${{s.isETF ? 'ETF' : 'Equity'}} | Live Price: $${{s.price.toFixed(2)}} (${{s.changePercent >= 0 ? '+' : ''}}${{s.changePercent.toFixed(2)}}%) | Tracked Value: $${{s.totalValue.toLocaleString()}}`;
+  document.getElementById('tickerModalSub').innerText = `${{s.isETF ? 'ETF' : 'Equity'}} | Price: $${{s.price.toFixed(2)}} | Tracked Whale Capital: $${{Math.round(totalWhaleVal).toLocaleString()}}`;
   document.getElementById('tickerModalSlugText').innerText = `https://ah.mphinance.com/ticker/${{s.ticker}}`;
   document.getElementById('tickerModalWhalesCount').innerText = whales.length;
 
@@ -1586,10 +1849,10 @@ function openTickerModal(ticker, pushHistory = true) {{
 
   // RENDER HISTORICAL CANDLESTICK / LINE CHART
   const chartBox = document.getElementById('tickerChartContainer');
-  const hist = HISTORIC_DATA[ticker];
+  const hist = HISTORIC_DATA[cleanTicker];
   if (hist && hist.bars && hist.bars.length > 0) {{
     chartBox.style.display = 'block';
-    chartBox.innerHTML = renderSvgHistoricalChart(ticker, hist.bars);
+    chartBox.innerHTML = renderSvgHistoricalChart(cleanTicker, hist.bars);
   }} else {{
     chartBox.style.display = 'none';
     chartBox.innerHTML = '';
@@ -1642,7 +1905,6 @@ function renderSvgHistoricalChart(ticker, bars) {{
   const strokeColor = isUp ? '#10B981' : '#F43F5E';
   const fillGradient = isUp ? 'url(#greenGrad)' : 'url(#redGrad)';
 
-  // Build points
   const points = bars.map((b, i) => {{
     const x = padding.left + (i / (bars.length - 1)) * plotW;
     const y = padding.top + plotH - ((b.close - minP) / pRange) * plotH;
@@ -1674,17 +1936,14 @@ function renderSvgHistoricalChart(ticker, bars) {{
             <stop offset="100%" stop-color="#F43F5E" stop-opacity="0.0"/>
           </linearGradient>
         </defs>
-        <!-- Horizontal gridlines -->
         <line x1="${{padding.left}}" y1="${{padding.top}}" x2="${{width - padding.right}}" y2="${{padding.top}}" stroke="#1E293B" stroke-dasharray="4"/>
         <line x1="${{padding.left}}" y1="${{padding.top + plotH/2}}" x2="${{width - padding.right}}" y2="${{padding.top + plotH/2}}" stroke="#1E293B" stroke-dasharray="4"/>
         <line x1="${{padding.left}}" y1="${{padding.top + plotH}}" x2="${{width - padding.right}}" y2="${{padding.top + plotH}}" stroke="#1E293B"/>
 
-        <!-- Y Axis Labels -->
         <text x="${{padding.left - 8}}" y="${{padding.top + 4}}" fill="#64748B" font-size="10" font-family="monospace" text-anchor="end">$${{maxP.toFixed(1)}}</text>
         <text x="${{padding.left - 8}}" y="${{padding.top + plotH/2 + 3}}" fill="#64748B" font-size="10" font-family="monospace" text-anchor="end">$${{((maxP+minP)/2).toFixed(1)}}</text>
         <text x="${{padding.left - 8}}" y="${{padding.top + plotH}}" fill="#64748B" font-size="10" font-family="monospace" text-anchor="end">$${{minP.toFixed(1)}}</text>
 
-        <!-- Area fill and Line -->
         <polygon points="${{areaStr}}" fill="${{fillGradient}}" />
         <polyline fill="none" stroke="${{strokeColor}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" points="${{polylineStr}}" />
       </svg>
@@ -1692,7 +1951,7 @@ function renderSvgHistoricalChart(ticker, bars) {{
   `;
 }}
 
-// WHALE MODAL
+// WHALE MODAL (WITH ACCURATE ASSET NAMES)
 function openWhaleModal(username, pushHistory = true) {{
   currentOpenWhale = username;
   const cleanU = username.replace(/^@/, '');
@@ -1716,14 +1975,18 @@ function openWhaleModal(username, pushHistory = true) {{
   const body = document.getElementById('whaleModalPositionsBody');
   const pos = w.all_positions || [];
   if (pos.length === 0) {{
-    body.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--text-muted); padding: 20px;">No public positions reported.</td></tr>';
+    body.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 20px;">No public positions reported.</td></tr>';
   }} else {{
     body.innerHTML = pos.map(p => {{
       const pSign = (p.profit || 0) >= 0 ? '+' : '';
       const pCls = (p.profit || 0) >= 0 ? 'pos-green' : 'neg-red';
+      const cleanTicker = (p.ticker || '').toUpperCase();
+      const secName = p.name || EXTRA_TICKER_NAMES[cleanTicker] || cleanTicker;
+      
       return `
-        <tr class="clickable-row" onclick="hideModal('whaleModal'); openTickerModal('${{p.ticker}}')">
-          <td style="font-weight: 800; color: var(--cyan);">${{p.ticker}}</td>
+        <tr class="clickable-row" onclick="hideModal('whaleModal'); openTickerModal('${{cleanTicker}}')">
+          <td style="font-weight: 800; color: var(--cyan);">${{cleanTicker}}</td>
+          <td style="color: var(--text-secondary); max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${{secName}}</td>
           <td>${{Number(p.quantity || 0).toLocaleString()}}</td>
           <td class="val-green" style="font-weight: 700;">$${{Number(p.value || 0).toLocaleString()}}</td>
           <td>$${{Number(p.cost_basis || 0).toFixed(2)}}</td>
@@ -1814,7 +2077,7 @@ print(f"[+] Total stocks enriched: {len(stocks)} (ETFs: {etfs_count}, Equities: 
 print(f"[+] Total whales indexed: {len(whales)}")
 
 # Generate static slug directory mirrors so standard static file servers route cleanly
-STATIC_SLUGS = ["all", "stonks", "etfs", "whales", "shadow"]
+STATIC_SLUGS = ["all", "stonks", "etfs", "whales", "shadow", "sitemap"]
 for slug in STATIC_SLUGS:
     slug_dir = BASE_DIR / slug
     slug_dir.mkdir(parents=True, exist_ok=True)
