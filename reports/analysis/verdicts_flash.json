@@ -596,5 +596,72 @@
       "alpha_score",
       "expectancy"
     ]
+  },
+  {
+    "handle": "wTF",
+    "source_file": "@wTF_quant_profile.md",
+    "archetype": "The Self-Aware Martingale Gambler",
+    "primary_classification": "MARTINGALE_CONCENTRATION_GAMBLER",
+    "secondary_classification": "CONTRARIAN_FEAR_BUYER",
+    "tertiary_classification": null,
+    "alpha_score": 30,
+    "alpha_score_note": "GRADE: D (HIGH-RISK, REAL-",
+    "alpha_score_basis": "stated",
+    "subscores": [
+      {
+        "category": "Systematic Strategy Integrity",
+        "score": 20
+      },
+      {
+        "category": "Ticker Curation & Alpha Discovery",
+        "score": 55
+      },
+      {
+        "category": "Exit Discipline & Disclosures",
+        "score": 28
+      },
+      {
+        "category": "Psychological Resilience",
+        "score": 18
+      }
+    ],
+    "expectancy": {
+      "win_rate_pct": null,
+      "payoff_ratio": null,
+      "expected_value_r": null,
+      "qualitative": [
+        {
+          "scope": "- Signal Expectancy: Expected Value: Not computable from disclosed data — of 24 tickers with a confirmed stated transaction, only 4 ever receive an explicit closing post (2 with a stated qualitative win, 0 with a stated loss, 2 with no stated outcome), and not one closed position anywhere in the 411-post archive carries a dollar-quantified realized P&L — despite this being a real, tens-of-millions-dollar account where exact numbers were plainly available.",
+          "read": "Win Rate: Undisclosed (0 Gain-tags / 0 Loss-tags; see §4.2 for the full closed-position count)."
+        }
+      ]
+    },
+    "directives": {
+      "ingest": [
+        "Ingest confirmed extreme-fear contrarian entries only",
+        "Extract the fundamental/brand-DD posts ($ZGN unification/sneaker-brand thesis, $RXRX-vs-$NVAX comp framing) into the independent screener",
+        "Harvest the $BA instrument breakdown (2024-11-04: ~$6M calls / ~$1M puts sold / ~$1M+ stock, ≈14% of the account"
+      ],
+      "fade": [
+        "Hard-fade any post invoking \"Martin\"",
+        "Fade position-sizing tied to explicitly non-market triggers (boredom, a bad exam)",
+        "Take every in-post dollar figure at face value"
+      ],
+      "firewall": [
+        "Blacklist \"biggest position yet\" language",
+        "Hard firewall against doubling into any name that already carries a stated loss that period"
+      ],
+      "exit": [
+        "Impose a hard de-risk trigger after any single week showing a large drawdown on the account's own tracked balance",
+        "Cap single-ticker exposure"
+      ]
+    },
+    "posting": {
+      "lifetime_posts": null,
+      "posts_per_week": 5.27
+    },
+    "has_verdict_section": false,
+    "lines": 297,
+    "missing": []
   }
 ]

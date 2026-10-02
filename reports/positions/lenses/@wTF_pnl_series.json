@@ -1,0 +1,6288 @@
+{
+  "meta": {
+    "trader": "@wTF",
+    "lens": "PNL_ATTRIBUTION_AND_RISK",
+    "data_artifact_window": {
+      "start": "2024-04-06",
+      "end": "2024-09-11",
+      "note": "sync/reset gap; near-zero and jump readings in this window are treated as data artifacts, not real trading"
+    },
+    "generated_from": [
+      "data/positions/@wTF_positions.json",
+      "data/prices/@wTF_prices.json"
+    ]
+  },
+  "account_curve": [
+    {
+      "asof": "2023-12-22T22:21:44.316Z",
+      "total_value": 57382097.8,
+      "cash_balance": 40273576.57,
+      "cost_basis": 11985798.73,
+      "profit": 5122722.5,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-03T17:03:24.491Z",
+      "total_value": 52754999.19,
+      "cash_balance": 35870207.73,
+      "cost_basis": 17058626.13,
+      "profit": -173834.67,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-03T21:15:43.762Z",
+      "total_value": 52686423.37,
+      "cash_balance": 33609333.27,
+      "cost_basis": 19321069.9,
+      "profit": -243979.8,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-03T21:43:20.283Z",
+      "total_value": 52688511.53,
+      "cash_balance": 33609333.27,
+      "cost_basis": 19321069.9,
+      "profit": -241891.65,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-03T21:44:32.874Z",
+      "total_value": 52688511.09,
+      "cash_balance": 33609333.27,
+      "cost_basis": 19321069.9,
+      "profit": -241892.08,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-04T19:51:25.367Z",
+      "total_value": 52500969.97,
+      "cash_balance": 31702624.98,
+      "cost_basis": 21227778.19,
+      "profit": -429433.2,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-05T15:36:10.326Z",
+      "total_value": 54332506.32,
+      "cash_balance": 31026305.6,
+      "cost_basis": 21904097.57,
+      "profit": 1402103.15,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-05T19:50:44.216Z",
+      "total_value": 53891844.26,
+      "cash_balance": 35984034.37,
+      "cost_basis": 17220417.06,
+      "profit": 687392.83,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-05T20:03:28.317Z",
+      "total_value": 53888744.31,
+      "cash_balance": 35346546.35,
+      "cost_basis": 17755079.78,
+      "profit": 787118.18,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-08T15:13:59.483Z",
+      "total_value": 55229874.58,
+      "cash_balance": 36297708.47,
+      "cost_basis": 16773770.53,
+      "profit": 2158395.58,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-08T20:32:05.364Z",
+      "total_value": 56587067.37,
+      "cash_balance": 36346620.43,
+      "cost_basis": 16706770.53,
+      "profit": 3533676.41,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-08T21:04:09.183Z",
+      "total_value": 56820071.45,
+      "cash_balance": 36346620.43,
+      "cost_basis": 16706770.53,
+      "profit": 3766680.49,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-08T21:51:16.204Z",
+      "total_value": 56796070.54,
+      "cash_balance": 36346620.43,
+      "cost_basis": 16706770.53,
+      "profit": 3742679.58,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-09T20:59:14.809Z",
+      "total_value": 55525919.86,
+      "cash_balance": 32473556.5,
+      "cost_basis": 21144613.94,
+      "profit": 1907749.42,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-10T17:11:22.016Z",
+      "total_value": 64044428.56,
+      "cash_balance": 30499718.39,
+      "cost_basis": 23118452.05,
+      "profit": 10426258.12,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-10T17:34:49.908Z",
+      "total_value": 64791193.93,
+      "cash_balance": 30499718.39,
+      "cost_basis": 23118452.05,
+      "profit": 11173023.49,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-10T17:59:34.749Z",
+      "total_value": 65957859.6,
+      "cash_balance": 30499718.39,
+      "cost_basis": 23118452.05,
+      "profit": 12339689.16,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-10T18:08:34.189Z",
+      "total_value": 66016344.93,
+      "cash_balance": 30499718.39,
+      "cost_basis": 23118452.05,
+      "profit": 12398174.49,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-11T15:51:26.340Z",
+      "total_value": 54236180.77,
+      "cash_balance": 30406575.98,
+      "cost_basis": 23313047.18,
+      "profit": 516557.61,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-11T17:47:38.462Z",
+      "total_value": 54603470.05,
+      "cash_balance": 28893752.8,
+      "cost_basis": 24825870.36,
+      "profit": 883846.89,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-11T19:29:52.004Z",
+      "total_value": 54769465.59,
+      "cash_balance": 28893752.8,
+      "cost_basis": 24825870.36,
+      "profit": 1049842.43,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-11T22:23:48.439Z",
+      "total_value": 54576768.81,
+      "cash_balance": 28893752.8,
+      "cost_basis": 24825876.66,
+      "profit": 857139.35,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-11T23:40:22.014Z",
+      "total_value": 54565356.11,
+      "cash_balance": 28893752.8,
+      "cost_basis": 24825876.66,
+      "profit": 845726.65,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-12T16:32:18.685Z",
+      "total_value": 52673122.75,
+      "cash_balance": 32159023.28,
+      "cost_basis": 21592195.37,
+      "profit": -1078095.9,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-12T17:52:16.689Z",
+      "total_value": 52192121.25,
+      "cash_balance": 31401609.67,
+      "cost_basis": 22349608.98,
+      "profit": -1559097.4,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-12T20:01:56.553Z",
+      "total_value": 52050604.12,
+      "cash_balance": 31379750.79,
+      "cost_basis": 22371467.93,
+      "profit": -1700614.6,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-13T00:01:39.137Z",
+      "total_value": 51928453.59,
+      "cash_balance": 31379750.79,
+      "cost_basis": 22371467.93,
+      "profit": -1822765.13,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-16T16:52:35.801Z",
+      "total_value": 50374267.86,
+      "cash_balance": 28995616.71,
+      "cost_basis": 24944264.38,
+      "profit": -3565613.23,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-17T21:02:09.954Z",
+      "total_value": 50715660.78,
+      "cash_balance": 26703802.05,
+      "cost_basis": 27776635.31,
+      "profit": -3764776.58,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-17T21:03:07.926Z",
+      "total_value": 50717162.86,
+      "cash_balance": 26703802.05,
+      "cost_basis": 27776635.31,
+      "profit": -3763274.5,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-17T21:08:54.409Z",
+      "total_value": 50706979.72,
+      "cash_balance": 26703802.05,
+      "cost_basis": 27776635.31,
+      "profit": -3773457.64,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-17T23:53:24.068Z",
+      "total_value": 50717678.42,
+      "cash_balance": 26703802.05,
+      "cost_basis": 27777040.31,
+      "profit": -3763163.94,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-18T15:13:07.188Z",
+      "total_value": 52117158.4,
+      "cash_balance": 26703802.05,
+      "cost_basis": 27777040.31,
+      "profit": -2363683.96,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-18T15:23:27.485Z",
+      "total_value": 52299151.57,
+      "cash_balance": 26703802.05,
+      "cost_basis": 27777040.31,
+      "profit": -2181690.79,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-18T15:36:51.502Z",
+      "total_value": 52458369.3,
+      "cash_balance": 26703802.05,
+      "cost_basis": 27777040.31,
+      "profit": -2022473.06,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-18T15:49:27.749Z",
+      "total_value": 52099519.69,
+      "cash_balance": 26703802.05,
+      "cost_basis": 27777040.31,
+      "profit": -2381322.67,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-18T17:29:27.585Z",
+      "total_value": 51478065.61,
+      "cash_balance": 32438089.79,
+      "cost_basis": 23578360.27,
+      "profit": -4538384.45,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-18T19:44:11.257Z",
+      "total_value": 51689759.87,
+      "cash_balance": 31339441.57,
+      "cost_basis": 24677008.49,
+      "profit": -4326690.19,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-22T14:59:43.301Z",
+      "total_value": 54061008.58,
+      "cash_balance": 31320745.45,
+      "cost_basis": 24691869.58,
+      "profit": -1951606.45,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-22T18:45:28.402Z",
+      "total_value": 52840844.14,
+      "cash_balance": 26976325.19,
+      "cost_basis": 29036289.84,
+      "profit": -3171770.89,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-22T19:55:05.567Z",
+      "total_value": 52921294.88,
+      "cash_balance": 26213326.54,
+      "cost_basis": 29799288.49,
+      "profit": -3091320.15,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-23T03:37:26.939Z",
+      "total_value": 54273714.19,
+      "cash_balance": 26213326.54,
+      "cost_basis": 29799288.49,
+      "profit": -1738900.84,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-23T03:53:26.850Z",
+      "total_value": 54273714.19,
+      "cash_balance": 26213326.54,
+      "cost_basis": 29799288.49,
+      "profit": -1738900.84,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-23T20:22:39.457Z",
+      "total_value": 51708537.33,
+      "cash_balance": 23686259.67,
+      "cost_basis": 30522958.53,
+      "profit": -2500680.87,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-24T14:43:13.057Z",
+      "total_value": 53424691.8,
+      "cash_balance": 23686259.67,
+      "cost_basis": 30522958.53,
+      "profit": -784526.4,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-24T16:23:11.684Z",
+      "total_value": 51102617.1,
+      "cash_balance": 24959118.92,
+      "cost_basis": 29899726.97,
+      "profit": -3756228.79,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-24T18:42:42.867Z",
+      "total_value": 49491542.01,
+      "cash_balance": 23632508.98,
+      "cost_basis": 31226336.91,
+      "profit": -5367303.88,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-25T17:45:05.403Z",
+      "total_value": 46278321.12,
+      "cash_balance": 19600099.27,
+      "cost_basis": 35258746.62,
+      "profit": -8580524.77,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-26T16:01:07.856Z",
+      "total_value": 48328051.55,
+      "cash_balance": 15451726.9,
+      "cost_basis": 39407885.18,
+      "profit": -6531560.53,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-29T15:19:31.755Z",
+      "total_value": 51213506.96,
+      "cash_balance": 17976903.59,
+      "cost_basis": 35450506.16,
+      "profit": -2213902.79,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-29T16:06:43.479Z",
+      "total_value": 51592230.29,
+      "cash_balance": 28651832.57,
+      "cost_basis": 25602209.04,
+      "profit": -2661811.32,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-29T16:41:59.223Z",
+      "total_value": 52138876.54,
+      "cash_balance": 28651832.57,
+      "cost_basis": 25602209.04,
+      "profit": -2115165.07,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-30T02:21:10.551Z",
+      "total_value": 53152978.88,
+      "cash_balance": 28651832.57,
+      "cost_basis": 25602209.04,
+      "profit": -1101062.73,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-31T14:40:47.874Z",
+      "total_value": 51219973.55,
+      "cash_balance": 31486816.5,
+      "cost_basis": 23212435.31,
+      "profit": -3479278.26,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-31T14:50:01.703Z",
+      "total_value": 51329416.09,
+      "cash_balance": 31486816.5,
+      "cost_basis": 23212435.31,
+      "profit": -3369835.72,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-31T16:49:46.496Z",
+      "total_value": 51236327,
+      "cash_balance": 31209426.5,
+      "cost_basis": 23789157.71,
+      "profit": -3762257.21,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-01-31T19:41:29.466Z",
+      "total_value": 52324134.41,
+      "cash_balance": 31209426.5,
+      "cost_basis": 23789157.71,
+      "profit": -2674449.8,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-01T18:24:33.911Z",
+      "total_value": 50881759.38,
+      "cash_balance": 30202746.26,
+      "cost_basis": 25013665.31,
+      "profit": -4334652.19,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-01T19:08:51.340Z",
+      "total_value": 50764613.15,
+      "cash_balance": 30202746.26,
+      "cost_basis": 25013665.31,
+      "profit": -4451798.42,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-01T19:38:31.690Z",
+      "total_value": 50453143.82,
+      "cash_balance": 29775480.68,
+      "cost_basis": 25440930.89,
+      "profit": -4763267.75,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-01T23:00:06.649Z",
+      "total_value": 51147542.75,
+      "cash_balance": 29709548.48,
+      "cost_basis": 25506863.09,
+      "profit": -4068868.82,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-02T15:30:27.531Z",
+      "total_value": 50888236.88,
+      "cash_balance": 30363100.81,
+      "cost_basis": 25759951.26,
+      "profit": -5234815.19,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-02T17:53:03.395Z",
+      "total_value": 50388308.42,
+      "cash_balance": 28041677.64,
+      "cost_basis": 28081374.43,
+      "profit": -5734743.65,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-02T20:16:47.115Z",
+      "total_value": 51720097.55,
+      "cash_balance": 28041677.64,
+      "cost_basis": 28081374.43,
+      "profit": -4402954.52,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-02T20:31:40.723Z",
+      "total_value": 51778740.75,
+      "cash_balance": 28041677.64,
+      "cost_basis": 28081374.43,
+      "profit": -4344311.32,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-05T16:08:59.217Z",
+      "total_value": 49095834.38,
+      "cash_balance": 23775817.85,
+      "cost_basis": 32805258.92,
+      "profit": -7485242.39,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-05T18:17:19.840Z",
+      "total_value": 49785327.35,
+      "cash_balance": 23775817.85,
+      "cost_basis": 32805258.92,
+      "profit": -6795749.42,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-06T17:23:01.565Z",
+      "total_value": 49842080.26,
+      "cash_balance": 23581087.98,
+      "cost_basis": 32903223.5,
+      "profit": -6642231.22,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-06T17:37:10.025Z",
+      "total_value": 50259261.76,
+      "cash_balance": 23581087.98,
+      "cost_basis": 32903223.5,
+      "profit": -6225049.72,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-06T21:39:25.547Z",
+      "total_value": 51009098.71,
+      "cash_balance": 25009696.78,
+      "cost_basis": 31666130.55,
+      "profit": -5666728.62,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-07T01:30:03.118Z",
+      "total_value": 51022829.31,
+      "cash_balance": 25009696.78,
+      "cost_basis": 31666130.55,
+      "profit": -5652998.02,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-07T14:49:53.787Z",
+      "total_value": 51026524.43,
+      "cash_balance": 25009696.78,
+      "cost_basis": 31666130.55,
+      "profit": -5649302.9,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-07T18:19:55.151Z",
+      "total_value": 52800925.4,
+      "cash_balance": 25264906.74,
+      "cost_basis": 32062348.5,
+      "profit": -4526329.84,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-07T18:51:35.419Z",
+      "total_value": 52983200.94,
+      "cash_balance": 25264906.74,
+      "cost_basis": 32062348.5,
+      "profit": -4344054.3,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-07T18:55:42.461Z",
+      "total_value": 52842003.35,
+      "cash_balance": 26765321.6,
+      "cost_basis": 30706993.28,
+      "profit": -4630311.53,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-07T21:12:02.322Z",
+      "total_value": 52598159.31,
+      "cash_balance": 26765321.6,
+      "cost_basis": 30706993.28,
+      "profit": -4874155.57,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-07T21:12:51.824Z",
+      "total_value": 52598186.8,
+      "cash_balance": 26765321.6,
+      "cost_basis": 30706993.28,
+      "profit": -4874128.08,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-07T21:18:52.973Z",
+      "total_value": 52599138.77,
+      "cash_balance": 26765321.6,
+      "cost_basis": 30706993.28,
+      "profit": -4873176.11,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-07T21:31:56.248Z",
+      "total_value": 52426311.28,
+      "cash_balance": 27860849.28,
+      "cost_basis": 29670940.07,
+      "profit": -5105478.07,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T06:36:10.101Z",
+      "total_value": 52715341.98,
+      "cash_balance": 27860850.77,
+      "cost_basis": 29670940.07,
+      "profit": -4816448.86,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T15:06:25.259Z",
+      "total_value": 55023498.21,
+      "cash_balance": 27860850.77,
+      "cost_basis": 29670940.07,
+      "profit": -2508292.63,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T17:19:57.085Z",
+      "total_value": 55570510.95,
+      "cash_balance": 29412613.26,
+      "cost_basis": 28794654.08,
+      "profit": -2636756.39,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T18:20:13.618Z",
+      "total_value": 55596011.37,
+      "cash_balance": 29412613.26,
+      "cost_basis": 28794654.08,
+      "profit": -2611255.97,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T19:09:59.444Z",
+      "total_value": 56021915.42,
+      "cash_balance": 29412613.26,
+      "cost_basis": 28794654.08,
+      "profit": -2185351.92,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T20:23:53.736Z",
+      "total_value": 56256651.23,
+      "cash_balance": 29412613.26,
+      "cost_basis": 28794654.08,
+      "profit": -1950616.11,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T21:13:01.256Z",
+      "total_value": 56617316.87,
+      "cash_balance": 29412613.26,
+      "cost_basis": 28794654.08,
+      "profit": -1589950.47,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T23:32:54.536Z",
+      "total_value": 56663222.46,
+      "cash_balance": 29412613.26,
+      "cost_basis": 28794654.08,
+      "profit": -1544044.88,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T23:57:25.819Z",
+      "total_value": 56656472.51,
+      "cash_balance": 29412613.26,
+      "cost_basis": 28794654.08,
+      "profit": -1550794.83,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-09T15:22:38.865Z",
+      "total_value": 58327239.69,
+      "cash_balance": 34292410.72,
+      "cost_basis": 24944005.86,
+      "profit": -909176.89,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-09T18:30:05.035Z",
+      "total_value": 58678990.4,
+      "cash_balance": 34292410.72,
+      "cost_basis": 24944005.86,
+      "profit": -557426.18,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-10T00:02:54.546Z",
+      "total_value": 59064414.96,
+      "cash_balance": 32224928.43,
+      "cost_basis": 27230875.29,
+      "profit": -391388.76,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-12T15:35:50.709Z",
+      "total_value": 62802202.02,
+      "cash_balance": 31733437.78,
+      "cost_basis": 27855444.32,
+      "profit": 3213319.92,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-12T15:48:15.244Z",
+      "total_value": 62607914.72,
+      "cash_balance": 31733437.78,
+      "cost_basis": 27855444.32,
+      "profit": 3019032.62,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-13T03:44:26.045Z",
+      "total_value": 62286408.27,
+      "cash_balance": 31733437.78,
+      "cost_basis": 27855444.32,
+      "profit": 2697526.17,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-13T16:02:17.111Z",
+      "total_value": 60586169.62,
+      "cash_balance": 34437360.7,
+      "cost_basis": 25739275.26,
+      "profit": 409533.66,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-13T19:23:28.783Z",
+      "total_value": 60409805.34,
+      "cash_balance": 34088957,
+      "cost_basis": 26242197.67,
+      "profit": 78650.67,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-13T20:01:04.535Z",
+      "total_value": 60013275.35,
+      "cash_balance": 33082690.21,
+      "cost_basis": 27248464.46,
+      "profit": -317879.32,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-13T21:27:04.150Z",
+      "total_value": 61815530.81,
+      "cash_balance": 33082690.21,
+      "cost_basis": 27248464.46,
+      "profit": 1484376.14,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-14T02:11:23.445Z",
+      "total_value": 61673333.9,
+      "cash_balance": 33082690.21,
+      "cost_basis": 27248464.46,
+      "profit": 1342179.23,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-27T23:39:51.412Z",
+      "total_value": 0,
+      "cash_balance": 0,
+      "cost_basis": 0,
+      "profit": 0,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-02-28T00:29:49.479Z",
+      "total_value": 0,
+      "cash_balance": 0,
+      "cost_basis": 0,
+      "profit": 0,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-02-28T01:24:56.870Z",
+      "total_value": 0,
+      "cash_balance": 0,
+      "cost_basis": 0,
+      "profit": 0,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-02-28T22:07:28.954Z",
+      "total_value": 77891552.53,
+      "cash_balance": 13647709.35,
+      "cost_basis": 62088237.88,
+      "profit": 2155605.3,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-29T03:58:08.838Z",
+      "total_value": 77928614.42,
+      "cash_balance": 13644749.07,
+      "cost_basis": 62088237.88,
+      "profit": 2195627.47,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-29T14:41:47.058Z",
+      "total_value": 83449179.23,
+      "cash_balance": 13988197.06,
+      "cost_basis": 62088279.28,
+      "profit": 7372702.89,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-29T15:59:13.504Z",
+      "total_value": 82458349.08,
+      "cash_balance": 13222227.74,
+      "cost_basis": 66255338.04,
+      "profit": 2980783.3,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-29T19:33:27.530Z",
+      "total_value": 83134070.82,
+      "cash_balance": 13222227.74,
+      "cost_basis": 66255338.04,
+      "profit": 3656505.04,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-29T23:26:25.352Z",
+      "total_value": 83124592.08,
+      "cash_balance": 13222227.74,
+      "cost_basis": 66255338.04,
+      "profit": 3647026.3,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-01T16:12:33.998Z",
+      "total_value": 82752139.31,
+      "cash_balance": 2624832.87,
+      "cost_basis": 76960403,
+      "profit": 3166903.44,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-01T16:19:14.819Z",
+      "total_value": 82850805.23,
+      "cash_balance": 2624832.87,
+      "cost_basis": 76960403,
+      "profit": 3265569.36,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-01T17:17:24.404Z",
+      "total_value": 83143988.61,
+      "cash_balance": -737886.59,
+      "cost_basis": 80323122.46,
+      "profit": 3558752.74,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-04T16:50:42.832Z",
+      "total_value": 78230752.18,
+      "cash_balance": -17562725.82,
+      "cost_basis": 97040653.4,
+      "profit": -1247175.4,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-04T19:02:57.265Z",
+      "total_value": 78953093.19,
+      "cash_balance": -17562725.82,
+      "cost_basis": 97040653.4,
+      "profit": -524834.39,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-05T15:03:01.844Z",
+      "total_value": 78495007.47,
+      "cash_balance": -20501503.53,
+      "cost_basis": 99980079.7,
+      "profit": -983568.7,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-05T15:04:36.976Z",
+      "total_value": 78713372.29,
+      "cash_balance": -20501503.53,
+      "cost_basis": 99980079.7,
+      "profit": -765203.88,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-05T15:04:51.275Z",
+      "total_value": 78591226.71,
+      "cash_balance": -20501503.53,
+      "cost_basis": 99980079.7,
+      "profit": -887349.46,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-05T17:08:45.105Z",
+      "total_value": 76594826.38,
+      "cash_balance": -23573516.07,
+      "cost_basis": 102970698.24,
+      "profit": -2802355.79,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-05T17:18:35.523Z",
+      "total_value": 77549393.14,
+      "cash_balance": -23573516.07,
+      "cost_basis": 102970698.24,
+      "profit": -1847789.03,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-05T23:42:17.966Z",
+      "total_value": 78590500.97,
+      "cash_balance": -16751037.47,
+      "cost_basis": 96156339.37,
+      "profit": -814800.93,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-06T17:22:10.319Z",
+      "total_value": 79823412.8,
+      "cash_balance": -13639708.71,
+      "cost_basis": 94869991.02,
+      "profit": -1406869.51,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-06T17:40:35.226Z",
+      "total_value": 80050760.65,
+      "cash_balance": -13666457.68,
+      "cost_basis": 94897538.68,
+      "profit": -1180320.35,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-06T18:12:19.164Z",
+      "total_value": 80077171.09,
+      "cash_balance": -13666457.68,
+      "cost_basis": 94897538.68,
+      "profit": -1153909.92,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-07T17:56:34.594Z",
+      "total_value": 84750398.22,
+      "cash_balance": 1044817.25,
+      "cost_basis": 80047853.22,
+      "profit": 3657727.75,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-07T18:31:32.368Z",
+      "total_value": 88988657.16,
+      "cash_balance": 1044817.25,
+      "cost_basis": 80047853.22,
+      "profit": 7895986.69,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-07T18:41:28.682Z",
+      "total_value": 93500986.04,
+      "cash_balance": 1044817.25,
+      "cost_basis": 80047853.22,
+      "profit": 12408315.57,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-07T18:54:30.974Z",
+      "total_value": 90181038.77,
+      "cash_balance": 1044817.25,
+      "cost_basis": 80047853.22,
+      "profit": 9088368.3,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-07T19:50:17.246Z",
+      "total_value": 93320460,
+      "cash_balance": 1044817.25,
+      "cost_basis": 80047853.22,
+      "profit": 12227789.53,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-08T02:07:29.518Z",
+      "total_value": 341061.26,
+      "cash_balance": 121787.17,
+      "cost_basis": 220653.28,
+      "profit": -1379.19,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-03-08T03:08:39.727Z",
+      "total_value": 85068521.77,
+      "cash_balance": 55046184.95,
+      "cost_basis": 32555529.84,
+      "profit": -2533193.02,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-08T15:15:07.256Z",
+      "total_value": 86512328.47,
+      "cash_balance": 55534107,
+      "cost_basis": 31898591.17,
+      "profit": -920369.7,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-08T16:15:54.507Z",
+      "total_value": 86257773.04,
+      "cash_balance": 52874747.7,
+      "cost_basis": 34557950.47,
+      "profit": -1174925.13,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-08T18:42:44.832Z",
+      "total_value": 86070182.96,
+      "cash_balance": 49130517.81,
+      "cost_basis": 38302870.03,
+      "profit": -1363204.88,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-08T19:28:28.545Z",
+      "total_value": 86773894.01,
+      "cash_balance": 49130517.81,
+      "cost_basis": 38302870.03,
+      "profit": -659493.83,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-10T18:04:19.010Z",
+      "total_value": 85406398.09,
+      "cash_balance": 74496.47,
+      "cost_basis": 87507596.54,
+      "profit": -2175694.92,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-11T13:35:56.288Z",
+      "total_value": 85518259.84,
+      "cash_balance": 74496.47,
+      "cost_basis": 87507596.54,
+      "profit": -2063833.17,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-11T14:40:33.421Z",
+      "total_value": 83882253.47,
+      "cash_balance": -9303428.34,
+      "cost_basis": 96770281,
+      "profit": -3584599.19,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-11T16:23:19.383Z",
+      "total_value": 84522275.63,
+      "cash_balance": -9303428.34,
+      "cost_basis": 96770281,
+      "profit": -2944577.03,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-11T16:37:35.016Z",
+      "total_value": 84364126.49,
+      "cash_balance": -9303428.34,
+      "cost_basis": 96770281,
+      "profit": -3102726.17,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-12T02:00:11.397Z",
+      "total_value": 83927578.49,
+      "cash_balance": -9303428.34,
+      "cost_basis": 96770281,
+      "profit": -3539274.17,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-12T16:33:26.666Z",
+      "total_value": 77629391.26,
+      "cash_balance": -12920584.52,
+      "cost_basis": 99351307.25,
+      "profit": -8801331.47,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-12T16:56:35.764Z",
+      "total_value": 77337002.94,
+      "cash_balance": -12920584.52,
+      "cost_basis": 99351307.25,
+      "profit": -9093719.79,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-12T22:41:33.862Z",
+      "total_value": 78184091.67,
+      "cash_balance": -16774760.25,
+      "cost_basis": 103199059.1,
+      "profit": -8240207.18,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-13T14:41:02.518Z",
+      "total_value": 78432732.8,
+      "cash_balance": -10568191.31,
+      "cost_basis": 96605715.67,
+      "profit": -7604791.56,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-13T14:42:04.520Z",
+      "total_value": 78451549.24,
+      "cash_balance": -10568191.31,
+      "cost_basis": 96605715.67,
+      "profit": -7585975.12,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-13T17:10:23.869Z",
+      "total_value": 77738496.7,
+      "cash_balance": -11797579.53,
+      "cost_basis": 98179080.36,
+      "profit": -8643004.13,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-14T02:11:14.836Z",
+      "total_value": 76985911.63,
+      "cash_balance": -11548989.52,
+      "cost_basis": 97920148.25,
+      "profit": -9385247.1,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-15T18:35:40.646Z",
+      "total_value": 77284214.07,
+      "cash_balance": -24483710.5,
+      "cost_basis": 110781703.67,
+      "profit": -9013779.1,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-15T18:37:47.798Z",
+      "total_value": 77229418.54,
+      "cash_balance": -24483710.5,
+      "cost_basis": 110781703.67,
+      "profit": -9068574.63,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-15T18:43:22.293Z",
+      "total_value": 77465580.08,
+      "cash_balance": -24483710.5,
+      "cost_basis": 110781703.67,
+      "profit": -8832413.09,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-15T18:53:10.946Z",
+      "total_value": 77382132.75,
+      "cash_balance": -24483710.5,
+      "cost_basis": 110781703.67,
+      "profit": -8915860.42,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-18T15:28:11.058Z",
+      "total_value": 78328788.38,
+      "cash_balance": -2668194.83,
+      "cost_basis": 90491516.11,
+      "profit": -9494532.9,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-18T15:29:08.411Z",
+      "total_value": 78362915.09,
+      "cash_balance": -2668194.83,
+      "cost_basis": 90491516.11,
+      "profit": -9460406.19,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-19T00:18:31.583Z",
+      "total_value": 78151641.99,
+      "cash_balance": -2668194.83,
+      "cost_basis": 90491516.11,
+      "profit": -9671679.29,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-19T15:53:27.091Z",
+      "total_value": 76413492.52,
+      "cash_balance": -5245494.27,
+      "cost_basis": 93121019.15,
+      "profit": -11462032.36,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-19T16:09:14.492Z",
+      "total_value": 76461982.49,
+      "cash_balance": -5245494.27,
+      "cost_basis": 93121019.15,
+      "profit": -11413542.39,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-19T16:20:30.025Z",
+      "total_value": 77047889.91,
+      "cash_balance": -5245494.27,
+      "cost_basis": 93121019.15,
+      "profit": -10827634.97,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-20T14:17:33.124Z",
+      "total_value": 80260069.61,
+      "cash_balance": 29786.91,
+      "cost_basis": 88026308.22,
+      "profit": -7796025.52,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-20T14:56:55.098Z",
+      "total_value": 81754355.98,
+      "cash_balance": 29786.91,
+      "cost_basis": 88026308.22,
+      "profit": -6301739.15,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-20T16:49:22.294Z",
+      "total_value": 83115659.76,
+      "cash_balance": 29786.91,
+      "cost_basis": 88026308.22,
+      "profit": -4940435.38,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-20T17:43:39.654Z",
+      "total_value": 81659570.68,
+      "cash_balance": -439884.79,
+      "cost_basis": 88138144.72,
+      "profit": -6038689.25,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-20T19:05:39.885Z",
+      "total_value": 85337435.72,
+      "cash_balance": -894401.28,
+      "cost_basis": 88592661.21,
+      "profit": -2360824.21,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-20T19:09:02.571Z",
+      "total_value": 85961332.27,
+      "cash_balance": -894401.28,
+      "cost_basis": 88592661.21,
+      "profit": -1736927.66,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-20T19:26:08.377Z",
+      "total_value": 86381381.64,
+      "cash_balance": -894401.28,
+      "cost_basis": 88592661.21,
+      "profit": -1316878.29,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-20T19:32:59.859Z",
+      "total_value": 86600587.02,
+      "cash_balance": -894401.28,
+      "cost_basis": 88592661.21,
+      "profit": -1097672.91,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-21T15:57:46.877Z",
+      "total_value": 87013385.46,
+      "cash_balance": 797118.86,
+      "cost_basis": 85624336.01,
+      "profit": 591930.59,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-21T16:22:56.910Z",
+      "total_value": 86769746.37,
+      "cash_balance": 797118.86,
+      "cost_basis": 85624336.01,
+      "profit": 348291.5,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-22T15:09:00.222Z",
+      "total_value": 87754497.49,
+      "cash_balance": -2476384.62,
+      "cost_basis": 88849813.83,
+      "profit": 1381068.28,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-22T17:44:21.418Z",
+      "total_value": 85552801.68,
+      "cash_balance": -5269786.93,
+      "cost_basis": 89945847.7,
+      "profit": 876740.91,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-22T23:32:11.965Z",
+      "total_value": 85000382.85,
+      "cash_balance": -5269786.93,
+      "cost_basis": 89945847.7,
+      "profit": 324322.08,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-24T17:48:17.672Z",
+      "total_value": 84993495.29,
+      "cash_balance": -1865974.44,
+      "cost_basis": 86565035.41,
+      "profit": 294434.32,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-25T14:37:30.345Z",
+      "total_value": 89546446.22,
+      "cash_balance": 3072029,
+      "cost_basis": 81889469.95,
+      "profit": 4584947.27,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-25T16:28:25.247Z",
+      "total_value": 92354723.19,
+      "cash_balance": 3072029,
+      "cost_basis": 81889469.95,
+      "profit": 7393224.24,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-25T16:41:29.109Z",
+      "total_value": 91916065.7,
+      "cash_balance": 8088112.28,
+      "cost_basis": 76173226.61,
+      "profit": 7654726.81,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-25T21:26:59.719Z",
+      "total_value": 92434699.95,
+      "cash_balance": 6706269.13,
+      "cost_basis": 78296776.18,
+      "profit": 7431654.64,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-26T14:54:08.670Z",
+      "total_value": 91298158.14,
+      "cash_balance": -1144792.68,
+      "cost_basis": 86271051.21,
+      "profit": 6171899.61,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-26T18:34:25.296Z",
+      "total_value": 89502251.65,
+      "cash_balance": -5336985.99,
+      "cost_basis": 90463244.52,
+      "profit": 4375993.12,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-26T20:10:39.042Z",
+      "total_value": 88867427.3,
+      "cash_balance": -5677420.51,
+      "cost_basis": 90942328.13,
+      "profit": 3602519.68,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-26T20:33:17.978Z",
+      "total_value": 88945966.5,
+      "cash_balance": -5677420.51,
+      "cost_basis": 90942328.13,
+      "profit": 3681058.88,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-26T23:22:54.807Z",
+      "total_value": 89026618.13,
+      "cash_balance": -5677420.51,
+      "cost_basis": 90942328.13,
+      "profit": 3761710.51,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-27T15:08:57.811Z",
+      "total_value": 93211404.57,
+      "cash_balance": -5841806.63,
+      "cost_basis": 91106831.84,
+      "profit": 7946379.36,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-27T16:58:51.326Z",
+      "total_value": 93536520.81,
+      "cash_balance": 4374427.16,
+      "cost_basis": 84044848.22,
+      "profit": 5117245.43,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-27T17:05:03.690Z",
+      "total_value": 93586201.37,
+      "cash_balance": 4374427.16,
+      "cost_basis": 84044848.22,
+      "profit": 5166925.99,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-27T20:07:10.455Z",
+      "total_value": 93985843.19,
+      "cash_balance": 4374427.16,
+      "cost_basis": 84044848.22,
+      "profit": 5566567.81,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-28T14:54:46.469Z",
+      "total_value": 94703539.4,
+      "cash_balance": 16918285.4,
+      "cost_basis": 71561741.06,
+      "profit": 6223512.94,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-28T17:41:15.151Z",
+      "total_value": 93986428.83,
+      "cash_balance": 6115258.04,
+      "cost_basis": 82365043.09,
+      "profit": 5506127.7,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-28T19:16:04.549Z",
+      "total_value": 95091124.56,
+      "cash_balance": 6238448.14,
+      "cost_basis": 82252340.89,
+      "profit": 6600335.53,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-04-02T17:03:51.296Z",
+      "total_value": 87379431.41,
+      "cash_balance": 731382.43,
+      "cost_basis": 88176993.35,
+      "profit": -1528944.37,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-04-02T19:53:33.999Z",
+      "total_value": 87226489.4,
+      "cash_balance": 731382.43,
+      "cost_basis": 88176993.35,
+      "profit": -1681886.38,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-04-03T14:05:39.373Z",
+      "total_value": 87971166.76,
+      "cash_balance": 5487186.05,
+      "cost_basis": 84115537.36,
+      "profit": -1631556.65,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-04-05T14:15:30.724Z",
+      "total_value": 78391901.17,
+      "cash_balance": 3018052.79,
+      "cost_basis": 87248649.69,
+      "profit": -11874801.31,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-07-26T20:17:06.981Z",
+      "total_value": 0,
+      "cash_balance": 0,
+      "cost_basis": 0,
+      "profit": 0,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-09-09T15:58:46.743Z",
+      "total_value": 3527839.47,
+      "cash_balance": 1628779.21,
+      "cost_basis": 1610308.36,
+      "profit": 287591.94,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-09-09T16:54:09.129Z",
+      "total_value": 3563866.07,
+      "cash_balance": 1628779.21,
+      "cost_basis": 1610308.36,
+      "profit": 323618.54,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-09-10T14:01:16.230Z",
+      "total_value": 3261476.26,
+      "cash_balance": 1004999.33,
+      "cost_basis": 2283722.28,
+      "profit": -152400.48,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-09-11T17:41:32.250Z",
+      "total_value": 3705490.75,
+      "cash_balance": 614713.62,
+      "cost_basis": 2674007.99,
+      "profit": 154119.21,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-09-12T15:17:43.529Z",
+      "total_value": 51259586.6,
+      "cash_balance": 46348983.98,
+      "cost_basis": 5646217.78,
+      "profit": -979604.38,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-09-26T16:07:50.265Z",
+      "total_value": 4089638.29,
+      "cash_balance": 1512008.29,
+      "cost_basis": 2181006.58,
+      "profit": 396623.42,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-09-27T14:38:31.753Z",
+      "total_value": 50988401.66,
+      "cash_balance": 46306952.76,
+      "cost_basis": 6205471.03,
+      "profit": -1524022.13,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-15T15:29:05.247Z",
+      "total_value": 51986234.44,
+      "cash_balance": 48218351.25,
+      "cost_basis": 4116798.23,
+      "profit": -370548.43,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-24T20:08:57.735Z",
+      "total_value": 53602832.34,
+      "cash_balance": 49003618.15,
+      "cost_basis": 3701255.41,
+      "profit": -506549.61,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-25T18:25:06.458Z",
+      "total_value": 53092960.29,
+      "cash_balance": 46897447.66,
+      "cost_basis": 5746937.65,
+      "profit": -1095231.95,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-28T19:08:13.364Z",
+      "total_value": 53841401.55,
+      "cash_balance": 45977622.14,
+      "cost_basis": 4531754.73,
+      "profit": -768783.18,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-29T14:40:41.324Z",
+      "total_value": 54453452.01,
+      "cash_balance": 44903599.87,
+      "cost_basis": 6638514.65,
+      "profit": -467462.14,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-29T14:57:33.733Z",
+      "total_value": 55090293.85,
+      "cash_balance": 44903599.87,
+      "cost_basis": 6638514.65,
+      "profit": 160682.2,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-31T13:59:44.349Z",
+      "total_value": 54801738.47,
+      "cash_balance": 47464262.01,
+      "cost_basis": 5490045.13,
+      "profit": -168815.37,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-31T15:29:45.160Z",
+      "total_value": 54434492.97,
+      "cash_balance": 47464262.01,
+      "cost_basis": 5490045.13,
+      "profit": -536060.87,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-31T16:18:26.114Z",
+      "total_value": 54402324.93,
+      "cash_balance": 47588536.83,
+      "cost_basis": 4928189.47,
+      "profit": -755903.03,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-31T19:14:45.151Z",
+      "total_value": 54374770.32,
+      "cash_balance": 48749546.73,
+      "cost_basis": 5925083.76,
+      "profit": -1169464.99,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-11-01T14:21:44.746Z",
+      "total_value": 56041634.61,
+      "cash_balance": 48510602.43,
+      "cost_basis": 5053797.31,
+      "profit": 296347.71,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-11-04T19:03:14.142Z",
+      "total_value": 55447121.09,
+      "cash_balance": 45871549.98,
+      "cost_basis": 5860183.64,
+      "profit": 1534500.31,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-11-05T16:16:18.937Z",
+      "total_value": 53913061.74,
+      "cash_balance": 43457925.83,
+      "cost_basis": 6711878.39,
+      "profit": 1562370.36,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-10T21:08:45.948Z",
+      "total_value": 49953093.12,
+      "cash_balance": 37878973.34,
+      "cost_basis": 6332204.89,
+      "profit": 1820797.31,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-11T19:16:57.064Z",
+      "total_value": 49427001.14,
+      "cash_balance": 37875756.81,
+      "cost_basis": 6335421.42,
+      "profit": 1294705.33,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-11T20:46:50.520Z",
+      "total_value": 49785039.93,
+      "cash_balance": 33889221.79,
+      "cost_basis": 4411639.81,
+      "profit": 2157832.14,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-12T19:59:06.666Z",
+      "total_value": 50224958.44,
+      "cash_balance": 33660709.99,
+      "cost_basis": 9295182.97,
+      "profit": 1563843.35,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-13T18:08:55.092Z",
+      "total_value": 50795601.27,
+      "cash_balance": 34054293.43,
+      "cost_basis": 8599645.14,
+      "profit": 771602.73,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-13T21:20:33.107Z",
+      "total_value": 50184846.23,
+      "cash_balance": 32069142.13,
+      "cost_basis": 8122801.14,
+      "profit": 1015392.99,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-16T14:54:27.067Z",
+      "total_value": 50064455.65,
+      "cash_balance": 32069142.13,
+      "cost_basis": 8122801.14,
+      "profit": 843652.41,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-16T20:03:52.644Z",
+      "total_value": 51444293.34,
+      "cash_balance": 32069142.13,
+      "cost_basis": 8122801.14,
+      "profit": 2247865.1,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-17T19:21:22.126Z",
+      "total_value": 51404397.51,
+      "cash_balance": 33986959.91,
+      "cost_basis": 10989841.34,
+      "profit": 1137953.29,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-17T22:00:03.815Z",
+      "total_value": 49897419.91,
+      "cash_balance": 32248653.73,
+      "cost_basis": 11064506.31,
+      "profit": 1367364.57,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-18T16:00:35.452Z",
+      "total_value": 52018214.4,
+      "cash_balance": 32248653.73,
+      "cost_basis": 11064506.31,
+      "profit": 3488159.06,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-19T00:45:08.644Z",
+      "total_value": 49497177.83,
+      "cash_balance": 29147343.61,
+      "cost_basis": 11162498.75,
+      "profit": 1141001.95,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-20T16:25:53.367Z",
+      "total_value": 49679836.37,
+      "cash_balance": 28734352.2,
+      "cost_basis": 14330573,
+      "profit": 1808896.91,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-20T17:57:17.282Z",
+      "total_value": 50136302.59,
+      "cash_balance": 29037831.03,
+      "cost_basis": 14330573,
+      "profit": 1961884.3,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-20T23:08:58.084Z",
+      "total_value": 49714082.47,
+      "cash_balance": 28768755.85,
+      "cost_basis": 11332341.61,
+      "profit": 2315706.56,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-30T21:56:54.568Z",
+      "total_value": 48190537.01,
+      "cash_balance": 25974138.42,
+      "cost_basis": 12452292.27,
+      "profit": 1681061.38,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-31T15:26:30.223Z",
+      "total_value": 48240091.34,
+      "cash_balance": 25974137.7,
+      "cost_basis": 12452292.27,
+      "profit": 1945223.23,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-02T19:04:51.180Z",
+      "total_value": 49090786.41,
+      "cash_balance": 27056182.93,
+      "cost_basis": 16157679.91,
+      "profit": 873883.63,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-03T19:17:50.154Z",
+      "total_value": 51767657.41,
+      "cash_balance": 26535240.08,
+      "cost_basis": 16560423.91,
+      "profit": 3668953.48,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-03T22:50:47.902Z",
+      "total_value": 51143359.23,
+      "cash_balance": 29204293.51,
+      "cost_basis": 13472242.9,
+      "profit": 606650.62,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-06T09:56:40.548Z",
+      "total_value": 51123823.03,
+      "cash_balance": 29204293.51,
+      "cost_basis": 15763702.9,
+      "profit": 928834.42,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-06T19:26:49.680Z",
+      "total_value": 53268400.3,
+      "cash_balance": 29204293.51,
+      "cost_basis": 15763702.9,
+      "profit": 3073411.69,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-07T17:23:39.431Z",
+      "total_value": 53647626.48,
+      "cash_balance": 29204293.51,
+      "cost_basis": 15763702.9,
+      "profit": 3452637.87,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-08T00:19:27.086Z",
+      "total_value": 52969307.72,
+      "cash_balance": 29204293.51,
+      "cost_basis": 15763702.9,
+      "profit": 2774319.11,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-08T19:40:43.593Z",
+      "total_value": 51220066.47,
+      "cash_balance": 29204293.51,
+      "cost_basis": 15763702.9,
+      "profit": 1025077.86,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-10T14:42:08.161Z",
+      "total_value": 51717491.8,
+      "cash_balance": 29204293.51,
+      "cost_basis": 15763702.9,
+      "profit": 1522503.19,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-10T15:58:18.283Z",
+      "total_value": 51092569.22,
+      "cash_balance": 27736230.99,
+      "cost_basis": 14109664.82,
+      "profit": 899864.33,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-11T00:15:05.649Z",
+      "total_value": 51941930,
+      "cash_balance": 26245523.72,
+      "cost_basis": 12599959.6,
+      "profit": 815060.2,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-11T01:07:33.374Z",
+      "total_value": 51848347.65,
+      "cash_balance": 26245523.72,
+      "cost_basis": 12599959.6,
+      "profit": 732669.9,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-13T20:38:53.016Z",
+      "total_value": 51148655.2,
+      "cash_balance": 26272109.67,
+      "cost_basis": 19464034.61,
+      "profit": 512172.43,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-14T21:30:00.607Z",
+      "total_value": 48956222.22,
+      "cash_balance": 26354942.19,
+      "cost_basis": 16481059.76,
+      "profit": -1790517.54,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-15T14:54:56.326Z",
+      "total_value": 50447320.19,
+      "cash_balance": 26354942.19,
+      "cost_basis": 19472929.15,
+      "profit": -280889.64,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-16T14:35:17.549Z",
+      "total_value": 52210109.45,
+      "cash_balance": 29018501.21,
+      "cost_basis": 16966163.85,
+      "profit": 1075418.67,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-16T15:24:59.015Z",
+      "total_value": 53559093.5,
+      "cash_balance": 29018501.21,
+      "cost_basis": 16966163.85,
+      "profit": 2424402.72,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-16T15:30:24.105Z",
+      "total_value": 53970489.35,
+      "cash_balance": 29018501.21,
+      "cost_basis": 16966163.85,
+      "profit": 2835798.57,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-17T16:02:32.574Z",
+      "total_value": 53965997.43,
+      "cash_balance": 33630982.01,
+      "cost_basis": 13335648.96,
+      "profit": 1849340.74,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-18T04:22:16.972Z",
+      "total_value": 53368060.16,
+      "cash_balance": 33990117.65,
+      "cost_basis": 12975573.45,
+      "profit": 1222100.31,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-21T21:17:20.229Z",
+      "total_value": 54790534.87,
+      "cash_balance": 33492068.5,
+      "cost_basis": 12975573.45,
+      "profit": 2640736.89,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-21T23:57:22.347Z",
+      "total_value": 54790534.87,
+      "cash_balance": 33492068.5,
+      "cost_basis": 12975573.45,
+      "profit": 2640736.89,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-22T02:57:18.278Z",
+      "total_value": 54755650.84,
+      "cash_balance": 33492068.5,
+      "cost_basis": 12975573.45,
+      "profit": 2605402.77,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-23T05:20:36.678Z",
+      "total_value": 56782050.86,
+      "cash_balance": 34862564.57,
+      "cost_basis": 14455603.35,
+      "profit": 2379446.43,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-24T04:20:18.600Z",
+      "total_value": 58132051.1,
+      "cash_balance": 34865902.94,
+      "cost_basis": 14455603.35,
+      "profit": 3726108.3,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-24T14:47:15.337Z",
+      "total_value": 58755517.98,
+      "cash_balance": 34865902.94,
+      "cost_basis": 14455603.35,
+      "profit": 4349575.18,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-25T03:15:20.252Z",
+      "total_value": 57606682.04,
+      "cash_balance": 35489102.76,
+      "cost_basis": 14507756.75,
+      "profit": 2577539.42,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-25T03:56:24.286Z",
+      "total_value": 57606682.04,
+      "cash_balance": 35489102.76,
+      "cost_basis": 14507756.75,
+      "profit": 2577539.42,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-27T14:34:04.279Z",
+      "total_value": 57101686.67,
+      "cash_balance": 35489102.76,
+      "cost_basis": 14507756.75,
+      "profit": 2072544.05,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-27T14:50:19.251Z",
+      "total_value": 57555547.4,
+      "cash_balance": 35489102.76,
+      "cost_basis": 14507756.75,
+      "profit": 2526404.78,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-27T15:07:21.508Z",
+      "total_value": 58030011.46,
+      "cash_balance": 35489102.76,
+      "cost_basis": 14507756.75,
+      "profit": 3000868.84,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-27T16:00:33.797Z",
+      "total_value": 58190698.99,
+      "cash_balance": 35489102.76,
+      "cost_basis": 14507756.75,
+      "profit": 3161556.37,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-27T16:24:39.119Z",
+      "total_value": 58403642.08,
+      "cash_balance": 35927849.52,
+      "cost_basis": 14116301.78,
+      "profit": 3327207.67,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-27T16:41:12.919Z",
+      "total_value": 58224621.35,
+      "cash_balance": 35682910.1,
+      "cost_basis": 15356249.28,
+      "profit": 2895111.36,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-28T14:21:24.927Z",
+      "total_value": 58189983.1,
+      "cash_balance": 35828548.04,
+      "cost_basis": 14215603.26,
+      "profit": 2858355.81,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-28T15:14:45.784Z",
+      "total_value": 61434427.94,
+      "cash_balance": 35828548.04,
+      "cost_basis": 14215603.26,
+      "profit": 6102800.65,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-28T16:30:54.836Z",
+      "total_value": 61322936.73,
+      "cash_balance": 41686506.31,
+      "cost_basis": 11115325.26,
+      "profit": 3233629.17,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-29T15:44:47.354Z",
+      "total_value": 60997967.98,
+      "cash_balance": 42079767.55,
+      "cost_basis": 12986434.74,
+      "profit": 1276664.96,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-30T15:41:27.069Z",
+      "total_value": 61616338.38,
+      "cash_balance": 41925321.79,
+      "cost_basis": 11057521.03,
+      "profit": 1598124.12,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-31T15:22:28.052Z",
+      "total_value": 62716819.9,
+      "cash_balance": 41925321.79,
+      "cost_basis": 11057521.03,
+      "profit": 2698605.64,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-02T14:36:12.479Z",
+      "total_value": 62670199.44,
+      "cash_balance": 44463804.64,
+      "cost_basis": 10724686.19,
+      "profit": 709662.83,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-03T15:44:03.255Z",
+      "total_value": 63439366.55,
+      "cash_balance": 44463804.64,
+      "cost_basis": 10724686.19,
+      "profit": 1478829.94,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-04T15:46:30.260Z",
+      "total_value": 64255832.71,
+      "cash_balance": 43325844.29,
+      "cost_basis": 5985105.33,
+      "profit": 1873232.77,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-05T12:18:53.513Z",
+      "total_value": 63045907.48,
+      "cash_balance": 44057031.88,
+      "cost_basis": 10282301.09,
+      "profit": 1720074.92,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-06T04:57:50.369Z",
+      "total_value": 62696461.13,
+      "cash_balance": 43233294.94,
+      "cost_basis": 6164498.34,
+      "profit": 848820.81,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-06T14:45:26.600Z",
+      "total_value": 64492975.25,
+      "cash_balance": 43233294.94,
+      "cost_basis": 6164498.34,
+      "profit": 2409334.93,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-06T16:22:35.647Z",
+      "total_value": 64707442.64,
+      "cash_balance": 43233294.94,
+      "cost_basis": 6164498.34,
+      "profit": 2623402.32,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-06T23:46:29.047Z",
+      "total_value": 66075848.27,
+      "cash_balance": 44679581.47,
+      "cost_basis": 9146078.85,
+      "profit": 2911441.9,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-07T15:14:48.029Z",
+      "total_value": 67982251.34,
+      "cash_balance": 44679581.47,
+      "cost_basis": 9146078.85,
+      "profit": 4128122.47,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-07T18:57:30.448Z",
+      "total_value": 70047901.55,
+      "cash_balance": 44679581.47,
+      "cost_basis": 9146078.85,
+      "profit": 5565320.18,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-07T19:10:01.636Z",
+      "total_value": 68726146.6,
+      "cash_balance": 47048867.44,
+      "cost_basis": 8557894.75,
+      "profit": 4018696.58,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-09T22:45:20.560Z",
+      "total_value": 68368450.33,
+      "cash_balance": 45636848.39,
+      "cost_basis": -482322.66,
+      "profit": 3440297.36,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-10T17:05:52.298Z",
+      "total_value": 69209920.44,
+      "cash_balance": 45636848.39,
+      "cost_basis": -482322.66,
+      "profit": 3856145.66,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-10T17:56:33.990Z",
+      "total_value": 69625261.3,
+      "cash_balance": 45636848.39,
+      "cost_basis": -482322.66,
+      "profit": 4058768.26,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-11T02:54:57.625Z",
+      "total_value": 69916870.7,
+      "cash_balance": 44866688.94,
+      "cost_basis": 11958713.77,
+      "profit": 6625580.47,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-12T15:05:06.004Z",
+      "total_value": 68820695,
+      "cash_balance": 44713187.73,
+      "cost_basis": 12133070.44,
+      "profit": 5484283.05,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-12T15:28:37.808Z",
+      "total_value": 68974945.04,
+      "cash_balance": 44713187.73,
+      "cost_basis": 12133070.44,
+      "profit": 5638533.09,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-12T16:00:24.214Z",
+      "total_value": 69384538.85,
+      "cash_balance": 44718355.82,
+      "cost_basis": 12133070.44,
+      "profit": 6042958.81,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-13T02:41:02.648Z",
+      "total_value": 71104158.83,
+      "cash_balance": 44718355.82,
+      "cost_basis": 12133070.44,
+      "profit": 7762578.79,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-13T09:24:17.059Z",
+      "total_value": 70198984.95,
+      "cash_balance": 45166825.75,
+      "cost_basis": 11738959.76,
+      "profit": 6389657.18,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-13T14:10:00.486Z",
+      "total_value": 70974062.08,
+      "cash_balance": 45166834.52,
+      "cost_basis": 11738967.76,
+      "profit": 7164717.54,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-13T14:36:37.550Z",
+      "total_value": 71723194.79,
+      "cash_balance": 45166834.52,
+      "cost_basis": 11738967.76,
+      "profit": 7913850.25,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-13T15:24:04.835Z",
+      "total_value": 71952698.76,
+      "cash_balance": 45166834.52,
+      "cost_basis": 11738967.76,
+      "profit": 8143354.22,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-13T15:42:24.636Z",
+      "total_value": 72022608.54,
+      "cash_balance": 45166826.58,
+      "cost_basis": 11738975.7,
+      "profit": 8213264,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-14T17:01:42.850Z",
+      "total_value": 71954779.04,
+      "cash_balance": 45166844.57,
+      "cost_basis": 11738959.76,
+      "profit": 8145432.45,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-14T18:25:45.252Z",
+      "total_value": 71310485.04,
+      "cash_balance": 45235393.97,
+      "cost_basis": 11467852.11,
+      "profit": 7841826.13,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-18T17:20:00.688Z",
+      "total_value": 72362422.42,
+      "cash_balance": 44702675.77,
+      "cost_basis": 11928134.48,
+      "profit": 8837479.34,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-18T17:30:41.068Z",
+      "total_value": 72276460.75,
+      "cash_balance": 44702675.77,
+      "cost_basis": 11928134.48,
+      "profit": 8751517.67,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-18T18:01:25.137Z",
+      "total_value": 72254966.03,
+      "cash_balance": 44702675.77,
+      "cost_basis": 11928134.48,
+      "profit": 8718650.45,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-19T16:01:11.970Z",
+      "total_value": 72546152.34,
+      "cash_balance": 44126233.47,
+      "cost_basis": 12364094.18,
+      "profit": 8404321.86,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-19T18:30:57.084Z",
+      "total_value": 72660737.59,
+      "cash_balance": 43725413.47,
+      "cost_basis": 11999546.72,
+      "profit": 7829934.27,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-20T14:36:46.842Z",
+      "total_value": 73215429.85,
+      "cash_balance": 42905075.82,
+      "cost_basis": 14166863.92,
+      "profit": 8956653.82,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-20T17:18:39.479Z",
+      "total_value": 72508533.79,
+      "cash_balance": 43383582.88,
+      "cost_basis": 16129678.57,
+      "profit": 7290890.5,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-20T17:23:11.487Z",
+      "total_value": 72459640.68,
+      "cash_balance": 43383582.88,
+      "cost_basis": 16129678.57,
+      "profit": 7216361.39,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-20T18:09:25.020Z",
+      "total_value": 72456424.07,
+      "cash_balance": 43383582.88,
+      "cost_basis": 16129678.57,
+      "profit": 7192605.98,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-24T15:26:16.934Z",
+      "total_value": 69208211.74,
+      "cash_balance": 40243512.8,
+      "cost_basis": 16588990.12,
+      "profit": 3510711.09,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-24T15:37:45.156Z",
+      "total_value": 69271103.24,
+      "cash_balance": 40243512.8,
+      "cost_basis": 16588990.12,
+      "profit": 3573602.59,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-24T16:17:10.890Z",
+      "total_value": 69897539.26,
+      "cash_balance": 40243512.8,
+      "cost_basis": 16588990.12,
+      "profit": 4200038.61,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-25T14:18:10.680Z",
+      "total_value": 70454148.79,
+      "cash_balance": 39016901.59,
+      "cost_basis": 17941323.59,
+      "profit": 5389314.65,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-25T15:56:12.582Z",
+      "total_value": 67273395.27,
+      "cash_balance": 39016901.59,
+      "cost_basis": 17941323.59,
+      "profit": 2208561.13,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-25T16:56:11.218Z",
+      "total_value": 65907145.71,
+      "cash_balance": 36895232.11,
+      "cost_basis": 10439832.58,
+      "profit": 424128.41,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-25T21:12:35.925Z",
+      "total_value": 67258480.71,
+      "cash_balance": 36895232.11,
+      "cost_basis": 20039395.75,
+      "profit": 2917703.36,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-26T14:42:53.672Z",
+      "total_value": 67380686.35,
+      "cash_balance": 36895232.11,
+      "cost_basis": 20039395.75,
+      "profit": 3039909,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-26T14:59:21.347Z",
+      "total_value": 67652095.98,
+      "cash_balance": 36895232.11,
+      "cost_basis": 20039395.75,
+      "profit": 3311318.63,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-26T15:02:26.250Z",
+      "total_value": 67740612.68,
+      "cash_balance": 36895232.11,
+      "cost_basis": 20039395.75,
+      "profit": 3399835.33,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-27T15:16:30.849Z",
+      "total_value": 67896208.77,
+      "cash_balance": 36505455.91,
+      "cost_basis": 18501316.3,
+      "profit": 3293115.26,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-04T16:40:38.335Z",
+      "total_value": 57871218.72,
+      "cash_balance": 36351995.26,
+      "cost_basis": 17556652.64,
+      "profit": -3374520.67,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-04T17:46:22.385Z",
+      "total_value": 59970267.02,
+      "cash_balance": 36351995.26,
+      "cost_basis": 17556652.64,
+      "profit": -1628572.37,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-06T15:19:20.310Z",
+      "total_value": 60258227.11,
+      "cash_balance": 33063778.73,
+      "cost_basis": 22833057.23,
+      "profit": -1390866.33,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-06T15:45:59.178Z",
+      "total_value": 60448980.83,
+      "cash_balance": 30558047.4,
+      "cost_basis": 23949462.46,
+      "profit": -401563.92,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-07T16:43:09.587Z",
+      "total_value": 53836661.39,
+      "cash_balance": 30558047.4,
+      "cost_basis": 23949462.46,
+      "profit": -6934443.36,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-07T19:23:30.743Z",
+      "total_value": 56336244.33,
+      "cash_balance": 28103001.33,
+      "cost_basis": 26878783.11,
+      "profit": -5036386.4,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-10T16:31:09.931Z",
+      "total_value": 53022026.8,
+      "cash_balance": 28103001.33,
+      "cost_basis": 26878783.11,
+      "profit": -8350603.93,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-19T13:56:49.696Z",
+      "total_value": 61412419.29,
+      "cash_balance": 6535937.23,
+      "cost_basis": 42153322.02,
+      "profit": 5390357.91,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-20T14:16:56.211Z",
+      "total_value": 58977216.14,
+      "cash_balance": 20109762.82,
+      "cost_basis": 10449800.92,
+      "profit": 2200580.11,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-21T14:00:53.689Z",
+      "total_value": 58967827.19,
+      "cash_balance": 20110507.57,
+      "cost_basis": 30526505.17,
+      "profit": 2144891.5,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-21T14:10:54.400Z",
+      "total_value": 58534809.79,
+      "cash_balance": 20110507.57,
+      "cost_basis": 30526505.17,
+      "profit": 1706005.85,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-21T15:51:49.747Z",
+      "total_value": 62963497.06,
+      "cash_balance": 20110507.57,
+      "cost_basis": 30526505.17,
+      "profit": 6135292.86,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-21T16:03:04.578Z",
+      "total_value": 63760384.57,
+      "cash_balance": 20110507.57,
+      "cost_basis": 30526505.17,
+      "profit": 6928594.88,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-22T17:35:39.479Z",
+      "total_value": 63964946.61,
+      "cash_balance": 17660571.89,
+      "cost_basis": 35880067.96,
+      "profit": 4089638.59,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-24T12:37:48.354Z",
+      "total_value": 64763482.23,
+      "cash_balance": 17660571.89,
+      "cost_basis": 35880067.96,
+      "profit": 4864162.21,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-26T22:20:05.442Z",
+      "total_value": 64077901.34,
+      "cash_balance": 16867318.93,
+      "cost_basis": 31594708.66,
+      "profit": 2669846.97,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-27T13:31:18.953Z",
+      "total_value": 64153101.68,
+      "cash_balance": 16867318.93,
+      "cost_basis": 31594708.66,
+      "profit": 2856467.31,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-27T14:25:24.342Z",
+      "total_value": 65967277.55,
+      "cash_balance": 16867318.93,
+      "cost_basis": 31594708.66,
+      "profit": 4197071.18,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-27T15:47:42.237Z",
+      "total_value": 66279557.01,
+      "cash_balance": 16867318.93,
+      "cost_basis": 31594708.66,
+      "profit": 4486752.64,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-28T16:11:18.852Z",
+      "total_value": 61910175.92,
+      "cash_balance": 15576232.64,
+      "cost_basis": 30101661.32,
+      "profit": 1627881.94,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-28T19:45:56.494Z",
+      "total_value": 60088231.85,
+      "cash_balance": 14618957.14,
+      "cost_basis": 37290920.47,
+      "profit": -1310576.28,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-04-01T16:41:54.903Z",
+      "total_value": 46139321.28,
+      "cash_balance": 0.85,
+      "cost_basis": 37556192.84,
+      "profit": -1972849.2,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-04-02T13:35:12.106Z",
+      "total_value": 58195497.97,
+      "cash_balance": 12359343.07,
+      "cost_basis": 43026878.37,
+      "profit": -3339087.26,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-04-05T15:31:17.443Z",
+      "total_value": 33208267.06,
+      "cash_balance": 12051457.28,
+      "cost_basis": 35783183.32,
+      "profit": -14986220.32,
+      "is_artifact": false
+    }
+  ],
+  "leverage_series": [
+    {
+      "asof": "2024-02-07T01:30:03.118Z",
+      "account_value": 51022829.31,
+      "gross_long": 3348511.96,
+      "gross_short": 0,
+      "gross_total": 3348511.96,
+      "gross_to_account_ratio": 0.0656,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.0656,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-07T18:19:55.151Z",
+      "account_value": 52800925.4,
+      "gross_long": 3396122.6,
+      "gross_short": 0,
+      "gross_total": 3396122.6,
+      "gross_to_account_ratio": 0.0643,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.0643,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-07T18:55:42.461Z",
+      "account_value": 52842003.35,
+      "gross_long": 1532500,
+      "gross_short": 0,
+      "gross_total": 1532500,
+      "gross_to_account_ratio": 0.029,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.029,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-07T21:12:51.824Z",
+      "account_value": 52598186.8,
+      "gross_long": 1701.76,
+      "gross_short": 0,
+      "gross_total": 1701.76,
+      "gross_to_account_ratio": 0.0,
+      "top_name": "ARM",
+      "top_name_pct_of_account": 0.0,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-07T21:31:56.248Z",
+      "account_value": 52426311.28,
+      "gross_long": 192475.62,
+      "gross_short": 0,
+      "gross_total": 192475.62,
+      "gross_to_account_ratio": 0.0037,
+      "top_name": "WYNN",
+      "top_name_pct_of_account": 0.002,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T06:36:10.101Z",
+      "account_value": 52715341.98,
+      "gross_long": 3408798.16,
+      "gross_short": 0,
+      "gross_total": 3408798.16,
+      "gross_to_account_ratio": 0.0647,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.0647,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T15:06:25.259Z",
+      "account_value": 55023498.21,
+      "gross_long": 5282615.28,
+      "gross_short": 0,
+      "gross_total": 5282615.28,
+      "gross_to_account_ratio": 0.096,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.063,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T17:19:57.085Z",
+      "account_value": 55570510.95,
+      "gross_long": 1570100,
+      "gross_short": 0,
+      "gross_total": 1570100,
+      "gross_to_account_ratio": 0.0283,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0283,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T18:20:13.618Z",
+      "account_value": 55596011.37,
+      "gross_long": 238800,
+      "gross_short": 0,
+      "gross_total": 238800,
+      "gross_to_account_ratio": 0.0043,
+      "top_name": "SOFI",
+      "top_name_pct_of_account": 0.0043,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T19:09:59.444Z",
+      "account_value": 56021915.42,
+      "gross_long": 1584500,
+      "gross_short": 0,
+      "gross_total": 1584500,
+      "gross_to_account_ratio": 0.0283,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0283,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T20:23:53.736Z",
+      "account_value": 56256651.23,
+      "gross_long": 8699691.63,
+      "gross_short": 0,
+      "gross_total": 8699691.63,
+      "gross_to_account_ratio": 0.1546,
+      "top_name": "SGOV",
+      "top_name_pct_of_account": 0.1546,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T21:13:01.256Z",
+      "account_value": 56617316.87,
+      "gross_long": 1610100,
+      "gross_short": 0,
+      "gross_total": 1610100,
+      "gross_to_account_ratio": 0.0284,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0284,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-08T23:57:25.819Z",
+      "account_value": 56656472.51,
+      "gross_long": 68.75,
+      "gross_short": 0,
+      "gross_total": 68.75,
+      "gross_to_account_ratio": 0.0,
+      "top_name": "SQ",
+      "top_name_pct_of_account": 0.0,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-09T15:22:38.865Z",
+      "account_value": 58327239.69,
+      "gross_long": 3535244.6,
+      "gross_short": 0,
+      "gross_total": 3535244.6,
+      "gross_to_account_ratio": 0.0606,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.0606,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-09T18:30:05.035Z",
+      "account_value": 58678990.4,
+      "gross_long": 3559977.4,
+      "gross_short": 0,
+      "gross_total": 3559977.4,
+      "gross_to_account_ratio": 0.0607,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.0607,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-12T15:35:50.709Z",
+      "account_value": 62802202.02,
+      "gross_long": 3720740.6,
+      "gross_short": 0,
+      "gross_total": 3720740.6,
+      "gross_to_account_ratio": 0.0592,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.0592,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-13T16:02:17.111Z",
+      "account_value": 60586169.62,
+      "gross_long": 3643450.6,
+      "gross_short": 0,
+      "gross_total": 3643450.6,
+      "gross_to_account_ratio": 0.0601,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.0601,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-13T19:23:28.783Z",
+      "account_value": 60409805.34,
+      "gross_long": 876800,
+      "gross_short": 0,
+      "gross_total": 876800,
+      "gross_to_account_ratio": 0.0145,
+      "top_name": "QQQ",
+      "top_name_pct_of_account": 0.0145,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-13T20:01:04.535Z",
+      "account_value": 60013275.35,
+      "gross_long": 1869715.4,
+      "gross_short": 0,
+      "gross_total": 1869715.4,
+      "gross_to_account_ratio": 0.0312,
+      "top_name": "QQQ",
+      "top_name_pct_of_account": 0.0312,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-13T21:27:04.150Z",
+      "account_value": 61815530.81,
+      "gross_long": 6651246.84,
+      "gross_short": 0,
+      "gross_total": 6651246.84,
+      "gross_to_account_ratio": 0.1076,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.0678,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-29T03:58:08.838Z",
+      "account_value": 77928614.42,
+      "gross_long": 11552491.22,
+      "gross_short": 0,
+      "gross_total": 11552491.22,
+      "gross_to_account_ratio": 0.1482,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.1482,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-29T14:41:47.058Z",
+      "account_value": 83449179.23,
+      "gross_long": 11985091.64,
+      "gross_short": 0,
+      "gross_total": 11985091.64,
+      "gross_to_account_ratio": 0.1436,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.1436,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-29T15:59:13.504Z",
+      "account_value": 82458349.08,
+      "gross_long": 3886230,
+      "gross_short": 0,
+      "gross_total": 3886230,
+      "gross_to_account_ratio": 0.0471,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.0471,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-02-29T23:26:25.352Z",
+      "account_value": 83124592.08,
+      "gross_long": 3091150.2,
+      "gross_short": 0,
+      "gross_total": 3091150.2,
+      "gross_to_account_ratio": 0.0372,
+      "top_name": "GOOG",
+      "top_name_pct_of_account": 0.0372,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-01T16:12:33.998Z",
+      "account_value": 82752139.31,
+      "gross_long": 8349513.7,
+      "gross_short": 0,
+      "gross_total": 8349513.7,
+      "gross_to_account_ratio": 0.1009,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1009,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-01T16:19:14.819Z",
+      "account_value": 82850805.23,
+      "gross_long": 11757461.42,
+      "gross_short": 0,
+      "gross_total": 11757461.42,
+      "gross_to_account_ratio": 0.1419,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.1419,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-01T17:17:24.404Z",
+      "account_value": 83143988.61,
+      "gross_long": 7659365,
+      "gross_short": 0,
+      "gross_total": 7659365,
+      "gross_to_account_ratio": 0.0921,
+      "top_name": "AAPL",
+      "top_name_pct_of_account": 0.0921,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-04T16:50:42.832Z",
+      "account_value": 78230752.18,
+      "gross_long": 27050612.93,
+      "gross_short": 0,
+      "gross_total": 27050612.93,
+      "gross_to_account_ratio": 0.3458,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.196,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-04T19:02:57.265Z",
+      "account_value": 78953093.19,
+      "gross_long": 15579860.9,
+      "gross_short": 0,
+      "gross_total": 15579860.9,
+      "gross_to_account_ratio": 0.1973,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.1973,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-05T15:03:01.844Z",
+      "account_value": 78495007.47,
+      "gross_long": 15788641.04,
+      "gross_short": 0,
+      "gross_total": 15788641.04,
+      "gross_to_account_ratio": 0.2011,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.2011,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-05T15:04:36.976Z",
+      "account_value": 78713372.29,
+      "gross_long": 5067450,
+      "gross_short": 0,
+      "gross_total": 5067450,
+      "gross_to_account_ratio": 0.0644,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.0644,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-05T15:04:51.275Z",
+      "account_value": 78591226.71,
+      "gross_long": 12449816.2,
+      "gross_short": 0,
+      "gross_total": 12449816.2,
+      "gross_to_account_ratio": 0.1584,
+      "top_name": "AAPL",
+      "top_name_pct_of_account": 0.087,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-05T17:08:45.105Z",
+      "account_value": 76594826.38,
+      "gross_long": 5658437.23,
+      "gross_short": 0,
+      "gross_total": 5658437.23,
+      "gross_to_account_ratio": 0.0739,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.0516,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-05T23:42:17.966Z",
+      "account_value": 78590500.97,
+      "gross_long": 2334000,
+      "gross_short": 0,
+      "gross_total": 2334000,
+      "gross_to_account_ratio": 0.0297,
+      "top_name": "QQQ",
+      "top_name_pct_of_account": 0.0297,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-06T17:22:10.319Z",
+      "account_value": 79823412.8,
+      "gross_long": 5905223.71,
+      "gross_short": 0,
+      "gross_total": 5905223.71,
+      "gross_to_account_ratio": 0.074,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.0518,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-06T17:40:35.226Z",
+      "account_value": 80050760.65,
+      "gross_long": 666.2,
+      "gross_short": 0,
+      "gross_total": 666.2,
+      "gross_to_account_ratio": 0.0,
+      "top_name": "QQQ",
+      "top_name_pct_of_account": 0.0,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-06T18:12:19.164Z",
+      "account_value": 80077171.09,
+      "gross_long": 14715131.06,
+      "gross_short": 0,
+      "gross_total": 14715131.06,
+      "gross_to_account_ratio": 0.1838,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.1838,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-07T17:56:34.594Z",
+      "account_value": 84750398.22,
+      "gross_long": 12897831.41,
+      "gross_short": 0,
+      "gross_total": 12897831.41,
+      "gross_to_account_ratio": 0.1522,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.1522,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-07T18:31:32.368Z",
+      "account_value": 88988657.16,
+      "gross_long": 13474131.92,
+      "gross_short": 0,
+      "gross_total": 13474131.92,
+      "gross_to_account_ratio": 0.1514,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.1514,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-07T18:41:28.682Z",
+      "account_value": 93500986.04,
+      "gross_long": 13966812.36,
+      "gross_short": 0,
+      "gross_total": 13966812.36,
+      "gross_to_account_ratio": 0.1494,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.1494,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-08T02:07:29.518Z",
+      "account_value": 341061.26,
+      "gross_long": 100085.62,
+      "gross_short": 0,
+      "gross_total": 100085.62,
+      "gross_to_account_ratio": 0.2935,
+      "top_name": "DIS",
+      "top_name_pct_of_account": 0.291,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-03-08T03:08:39.727Z",
+      "account_value": 85068521.77,
+      "gross_long": 385500,
+      "gross_short": 0,
+      "gross_total": 385500,
+      "gross_to_account_ratio": 0.0045,
+      "top_name": "COST",
+      "top_name_pct_of_account": 0.0045,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-08T16:15:54.507Z",
+      "account_value": 86257773.04,
+      "gross_long": 4040560,
+      "gross_short": 0,
+      "gross_total": 4040560,
+      "gross_to_account_ratio": 0.0468,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.0468,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-08T18:42:44.832Z",
+      "account_value": 86070182.96,
+      "gross_long": 4990200,
+      "gross_short": 0,
+      "gross_total": 4990200,
+      "gross_to_account_ratio": 0.058,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.058,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-08T19:28:28.545Z",
+      "account_value": 86773894.01,
+      "gross_long": 7806060,
+      "gross_short": 0,
+      "gross_total": 7806060,
+      "gross_to_account_ratio": 0.09,
+      "top_name": "AAPL",
+      "top_name_pct_of_account": 0.09,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-11T13:35:56.288Z",
+      "account_value": 85518259.84,
+      "gross_long": 7810335,
+      "gross_short": 0,
+      "gross_total": 7810335,
+      "gross_to_account_ratio": 0.0913,
+      "top_name": "AAPL",
+      "top_name_pct_of_account": 0.0913,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-11T14:40:33.421Z",
+      "account_value": 83882253.47,
+      "gross_long": 11556649.5,
+      "gross_short": 0,
+      "gross_total": 11556649.5,
+      "gross_to_account_ratio": 0.1378,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1378,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-11T16:23:19.383Z",
+      "account_value": 84522275.63,
+      "gross_long": 3472851.9,
+      "gross_short": 0,
+      "gross_total": 3472851.9,
+      "gross_to_account_ratio": 0.0411,
+      "top_name": "DIS",
+      "top_name_pct_of_account": 0.0411,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-11T16:37:35.016Z",
+      "account_value": 84364126.49,
+      "gross_long": 2923790.7,
+      "gross_short": 0,
+      "gross_total": 2923790.7,
+      "gross_to_account_ratio": 0.0347,
+      "top_name": "ZS",
+      "top_name_pct_of_account": 0.0322,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-12T02:00:11.397Z",
+      "account_value": 83927578.49,
+      "gross_long": 11628100,
+      "gross_short": 0,
+      "gross_total": 11628100,
+      "gross_to_account_ratio": 0.1385,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1385,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-12T16:33:26.666Z",
+      "account_value": 77629391.26,
+      "gross_long": 12966078,
+      "gross_short": 0,
+      "gross_total": 12966078,
+      "gross_to_account_ratio": 0.167,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.167,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-12T16:56:35.764Z",
+      "account_value": 77337002.94,
+      "gross_long": 399970,
+      "gross_short": 0,
+      "gross_total": 399970,
+      "gross_to_account_ratio": 0.0052,
+      "top_name": "SPR",
+      "top_name_pct_of_account": 0.0052,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-12T22:41:33.862Z",
+      "account_value": 78184091.67,
+      "gross_long": 12970237.5,
+      "gross_short": 0,
+      "gross_total": 12970237.5,
+      "gross_to_account_ratio": 0.1659,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1659,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-13T14:41:02.518Z",
+      "account_value": 78432732.8,
+      "gross_long": 7465826.15,
+      "gross_short": 0,
+      "gross_total": 7465826.15,
+      "gross_to_account_ratio": 0.0952,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.0697,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-13T14:42:04.520Z",
+      "account_value": 78451549.24,
+      "gross_long": 25184107.5,
+      "gross_short": 0,
+      "gross_total": 25184107.5,
+      "gross_to_account_ratio": 0.321,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.321,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-13T17:10:23.869Z",
+      "account_value": 77738496.7,
+      "gross_long": 478200,
+      "gross_short": 0,
+      "gross_total": 478200,
+      "gross_to_account_ratio": 0.0062,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0062,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-14T02:11:14.836Z",
+      "account_value": 76985911.63,
+      "gross_long": 25445513.5,
+      "gross_short": 0,
+      "gross_total": 25445513.5,
+      "gross_to_account_ratio": 0.3305,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.3305,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-15T18:35:40.646Z",
+      "account_value": 77284214.07,
+      "gross_long": 28822211.5,
+      "gross_short": 0,
+      "gross_total": 28822211.5,
+      "gross_to_account_ratio": 0.3729,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.3729,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-15T18:37:47.798Z",
+      "account_value": 77229418.54,
+      "gross_long": 4410855,
+      "gross_short": 0,
+      "gross_total": 4410855,
+      "gross_to_account_ratio": 0.0571,
+      "top_name": "ADBE",
+      "top_name_pct_of_account": 0.0571,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-15T18:43:22.293Z",
+      "account_value": 77465580.08,
+      "gross_long": 631400,
+      "gross_short": 0,
+      "gross_total": 631400,
+      "gross_to_account_ratio": 0.0082,
+      "top_name": "QQQ",
+      "top_name_pct_of_account": 0.0082,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-15T18:53:10.946Z",
+      "account_value": 77382132.75,
+      "gross_long": 2477435.2,
+      "gross_short": 0,
+      "gross_total": 2477435.2,
+      "gross_to_account_ratio": 0.032,
+      "top_name": "ZS",
+      "top_name_pct_of_account": 0.0284,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-18T15:28:11.058Z",
+      "account_value": 78328788.38,
+      "gross_long": 16340408.5,
+      "gross_short": 0,
+      "gross_total": 16340408.5,
+      "gross_to_account_ratio": 0.2086,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.2086,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-18T15:29:08.411Z",
+      "account_value": 78362915.09,
+      "gross_long": 4583772,
+      "gross_short": 0,
+      "gross_total": 4583772,
+      "gross_to_account_ratio": 0.0585,
+      "top_name": "ADBE",
+      "top_name_pct_of_account": 0.0585,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-19T15:53:27.091Z",
+      "account_value": 76413492.52,
+      "gross_long": 28186168.7,
+      "gross_short": 0,
+      "gross_total": 28186168.7,
+      "gross_to_account_ratio": 0.3689,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.3689,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-19T16:20:30.025Z",
+      "account_value": 77047889.91,
+      "gross_long": 4690386,
+      "gross_short": 0,
+      "gross_total": 4690386,
+      "gross_to_account_ratio": 0.0609,
+      "top_name": "ADBE",
+      "top_name_pct_of_account": 0.0609,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-20T14:17:33.124Z",
+      "account_value": 80260069.61,
+      "gross_long": 62910,
+      "gross_short": 0,
+      "gross_total": 62910,
+      "gross_to_account_ratio": 0.0008,
+      "top_name": "SPR",
+      "top_name_pct_of_account": 0.0008,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-20T14:56:55.098Z",
+      "account_value": 81754355.98,
+      "gross_long": 16751459.5,
+      "gross_short": 0,
+      "gross_total": 16751459.5,
+      "gross_to_account_ratio": 0.2049,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.2049,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-20T16:49:22.294Z",
+      "account_value": 83115659.76,
+      "gross_long": 16874720.5,
+      "gross_short": 0,
+      "gross_total": 16874720.5,
+      "gross_to_account_ratio": 0.203,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.203,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-20T19:09:02.571Z",
+      "account_value": 85961332.27,
+      "gross_long": 14382377.5,
+      "gross_short": 0,
+      "gross_total": 14382377.5,
+      "gross_to_account_ratio": 0.1673,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.1673,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-20T19:26:08.377Z",
+      "account_value": 86381381.64,
+      "gross_long": 16991194,
+      "gross_short": 0,
+      "gross_total": 16991194,
+      "gross_to_account_ratio": 0.1967,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1967,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-20T19:32:59.859Z",
+      "account_value": 86600587.02,
+      "gross_long": 19362.3,
+      "gross_short": 0,
+      "gross_total": 19362.3,
+      "gross_to_account_ratio": 0.0002,
+      "top_name": "SPR",
+      "top_name_pct_of_account": 0.0002,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-21T15:57:46.877Z",
+      "account_value": 87013385.46,
+      "gross_long": 17044679.5,
+      "gross_short": 0,
+      "gross_total": 17044679.5,
+      "gross_to_account_ratio": 0.1959,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1959,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-21T16:22:56.910Z",
+      "account_value": 86769746.37,
+      "gross_long": 4578660,
+      "gross_short": 0,
+      "gross_total": 4578660,
+      "gross_to_account_ratio": 0.0528,
+      "top_name": "ADBE",
+      "top_name_pct_of_account": 0.0528,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-22T15:09:00.222Z",
+      "account_value": 87754497.49,
+      "gross_long": 17284595,
+      "gross_short": 0,
+      "gross_total": 17284595,
+      "gross_to_account_ratio": 0.197,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.197,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-22T17:44:21.418Z",
+      "account_value": 85552801.68,
+      "gross_long": 36487546.5,
+      "gross_short": 0,
+      "gross_total": 36487546.5,
+      "gross_to_account_ratio": 0.4265,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.4265,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-24T17:48:17.672Z",
+      "account_value": 84993495.29,
+      "gross_long": 51585375.3,
+      "gross_short": 0,
+      "gross_total": 51585375.3,
+      "gross_to_account_ratio": 0.6069,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.4408,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-25T14:37:30.345Z",
+      "account_value": 89546446.22,
+      "gross_long": 35484897.5,
+      "gross_short": 0,
+      "gross_total": 35484897.5,
+      "gross_to_account_ratio": 0.3963,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.3963,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-25T16:28:25.247Z",
+      "account_value": 92354723.19,
+      "gross_long": 52965954.1,
+      "gross_short": 0,
+      "gross_total": 52965954.1,
+      "gross_to_account_ratio": 0.5735,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.4039,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-25T16:41:29.109Z",
+      "account_value": 91916065.7,
+      "gross_long": 7002755.65,
+      "gross_short": 0,
+      "gross_total": 7002755.65,
+      "gross_to_account_ratio": 0.0762,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0762,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-26T14:54:08.670Z",
+      "account_value": 91298158.14,
+      "gross_long": 34760927.8,
+      "gross_short": 0,
+      "gross_total": 34760927.8,
+      "gross_to_account_ratio": 0.3807,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.3807,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-26T18:34:25.296Z",
+      "account_value": 89502251.65,
+      "gross_long": 36245941.7,
+      "gross_short": 0,
+      "gross_total": 36245941.7,
+      "gross_to_account_ratio": 0.405,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.405,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-26T20:10:39.042Z",
+      "account_value": 88867427.3,
+      "gross_long": 36983641.8,
+      "gross_short": 0,
+      "gross_total": 36983641.8,
+      "gross_to_account_ratio": 0.4162,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.4162,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-26T20:33:17.978Z",
+      "account_value": 88945966.5,
+      "gross_long": 11880300,
+      "gross_short": 0,
+      "gross_total": 11880300,
+      "gross_to_account_ratio": 0.1336,
+      "top_name": "ADBE",
+      "top_name_pct_of_account": 0.1336,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-26T23:22:54.807Z",
+      "account_value": 89026618.13,
+      "gross_long": 17922250,
+      "gross_short": 0,
+      "gross_total": 17922250,
+      "gross_to_account_ratio": 0.2013,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.2013,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-27T15:08:57.811Z",
+      "account_value": 93211404.57,
+      "gross_long": 40873411.1,
+      "gross_short": 0,
+      "gross_total": 40873411.1,
+      "gross_to_account_ratio": 0.4385,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.4385,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-27T16:58:51.326Z",
+      "account_value": 93536520.81,
+      "gross_long": 17518009.4,
+      "gross_short": 0,
+      "gross_total": 17518009.4,
+      "gross_to_account_ratio": 0.1873,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.1873,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-27T17:05:03.690Z",
+      "account_value": 93586201.37,
+      "gross_long": 11579560,
+      "gross_short": 0,
+      "gross_total": 11579560,
+      "gross_to_account_ratio": 0.1237,
+      "top_name": "ADBE",
+      "top_name_pct_of_account": 0.1237,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-27T20:07:10.455Z",
+      "account_value": 93985843.19,
+      "gross_long": 33545513.83,
+      "gross_short": 0,
+      "gross_total": 33545513.83,
+      "gross_to_account_ratio": 0.3569,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.3569,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-28T14:54:46.469Z",
+      "account_value": 94703539.4,
+      "gross_long": 22863243.63,
+      "gross_short": 0,
+      "gross_total": 22863243.63,
+      "gross_to_account_ratio": 0.2414,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.1864,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-28T17:41:15.151Z",
+      "account_value": 93986428.83,
+      "gross_long": 112125,
+      "gross_short": 0,
+      "gross_total": 112125,
+      "gross_to_account_ratio": 0.0012,
+      "top_name": "QQQ",
+      "top_name_pct_of_account": 0.0012,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-03-28T19:16:04.549Z",
+      "account_value": 95091124.56,
+      "gross_long": 27897972.14,
+      "gross_short": 0,
+      "gross_total": 27897972.14,
+      "gross_to_account_ratio": 0.2934,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.2934,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-04-02T17:03:51.296Z",
+      "account_value": 87379431.41,
+      "gross_long": 3528392,
+      "gross_short": 0,
+      "gross_total": 3528392,
+      "gross_to_account_ratio": 0.0404,
+      "top_name": "QQQ",
+      "top_name_pct_of_account": 0.0404,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-04-02T19:53:33.999Z",
+      "account_value": 87226489.4,
+      "gross_long": 3927136.3,
+      "gross_short": 0,
+      "gross_total": 3927136.3,
+      "gross_to_account_ratio": 0.045,
+      "top_name": "QQQ",
+      "top_name_pct_of_account": 0.045,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-04-03T14:05:39.373Z",
+      "account_value": 87971166.76,
+      "gross_long": 1382721.2,
+      "gross_short": 0,
+      "gross_total": 1382721.2,
+      "gross_to_account_ratio": 0.0157,
+      "top_name": "QQQ",
+      "top_name_pct_of_account": 0.0157,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-04-05T14:15:30.724Z",
+      "account_value": 78391901.17,
+      "gross_long": 2840439.4,
+      "gross_short": 0,
+      "gross_total": 2840439.4,
+      "gross_to_account_ratio": 0.0362,
+      "top_name": "QQQ",
+      "top_name_pct_of_account": 0.0362,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-09-09T15:58:46.743Z",
+      "account_value": 3527839.47,
+      "gross_long": 1480730,
+      "gross_short": 1162.7,
+      "gross_total": 1481892.7,
+      "gross_to_account_ratio": 0.4201,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.4201,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-09-09T16:54:09.129Z",
+      "account_value": 3563866.07,
+      "gross_long": 856.2,
+      "gross_short": 0,
+      "gross_total": 856.2,
+      "gross_to_account_ratio": 0.0002,
+      "top_name": "QQQ",
+      "top_name_pct_of_account": 0.0002,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-09-10T14:01:16.230Z",
+      "account_value": 3261476.26,
+      "gross_long": 1835060,
+      "gross_short": 124320.9,
+      "gross_total": 1959380.9,
+      "gross_to_account_ratio": 0.6008,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.6008,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-09-12T15:17:43.529Z",
+      "account_value": 51259586.6,
+      "gross_long": 2689658.4,
+      "gross_short": 0,
+      "gross_total": 2689658.4,
+      "gross_to_account_ratio": 0.0525,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.0525,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-09-26T16:07:50.265Z",
+      "account_value": 4089638.29,
+      "gross_long": 2577630,
+      "gross_short": 0,
+      "gross_total": 2577630,
+      "gross_to_account_ratio": 0.6303,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.6303,
+      "is_artifact": true
+    },
+    {
+      "asof": "2024-09-27T14:38:31.753Z",
+      "account_value": 50988401.66,
+      "gross_long": 423377.2,
+      "gross_short": 0,
+      "gross_total": 423377.2,
+      "gross_to_account_ratio": 0.0083,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0083,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-15T15:29:05.247Z",
+      "account_value": 51986234.44,
+      "gross_long": 2857790,
+      "gross_short": 0,
+      "gross_total": 2857790,
+      "gross_to_account_ratio": 0.055,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.055,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-24T20:08:57.735Z",
+      "account_value": 53602832.34,
+      "gross_long": 2898155,
+      "gross_short": 1575125,
+      "gross_total": 4473280,
+      "gross_to_account_ratio": 0.0835,
+      "top_name": "TSLA",
+      "top_name_pct_of_account": 0.0835,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-25T18:25:06.458Z",
+      "account_value": 53092960.29,
+      "gross_long": 3561090,
+      "gross_short": 1738125,
+      "gross_total": 5299215,
+      "gross_to_account_ratio": 0.0998,
+      "top_name": "TSLA",
+      "top_name_pct_of_account": 0.0998,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-28T19:08:13.364Z",
+      "account_value": 53841401.55,
+      "gross_long": 4807980,
+      "gross_short": 1895310,
+      "gross_total": 6703290,
+      "gross_to_account_ratio": 0.1245,
+      "top_name": "TSLA",
+      "top_name_pct_of_account": 0.1245,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-29T14:40:41.324Z",
+      "account_value": 54453452.01,
+      "gross_long": 3286033.5,
+      "gross_short": 287305,
+      "gross_total": 3573338.5,
+      "gross_to_account_ratio": 0.0656,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.0656,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-29T14:57:33.733Z",
+      "account_value": 55090293.85,
+      "gross_long": 8209810.1,
+      "gross_short": 1922330,
+      "gross_total": 10132140.1,
+      "gross_to_account_ratio": 0.1839,
+      "top_name": "TSLA",
+      "top_name_pct_of_account": 0.1137,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-31T13:59:44.349Z",
+      "account_value": 54801738.47,
+      "gross_long": 2378420,
+      "gross_short": 1412920,
+      "gross_total": 3791340,
+      "gross_to_account_ratio": 0.0692,
+      "top_name": "TSLA",
+      "top_name_pct_of_account": 0.0692,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-31T15:29:45.160Z",
+      "account_value": 54434492.97,
+      "gross_long": 2731320,
+      "gross_short": 388685,
+      "gross_total": 3120005,
+      "gross_to_account_ratio": 0.0573,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.0573,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-31T16:18:26.114Z",
+      "account_value": 54402324.93,
+      "gross_long": 3881659.8,
+      "gross_short": 689328.5,
+      "gross_total": 4570988.3,
+      "gross_to_account_ratio": 0.084,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.084,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-10-31T19:14:45.151Z",
+      "account_value": 54374770.32,
+      "gross_long": 0,
+      "gross_short": 886402.5,
+      "gross_total": 886402.5,
+      "gross_to_account_ratio": 0.0163,
+      "top_name": "TSLA",
+      "top_name_pct_of_account": 0.0163,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-11-01T14:21:44.746Z",
+      "account_value": 56041634.61,
+      "gross_long": 5299924.1,
+      "gross_short": 1001230,
+      "gross_total": 6301154.1,
+      "gross_to_account_ratio": 0.1124,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1124,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-11-04T19:03:14.142Z",
+      "account_value": 55447121.09,
+      "gross_long": 6529755.5,
+      "gross_short": 712322.5,
+      "gross_total": 7242078.0,
+      "gross_to_account_ratio": 0.1306,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1306,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-11-05T16:16:18.937Z",
+      "account_value": 53913061.74,
+      "gross_long": 7556856,
+      "gross_short": 791196,
+      "gross_total": 8348052,
+      "gross_to_account_ratio": 0.1548,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1548,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-10T21:08:45.948Z",
+      "account_value": 49953093.12,
+      "gross_long": 5167275.5,
+      "gross_short": 3140846.5,
+      "gross_total": 8308122.0,
+      "gross_to_account_ratio": 0.1663,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1663,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-11T19:16:57.064Z",
+      "account_value": 49427001.14,
+      "gross_long": 1470442.8,
+      "gross_short": 1290398.5,
+      "gross_total": 2760841.3,
+      "gross_to_account_ratio": 0.0559,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.0559,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-11T20:46:50.520Z",
+      "account_value": 49785039.93,
+      "gross_long": 5899505.5,
+      "gross_short": 1210541,
+      "gross_total": 7110046.5,
+      "gross_to_account_ratio": 0.1428,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.1428,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-12T19:59:06.666Z",
+      "account_value": 50224958.44,
+      "gross_long": 7034354.8,
+      "gross_short": 1491980.5,
+      "gross_total": 8526335.3,
+      "gross_to_account_ratio": 0.1698,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.1698,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-13T18:08:55.092Z",
+      "account_value": 50795601.27,
+      "gross_long": 6057958.4,
+      "gross_short": 2830590,
+      "gross_total": 8888548.4,
+      "gross_to_account_ratio": 0.175,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.175,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-13T21:20:33.107Z",
+      "account_value": 50184846.23,
+      "gross_long": 8443827.7,
+      "gross_short": 1645675.0,
+      "gross_total": 10089502.7,
+      "gross_to_account_ratio": 0.201,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.201,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-16T14:54:27.067Z",
+      "account_value": 50064455.65,
+      "gross_long": 5713638.4,
+      "gross_short": 2800229,
+      "gross_total": 8513867.4,
+      "gross_to_account_ratio": 0.1701,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1701,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-16T20:03:52.644Z",
+      "account_value": 51444293.34,
+      "gross_long": 3168938.24,
+      "gross_short": 0,
+      "gross_total": 3168938.24,
+      "gross_to_account_ratio": 0.0616,
+      "top_name": "ZGN",
+      "top_name_pct_of_account": 0.0318,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-17T22:00:03.815Z",
+      "account_value": 49897419.91,
+      "gross_long": 9334943.9,
+      "gross_short": 1596215,
+      "gross_total": 10931158.9,
+      "gross_to_account_ratio": 0.2191,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2191,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-18T16:00:35.452Z",
+      "account_value": 52018214.4,
+      "gross_long": 15609295.95,
+      "gross_short": 3858885.5,
+      "gross_total": 19468181.45,
+      "gross_to_account_ratio": 0.3743,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2392,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-19T00:45:08.644Z",
+      "account_value": 49497177.83,
+      "gross_long": 5564578.22,
+      "gross_short": 0,
+      "gross_total": 5564578.22,
+      "gross_to_account_ratio": 0.1124,
+      "top_name": "ZGN",
+      "top_name_pct_of_account": 0.0572,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-20T16:25:53.367Z",
+      "account_value": 49679836.37,
+      "gross_long": 5949064.61,
+      "gross_short": 0,
+      "gross_total": 5949064.61,
+      "gross_to_account_ratio": 0.1197,
+      "top_name": "ZGN",
+      "top_name_pct_of_account": 0.0601,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-20T17:57:17.282Z",
+      "account_value": 50136302.59,
+      "gross_long": 5221894.2,
+      "gross_short": 2442157.5,
+      "gross_total": 7664051.7,
+      "gross_to_account_ratio": 0.1529,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1529,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-20T23:08:58.084Z",
+      "account_value": 49714082.47,
+      "gross_long": 9259894.7,
+      "gross_short": 1700513,
+      "gross_total": 10960407.7,
+      "gross_to_account_ratio": 0.2205,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2205,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-30T21:56:54.568Z",
+      "account_value": 48190537.01,
+      "gross_long": 9483037.5,
+      "gross_short": 1524535.0,
+      "gross_total": 11007572.5,
+      "gross_to_account_ratio": 0.2284,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2284,
+      "is_artifact": false
+    },
+    {
+      "asof": "2024-12-31T15:26:30.223Z",
+      "account_value": 48240091.34,
+      "gross_long": 3002571.25,
+      "gross_short": 0,
+      "gross_total": 3002571.25,
+      "gross_to_account_ratio": 0.0622,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0622,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-02T19:04:51.180Z",
+      "account_value": 49090786.41,
+      "gross_long": 11540091.8,
+      "gross_short": 1449823.5,
+      "gross_total": 12989915.3,
+      "gross_to_account_ratio": 0.2646,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2646,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-03T19:17:50.154Z",
+      "account_value": 51767657.41,
+      "gross_long": 15495724.56,
+      "gross_short": 1391955.0,
+      "gross_total": 16887679.56,
+      "gross_to_account_ratio": 0.3262,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2917,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-03T22:50:47.902Z",
+      "account_value": 51143359.23,
+      "gross_long": 4605188.7,
+      "gross_short": 3523722.2,
+      "gross_total": 8128910.9,
+      "gross_to_account_ratio": 0.1589,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1589,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-06T19:26:49.680Z",
+      "account_value": 53268400.3,
+      "gross_long": 19705404.3,
+      "gross_short": 4610889.3,
+      "gross_total": 24316293.6,
+      "gross_to_account_ratio": 0.4565,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.3046,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-07T17:23:39.431Z",
+      "account_value": 53647626.48,
+      "gross_long": 19982324.5,
+      "gross_short": 4497030.5,
+      "gross_total": 24479355.0,
+      "gross_to_account_ratio": 0.4563,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.3003,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-08T19:40:43.593Z",
+      "account_value": 51220066.47,
+      "gross_long": 961125,
+      "gross_short": 0,
+      "gross_total": 961125,
+      "gross_to_account_ratio": 0.0188,
+      "top_name": "HIMS",
+      "top_name_pct_of_account": 0.0188,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-10T14:42:08.161Z",
+      "account_value": 51717491.8,
+      "gross_long": 13552917.6,
+      "gross_short": 1305604.5,
+      "gross_total": 14858522.1,
+      "gross_to_account_ratio": 0.2873,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2873,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-10T15:58:18.283Z",
+      "account_value": 51092569.22,
+      "gross_long": 1018668,
+      "gross_short": 0,
+      "gross_total": 1018668,
+      "gross_to_account_ratio": 0.0199,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0199,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-11T00:15:05.649Z",
+      "account_value": 51941930,
+      "gross_long": 6063246.62,
+      "gross_short": 0,
+      "gross_total": 6063246.62,
+      "gross_to_account_ratio": 0.1167,
+      "top_name": "ZGN",
+      "top_name_pct_of_account": 0.0595,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-11T01:07:33.374Z",
+      "account_value": 51848347.65,
+      "gross_long": 5875713,
+      "gross_short": 3323687.2,
+      "gross_total": 9199400.2,
+      "gross_to_account_ratio": 0.1774,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1774,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-13T20:38:53.016Z",
+      "account_value": 51148655.2,
+      "gross_long": 18471293.0,
+      "gross_short": 4502700.5,
+      "gross_total": 22973993.5,
+      "gross_to_account_ratio": 0.4492,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2763,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-14T21:30:00.607Z",
+      "account_value": 48956222.22,
+      "gross_long": 1498292,
+      "gross_short": 0,
+      "gross_total": 1498292,
+      "gross_to_account_ratio": 0.0306,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0306,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-15T14:54:56.326Z",
+      "account_value": 50447320.19,
+      "gross_long": 12492789.1,
+      "gross_short": 1092797.5,
+      "gross_total": 13585586.6,
+      "gross_to_account_ratio": 0.2693,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2693,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-16T14:35:17.549Z",
+      "account_value": 52210109.45,
+      "gross_long": 14000865.8,
+      "gross_short": 991657.5,
+      "gross_total": 14992523.3,
+      "gross_to_account_ratio": 0.2872,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2872,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-16T15:24:59.015Z",
+      "account_value": 53559093.5,
+      "gross_long": 3237446.79,
+      "gross_short": 0,
+      "gross_total": 3237446.79,
+      "gross_to_account_ratio": 0.0604,
+      "top_name": "ZGN",
+      "top_name_pct_of_account": 0.0604,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-16T15:30:24.105Z",
+      "account_value": 53970489.35,
+      "gross_long": 6030178,
+      "gross_short": 3455219.18,
+      "gross_total": 9485397.18,
+      "gross_to_account_ratio": 0.1758,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1671,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-17T16:02:32.574Z",
+      "account_value": 53965997.43,
+      "gross_long": 5713715.9,
+      "gross_short": 3175615.5,
+      "gross_total": 8889331.4,
+      "gross_to_account_ratio": 0.1647,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1647,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-18T04:22:16.972Z",
+      "account_value": 53368060.16,
+      "gross_long": 3315241.26,
+      "gross_short": 0,
+      "gross_total": 3315241.26,
+      "gross_to_account_ratio": 0.0621,
+      "top_name": "ZGN",
+      "top_name_pct_of_account": 0.0621,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-21T21:17:20.229Z",
+      "account_value": 54790534.87,
+      "gross_long": 3566577.24,
+      "gross_short": 0,
+      "gross_total": 3566577.24,
+      "gross_to_account_ratio": 0.0651,
+      "top_name": "ZGN",
+      "top_name_pct_of_account": 0.0651,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-21T23:57:22.347Z",
+      "account_value": 54790534.87,
+      "gross_long": 6546147.3,
+      "gross_short": 2774305.5,
+      "gross_total": 9320452.8,
+      "gross_to_account_ratio": 0.1701,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1701,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-22T02:57:18.278Z",
+      "account_value": 54755650.84,
+      "gross_long": 598169.61,
+      "gross_short": 0,
+      "gross_total": 598169.61,
+      "gross_to_account_ratio": 0.0109,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0109,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-23T05:20:36.678Z",
+      "account_value": 56782050.86,
+      "gross_long": 1459464.21,
+      "gross_short": 0,
+      "gross_total": 1459464.21,
+      "gross_to_account_ratio": 0.0257,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0257,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-24T04:20:18.600Z",
+      "account_value": 58132051.1,
+      "gross_long": 1436462.41,
+      "gross_short": 0,
+      "gross_total": 1436462.41,
+      "gross_to_account_ratio": 0.0247,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0247,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-24T14:47:15.337Z",
+      "account_value": 58755517.98,
+      "gross_long": 7543632.4,
+      "gross_short": 2528173.5,
+      "gross_total": 10071805.9,
+      "gross_to_account_ratio": 0.1714,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1714,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-25T03:15:20.252Z",
+      "account_value": 57606682.04,
+      "gross_long": 1468664.93,
+      "gross_short": 0,
+      "gross_total": 1468664.93,
+      "gross_to_account_ratio": 0.0255,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0255,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-25T03:56:24.286Z",
+      "account_value": 57606682.04,
+      "gross_long": 6475898.2,
+      "gross_short": 3167363,
+      "gross_total": 9643261.2,
+      "gross_to_account_ratio": 0.1674,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1674,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-27T14:34:04.279Z",
+      "account_value": 57101686.67,
+      "gross_long": 3696234.69,
+      "gross_short": 0,
+      "gross_total": 3696234.69,
+      "gross_to_account_ratio": 0.0647,
+      "top_name": "ZGN",
+      "top_name_pct_of_account": 0.0647,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-27T14:50:19.251Z",
+      "account_value": 57555547.4,
+      "gross_long": 1516393.67,
+      "gross_short": 0,
+      "gross_total": 1516393.67,
+      "gross_to_account_ratio": 0.0263,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0263,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-27T15:07:21.508Z",
+      "account_value": 58030011.46,
+      "gross_long": 6603990.7,
+      "gross_short": 3090563,
+      "gross_total": 9694553.7,
+      "gross_to_account_ratio": 0.1671,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1671,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-27T16:00:33.797Z",
+      "account_value": 58190698.99,
+      "gross_long": 9820257.8,
+      "gross_short": 871367.5,
+      "gross_total": 10691625.3,
+      "gross_to_account_ratio": 0.1837,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.1837,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-27T16:24:39.119Z",
+      "account_value": 58403642.08,
+      "gross_long": 6270255.5,
+      "gross_short": 3080977,
+      "gross_total": 9351232.5,
+      "gross_to_account_ratio": 0.1601,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1601,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-27T16:41:12.919Z",
+      "account_value": 58224621.35,
+      "gross_long": 498015,
+      "gross_short": 0,
+      "gross_total": 498015,
+      "gross_to_account_ratio": 0.0086,
+      "top_name": "PCG",
+      "top_name_pct_of_account": 0.0086,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-28T15:14:45.784Z",
+      "account_value": 61434427.94,
+      "gross_long": 8664113.45,
+      "gross_short": 2697741,
+      "gross_total": 11361854.45,
+      "gross_to_account_ratio": 0.1849,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1849,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-01-29T15:44:47.354Z",
+      "account_value": 60997967.98,
+      "gross_long": 3021355.3,
+      "gross_short": 5028366,
+      "gross_total": 8049721.3,
+      "gross_to_account_ratio": 0.132,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.132,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-03T15:44:03.255Z",
+      "account_value": 63439366.55,
+      "gross_long": 12994793.62,
+      "gross_short": 7203661.0,
+      "gross_total": 20198454.62,
+      "gross_to_account_ratio": 0.3184,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.1778,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-04T15:46:30.260Z",
+      "account_value": 64255832.71,
+      "gross_long": 11007687.9,
+      "gross_short": 1688239.5,
+      "gross_total": 12695927.4,
+      "gross_to_account_ratio": 0.1976,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.1976,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-05T12:18:53.513Z",
+      "account_value": 63045907.48,
+      "gross_long": 8845454,
+      "gross_short": 1692675,
+      "gross_total": 10538129,
+      "gross_to_account_ratio": 0.1672,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.1672,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-06T04:57:50.369Z",
+      "account_value": 62696461.13,
+      "gross_long": 7393838.3,
+      "gross_short": 1509672.5,
+      "gross_total": 8903510.8,
+      "gross_to_account_ratio": 0.142,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.142,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-06T14:45:26.600Z",
+      "account_value": 64492975.25,
+      "gross_long": 8641443,
+      "gross_short": 1319425,
+      "gross_total": 9960868,
+      "gross_to_account_ratio": 0.1544,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.1544,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-06T16:22:35.647Z",
+      "account_value": 64707442.64,
+      "gross_long": 3950001,
+      "gross_short": 3387164,
+      "gross_total": 7337165,
+      "gross_to_account_ratio": 0.1134,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1134,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-06T23:46:29.047Z",
+      "account_value": 66075848.27,
+      "gross_long": 13421205.5,
+      "gross_short": 4757880.0,
+      "gross_total": 18179085.5,
+      "gross_to_account_ratio": 0.2751,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.1798,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-07T15:14:48.029Z",
+      "account_value": 67982251.34,
+      "gross_long": 12227402.5,
+      "gross_short": 1868734.5,
+      "gross_total": 14096137.0,
+      "gross_to_account_ratio": 0.2074,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2074,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-07T18:57:30.448Z",
+      "account_value": 70047901.55,
+      "gross_long": 1803686,
+      "gross_short": 0,
+      "gross_total": 1803686,
+      "gross_to_account_ratio": 0.0257,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0257,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-07T19:10:01.636Z",
+      "account_value": 68726146.6,
+      "gross_long": 11566864.5,
+      "gross_short": 2434522.5,
+      "gross_total": 14001387.0,
+      "gross_to_account_ratio": 0.2037,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2037,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-09T22:45:20.560Z",
+      "account_value": 68368450.33,
+      "gross_long": 3471351.48,
+      "gross_short": 0,
+      "gross_total": 3471351.48,
+      "gross_to_account_ratio": 0.0508,
+      "top_name": "ZGN",
+      "top_name_pct_of_account": 0.0508,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-10T17:05:52.298Z",
+      "account_value": 69209920.44,
+      "gross_long": 2514485.6,
+      "gross_short": 0,
+      "gross_total": 2514485.6,
+      "gross_to_account_ratio": 0.0363,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0363,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-10T17:56:33.990Z",
+      "account_value": 69625261.3,
+      "gross_long": 14036708.0,
+      "gross_short": 3165277.8,
+      "gross_total": 17201985.8,
+      "gross_to_account_ratio": 0.2471,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2471,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-11T02:54:57.625Z",
+      "account_value": 69916870.7,
+      "gross_long": 1175628,
+      "gross_short": 0,
+      "gross_total": 1175628,
+      "gross_to_account_ratio": 0.0168,
+      "top_name": "PCG",
+      "top_name_pct_of_account": 0.0168,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-12T15:05:06.004Z",
+      "account_value": 68820695,
+      "gross_long": 13361557.4,
+      "gross_short": 2248290.9,
+      "gross_total": 15609848.3,
+      "gross_to_account_ratio": 0.2268,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2268,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-12T16:00:24.214Z",
+      "account_value": 69384538.85,
+      "gross_long": 3546643.35,
+      "gross_short": 0,
+      "gross_total": 3546643.35,
+      "gross_to_account_ratio": 0.0511,
+      "top_name": "ZGN",
+      "top_name_pct_of_account": 0.0511,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-13T02:41:02.648Z",
+      "account_value": 71104158.83,
+      "gross_long": 22704032.63,
+      "gross_short": 6430182.6,
+      "gross_total": 29134215.23,
+      "gross_to_account_ratio": 0.4097,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2663,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-13T14:10:00.486Z",
+      "account_value": 70974062.08,
+      "gross_long": 1204924.8,
+      "gross_short": 0,
+      "gross_total": 1204924.8,
+      "gross_to_account_ratio": 0.017,
+      "top_name": "PCG",
+      "top_name_pct_of_account": 0.017,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-13T14:36:37.550Z",
+      "account_value": 71723194.79,
+      "gross_long": 3689479.82,
+      "gross_short": 0,
+      "gross_total": 3689479.82,
+      "gross_to_account_ratio": 0.0514,
+      "top_name": "ZGN",
+      "top_name_pct_of_account": 0.0514,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-13T15:24:04.835Z",
+      "account_value": 71952698.76,
+      "gross_long": 2551292.4,
+      "gross_short": 0,
+      "gross_total": 2551292.4,
+      "gross_to_account_ratio": 0.0355,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0355,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-13T15:42:24.636Z",
+      "account_value": 72022608.54,
+      "gross_long": 16.15,
+      "gross_short": 0,
+      "gross_total": 16.15,
+      "gross_to_account_ratio": 0.0,
+      "top_name": "RXRX",
+      "top_name_pct_of_account": 0.0,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-14T18:25:45.252Z",
+      "account_value": 71310485.04,
+      "gross_long": 241460,
+      "gross_short": 0,
+      "gross_total": 241460,
+      "gross_to_account_ratio": 0.0034,
+      "top_name": "RXRX",
+      "top_name_pct_of_account": 0.0034,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-18T17:20:00.688Z",
+      "account_value": 72362422.42,
+      "gross_long": 370180,
+      "gross_short": 0,
+      "gross_total": 370180,
+      "gross_to_account_ratio": 0.0051,
+      "top_name": "RXRX",
+      "top_name_pct_of_account": 0.0051,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-18T17:30:41.068Z",
+      "account_value": 72276460.75,
+      "gross_long": 16942016.4,
+      "gross_short": 3717411.9,
+      "gross_total": 20659428.3,
+      "gross_to_account_ratio": 0.2858,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2858,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-19T16:01:11.970Z",
+      "account_value": 72546152.34,
+      "gross_long": 17431155.4,
+      "gross_short": 3794161.0,
+      "gross_total": 21225316.4,
+      "gross_to_account_ratio": 0.2926,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2926,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-19T18:30:57.084Z",
+      "account_value": 72660737.59,
+      "gross_long": 95480,
+      "gross_short": 0,
+      "gross_total": 95480,
+      "gross_to_account_ratio": 0.0013,
+      "top_name": "CELH",
+      "top_name_pct_of_account": 0.0013,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-20T14:36:46.842Z",
+      "account_value": 73215429.85,
+      "gross_long": 668648.4,
+      "gross_short": 0,
+      "gross_total": 668648.4,
+      "gross_to_account_ratio": 0.0091,
+      "top_name": "RXRX",
+      "top_name_pct_of_account": 0.0069,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-20T17:18:39.479Z",
+      "account_value": 72508533.79,
+      "gross_long": 2189120,
+      "gross_short": 0,
+      "gross_total": 2189120,
+      "gross_to_account_ratio": 0.0302,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0302,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-20T17:23:11.487Z",
+      "account_value": 72459640.68,
+      "gross_long": 3361636.7,
+      "gross_short": 3929000,
+      "gross_total": 7290636.7,
+      "gross_to_account_ratio": 0.1006,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1006,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-20T18:09:25.020Z",
+      "account_value": 72456424.07,
+      "gross_long": 3558289.35,
+      "gross_short": 0,
+      "gross_total": 3558289.35,
+      "gross_to_account_ratio": 0.0491,
+      "top_name": "ZGN",
+      "top_name_pct_of_account": 0.0491,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-24T15:26:16.934Z",
+      "account_value": 69208211.74,
+      "gross_long": 13962654.2,
+      "gross_short": 2612698.2,
+      "gross_total": 16575352.4,
+      "gross_to_account_ratio": 0.2395,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2395,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-24T15:37:45.156Z",
+      "account_value": 69271103.24,
+      "gross_long": 2853058.6,
+      "gross_short": 0,
+      "gross_total": 2853058.6,
+      "gross_to_account_ratio": 0.0412,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0412,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-24T16:17:10.890Z",
+      "account_value": 69897539.26,
+      "gross_long": 5123268.3,
+      "gross_short": 5645780,
+      "gross_total": 10769048.3,
+      "gross_to_account_ratio": 0.1541,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.1541,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-25T15:56:12.582Z",
+      "account_value": 67273395.27,
+      "gross_long": 107208.4,
+      "gross_short": 0,
+      "gross_total": 107208.4,
+      "gross_to_account_ratio": 0.0016,
+      "top_name": "RXRX",
+      "top_name_pct_of_account": 0.0016,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-25T16:56:11.218Z",
+      "account_value": 65907145.71,
+      "gross_long": 17.82,
+      "gross_short": 0,
+      "gross_total": 17.82,
+      "gross_to_account_ratio": 0.0,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.0,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-25T21:12:35.925Z",
+      "account_value": 67258480.71,
+      "gross_long": 14260,
+      "gross_short": 0,
+      "gross_total": 14260,
+      "gross_to_account_ratio": 0.0002,
+      "top_name": "CELH",
+      "top_name_pct_of_account": 0.0002,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-26T14:42:53.672Z",
+      "account_value": 67380686.35,
+      "gross_long": 14776113,
+      "gross_short": 2292144.7,
+      "gross_total": 17068257.7,
+      "gross_to_account_ratio": 0.2533,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2533,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-26T14:59:21.347Z",
+      "account_value": 67652095.98,
+      "gross_long": 19.38,
+      "gross_short": 0,
+      "gross_total": 19.38,
+      "gross_to_account_ratio": 0.0,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.0,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-26T15:02:26.250Z",
+      "account_value": 67740612.68,
+      "gross_long": 3129822.8,
+      "gross_short": 0,
+      "gross_total": 3129822.8,
+      "gross_to_account_ratio": 0.0462,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0462,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-02-27T15:16:30.849Z",
+      "account_value": 67896208.77,
+      "gross_long": 20360785.0,
+      "gross_short": 8026282.3,
+      "gross_total": 28387067.3,
+      "gross_to_account_ratio": 0.4181,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2521,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-04T16:40:38.335Z",
+      "account_value": 57871218.72,
+      "gross_long": 18632569.25,
+      "gross_short": 9145536.9,
+      "gross_total": 27778106.15,
+      "gross_to_account_ratio": 0.48,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2453,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-04T17:46:22.385Z",
+      "account_value": 59970267.02,
+      "gross_long": 13188681.4,
+      "gross_short": 2352814.7,
+      "gross_total": 15541496.1,
+      "gross_to_account_ratio": 0.2592,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2592,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-06T15:19:20.310Z",
+      "account_value": 60258227.11,
+      "gross_long": 14639162.2,
+      "gross_short": 2247181.8,
+      "gross_total": 16886344.0,
+      "gross_to_account_ratio": 0.2802,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2802,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-07T19:23:30.743Z",
+      "account_value": 56336244.33,
+      "gross_long": 4414163.6,
+      "gross_short": 8040370,
+      "gross_total": 12454533.6,
+      "gross_to_account_ratio": 0.2211,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.2211,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-10T16:31:09.931Z",
+      "account_value": 53022026.8,
+      "gross_long": 15.15,
+      "gross_short": 0,
+      "gross_total": 15.15,
+      "gross_to_account_ratio": 0.0,
+      "top_name": "HOOD",
+      "top_name_pct_of_account": 0.0,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-19T13:56:49.696Z",
+      "account_value": 61412419.29,
+      "gross_long": 18291885.3,
+      "gross_short": 4600620,
+      "gross_total": 22892505.3,
+      "gross_to_account_ratio": 0.3728,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.3728,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-20T14:16:56.211Z",
+      "account_value": 58977216.14,
+      "gross_long": 12256885.1,
+      "gross_short": 1683053.5,
+      "gross_total": 13939938.6,
+      "gross_to_account_ratio": 0.2364,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.2364,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-21T14:00:53.689Z",
+      "account_value": 58967827.19,
+      "gross_long": 10678022.8,
+      "gross_short": 2862450,
+      "gross_total": 13540472.8,
+      "gross_to_account_ratio": 0.2296,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.2296,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-21T14:10:54.400Z",
+      "account_value": 58534809.79,
+      "gross_long": 449960,
+      "gross_short": 0,
+      "gross_total": 449960,
+      "gross_to_account_ratio": 0.0077,
+      "top_name": "QQQ",
+      "top_name_pct_of_account": 0.0077,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-21T15:51:49.747Z",
+      "account_value": 62963497.06,
+      "gross_long": 12864213.18,
+      "gross_short": 2298870,
+      "gross_total": 15163083.18,
+      "gross_to_account_ratio": 0.2408,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.2408,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-21T16:03:04.578Z",
+      "account_value": 63760384.57,
+      "gross_long": 30274977.7,
+      "gross_short": 3772905.7,
+      "gross_total": 34047883.4,
+      "gross_to_account_ratio": 0.534,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.2462,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-22T17:35:39.479Z",
+      "account_value": 63964946.61,
+      "gross_long": 21043696,
+      "gross_short": 1523645,
+      "gross_total": 22567341,
+      "gross_to_account_ratio": 0.3528,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.3528,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-26T22:20:05.442Z",
+      "account_value": 64077901.34,
+      "gross_long": 32505308.5,
+      "gross_short": 3629041.1,
+      "gross_total": 36134349.6,
+      "gross_to_account_ratio": 0.5639,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.3398,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-27T13:31:18.953Z",
+      "account_value": 64153101.68,
+      "gross_long": 3812637.24,
+      "gross_short": 0,
+      "gross_total": 3812637.24,
+      "gross_to_account_ratio": 0.0594,
+      "top_name": "ZGN",
+      "top_name_pct_of_account": 0.0594,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-27T14:25:24.342Z",
+      "account_value": 65967277.55,
+      "gross_long": 2723100,
+      "gross_short": 0,
+      "gross_total": 2723100,
+      "gross_to_account_ratio": 0.0413,
+      "top_name": "XYZ",
+      "top_name_pct_of_account": 0.0413,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-27T15:47:42.237Z",
+      "account_value": 66279557.01,
+      "gross_long": 2673330,
+      "gross_short": 0,
+      "gross_total": 2673330,
+      "gross_to_account_ratio": 0.0403,
+      "top_name": "RIVN",
+      "top_name_pct_of_account": 0.0403,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-03-28T16:11:18.852Z",
+      "account_value": 61910175.92,
+      "gross_long": 1149840,
+      "gross_short": 0,
+      "gross_total": 1149840,
+      "gross_to_account_ratio": 0.0186,
+      "top_name": "QQQ",
+      "top_name_pct_of_account": 0.0186,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-04-01T16:41:54.903Z",
+      "account_value": 46139321.28,
+      "gross_long": 9104078.65,
+      "gross_short": 3344310,
+      "gross_total": 12448388.65,
+      "gross_to_account_ratio": 0.2698,
+      "top_name": "BA",
+      "top_name_pct_of_account": 0.2698,
+      "is_artifact": false
+    },
+    {
+      "asof": "2025-04-02T13:35:12.106Z",
+      "account_value": 58195497.97,
+      "gross_long": 19816527.8,
+      "gross_short": 1257621,
+      "gross_total": 21074148.8,
+      "gross_to_account_ratio": 0.3621,
+      "top_name": "UBER",
+      "top_name_pct_of_account": 0.3621,
+      "is_artifact": false
+    }
+  ],
+  "short_put_assignment_series": [
+    {
+      "asof": "2024-09-09T15:58:46.743Z",
+      "short_put_assignment_notional": 16500.0,
+      "account_value": 3527839.47,
+      "pct_of_account": 0.0047
+    },
+    {
+      "asof": "2024-09-10T14:01:16.230Z",
+      "short_put_assignment_notional": 1666500.0,
+      "account_value": 3261476.26,
+      "pct_of_account": 0.511
+    },
+    {
+      "asof": "2024-10-24T20:08:57.735Z",
+      "short_put_assignment_notional": 26250000.0,
+      "account_value": 53602832.34,
+      "pct_of_account": 0.4897
+    },
+    {
+      "asof": "2024-10-25T18:25:06.458Z",
+      "short_put_assignment_notional": 26250000.0,
+      "account_value": 53092960.29,
+      "pct_of_account": 0.4944
+    },
+    {
+      "asof": "2024-10-28T19:08:13.364Z",
+      "short_put_assignment_notional": 34650000.0,
+      "account_value": 53841401.55,
+      "pct_of_account": 0.6436
+    },
+    {
+      "asof": "2024-10-29T14:40:41.324Z",
+      "short_put_assignment_notional": 12950000.0,
+      "account_value": 54453452.01,
+      "pct_of_account": 0.2378
+    },
+    {
+      "asof": "2024-10-29T14:57:33.733Z",
+      "short_put_assignment_notional": 47600000.0,
+      "account_value": 55090293.85,
+      "pct_of_account": 0.864
+    },
+    {
+      "asof": "2024-10-31T13:59:44.349Z",
+      "short_put_assignment_notional": 34650000.0,
+      "account_value": 54801738.47,
+      "pct_of_account": 0.6323
+    },
+    {
+      "asof": "2024-10-31T15:29:45.160Z",
+      "short_put_assignment_notional": 12950000.0,
+      "account_value": 54434492.97,
+      "pct_of_account": 0.2379
+    },
+    {
+      "asof": "2024-10-31T16:18:26.114Z",
+      "short_put_assignment_notional": 22940000.0,
+      "account_value": 54402324.93,
+      "pct_of_account": 0.4217
+    },
+    {
+      "asof": "2024-10-31T19:14:45.151Z",
+      "short_put_assignment_notional": 17325000.0,
+      "account_value": 54374770.32,
+      "pct_of_account": 0.3186
+    },
+    {
+      "asof": "2024-11-01T14:21:44.746Z",
+      "short_put_assignment_notional": 36440000.0,
+      "account_value": 56041634.61,
+      "pct_of_account": 0.6502
+    },
+    {
+      "asof": "2024-11-04T19:03:14.142Z",
+      "short_put_assignment_notional": 36440000.0,
+      "account_value": 55447121.09,
+      "pct_of_account": 0.6572
+    },
+    {
+      "asof": "2024-11-05T16:16:18.937Z",
+      "short_put_assignment_notional": 36440000.0,
+      "account_value": 53913061.74,
+      "pct_of_account": 0.6759
+    },
+    {
+      "asof": "2024-12-10T21:08:45.948Z",
+      "short_put_assignment_notional": 73342500.0,
+      "account_value": 49953093.12,
+      "pct_of_account": 1.4682
+    },
+    {
+      "asof": "2024-12-11T19:16:57.064Z",
+      "short_put_assignment_notional": 12312500.0,
+      "account_value": 49427001.14,
+      "pct_of_account": 0.2491
+    },
+    {
+      "asof": "2024-12-11T20:46:50.520Z",
+      "short_put_assignment_notional": 12312500.0,
+      "account_value": 49785039.93,
+      "pct_of_account": 0.2473
+    },
+    {
+      "asof": "2024-12-12T19:59:06.666Z",
+      "short_put_assignment_notional": 12312500.0,
+      "account_value": 50224958.44,
+      "pct_of_account": 0.2451
+    },
+    {
+      "asof": "2024-12-13T18:08:55.092Z",
+      "short_put_assignment_notional": 73342500.0,
+      "account_value": 50795601.27,
+      "pct_of_account": 1.4439
+    },
+    {
+      "asof": "2024-12-13T21:20:33.107Z",
+      "short_put_assignment_notional": 12312500.0,
+      "account_value": 50184846.23,
+      "pct_of_account": 0.2453
+    },
+    {
+      "asof": "2024-12-16T14:54:27.067Z",
+      "short_put_assignment_notional": 73342500.0,
+      "account_value": 50064455.65,
+      "pct_of_account": 1.465
+    },
+    {
+      "asof": "2024-12-17T22:00:03.815Z",
+      "short_put_assignment_notional": 12312500.0,
+      "account_value": 49897419.91,
+      "pct_of_account": 0.2468
+    },
+    {
+      "asof": "2024-12-18T16:00:35.452Z",
+      "short_put_assignment_notional": 85655000.0,
+      "account_value": 52018214.4,
+      "pct_of_account": 1.6466
+    },
+    {
+      "asof": "2024-12-20T17:57:17.282Z",
+      "short_put_assignment_notional": 70696500.0,
+      "account_value": 50136302.59,
+      "pct_of_account": 1.4101
+    },
+    {
+      "asof": "2024-12-20T23:08:58.084Z",
+      "short_put_assignment_notional": 13310000.0,
+      "account_value": 49714082.47,
+      "pct_of_account": 0.2677
+    },
+    {
+      "asof": "2024-12-30T21:56:54.568Z",
+      "short_put_assignment_notional": 13910000.0,
+      "account_value": 48190537.01,
+      "pct_of_account": 0.2886
+    },
+    {
+      "asof": "2025-01-02T19:04:51.180Z",
+      "short_put_assignment_notional": 13910000.0,
+      "account_value": 49090786.41,
+      "pct_of_account": 0.2834
+    },
+    {
+      "asof": "2025-01-03T19:17:50.154Z",
+      "short_put_assignment_notional": 13910000.0,
+      "account_value": 51767657.41,
+      "pct_of_account": 0.2687
+    },
+    {
+      "asof": "2025-01-03T22:50:47.902Z",
+      "short_put_assignment_notional": 78586000.0,
+      "account_value": 51143359.23,
+      "pct_of_account": 1.5366
+    },
+    {
+      "asof": "2025-01-06T19:26:49.680Z",
+      "short_put_assignment_notional": 92496000.0,
+      "account_value": 53268400.3,
+      "pct_of_account": 1.7364
+    },
+    {
+      "asof": "2025-01-07T17:23:39.431Z",
+      "short_put_assignment_notional": 92496000.0,
+      "account_value": 53647626.48,
+      "pct_of_account": 1.7241
+    },
+    {
+      "asof": "2025-01-10T14:42:08.161Z",
+      "short_put_assignment_notional": 13910000.0,
+      "account_value": 51717491.8,
+      "pct_of_account": 0.269
+    },
+    {
+      "asof": "2025-01-11T01:07:33.374Z",
+      "short_put_assignment_notional": 56496000.0,
+      "account_value": 51848347.65,
+      "pct_of_account": 1.0896
+    },
+    {
+      "asof": "2025-01-13T20:38:53.016Z",
+      "short_put_assignment_notional": 70406000.0,
+      "account_value": 51148655.2,
+      "pct_of_account": 1.3765
+    },
+    {
+      "asof": "2025-01-15T14:54:56.326Z",
+      "short_put_assignment_notional": 13910000.0,
+      "account_value": 50447320.19,
+      "pct_of_account": 0.2757
+    },
+    {
+      "asof": "2025-01-16T14:35:17.549Z",
+      "short_put_assignment_notional": 13910000.0,
+      "account_value": 52210109.45,
+      "pct_of_account": 0.2664
+    },
+    {
+      "asof": "2025-01-16T15:30:24.105Z",
+      "short_put_assignment_notional": 59376000.0,
+      "account_value": 53970489.35,
+      "pct_of_account": 1.1002
+    },
+    {
+      "asof": "2025-01-17T16:02:32.574Z",
+      "short_put_assignment_notional": 59376000.0,
+      "account_value": 53965997.43,
+      "pct_of_account": 1.1002
+    },
+    {
+      "asof": "2025-01-21T23:57:22.347Z",
+      "short_put_assignment_notional": 56400000.0,
+      "account_value": 54790534.87,
+      "pct_of_account": 1.0294
+    },
+    {
+      "asof": "2025-01-24T14:47:15.337Z",
+      "short_put_assignment_notional": 56400000.0,
+      "account_value": 58755517.98,
+      "pct_of_account": 0.9599
+    },
+    {
+      "asof": "2025-01-25T03:56:24.286Z",
+      "short_put_assignment_notional": 58565000.0,
+      "account_value": 57606682.04,
+      "pct_of_account": 1.0166
+    },
+    {
+      "asof": "2025-01-27T15:07:21.508Z",
+      "short_put_assignment_notional": 58565000.0,
+      "account_value": 58030011.46,
+      "pct_of_account": 1.0092
+    },
+    {
+      "asof": "2025-01-27T16:00:33.797Z",
+      "short_put_assignment_notional": 13910000.0,
+      "account_value": 58190698.99,
+      "pct_of_account": 0.239
+    },
+    {
+      "asof": "2025-01-27T16:24:39.119Z",
+      "short_put_assignment_notional": 58565000.0,
+      "account_value": 58403642.08,
+      "pct_of_account": 1.0028
+    },
+    {
+      "asof": "2025-01-28T15:14:45.784Z",
+      "short_put_assignment_notional": 65365000.0,
+      "account_value": 61434427.94,
+      "pct_of_account": 1.064
+    },
+    {
+      "asof": "2025-01-29T15:44:47.354Z",
+      "short_put_assignment_notional": 95800000.0,
+      "account_value": 60997967.98,
+      "pct_of_account": 1.5705
+    },
+    {
+      "asof": "2025-02-03T15:44:03.255Z",
+      "short_put_assignment_notional": 116410000.0,
+      "account_value": 63439366.55,
+      "pct_of_account": 1.835
+    },
+    {
+      "asof": "2025-02-04T15:46:30.260Z",
+      "short_put_assignment_notional": 21410000.0,
+      "account_value": 64255832.71,
+      "pct_of_account": 0.3332
+    },
+    {
+      "asof": "2025-02-05T12:18:53.513Z",
+      "short_put_assignment_notional": 21410000.0,
+      "account_value": 63045907.48,
+      "pct_of_account": 0.3396
+    },
+    {
+      "asof": "2025-02-06T04:57:50.369Z",
+      "short_put_assignment_notional": 28910000.0,
+      "account_value": 62696461.13,
+      "pct_of_account": 0.4611
+    },
+    {
+      "asof": "2025-02-06T14:45:26.600Z",
+      "short_put_assignment_notional": 28910000.0,
+      "account_value": 64492975.25,
+      "pct_of_account": 0.4483
+    },
+    {
+      "asof": "2025-02-06T16:22:35.647Z",
+      "short_put_assignment_notional": 79000000.0,
+      "account_value": 64707442.64,
+      "pct_of_account": 1.2209
+    },
+    {
+      "asof": "2025-02-06T23:46:29.047Z",
+      "short_put_assignment_notional": 90810000.0,
+      "account_value": 66075848.27,
+      "pct_of_account": 1.3743
+    },
+    {
+      "asof": "2025-02-07T15:14:48.029Z",
+      "short_put_assignment_notional": 28910000.0,
+      "account_value": 67982251.34,
+      "pct_of_account": 0.4253
+    },
+    {
+      "asof": "2025-02-07T19:10:01.636Z",
+      "short_put_assignment_notional": 14410000.0,
+      "account_value": 68726146.6,
+      "pct_of_account": 0.2097
+    },
+    {
+      "asof": "2025-02-10T17:56:33.990Z",
+      "short_put_assignment_notional": 14410000.0,
+      "account_value": 69625261.3,
+      "pct_of_account": 0.207
+    },
+    {
+      "asof": "2025-02-12T15:05:06.004Z",
+      "short_put_assignment_notional": 14410000.0,
+      "account_value": 68820695,
+      "pct_of_account": 0.2094
+    },
+    {
+      "asof": "2025-02-13T02:41:02.648Z",
+      "short_put_assignment_notional": 78760000.0,
+      "account_value": 71104158.83,
+      "pct_of_account": 1.1077
+    },
+    {
+      "asof": "2025-02-18T17:30:41.068Z",
+      "short_put_assignment_notional": 14410000.0,
+      "account_value": 72276460.75,
+      "pct_of_account": 0.1994
+    },
+    {
+      "asof": "2025-02-19T16:01:11.970Z",
+      "short_put_assignment_notional": 24865000.0,
+      "account_value": 72546152.34,
+      "pct_of_account": 0.3427
+    },
+    {
+      "asof": "2025-02-20T17:23:11.487Z",
+      "short_put_assignment_notional": 76750000.0,
+      "account_value": 72459640.68,
+      "pct_of_account": 1.0592
+    },
+    {
+      "asof": "2025-02-24T15:26:16.934Z",
+      "short_put_assignment_notional": 28615000.0,
+      "account_value": 69208211.74,
+      "pct_of_account": 0.4135
+    },
+    {
+      "asof": "2025-02-24T16:17:10.890Z",
+      "short_put_assignment_notional": 94400000.0,
+      "account_value": 69897539.26,
+      "pct_of_account": 1.3505
+    },
+    {
+      "asof": "2025-02-26T14:42:53.672Z",
+      "short_put_assignment_notional": 28615000.0,
+      "account_value": 67380686.35,
+      "pct_of_account": 0.4247
+    },
+    {
+      "asof": "2025-02-27T15:16:30.849Z",
+      "short_put_assignment_notional": 124415000.0,
+      "account_value": 67896208.77,
+      "pct_of_account": 1.8324
+    },
+    {
+      "asof": "2025-03-04T16:40:38.335Z",
+      "short_put_assignment_notional": 99215000.0,
+      "account_value": 57871218.72,
+      "pct_of_account": 1.7144
+    },
+    {
+      "asof": "2025-03-04T17:46:22.385Z",
+      "short_put_assignment_notional": 28615000.0,
+      "account_value": 59970267.02,
+      "pct_of_account": 0.4772
+    },
+    {
+      "asof": "2025-03-06T15:19:20.310Z",
+      "short_put_assignment_notional": 28615000.0,
+      "account_value": 60258227.11,
+      "pct_of_account": 0.4749
+    },
+    {
+      "asof": "2025-03-07T19:23:30.743Z",
+      "short_put_assignment_notional": 58700000.0,
+      "account_value": 56336244.33,
+      "pct_of_account": 1.042
+    },
+    {
+      "asof": "2025-03-19T13:56:49.696Z",
+      "short_put_assignment_notional": 62100000.0,
+      "account_value": 61412419.29,
+      "pct_of_account": 1.0112
+    },
+    {
+      "asof": "2025-03-20T14:16:56.211Z",
+      "short_put_assignment_notional": 28615000.0,
+      "account_value": 58977216.14,
+      "pct_of_account": 0.4852
+    },
+    {
+      "asof": "2025-03-21T14:00:53.689Z",
+      "short_put_assignment_notional": 46800000.0,
+      "account_value": 58967827.19,
+      "pct_of_account": 0.7937
+    },
+    {
+      "asof": "2025-03-21T15:51:49.747Z",
+      "short_put_assignment_notional": 46800000.0,
+      "account_value": 62963497.06,
+      "pct_of_account": 0.7433
+    },
+    {
+      "asof": "2025-03-21T16:03:04.578Z",
+      "short_put_assignment_notional": 75415000.0,
+      "account_value": 63760384.57,
+      "pct_of_account": 1.1828
+    },
+    {
+      "asof": "2025-03-22T17:35:39.479Z",
+      "short_put_assignment_notional": 28615000.0,
+      "account_value": 63964946.61,
+      "pct_of_account": 0.4474
+    },
+    {
+      "asof": "2025-03-26T22:20:05.442Z",
+      "short_put_assignment_notional": 75415000.0,
+      "account_value": 64077901.34,
+      "pct_of_account": 1.1769
+    },
+    {
+      "asof": "2025-04-01T16:41:54.903Z",
+      "short_put_assignment_notional": 46800000.0,
+      "account_value": 46139321.28,
+      "pct_of_account": 1.0143
+    },
+    {
+      "asof": "2025-04-02T13:35:12.106Z",
+      "short_put_assignment_notional": 22955000.0,
+      "account_value": 58195497.97,
+      "pct_of_account": 0.3944
+    }
+  ],
+  "campaign_pnl_by_underlying": [
+    {
+      "root": "BA",
+      "realized_from_closed_expired_legs": -9122715.05,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": -9122715.05,
+      "best_mark_seen": {
+        "asof": "2025-03-21T16:03:04.578Z",
+        "value": 6525556.49
+      },
+      "worst_mark_seen": {
+        "asof": "2024-03-19T15:53:27.091Z",
+        "value": -11923938.02
+      },
+      "closed_legs_n": 31,
+      "wins": 20,
+      "losses": 11,
+      "avg_win": 543889.63,
+      "avg_loss": -1818227.96
+    },
+    {
+      "root": "HOOD",
+      "realized_from_closed_expired_legs": 3131094.97,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 3131094.97,
+      "best_mark_seen": {
+        "asof": "2024-03-27T16:58:51.326Z",
+        "value": 4532788.92
+      },
+      "worst_mark_seen": {
+        "asof": "2024-03-05T17:08:45.105Z",
+        "value": -24418.84
+      },
+      "closed_legs_n": 2,
+      "wins": 2,
+      "losses": 0,
+      "avg_win": 1565547.49,
+      "avg_loss": null
+    },
+    {
+      "root": "QQQ",
+      "realized_from_closed_expired_legs": 1594090.62,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 1594090.62,
+      "best_mark_seen": {
+        "asof": "2024-04-02T19:53:33.999Z",
+        "value": 957698.38
+      },
+      "worst_mark_seen": {
+        "asof": "2025-03-21T14:10:54.400Z",
+        "value": -180497.0
+      },
+      "closed_legs_n": 8,
+      "wins": 8,
+      "losses": 0,
+      "avg_win": 199261.33,
+      "avg_loss": null
+    },
+    {
+      "root": "RIVN",
+      "realized_from_closed_expired_legs": -884954.49,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": -884954.49,
+      "best_mark_seen": {
+        "asof": "2024-03-07T18:41:28.682Z",
+        "value": 2038395.35
+      },
+      "worst_mark_seen": {
+        "asof": "2025-03-04T16:40:38.335Z",
+        "value": -650510.34
+      },
+      "closed_legs_n": 5,
+      "wins": 1,
+      "losses": 4,
+      "avg_win": 61000.0,
+      "avg_loss": -236488.62
+    },
+    {
+      "root": "UBER",
+      "realized_from_closed_expired_legs": 160233.95,
+      "unrealized_at_data_end_2025_04_05": 553221.7,
+      "total_estimate": 713455.65,
+      "best_mark_seen": {
+        "asof": "2025-02-18T17:30:41.068Z",
+        "value": 5866240.57
+      },
+      "worst_mark_seen": {
+        "asof": "2024-12-13T21:20:33.107Z",
+        "value": -2251347.34
+      },
+      "closed_legs_n": 13,
+      "wins": 8,
+      "losses": 5,
+      "avg_win": 94031.22,
+      "avg_loss": -118403.17
+    },
+    {
+      "root": "TSLA",
+      "realized_from_closed_expired_legs": 523883.18,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 523883.18,
+      "best_mark_seen": {
+        "asof": "2024-10-31T13:59:44.349Z",
+        "value": 595147.88
+      },
+      "worst_mark_seen": {
+        "asof": "2024-10-25T18:25:06.458Z",
+        "value": -682240.87
+      },
+      "closed_legs_n": 3,
+      "wins": 3,
+      "losses": 0,
+      "avg_win": 174627.73,
+      "avg_loss": null
+    },
+    {
+      "root": "RXRX",
+      "realized_from_closed_expired_legs": 17940.97,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 17940.97,
+      "best_mark_seen": {
+        "asof": "2025-02-25T15:56:12.582Z",
+        "value": 43104.39
+      },
+      "worst_mark_seen": {
+        "asof": "2025-02-14T18:25:45.252Z",
+        "value": 0.0
+      },
+      "closed_legs_n": 2,
+      "wins": 2,
+      "losses": 0,
+      "avg_win": 8970.49,
+      "avg_loss": null
+    },
+    {
+      "root": "AAPL",
+      "realized_from_closed_expired_legs": -2366.49,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": -2366.49,
+      "best_mark_seen": {
+        "asof": "2024-03-01T17:17:24.404Z",
+        "value": -68200.99
+      },
+      "worst_mark_seen": {
+        "asof": "2024-03-05T15:04:51.275Z",
+        "value": -317708.0
+      },
+      "closed_legs_n": 1,
+      "wins": 0,
+      "losses": 1,
+      "avg_win": null,
+      "avg_loss": -2366.49
+    },
+    {
+      "root": "HIMS",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2025-01-11T00:15:05.649Z",
+        "value": 0.0
+      },
+      "worst_mark_seen": {
+        "asof": "2025-01-08T19:40:43.593Z",
+        "value": -41223.75
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "CELH",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2025-02-20T14:36:46.842Z",
+        "value": 20088.0
+      },
+      "worst_mark_seen": {
+        "asof": "2025-02-25T21:12:35.925Z",
+        "value": -85560.0
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "SPR",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2024-03-20T14:17:33.124Z",
+        "value": -68084.38
+      },
+      "worst_mark_seen": {
+        "asof": "2024-03-11T16:37:35.016Z",
+        "value": -469343.42
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "NVAX",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2025-02-13T15:42:24.636Z",
+        "value": -0.06
+      },
+      "worst_mark_seen": {
+        "asof": "2025-02-13T15:42:24.636Z",
+        "value": -0.06
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "SOFI",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2024-02-08T18:20:13.618Z",
+        "value": 34817.02
+      },
+      "worst_mark_seen": {
+        "asof": "2024-02-08T18:20:13.618Z",
+        "value": 34817.02
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "SQ",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2024-03-28T14:54:46.469Z",
+        "value": 351262.59
+      },
+      "worst_mark_seen": {
+        "asof": "2024-03-05T17:08:45.105Z",
+        "value": -7837.07
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "GOOG",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2024-02-29T23:26:25.352Z",
+        "value": -5571.36
+      },
+      "worst_mark_seen": {
+        "asof": "2024-03-05T15:04:51.275Z",
+        "value": -162217.89
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "SGOV",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2024-02-08T20:23:53.736Z",
+        "value": 2288.35
+      },
+      "worst_mark_seen": {
+        "asof": "2024-02-08T20:23:53.736Z",
+        "value": 2288.35
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "XYZ",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2025-03-26T22:20:05.442Z",
+        "value": -133589.0
+      },
+      "worst_mark_seen": {
+        "asof": "2025-03-27T14:25:24.342Z",
+        "value": -158189.0
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "DIS",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2024-03-11T16:23:19.383Z",
+        "value": 83243.26
+      },
+      "worst_mark_seen": {
+        "asof": "2024-02-07T21:31:56.248Z",
+        "value": 449.23
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "ADBE",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2024-03-25T16:28:25.247Z",
+        "value": 1236154.82
+      },
+      "worst_mark_seen": {
+        "asof": "2024-03-27T17:05:03.690Z",
+        "value": -545359.8
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "IBLC",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2024-03-28T14:54:46.469Z",
+        "value": 112131.2
+      },
+      "worst_mark_seen": {
+        "asof": "2024-02-08T15:06:25.259Z",
+        "value": 82054.22
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "COST",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2024-03-08T03:08:39.727Z",
+        "value": -1494.2
+      },
+      "worst_mark_seen": {
+        "asof": "2024-03-08T03:08:39.727Z",
+        "value": -1494.2
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "ZGN",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2025-01-27T14:34:04.279Z",
+        "value": 500189.58
+      },
+      "worst_mark_seen": {
+        "asof": "2025-03-27T13:31:18.953Z",
+        "value": -137831.69
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "PCG",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2025-02-13T14:10:00.486Z",
+        "value": 14065.83
+      },
+      "worst_mark_seen": {
+        "asof": "2025-02-11T02:54:57.625Z",
+        "value": -15230.97
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "ARM",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2024-02-07T21:12:51.824Z",
+        "value": 783.76
+      },
+      "worst_mark_seen": {
+        "asof": "2024-02-07T21:12:51.824Z",
+        "value": 783.76
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "CFLT",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2024-02-07T21:31:56.248Z",
+        "value": -3198.3
+      },
+      "worst_mark_seen": {
+        "asof": "2024-02-07T21:31:56.248Z",
+        "value": -3198.3
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "U",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2024-03-15T18:53:10.946Z",
+        "value": 12989.01
+      },
+      "worst_mark_seen": {
+        "asof": "2024-03-15T18:53:10.946Z",
+        "value": 12989.01
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "ZS",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2024-03-11T16:37:35.016Z",
+        "value": -704148.71
+      },
+      "worst_mark_seen": {
+        "asof": "2024-03-15T18:53:10.946Z",
+        "value": -1226863.71
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "ARKG",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2025-02-20T14:36:46.842Z",
+        "value": -3639.0
+      },
+      "worst_mark_seen": {
+        "asof": "2025-02-20T14:36:46.842Z",
+        "value": -3639.0
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    },
+    {
+      "root": "WYNN",
+      "realized_from_closed_expired_legs": 0,
+      "unrealized_at_data_end_2025_04_05": 0,
+      "total_estimate": 0,
+      "best_mark_seen": {
+        "asof": "2024-02-07T21:31:56.248Z",
+        "value": -11424.4
+      },
+      "worst_mark_seen": {
+        "asof": "2024-02-07T21:31:56.248Z",
+        "value": -11424.4
+      },
+      "closed_legs_n": 0,
+      "wins": 0,
+      "losses": 0,
+      "avg_win": null,
+      "avg_loss": null
+    }
+  ],
+  "win_loss_summary": {
+    "n_closed_with_known_pnl": 65,
+    "n_closed_unknown_pnl": 5,
+    "wins": 44,
+    "losses": 21,
+    "win_rate_pct": 67.7,
+    "avg_win": 385410.27,
+    "avg_loss": -1025754.5,
+    "gross_win": 16958052.08,
+    "gross_loss": 21540844.42,
+    "profit_factor": 0.787
+  },
+  "benchmark_windows": [
+    {
+      "window": "inception_to_peak",
+      "start": "2023-12-22",
+      "end": "2024-03-28",
+      "account_start": 57382097.8,
+      "account_end": 95091124.56,
+      "account_pct": 65.72,
+      "spy_pct": 10.43,
+      "qqq_pct": 8.72
+    },
+    {
+      "window": "peak_to_last_pre_gap",
+      "start": "2024-03-28",
+      "end": "2024-04-05",
+      "account_start": 95091124.56,
+      "account_end": 78391901.17,
+      "account_pct": -17.56,
+      "spy_pct": -0.89,
+      "qqq_pct": -0.8
+    },
+    {
+      "window": "pre_gap_to_post_gap",
+      "start": "2024-04-05",
+      "end": "2024-09-12",
+      "account_start": 78391901.17,
+      "account_end": 51259586.6,
+      "account_pct": -34.61,
+      "spy_pct": 7.84,
+      "qqq_pct": 7.44
+    },
+    {
+      "window": "post_gap_to_feb25_peak",
+      "start": "2024-09-12",
+      "end": "2025-02-20",
+      "account_start": 51259586.6,
+      "account_end": 72456424.07,
+      "account_pct": 41.35,
+      "spy_pct": 9.17,
+      "qqq_pct": 13.53
+    },
+    {
+      "window": "feb25_peak_to_apr25_trough",
+      "start": "2025-02-20",
+      "end": "2025-04-05",
+      "account_start": 72456424.07,
+      "account_end": 33208267.06,
+      "account_pct": -54.17,
+      "spy_pct": -17.22,
+      "qqq_pct": -21.32
+    },
+    {
+      "window": "full_sample",
+      "start": "2023-12-22",
+      "end": "2025-04-05",
+      "account_start": 57382097.8,
+      "account_end": 33208267.06,
+      "account_pct": -42.13,
+      "spy_pct": 6.68,
+      "qqq_pct": 3.5
+    }
+  ],
+  "beta_vs_spy": {
+    "beta": 3.63,
+    "corr": 0.61,
+    "n_pairs": 131,
+    "method": "log returns between consecutive real (non-artifact) snapshot days, gaps >10 calendar days dropped, artifact window excluded"
+  },
+  "beta_vs_qqq": {
+    "beta": 2.75,
+    "corr": 0.57,
+    "n_pairs": 131
+  },
+  "account_vol_annualized_proxy_pct": {
+    "account": 119.0,
+    "spy": 20.3
+  }
+}

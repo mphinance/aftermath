@@ -1,0 +1,2009 @@
+{
+  "downloaded_at": "2026-10-02T16:48:00Z",
+  "users": {
+    "RoyaltyTradez": {
+      "profile_id": "prf_a45d9c10826f4a88a88bd40c0c1fc4a6",
+      "total_value": 0,
+      "profit": 0,
+      "profit_percent": 0,
+      "profit_today": 0,
+      "cash_balance": 0,
+      "verified_as_of": "2026-10-02T21:49:01.201Z",
+      "last_synced_at": "2025-07-12T23:21:49.093Z",
+      "positions_count": 0,
+      "positions": []
+    },
+    "SlowmoInvestor": {
+      "profile_id": "prf_c4a6425553bb4d2c964e029917d791b7",
+      "total_value": 16147723.98,
+      "profit": 13526546.37,
+      "profit_percent": 975.2764408765064,
+      "profit_today": 149437.68,
+      "cash_balance": 1234232.76,
+      "verified_as_of": "2026-10-02T21:49:02.434Z",
+      "last_synced_at": "2026-06-24T08:35:12.637Z",
+      "positions_count": 7,
+      "positions": [
+        {
+          "ticker": "AAPL",
+          "name": "Apple",
+          "quantity": 28000,
+          "value": 9343320,
+          "cost_basis": 598807,
+          "profit": 8744513,
+          "profit_percent": 1460.3224411204278
+        },
+        {
+          "ticker": "NVDA",
+          "name": "Nvidia",
+          "quantity": 20000,
+          "value": 4679000,
+          "cost_basis": 76100,
+          "profit": 4602900,
+          "profit_percent": 6048.4888304862025
+        },
+        {
+          "ticker": "UPS",
+          "name": "UPS",
+          "quantity": 7036,
+          "value": 654488.72,
+          "cost_basis": 586580.76,
+          "profit": 67907.96,
+          "profit_percent": 11.576915683357907
+        },
+        {
+          "ticker": "MU",
+          "name": "Micron",
+          "quantity": 100,
+          "value": 107489,
+          "cost_basis": 72900.77,
+          "profit": 34588.23,
+          "profit_percent": 47.44563054683785
+        },
+        {
+          "ticker": "FDX",
+          "name": "FedEx",
+          "quantity": 300,
+          "value": 87108,
+          "cost_basis": 27673.15,
+          "profit": 59434.85,
+          "profit_percent": 214.77442936564864
+        },
+        {
+          "ticker": "AMZN",
+          "name": "Amazon",
+          "quantity": 100,
+          "value": 25152,
+          "cost_basis": 18450,
+          "profit": 6702,
+          "profit_percent": 36.32520325203252
+        },
+        {
+          "ticker": "FDXF",
+          "name": "FedEx Freight Holding Company",
+          "quantity": 150,
+          "value": 16933.5,
+          "cost_basis": 6433.17,
+          "profit": 10500.33,
+          "profit_percent": 163.22170873768297
+        }
+      ]
+    },
+    "Trescommas": {
+      "profile_id": "prf_1b3b4750ae3642038abe4ebc3c0a11e7",
+      "total_value": 15055733.74962712,
+      "profit": 9608144.94762712,
+      "profit_percent": 178.37233047180115,
+      "profit_today": 230154.12758276,
+      "cash_balance": 61019.31,
+      "verified_as_of": "2026-10-02T21:49:04.159Z",
+      "last_synced_at": "2026-06-24T15:39:21.538Z",
+      "positions_count": 12,
+      "positions": [
+        {
+          "ticker": "AAPL",
+          "name": "Apple",
+          "quantity": 22028.593348,
+          "value": 7350721.31429412,
+          "cost_basis": 2620227.92,
+          "profit": 4730493.39429412,
+          "profit_percent": 180.53747760592216
+        },
+        {
+          "ticker": "ANET",
+          "name": "Arista Networks",
+          "quantity": 16000,
+          "value": 3317600,
+          "cost_basis": 640000,
+          "profit": 2677600,
+          "profit_percent": 418.375
+        },
+        {
+          "ticker": "NVDA",
+          "name": "Nvidia",
+          "quantity": 10000,
+          "value": 2339500,
+          "cost_basis": 310000,
+          "profit": 2029500,
+          "profit_percent": 654.6774193548387
+        },
+        {
+          "ticker": "TSLA",
+          "name": "Tesla",
+          "quantity": 4602,
+          "value": 1705455.18,
+          "cost_basis": 1264262.29,
+          "profit": 441192.89,
+          "profit_percent": 34.89725933374158
+        },
+        {
+          "ticker": "CMG",
+          "name": "Chipotle",
+          "quantity": 2900,
+          "value": 93844,
+          "cost_basis": 182700,
+          "profit": -88856,
+          "profit_percent": -48.63492063492063
+        },
+        {
+          "ticker": "MSFT",
+          "name": "Microsoft",
+          "quantity": 150,
+          "value": 77629.5,
+          "cost_basis": 26500.01,
+          "profit": 51129.49,
+          "profit_percent": 192.94139889003816
+        },
+        {
+          "ticker": "ACDC",
+          "name": "ProFrac Holding",
+          "quantity": 14025,
+          "value": 64234.5,
+          "cost_basis": 309672,
+          "profit": -245437.5,
+          "profit_percent": -79.2572463768116
+        },
+        {
+          "ticker": "META",
+          "name": "Meta Platforms",
+          "quantity": 50,
+          "value": 36404,
+          "cost_basis": 9645,
+          "profit": 26759,
+          "profit_percent": 277.4390876101607
+        },
+        {
+          "ticker": "FANG",
+          "name": "Diamondback Energy",
+          "quantity": 50,
+          "value": 9235.5,
+          "cost_basis": 2000,
+          "profit": 7235.5,
+          "profit_percent": 361.775
+        },
+        {
+          "ticker": "CGC",
+          "name": "Canopy Growth",
+          "quantity": 100,
+          "value": 87.54,
+          "cost_basis": 21079.7,
+          "profit": -20992.16,
+          "profit_percent": -99.58471894761311
+        },
+        {
+          "ticker": "SIRI",
+          "name": "Sirius XM",
+          "quantity": 0.1,
+          "value": 2.572,
+          "cost_basis": null,
+          "profit": null,
+          "profit_percent": null
+        },
+        {
+          "ticker": "ARBK",
+          "name": "Argo Blockchain American",
+          "quantity": 0.148148,
+          "value": 0.333333,
+          "cost_basis": 480,
+          "profit": -479.666667,
+          "profit_percent": -99.930555625
+        }
+      ]
+    },
+    "Bobdog": {
+      "profile_id": "prf_f3140231d0624d2598e85ec5c314300c",
+      "total_value": 1062909.2648,
+      "profit": -44994.6852,
+      "profit_percent": -4.826603545256555,
+      "profit_today": 8788.5191,
+      "cash_balance": 175681.43,
+      "verified_as_of": "2026-10-02T21:49:06.484Z",
+      "last_synced_at": "2026-08-04T04:57:34.890Z",
+      "positions_count": 55,
+      "positions": [
+        {
+          "ticker": "MSTR",
+          "name": "MicroStrategy",
+          "quantity": 800,
+          "value": 128008,
+          "cost_basis": 98024.36,
+          "profit": 29983.64,
+          "profit_percent": 30.587947730543714
+        },
+        {
+          "ticker": "CRWV",
+          "name": "Crowne Ventures",
+          "quantity": 1049,
+          "value": 94011.38,
+          "cost_basis": 93878.93,
+          "profit": 132.45,
+          "profit_percent": 0.14108597104802964
+        },
+        {
+          "ticker": "ASTS",
+          "name": "AST SpaceMobile",
+          "quantity": 1532,
+          "value": 89545.4,
+          "cost_basis": 114864.79,
+          "profit": -25319.39,
+          "profit_percent": -22.042777425527873
+        },
+        {
+          "ticker": "CRCL",
+          "name": "Circle Internet Group",
+          "quantity": 830,
+          "value": 67437.5,
+          "cost_basis": 62099.06,
+          "profit": 5338.44,
+          "profit_percent": 8.596651865583794
+        },
+        {
+          "ticker": "IREN",
+          "name": "Iris Energy",
+          "quantity": 1490,
+          "value": 62222.4,
+          "cost_basis": 65831.19,
+          "profit": -3608.79,
+          "profit_percent": -5.481884802629271
+        },
+        {
+          "ticker": "PTRN",
+          "name": "Pattern Group",
+          "quantity": 3493,
+          "value": 60533.69,
+          "cost_basis": 87988.67,
+          "profit": -27454.98,
+          "profit_percent": -31.202858277094084
+        },
+        {
+          "ticker": "IBIT",
+          "name": "iShares Bitcoin Trust",
+          "quantity": 1071,
+          "value": 51118.83,
+          "cost_basis": 41494.06,
+          "profit": 9624.77,
+          "profit_percent": 23.19553690335436
+        },
+        {
+          "ticker": "PLTR",
+          "name": "Palantir",
+          "quantity": 246,
+          "value": 46432.5,
+          "cost_basis": 31807.41,
+          "profit": 14625.09,
+          "profit_percent": 45.98013481764155
+        },
+        {
+          "ticker": "GLXY",
+          "name": "Gold TRAKRS",
+          "quantity": 1100,
+          "value": 25366,
+          "cost_basis": 29174.67,
+          "profit": -3808.67,
+          "profit_percent": -13.054714929080603
+        },
+        {
+          "ticker": "TSLA",
+          "name": "Tesla",
+          "quantity": 54,
+          "value": 20011.86,
+          "cost_basis": 18935.32,
+          "profit": 1076.54,
+          "profit_percent": 5.6853541424174505
+        },
+        {
+          "ticker": "NVDA",
+          "name": "Nvidia",
+          "quantity": 85,
+          "value": 19885.75,
+          "cost_basis": 16701.25,
+          "profit": 3184.5,
+          "profit_percent": 19.067435072225134
+        },
+        {
+          "ticker": "ONDS",
+          "name": "Ondas Holdings",
+          "quantity": 2700,
+          "value": 19548,
+          "cost_basis": 22755.06,
+          "profit": -3207.06,
+          "profit_percent": -14.093832316856119
+        },
+        {
+          "ticker": "TE",
+          "name": "TECO Energy",
+          "quantity": 4000,
+          "value": 15680,
+          "cost_basis": 24732.4,
+          "profit": -9052.4,
+          "profit_percent": -36.60138118419563
+        },
+        {
+          "ticker": "ORCL",
+          "name": "Oracle",
+          "quantity": 100,
+          "value": 14230,
+          "cost_basis": 13890.87,
+          "profit": 339.13,
+          "profit_percent": 2.4413877604498495
+        },
+        {
+          "ticker": "BMNR",
+          "name": "BITMINE IMMERSIN TECH",
+          "quantity": 513,
+          "value": 13476.51,
+          "cost_basis": 13401.04,
+          "profit": 75.47,
+          "profit_percent": 0.5631652468763618
+        },
+        {
+          "ticker": "IONQ",
+          "name": "IonQ",
+          "quantity": 300,
+          "value": 13131,
+          "cost_basis": 12158.98,
+          "profit": 972.02,
+          "profit_percent": 7.994256097139727
+        },
+        {
+          "ticker": "MSTU",
+          "name": "T-Rex Long MSTR Daily Target ETF",
+          "quantity": 300,
+          "value": 12948,
+          "cost_basis": 2414.85,
+          "profit": 10533.15,
+          "profit_percent": 436.1823715758743
+        },
+        {
+          "ticker": "ETHA",
+          "name": "iShares Ethereum Trust",
+          "quantity": 625,
+          "value": 12568.75,
+          "cost_basis": 10196.53,
+          "profit": 2372.22,
+          "profit_percent": 23.26497347627085
+        },
+        {
+          "ticker": "ACHR",
+          "name": "Archer Aviation",
+          "quantity": 2355,
+          "value": 11515.95,
+          "cost_basis": 12978.41,
+          "profit": -1462.46,
+          "profit_percent": -11.268406530538025
+        },
+        {
+          "ticker": "OPEN",
+          "name": "Opendoor Technologies",
+          "quantity": 4600,
+          "value": 11224,
+          "cost_basis": 23342.08,
+          "profit": -12118.08,
+          "profit_percent": -51.91516779995613
+        },
+        {
+          "ticker": "IREN  270617C00030000",
+          "name": "IREN $30 call Jun 17 2027",
+          "quantity": 500,
+          "value": 8725,
+          "cost_basis": 6700,
+          "profit": 2025,
+          "profit_percent": 30.223880597014926
+        },
+        {
+          "ticker": "WYFI",
+          "name": "WhiteFiber",
+          "quantity": 400,
+          "value": 7172,
+          "cost_basis": 12504,
+          "profit": -5332,
+          "profit_percent": -42.642354446577095
+        },
+        {
+          "ticker": "NFLX",
+          "name": "Netflix",
+          "quantity": 100,
+          "value": 6706,
+          "cost_basis": 7226.5,
+          "profit": -520.5,
+          "profit_percent": -7.202656887843355
+        },
+        {
+          "ticker": "CRWV  270617C00080000",
+          "name": "CRWV $80 call Jun 17 2027",
+          "quantity": 300,
+          "value": 6579,
+          "cost_basis": 5990,
+          "profit": 589,
+          "profit_percent": 9.8330550918197
+        },
+        {
+          "ticker": "ASTS  270319C00080000",
+          "name": "ASTS $80 call Mar 19 2027",
+          "quantity": 400,
+          "value": 5372,
+          "cost_basis": 4760,
+          "profit": 612,
+          "profit_percent": 12.857142857142858
+        },
+        {
+          "ticker": "SHAZ",
+          "name": "SharonAI Holdings",
+          "quantity": 100,
+          "value": 5081,
+          "cost_basis": 5759,
+          "profit": -678,
+          "profit_percent": -11.772877235631187
+        },
+        {
+          "ticker": "YINN",
+          "name": "Direxion Daily FTSE China Bull 3X",
+          "quantity": 212,
+          "value": 4912.04,
+          "cost_basis": 6812.37,
+          "profit": -1900.33,
+          "profit_percent": -27.8952846072659
+        },
+        {
+          "ticker": "HIMS  270115C00035000",
+          "name": "HIMS $35 call Jan 15 2027",
+          "quantity": 1000,
+          "value": 4840,
+          "cost_basis": 12100,
+          "profit": -7260,
+          "profit_percent": -60
+        },
+        {
+          "ticker": "COIN  270617C00140000",
+          "name": "COIN $140 call Jun 17 2027",
+          "quantity": 100,
+          "value": 4671,
+          "cost_basis": 4000,
+          "profit": 671,
+          "profit_percent": 16.775
+        },
+        {
+          "ticker": "RDDT  270617C00135000",
+          "name": "RDDT $135 call Jun 17 2027",
+          "quantity": 100,
+          "value": 4300,
+          "cost_basis": 4050,
+          "profit": 250,
+          "profit_percent": 6.172839506172839
+        },
+        {
+          "ticker": "EOSE  270521C00003000",
+          "name": "EOSE $3 call May 21 2027",
+          "quantity": 2500,
+          "value": 4000,
+          "cost_basis": 3775,
+          "profit": 225,
+          "profit_percent": 5.960264900662252
+        },
+        {
+          "ticker": "TE    270617C00002000",
+          "name": "TE $2 call Jun 17 2027",
+          "quantity": 1600,
+          "value": 3920,
+          "cost_basis": 3920,
+          "profit": 0,
+          "profit_percent": 0
+        },
+        {
+          "ticker": "INTC  270617C00125000",
+          "name": "INTC $125 call Jun 17 2027",
+          "quantity": 200,
+          "value": 3880,
+          "cost_basis": 3508,
+          "profit": 372,
+          "profit_percent": 10.604332953249715
+        },
+        {
+          "ticker": "CRCL  270617C00100000",
+          "name": "CRCL $100 call Jun 17 2027",
+          "quantity": 300,
+          "value": 3450,
+          "cost_basis": 3772,
+          "profit": -322,
+          "profit_percent": -8.536585365853659
+        },
+        {
+          "ticker": "BBAI  280121C00004000",
+          "name": "BBAI $4 call Jan 21 2028",
+          "quantity": 3000,
+          "value": 3210,
+          "cost_basis": 2940,
+          "profit": 270,
+          "profit_percent": 9.183673469387756
+        },
+        {
+          "ticker": "BABA",
+          "name": "Alibaba American",
+          "quantity": 30,
+          "value": 3175.5,
+          "cost_basis": 4060.73,
+          "profit": -885.23,
+          "profit_percent": -21.799774917317823
+        },
+        {
+          "ticker": "BULL",
+          "name": "WEBULL",
+          "quantity": 350,
+          "value": 2569,
+          "cost_basis": 3903.51,
+          "profit": -1334.51,
+          "profit_percent": -34.187436435413254
+        },
+        {
+          "ticker": "RDDT",
+          "name": "Reddit",
+          "quantity": 17,
+          "value": 2513.62,
+          "cost_basis": 2317.55,
+          "profit": 196.07,
+          "profit_percent": 8.460227395309703
+        },
+        {
+          "ticker": "GLXY  270115C00030000",
+          "name": "GLXY $30 call Jan 15 2027",
+          "quantity": 800,
+          "value": 2440,
+          "cost_basis": 2742,
+          "profit": -302,
+          "profit_percent": -11.013858497447119
+        },
+        {
+          "ticker": "IGV",
+          "name": "iShares Expanded Tech-Software ETF",
+          "quantity": 20,
+          "value": 2168.6,
+          "cost_basis": 1812.14,
+          "profit": 356.46,
+          "profit_percent": 19.670665621861446
+        },
+        {
+          "ticker": "OLVI",
+          "name": "Oliveda International",
+          "quantity": 10602,
+          "value": 2061.0288,
+          "cost_basis": 3710.7,
+          "profit": -1649.6712,
+          "profit_percent": -44.457142857142856
+        },
+        {
+          "ticker": "HUMA  270115C00001500",
+          "name": "HUMA $1.50 call Jan 15 2027",
+          "quantity": 14000,
+          "value": 1400,
+          "cost_basis": 8860,
+          "profit": -7460,
+          "profit_percent": -84.19864559819413
+        },
+        {
+          "ticker": "CELH",
+          "name": "Celsius Holdings",
+          "quantity": 46,
+          "value": 1230.5,
+          "cost_basis": 1442.72,
+          "profit": -212.22,
+          "profit_percent": -14.709714982810247
+        },
+        {
+          "ticker": "ASPI",
+          "name": "ASP Isotopes",
+          "quantity": 300,
+          "value": 873,
+          "cost_basis": 2142,
+          "profit": -1269,
+          "profit_percent": -59.2436974789916
+        },
+        {
+          "ticker": "MCD",
+          "name": "McDonald's",
+          "quantity": 3,
+          "value": 695.67,
+          "cost_basis": 852.34,
+          "profit": -156.67,
+          "profit_percent": -18.381162446910857
+        },
+        {
+          "ticker": "GME   270115C00030000",
+          "name": "GME $30 call Jan 15 2027",
+          "quantity": 800,
+          "value": 616,
+          "cost_basis": 2935,
+          "profit": -2319,
+          "profit_percent": -79.01192504258944
+        },
+        {
+          "ticker": "BKKT",
+          "name": "Bakkt",
+          "quantity": 70,
+          "value": 542.5,
+          "cost_basis": 688.55,
+          "profit": -146.05,
+          "profit_percent": -21.211241013724493
+        },
+        {
+          "ticker": "NKLR",
+          "name": "Terra Innovatum Global",
+          "quantity": 148,
+          "value": 519.48,
+          "cost_basis": 2159.18,
+          "profit": -1639.7,
+          "profit_percent": -75.94086644003742
+        },
+        {
+          "ticker": "AI    270115C00017500",
+          "name": "AI $17.50 call Jan 15 2027",
+          "quantity": 600,
+          "value": 270,
+          "cost_basis": 3855,
+          "profit": -3585,
+          "profit_percent": -92.99610894941634
+        },
+        {
+          "ticker": "RR    270115C00005000",
+          "name": "RR $5 call Jan 15 2027",
+          "quantity": 2000,
+          "value": 180,
+          "cost_basis": 2240,
+          "profit": -2060,
+          "profit_percent": -91.96428571428571
+        },
+        {
+          "ticker": "PYPL  270115C00085000",
+          "name": "PYPL $85 call Jan 15 2027",
+          "quantity": 600,
+          "value": 126,
+          "cost_basis": 396,
+          "profit": -270,
+          "profit_percent": -68.18181818181819
+        },
+        {
+          "ticker": "LDI   270115C00003000",
+          "name": "LDI $3 call Jan 15 2027",
+          "quantity": 2500,
+          "value": 125,
+          "cost_basis": 2550,
+          "profit": -2425,
+          "profit_percent": -95.09803921568627
+        },
+        {
+          "ticker": "OPENW",
+          "name": "Opendoor Technologies Warrants",
+          "quantity": 30,
+          "value": 3.603,
+          "cost_basis": 356.1,
+          "profit": -352.497,
+          "profit_percent": -98.98820556023588
+        },
+        {
+          "ticker": "OPENL",
+          "name": "Opendoor Technologies Series A Warrants",
+          "quantity": 30,
+          "value": 2.427,
+          "cost_basis": 356.1,
+          "profit": -353.673,
+          "profit_percent": -99.318449873631
+        },
+        {
+          "ticker": "OPENZ",
+          "name": "Opendoor Technologies Series Z Warrants",
+          "quantity": 30,
+          "value": 2.346,
+          "cost_basis": 356.1,
+          "profit": -353.754,
+          "profit_percent": -99.34119629317607
+        }
+      ]
+    },
+    "Freeballer": {
+      "profile_id": "prf_7ec37131fbb8496f940c10cafc6dd1c7",
+      "total_value": 0,
+      "profit": 0,
+      "profit_percent": 0,
+      "profit_today": 0,
+      "cash_balance": 0,
+      "verified_as_of": "2026-10-02T21:49:08.894Z",
+      "last_synced_at": null,
+      "positions_count": 0,
+      "positions": []
+    },
+    "trynamakeit": {
+      "profile_id": "prf_1d4956cc117e467b9489cb88dbce2f53",
+      "total_value": 0,
+      "profit": 0,
+      "profit_percent": 0,
+      "profit_today": 0,
+      "cash_balance": 0,
+      "verified_as_of": "2026-10-02T21:49:09.942Z",
+      "last_synced_at": null,
+      "positions_count": 0,
+      "positions": []
+    },
+    "Rise": {
+      "profile_id": "prf_d99ee4367c694400853566fce9b5afc3",
+      "total_value": 56769.89,
+      "profit": 35969.48,
+      "profit_percent": 175.5435119458672,
+      "profit_today": 0,
+      "cash_balance": 310.06,
+      "verified_as_of": "2026-10-02T21:49:10.923Z",
+      "last_synced_at": "2026-06-24T06:24:35.707Z",
+      "positions_count": 1,
+      "positions": [
+        {
+          "ticker": "VTSAX",
+          "name": "Vanguard Total Stock Market Index",
+          "quantity": 318.82,
+          "value": 56459.83,
+          "cost_basis": 20490.35,
+          "profit": 35969.48,
+          "profit_percent": 175.5435119458672
+        }
+      ]
+    },
+    "Legitimate_Risk": {
+      "profile_id": "prf_f65f7e2eab1749189b9773e23ca5a5c9",
+      "total_value": 0,
+      "profit": 0,
+      "profit_percent": 0,
+      "profit_today": 0,
+      "cash_balance": 0,
+      "verified_as_of": "2026-10-02T21:49:11.976Z",
+      "last_synced_at": null,
+      "positions_count": 0,
+      "positions": []
+    },
+    "adioking": {
+      "profile_id": "prf_c44963f5439d4c7ab4ea0085857ebf35",
+      "total_value": 0,
+      "profit": 0,
+      "profit_percent": 0,
+      "profit_today": 0,
+      "cash_balance": 0,
+      "verified_as_of": "2026-10-02T21:49:12.869Z",
+      "last_synced_at": null,
+      "positions_count": 0,
+      "positions": []
+    },
+    "Drone_Daddy": {
+      "profile_id": "prf_c17113f31d1c4646bbe68badc6742876",
+      "total_value": 0,
+      "profit": 0,
+      "profit_percent": -60.747632504762635,
+      "profit_today": 0,
+      "cash_balance": 0,
+      "verified_as_of": "2026-10-02T21:49:14.075Z",
+      "last_synced_at": "2026-08-03T19:31:36.171Z",
+      "positions_count": 19,
+      "positions": [
+        {
+          "ticker": "ONDS",
+          "name": "Ondas Holdings",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": 61.43180167119005
+        },
+        {
+          "ticker": "ONDS  270115C00030000",
+          "name": "ONDS $30 call Jan 15 2027",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": -90.98972772646616
+        },
+        {
+          "ticker": "ONDS  270115C00015000",
+          "name": "ONDS $15 call Jan 15 2027",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": -40
+        },
+        {
+          "ticker": "KOPN",
+          "name": "Kopin",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": 7.986204981696758
+        },
+        {
+          "ticker": "BABA  270319C00160000",
+          "name": "BABA $160 call Mar 19 2027",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": -30.14814814814815
+        },
+        {
+          "ticker": "ONDS  280121C00030000",
+          "name": "ONDS $30 call Jan 21 2028",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": 1.4492753623188406
+        },
+        {
+          "ticker": "GLD   270115C00500000",
+          "name": "GLD $500 call Jan 15 2027",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": -84.17021276595744
+        },
+        {
+          "ticker": "ACHR  270115C00015000",
+          "name": "ACHR $15 call Jan 15 2027",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": -92.39193083573487
+        },
+        {
+          "ticker": "SPY",
+          "name": "SSgA Active Trust S&P 500 ETF",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": 17.957776281468
+        },
+        {
+          "ticker": "UMAC",
+          "name": "Unusual Machines",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": 56.98245614035088
+        },
+        {
+          "ticker": "LPTH",
+          "name": "Lightpath Technologies",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": 42.45161290322581
+        },
+        {
+          "ticker": "AMPX",
+          "name": "Amprius Technologies",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": 16.50602409638554
+        },
+        {
+          "ticker": "LTRX",
+          "name": "Lantronix",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": -4.26098535286285
+        },
+        {
+          "ticker": "DPRO",
+          "name": "Draganfly",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": -60.14328808446456
+        },
+        {
+          "ticker": "DDD",
+          "name": "3D Systems",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": 44.274809160305345
+        },
+        {
+          "ticker": "ABAT",
+          "name": "American Battery Technology",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": -67.21556886227545
+        },
+        {
+          "ticker": "RR",
+          "name": "Richtech Robotics",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": -57.142857142857146
+        },
+        {
+          "ticker": "SIDU",
+          "name": "Sidus Space",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": -8.186241666666668
+        },
+        {
+          "ticker": "DVLT",
+          "name": "Datavault AI",
+          "quantity": 0,
+          "value": 0,
+          "cost_basis": 0,
+          "profit": 0,
+          "profit_percent": -78.89041095890411
+        }
+      ]
+    },
+    "Vivian": {
+      "profile_id": "prf_5c96e6a21b3b476f92ebe216ab52b598",
+      "total_value": 161323.26035,
+      "profit": -687160.87965,
+      "profit_percent": -80.97482263772024,
+      "profit_today": 15366.88355,
+      "cash_balance": -126.4,
+      "verified_as_of": "2026-10-02T21:49:15.112Z",
+      "last_synced_at": "2026-06-24T14:53:03.647Z",
+      "positions_count": 3,
+      "positions": [
+        {
+          "ticker": "GLXU",
+          "name": "T-REX 2X Long GLXY Daily Target",
+          "quantity": 28987,
+          "value": 144645.13,
+          "cost_basis": 514889.36,
+          "profit": -370244.23,
+          "profit_percent": -71.90753174623768
+        },
+        {
+          "ticker": "TIGR270115C00020000",
+          "name": "TIGR $20 call Jan 15 2027",
+          "quantity": 333700,
+          "value": 16685,
+          "cost_basis": 325729.18,
+          "profit": -309044.18,
+          "profit_percent": -94.87764651604134
+        },
+        {
+          "ticker": "AVTBF",
+          "name": "Avant Brands",
+          "quantity": 333,
+          "value": 119.53035,
+          "cost_basis": 7992,
+          "profit": -7872.46965,
+          "profit_percent": -98.504375
+        }
+      ]
+    },
+    "OCmd": {
+      "profile_id": "prf_09e682afce4642aea2d88f661a660300",
+      "total_value": 3981267.0546803023,
+      "profit": 2072321.804680302,
+      "profit_percent": 76.41908277740576,
+      "profit_today": -8865.465098698,
+      "cash_balance": -802840.51,
+      "verified_as_of": "2026-10-02T21:49:16.432Z",
+      "last_synced_at": "2026-06-24T14:15:21.422Z",
+      "positions_count": 17,
+      "positions": [
+        {
+          "ticker": "MU",
+          "name": "Micron",
+          "quantity": 1410,
+          "value": 1512168.6,
+          "cost_basis": 632964.32,
+          "profit": 879204.28,
+          "profit_percent": 138.90266042168065
+        },
+        {
+          "ticker": "SPY",
+          "name": "SSgA Active Trust S&P 500 ETF",
+          "quantity": 819.97526,
+          "value": 630928.077863902,
+          "cost_basis": 445668.74,
+          "profit": 185259.337863902,
+          "profit_percent": 41.56884278307292
+        },
+        {
+          "ticker": "QQQ",
+          "name": "Invesco QQQ",
+          "quantity": 800.76164,
+          "value": 599930.6206880001,
+          "cost_basis": 268899.45,
+          "profit": 331031.1706880001,
+          "profit_percent": 123.10593074400117
+        },
+        {
+          "ticker": "NVDA",
+          "name": "Nvidia",
+          "quantity": 2000.6571,
+          "value": 468053.728545,
+          "cost_basis": 226651.41,
+          "profit": 241402.318545,
+          "profit_percent": 106.50819182858822
+        },
+        {
+          "ticker": "META",
+          "name": "Meta Platforms",
+          "quantity": 535.4714,
+          "value": 389148.485236,
+          "cost_basis": 291421.04,
+          "profit": 97727.445236,
+          "profit_percent": 33.534793931145124
+        },
+        {
+          "ticker": "SOXX",
+          "name": "iShares Semiconductor",
+          "quantity": 630.29153,
+          "value": 371021.1091345,
+          "cost_basis": 104743.55,
+          "profit": 266277.5591345,
+          "profit_percent": 254.2185739689938
+        },
+        {
+          "ticker": "VOO",
+          "name": "Vanguard S&P 500",
+          "quantity": 260.31313,
+          "value": 184101.2549299,
+          "cost_basis": 106366.44,
+          "profit": 77734.8149299,
+          "profit_percent": 73.08208766778318
+        },
+        {
+          "ticker": "AMZN",
+          "name": "Amazon",
+          "quantity": 680,
+          "value": 170782,
+          "cost_basis": 85850,
+          "profit": 84932,
+          "profit_percent": 98.93069306930693
+        },
+        {
+          "ticker": "SEZL",
+          "name": "Sezzle",
+          "quantity": 1400,
+          "value": 150262,
+          "cost_basis": 180390,
+          "profit": -30128,
+          "profit_percent": -16.701590997283663
+        },
+        {
+          "ticker": "TSLA",
+          "name": "Tesla",
+          "quantity": 200,
+          "value": 74106,
+          "cost_basis": 77704.8,
+          "profit": -3598.8,
+          "profit_percent": -4.631374123606264
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE Vernova",
+          "quantity": 64,
+          "value": 63072,
+          "cost_basis": 59678.72,
+          "profit": 3393.28,
+          "profit_percent": 5.685912834591627
+        },
+        {
+          "ticker": "RCAX",
+          "name": "Defiance Daily Target 2x Long RCAT ETF",
+          "quantity": 7376,
+          "value": 60556.96,
+          "cost_basis": 60999.41,
+          "profit": -442.45,
+          "profit_percent": -0.7253348843865867
+        },
+        {
+          "ticker": "COIN",
+          "name": "Coinbase",
+          "quantity": 200,
+          "value": 36586,
+          "cost_basis": 76974,
+          "profit": -40388,
+          "profit_percent": -52.4696650817159
+        },
+        {
+          "ticker": "NOW",
+          "name": "ServiceNow",
+          "quantity": 262,
+          "value": 35212.8,
+          "cost_basis": 24901.79,
+          "profit": 10311.01,
+          "profit_percent": 41.4067020884844
+        },
+        {
+          "ticker": "GLD",
+          "name": "SPDR Gold Trust",
+          "quantity": 67.58765,
+          "value": 25698.176283,
+          "cost_basis": 21108.21,
+          "profit": 4589.966283,
+          "profit_percent": 21.744933762739713
+        },
+        {
+          "ticker": "MRVL261218C00300000",
+          "name": "MRVL $300 call Dec 18 2026",
+          "quantity": 500,
+          "value": 11265,
+          "cost_basis": 45953.31,
+          "profit": -34688.31,
+          "profit_percent": -75.48598784287792
+        },
+        {
+          "ticker": "MYRUF",
+          "name": "Myriad Uranium",
+          "quantity": 3808,
+          "value": 1214.752,
+          "cost_basis": 1510.57,
+          "profit": -295.818,
+          "profit_percent": -19.58320369132182
+        }
+      ]
+    },
+    "ProsperPath": {
+      "profile_id": "prf_f29076c64aa2402eb37f7c0b01fac281",
+      "total_value": 445613.487218,
+      "profit": 15041.727218,
+      "profit_percent": 3.919668126141075,
+      "profit_today": 72196.99164,
+      "cash_balance": 46821.74,
+      "verified_as_of": "2026-10-02T21:49:19.957Z",
+      "last_synced_at": "2026-08-04T04:49:48.731Z",
+      "positions_count": 52,
+      "positions": [
+        {
+          "ticker": "VFIAX",
+          "name": "Vanguard 500 Index",
+          "quantity": 98.516,
+          "value": 68125.78,
+          "cost_basis": 42365.64,
+          "profit": 25760.14,
+          "profit_percent": 60.80432161534678
+        },
+        {
+          "ticker": "MSFT",
+          "name": "Microsoft",
+          "quantity": 100.5008,
+          "value": 52012.179024,
+          "cost_basis": 46203.63,
+          "profit": 5808.549024,
+          "profit_percent": 12.571629164202033
+        },
+        {
+          "ticker": "AMZN",
+          "name": "Amazon",
+          "quantity": 151.0164,
+          "value": 37983.644928,
+          "cost_basis": 37155.36,
+          "profit": 828.284928,
+          "profit_percent": 2.2292474840776673
+        },
+        {
+          "ticker": "NBIS",
+          "name": "Nebius Group",
+          "quantity": 104,
+          "value": 25252.24,
+          "cost_basis": 24514.81,
+          "profit": 737.43,
+          "profit_percent": 3.008100001590875
+        },
+        {
+          "ticker": "VST",
+          "name": "Vistra Energy",
+          "quantity": 170.168,
+          "value": 23826.92336,
+          "cost_basis": 25685.48,
+          "profit": -1858.55664,
+          "profit_percent": -7.235825999747718
+        },
+        {
+          "ticker": "RXRX",
+          "name": "Recursion Pharmaceuticals",
+          "quantity": 5726.812,
+          "value": 23594.46544,
+          "cost_basis": 36083.55,
+          "profit": -12489.08456,
+          "profit_percent": -34.611573861219306
+        },
+        {
+          "ticker": "AAPL",
+          "name": "Apple",
+          "quantity": 69.2594,
+          "value": 23111.169186,
+          "cost_basis": 16517.08,
+          "profit": 6594.089186,
+          "profit_percent": 39.92285068547225
+        },
+        {
+          "ticker": "RKLB",
+          "name": "Rocket Lab",
+          "quantity": 305,
+          "value": 22545.6,
+          "cost_basis": 30230.23,
+          "profit": -7684.63,
+          "profit_percent": -25.420349100883453
+        },
+        {
+          "ticker": "RYCEY",
+          "name": "Rolls Royce Holdings",
+          "quantity": 1100,
+          "value": 21494,
+          "cost_basis": 17300.03,
+          "profit": 4193.97,
+          "profit_percent": 24.242559116949508
+        },
+        {
+          "ticker": "ASTS",
+          "name": "AST SpaceMobile",
+          "quantity": 250,
+          "value": 14612.5,
+          "cost_basis": 20325,
+          "profit": -5712.5,
+          "profit_percent": -28.105781057810578
+        },
+        {
+          "ticker": "NOW",
+          "name": "ServiceNow",
+          "quantity": 63,
+          "value": 8465.94,
+          "cost_basis": 7046.05,
+          "profit": 1419.89,
+          "profit_percent": 20.151574286302253
+        },
+        {
+          "ticker": "ADBE",
+          "name": "Adobe",
+          "quantity": 30,
+          "value": 7130.7,
+          "cost_basis": 6506.5,
+          "profit": 624.2,
+          "profit_percent": 9.593483439637286
+        },
+        {
+          "ticker": "LPTH",
+          "name": "Lightpath Technologies",
+          "quantity": 601,
+          "value": 6635.04,
+          "cost_basis": 8913.67,
+          "profit": -2278.63,
+          "profit_percent": -25.56332015881225
+        },
+        {
+          "ticker": "FZILX",
+          "name": "Fidelity ZERO International Index Fund",
+          "quantity": 330.723,
+          "value": 5556.15,
+          "cost_basis": 4441.61,
+          "profit": 1114.54,
+          "profit_percent": 25.093153158426787
+        },
+        {
+          "ticker": "RKT",
+          "name": "Rocket Companies",
+          "quantity": 412,
+          "value": 4820.4,
+          "cost_basis": 5021.25,
+          "profit": -200.85,
+          "profit_percent": -4
+        },
+        {
+          "ticker": "HOOD",
+          "name": "Robinhood",
+          "quantity": 40,
+          "value": 4509.6,
+          "cost_basis": 3599.2,
+          "profit": 910.4,
+          "profit_percent": 25.294509891086907
+        },
+        {
+          "ticker": "CPER",
+          "name": "US Copper Index Fund",
+          "quantity": 100,
+          "value": 3952,
+          "cost_basis": 3559.5,
+          "profit": 392.5,
+          "profit_percent": 11.026829610900407
+        },
+        {
+          "ticker": "ONDS",
+          "name": "Ondas Holdings",
+          "quantity": 505,
+          "value": 3656.2,
+          "cost_basis": 0,
+          "profit": 3656.2,
+          "profit_percent": null
+        },
+        {
+          "ticker": "IXC",
+          "name": "iShares Global Energy",
+          "quantity": 59.372,
+          "value": 3437.04508,
+          "cost_basis": 2999.97,
+          "profit": 437.07508,
+          "profit_percent": 14.569315026483599
+        },
+        {
+          "ticker": "MU",
+          "name": "Micron",
+          "quantity": 3.001,
+          "value": 3225.74489,
+          "cost_basis": 3000.45,
+          "profit": 225.29489,
+          "profit_percent": 7.5087033611624925
+        },
+        {
+          "ticker": "NVTS",
+          "name": "Navitas Semiconductor",
+          "quantity": 250,
+          "value": 3100,
+          "cost_basis": 4749.68,
+          "profit": -1649.68,
+          "profit_percent": -34.73244513314581
+        },
+        {
+          "ticker": "PATH",
+          "name": "NuPathe",
+          "quantity": 200,
+          "value": 2624,
+          "cost_basis": 2455,
+          "profit": 169,
+          "profit_percent": 6.883910386965376
+        },
+        {
+          "ticker": "NVDA",
+          "name": "Nvidia",
+          "quantity": 10.1608,
+          "value": 2377.11916,
+          "cost_basis": 2033.2,
+          "profit": 343.91916,
+          "profit_percent": 16.915166240409206
+        },
+        {
+          "ticker": "AMPX",
+          "name": "Amprius Technologies",
+          "quantity": 223.198,
+          "value": 2158.32466,
+          "cost_basis": 2643.21,
+          "profit": -484.88534,
+          "profit_percent": -18.34456361772239
+        },
+        {
+          "ticker": "BWXT",
+          "name": "BWX Technologies",
+          "quantity": 15.598,
+          "value": 2103.54628,
+          "cost_basis": 3095.59,
+          "profit": -992.04372,
+          "profit_percent": -32.046999764180654
+        },
+        {
+          "ticker": "NLR",
+          "name": "VanEck Uranium and Nuclear",
+          "quantity": 20,
+          "value": 2054.8,
+          "cost_basis": 2300,
+          "profit": -245.2,
+          "profit_percent": -10.660869565217391
+        },
+        {
+          "ticker": "SMR",
+          "name": "NuScale Power",
+          "quantity": 250,
+          "value": 1937.5,
+          "cost_basis": 3513.45,
+          "profit": -1575.95,
+          "profit_percent": -44.85477237473139
+        },
+        {
+          "ticker": "SMMT",
+          "name": "Summit Therapeutics",
+          "quantity": 100,
+          "value": 1675.5,
+          "cost_basis": 1450,
+          "profit": 225.5,
+          "profit_percent": 15.551724137931034
+        },
+        {
+          "ticker": "MIST",
+          "name": "Milestone Pharmaceuticals",
+          "quantity": 2000,
+          "value": 1619.4,
+          "cost_basis": 3220,
+          "profit": -1600.6,
+          "profit_percent": -49.70807453416149
+        },
+        {
+          "ticker": "NNXPF",
+          "name": "NANOXPLORE",
+          "quantity": 1525,
+          "value": 1540.25,
+          "cost_basis": 2508.63,
+          "profit": -968.38,
+          "profit_percent": -38.601946082124506
+        },
+        {
+          "ticker": "LLY",
+          "name": "Eli Lilly",
+          "quantity": 1.164,
+          "value": 1330.2774,
+          "cost_basis": 964.79,
+          "profit": 365.4874,
+          "profit_percent": 37.88258584769743
+        },
+        {
+          "ticker": "MLI",
+          "name": "Mueller Industries",
+          "quantity": 20.05,
+          "value": 1254.328,
+          "cost_basis": 1137.8,
+          "profit": 116.528,
+          "profit_percent": 10.241518720337494
+        },
+        {
+          "ticker": "WEN",
+          "name": "Wendy's",
+          "quantity": 200,
+          "value": 1224,
+          "cost_basis": 800,
+          "profit": 424,
+          "profit_percent": 53
+        },
+        {
+          "ticker": "MP",
+          "name": "MP Materials",
+          "quantity": 25,
+          "value": 1174.25,
+          "cost_basis": 1449.59,
+          "profit": -275.34,
+          "profit_percent": -18.994336329582847
+        },
+        {
+          "ticker": "PL",
+          "name": "Planet Labs",
+          "quantity": 60,
+          "value": 1050,
+          "cost_basis": 1718.4,
+          "profit": -668.4,
+          "profit_percent": -38.89664804469274
+        },
+        {
+          "ticker": "UBER",
+          "name": "Uber",
+          "quantity": 15,
+          "value": 1021.65,
+          "cost_basis": 1110,
+          "profit": -88.35,
+          "profit_percent": -7.95945945945946
+        },
+        {
+          "ticker": "ZS",
+          "name": "Zscaler",
+          "quantity": 5,
+          "value": 983,
+          "cost_basis": 721.25,
+          "profit": 261.75,
+          "profit_percent": 36.29116117850953
+        },
+        {
+          "ticker": "POWR",
+          "name": "iShares U.S. Power Infrastructure ETF",
+          "quantity": 36.284,
+          "value": 898.029,
+          "cost_basis": 999.99,
+          "profit": -101.961,
+          "profit_percent": -10.19620196201962
+        },
+        {
+          "ticker": "GH",
+          "name": "Guardant Health",
+          "quantity": 5,
+          "value": 889,
+          "cost_basis": 159.75,
+          "profit": 729.25,
+          "profit_percent": 456.4945226917058
+        },
+        {
+          "ticker": "IREN",
+          "name": "Iris Energy",
+          "quantity": 21,
+          "value": 876.96,
+          "cost_basis": 1244.63,
+          "profit": -367.67,
+          "profit_percent": -29.540506013835437
+        },
+        {
+          "ticker": "AIA",
+          "name": "iShares Asia 50",
+          "quantity": 6,
+          "value": 868.02,
+          "cost_basis": 0,
+          "profit": 868.02,
+          "profit_percent": null
+        },
+        {
+          "ticker": "AVGO",
+          "name": "Broadcom",
+          "quantity": 2,
+          "value": 710.28,
+          "cost_basis": 748.7,
+          "profit": -38.42,
+          "profit_percent": -5.1315613730466145
+        },
+        {
+          "ticker": "OKLO",
+          "name": "AltC Acquisition",
+          "quantity": 12.936,
+          "value": 464.01432,
+          "cost_basis": 1561.96,
+          "profit": -1097.94568,
+          "profit_percent": -70.29281671745755
+        },
+        {
+          "ticker": "ASPI",
+          "name": "ASP Isotopes",
+          "quantity": 135,
+          "value": 392.85,
+          "cost_basis": 1214.53,
+          "profit": -821.68,
+          "profit_percent": -67.65415428190329
+        },
+        {
+          "ticker": "ORCL",
+          "name": "Oracle",
+          "quantity": 1,
+          "value": 142.3,
+          "cost_basis": 145,
+          "profit": -2.7,
+          "profit_percent": -1.8620689655172413
+        },
+        {
+          "ticker": "NVDY",
+          "name": "YieldMax NVDA Option Income Strategy",
+          "quantity": 10.368,
+          "value": 133.02144,
+          "cost_basis": 157.2,
+          "profit": -24.17856,
+          "profit_percent": -15.380763358778626
+        },
+        {
+          "ticker": "CRWV",
+          "name": "Crowne Ventures",
+          "quantity": 1,
+          "value": 89.62,
+          "cost_basis": 76.53,
+          "profit": 13.09,
+          "profit_percent": 17.10440350189468
+        },
+        {
+          "ticker": "NVX",
+          "name": "NOVONIX American",
+          "quantity": 27,
+          "value": 71.01,
+          "cost_basis": 42.79,
+          "profit": 28.22,
+          "profit_percent": 65.94998831502687
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "Alphabet",
+          "quantity": 0.1215,
+          "value": 41.73525,
+          "cost_basis": 20.39,
+          "profit": 21.34525,
+          "profit_percent": 104.68489455615497
+        },
+        {
+          "ticker": "UMAC",
+          "name": "Unusual Machines",
+          "quantity": 1,
+          "value": 22.37,
+          "cost_basis": 14,
+          "profit": 8.37,
+          "profit_percent": 59.785714285714285
+        },
+        {
+          "ticker": "SLS",
+          "name": "SELLAS Life Sciences Group",
+          "quantity": 1,
+          "value": 11.74,
+          "cost_basis": 0,
+          "profit": 11.74,
+          "profit_percent": null
+        },
+        {
+          "ticker": "XNDU",
+          "name": "Xanadu Quantum Technologies",
+          "quantity": 1.286,
+          "value": 5.5298,
+          "cost_basis": 24.95,
+          "profit": -19.4202,
+          "profit_percent": -77.83647294589179
+        }
+      ]
+    },
+    "MickeyT": {
+      "profile_id": "prf_85d2ad27c5ad4685a9bed9b3ec9d41fe",
+      "total_value": 617998.5436,
+      "profit": 182490.16,
+      "profit_percent": 42.67210828908426,
+      "profit_today": 6273.03792,
+      "cash_balance": 7849.38,
+      "verified_as_of": "2026-10-02T21:49:23.578Z",
+      "last_synced_at": "2026-06-24T15:40:43.755Z",
+      "positions_count": 37,
+      "positions": [
+        {
+          "ticker": "NVDA",
+          "name": "Nvidia",
+          "quantity": 675,
+          "value": 157916.25,
+          "cost_basis": 85591.65,
+          "profit": 72324.6,
+          "profit_percent": 84.49959779955171
+        },
+        {
+          "ticker": "GOOG",
+          "name": "Alphabet",
+          "quantity": 150,
+          "value": 51052.5,
+          "cost_basis": 28351.5,
+          "profit": 22701,
+          "profit_percent": 80.0698375747315
+        },
+        {
+          "ticker": "AAPL",
+          "name": "Apple",
+          "quantity": 150,
+          "value": 50053.5,
+          "cost_basis": 10837.5,
+          "profit": 39216,
+          "profit_percent": 361.8546712802768
+        },
+        {
+          "ticker": "ROM",
+          "name": "ProShares Ultra Technology",
+          "quantity": 300,
+          "value": 49677,
+          "cost_basis": 15188,
+          "profit": 34489,
+          "profit_percent": 227.08058993942586
+        },
+        {
+          "ticker": "WMT",
+          "name": "Walmart",
+          "quantity": 300,
+          "value": 31278,
+          "cost_basis": 11135,
+          "profit": 20143,
+          "profit_percent": 180.89806915132465
+        },
+        {
+          "ticker": "TGT",
+          "name": "Target",
+          "quantity": 200,
+          "value": 31200,
+          "cost_basis": 21951,
+          "profit": 9249,
+          "profit_percent": 42.13475468088014
+        },
+        {
+          "ticker": "JNJ",
+          "name": "Johnson & Johnson (J&J)",
+          "quantity": 100,
+          "value": 25603,
+          "cost_basis": 15568,
+          "profit": 10035,
+          "profit_percent": 64.45914696813978
+        },
+        {
+          "ticker": "AMZN",
+          "name": "Amazon",
+          "quantity": 100,
+          "value": 25152,
+          "cost_basis": 19868.8,
+          "profit": 5283.2,
+          "profit_percent": 26.590433242067967
+        },
+        {
+          "ticker": "SCO",
+          "name": "ProShares UltraShort Crude Oil",
+          "quantity": 1025,
+          "value": 19956.75,
+          "cost_basis": 31671.7,
+          "profit": -11714.95,
+          "profit_percent": -36.98869969089124
+        },
+        {
+          "ticker": "QLD",
+          "name": "ProShares Ultra QQQ",
+          "quantity": 200,
+          "value": 19626,
+          "cost_basis": 3077.5,
+          "profit": 16548.5,
+          "profit_percent": 537.7254264825345
+        },
+        {
+          "ticker": "TSLA",
+          "name": "Tesla",
+          "quantity": 50,
+          "value": 18529.5,
+          "cost_basis": 8129,
+          "profit": 10400.5,
+          "profit_percent": 127.94316644113667
+        },
+        {
+          "ticker": "CVS",
+          "name": "CVS Health",
+          "quantity": 200,
+          "value": 17292,
+          "cost_basis": 11668.5,
+          "profit": 5623.5,
+          "profit_percent": 48.19385525131765
+        },
+        {
+          "ticker": "HOOD",
+          "name": "Robinhood",
+          "quantity": 150,
+          "value": 16911,
+          "cost_basis": 18078,
+          "profit": -1167,
+          "profit_percent": -6.455360106206439
+        },
+        {
+          "ticker": "UPS",
+          "name": "UPS",
+          "quantity": 175,
+          "value": 16278.5,
+          "cost_basis": 18725,
+          "profit": -2446.5,
+          "profit_percent": -13.065420560747663
+        },
+        {
+          "ticker": "RXRX",
+          "name": "Recursion Pharmaceuticals",
+          "quantity": 3000,
+          "value": 12360,
+          "cost_basis": 14340,
+          "profit": -1980,
+          "profit_percent": -13.807531380753138
+        },
+        {
+          "ticker": "RTX",
+          "name": "Raytheon Technologies",
+          "quantity": 50,
+          "value": 9234,
+          "cost_basis": 5938.75,
+          "profit": 3295.25,
+          "profit_percent": 55.48726583877078
+        },
+        {
+          "ticker": "GSL",
+          "name": "Global Ship Lease",
+          "quantity": 200,
+          "value": 9158,
+          "cost_basis": 3704,
+          "profit": 5454,
+          "profit_percent": 147.2462203023758
+        },
+        {
+          "ticker": "BABA",
+          "name": "Alibaba American",
+          "quantity": 85,
+          "value": 8997.25,
+          "cost_basis": 18816.55,
+          "profit": -9819.3,
+          "profit_percent": -52.184380239735766
+        },
+        {
+          "ticker": "PATH",
+          "name": "NuPathe",
+          "quantity": 500,
+          "value": 6560,
+          "cost_basis": 9089.69,
+          "profit": -2529.69,
+          "profit_percent": -27.830322046186392
+        },
+        {
+          "ticker": "RYCEY",
+          "name": "Rolls Royce Holdings",
+          "quantity": 300,
+          "value": 5862,
+          "cost_basis": 4336.85,
+          "profit": 1525.15,
+          "profit_percent": 35.16722967130521
+        },
+        {
+          "ticker": "CCL",
+          "name": "Carnival",
+          "quantity": 200,
+          "value": 5152,
+          "cost_basis": 2863.5,
+          "profit": 2288.5,
+          "profit_percent": 79.91967871485944
+        },
+        {
+          "ticker": "AGNT",
+          "name": "eXp World Holdings",
+          "quantity": 1410,
+          "value": 5146.5,
+          "cost_basis": 38589.2,
+          "profit": -33442.7,
+          "profit_percent": -86.66336695241155
+        },
+        {
+          "ticker": "DVN",
+          "name": "Devon Energy",
+          "quantity": 100,
+          "value": 4765,
+          "cost_basis": 5114.3,
+          "profit": -349.3,
+          "profit_percent": -6.829869190309524
+        },
+        {
+          "ticker": "ORCL",
+          "name": "Oracle",
+          "quantity": 25,
+          "value": 3557.5,
+          "cost_basis": 4749.5,
+          "profit": -1192,
+          "profit_percent": -25.0973786714391
+        },
+        {
+          "ticker": "MGM",
+          "name": "MGM Resorts",
+          "quantity": 100,
+          "value": 3048,
+          "cost_basis": 2792,
+          "profit": 256,
+          "profit_percent": 9.169054441260744
+        },
+        {
+          "ticker": "EBIZ",
+          "name": "Global X E-commerce",
+          "quantity": 100,
+          "value": 2770.43,
+          "cost_basis": 2604.5,
+          "profit": 165.93,
+          "profit_percent": 6.370896525244769
+        },
+        {
+          "ticker": "F",
+          "name": "Ford",
+          "quantity": 100,
+          "value": 1210,
+          "cost_basis": 1278,
+          "profit": -68,
+          "profit_percent": -5.320813771517997
+        },
+        {
+          "ticker": "OPEN",
+          "name": "Opendoor Technologies",
+          "quantity": 250,
+          "value": 610,
+          "cost_basis": 1455,
+          "profit": -845,
+          "profit_percent": -58.07560137457045
+        },
+        {
+          "ticker": "RIG",
+          "name": "Transocean",
+          "quantity": 100,
+          "value": 517,
+          "cost_basis": 685,
+          "profit": -168,
+          "profit_percent": -24.525547445255473
+        },
+        {
+          "ticker": "BMBL",
+          "name": "Bumble",
+          "quantity": 100,
+          "value": 254,
+          "cost_basis": 6228,
+          "profit": -5974,
+          "profit_percent": -95.92164418754014
+        },
+        {
+          "ticker": "FVRR",
+          "name": "Fiverr International",
+          "quantity": 20,
+          "value": 170.8,
+          "cost_basis": 2741.28,
+          "profit": -2570.48,
+          "profit_percent": -93.76933403373606
+        },
+        {
+          "ticker": "YINN",
+          "name": "Direxion Daily FTSE China Bull 3X",
+          "quantity": 5,
+          "value": 115.85,
+          "cost_basis": 1098,
+          "profit": -982.15,
+          "profit_percent": -89.44899817850637
+        },
+        {
+          "ticker": "PEW",
+          "name": "GrabAGun Digital Holdings",
+          "quantity": 50,
+          "value": 96.5,
+          "cost_basis": 651.5,
+          "profit": -555,
+          "profit_percent": -85.1880276285495
+        },
+        {
+          "ticker": "TLRY",
+          "name": "Tilray Brands",
+          "quantity": 10,
+          "value": 36.1,
+          "cost_basis": 740,
+          "profit": -703.9,
+          "profit_percent": -95.12162162162163
+        },
+        {
+          "ticker": "OPENW",
+          "name": "Opendoor Technologies Warrants",
+          "quantity": 8,
+          "value": 0.9608,
+          "cost_basis": null,
+          "profit": null,
+          "profit_percent": null
+        },
+        {
+          "ticker": "OPENL",
+          "name": "Opendoor Technologies Series A Warrants",
+          "quantity": 8,
+          "value": 0.6472,
+          "cost_basis": null,
+          "profit": null,
+          "profit_percent": null
+        },
+        {
+          "ticker": "OPENZ",
+          "name": "Opendoor Technologies Series Z Warrants",
+          "quantity": 8,
+          "value": 0.6256,
+          "cost_basis": null,
+          "profit": null,
+          "profit_percent": null
+        }
+      ]
+    }
+  }
+}

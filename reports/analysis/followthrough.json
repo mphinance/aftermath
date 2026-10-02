@@ -312,6 +312,19 @@
     "gain_loss_tag_ratio": 2.0
   },
   {
+    "handle": "wTF",
+    "posts": 411,
+    "entry_posts": 38,
+    "exit_posts": 16,
+    "entry_exit_ratio": 2.38,
+    "tickers_announced_as_buys": 22,
+    "tickers_ever_closed_publicly": 15,
+    "followthrough_pct": 68.2,
+    "gain_tagged_posts": 0,
+    "loss_tagged_posts": 0,
+    "gain_loss_tag_ratio": null
+  },
+  {
     "handle": "Tiger_",
     "posts": 406,
     "entry_posts": 98,
