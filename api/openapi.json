@@ -1,0 +1,155 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AfterMath Quant Alt-Data API",
+    "version": "1.0.0",
+    "description": "Sub-millisecond, edge-cached alternative financial intelligence API tracking verified retail & whale equity, conviction intensity ($/holder), whale dry powder cash, and macro tape liquidity from AfterHour social terminal.",
+    "contact": {
+      "name": "Momentum Phinance",
+      "url": "https://ah.mphinance.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://ah.mphinance.com",
+      "description": "Production Edge Terminal"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Market & Tape",
+      "description": "Macro tape overview, whale cash reserves (dry powder), daily P&L, and asset allocation"
+    },
+    {
+      "name": "Equities & ETFs",
+      "description": "Leaderboard of 500 securities and 64 ETFs enriched with verified owner counts and conviction intensity"
+    },
+    {
+      "name": "Whales & Portfolios",
+      "description": "395 verified high-roller and millionaire portfolios with verified positions and shadow ratio"
+    },
+    {
+      "name": "Tickers & History",
+      "description": "Individual security profiles with verified whale holders breakdown and 90-day daily OHLCV bars"
+    },
+    {
+      "name": "MCP & AI Agents",
+      "description": "Model Context Protocol tools and schemas for AI agents"
+    }
+  ],
+  "paths": {
+    "/api/market.json": {
+      "get": {
+        "tags": [
+          "Market & Tape"
+        ],
+        "summary": "Real-Time Alt-Data Market Radar & Liquidity",
+        "description": "Returns verified whale dry powder cash reserves ($8.98M), intraday net P&L, equity/ETF allocation split, and top leaders across capital inflows, retail breadth, and conviction intensity.",
+        "responses": {
+          "200": {
+            "description": "Live macro market tape snapshot"
+          }
+        }
+      }
+    },
+    "/api/stonks.json": {
+      "get": {
+        "tags": [
+          "Equities & ETFs"
+        ],
+        "summary": "All 500 Verified Equities & ETFs",
+        "description": "Returns full catalog of 500 securities with owner counts, total value on app, whale capital backing, conviction intensity ($/sub), session price changes, and chatroom activity.",
+        "responses": {
+          "200": {
+            "description": "Complete enriched securities catalog"
+          }
+        }
+      }
+    },
+    "/api/etfs.json": {
+      "get": {
+        "tags": [
+          "Equities & ETFs"
+        ],
+        "summary": "All 64 Verified ETFs & Index Funds",
+        "description": "Returns 64 ETFs segregated by asset class, expense ratio, whale capital backing, and retail adoption breadth.",
+        "responses": {
+          "200": {
+            "description": "All 64 verified ETFs"
+          }
+        }
+      }
+    },
+    "/api/whales.json": {
+      "get": {
+        "tags": [
+          "Whales & Portfolios"
+        ],
+        "summary": "395 Verified Whales & Millionaires",
+        "description": "Returns 395 verified portfolios ($169M+ AUM) with username, total verified balance, cash balance, intraday P&L, unrealized gains, and full positions breakdown.",
+        "responses": {
+          "200": {
+            "description": "Directory of verified whales"
+          }
+        }
+      }
+    },
+    "/api/shadow.json": {
+      "get": {
+        "tags": [
+          "Whales & Portfolios"
+        ],
+        "summary": "Shadow Ratio & Stealth Whales",
+        "description": "Returns whales sorted by the Clout Inversion metric: verified portfolio value divided by social follower count.",
+        "responses": {
+          "200": {
+            "description": "Whales ranked by shadow ratio"
+          }
+        }
+      }
+    },
+    "/api/ticker/{symbol}.json": {
+      "get": {
+        "tags": [
+          "Tickers & History"
+        ],
+        "summary": "Granular Security Intelligence & 90-Day Bars",
+        "description": "Deep-dive on any specific ticker symbol with verified holders breakdown, conviction intensity, and 90-day daily OHLCV candlestick bars.",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "path",
+            "required": true,
+            "description": "Ticker symbol (e.g. NVDA, ASTS, AAPL, QQQ)",
+            "schema": {
+              "type": "string",
+              "example": "ASTS"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Granular security intel with daily bars"
+          },
+          "404": {
+            "description": "Ticker not found in tracked 500 securities"
+          }
+        }
+      }
+    },
+    "/api/mcp-schema.json": {
+      "get": {
+        "tags": [
+          "MCP & AI Agents"
+        ],
+        "summary": "Model Context Protocol (MCP) Tool Schemas",
+        "description": "Returns the official JSON Schema catalog for all 6 MCP tools exposed for autonomous AI agents and IDEs.",
+        "responses": {
+          "200": {
+            "description": "Model Context Protocol tool catalog"
+          }
+        }
+      }
+    }
+  }
+}

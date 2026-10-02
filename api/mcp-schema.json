@@ -1,0 +1,189 @@
+{
+  "version": "1.0.0",
+  "protocolVersion": "2024-11-05",
+  "server": {
+    "name": "aftermath-altdata",
+    "description": "AfterMath Model Context Protocol (MCP) Server for real-time verified whale tape and conviction flows.",
+    "documentation": "https://ah.mphinance.com/mcp",
+    "serverScript": "https://ah.mphinance.com/mcp/server.py"
+  },
+  "tools": [
+    {
+      "name": "get_market_tape",
+      "description": "Retrieve real-time macro tape overview: whale cash reserves ($8.98M dry powder), intraday net P&L, equity/ETF allocation split, and top capital inflow & retail breadth leaders from AfterHour terminal.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_top_equities",
+      "description": "Filter and rank 500 verified stocks with customizable thresholds for whale capital, owner count, conviction intensity ($/holder), price movement, and asset type segregation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of items to return (default: 20, max: 100)",
+            "default": 20
+          },
+          "min_whale_capital": {
+            "type": "number",
+            "description": "Minimum verified capital held by tracked whales in USD (e.g. 1000000 for $1M+)",
+            "default": 0
+          },
+          "min_conviction": {
+            "type": "number",
+            "description": "Minimum verified position size per holder in USD (e.g. 50000 for $50k+/sub)",
+            "default": 0
+          },
+          "min_owners": {
+            "type": "integer",
+            "description": "Minimum number of verified holders on the app",
+            "default": 0
+          },
+          "asset_type": {
+            "type": "string",
+            "enum": [
+              "all",
+              "stocks",
+              "etfs"
+            ],
+            "description": "Segregate by asset classification (default: 'all')",
+            "default": "all"
+          },
+          "sort_by": {
+            "type": "string",
+            "enum": [
+              "whale_capital",
+              "total_value",
+              "owners",
+              "conviction",
+              "change_percent"
+            ],
+            "description": "Metric to rank results by (default: 'whale_capital')",
+            "default": "whale_capital"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_etf_flows",
+      "description": "Inspect 64 ETFs & index funds ranked by whale backing, expense ratios, asset classes (equity, broad market, thematic, crypto, fixed income), and retail crowd adoption.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Maximum ETFs to return (default: 20)",
+            "default": 20
+          },
+          "sort_by": {
+            "type": "string",
+            "enum": [
+              "whale_capital",
+              "owners",
+              "total_value",
+              "change_percent"
+            ],
+            "description": "Metric to rank ETFs by (default: 'whale_capital')",
+            "default": "whale_capital"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_whale_portfolio",
+      "description": "Look up any verified whale account by username (e.g. 'thealexperez', 'SirJackALot', 'MisterMonster') to inspect verified positions, cost basis, unrealized profit, cash balance, and shadow ratio.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "AfterHour username of the whale to audit (with or without '@')"
+          }
+        },
+        "required": [
+          "username"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_ticker_intel",
+      "description": "Forensic intelligence on any ticker ($NVDA, $ASTS, $AAPL, etc.) with verified holders, conviction intensity ($/sub), top whale holders breakdown, and optional 90-day daily OHLCV bars.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": {
+            "type": "string",
+            "description": "Stock or ETF ticker symbol (e.g. 'ASTS', 'NVDA', 'AAPL', 'QQQ')"
+          },
+          "include_bars": {
+            "type": "boolean",
+            "description": "Set to true to include the 90-day daily OHLCV candlestick price bars series",
+            "default": false
+          }
+        },
+        "required": [
+          "ticker"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_conviction_screener",
+      "description": "Scan for asymmetric high conviction where average equity per holder exceeds a given threshold (e.g. $50,000+ or $100,000+), unmasking institutional accumulation before retail headlines.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "min_intensity": {
+            "type": "number",
+            "description": "Minimum average position size per holder in USD (default: 50000)",
+            "default": 50000
+          },
+          "min_owners": {
+            "type": "integer",
+            "description": "Minimum verified owners to eliminate illiquid micro-caps (default: 15)",
+            "default": 15
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of tickers to return (default: 20)",
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "aftermath://market-tape",
+      "name": "Live Market Tape & Liquidity",
+      "description": "Real-time snapshot of whale cash reserves, net daily profit, and asset allocation.",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "aftermath://top-stocks",
+      "name": "Top Verified Equities",
+      "description": "Top 50 securities by verified whale capital.",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "aftermath://etfs",
+      "name": "All 64 Verified ETFs",
+      "description": "Complete list of ETFs with whale backing and asset classifications.",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "aftermath://whales",
+      "name": "Top Verified Whales",
+      "description": "Top 50 verified whales ranked by net worth.",
+      "mimeType": "application/json"
+    }
+  ]
+}

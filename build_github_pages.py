@@ -233,7 +233,224 @@ etf_pct = (whale_etf_cap / tot_classified) * 100
 
 top_gainers_tape = sorted([x for x in stocks if x["totalValue"] >= 500_000], key=lambda x: x["changePercent"], reverse=True)[:4]
 
+from mcp_server import MCP_TOOLS_DEFINITIONS, MCP_RESOURCES_DEFINITIONS
+
 # Export static JSON API files
+market_payload = {
+    "version": "1.0.0",
+    "timestamp": "2026-10-02T23:15:00Z",
+    "source": "https://ah.mphinance.com",
+    "macro": {
+        "whaleDryPowderCash": round(total_cash_reserves, 2),
+        "whaleNetGainToday": round(total_profit_today, 2),
+        "whaleUnrealizedProfit": round(total_unrealized_profit, 2),
+        "totalWhaleAum": round(total_whale_val, 2),
+        "trackedWhalesCount": len(whales),
+        "allocation": {
+            "equityValue": round(whale_equity_cap, 2),
+            "equityPercent": round(equity_pct, 1),
+            "etfValue": round(whale_etf_cap, 2),
+            "etfPercent": round(etf_pct, 1)
+        }
+    },
+    "capitalInflowLeaders": [
+        {
+            "ticker": x["ticker"],
+            "name": x["name"],
+            "price": x["price"],
+            "totalValue": x["totalValue"],
+            "whaleCapital": x["whalesValue"],
+            "owners": x["owners"],
+            "isETF": x["isETF"],
+            "changePercent": x["changePercent"]
+        } for x in top_by_total_value
+    ],
+    "retailBreadthLeaders": [
+        {
+            "ticker": x["ticker"],
+            "name": x["name"],
+            "owners": x["owners"],
+            "totalValue": x["totalValue"],
+            "whaleCapital": x["whalesValue"],
+            "price": x["price"],
+            "isETF": x["isETF"],
+            "changePercent": x["changePercent"]
+        } for x in top_by_owners
+    ],
+    "convictionIntensityLeaders": [
+        {
+            "ticker": x["ticker"],
+            "name": x["name"],
+            "convictionPerHolder": round(x["intensity"], 2),
+            "owners": x["owners"],
+            "totalValue": x["totalValue"],
+            "whaleCapital": x["whalesValue"],
+            "price": x["price"],
+            "isETF": x["isETF"],
+            "changePercent": x["changePercent"]
+        } for x in top_by_intensity
+    ],
+    "topTapeGainers": [
+        {
+            "ticker": x["ticker"],
+            "name": x["name"],
+            "price": x["price"],
+            "changePercent": x["changePercent"],
+            "totalValue": x["totalValue"],
+            "isETF": x["isETF"]
+        } for x in top_gainers_tape
+    ]
+}
+
+with open(API_DIR / "market.json", "w", encoding="utf-8") as f:
+    json.dump(market_payload, f, indent=2)
+
+with open(API_DIR / "market-summary.json", "w", encoding="utf-8") as f:
+    json.dump(market_payload, f, indent=2)
+
+mcp_schema_payload = {
+    "version": "1.0.0",
+    "protocolVersion": "2024-11-05",
+    "server": {
+        "name": "aftermath-altdata",
+        "description": "AfterMath Model Context Protocol (MCP) Server for real-time verified whale tape and conviction flows.",
+        "documentation": "https://ah.mphinance.com/mcp",
+        "serverScript": "https://ah.mphinance.com/mcp/server.py"
+    },
+    "tools": MCP_TOOLS_DEFINITIONS,
+    "resources": MCP_RESOURCES_DEFINITIONS
+}
+
+with open(API_DIR / "mcp-schema.json", "w", encoding="utf-8") as f:
+    json.dump(mcp_schema_payload, f, indent=2)
+
+openapi_spec = {
+    "openapi": "3.1.0",
+    "info": {
+        "title": "AfterMath Quant Alt-Data API",
+        "version": "1.0.0",
+        "description": "Sub-millisecond, edge-cached alternative financial intelligence API tracking verified retail & whale equity, conviction intensity ($/holder), whale dry powder cash, and macro tape liquidity from AfterHour social terminal.",
+        "contact": {
+            "name": "Momentum Phinance",
+            "url": "https://ah.mphinance.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "https://ah.mphinance.com",
+            "description": "Production Edge Terminal"
+        }
+    ],
+    "tags": [
+        {"name": "Market & Tape", "description": "Macro tape overview, whale cash reserves (dry powder), daily P&L, and asset allocation"},
+        {"name": "Equities & ETFs", "description": "Leaderboard of 500 securities and 64 ETFs enriched with verified owner counts and conviction intensity"},
+        {"name": "Whales & Portfolios", "description": "395 verified high-roller and millionaire portfolios with verified positions and shadow ratio"},
+        {"name": "Tickers & History", "description": "Individual security profiles with verified whale holders breakdown and 90-day daily OHLCV bars"},
+        {"name": "MCP & AI Agents", "description": "Model Context Protocol tools and schemas for AI agents"}
+    ],
+    "paths": {
+        "/api/market.json": {
+            "get": {
+                "tags": ["Market & Tape"],
+                "summary": "Real-Time Alt-Data Market Radar & Liquidity",
+                "description": "Returns verified whale dry powder cash reserves ($8.98M), intraday net P&L, equity/ETF allocation split, and top leaders across capital inflows, retail breadth, and conviction intensity.",
+                "responses": {
+                    "200": {
+                        "description": "Live macro market tape snapshot"
+                    }
+                }
+            }
+        },
+        "/api/stonks.json": {
+            "get": {
+                "tags": ["Equities & ETFs"],
+                "summary": "All 500 Verified Equities & ETFs",
+                "description": "Returns full catalog of 500 securities with owner counts, total value on app, whale capital backing, conviction intensity ($/sub), session price changes, and chatroom activity.",
+                "responses": {
+                    "200": {
+                        "description": "Complete enriched securities catalog"
+                    }
+                }
+            }
+        },
+        "/api/etfs.json": {
+            "get": {
+                "tags": ["Equities & ETFs"],
+                "summary": "All 64 Verified ETFs & Index Funds",
+                "description": "Returns 64 ETFs segregated by asset class, expense ratio, whale capital backing, and retail adoption breadth.",
+                "responses": {
+                    "200": {
+                        "description": "All 64 verified ETFs"
+                    }
+                }
+            }
+        },
+        "/api/whales.json": {
+            "get": {
+                "tags": ["Whales & Portfolios"],
+                "summary": "395 Verified Whales & Millionaires",
+                "description": "Returns 395 verified portfolios ($169M+ AUM) with username, total verified balance, cash balance, intraday P&L, unrealized gains, and full positions breakdown.",
+                "responses": {
+                    "200": {
+                        "description": "Directory of verified whales"
+                    }
+                }
+            }
+        },
+        "/api/shadow.json": {
+            "get": {
+                "tags": ["Whales & Portfolios"],
+                "summary": "Shadow Ratio & Stealth Whales",
+                "description": "Returns whales sorted by the Clout Inversion metric: verified portfolio value divided by social follower count.",
+                "responses": {
+                    "200": {
+                        "description": "Whales ranked by shadow ratio"
+                    }
+                }
+            }
+        },
+        "/api/ticker/{symbol}.json": {
+            "get": {
+                "tags": ["Tickers & History"],
+                "summary": "Granular Security Intelligence & 90-Day Bars",
+                "description": "Deep-dive on any specific ticker symbol with verified holders breakdown, conviction intensity, and 90-day daily OHLCV candlestick bars.",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "path",
+                        "required": True,
+                        "description": "Ticker symbol (e.g. NVDA, ASTS, AAPL, QQQ)",
+                        "schema": {"type": "string", "example": "ASTS"}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Granular security intel with daily bars"
+                    },
+                    "404": {
+                        "description": "Ticker not found in tracked 500 securities"
+                    }
+                }
+            }
+        },
+        "/api/mcp-schema.json": {
+            "get": {
+                "tags": ["MCP & AI Agents"],
+                "summary": "Model Context Protocol (MCP) Tool Schemas",
+                "description": "Returns the official JSON Schema catalog for all 6 MCP tools exposed for autonomous AI agents and IDEs.",
+                "responses": {
+                    "200": {
+                        "description": "Model Context Protocol tool catalog"
+                    }
+                }
+            }
+        }
+    }
+}
+
+with open(API_DIR / "openapi.json", "w", encoding="utf-8") as f:
+    json.dump(openapi_spec, f, indent=2)
+
 with open(API_DIR / "stonks.json", "w", encoding="utf-8") as f:
     json.dump({"total": len(stocks), "securities": stocks}, f, indent=2)
 
@@ -265,11 +482,16 @@ sitemap_urls = [
     ("https://ah.mphinance.com/whales", "0.9", "daily"),
     ("https://ah.mphinance.com/shadow", "0.8", "daily"),
     ("https://ah.mphinance.com/sitemap", "0.8", "daily"),
+    ("https://ah.mphinance.com/docs", "0.9", "daily"),
+    ("https://ah.mphinance.com/mcp", "0.9", "daily"),
     ("https://ah.mphinance.com/all", "0.7", "weekly"),
+    ("https://ah.mphinance.com/api/market.json", "0.8", "hourly"),
     ("https://ah.mphinance.com/api/stonks.json", "0.7", "hourly"),
     ("https://ah.mphinance.com/api/etfs.json", "0.7", "daily"),
     ("https://ah.mphinance.com/api/whales.json", "0.7", "daily"),
     ("https://ah.mphinance.com/api/shadow.json", "0.7", "daily"),
+    ("https://ah.mphinance.com/api/openapi.json", "0.8", "daily"),
+    ("https://ah.mphinance.com/api/mcp-schema.json", "0.8", "daily"),
 ]
 
 for s in stocks:
@@ -1297,6 +1519,14 @@ html_content = f"""<!DOCTYPE html>
         <div class="live-dot"></div>
         LIVE ALT-DATA
       </div>
+      <a href="/mcp" class="sitemap-header-btn" style="text-decoration: none; color: var(--cyan); border-color: rgba(0, 210, 255, 0.4);">
+        <span>&#x1F916;</span>
+        <span>MCP</span>
+      </a>
+      <a href="/docs" class="sitemap-header-btn" style="text-decoration: none; color: var(--green); border-color: rgba(0, 245, 155, 0.4);">
+        <span>&#x1F4D6;</span>
+        <span>Docs</span>
+      </a>
       <button class="sitemap-header-btn" onclick="switchRoute('/sitemap')">
         <span>&#x1F5FA;&#xFE0F;</span>
         <span>Sitemap</span>
@@ -1546,6 +1776,12 @@ html_content = f"""<!DOCTYPE html>
     <button class="tab-btn" id="tabNav-sitemap" onclick="switchRoute('/sitemap')">
       <span>&#x1F5FA;&#xFE0F;</span> Directory &amp; Sitemap
     </button>
+    <a href="/mcp" class="tab-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; color: var(--cyan); border-color: rgba(0, 210, 255, 0.4);">
+      <span>&#x1F916;</span> MCP Server
+    </a>
+    <a href="/docs" class="tab-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; color: var(--green); border-color: rgba(0, 245, 155, 0.4);">
+      <span>&#x1F4D6;</span> Swagger API
+    </a>
   </div>
 
   <!-- TAB 1: TOP STONKS & TAXONOMY -->
@@ -1701,10 +1937,39 @@ html_content = f"""<!DOCTYPE html>
 
     <div class="sitemap-section">
       <div class="sitemap-header">
+        <h3><span>&#x1F916;</span> AI Agent Integration &amp; OpenAPI Documentation</h3>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--cyan);">MCP Spec 2024-11-05 &bull; OpenAPI 3.1</span>
+      </div>
+      <div class="sitemap-grid">
+        <a class="sitemap-card" href="/mcp" target="_blank" style="border-color: rgba(0, 210, 255, 0.4);">
+          <div class="sitemap-card-title" style="color: var(--cyan);">/mcp (Model Context Protocol Hub) <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">Complete integration portal for Claude Desktop, Cursor, Antigravity, and Windsurf with 6 live tools.</div>
+        </a>
+        <a class="sitemap-card" href="/docs" target="_blank" style="border-color: rgba(0, 245, 155, 0.4);">
+          <div class="sitemap-card-title" style="color: var(--green);">/docs (Swagger Interactive UI) <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">Interactive Swagger API documentation. Test every edge JSON endpoint live in your browser.</div>
+        </a>
+        <a class="sitemap-card" href="/api/openapi.json" target="_blank">
+          <div class="sitemap-card-title">/api/openapi.json <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">Machine-readable OpenAPI 3.1 specification for Postman, Insomnia, and agent loops.</div>
+        </a>
+        <a class="sitemap-card" href="/api/mcp-schema.json" target="_blank">
+          <div class="sitemap-card-title">/api/mcp-schema.json <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">JSON Schema tool definitions for get_market_tape, get_top_equities, get_ticker_intel, and more.</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sitemap-section">
+      <div class="sitemap-header">
         <h3><span>&#x26A1;</span> Sub-Millisecond Static JSON API Endpoints</h3>
         <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">Direct Public Machine Endpoints</span>
       </div>
       <div class="sitemap-grid">
+        <a class="sitemap-card" href="/api/market.json" target="_blank" style="border-color: rgba(255, 209, 102, 0.4);">
+          <div class="sitemap-card-title" style="color: var(--amber);">/api/market.json <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">Real-time macro tape: whale dry powder ($8.98M cash), intraday net P&amp;L, and capital inflow leaders.</div>
+        </a>
         <a class="sitemap-card" href="/api/stonks.json" target="_blank">
           <div class="sitemap-card-title">/api/stonks.json <span>&nearr;</span></div>
           <div class="sitemap-card-desc">All 500 securities with quantitative rankings, whale capital, owners, and change %.</div>

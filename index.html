@@ -966,6 +966,14 @@
         <div class="live-dot"></div>
         LIVE ALT-DATA
       </div>
+      <a href="/mcp" class="sitemap-header-btn" style="text-decoration: none; color: var(--cyan); border-color: rgba(0, 210, 255, 0.4);">
+        <span>&#x1F916;</span>
+        <span>MCP</span>
+      </a>
+      <a href="/docs" class="sitemap-header-btn" style="text-decoration: none; color: var(--green); border-color: rgba(0, 245, 155, 0.4);">
+        <span>&#x1F4D6;</span>
+        <span>Docs</span>
+      </a>
       <button class="sitemap-header-btn" onclick="switchRoute('/sitemap')">
         <span>&#x1F5FA;&#xFE0F;</span>
         <span>Sitemap</span>
@@ -1425,6 +1433,12 @@
     <button class="tab-btn" id="tabNav-sitemap" onclick="switchRoute('/sitemap')">
       <span>&#x1F5FA;&#xFE0F;</span> Directory &amp; Sitemap
     </button>
+    <a href="/mcp" class="tab-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; color: var(--cyan); border-color: rgba(0, 210, 255, 0.4);">
+      <span>&#x1F916;</span> MCP Server
+    </a>
+    <a href="/docs" class="tab-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; color: var(--green); border-color: rgba(0, 245, 155, 0.4);">
+      <span>&#x1F4D6;</span> Swagger API
+    </a>
   </div>
 
   <!-- TAB 1: TOP STONKS & TAXONOMY -->
@@ -1580,10 +1594,39 @@
 
     <div class="sitemap-section">
       <div class="sitemap-header">
+        <h3><span>&#x1F916;</span> AI Agent Integration &amp; OpenAPI Documentation</h3>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--cyan);">MCP Spec 2024-11-05 &bull; OpenAPI 3.1</span>
+      </div>
+      <div class="sitemap-grid">
+        <a class="sitemap-card" href="/mcp" target="_blank" style="border-color: rgba(0, 210, 255, 0.4);">
+          <div class="sitemap-card-title" style="color: var(--cyan);">/mcp (Model Context Protocol Hub) <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">Complete integration portal for Claude Desktop, Cursor, Antigravity, and Windsurf with 6 live tools.</div>
+        </a>
+        <a class="sitemap-card" href="/docs" target="_blank" style="border-color: rgba(0, 245, 155, 0.4);">
+          <div class="sitemap-card-title" style="color: var(--green);">/docs (Swagger Interactive UI) <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">Interactive Swagger API documentation. Test every edge JSON endpoint live in your browser.</div>
+        </a>
+        <a class="sitemap-card" href="/api/openapi.json" target="_blank">
+          <div class="sitemap-card-title">/api/openapi.json <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">Machine-readable OpenAPI 3.1 specification for Postman, Insomnia, and agent loops.</div>
+        </a>
+        <a class="sitemap-card" href="/api/mcp-schema.json" target="_blank">
+          <div class="sitemap-card-title">/api/mcp-schema.json <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">JSON Schema tool definitions for get_market_tape, get_top_equities, get_ticker_intel, and more.</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sitemap-section">
+      <div class="sitemap-header">
         <h3><span>&#x26A1;</span> Sub-Millisecond Static JSON API Endpoints</h3>
         <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">Direct Public Machine Endpoints</span>
       </div>
       <div class="sitemap-grid">
+        <a class="sitemap-card" href="/api/market.json" target="_blank" style="border-color: rgba(255, 209, 102, 0.4);">
+          <div class="sitemap-card-title" style="color: var(--amber);">/api/market.json <span>&nearr;</span></div>
+          <div class="sitemap-card-desc">Real-time macro tape: whale dry powder ($8.98M cash), intraday net P&amp;L, and capital inflow leaders.</div>
+        </a>
         <a class="sitemap-card" href="/api/stonks.json" target="_blank">
           <div class="sitemap-card-title">/api/stonks.json <span>&nearr;</span></div>
           <div class="sitemap-card-desc">All 500 securities with quantitative rankings, whale capital, owners, and change %.</div>
