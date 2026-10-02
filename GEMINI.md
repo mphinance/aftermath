@@ -101,19 +101,43 @@ Instead of arbitrary raw API pagination (where low-cap stocks like `PATH` with $
 - The ticker deep-dive modal pulls 44-day daily OHLCV bars across major tickers (`AAPL`, `ASTS`, `NVDA`, `SPY`, `TSLA`, `MSTR`, `AMZN`, `MSFT`, `QQQ`, `PLTR`, `AMD`, `META`, `GOOGL`, `HOOD`, `COIN`, `SOFI`, `VOO`, `IBIT`).
 - Interactive SVG charts display the 44-day trajectory, percentage gain/loss, high/low envelopes, and volume benchmarks.
 
-### 5. URL Slugs & SPA Permalinks
-The terminal supports clean URL routing for web browsing, permalink sharing, and JSON APIs:
-- **Tabs**: `https://ah.mphinance.com/stonks`, `/all`, `/etfs`, `/whales`, `/shadow`
+### 5. URL Slugs, Permalinks & Developer APIs
+The terminal supports clean URL routing for web browsing, permalink sharing, OpenAPI documentation, and Model Context Protocol (MCP):
+- **Web Views**: `https://ah.mphinance.com/stonks`, `/all`, `/etfs`, `/whales`, `/shadow`, `/sitemap`
+- **Developer Documentation**:
+  - `https://ah.mphinance.com/docs`: Interactive Swagger UI (OpenAPI 3.1) with live in-browser testing
+  - `https://ah.mphinance.com/mcp`: Official Model Context Protocol (MCP) server portal & AI client integration guides
 - **Stock Slugs**: `https://ah.mphinance.com/ticker/:symbol` (e.g. `/ticker/NVDA`, `/ticker/AAPL`)
-- **Whale Slugs**: `https://ah.mphinance.com/@:username` (e.g. `/@skrt`, `/@BearHugger`)
-- **Static JSON APIs**:
-  - `https://ah.mphinance.com/api/stonks.json`
-  - `https://ah.mphinance.com/api/etfs.json`
-  - `https://ah.mphinance.com/api/whales.json`
-  - `https://ah.mphinance.com/api/shadow.json`
-  - `https://ah.mphinance.com/api/ticker/:symbol.json` (500 individual ticker endpoints)
+- **Whale Slugs**: `https://ah.mphinance.com/@:username` (e.g. `/@skrt`, `/@SIRJACK`)
+- **Static Edge JSON APIs & MCP Assets**:
+  - `https://ah.mphinance.com/api/market.json`: Real-time macro tape, whale dry powder ($8.98M cash), intraday net P&L, allocation ratio
+  - `https://ah.mphinance.com/api/stonks.json`: All 500 securities with owner counts, conviction intensity ($/sub), and whale capital
+  - `https://ah.mphinance.com/api/etfs.json`: 64 ETFs segregated by asset class, expense ratio, and whale backing
+  - `https://ah.mphinance.com/api/whales.json`: 395 verified high-roller and millionaire portfolios ($169M+ AUM)
+  - `https://ah.mphinance.com/api/shadow.json`: Clout Inversion index sorted by $/follower ratio asymmetry
+  - `https://ah.mphinance.com/api/ticker/:symbol.json`: 500 individual ticker deep dives with 90-day daily OHLCV candlestick bars
+  - `https://ah.mphinance.com/api/openapi.json`: Full OpenAPI 3.1 JSON specification
+  - `https://ah.mphinance.com/api/mcp-schema.json`: Model Context Protocol tool & resource catalog
+  - `https://ah.mphinance.com/mcp/server.py`: Standalone zero-dependency Python MCP server script
 
-### 6. Institutional Partner Funnel: TraderMatrix Pro
+### 6. Model Context Protocol (MCP) Server for AI Agents
+Any AI assistant (Claude Desktop, Cursor IDE, Antigravity CLI, Windsurf) can connect to AfterMath in 30 seconds with **zero API keys** and **zero external dependencies**:
+```json
+{
+  "mcpServers": {
+    "aftermath": {
+      "command": "python3",
+      "args": [
+        "-c",
+        "import urllib.request; exec(urllib.request.urlopen('https://ah.mphinance.com/mcp/server.py').read().decode('utf-8'))"
+      ]
+    }
+  }
+}
+```
+Exposes 6 production tools: `get_market_tape`, `get_top_equities`, `get_etf_flows`, `get_whale_portfolio`, `get_ticker_intel`, and `get_conviction_screener`.
+
+### 7. Institutional Partner Funnel: TraderMatrix Pro
 Integrated throughout the terminal is the referral funnel to **TraderMatrix Pro**:
 - **Referral Code**: `MPHINANCE`
 - **URL**: `https://www.tradermatrix.pro/?ref=MPHINANCE`
@@ -125,21 +149,21 @@ Integrated throughout the terminal is the referral funnel to **TraderMatrix Pro*
 
 ### One-Command Build & Deploy
 ```bash
-# 1. Regenerate HTML bundle, static directory mirrors, and JSON APIs
+# 1. Regenerate HTML bundle, static directory mirrors, OpenAPI spec, and JSON APIs
 python3 build_github_pages.py
 
 # 2. Sync to Coolify webroot
 rsync -avz --delete \
   --exclude '.git' --exclude '__pycache__' --exclude 'afterhour.zip' --exclude 'data/following' \
-  index.html default.conf api all stonks etfs whales shadow \
+  index.html default.conf sitemap.xml mcp_server.py api all stonks etfs whales shadow sitemap docs mcp \
   coolify:/home/mph/apps/ah-portal/
 
-# 3. Reload Nginx on Coolify (zero downtime)
-ssh coolify "docker exec ah-mphinance nginx -s reload"
+# 3. Restart container to ensure single-file bind mounts refresh
+ssh coolify "docker restart ah-mphinance"
 
 # 4. Commit and push changes to GitHub
-git add .
-git commit -m "feat: update terminal and APIs"
+git add -A
+git commit -m "feat: update terminal, docs, and APIs"
 git push origin main
 ```
 
