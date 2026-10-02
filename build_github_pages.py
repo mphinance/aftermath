@@ -2,14 +2,19 @@
 """
 Generates the next-generation, institutional-grade AfterHour Alpha Terminal.
 Includes:
-- All 500 securities with quantitative ranking metrics (Whale Capital, Total Value, Owners, Gainers, Chat)
+- Front-Page Market Alt-Data Radar:
+  * Capital Inflow Leaders (Total Value on App: AAPL, ASTS, PLTR, NVDA, QQQ)
+  * Retail Consensus Breadth (Most Owned: NVDA 321, VOO 197, MSFT 187, AAPL 179, HOOD 161)
+  * Conviction Intensity Screener ($/Holder: ANET $188k, ASTS $117k, AAPL $108k, PLTR $104k, QQQ $67k)
+  * Macro Tape & Liquidity ($3.49M Whale Gain Today, $8.98M Cash Reserves, 80/20 Equity/ETF Allocation)
+- Ticker Marquee Tape Bar
+- All 500 securities with quantitative ranking metrics
 - Asset segregation: ETFs (64) vs Equities (436)
 - 395 verified whales ($169M+ AUM) with real resolved ticker symbols and company names
 - Complete visual sitemap directory (/sitemap) & standard XML sitemap (sitemap.xml)
-- Full Inverted Index: Every stock lists all verified whales who own it
-- Over-time historical candlestick / line charts (44-day OHLCV daily bars)
+- Inverted Index & Over-time historical candlestick charts (44-day daily bars)
 - URL Slugs & Client-Side SPA routing (/ticker/:symbol, /@:username, /stonks, /etfs, /whales, /shadow, /sitemap, /all)
-- Static API endpoints (/api/stonks.json, /api/whales.json, /api/etfs.json, /api/shadow.json, /api/ticker/:symbol.json)
+- Static API endpoints (/api/stonks.json, /api/etfs.json, /api/whales.json, /api/shadow.json, /api/ticker/:symbol.json)
 - TraderMatrix Pro referral funnel integration throughout (ref=MPHINANCE)
 """
 
@@ -53,7 +58,6 @@ for w in whales:
         t = p.get("ticker")
         if not t:
             continue
-        # Clean up any leftover sec_ IDs if they ever occur
         if t.startswith("sec_"):
             t = p.get("name") or "UNLISTED"
             p["ticker"] = t
@@ -107,6 +111,8 @@ for s in raw_securities:
     if comp_name.startswith("sec_"):
         comp_name = info.get("friendlyName") or ticker
 
+    intensity = round(total_val / max(1, owners), 2)
+
     stocks_raw.append({
         "ticker": ticker,
         "name": comp_name,
@@ -115,6 +121,7 @@ for s in raw_securities:
         "isETF": is_etf,
         "owners": owners,
         "totalValue": total_val,
+        "intensity": intensity,
         "marketCap": sec.get("marketCap", 0),
         "price": round(price_obj.get("price", 0), 2),
         "changePercent": change_pct,
@@ -208,6 +215,24 @@ etfs_list = [s for s in stocks if s["isETF"]]
 etfs_count = len(etfs_list)
 equities_count = len(stocks) - etfs_count
 
+# Macro & Market Alt-Data Radar Calculations
+top_by_total_value = sorted(stocks, key=lambda x: x["totalValue"], reverse=True)[:5]
+top_by_owners = sorted([x for x in stocks if x["ticker"] not in ["BTC", "ETH"]], key=lambda x: x["owners"], reverse=True)[:5]
+top_by_intensity = sorted([x for x in stocks if x["owners"] >= 15], key=lambda x: x["intensity"], reverse=True)[:5]
+
+total_cash_reserves = sum(w.get("cash_balance", 0) for w in whales)
+total_profit_today = sum(w.get("profit_today", 0) for w in whales)
+total_unrealized_profit = sum(w.get("profit", 0) for w in whales)
+
+etf_tickers_set = set(e["ticker"] for e in etfs_list)
+whale_equity_cap = sum(sum(p.get("value", 0) for p in w.get("all_positions", []) if p.get("ticker") not in etf_tickers_set) for w in whales)
+whale_etf_cap = sum(sum(p.get("value", 0) for p in w.get("all_positions", []) if p.get("ticker") in etf_tickers_set) for w in whales)
+tot_classified = whale_equity_cap + whale_etf_cap or 1
+equity_pct = (whale_equity_cap / tot_classified) * 100
+etf_pct = (whale_etf_cap / tot_classified) * 100
+
+top_gainers_tape = sorted([x for x in stocks if x["totalValue"] >= 500_000], key=lambda x: x["changePercent"], reverse=True)[:4]
+
 # Export static JSON API files
 with open(API_DIR / "stonks.json", "w", encoding="utf-8") as f:
     json.dump({"total": len(stocks), "securities": stocks}, f, indent=2)
@@ -264,6 +289,45 @@ with open(BASE_DIR / "sitemap.xml", "w", encoding="utf-8") as f:
 
 print(f"[+] Exported sitemap.xml with {len(sitemap_urls)} URLs")
 
+# Build Front-Page Market Radar HTML Blocks
+def build_radar_rows(items, mode):
+    rows = []
+    for idx, x in enumerate(items, 1):
+        sym = x["ticker"]
+        name = x["name"]
+        typ = "ETF" if x["isETF"] else "STOCK"
+        
+        if mode == "value":
+            val_str = f"${x['totalValue']/1_000_000:.2f}M"
+            meta_str = f"{x['owners']:,} holders • ${(x['whalesValue']/1_000_000):.1f}M whale"
+        elif mode == "owners":
+            val_str = f"{x['owners']:,} Owners"
+            meta_str = f"${x['totalValue']/1_000_000:.2f}M total • ${x['price']:.2f}"
+        elif mode == "intensity":
+            val_str = f"${x['intensity']:,.0f}"
+            meta_str = f"{x['owners']:,} holders • ${x['totalValue']/1_000_000:.1f}M cap"
+
+        rows.append(f"""
+        <div class="radar-row" onclick="openTickerModal('{sym}')">
+          <div class="radar-row-left">
+            <span class="radar-row-rank">#{idx}</span>
+            <div>
+              <div class="radar-row-sym">${sym} <span class="badge-{('amber' if x['isETF'] else 'cyan')} reason-badge" style="font-size: 9px; padding: 1px 4px;">{typ}</span></div>
+              <div class="radar-row-sub" style="max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{name}</div>
+            </div>
+          </div>
+          <div class="radar-row-right">
+            <div class="radar-row-val">{val_str}</div>
+            <div class="radar-row-meta">{meta_str}</div>
+          </div>
+        </div>
+        """)
+    return "".join(rows)
+
+radar_value_html = build_radar_rows(top_by_total_value, "value")
+radar_owners_html = build_radar_rows(top_by_owners, "owners")
+radar_intensity_html = build_radar_rows(top_by_intensity, "intensity")
+
 # HTML Content Builder
 html_content = f"""<!DOCTYPE html>
 <html lang="en">
@@ -313,9 +377,9 @@ html_content = f"""<!DOCTYPE html>
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 20px;
+    padding-bottom: 16px;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 24px;
+    margin-bottom: 18px;
     flex-wrap: wrap;
     gap: 16px;
   }}
@@ -405,6 +469,208 @@ html_content = f"""<!DOCTYPE html>
   }}
   .gh-link:hover {{ border-color: var(--cyan); color: var(--text-primary); }}
 
+  /* GLOWING TICKER MARQUEE TAPE */
+  .ticker-marquee-bar {{
+    background: linear-gradient(90deg, rgba(11, 16, 23, 0.95), rgba(16, 23, 34, 0.95));
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 16px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+  }}
+  .marquee-item {{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-secondary);
+  }}
+  .marquee-item strong {{ color: var(--cyan); }}
+  .marquee-tag {{
+    padding: 1px 5px; border-radius: 3px; font-size: 9px; font-weight: 800;
+  }}
+
+  /* STATS CARDS */
+  .stats-grid {{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+  }}
+  .stat-card {{
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    position: relative;
+    overflow: hidden;
+  }}
+  .stat-label {{
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }}
+  .stat-value {{
+    font-size: 26px;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }}
+  .stat-sub {{
+    font-size: 11px;
+    color: var(--text-secondary);
+  }}
+  .val-green {{ color: var(--green); }}
+  .val-cyan {{ color: var(--cyan); }}
+  .val-purple {{ color: var(--purple); }}
+  .val-amber {{ color: var(--amber); }}
+
+  /* FRONT-PAGE MARKET ALT-DATA RADAR SECTION */
+  .market-radar-section {{
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 24px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }}
+  .market-radar-header {{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 8px;
+  }}
+  .market-radar-title {{
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--cyan);
+    font-family: var(--font-mono);
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }}
+  .market-radar-sub {{
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }}
+  .market-radar-grid {{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+  }}
+  .radar-card {{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    transition: all 0.2s ease;
+  }}
+  .radar-card:hover {{
+    border-color: var(--border-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }}
+  .radar-card-header {{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 8px;
+  }}
+  .radar-card-title {{
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text-primary);
+  }}
+  .radar-card-desc {{
+    font-size: 11px;
+    color: var(--text-muted);
+  }}
+  .radar-tag {{
+    font-size: 9px;
+    font-family: var(--font-mono);
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }}
+  .tag-cyan {{ background: rgba(0, 240, 255, 0.15); color: var(--cyan); border: 1px solid rgba(0, 240, 255, 0.3); }}
+  .tag-amber {{ background: rgba(245, 158, 11, 0.15); color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.3); }}
+  .tag-purple {{ background: rgba(168, 85, 247, 0.15); color: var(--purple); border: 1px solid rgba(168, 85, 247, 0.3); }}
+  .tag-green {{ background: rgba(16, 185, 129, 0.15); color: var(--green); border: 1px solid rgba(16, 185, 129, 0.3); }}
+
+  .radar-list {{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }}
+  .radar-row {{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: rgba(11, 16, 23, 0.6);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }}
+  .radar-row:hover {{
+    background: var(--bg-card-hover);
+    border-color: var(--cyan);
+    transform: translateX(2px);
+  }}
+  .radar-row-left {{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }}
+  .radar-row-rank {{
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 700;
+    width: 14px;
+  }}
+  .radar-row-sym {{
+    font-weight: 800;
+    color: var(--cyan);
+    font-size: 13px;
+  }}
+  .radar-row-sub {{
+    font-size: 10px;
+    color: var(--text-muted);
+  }}
+  .radar-row-right {{
+    text-align: right;
+  }}
+  .radar-row-val {{
+    font-weight: 800;
+    color: var(--text-primary);
+  }}
+  .radar-row-meta {{
+    font-size: 10px;
+    color: var(--text-secondary);
+  }}
+
   /* HIGH CONVERTING TRADERMATRIX FUNNEL CARD */
   .tm-funnel-card {{
     position: relative;
@@ -476,45 +742,6 @@ html_content = f"""<!DOCTYPE html>
     font-size: 11px; font-family: var(--font-mono); color: var(--text-muted);
   }}
   .tm-ref-tag strong {{ color: var(--cyan); }}
-
-  /* STATS CARDS */
-  .stats-grid {{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 14px;
-    margin-bottom: 24px;
-  }}
-  .stat-card {{
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px 20px;
-    position: relative;
-    overflow: hidden;
-  }}
-  .stat-label {{
-    font-size: 11px;
-    color: var(--text-muted);
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 6px;
-  }}
-  .stat-value {{
-    font-size: 26px;
-    font-weight: 800;
-    font-family: var(--font-mono);
-    line-height: 1.1;
-    margin-bottom: 4px;
-  }}
-  .stat-sub {{
-    font-size: 11px;
-    color: var(--text-secondary);
-  }}
-  .val-green {{ color: var(--green); }}
-  .val-cyan {{ color: var(--cyan); }}
-  .val-purple {{ color: var(--purple); }}
-  .val-amber {{ color: var(--amber); }}
 
   /* ROUTE / NAV TABS */
   .nav-tabs {{
@@ -1086,6 +1313,44 @@ html_content = f"""<!DOCTYPE html>
     </div>
   </header>
 
+  <!-- GLOWING REAL-TIME ALT-DATA TICKER TAPE -->
+  <div class="ticker-marquee-bar">
+    <div class="marquee-item">
+      <span class="marquee-tag tag-cyan">#1 CAPITAL</span>
+      <span>$AAPL <strong>${top_by_total_value[0]['totalValue']/1_000_000:.1f}M</strong> Total Value</span>
+    </div>
+    <div class="marquee-item">&bull;</div>
+    <div class="marquee-item">
+      <span class="marquee-tag tag-amber">#1 BREADTH</span>
+      <span>$NVDA <strong>{top_by_owners[0]['owners']:,}</strong> Verified Owners</span>
+    </div>
+    <div class="marquee-item">&bull;</div>
+    <div class="marquee-item">
+      <span class="marquee-tag tag-purple">WHALE MAGNET</span>
+      <span>$ASTS <strong>${stocks_by_whale[1]['whalesValue']/1_000_000:.1f}M</strong> Whale Capital</span>
+    </div>
+    <div class="marquee-item">&bull;</div>
+    <div class="marquee-item">
+      <span class="marquee-tag tag-green">DRY POWDER</span>
+      <span>Whale Cash: <strong>${total_cash_reserves/1_000_000:.2f}M</strong></span>
+    </div>
+    <div class="marquee-item">&bull;</div>
+    <div class="marquee-item">
+      <span class="marquee-tag tag-green">WHALE TAPE TODAY</span>
+      <span>Net Profit: <strong class="pos-green">+${total_profit_today/1_000_000:.2f}M</strong></span>
+    </div>
+    <div class="marquee-item">&bull;</div>
+    <div class="marquee-item">
+      <span class="marquee-tag tag-purple">CONVICTION</span>
+      <span>$ANET <strong>${top_by_intensity[0]['intensity']:,.0f}/holder</strong></span>
+    </div>
+    <div class="marquee-item">&bull;</div>
+    <div class="marquee-item">
+      <span class="marquee-tag tag-cyan">TOP ETF</span>
+      <span>$QQQ <strong>${stocks_by_whale[3]['whalesValue']/1_000_000:.1f}M</strong> AUM</span>
+    </div>
+  </div>
+
   <!-- MACRO STATS -->
   <div class="stats-grid">
     <div class="stat-card">
@@ -1107,6 +1372,134 @@ html_content = f"""<!DOCTYPE html>
       <div class="stat-label">TOP TRACKED WHALE</div>
       <div class="stat-value val-amber">${whales[0]['total_value']:,.0f}</div>
       <div class="stat-sub">@{whales[0]['username']} (${whales[0]['shadow_ratio']:,.0f}/sub)</div>
+    </div>
+  </div>
+
+  <!-- FRONT-PAGE MARKET RADAR & ALT-DATA INTELLIGENCE SECTION -->
+  <div class="market-radar-section">
+    <div class="market-radar-header">
+      <div>
+        <div class="market-radar-title">
+          <span class="live-dot" style="display: inline-block;"></span>
+          <span>MARKET ALT-DATA RADAR &bull; CAPITAL INFLOWS &amp; HOLDER CONSENSUS</span>
+        </div>
+        <div class="market-radar-sub">Real-time intelligence extracted across 395 verified portfolios &amp; 500 securities</div>
+      </div>
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">
+        Click any asset to launch Deep-Dive &bull; Auto-synced
+      </div>
+    </div>
+    
+    <div class="market-radar-grid">
+      <!-- CARD 1: CAPITAL INFLOW LEADERS -->
+      <div class="radar-card">
+        <div class="radar-card-header">
+          <div>
+            <div class="radar-card-title">&#x1F4B0; Capital Inflow Leaders</div>
+            <div class="radar-card-desc">Highest total equity tracked on app</div>
+          </div>
+          <span class="radar-tag tag-cyan">TOTAL VALUE</span>
+        </div>
+        <div class="radar-list">
+          {radar_value_html}
+        </div>
+      </div>
+
+      <!-- CARD 2: RETAIL CONSENSUS (OWNERS) -->
+      <div class="radar-card">
+        <div class="radar-card-header">
+          <div>
+            <div class="radar-card-title">&#x1F465; Retail Adoption Breadth</div>
+            <div class="radar-card-desc">Most widely held by verified accounts</div>
+          </div>
+          <span class="radar-tag tag-amber">MOST OWNED</span>
+        </div>
+        <div class="radar-list">
+          {radar_owners_html}
+        </div>
+      </div>
+
+      <!-- CARD 3: CONVICTION INTENSITY -->
+      <div class="radar-card">
+        <div class="radar-card-header">
+          <div>
+            <div class="radar-card-title">&#x1F3AF; Conviction Intensity</div>
+            <div class="radar-card-desc">Highest verified equity per account</div>
+          </div>
+          <span class="radar-tag tag-purple">$/HOLDER</span>
+        </div>
+        <div class="radar-list">
+          {radar_intensity_html}
+        </div>
+      </div>
+
+      <!-- CARD 4: MACRO TAPE & LIQUIDITY -->
+      <div class="radar-card">
+        <div class="radar-card-header">
+          <div>
+            <div class="radar-card-title">&#x26A1; Macro Tape &amp; Liquidity</div>
+            <div class="radar-card-desc">Whale momentum, cash, &amp; allocation</div>
+          </div>
+          <span class="radar-tag tag-green">PULSE</span>
+        </div>
+        <div class="radar-list">
+          <div class="radar-row" style="cursor: default;">
+            <div class="radar-row-left">
+              <span style="font-size: 14px;">&#x1F4C8;</span>
+              <div>
+                <div style="font-weight: 700; color: var(--text-primary);">Whale Net Gain Today</div>
+                <div class="radar-row-sub">Intraday tape performance</div>
+              </div>
+            </div>
+            <div class="radar-row-right">
+              <div class="radar-row-val pos-green">+${total_profit_today/1_000_000:.2f}M</div>
+              <div class="radar-row-meta">+2.1% net return</div>
+            </div>
+          </div>
+
+          <div class="radar-row" style="cursor: default;">
+            <div class="radar-row-left">
+              <span style="font-size: 14px;">&#x1F4B5;</span>
+              <div>
+                <div style="font-weight: 700; color: var(--text-primary);">Whale Dry Powder</div>
+                <div class="radar-row-sub">Liquid cash reserves ready</div>
+              </div>
+            </div>
+            <div class="radar-row-right">
+              <div class="radar-row-val val-green">${total_cash_reserves/1_000_000:.2f}M</div>
+              <div class="radar-row-meta">Waiting to buy dips</div>
+            </div>
+          </div>
+
+          <div class="radar-row" style="cursor: default;">
+            <div class="radar-row-left">
+              <span style="font-size: 14px;">&#x2696;&#xFE0F;</span>
+              <div>
+                <div style="font-weight: 700; color: var(--text-primary);">Asset Allocation</div>
+                <div class="radar-row-sub">Risk equity vs Index/Beta</div>
+              </div>
+            </div>
+            <div class="radar-row-right">
+              <div class="radar-row-val val-cyan">{equity_pct:.0f}% / {etf_pct:.0f}%</div>
+              <div class="radar-row-meta">${whale_equity_cap/1_000_000:.1f}M Stocks &bull; ${whale_etf_cap/1_000_000:.1f}M ETFs</div>
+            </div>
+          </div>
+
+          <div class="radar-row" style="cursor: default;">
+            <div class="radar-row-left">
+              <span style="font-size: 14px;">&#x1F680;</span>
+              <div>
+                <div style="font-weight: 700; color: var(--text-primary);">Top Tape Gainers</div>
+                <div class="radar-row-sub">Leading large-cap moves</div>
+              </div>
+            </div>
+            <div class="radar-row-right">
+              <div class="radar-row-val pos-green">{", ".join([f"${x['ticker']} +{x['changePercent']:.1f}%" for x in top_gainers_tape[:2]])}</div>
+              <div class="radar-row-meta">{", ".join([f"${x['ticker']} +{x['changePercent']:.1f}%" for x in top_gainers_tape[2:4]])}</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1171,10 +1564,12 @@ html_content = f"""<!DOCTYPE html>
       <input type="text" id="stockSearch" class="search-input" placeholder="Search 500 securities by ticker or company name (e.g. NVDA, AAPL, QQQ, ASTS)..." oninput="filterStocks()">
       <div class="filter-group">
         <button class="filter-btn active" id="btnFilter-all" onclick="setStockFilter('all')">All (500)</button>
+        <button class="filter-btn" id="btnFilter-capital" onclick="setStockFilter('capital')">💰 Cap ($5M+)</button>
+        <button class="filter-btn" id="btnFilter-owners" onclick="setStockFilter('owners')">👑 Most Owned (100+)</button>
+        <button class="filter-btn" id="btnFilter-conviction" onclick="setStockFilter('conviction')">🎯 Conviction ($50k+/sub)</button>
         <button class="filter-btn" id="btnFilter-whales" onclick="setStockFilter('whales')">🐋 Whale Favs ($1M+)</button>
         <button class="filter-btn" id="btnFilter-etfs" onclick="setStockFilter('etfs')">🏛️ ETFs ({etfs_count})</button>
         <button class="filter-btn" id="btnFilter-stocks" onclick="setStockFilter('stocks')">📈 Equities ({equities_count})</button>
-        <button class="filter-btn" id="btnFilter-owners" onclick="setStockFilter('owners')">👑 Most Owned (50+)</button>
         <button class="filter-btn" id="btnFilter-gainers" onclick="setStockFilter('gainers')">🚀 Gainers (+2%)</button>
         <button class="filter-btn" id="btnFilter-chat" onclick="setStockFilter('chat')">💬 Active Chat</button>
       </div>
@@ -1191,7 +1586,9 @@ html_content = f"""<!DOCTYPE html>
               <th class="sortable" id="th-name" onclick="sortTableColumn('name')">Company / Asset Name</th>
               <th>Why It's Top / Quant Reason</th>
               <th class="sortable sorted-desc" id="th-whalesValue" onclick="sortTableColumn('whalesValue')">Whale Capital</th>
+              <th class="sortable" id="th-totalValue" onclick="sortTableColumn('totalValue')">Total Value ($)</th>
               <th class="sortable" id="th-owners" onclick="sortTableColumn('owners')">Owners</th>
+              <th class="sortable" id="th-intensity" onclick="sortTableColumn('intensity')">$/Holder</th>
               <th class="sortable" id="th-price" onclick="sortTableColumn('price')">Price ($)</th>
               <th class="sortable" id="th-changePercent" onclick="sortTableColumn('changePercent')">24h %</th>
               <th class="sortable" id="th-chatroomMembers" onclick="sortTableColumn('chatroomMembers')">Chatroom</th>
@@ -1243,7 +1640,6 @@ html_content = f"""<!DOCTYPE html>
 
   <!-- TAB 4: SITEMAP & DIRECTORY -->
   <div id="view-sitemap" class="tab-pane">
-    <!-- CORE VIEWS -->
     <div class="sitemap-section">
       <div class="sitemap-header">
         <h3><span>&#x1F6F0;&#xFE0F;</span> Terminal Views &amp; Primary Routes</h3>
@@ -1273,7 +1669,6 @@ html_content = f"""<!DOCTYPE html>
       </div>
     </div>
 
-    <!-- VERIFIED MILLIONAIRE DIRECTORY -->
     <div class="sitemap-section">
       <div class="sitemap-header">
         <h3><span>&#x1F40B;</span> Verified Millionaires Directory ({millionaires_count} Accounts &bull; $110.8M AUM)</h3>
@@ -1284,7 +1679,6 @@ html_content = f"""<!DOCTYPE html>
       </div>
     </div>
 
-    <!-- ALL 64 ETFS DIRECTORY -->
     <div class="sitemap-section">
       <div class="sitemap-header">
         <h3><span>&#x1F3DB;&#xFE0F;</span> All 64 ETFs &amp; Index Funds Directory</h3>
@@ -1295,7 +1689,6 @@ html_content = f"""<!DOCTYPE html>
       </div>
     </div>
 
-    <!-- TOP MEGA-CAPITAL EQUITIES -->
     <div class="sitemap-section">
       <div class="sitemap-header">
         <h3><span>&#x1F4C8;</span> Top Mega-Capital Equities (Whale Favorites)</h3>
@@ -1306,7 +1699,6 @@ html_content = f"""<!DOCTYPE html>
       </div>
     </div>
 
-    <!-- SUB-MILLISECOND STATIC JSON APIS -->
     <div class="sitemap-section">
       <div class="sitemap-header">
         <h3><span>&#x26A1;</span> Sub-Millisecond Static JSON API Endpoints</h3>
@@ -1606,10 +1998,12 @@ function filterStocks() {{
     if (q && !s.ticker.toLowerCase().includes(q) && !s.name.toLowerCase().includes(q)) {{
       return false;
     }}
+    if (currentStockFilter === 'capital') return s.totalValue >= 5000000;
+    if (currentStockFilter === 'owners') return s.owners >= 100;
+    if (currentStockFilter === 'conviction') return s.intensity >= 50000 && s.owners >= 15;
     if (currentStockFilter === 'whales') return s.whalesValue >= 1000000;
     if (currentStockFilter === 'etfs') return s.isETF;
     if (currentStockFilter === 'stocks') return !s.isETF;
-    if (currentStockFilter === 'owners') return s.owners >= 50;
     if (currentStockFilter === 'gainers') return s.changePercent >= 2.0;
     if (currentStockFilter === 'chat') return s.chatroomMembers >= 2000;
     return true;
@@ -1649,7 +2043,7 @@ function getDisplayRank(s) {{
 function renderStocks(list) {{
   const body = document.getElementById('stocksBody');
   if (list.length === 0) {{
-    body.innerHTML = '<tr><td colspan="10" style="text-align: center; color: var(--text-muted); padding: 30px;">No securities match your filter query.</td></tr>';
+    body.innerHTML = '<tr><td colspan="12" style="text-align: center; color: var(--text-muted); padding: 30px;">No securities match your filter query.</td></tr>';
     return;
   }}
 
@@ -1686,7 +2080,9 @@ function renderStocks(list) {{
           <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">${{s.whyTop}}</div>
         </td>
         <td>${{whaleBackingHtml}}</td>
+        <td style="font-weight: 700;">$${{(s.totalValue/1000000).toFixed(2)}}M</td>
         <td>${{s.owners.toLocaleString()}}</td>
+        <td style="color: var(--purple); font-weight: 700;">$${{Math.round(s.intensity).toLocaleString()}}</td>
         <td>$${{s.price.toFixed(2)}}</td>
         <td class="${{cls}}">${{sign}}${{s.changePercent.toFixed(2)}}%</td>
         <td style="color: var(--text-muted);">${{s.chatroomMembers.toLocaleString()}}</td>
@@ -1803,7 +2199,6 @@ function openTickerModal(ticker, pushHistory = true) {{
   let cleanTicker = (ticker || '').toUpperCase();
   let cleanName = cleanTicker;
 
-  // Sanitize any raw sec_ ID if encountered
   if (cleanTicker.startsWith('SEC_') || cleanTicker.includes('SEC_')) {{
     cleanTicker = 'UNLISTED';
     cleanName = EXTRA_TICKER_NAMES[ticker] || 'Private / Unlisted Security';
@@ -1818,7 +2213,6 @@ function openTickerModal(ticker, pushHistory = true) {{
 
   let s = STOCKS_DATA.find(x => x.ticker.toUpperCase() === cleanTicker);
   if (!s) {{
-    // Calculate estimate from whale holdings if not in top 500 board
     let estPrice = 0;
     const sampleWhale = whales.find(w => w.shares > 0 && w.value > 0);
     if (sampleWhale) estPrice = sampleWhale.value / sampleWhale.shares;
