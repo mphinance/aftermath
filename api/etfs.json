@@ -1,0 +1,2409 @@
+{
+  "total": 64,
+  "securities": [
+    {
+      "ticker": "QQQ",
+      "name": "Invesco QQQ Trust, Series 1",
+      "friendlyName": "Invesco QQQ",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 119,
+      "totalValue": 8022861.37,
+      "marketCap": 502638280000,
+      "price": 749.2,
+      "changePercent": 0.97,
+      "volume": 34459478,
+      "chatroomMembers": 1836,
+      "chatroomOnline": 0,
+      "whalesCount": 51,
+      "whalesValue": 7573425.22,
+      "topWhale": "SIRJACK",
+      "topWhaleValue": 5629782.58,
+      "slug": "/ticker/QQQ",
+      "hasHistory": true,
+      "rankWhaleCapital": 4,
+      "rankPlatformValue": 5,
+      "rankOwners": 20,
+      "rankGainers": 181,
+      "rankChat": 18,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "#4 WHALE BACKED",
+          "color": "purple"
+        },
+        {
+          "label": "PLATFORM CORE",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "$7.6M whale capital (51 whales) &bull; 119 verified holders",
+      "rank": 4
+    },
+    {
+      "ticker": "SPY",
+      "name": "State Street SPDR S&P 500 ETF Trust",
+      "friendlyName": "SSgA Active Trust S&P 500 ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 137,
+      "totalValue": 7249493.12,
+      "marketCap": 820814163513.88,
+      "price": 769.43,
+      "changePercent": 0.71,
+      "volume": 46278192,
+      "chatroomMembers": 17559,
+      "chatroomOnline": 0,
+      "whalesCount": 63,
+      "whalesValue": 7139653.12,
+      "topWhale": "SIRJACK",
+      "topWhaleValue": 5154982.53,
+      "slug": "/ticker/SPY",
+      "hasHistory": true,
+      "rankWhaleCapital": 5,
+      "rankPlatformValue": 6,
+      "rankOwners": 12,
+      "rankGainers": 199,
+      "rankChat": 2,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "#5 WHALE BACKED",
+          "color": "purple"
+        },
+        {
+          "label": "PLATFORM CORE",
+          "color": "amber"
+        },
+        {
+          "label": "VIRAL CHAT",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "$7.1M whale capital (63 whales) &bull; 137 verified holders &bull; 17,559 chat members",
+      "rank": 5
+    },
+    {
+      "ticker": "VOO",
+      "name": "Vanguard S&P 500 ETF",
+      "friendlyName": "Vanguard S&P 500",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 197,
+      "totalValue": 3951836.67,
+      "marketCap": 1052357823077.8601,
+      "price": 707.33,
+      "changePercent": 0.71,
+      "volume": 6602347,
+      "chatroomMembers": 603,
+      "chatroomOnline": 0,
+      "whalesCount": 81,
+      "whalesValue": 3022450.23,
+      "topWhale": "engineered",
+      "topWhaleValue": 327527.77,
+      "slug": "/ticker/VOO",
+      "hasHistory": true,
+      "rankWhaleCapital": 9,
+      "rankPlatformValue": 7,
+      "rankOwners": 5,
+      "rankGainers": 200,
+      "rankChat": 36,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE ACCUMULATION",
+          "color": "cyan"
+        },
+        {
+          "label": "#5 MOST OWNED",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "$3.0M whale backing &bull; 197 verified holders",
+      "rank": 9
+    },
+    {
+      "ticker": "VTI",
+      "name": "Vanguard Total Stock Market ETF",
+      "friendlyName": "Vanguard Total Stock Market",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 96,
+      "totalValue": 2806559.37,
+      "marketCap": 690400465840.7896,
+      "price": 378.22,
+      "changePercent": 0.81,
+      "volume": 2944463,
+      "chatroomMembers": 133,
+      "chatroomOnline": 0,
+      "whalesCount": 44,
+      "whalesValue": 2129791.77,
+      "topWhale": "NOLA",
+      "topWhaleValue": 304281.95,
+      "slug": "/ticker/VTI",
+      "hasHistory": false,
+      "rankWhaleCapital": 14,
+      "rankPlatformValue": 13,
+      "rankOwners": 27,
+      "rankGainers": 193,
+      "rankChat": 132,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE ACCUMULATION",
+          "color": "cyan"
+        },
+        {
+          "label": "POPULAR RETAIL",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "$2.1M whale backing",
+      "rank": 14
+    },
+    {
+      "ticker": "SGOV",
+      "name": "iShares 0-3 Month Treasury Bond ETF",
+      "friendlyName": "iShares Treasury Bond ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 97,
+      "totalValue": 2213539.17,
+      "marketCap": 111294943600.00002,
+      "price": 100.45,
+      "changePercent": 0.04,
+      "volume": 25299837,
+      "chatroomMembers": 99,
+      "chatroomOnline": 0,
+      "whalesCount": 49,
+      "whalesValue": 1895570.74,
+      "topWhale": "SIRJACK",
+      "topWhaleValue": 794551.89,
+      "slug": "/ticker/SGOV",
+      "hasHistory": false,
+      "rankWhaleCapital": 15,
+      "rankPlatformValue": 17,
+      "rankOwners": 26,
+      "rankGainers": 260,
+      "rankChat": 162,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE ACCUMULATION",
+          "color": "cyan"
+        },
+        {
+          "label": "POPULAR RETAIL",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "$1.9M whale backing",
+      "rank": 15
+    },
+    {
+      "ticker": "DRAM",
+      "name": "Roundhill Memory ETF",
+      "friendlyName": "Dataram",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 84,
+      "totalValue": 1344712.45,
+      "marketCap": 0,
+      "price": 61.57,
+      "changePercent": -0.74,
+      "volume": 26754091,
+      "chatroomMembers": 93,
+      "chatroomOnline": 0,
+      "whalesCount": 47,
+      "whalesValue": 1254026.06,
+      "topWhale": "SIRJACK",
+      "topWhaleValue": 705103.29,
+      "slug": "/ticker/DRAM",
+      "hasHistory": false,
+      "rankWhaleCapital": 21,
+      "rankPlatformValue": 22,
+      "rankOwners": 31,
+      "rankGainers": 358,
+      "rankChat": 171,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE ACCUMULATION",
+          "color": "cyan"
+        },
+        {
+          "label": "POPULAR RETAIL",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "$1.3M whale backing",
+      "rank": 21
+    },
+    {
+      "ticker": "SCHD",
+      "name": "Schwab US Dividend Equity ETF",
+      "friendlyName": "Schwab US Dividend Equity",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 117,
+      "totalValue": 1017149.87,
+      "marketCap": 107833894499.99998,
+      "price": 32.73,
+      "changePercent": 0.21,
+      "volume": 20666673,
+      "chatroomMembers": 188,
+      "chatroomOnline": 0,
+      "whalesCount": 46,
+      "whalesValue": 839562.17,
+      "topWhale": "thisiscrispy",
+      "topWhaleValue": 364788.96,
+      "slug": "/ticker/SCHD",
+      "hasHistory": false,
+      "rankWhaleCapital": 26,
+      "rankPlatformValue": 27,
+      "rankOwners": 21,
+      "rankGainers": 249,
+      "rankChat": 98,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "PLATFORM CORE",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "46 verified whales &bull; 117 verified holders",
+      "rank": 26
+    },
+    {
+      "ticker": "IBIT",
+      "name": "iShares Bitcoin Trust ETF",
+      "friendlyName": "iShares Bitcoin Trust",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 51,
+      "totalValue": 869968.08,
+      "marketCap": 67310202400,
+      "price": 47.83,
+      "changePercent": -0.27,
+      "volume": 48555858,
+      "chatroomMembers": 250,
+      "chatroomOnline": 0,
+      "whalesCount": 36,
+      "whalesValue": 804955.39,
+      "topWhale": "Hodler302",
+      "topWhaleValue": 286380,
+      "slug": "/ticker/IBIT",
+      "hasHistory": true,
+      "rankWhaleCapital": 28,
+      "rankPlatformValue": 29,
+      "rankOwners": 53,
+      "rankGainers": 317,
+      "rankChat": 77,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "POPULAR RETAIL",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "36 verified whales",
+      "rank": 28
+    },
+    {
+      "ticker": "SPMO",
+      "name": "Invesco S&P 500 Momentum ETF",
+      "friendlyName": "PowerShares S&P 500 Momentum",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 77,
+      "totalValue": 860285.96,
+      "marketCap": 23447260000,
+      "price": 153.2,
+      "changePercent": 0.29,
+      "volume": 2111620,
+      "chatroomMembers": 26,
+      "chatroomOnline": 0,
+      "whalesCount": 26,
+      "whalesValue": 798866.93,
+      "topWhale": "skrt",
+      "topWhaleValue": 676510.45,
+      "slug": "/ticker/SPMO",
+      "hasHistory": false,
+      "rankWhaleCapital": 29,
+      "rankPlatformValue": 30,
+      "rankOwners": 36,
+      "rankGainers": 242,
+      "rankChat": 369,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "POPULAR RETAIL",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "26 verified whales",
+      "rank": 29
+    },
+    {
+      "ticker": "VGT",
+      "name": "Vanguard Information Technology ETF",
+      "friendlyName": "Vanguard Information Technology",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 23,
+      "totalValue": 664330.72,
+      "marketCap": 157260617580.22,
+      "price": 128.38,
+      "changePercent": 1.08,
+      "volume": 4287691,
+      "chatroomMembers": 33,
+      "chatroomOnline": 0,
+      "whalesCount": 15,
+      "whalesValue": 522768.5,
+      "topWhale": "dankermann",
+      "topWhaleValue": 388480.02,
+      "slug": "/ticker/VGT",
+      "hasHistory": false,
+      "rankWhaleCapital": 35,
+      "rankPlatformValue": 35,
+      "rankOwners": 153,
+      "rankGainers": 170,
+      "rankChat": 330,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "15 verified whales",
+      "rank": 35
+    },
+    {
+      "ticker": "SMH",
+      "name": "VanEck Semiconductor ETF",
+      "friendlyName": "Semiconductor HOLDRS Trust",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 30,
+      "totalValue": 570769.38,
+      "marketCap": 77810968066.53,
+      "price": 630.35,
+      "changePercent": 2.03,
+      "volume": 7321119,
+      "chatroomMembers": 70,
+      "chatroomOnline": 0,
+      "whalesCount": 10,
+      "whalesValue": 460813.04,
+      "topWhale": "humanfly",
+      "topWhaleValue": 236379.38,
+      "slug": "/ticker/SMH",
+      "hasHistory": false,
+      "rankWhaleCapital": 37,
+      "rankPlatformValue": 39,
+      "rankOwners": 112,
+      "rankGainers": 105,
+      "rankChat": 211,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "10 verified whales",
+      "rank": 37
+    },
+    {
+      "ticker": "VT",
+      "name": "Vanguard Total World Stock ETF",
+      "friendlyName": "Vanguard Total World Stock",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 21,
+      "totalValue": 398727.09,
+      "marketCap": 81363312714.29999,
+      "price": 159.45,
+      "changePercent": 1.05,
+      "volume": 1840846,
+      "chatroomMembers": 29,
+      "chatroomOnline": 0,
+      "whalesCount": 14,
+      "whalesValue": 388709.85,
+      "topWhale": "muffin_man",
+      "topWhaleValue": 205871.89,
+      "slug": "/ticker/VT",
+      "hasHistory": false,
+      "rankWhaleCapital": 40,
+      "rankPlatformValue": 49,
+      "rankOwners": 164,
+      "rankGainers": 174,
+      "rankChat": 346,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "14 verified whales",
+      "rank": 40
+    },
+    {
+      "ticker": "IVV",
+      "name": "iShares Core S&P 500 ETF",
+      "friendlyName": "iShares S&P 500 ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 95,
+      "totalValue": 463039.74,
+      "marketCap": 884064269055,
+      "price": 772.41,
+      "changePercent": 0.66,
+      "volume": 5150623,
+      "chatroomMembers": 34,
+      "chatroomOnline": 0,
+      "whalesCount": 36,
+      "whalesValue": 384705.56,
+      "topWhale": "CptNut",
+      "topWhaleValue": 142485.42,
+      "slug": "/ticker/IVV",
+      "hasHistory": false,
+      "rankWhaleCapital": 44,
+      "rankPlatformValue": 45,
+      "rankOwners": 28,
+      "rankGainers": 206,
+      "rankChat": 320,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "POPULAR RETAIL",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "36 verified whales",
+      "rank": 44
+    },
+    {
+      "ticker": "SCHG",
+      "name": "Schwab U.S. Large-Cap Growth ETF",
+      "friendlyName": "Schwab US Large-Cap Growth ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 50,
+      "totalValue": 375458.64,
+      "marketCap": 64417152000,
+      "price": 36.32,
+      "changePercent": 0.89,
+      "volume": 8240681,
+      "chatroomMembers": 40,
+      "chatroomOnline": 1,
+      "whalesCount": 22,
+      "whalesValue": 294247.24,
+      "topWhale": "AnalysisPilot",
+      "topWhaleValue": 144546.97,
+      "slug": "/ticker/SCHG",
+      "hasHistory": false,
+      "rankWhaleCapital": 52,
+      "rankPlatformValue": 55,
+      "rankOwners": 58,
+      "rankGainers": 188,
+      "rankChat": 296,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "POPULAR RETAIL",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "22 verified whales",
+      "rank": 52
+    },
+    {
+      "ticker": "QQQM",
+      "name": "Invesco NASDAQ 100 ETF",
+      "friendlyName": "Invesco QQQ",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 49,
+      "totalValue": 391721.1,
+      "marketCap": 110310534600,
+      "price": 308.63,
+      "changePercent": 1.0,
+      "volume": 3011473,
+      "chatroomMembers": 103,
+      "chatroomOnline": 0,
+      "whalesCount": 23,
+      "whalesValue": 281750.98,
+      "topWhale": "Raslatt",
+      "topWhaleValue": 120365.7,
+      "slug": "/ticker/QQQM",
+      "hasHistory": false,
+      "rankWhaleCapital": 55,
+      "rankPlatformValue": 51,
+      "rankOwners": 60,
+      "rankGainers": 178,
+      "rankChat": 159,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "POPULAR RETAIL",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "23 verified whales",
+      "rank": 55
+    },
+    {
+      "ticker": "VXUS",
+      "name": "Vanguard Total International Stock ETF",
+      "friendlyName": "Vanguard International Stock ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 47,
+      "totalValue": 366857.97,
+      "marketCap": 161439378551.88,
+      "price": 85.42,
+      "changePercent": 1.13,
+      "volume": 4732678,
+      "chatroomMembers": 24,
+      "chatroomOnline": 0,
+      "whalesCount": 20,
+      "whalesValue": 280211.92,
+      "topWhale": "Idontremember",
+      "topWhaleValue": 113072.33,
+      "slug": "/ticker/VXUS",
+      "hasHistory": false,
+      "rankWhaleCapital": 56,
+      "rankPlatformValue": 56,
+      "rankOwners": 63,
+      "rankGainers": 165,
+      "rankChat": 378,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "POPULAR RETAIL",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "20 verified whales",
+      "rank": 56
+    },
+    {
+      "ticker": "MSTU",
+      "name": "T-Rex 2X Long MSTR Daily Target ETF",
+      "friendlyName": "T-Rex Long MSTR Daily Target ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 23,
+      "totalValue": 597455.37,
+      "marketCap": 808381183.4,
+      "price": 43.19,
+      "changePercent": -0.64,
+      "volume": 7115130,
+      "chatroomMembers": 27,
+      "chatroomOnline": 0,
+      "whalesCount": 15,
+      "whalesValue": 280145.94,
+      "topWhale": "mstreaker",
+      "topWhaleValue": 110141.46,
+      "slug": "/ticker/MSTU",
+      "hasHistory": false,
+      "rankWhaleCapital": 57,
+      "rankPlatformValue": 36,
+      "rankOwners": 148,
+      "rankGainers": 348,
+      "rankChat": 356,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "15 verified whales",
+      "rank": 57
+    },
+    {
+      "ticker": "FBTC",
+      "name": "Fidelity Wise Origin Bitcoin Fund",
+      "friendlyName": "Fidelity Wise Origin Bitcoin",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 9,
+      "totalValue": 271208.16,
+      "marketCap": 15677704129.474798,
+      "price": 73.48,
+      "changePercent": -0.17,
+      "volume": 3682226,
+      "chatroomMembers": 94,
+      "chatroomOnline": 0,
+      "whalesCount": 9,
+      "whalesValue": 270601.47,
+      "topWhale": "Crystis",
+      "topWhaleValue": 223351.67,
+      "slug": "/ticker/FBTC",
+      "hasHistory": false,
+      "rankWhaleCapital": 58,
+      "rankPlatformValue": 69,
+      "rankOwners": 260,
+      "rankGainers": 306,
+      "rankChat": 169,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #58 by verified capital",
+      "rank": 58
+    },
+    {
+      "ticker": "ROBN",
+      "name": "T-Rex 2X Long HOOD Daily Target ETF",
+      "friendlyName": "ETF Opportunities Trust T-Rex Long HOOD Daily Target",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 33,
+      "totalValue": 286807.38,
+      "marketCap": 102873000,
+      "price": 32.35,
+      "changePercent": 2.86,
+      "volume": 1043864,
+      "chatroomMembers": 40,
+      "chatroomOnline": 0,
+      "whalesCount": 21,
+      "whalesValue": 252908.14,
+      "topWhale": "vixgod",
+      "topWhaleValue": 71029.86,
+      "slug": "/ticker/ROBN",
+      "hasHistory": false,
+      "rankWhaleCapital": 62,
+      "rankPlatformValue": 67,
+      "rankOwners": 96,
+      "rankGainers": 74,
+      "rankChat": 299,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "21 verified whales",
+      "rank": 62
+    },
+    {
+      "ticker": "TQQQ",
+      "name": "ProShares  UltraPro QQQ",
+      "friendlyName": "ProShares UltraPro QQQ",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 30,
+      "totalValue": 287570.14,
+      "marketCap": 39499740000,
+      "price": 81.2,
+      "changePercent": 3.14,
+      "volume": 60661997,
+      "chatroomMembers": 364,
+      "chatroomOnline": 0,
+      "whalesCount": 20,
+      "whalesValue": 243102.57,
+      "topWhale": "moonmoon",
+      "topWhaleValue": 62486.87,
+      "slug": "/ticker/TQQQ",
+      "hasHistory": false,
+      "rankWhaleCapital": 63,
+      "rankPlatformValue": 66,
+      "rankOwners": 107,
+      "rankGainers": 62,
+      "rankChat": 56,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "20 verified whales",
+      "rank": 63
+    },
+    {
+      "ticker": "SOXL",
+      "name": "Direxion Daily Semiconductor Bull 3X ETF",
+      "friendlyName": "Direxion Semicondct Bull",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 29,
+      "totalValue": 298772.53,
+      "marketCap": 27137145796.8,
+      "price": 163.28,
+      "changePercent": 6.24,
+      "volume": 62144793,
+      "chatroomMembers": 210,
+      "chatroomOnline": 0,
+      "whalesCount": 17,
+      "whalesValue": 211166.42,
+      "topWhale": "hammythehamster",
+      "topWhaleValue": 82426.77,
+      "slug": "/ticker/SOXL",
+      "hasHistory": false,
+      "rankWhaleCapital": 68,
+      "rankPlatformValue": 64,
+      "rankOwners": 120,
+      "rankGainers": 21,
+      "rankChat": 89,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "TOP 24H SURGE",
+          "color": "green"
+        }
+      ],
+      "whyTop": "17 verified whales &bull; +6.2% intraday move",
+      "rank": 68
+    },
+    {
+      "ticker": "QQQI",
+      "name": "NEOS Nasdaq 100 High Income ETF",
+      "friendlyName": "NEOS Nasdaq 100 High Income",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 26,
+      "totalValue": 213167.91,
+      "marketCap": 15116815900,
+      "price": 56.09,
+      "changePercent": 0.75,
+      "volume": 3745835,
+      "chatroomMembers": 50,
+      "chatroomOnline": 0,
+      "whalesCount": 18,
+      "whalesValue": 207192.97,
+      "topWhale": "oldntired",
+      "topWhaleValue": 72145.11,
+      "slug": "/ticker/QQQI",
+      "hasHistory": false,
+      "rankWhaleCapital": 70,
+      "rankPlatformValue": 79,
+      "rankOwners": 141,
+      "rankGainers": 195,
+      "rankChat": 258,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "18 verified whales",
+      "rank": 70
+    },
+    {
+      "ticker": "JEPI",
+      "name": "JPMorgan Equity Premium Income ETF",
+      "friendlyName": "JPMorgan Equity Premium Income ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 23,
+      "totalValue": 213743.77,
+      "marketCap": 45184259100,
+      "price": 56.12,
+      "changePercent": 0.34,
+      "volume": 4903905,
+      "chatroomMembers": 37,
+      "chatroomOnline": 0,
+      "whalesCount": 12,
+      "whalesValue": 192333.52,
+      "topWhale": "thisiscrispy",
+      "topWhaleValue": 125008.3,
+      "slug": "/ticker/JEPI",
+      "hasHistory": false,
+      "rankWhaleCapital": 73,
+      "rankPlatformValue": 78,
+      "rankOwners": 154,
+      "rankGainers": 235,
+      "rankChat": 313,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "12 verified whales",
+      "rank": 73
+    },
+    {
+      "ticker": "GBTC",
+      "name": "Grayscale Bitcoin Trust ETF",
+      "friendlyName": "Grayscale Bitcoin Trust",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 6,
+      "totalValue": 182396.25,
+      "marketCap": 12610646301.000002,
+      "price": 65.01,
+      "changePercent": -0.66,
+      "volume": 1948383,
+      "chatroomMembers": 87,
+      "chatroomOnline": 0,
+      "whalesCount": 5,
+      "whalesValue": 181633.17,
+      "topWhale": "CptNut",
+      "topWhaleValue": 142070.02,
+      "slug": "/ticker/GBTC",
+      "hasHistory": false,
+      "rankWhaleCapital": 76,
+      "rankPlatformValue": 88,
+      "rankOwners": 316,
+      "rankGainers": 351,
+      "rankChat": 184,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #76 by verified capital",
+      "rank": 76
+    },
+    {
+      "ticker": "ETHU",
+      "name": "2x Ether ETF",
+      "friendlyName": "2x Ether",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 9,
+      "totalValue": 178139.22,
+      "marketCap": 1349647129.3,
+      "price": 29.69,
+      "changePercent": -3.04,
+      "volume": 6948849,
+      "chatroomMembers": 29,
+      "chatroomOnline": 0,
+      "whalesCount": 6,
+      "whalesValue": 177906.66,
+      "topWhale": "soontobeared",
+      "topWhaleValue": 170870.92,
+      "slug": "/ticker/ETHU",
+      "hasHistory": false,
+      "rankWhaleCapital": 78,
+      "rankPlatformValue": 90,
+      "rankOwners": 264,
+      "rankGainers": 456,
+      "rankChat": 345,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #78 by verified capital",
+      "rank": 78
+    },
+    {
+      "ticker": "ETHA",
+      "name": "iShares Ethereum Trust ETF",
+      "friendlyName": "iShares Ethereum Trust",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 22,
+      "totalValue": 193695.23,
+      "marketCap": 9716347600,
+      "price": 20.11,
+      "changePercent": -1.28,
+      "volume": 39071368,
+      "chatroomMembers": 106,
+      "chatroomOnline": 0,
+      "whalesCount": 13,
+      "whalesValue": 158965.47,
+      "topWhale": "dreamer2",
+      "topWhaleValue": 102889.5,
+      "slug": "/ticker/ETHA",
+      "hasHistory": false,
+      "rankWhaleCapital": 85,
+      "rankPlatformValue": 83,
+      "rankOwners": 159,
+      "rankGainers": 386,
+      "rankChat": 158,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "13 verified whales",
+      "rank": 85
+    },
+    {
+      "ticker": "VUG",
+      "name": "Vanguard Growth ETF",
+      "friendlyName": "Vanguard Growth ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 29,
+      "totalValue": 145104.5,
+      "marketCap": 234263973638.1817,
+      "price": 91.05,
+      "changePercent": 0.91,
+      "volume": 5740364,
+      "chatroomMembers": 14,
+      "chatroomOnline": 0,
+      "whalesCount": 16,
+      "whalesValue": 136663.5,
+      "topWhale": "ryman12",
+      "topWhaleValue": 46734.41,
+      "slug": "/ticker/VUG",
+      "hasHistory": false,
+      "rankWhaleCapital": 92,
+      "rankPlatformValue": 98,
+      "rankOwners": 124,
+      "rankGainers": 185,
+      "rankChat": 443,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "16 verified whales",
+      "rank": 92
+    },
+    {
+      "ticker": "GLD",
+      "name": "SPDR Gold Trust, SPDR Gold Shares",
+      "friendlyName": "SPDR Gold Trust",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 46,
+      "totalValue": 168121.45,
+      "marketCap": 140559940000,
+      "price": 380.2,
+      "changePercent": -0.67,
+      "volume": 9098992,
+      "chatroomMembers": 440,
+      "chatroomOnline": 1,
+      "whalesCount": 21,
+      "whalesValue": 132112.42,
+      "topWhale": "Heisenburg",
+      "topWhaleValue": 38014,
+      "slug": "/ticker/GLD",
+      "hasHistory": false,
+      "rankWhaleCapital": 94,
+      "rankPlatformValue": 94,
+      "rankOwners": 64,
+      "rankGainers": 353,
+      "rankChat": 47,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "POPULAR RETAIL",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "21 verified whales",
+      "rank": 94
+    },
+    {
+      "ticker": "MSTY",
+      "name": "YieldMax MSTR Option Income Strategy ETF",
+      "friendlyName": "YieldMax MSTR Option Income Strategy ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 32,
+      "totalValue": 252972.47,
+      "marketCap": 1081746527.19,
+      "price": 16.41,
+      "changePercent": -0.24,
+      "volume": 6969379,
+      "chatroomMembers": 447,
+      "chatroomOnline": 0,
+      "whalesCount": 16,
+      "whalesValue": 124389.52,
+      "topWhale": "nomad29345",
+      "topWhaleValue": 70348,
+      "slug": "/ticker/MSTY",
+      "hasHistory": false,
+      "rankWhaleCapital": 98,
+      "rankPlatformValue": 72,
+      "rankOwners": 98,
+      "rankGainers": 311,
+      "rankChat": 45,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "16 verified whales",
+      "rank": 98
+    },
+    {
+      "ticker": "ULTY",
+      "name": "YieldMax Ultra Option Income Strategy ETF",
+      "friendlyName": "YieldMax Ultra Option Income Strategy",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 29,
+      "totalValue": 458031.62,
+      "marketCap": 715808324.8,
+      "price": 25.7,
+      "changePercent": 1.3,
+      "volume": 378962,
+      "chatroomMembers": 308,
+      "chatroomOnline": 0,
+      "whalesCount": 17,
+      "whalesValue": 121108.1,
+      "topWhale": "fistpumper",
+      "topWhaleValue": 35209,
+      "slug": "/ticker/ULTY",
+      "hasHistory": false,
+      "rankWhaleCapital": 103,
+      "rankPlatformValue": 47,
+      "rankOwners": 122,
+      "rankGainers": 148,
+      "rankChat": 63,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "17 verified whales",
+      "rank": 103
+    },
+    {
+      "ticker": "IWM",
+      "name": "iShares Russell 2000 ETF",
+      "friendlyName": "iShares Russell 2000",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 50,
+      "totalValue": 96962.39,
+      "marketCap": 76712804000,
+      "price": 281.36,
+      "changePercent": 0.84,
+      "volume": 29801015,
+      "chatroomMembers": 208,
+      "chatroomOnline": 1,
+      "whalesCount": 22,
+      "whalesValue": 93703.52,
+      "topWhale": "GuaGuaQingWa",
+      "topWhaleValue": 79670.16,
+      "slug": "/ticker/IWM",
+      "hasHistory": false,
+      "rankWhaleCapital": 124,
+      "rankPlatformValue": 127,
+      "rankOwners": 57,
+      "rankGainers": 192,
+      "rankChat": 90,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "POPULAR RETAIL",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "22 verified whales",
+      "rank": 124
+    },
+    {
+      "ticker": "JEPQ",
+      "name": "J.P. Morgan Nasdaq Equity Premium Income ETF",
+      "friendlyName": "J.P. Morgan Equity Premium Income ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 20,
+      "totalValue": 92629.92,
+      "marketCap": 43692902750,
+      "price": 61.03,
+      "changePercent": 0.36,
+      "volume": 7310961,
+      "chatroomMembers": 54,
+      "chatroomOnline": 0,
+      "whalesCount": 13,
+      "whalesValue": 77874.95,
+      "topWhale": "thisiscrispy",
+      "topWhaleValue": 28258.15,
+      "slug": "/ticker/JEPQ",
+      "hasHistory": false,
+      "rankWhaleCapital": 130,
+      "rankPlatformValue": 133,
+      "rankOwners": 175,
+      "rankGainers": 230,
+      "rankChat": 248,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "13 verified whales",
+      "rank": 130
+    },
+    {
+      "ticker": "SLV",
+      "name": "iShares Silver Trust",
+      "friendlyName": "iShares Silver",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 36,
+      "totalValue": 72424.08,
+      "marketCap": 29408270580,
+      "price": 54.64,
+      "changePercent": -0.69,
+      "volume": 17504577,
+      "chatroomMembers": 255,
+      "chatroomOnline": 0,
+      "whalesCount": 21,
+      "whalesValue": 57268.27,
+      "topWhale": "uponly",
+      "topWhaleValue": 21950.74,
+      "slug": "/ticker/SLV",
+      "hasHistory": false,
+      "rankWhaleCapital": 144,
+      "rankPlatformValue": 145,
+      "rankOwners": 85,
+      "rankGainers": 354,
+      "rankChat": 74,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "21 verified whales",
+      "rank": 144
+    },
+    {
+      "ticker": "CONY",
+      "name": "YieldMax COIN Option Income Strategy ETF",
+      "friendlyName": "YieldMax COIN Option Income Strategy",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 14,
+      "totalValue": 66040.81,
+      "marketCap": 368626157.20000005,
+      "price": 19.6,
+      "changePercent": -2.73,
+      "volume": 1574804,
+      "chatroomMembers": 39,
+      "chatroomOnline": 0,
+      "whalesCount": 11,
+      "whalesValue": 54743.73,
+      "topWhale": "nomad29345",
+      "topWhaleValue": 29280,
+      "slug": "/ticker/CONY",
+      "hasHistory": false,
+      "rankWhaleCapital": 151,
+      "rankPlatformValue": 152,
+      "rankOwners": 210,
+      "rankGainers": 446,
+      "rankChat": 303,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "11 verified whales",
+      "rank": 151
+    },
+    {
+      "ticker": "CONL",
+      "name": "GraniteShares ETF Trust GraniteShares 2x Long COIN Daily ETF",
+      "friendlyName": "GraniteShares Long COIN Daily ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 14,
+      "totalValue": 61410,
+      "marketCap": 512808005.52,
+      "price": 5.52,
+      "changePercent": -6.6,
+      "volume": 31494815,
+      "chatroomMembers": 12,
+      "chatroomOnline": 0,
+      "whalesCount": 10,
+      "whalesValue": 53019.6,
+      "topWhale": "GordonGeiko",
+      "topWhaleValue": 19872,
+      "slug": "/ticker/CONL",
+      "hasHistory": false,
+      "rankWhaleCapital": 155,
+      "rankPlatformValue": 157,
+      "rankOwners": 211,
+      "rankGainers": 491,
+      "rankChat": 454,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "HIGH VOL DIP",
+          "color": "red"
+        }
+      ],
+      "whyTop": "10 verified whales &bull; -6.6% pullback",
+      "rank": 155
+    },
+    {
+      "ticker": "ARKK",
+      "name": "ARK Innovation ETF",
+      "friendlyName": "ARK Innovation",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 15,
+      "totalValue": 66196.49,
+      "marketCap": 9676800000,
+      "price": 89.6,
+      "changePercent": 1.15,
+      "volume": 5553328,
+      "chatroomMembers": 23,
+      "chatroomOnline": 0,
+      "whalesCount": 7,
+      "whalesValue": 50338.27,
+      "topWhale": "uponly",
+      "topWhaleValue": 22579.49,
+      "slug": "/ticker/ARKK",
+      "hasHistory": false,
+      "rankWhaleCapital": 161,
+      "rankPlatformValue": 151,
+      "rankOwners": 198,
+      "rankGainers": 163,
+      "rankChat": 390,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #161 by verified capital",
+      "rank": 161
+    },
+    {
+      "ticker": "NVDY",
+      "name": "YieldMax NVDA Option Income Strategy ETF",
+      "friendlyName": "YieldMax NVDA Option Income Strategy",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 11,
+      "totalValue": 34536.61,
+      "marketCap": 1431197250,
+      "price": 12.81,
+      "changePercent": 0.55,
+      "volume": 2754939,
+      "chatroomMembers": 43,
+      "chatroomOnline": 0,
+      "whalesCount": 9,
+      "whalesValue": 33634.55,
+      "topWhale": "caditnow",
+      "topWhaleValue": 10249.61,
+      "slug": "/ticker/NVDY",
+      "hasHistory": false,
+      "rankWhaleCapital": 186,
+      "rankPlatformValue": 207,
+      "rankOwners": 241,
+      "rankGainers": 215,
+      "rankChat": 288,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #186 by verified capital",
+      "rank": 186
+    },
+    {
+      "ticker": "QTUM",
+      "name": "Defiance Quantum ETF",
+      "friendlyName": "Defiance Quantum",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 9,
+      "totalValue": 38514.94,
+      "marketCap": 5804502000,
+      "price": 156.03,
+      "changePercent": 1.82,
+      "volume": 376172,
+      "chatroomMembers": 16,
+      "chatroomOnline": 0,
+      "whalesCount": 4,
+      "whalesValue": 33241.59,
+      "topWhale": "Doomdog",
+      "topWhaleValue": 24025.34,
+      "slug": "/ticker/QTUM",
+      "hasHistory": false,
+      "rankWhaleCapital": 190,
+      "rankPlatformValue": 195,
+      "rankOwners": 263,
+      "rankGainers": 116,
+      "rankChat": 429,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #190 by verified capital",
+      "rank": 190
+    },
+    {
+      "ticker": "XLE",
+      "name": "State Street Energy Select Sector SPDR ETF",
+      "friendlyName": "Energy Select SPDR Fund",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 13,
+      "totalValue": 29011.05,
+      "marketCap": 40726083716,
+      "price": 62.99,
+      "changePercent": 0.46,
+      "volume": 29233266,
+      "chatroomMembers": 23,
+      "chatroomOnline": 0,
+      "whalesCount": 8,
+      "whalesValue": 27008.92,
+      "topWhale": "hammythehamster",
+      "topWhaleValue": 8229.42,
+      "slug": "/ticker/XLE",
+      "hasHistory": false,
+      "rankWhaleCapital": 202,
+      "rankPlatformValue": 216,
+      "rankOwners": 223,
+      "rankGainers": 220,
+      "rankChat": 389,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #202 by verified capital",
+      "rank": 202
+    },
+    {
+      "ticker": "NVDL",
+      "name": "GraniteShares ETF Trust GraniteShares 2x Long NVDA Daily ETF",
+      "friendlyName": "GraniteShares Long NVDA Daily",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 10,
+      "totalValue": 26157.39,
+      "marketCap": 3952537893.36,
+      "price": 38.52,
+      "changePercent": 2.67,
+      "volume": 16600921,
+      "chatroomMembers": 60,
+      "chatroomOnline": 0,
+      "whalesCount": 8,
+      "whalesValue": 26103.06,
+      "topWhale": "ryman12",
+      "topWhaleValue": 11550,
+      "slug": "/ticker/NVDL",
+      "hasHistory": false,
+      "rankWhaleCapital": 205,
+      "rankPlatformValue": 222,
+      "rankOwners": 250,
+      "rankGainers": 80,
+      "rankChat": 229,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #205 by verified capital",
+      "rank": 205
+    },
+    {
+      "ticker": "VOOG",
+      "name": "Vanguard S&P 500 Growth ETF",
+      "friendlyName": "Vanguard S&P 500 Growth",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 14,
+      "totalValue": 56882.83,
+      "marketCap": 27923182033.11,
+      "price": 86.59,
+      "changePercent": 1.05,
+      "volume": 1470041,
+      "chatroomMembers": 38,
+      "chatroomOnline": 0,
+      "whalesCount": 7,
+      "whalesValue": 24902.1,
+      "topWhale": "NSReverse",
+      "topWhaleValue": 10647.89,
+      "slug": "/ticker/VOOG",
+      "hasHistory": false,
+      "rankWhaleCapital": 211,
+      "rankPlatformValue": 162,
+      "rankOwners": 208,
+      "rankGainers": 173,
+      "rankChat": 309,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #211 by verified capital",
+      "rank": 211
+    },
+    {
+      "ticker": "ETH",
+      "name": "Grayscale Ethereum Staking Mini ETF Shares",
+      "friendlyName": "Energy Transfer LP Common Units",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 218,
+      "totalValue": 23352.68,
+      "marketCap": 2241518462.48,
+      "price": 25.46,
+      "changePercent": -1.24,
+      "volume": 3396399,
+      "chatroomMembers": 43,
+      "chatroomOnline": 0,
+      "whalesCount": 102,
+      "whalesValue": 22254.48,
+      "topWhale": "houseflipper",
+      "topWhaleValue": 15276,
+      "slug": "/ticker/ETH",
+      "hasHistory": false,
+      "rankWhaleCapital": 217,
+      "rankPlatformValue": 236,
+      "rankOwners": 4,
+      "rankGainers": 385,
+      "rankChat": 286,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "#4 MOST OWNED",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "102 verified whales &bull; 218 verified holders",
+      "rank": 217
+    },
+    {
+      "ticker": "SPXL",
+      "name": "Direxion Daily S&P 500  Bull 3x ETF",
+      "friendlyName": "Direxion Daily S&P 500 Bull",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 4,
+      "totalValue": 20701.79,
+      "marketCap": 7243609288.589999,
+      "price": 288.59,
+      "changePercent": 2.08,
+      "volume": 1596969,
+      "chatroomMembers": 67,
+      "chatroomOnline": 0,
+      "whalesCount": 3,
+      "whalesValue": 20402.69,
+      "topWhale": "moonmoon",
+      "topWhaleValue": 10818.37,
+      "slug": "/ticker/SPXL",
+      "hasHistory": false,
+      "rankWhaleCapital": 221,
+      "rankPlatformValue": 243,
+      "rankOwners": 353,
+      "rankGainers": 102,
+      "rankChat": 216,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #221 by verified capital",
+      "rank": 221
+    },
+    {
+      "ticker": "BITO",
+      "name": "ProShares Bitcoin ETF",
+      "friendlyName": "ProShares Bitcoin ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 7,
+      "totalValue": 21925.13,
+      "marketCap": 1729900800,
+      "price": 11.28,
+      "changePercent": -0.44,
+      "volume": 88993964,
+      "chatroomMembers": 62,
+      "chatroomOnline": 0,
+      "whalesCount": 5,
+      "whalesValue": 20081.92,
+      "topWhale": "godsgrace",
+      "topWhaleValue": 7866.53,
+      "slug": "/ticker/BITO",
+      "hasHistory": false,
+      "rankWhaleCapital": 223,
+      "rankPlatformValue": 240,
+      "rankOwners": 293,
+      "rankGainers": 330,
+      "rankChat": 225,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #223 by verified capital",
+      "rank": 223
+    },
+    {
+      "ticker": "SPYG",
+      "name": "State Street SPDR Portfolio S&P 500 Growth ETF",
+      "friendlyName": "SPDR Portfolio S&P 500 Growth",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 17,
+      "totalValue": 37383.49,
+      "marketCap": 56947475472.784004,
+      "price": 124.75,
+      "changePercent": 1.1,
+      "volume": 1909002,
+      "chatroomMembers": 59,
+      "chatroomOnline": 0,
+      "whalesCount": 7,
+      "whalesValue": 19094.95,
+      "topWhale": "Mastah",
+      "topWhaleValue": 8421.34,
+      "slug": "/ticker/SPYG",
+      "hasHistory": false,
+      "rankWhaleCapital": 229,
+      "rankPlatformValue": 197,
+      "rankOwners": 189,
+      "rankGainers": 169,
+      "rankChat": 239,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #229 by verified capital",
+      "rank": 229
+    },
+    {
+      "ticker": "TLT",
+      "name": "iShares 20+ Year Treasury Bond ETF",
+      "friendlyName": "iShares 20+ Year Treas Bond",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 5,
+      "totalValue": 18214.19,
+      "marketCap": 43638130000,
+      "price": 77.51,
+      "changePercent": -0.26,
+      "volume": 61316439,
+      "chatroomMembers": 45,
+      "chatroomOnline": 0,
+      "whalesCount": 5,
+      "whalesValue": 18213.21,
+      "topWhale": "PoorlyTimedTrades",
+      "topWhaleValue": 15502,
+      "slug": "/ticker/TLT",
+      "hasHistory": false,
+      "rankWhaleCapital": 232,
+      "rankPlatformValue": 250,
+      "rankOwners": 330,
+      "rankGainers": 315,
+      "rankChat": 277,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #232 by verified capital",
+      "rank": 232
+    },
+    {
+      "ticker": "TSLL",
+      "name": "Direxion Shares ETF Trust Direxion Daily TSLA Bull 2X ETF",
+      "friendlyName": "Direxion Daily Tsla Bull",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 14,
+      "totalValue": 20397.56,
+      "marketCap": 3823960009.8,
+      "price": 9.8,
+      "changePercent": 9.25,
+      "volume": 86231737,
+      "chatroomMembers": 77,
+      "chatroomOnline": 0,
+      "whalesCount": 8,
+      "whalesValue": 17603.54,
+      "topWhale": "Libramom2",
+      "topWhaleValue": 10900.42,
+      "slug": "/ticker/TSLL",
+      "hasHistory": false,
+      "rankWhaleCapital": 235,
+      "rankPlatformValue": 245,
+      "rankOwners": 203,
+      "rankGainers": 5,
+      "rankChat": 200,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "TOP 24H SURGE",
+          "color": "green"
+        }
+      ],
+      "whyTop": "+9.2% intraday move",
+      "rank": 235
+    },
+    {
+      "ticker": "TSLY",
+      "name": "YieldMax TSLA Option Income Strategy ETF",
+      "friendlyName": "YieldMax TSLA Income ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 10,
+      "totalValue": 26232.75,
+      "marketCap": 688855616.6999999,
+      "price": 22.38,
+      "changePercent": 5.07,
+      "volume": 611190,
+      "chatroomMembers": 21,
+      "chatroomOnline": 0,
+      "whalesCount": 7,
+      "whalesValue": 13246.23,
+      "topWhale": "Ankoulel",
+      "topWhaleValue": 4453.0,
+      "slug": "/ticker/TSLY",
+      "hasHistory": false,
+      "rankWhaleCapital": 254,
+      "rankPlatformValue": 221,
+      "rankOwners": 256,
+      "rankGainers": 28,
+      "rankChat": 404,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "TOP 24H SURGE",
+          "color": "green"
+        }
+      ],
+      "whyTop": "+5.1% intraday move",
+      "rank": 254
+    },
+    {
+      "ticker": "BTC",
+      "name": "Grayscale Bitcoin Mini Trust ETF",
+      "friendlyName": "Bitcoin",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 288,
+      "totalValue": 6341.64,
+      "marketCap": 4470855919.530001,
+      "price": 37.31,
+      "changePercent": -0.35,
+      "volume": 2932459,
+      "chatroomMembers": 522,
+      "chatroomOnline": 0,
+      "whalesCount": 119,
+      "whalesValue": 5968.21,
+      "topWhale": "high3000",
+      "topWhaleValue": 3166.25,
+      "slug": "/ticker/BTC",
+      "hasHistory": false,
+      "rankWhaleCapital": 304,
+      "rankPlatformValue": 317,
+      "rankOwners": 2,
+      "rankGainers": 321,
+      "rankChat": 41,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "#2 MOST OWNED",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "119 verified whales &bull; 288 verified holders",
+      "rank": 304
+    },
+    {
+      "ticker": "YINN",
+      "name": "Direxion Daily FTSE  China Bull 3X ETF",
+      "friendlyName": "Direxion Daily FTSE China Bull 3X",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 6,
+      "totalValue": 5135.77,
+      "marketCap": 527329980.9926,
+      "price": 23.24,
+      "changePercent": -6.21,
+      "volume": 3268961,
+      "chatroomMembers": 40,
+      "chatroomOnline": 0,
+      "whalesCount": 5,
+      "whalesValue": 5097.46,
+      "topWhale": "Bobdog",
+      "topWhaleValue": 4912.04,
+      "slug": "/ticker/YINN",
+      "hasHistory": false,
+      "rankWhaleCapital": 310,
+      "rankPlatformValue": 328,
+      "rankOwners": 315,
+      "rankGainers": 490,
+      "rankChat": 297,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "HIGH VOL DIP",
+          "color": "red"
+        }
+      ],
+      "whyTop": "-6.2% pullback",
+      "rank": 310
+    },
+    {
+      "ticker": "SQQQ",
+      "name": "ProShares UltraPro Short QQQ",
+      "friendlyName": "ProShares UltraPro Short QQQ",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 9,
+      "totalValue": 4269.94,
+      "marketCap": 2128536816,
+      "price": 33.18,
+      "changePercent": -2.73,
+      "volume": 54574867,
+      "chatroomMembers": 128,
+      "chatroomOnline": 0,
+      "whalesCount": 6,
+      "whalesValue": 3926.58,
+      "topWhale": "SpeculativeTitan",
+      "topWhaleValue": 2517.12,
+      "slug": "/ticker/SQQQ",
+      "hasHistory": false,
+      "rankWhaleCapital": 327,
+      "rankPlatformValue": 335,
+      "rankOwners": 258,
+      "rankGainers": 445,
+      "rankChat": 137,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #327 by verified capital",
+      "rank": 327
+    },
+    {
+      "ticker": "VXX",
+      "name": "iPath Series B S&P 500 VIX Short-Term Futures ETN",
+      "friendlyName": "iPath S&P 500 VIX Short-Term Futures ETN",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 3,
+      "totalValue": 3512.25,
+      "marketCap": 0,
+      "price": 17.45,
+      "changePercent": -1.88,
+      "volume": 7396956,
+      "chatroomMembers": 24,
+      "chatroomOnline": 0,
+      "whalesCount": 2,
+      "whalesValue": 3497.4,
+      "topWhale": "AIX",
+      "topWhaleValue": 3480,
+      "slug": "/ticker/VXX",
+      "hasHistory": false,
+      "rankWhaleCapital": 331,
+      "rankPlatformValue": 343,
+      "rankOwners": 397,
+      "rankGainers": 413,
+      "rankChat": 380,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #331 by verified capital",
+      "rank": 331
+    },
+    {
+      "ticker": "FXI",
+      "name": "iShares China Large-Cap ETF",
+      "friendlyName": "iShares China 25 Index Fund",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 2,
+      "totalValue": 3525.65,
+      "marketCap": 3959100000.0000005,
+      "price": 33.2,
+      "changePercent": -2.12,
+      "volume": 28363479,
+      "chatroomMembers": 4,
+      "chatroomOnline": 0,
+      "whalesCount": 1,
+      "whalesValue": 3429.14,
+      "topWhale": "jterra11",
+      "topWhaleValue": 3429.14,
+      "slug": "/ticker/FXI",
+      "hasHistory": false,
+      "rankWhaleCapital": 332,
+      "rankPlatformValue": 342,
+      "rankOwners": 441,
+      "rankGainers": 422,
+      "rankChat": 490,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #332 by verified capital",
+      "rank": 332
+    },
+    {
+      "ticker": "BITX",
+      "name": "2x Bitcoin Strategy ETF",
+      "friendlyName": "2x Bitcoin Strategy",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 4,
+      "totalValue": 2718.64,
+      "marketCap": 1331134100,
+      "price": 19.99,
+      "changePercent": -0.6,
+      "volume": 10976959,
+      "chatroomMembers": 75,
+      "chatroomOnline": 0,
+      "whalesCount": 2,
+      "whalesValue": 2493.5,
+      "topWhale": "madcow",
+      "topWhaleValue": 1992,
+      "slug": "/ticker/BITX",
+      "hasHistory": false,
+      "rankWhaleCapital": 346,
+      "rankPlatformValue": 356,
+      "rankOwners": 351,
+      "rankGainers": 346,
+      "rankChat": 203,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #346 by verified capital",
+      "rank": 346
+    },
+    {
+      "ticker": "YMAX",
+      "name": "YieldMax Universe Fund of Option Income ETFs",
+      "friendlyName": "YieldMax Universe Fund",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 9,
+      "totalValue": 18875.66,
+      "marketCap": 365148000,
+      "price": 7.56,
+      "changePercent": 0.13,
+      "volume": 887173,
+      "chatroomMembers": 34,
+      "chatroomOnline": 0,
+      "whalesCount": 6,
+      "whalesValue": 2235.43,
+      "topWhale": "fatboy22",
+      "topWhaleValue": 1570.95,
+      "slug": "/ticker/YMAX",
+      "hasHistory": false,
+      "rankWhaleCapital": 349,
+      "rankPlatformValue": 248,
+      "rankOwners": 265,
+      "rankGainers": 253,
+      "rankChat": 324,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #349 by verified capital",
+      "rank": 349
+    },
+    {
+      "ticker": "MSTX",
+      "name": "Tidal Trust II Defiance Daily Target 2x Long MSTR ETF",
+      "friendlyName": "Mast Therapeutics",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 5,
+      "totalValue": 2224.82,
+      "marketCap": 354410915.03999996,
+      "price": 19.86,
+      "changePercent": -0.7,
+      "volume": 9147770,
+      "chatroomMembers": 6,
+      "chatroomOnline": 0,
+      "whalesCount": 3,
+      "whalesValue": 1921.16,
+      "topWhale": "Dylweed",
+      "topWhaleValue": 993,
+      "slug": "/ticker/MSTX",
+      "hasHistory": false,
+      "rankWhaleCapital": 355,
+      "rankPlatformValue": 362,
+      "rankOwners": 329,
+      "rankGainers": 355,
+      "rankChat": 473,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #355 by verified capital",
+      "rank": 355
+    },
+    {
+      "ticker": "PLTY",
+      "name": "YieldMax PLTR Option Income Strategy ETF",
+      "friendlyName": "YieldMax PLTR Option Income Strategy",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 5,
+      "totalValue": 9326.05,
+      "marketCap": 378017250,
+      "price": 36.79,
+      "changePercent": -0.14,
+      "volume": 203452,
+      "chatroomMembers": 25,
+      "chatroomOnline": 0,
+      "whalesCount": 3,
+      "whalesValue": 1199.3,
+      "topWhale": "snyd",
+      "topWhaleValue": 1166.25,
+      "slug": "/ticker/PLTY",
+      "hasHistory": false,
+      "rankWhaleCapital": 372,
+      "rankPlatformValue": 302,
+      "rankOwners": 340,
+      "rankGainers": 302,
+      "rankChat": 376,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #372 by verified capital",
+      "rank": 372
+    },
+    {
+      "ticker": "USO",
+      "name": "United States Oil Fund, LP",
+      "friendlyName": "United States Oil",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 3,
+      "totalValue": 1142.88,
+      "marketCap": 1971261469.9912002,
+      "price": 146.85,
+      "changePercent": -2.11,
+      "volume": 7752673,
+      "chatroomMembers": 47,
+      "chatroomOnline": 0,
+      "whalesCount": 3,
+      "whalesValue": 1145.72,
+      "topWhale": "Clintos",
+      "topWhaleValue": 639.0,
+      "slug": "/ticker/USO",
+      "hasHistory": false,
+      "rankWhaleCapital": 374,
+      "rankPlatformValue": 385,
+      "rankOwners": 403,
+      "rankGainers": 421,
+      "rankChat": 271,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #374 by verified capital",
+      "rank": 374
+    },
+    {
+      "ticker": "MSOS",
+      "name": "AdvisorShares Pure US Cannabis ETF",
+      "friendlyName": "AdvisorShares Pure US Cannabis",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 3,
+      "totalValue": 994.56,
+      "marketCap": 874524600.0000001,
+      "price": 4.44,
+      "changePercent": -3.48,
+      "volume": 8737758,
+      "chatroomMembers": 27,
+      "chatroomOnline": 0,
+      "whalesCount": 3,
+      "whalesValue": 997.28,
+      "topWhale": "Pumper",
+      "topWhaleValue": 509.58,
+      "slug": "/ticker/MSOS",
+      "hasHistory": false,
+      "rankWhaleCapital": 381,
+      "rankPlatformValue": 390,
+      "rankOwners": 413,
+      "rankGainers": 469,
+      "rankChat": 361,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #381 by verified capital",
+      "rank": 381
+    },
+    {
+      "ticker": "UVXY",
+      "name": "ProShares Ultra VIX Short-Term Futures ETF",
+      "friendlyName": "ProShares Ultra VIX",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 2,
+      "totalValue": 341.15,
+      "marketCap": 278572297,
+      "price": 17.02,
+      "changePercent": -2.58,
+      "volume": 5624368,
+      "chatroomMembers": 47,
+      "chatroomOnline": 0,
+      "whalesCount": 1,
+      "whalesValue": 339.4,
+      "topWhale": "geo21208",
+      "topWhaleValue": 339.4,
+      "slug": "/ticker/UVXY",
+      "hasHistory": false,
+      "rankWhaleCapital": 411,
+      "rankPlatformValue": 415,
+      "rankOwners": 427,
+      "rankGainers": 439,
+      "rankChat": 270,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #411 by verified capital",
+      "rank": 411
+    },
+    {
+      "ticker": "UVIX",
+      "name": "2x Long VIX Futures ETF",
+      "friendlyName": "2x Long VIX Futures",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 2,
+      "totalValue": 38.78,
+      "marketCap": 190826141.72,
+      "price": 36.04,
+      "changePercent": -3.33,
+      "volume": 1730156,
+      "chatroomMembers": 46,
+      "chatroomOnline": 0,
+      "whalesCount": 1,
+      "whalesValue": 36.01,
+      "topWhale": "Old_Dog_Knees",
+      "topWhaleValue": 36.01,
+      "slug": "/ticker/UVIX",
+      "hasHistory": false,
+      "rankWhaleCapital": 441,
+      "rankPlatformValue": 446,
+      "rankOwners": 435,
+      "rankGainers": 463,
+      "rankChat": 273,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #441 by verified capital",
+      "rank": 441
+    },
+    {
+      "ticker": "NVD",
+      "name": "GraniteShares ETF Trust GraniteShares 2x Short NVDA Daily ETF",
+      "friendlyName": "GraniteShares 1.5x Short NVDA Daily",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 1,
+      "totalValue": 3.45,
+      "marketCap": 52742140.650000006,
+      "price": 3.45,
+      "changePercent": -2.54,
+      "volume": 84004008,
+      "chatroomMembers": 6,
+      "chatroomOnline": 0,
+      "whalesCount": 1,
+      "whalesValue": 3.45,
+      "topWhale": "Old_Dog_Knees",
+      "topWhaleValue": 3.45,
+      "slug": "/ticker/NVD",
+      "hasHistory": false,
+      "rankWhaleCapital": 455,
+      "rankPlatformValue": 457,
+      "rankOwners": 472,
+      "rankGainers": 437,
+      "rankChat": 476,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #455 by verified capital",
+      "rank": 455
+    },
+    {
+      "ticker": "SPLG",
+      "name": "SPDR Portfolio S&P 500 ETF",
+      "friendlyName": "SPDR S&P 500 ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 0,
+      "totalValue": 0,
+      "marketCap": 0,
+      "price": 80,
+      "changePercent": 0,
+      "volume": 13347570,
+      "chatroomMembers": 34,
+      "chatroomOnline": 0,
+      "whalesCount": 0,
+      "whalesValue": 0,
+      "topWhale": null,
+      "topWhaleValue": 0,
+      "slug": "/ticker/SPLG",
+      "hasHistory": false,
+      "rankWhaleCapital": 486,
+      "rankPlatformValue": 482,
+      "rankOwners": 486,
+      "rankGainers": 276,
+      "rankChat": 322,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #486 by verified capital",
+      "rank": 486
+    },
+    {
+      "ticker": "SPXS",
+      "name": "Direxion Daily S&P 500 Bear 3x ETF",
+      "friendlyName": "Invesco S&P 500 ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 0,
+      "totalValue": 0,
+      "marketCap": 360354564.8388,
+      "price": 24.16,
+      "changePercent": -1.88,
+      "volume": 13810435,
+      "chatroomMembers": 49,
+      "chatroomOnline": 0,
+      "whalesCount": 0,
+      "whalesValue": 0,
+      "topWhale": null,
+      "topWhaleValue": 0,
+      "slug": "/ticker/SPXS",
+      "hasHistory": false,
+      "rankWhaleCapital": 496,
+      "rankPlatformValue": 494,
+      "rankOwners": 496,
+      "rankGainers": 414,
+      "rankChat": 263,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #496 by verified capital",
+      "rank": 496
+    }
+  ]
+}

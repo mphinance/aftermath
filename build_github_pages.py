@@ -2,28 +2,41 @@
 """
 Generates the next-generation, institutional-grade AfterHour Alpha Terminal.
 Includes:
+- All 500 securities with quantitative ranking metrics (Whale Capital, Total Value, Owners, Gainers, Chat)
+- Asset segregation: ETFs (64) vs Equities (436)
 - 395 verified whales ($169M+ AUM)
-- 250 securities with explicit 'Why It's Top' taxonomy (Whale Capital, Most Owned, Gainers, Chat)
 - Full Inverted Index: Every stock lists all verified whales who own it
-- Bi-directional navigation: Click stock -> see whales; Click whale -> see positions -> click stock
-- TraderMatrix Pro referral funnel integration throughout
+- Over-time historical candlestick / line charts (44-day OHLCV daily bars)
+- URL Slugs & Client-Side SPA routing (/ticker/:symbol, /@:username, /stonks, /etfs, /whales, /shadow, /all)
+- Static API endpoints (/api/stonks.json, /api/whales.json, /api/etfs.json, /api/shadow.json, /api/ticker/:symbol.json)
+- TraderMatrix Pro referral funnel integration throughout (ref=MPHINANCE)
 """
 
 import json
+import os
+import shutil
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data" / "leaderboard"
 INDEX_FILE = BASE_DIR / "index.html"
 REPORT_FILE = BASE_DIR / "reports" / "afterhour_quant_terminal.html"
+API_DIR = BASE_DIR / "api"
+API_DIR.mkdir(parents=True, exist_ok=True)
+TICKER_API_DIR = API_DIR / "ticker"
+TICKER_API_DIR.mkdir(parents=True, exist_ok=True)
 
-# Load stocks
+# 1. Load stocks
 with open(DATA_DIR / "stock_leaderboard.json", encoding="utf-8") as f:
     board_data = json.load(f)
 
-# Load ranked whales
+# 2. Load ranked whales
 with open(DATA_DIR / "all_verified_whales_ranked.json", encoding="utf-8") as f:
     whale_data = json.load(f)
+
+# 3. Load historic daily price bars
+with open(DATA_DIR / "historic_prices_sample.json", encoding="utf-8") as f:
+    historic_data = json.load(f).get("history", {})
 
 whales = whale_data.get("whales", [])
 
@@ -32,6 +45,7 @@ ticker_to_whales = {}
 for w in whales:
     flw = max(1, w.get("followers", 0))
     w["shadow_ratio"] = round(w["total_value"] / flw, 2)
+    w["slug"] = f"/@{w['username']}"
     for p in w.get("all_positions", []):
         t = p.get("ticker")
         if not t:
@@ -51,9 +65,11 @@ for w in whales:
 for t in ticker_to_whales:
     ticker_to_whales[t].sort(key=lambda x: x["value"], reverse=True)
 
-# Build compact and enriched stock records
-stocks = []
-for idx, s in enumerate(board_data.get("securities", [])[:250], 1):
+# Build enriched stock records for ALL 500 securities
+raw_securities = board_data.get("securities", [])
+stocks_raw = []
+
+for s in raw_securities:
     sec = s.get("security", {})
     info = sec.get("security", {})
     ticker = info.get("tickerSymbol") or info.get("name")
@@ -66,48 +82,21 @@ for idx, s in enumerate(board_data.get("securities", [])[:250], 1):
     total_val = round(sec.get("totalValue", 0), 2)
     change_pct = round(sess.get("changePercent", 0), 2)
     chat_members = info.get("chatroom", {}).get("memberCount", 0)
+    chat_online = info.get("chatroom", {}).get("onlineCount", 0)
+    sec_type = info.get("type", "EQUITY")
+    is_etf = (sec_type == "ETF")
     
     w_list = ticker_to_whales.get(ticker, [])
     w_val = round(sum(x["value"] for x in w_list), 2)
     w_cnt = len(w_list)
     top_whale = w_list[0] if w_list else None
-    
-    # Determine explicit 'Why It's Top' reason & badges
-    badges = []
-    reasons = []
-    
-    if w_val >= 5_000_000:
-        badges.append({"label": "MEGA WHALE ACCUMULATION", "color": "purple"})
-        reasons.append(f"${w_val/1_000_000:.1f}M+ verified whale capital")
-    elif w_val >= 1_000_000:
-        badges.append({"label": "WHALE ACCUMULATION", "color": "cyan"})
-        reasons.append(f"${w_val/1_000_000:.1f}M whale backing")
-        
-    if owners >= 300:
-        badges.append({"label": "PLATFORM HEAVYWEIGHT", "color": "amber"})
-        reasons.append(f"{owners:,} verified holders")
-    elif owners >= 50:
-        badges.append({"label": "POPULAR RETAIL", "color": "amber"})
-        
-    if change_pct >= 4.0:
-        badges.append({"label": "TOP 24H SURGE", "color": "green"})
-        reasons.append(f"+{change_pct:.1f}% intraday move")
-    elif change_pct <= -4.0:
-        badges.append({"label": "HIGH VOL DIP", "color": "red"})
-        reasons.append(f"{change_pct:.1f}% intraday selloff")
-        
-    if chat_members >= 3000:
-        badges.append({"label": "VIRAL CHATROOM", "color": "cyan"})
-        reasons.append(f"{chat_members:,} chat participants")
-        
-    if not badges:
-        badges.append({"label": "TRENDING LEADERBOARD", "color": "cyan"})
-        reasons.append(f"Rank #{idx} on AfterHour Trending")
 
-    stocks.append({
-        "rank": idx,
+    stocks_raw.append({
         "ticker": ticker,
-        "name": info.get("name", ""),
+        "name": info.get("name") or ticker,
+        "friendlyName": info.get("friendlyName") or ticker,
+        "type": sec_type,
+        "isETF": is_etf,
         "owners": owners,
         "totalValue": total_val,
         "marketCap": sec.get("marketCap", 0),
@@ -115,25 +104,137 @@ for idx, s in enumerate(board_data.get("securities", [])[:250], 1):
         "changePercent": change_pct,
         "volume": sess.get("volume", 0),
         "chatroomMembers": chat_members,
+        "chatroomOnline": chat_online,
         "whalesCount": w_cnt,
         "whalesValue": w_val,
         "topWhale": top_whale["username"] if top_whale else None,
         "topWhaleValue": top_whale["value"] if top_whale else 0,
-        "badges": badges,
-        "whyTop": " &bull; ".join(reasons) if reasons else "Trending security on AfterHour",
+        "slug": f"/ticker/{ticker}",
+        "hasHistory": ticker in historic_data,
     })
 
-total_platform_val = sum(s["totalValue"] for s in stocks)
+# Compute explicit rankings across the universe
+# 1. Rank by Whale Capital ($)
+stocks_by_whale = sorted(stocks_raw, key=lambda x: (x["whalesValue"], x["totalValue"]), reverse=True)
+for i, s in enumerate(stocks_by_whale, 1):
+    s["rankWhaleCapital"] = i
+
+# 2. Rank by Total Platform Value ($)
+stocks_by_val = sorted(stocks_raw, key=lambda x: x["totalValue"], reverse=True)
+for i, s in enumerate(stocks_by_val, 1):
+    s["rankPlatformValue"] = i
+
+# 3. Rank by Owner Count
+stocks_by_owners = sorted(stocks_raw, key=lambda x: x["owners"], reverse=True)
+for i, s in enumerate(stocks_by_owners, 1):
+    s["rankOwners"] = i
+
+# 4. Rank by 24h Gainers
+stocks_by_gainers = sorted(stocks_raw, key=lambda x: x["changePercent"], reverse=True)
+for i, s in enumerate(stocks_by_gainers, 1):
+    s["rankGainers"] = i
+
+# 5. Rank by Matrix Chat
+stocks_by_chat = sorted(stocks_raw, key=lambda x: x["chatroomMembers"], reverse=True)
+for i, s in enumerate(stocks_by_chat, 1):
+    s["rankChat"] = i
+
+# Assign default rank & construct explicit "Why It's Top" badges
+stocks = stocks_by_whale  # Default institutional view is verified whale capital
+
+for s in stocks:
+    badges = []
+    reasons = []
+    
+    # Asset type badge
+    if s["isETF"]:
+        badges.append({"label": "ETF", "color": "amber"})
+    
+    # Whale capital badges
+    if s["whalesValue"] >= 5_000_000:
+        badges.append({"label": f"#{s['rankWhaleCapital']} WHALE BACKED", "color": "purple"})
+        reasons.append(f"${s['whalesValue']/1_000_000:.1f}M whale capital ({s['whalesCount']} whales)")
+    elif s["whalesValue"] >= 1_000_000:
+        badges.append({"label": "WHALE ACCUMULATION", "color": "cyan"})
+        reasons.append(f"${s['whalesValue']/1_000_000:.1f}M whale backing")
+    elif s["whalesCount"] >= 10:
+        badges.append({"label": "WHALE CONSENSUS", "color": "cyan"})
+        reasons.append(f"{s['whalesCount']} verified whales")
+
+    # Owners badge
+    if s["rankOwners"] <= 5:
+        badges.append({"label": f"#{s['rankOwners']} MOST OWNED", "color": "amber"})
+        reasons.append(f"{s['owners']:,} verified holders")
+    elif s["owners"] >= 100:
+        badges.append({"label": "PLATFORM CORE", "color": "amber"})
+        reasons.append(f"{s['owners']:,} verified holders")
+    elif s["owners"] >= 40:
+        badges.append({"label": "POPULAR RETAIL", "color": "amber"})
+
+    # Performance
+    if s["changePercent"] >= 4.0:
+        badges.append({"label": "TOP 24H SURGE", "color": "green"})
+        reasons.append(f"+{s['changePercent']:.1f}% intraday move")
+    elif s["changePercent"] <= -4.0:
+        badges.append({"label": "HIGH VOL DIP", "color": "red"})
+        reasons.append(f"{s['changePercent']:.1f}% pullback")
+        
+    # Chatroom
+    if s["chatroomMembers"] >= 5000:
+        badges.append({"label": "VIRAL CHAT", "color": "cyan"})
+        reasons.append(f"{s['chatroomMembers']:,} chat members")
+        
+    if not badges:
+        if s["isETF"]:
+            badges.append({"label": "INDEX ETF", "color": "amber"})
+            reasons.append(f"Rank #{s['rankWhaleCapital']} by capital")
+        else:
+            badges.append({"label": "TRACKED EQUITY", "color": "cyan"})
+            reasons.append(f"Rank #{s['rankWhaleCapital']} by capital")
+
+    s["badges"] = badges
+    s["whyTop"] = " &bull; ".join(reasons) if reasons else f"Rank #{s['rankWhaleCapital']} by verified capital"
+    s["rank"] = s["rankWhaleCapital"]  # Initial default rank
+
 total_whale_val = sum(w["total_value"] for w in whales)
 millionaires_count = len([w for w in whales if w["total_value"] >= 1_000_000])
+etfs_count = len([s for s in stocks if s["isETF"]])
+equities_count = len(stocks) - etfs_count
 
+# Export static JSON API files
+with open(API_DIR / "stonks.json", "w", encoding="utf-8") as f:
+    json.dump({"total": len(stocks), "securities": stocks}, f, indent=2)
+
+with open(API_DIR / "etfs.json", "w", encoding="utf-8") as f:
+    json.dump({"total": etfs_count, "securities": [s for s in stocks if s["isETF"]]}, f, indent=2)
+
+with open(API_DIR / "whales.json", "w", encoding="utf-8") as f:
+    json.dump({"total": len(whales), "whales": whales}, f, indent=2)
+
+with open(API_DIR / "shadow.json", "w", encoding="utf-8") as f:
+    shadow_whales = sorted(whales, key=lambda x: x["shadow_ratio"], reverse=True)
+    json.dump({"total": len(shadow_whales), "whales": shadow_whales}, f, indent=2)
+
+for s in stocks:
+    ticker = s["ticker"]
+    ticker_payload = {
+        "security": s,
+        "whales": ticker_to_whales.get(ticker, []),
+        "history": historic_data.get(ticker, {}).get("bars", [])
+    }
+    with open(TICKER_API_DIR / f"{ticker}.json", "w", encoding="utf-8") as f:
+        json.dump(ticker_payload, f)
+
+print(f"[+] Exported static API files to {API_DIR}")
+
+# Build the complete responsive single-page application HTML
 html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AfterHour Alpha & Whale Terminal | Powered by TraderMatrix Pro</title>
-<meta name="description" content="Institutional-grade reverse-engineered intelligence terminal tracking 395 verified AfterHour whale portfolios, $169M+ AUM, and 250 securities. Powered by TraderMatrix Pro.">
+<meta name="description" content="Institutional-grade reverse-engineered intelligence terminal tracking 395 verified AfterHour whale portfolios, $169M+ AUM, and 500 securities. Powered by TraderMatrix Pro.">
 <link rel="icon" href="https://www.tradermatrix.pro/brand/favicon-32.png" type="image/png">
 <style>
   :root {{
@@ -160,38 +261,70 @@ html_content = f"""<!DOCTYPE html>
     color: var(--text-primary);
     font-family: var(--font-sans);
     line-height: 1.5;
-    padding: 20px;
-    -webkit-font-smoothing: antialiased;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
   }}
-  .container {{ max-width: 1440px; margin: 0 auto; }}
+  .container {{
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px 24px 60px 24px;
+  }}
   
+  /* HEADER & BRANDING */
   header {{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 20px;
     border-bottom: 1px solid var(--border);
-    padding-bottom: 18px;
     margin-bottom: 24px;
     flex-wrap: wrap;
     gap: 16px;
   }}
-  .brand {{ display: flex; align-items: center; gap: 14px; }}
+  .brand {{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }}
   .brand-logo-img {{
-    width: 44px; height: 44px; border-radius: 10px;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
     transition: transform 0.2s ease;
-    display: block;
   }}
   .brand-logo-img:hover {{ transform: scale(1.05); }}
-  .brand-title h1 {{ font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }}
-  .brand-title p {{ font-size: 12px; color: var(--text-secondary); font-family: var(--font-mono); }}
-  
-  .header-badges {{ display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }}
+  .brand-title h1 {{
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #FFF, var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }}
+  .brand-title p {{
+    font-size: 13px;
+    color: var(--text-secondary);
+  }}
+  .header-badges {{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }}
   .live-badge {{
-    display: flex; align-items: center; gap: 8px;
-    background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3);
-    padding: 6px 14px; border-radius: 20px; font-size: 12px; font-family: var(--font-mono);
-    color: var(--green); font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--green);
+    font-weight: 700;
   }}
   .live-dot {{
     width: 8px; height: 8px; border-radius: 50%; background: var(--green);
@@ -295,161 +428,397 @@ html_content = f"""<!DOCTYPE html>
   }}
   .tm-ref-tag strong {{ color: var(--cyan); }}
 
+  /* STATS CARDS */
   .stats-grid {{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 14px; margin-bottom: 24px;
+    gap: 14px;
+    margin-bottom: 24px;
   }}
   .stat-card {{
     background: var(--bg-surface);
     border: 1px solid var(--border);
-    border-radius: 12px; padding: 18px 20px;
-    position: relative; overflow: hidden;
+    border-radius: 12px;
+    padding: 16px 20px;
+    position: relative;
+    overflow: hidden;
   }}
-  .stat-card::before {{
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
+  .stat-label {{
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
   }}
-  .stat-label {{ font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 6px; }}
-  .stat-value {{ font-size: 24px; font-weight: 800; font-family: var(--font-mono); letter-spacing: -0.5px; }}
-  .stat-sub {{ font-size: 12px; color: var(--text-secondary); margin-top: 4px; }}
-  .val-cyan {{ color: var(--cyan); }}
+  .stat-value {{
+    font-size: 26px;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }}
+  .stat-sub {{
+    font-size: 11px;
+    color: var(--text-secondary);
+  }}
   .val-green {{ color: var(--green); }}
-  .val-amber {{ color: var(--amber); }}
+  .val-cyan {{ color: var(--cyan); }}
   .val-purple {{ color: var(--purple); }}
+  .val-amber {{ color: var(--amber); }}
 
+  /* ROUTE / NAV TABS */
   .nav-tabs {{
-    display: flex; gap: 8px; border-bottom: 1px solid var(--border);
-    margin-bottom: 20px; overflow-x: auto; padding-bottom: 4px;
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 4px;
   }}
   .tab-btn {{
-    background: transparent; border: none; color: var(--text-secondary);
-    padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: 600;
-    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     white-space: nowrap;
+    transition: all 0.2s ease;
   }}
-  .tab-btn:hover {{ background: var(--bg-surface); color: var(--text-primary); }}
+  .tab-btn:hover {{
+    color: var(--text-primary);
+  }}
   .tab-btn.active {{
-    background: var(--bg-card); color: var(--cyan);
-    border: 1px solid var(--border-accent);
+    color: var(--cyan);
+    border-bottom-color: var(--cyan);
+  }}
+  .tab-pane {{
+    display: none;
+  }}
+  .tab-pane.active {{
+    display: block;
   }}
 
+  /* CONTROLS BAR: SEARCH & FILTERS */
   .controls-bar {{
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 12px; margin-bottom: 20px; flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+    align-items: center;
+    justify-content: space-between;
   }}
   .search-input {{
-    background: var(--bg-surface); border: 1px solid var(--border);
-    border-radius: 8px; padding: 10px 16px; font-size: 13px;
-    color: var(--text-primary); font-family: var(--font-mono);
-    min-width: 280px; flex: 1; outline: none; transition: border-color 0.2s ease;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: var(--font-sans);
+    flex: 1;
+    min-width: 280px;
   }}
-  .search-input:focus {{ border-color: var(--cyan); }}
-  
-  .filter-group {{ display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }}
+  .search-input:focus {{
+    outline: none;
+    border-color: var(--cyan);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+  }}
+
+  /* RANK SELECTOR BAR */
+  .rank-selector-strip {{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-family: var(--font-mono);
+  }}
+  .rank-selector-label {{
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }}
+  .rank-btn {{
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }}
+  .rank-btn:hover {{
+    color: var(--text-primary);
+    background: var(--bg-card);
+  }}
+  .rank-btn.active {{
+    background: rgba(0, 240, 255, 0.15);
+    border-color: var(--cyan);
+    color: var(--cyan);
+    font-weight: 700;
+  }}
+
+  .filter-group {{
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }}
   .filter-btn {{
-    background: var(--bg-surface); border: 1px solid var(--border);
-    color: var(--text-secondary); padding: 8px 14px; border-radius: 6px;
-    font-size: 12px; font-family: var(--font-mono); font-weight: 600;
-    cursor: pointer; transition: all 0.2s ease;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.2s ease;
   }}
-  .filter-btn:hover {{ color: var(--text-primary); border-color: var(--border-accent); }}
-  .filter-btn.active {{ background: var(--cyan); color: #000; border-color: var(--cyan); font-weight: 700; }}
+  .filter-btn:hover {{
+    border-color: var(--border-accent);
+    color: var(--text-primary);
+  }}
+  .filter-btn.active {{
+    background: rgba(0, 240, 255, 0.12);
+    border-color: var(--cyan);
+    color: var(--cyan);
+    font-weight: 700;
+  }}
 
-  .tab-pane {{ display: none; }}
-  .tab-pane.active {{ display: block; }}
+  /* DATA TABLES */
+  .table-card {{
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }}
+  table {{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    text-align: left;
+  }}
+  th {{
+    background: var(--bg-card);
+    color: var(--text-muted);
+    font-size: 11px;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }}
+  th:hover {{
+    color: var(--cyan);
+  }}
+  th.sortable::after {{
+    content: ' ↕';
+    opacity: 0.4;
+  }}
+  th.sorted-asc::after {{
+    content: ' ▲';
+    color: var(--cyan);
+    opacity: 1;
+  }}
+  th.sorted-desc::after {{
+    content: ' ▼';
+    color: var(--cyan);
+    opacity: 1;
+  }}
+  td {{
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+    font-family: var(--font-mono);
+    vertical-align: middle;
+  }}
+  tr.clickable-row {{
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }}
+  tr.clickable-row:hover td {{
+    background: var(--bg-card-hover);
+  }}
+  .pos-green {{ color: var(--green); }}
+  .neg-red {{ color: var(--red); }}
 
-  /* TAXONOMY REASON BADGES */
+  /* BADGES & PILLS */
   .reason-badge {{
-    display: inline-block; font-size: 10px; font-family: var(--font-mono); font-weight: 800;
-    padding: 2px 7px; border-radius: 4px; letter-spacing: 0.3px; margin-right: 4px; margin-bottom: 3px;
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    margin-right: 4px;
+    margin-bottom: 2px;
+    letter-spacing: 0.3px;
   }}
-  .badge-purple {{ background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.4); color: var(--purple); }}
-  .badge-cyan {{ background: rgba(0, 240, 255, 0.15); border: 1px solid rgba(0, 240, 255, 0.4); color: var(--cyan); }}
-  .badge-amber {{ background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: var(--amber); }}
-  .badge-green {{ background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: var(--green); }}
-  .badge-red {{ background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.4); color: var(--red); }}
+  .badge-purple {{
+    background: rgba(168, 85, 247, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    color: #D8B4FE;
+  }}
+  .badge-cyan {{
+    background: rgba(0, 240, 255, 0.15);
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    color: var(--cyan);
+  }}
+  .badge-green {{
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: var(--green);
+  }}
+  .badge-amber {{
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: var(--amber);
+  }}
+  .badge-red {{
+    background: rgba(244, 63, 94, 0.15);
+    border: 1px solid rgba(244, 63, 94, 0.4);
+    color: var(--red);
+  }}
 
-  /* WHALE CARDS GRID */
+  /* SLUG PILL */
+  .slug-pill {{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }}
+  .slug-pill:hover {{
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: rgba(0, 240, 255, 0.08);
+  }}
+
+  /* WHALE CARDS */
   .whale-grid {{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
   }}
   .whale-card {{
     background: var(--bg-surface);
     border: 1px solid var(--border);
-    border-radius: 12px; padding: 18px;
-    transition: all 0.2s ease; cursor: pointer;
-    display: flex; flex-direction: column; justify-content: space-between;
+    border-radius: 12px;
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
   }}
   .whale-card:hover {{
-    background: var(--bg-card);
     border-color: var(--cyan);
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   }}
   .whale-header {{
-    display: flex; justify-content: space-between; align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 12px;
   }}
-  .whale-user {{ display: flex; align-items: center; gap: 10px; }}
+  .whale-user {{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }}
   .whale-avatar {{
-    width: 38px; height: 38px; border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
     background: linear-gradient(135deg, #1E293B, #334155);
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 15px; color: var(--cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--cyan);
+    font-family: var(--font-mono);
     border: 1px solid var(--border-accent);
   }}
-  .whale-name {{ font-weight: 700; font-size: 15px; }}
-  .whale-rank {{ font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); }}
+  .whale-name {{
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }}
+  .whale-rank {{
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }}
   .whale-badge {{
-    background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3);
-    color: var(--cyan); font-size: 10px; font-family: var(--font-mono);
-    padding: 3px 8px; border-radius: 4px; font-weight: 700;
+    background: rgba(0, 240, 255, 0.1);
+    color: var(--cyan);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-family: var(--font-mono);
+    font-weight: 700;
   }}
-  
   .whale-metrics {{
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 10px; margin-bottom: 14px;
-    background: var(--bg-base); padding: 12px; border-radius: 8px;
-    border: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+    background: var(--bg-card);
+    padding: 10px 12px;
+    border-radius: 8px;
   }}
-  .w-metric-label {{ font-size: 10px; color: var(--text-muted); font-family: var(--font-mono); }}
-  .w-metric-val {{ font-size: 16px; font-weight: 800; font-family: var(--font-mono); margin-top: 2px; }}
-  
-  .holdings-row {{ display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }}
+  .whale-m-label {{
+    font-size: 10px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }}
+  .whale-m-val {{
+    font-size: 15px;
+    font-weight: 800;
+    font-family: var(--font-mono);
+  }}
+  .holding-chips {{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }}
   .holding-chip {{
-    background: var(--bg-base); border: 1px solid var(--border);
-    padding: 4px 8px; border-radius: 4px; font-size: 11px;
-    font-family: var(--font-mono); color: var(--text-secondary);
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
     transition: all 0.15s ease;
   }}
   .holding-chip:hover {{
-    border-color: var(--cyan); color: var(--cyan); background: var(--bg-surface);
+    border-color: var(--cyan);
+    color: var(--cyan);
   }}
-
-  /* DATA TABLE */
-  .table-card {{
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: 12px; overflow: hidden;
-  }}
-  table {{ width: 100%; border-collapse: collapse; text-align: left; }}
-  th {{
-    background: var(--bg-base); color: var(--text-muted);
-    font-size: 11px; font-family: var(--font-mono); text-transform: uppercase;
-    padding: 12px 16px; font-weight: 600; border-bottom: 1px solid var(--border);
-    white-space: nowrap;
-  }}
-  td {{
-    padding: 12px 16px; border-bottom: 1px solid var(--border);
-    font-size: 13px; font-family: var(--font-mono);
-  }}
-  tr.clickable-row {{ cursor: pointer; transition: background 0.15s ease; }}
-  tr.clickable-row:hover td {{ background: var(--bg-card); }}
-  .pos-green {{ color: var(--green); }}
-  .neg-red {{ color: var(--red); }}
 
   /* MODALS */
   .modal-overlay {{
@@ -461,13 +830,13 @@ html_content = f"""<!DOCTYPE html>
   .modal-overlay.active {{ display: flex; }}
   .modal-box {{
     background: var(--bg-surface); border: 1px solid var(--border-accent);
-    border-radius: 16px; width: 100%; max-width: 900px;
-    max-height: 85vh; overflow-y: auto; box-shadow: 0 24px 50px rgba(0,0,0,0.8);
+    border-radius: 16px; width: 100%; max-width: 950px;
+    max-height: 88vh; overflow-y: auto; box-shadow: 0 24px 50px rgba(0,0,0,0.8);
     position: relative;
   }}
   .modal-header {{
     display: flex; justify-content: space-between; align-items: center;
-    padding: 22px 26px; border-bottom: 1px solid var(--border);
+    padding: 20px 26px; border-bottom: 1px solid var(--border);
     position: sticky; top: 0; background: var(--bg-surface); z-index: 10;
   }}
   .modal-body {{ padding: 22px 26px; }}
@@ -478,9 +847,60 @@ html_content = f"""<!DOCTYPE html>
   .close-btn:hover {{ color: var(--text-primary); }}
 
   .modal-stat-strip {{
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 10px; margin-bottom: 20px; background: var(--bg-base); padding: 14px;
     border-radius: 10px; border: 1px solid var(--border);
+  }}
+
+  .slug-permalink-bar {{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+  }}
+  .slug-copy-btn {{
+    background: rgba(0, 240, 255, 0.15);
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    color: var(--cyan);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }}
+  .slug-copy-btn:hover {{
+    background: var(--cyan);
+    color: #000;
+  }}
+
+  /* OVER-TIME HISTORICAL CHART CONTAINER */
+  .chart-box {{
+    background: var(--bg-base);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }}
+  .chart-header {{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }}
+  .chart-svg {{
+    width: 100%;
+    height: 190px;
+    display: block;
   }}
 
   footer {{
@@ -501,7 +921,7 @@ html_content = f"""<!DOCTYPE html>
         <img src="https://www.tradermatrix.pro/brand/app-icon-180.png" class="brand-logo-img" alt="TraderMatrix Logo">
       </a>
       <div class="brand-title">
-        <h1>AfterHour Alpha Terminal</h1>
+        <h1>AfterHour Alpha & Whale Terminal</h1>
         <p>Institutional Alt-Data &bull; Powered by <a href="https://www.tradermatrix.pro/?ref=MPHINANCE" target="_blank" style="color: var(--cyan); text-decoration: none; font-weight: 700;">TraderMatrix Pro</a></p>
       </div>
     </div>
@@ -527,7 +947,7 @@ html_content = f"""<!DOCTYPE html>
     <div class="stat-card">
       <div class="stat-label">TOTAL VERIFIED WHALE CAPITAL</div>
       <div class="stat-value val-green">${total_whale_val:,.0f}</div>
-      <div class="stat-sub">{len(whales)} active verified portfolios</div>
+      <div class="stat-sub">{len(whales)} verified portfolios tracked</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">VERIFIED MILLIONAIRES</div>
@@ -535,14 +955,14 @@ html_content = f"""<!DOCTYPE html>
       <div class="stat-sub">Controlling $110.8M+ AUM</div>
     </div>
     <div class="stat-card">
-      <div class="stat-label">TOP TRACKED WHALE</div>
-      <div class="stat-value val-purple">${whales[0]['total_value']:,.0f}</div>
-      <div class="stat-sub">@{whales[0]['username']} ({", ".join([p['ticker'] for p in whales[0]['top_positions'][:2]])})</div>
+      <div class="stat-label">TRACKED UNIVERSE</div>
+      <div class="stat-value val-purple">{len(stocks)} SECURITIES</div>
+      <div class="stat-sub">{equities_count} Stocks &bull; {etfs_count} ETFs segregated</div>
     </div>
     <div class="stat-card">
-      <div class="stat-label">SECURITIES TRACKED</div>
-      <div class="stat-value val-amber">{len(stocks)} TICKERS</div>
-      <div class="stat-sub">Enriched with verified whale ownership</div>
+      <div class="stat-label">TOP TRACKED WHALE</div>
+      <div class="stat-value val-amber">${whales[0]['total_value']:,.0f}</div>
+      <div class="stat-sub">@{whales[0]['username']} (${whales[0]['shadow_ratio']:,.0f}/sub)</div>
     </div>
   </div>
 
@@ -572,45 +992,64 @@ html_content = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- NAVIGATION TABS -->
+  <!-- ROUTE NAVIGATION TABS -->
   <div class="nav-tabs">
-    <button class="tab-btn active" onclick="switchTab('stocks')">
+    <button class="tab-btn active" id="tabNav-stonks" onclick="switchRoute('/stonks')">
       <span>&#x1F4C8;</span> Top Stonks &amp; Taxonomy ({len(stocks)})
     </button>
-    <button class="tab-btn" onclick="switchTab('whales')">
+    <button class="tab-btn" id="tabNav-etfs" onclick="switchRoute('/etfs')">
+      <span>&#x1F3DB;&#xFE0F;</span> ETFs &amp; Index Funds ({etfs_count})
+    </button>
+    <button class="tab-btn" id="tabNav-whales" onclick="switchRoute('/whales')">
       <span>&#x1F40B;</span> Whale Radar ({len(whales)})
     </button>
-    <button class="tab-btn" onclick="switchTab('shadow')">
+    <button class="tab-btn" id="tabNav-shadow" onclick="switchRoute('/shadow')">
       <span>&#x1F916;</span> Shadow Whales (Under-Followed)
     </button>
   </div>
 
-  <!-- TAB 1: TOP STOCKS & TAXONOMY -->
-  <div id="tab-stocks" class="tab-pane active">
+  <!-- TAB 1: TOP STONKS & TAXONOMY -->
+  <div id="view-stonks" class="tab-pane active">
+    <!-- RANK SELECTOR STRIP -->
+    <div class="rank-selector-strip">
+      <span class="rank-selector-label">&#x26A1; Rank Universe By:</span>
+      <button class="rank-btn active" id="rankBtn-whale" onclick="setRankMode('whale')">🐋 Whale Capital ($)</button>
+      <button class="rank-btn" id="rankBtn-value" onclick="setRankMode('value')">🌐 Total Value ($)</button>
+      <button class="rank-btn" id="rankBtn-owners" onclick="setRankMode('owners')">👑 Verified Owners</button>
+      <button class="rank-btn" id="rankBtn-gainers" onclick="setRankMode('gainers')">🚀 24h Gainers</button>
+      <button class="rank-btn" id="rankBtn-dips" onclick="setRankMode('dips')">📉 24h Dips</button>
+      <button class="rank-btn" id="rankBtn-chat" onclick="setRankMode('chat')">💬 Chatroom Heat</button>
+    </div>
+
+    <!-- CONTROLS & FILTER PILLS -->
     <div class="controls-bar">
-      <input type="text" id="stockSearch" class="search-input" placeholder="Search stocks by ticker or company name (e.g. NVDA, Apple, ASTS)..." oninput="filterStocks()">
+      <input type="text" id="stockSearch" class="search-input" placeholder="Search 500 securities by ticker or company name (e.g. NVDA, AAPL, QQQ, ASTS)..." oninput="filterStocks()">
       <div class="filter-group">
-        <button class="filter-btn active" id="btnStockAll" onclick="setStockFilter('all')">All (250)</button>
-        <button class="filter-btn" id="btnStockWhales" onclick="setStockFilter('whales')">🐋 Whale Favorites ($1M+)</button>
-        <button class="filter-btn" id="btnStockOwners" onclick="setStockFilter('owners')">👑 Most Owned on App</button>
-        <button class="filter-btn" id="btnStockGainers" onclick="setStockFilter('gainers')">🚀 Top Gainers</button>
-        <button class="filter-btn" id="btnStockChat" onclick="setStockFilter('chat')">💬 Active Chatrooms</button>
+        <button class="filter-btn active" id="btnFilter-all" onclick="setStockFilter('all')">All (500)</button>
+        <button class="filter-btn" id="btnFilter-whales" onclick="setStockFilter('whales')">🐋 Whale Favs ($1M+)</button>
+        <button class="filter-btn" id="btnFilter-etfs" onclick="setStockFilter('etfs')">🏛️ ETFs ({etfs_count})</button>
+        <button class="filter-btn" id="btnFilter-stocks" onclick="setStockFilter('stocks')">📈 Equities ({equities_count})</button>
+        <button class="filter-btn" id="btnFilter-owners" onclick="setStockFilter('owners')">👑 Most Owned (50+)</button>
+        <button class="filter-btn" id="btnFilter-gainers" onclick="setStockFilter('gainers')">🚀 Gainers (+2%)</button>
+        <button class="filter-btn" id="btnFilter-chat" onclick="setStockFilter('chat')">💬 Active Chat</button>
       </div>
     </div>
+
     <div class="table-card">
       <div style="overflow-x: auto;">
-        <table>
+        <table id="stocksTable">
           <thead>
             <tr>
-              <th>Rank</th>
-              <th>Ticker</th>
-              <th>Company Name</th>
-              <th>Why It's Top / Category</th>
-              <th>Verified Whale Backing</th>
-              <th>App Owners</th>
-              <th>Price ($)</th>
-              <th>24h %</th>
-              <th>Chatroom</th>
+              <th class="sortable" id="th-rank" onclick="sortTableColumn('rank')">Rank</th>
+              <th class="sortable" id="th-ticker" onclick="sortTableColumn('ticker')">Ticker / Slug</th>
+              <th class="sortable" id="th-type" onclick="sortTableColumn('type')">Type</th>
+              <th class="sortable" id="th-name" onclick="sortTableColumn('name')">Company / Asset Name</th>
+              <th>Why It's Top / Quant Reason</th>
+              <th class="sortable sorted-desc" id="th-whalesValue" onclick="sortTableColumn('whalesValue')">Whale Capital</th>
+              <th class="sortable" id="th-owners" onclick="sortTableColumn('owners')">Owners</th>
+              <th class="sortable" id="th-price" onclick="sortTableColumn('price')">Price ($)</th>
+              <th class="sortable" id="th-changePercent" onclick="sortTableColumn('changePercent')">24h %</th>
+              <th class="sortable" id="th-chatroomMembers" onclick="sortTableColumn('chatroomMembers')">Chatroom</th>
             </tr>
           </thead>
           <tbody id="stocksBody"></tbody>
@@ -620,9 +1059,9 @@ html_content = f"""<!DOCTYPE html>
   </div>
 
   <!-- TAB 2: WHALE RADAR -->
-  <div id="tab-whales" class="tab-pane">
+  <div id="view-whales" class="tab-pane">
     <div class="controls-bar">
-      <input type="text" id="whaleSearch" class="search-input" placeholder="Search by handle or ticker (e.g. SlowmoInvestor, AAPL, ASTS)..." oninput="filterWhales()">
+      <input type="text" id="whaleSearch" class="search-input" placeholder="Search 395 whales by handle or held ticker (e.g. skrt, SlowmoInvestor, AAPL, ASTS)..." oninput="filterWhales()">
       <div class="filter-group">
         <button class="filter-btn active" id="btnSortVal" onclick="sortWhales('value')">Sort: Net Worth ($)</button>
         <button class="filter-btn" id="btnSortRatio" onclick="sortWhales('ratio')">Sort: $/Follower Ratio</button>
@@ -632,10 +1071,10 @@ html_content = f"""<!DOCTYPE html>
     <div class="whale-grid" id="whaleContainer"></div>
   </div>
 
-  <!-- TAB 3: SHADOW WHALES -->
-  <div id="tab-shadow" class="tab-pane">
-    <div style="margin-bottom: 16px; color: var(--text-secondary); font-size: 13px;">
-      <strong>The Clout Inversion Thesis</strong>: Retail follower counts on trading social apps are heavily disconnected from actual capital. The accounts below hold seven and eight-figure portfolios while flying under the radar with minimal followers.
+  <!-- TAB 3: SHADOW WHALES (CLOUT INVERSION) -->
+  <div id="view-shadow" class="tab-pane">
+    <div style="margin-bottom: 16px; color: var(--text-secondary); font-size: 13px; background: var(--bg-surface); padding: 14px 18px; border-radius: 10px; border: 1px solid var(--border);">
+      <strong style="color: var(--cyan);">The Clout Inversion Law</strong>: Retail clout on trading social networks is inversely correlated with verified capital. The accounts below hold seven- and eight-figure verified portfolios while flying completely under the radar with minimal followers.
     </div>
     <div class="table-card">
       <div style="overflow-x: auto;">
@@ -643,12 +1082,12 @@ html_content = f"""<!DOCTYPE html>
           <thead>
             <tr>
               <th>Rank</th>
-              <th>Handle</th>
+              <th>Whale Handle / Slug</th>
               <th>Verified Equity</th>
               <th>Followers</th>
               <th>$/Follower Ratio</th>
               <th>Top Concentrated Holdings</th>
-              <th>Verified Since</th>
+              <th>Verified Status</th>
             </tr>
           </thead>
           <tbody id="shadowBody"></tbody>
@@ -664,36 +1103,6 @@ html_content = f"""<!DOCTYPE html>
   </footer>
 </div>
 
-<!-- MODAL FOR WHALE DETAIL -->
-<div class="modal-overlay" id="whaleModal" onclick="closeModal(event, 'whaleModal')">
-  <div class="modal-box" onclick="event.stopPropagation()">
-    <div class="modal-header">
-      <div>
-        <h3 id="whaleModalTitle" style="font-size: 18px; font-weight: 700;">Whale Portfolio</h3>
-        <p id="whaleModalSub" style="font-size: 12px; color: var(--text-secondary); font-family: var(--font-mono);"></p>
-      </div>
-      <button class="close-btn" onclick="hideModal('whaleModal')">&times;</button>
-    </div>
-    <div class="modal-body">
-      <div id="whaleModalStrip" class="modal-stat-strip"></div>
-      <div style="overflow-x: auto;">
-        <table>
-          <thead>
-            <tr>
-              <th>Ticker (Click to View)</th>
-              <th>Quantity</th>
-              <th>Position Value</th>
-              <th>Cost Basis</th>
-              <th>Unrealized P&L</th>
-            </tr>
-          </thead>
-          <tbody id="whaleModalPositionsBody"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- MODAL FOR TICKER DEEP-DIVE -->
 <div class="modal-overlay" id="tickerModal" onclick="closeModal(event, 'tickerModal')">
   <div class="modal-box" onclick="event.stopPropagation()">
@@ -705,21 +1114,30 @@ html_content = f"""<!DOCTYPE html>
       <button class="close-btn" onclick="hideModal('tickerModal')">&times;</button>
     </div>
     <div class="modal-body">
+      <!-- PERMALINK SLUG BAR -->
+      <div class="slug-permalink-bar">
+        <span>Permalink Slug: <strong id="tickerModalSlugText" style="color: var(--cyan);"></strong></span>
+        <button class="slug-copy-btn" id="tickerCopyBtn" onclick="copyTickerSlug()">📋 Copy Slug Link</button>
+      </div>
+
       <div id="tickerModalStrip" class="modal-stat-strip"></div>
       
+      <!-- OVER-TIME HISTORICAL CHART (IF AVAILABLE) -->
+      <div id="tickerChartContainer" style="display: none;"></div>
+
       <!-- TraderMatrix Pro contextual CTA inside modal -->
-      <div style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(168, 85, 247, 0.1)); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 10px; padding: 12px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap;">
+      <div style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(168, 85, 247, 0.1)); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap;">
         <div>
-          <div style="font-size: 12px; font-weight: 700; color: var(--cyan);">Track Institutional Order Flow &amp; GEX Levels</div>
-          <div style="font-size: 11px; color: var(--text-secondary);">See real-time dark pool block trades and dealer gamma walls for this ticker on TraderMatrix.</div>
+          <div style="font-size: 13px; font-weight: 700; color: var(--cyan);">Institutional Order Flow &amp; Gamma Walls</div>
+          <div style="font-size: 11px; color: var(--text-secondary);">Access real-time dark pool block prints and dealer GEX levels for this ticker on TraderMatrix Pro.</div>
         </div>
         <a id="tickerModalTmBtn" href="https://www.tradermatrix.pro/?ref=MPHINANCE" target="_blank" style="background: var(--cyan); color: #000; font-size: 12px; font-weight: 800; font-family: var(--font-mono); padding: 8px 14px; border-radius: 6px; text-decoration: none; white-space: nowrap;">
-          View on TraderMatrix &rarr;
+          View Live Tape &rarr;
         </a>
       </div>
 
       <div style="font-size: 13px; font-weight: 700; margin-bottom: 10px; color: var(--text-primary);">
-        Verified AfterHour Whales Holding This Stock:
+        Verified Whales Holding This Asset (<span id="tickerModalWhalesCount">0</span>):
       </div>
       <div style="overflow-x: auto;">
         <table>
@@ -740,72 +1158,265 @@ html_content = f"""<!DOCTYPE html>
   </div>
 </div>
 
+<!-- MODAL FOR WHALE DETAIL -->
+<div class="modal-overlay" id="whaleModal" onclick="closeModal(event, 'whaleModal')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div>
+        <h3 id="whaleModalTitle" style="font-size: 18px; font-weight: 700;">Whale Portfolio</h3>
+        <p id="whaleModalSub" style="font-size: 12px; color: var(--text-secondary); font-family: var(--font-mono);"></p>
+      </div>
+      <button class="close-btn" onclick="hideModal('whaleModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <!-- PERMALINK SLUG BAR -->
+      <div class="slug-permalink-bar">
+        <span>Permalink Slug: <strong id="whaleModalSlugText" style="color: var(--cyan);"></strong></span>
+        <button class="slug-copy-btn" id="whaleCopyBtn" onclick="copyWhaleSlug()">📋 Copy Slug Link</button>
+      </div>
+
+      <div id="whaleModalStrip" class="modal-stat-strip"></div>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Ticker (Click to View)</th>
+              <th>Quantity</th>
+              <th>Position Value</th>
+              <th>Cost Basis</th>
+              <th>Unrealized P&L</th>
+            </tr>
+          </thead>
+          <tbody id="whaleModalPositionsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 const STOCKS_DATA = {json.dumps(stocks)};
 const WHALES_DATA = {json.dumps(whales)};
 const TICKER_WHALES = {json.dumps(ticker_to_whales)};
+const HISTORIC_DATA = {json.dumps(historic_data)};
 
-let currentStockFilter = 'all';
-let currentWhaleSort = 'value';
-let filteredWhales = [...WHALES_DATA];
+let currentRoute = '/stonks';
+let currentRankMode = 'whale'; // 'whale', 'value', 'owners', 'gainers', 'dips', 'chat'
+let currentStockFilter = 'all'; // 'all', 'whales', 'etfs', 'stocks', 'owners', 'gainers', 'chat'
+let currentWhaleSort = 'value'; // 'value', 'ratio', 'pnl'
+
+let activeSortColumn = 'whalesValue';
+let activeSortAsc = false;
+
 let filteredStocks = [...STOCKS_DATA];
+let filteredWhales = [...WHALES_DATA];
+let currentOpenTicker = null;
+let currentOpenWhale = null;
 
-function switchTab(tabId) {{
+// ROUTING & SLUGS SYSTEM
+function parseInitialRoute() {{
+  const path = window.location.pathname.replace(/\\/index\\.html$/, '');
+  const hash = window.location.hash.replace(/^#/, '');
+  
+  // Prefer hash if present (e.g. #/ticker/NVDA), else check pathname
+  const route = hash || path || '/stonks';
+  navigateRoute(route, false);
+}}
+
+function switchRoute(slug, pushHistory = true) {{
+  navigateRoute(slug, pushHistory);
+}}
+
+function navigateRoute(slug, pushHistory = true) {{
+  if (!slug || slug === '/' || slug === '') slug = '/stonks';
+  
+  // Clean slug
+  slug = slug.trim();
+  if (slug.startsWith('#')) slug = slug.substring(1);
+  if (!slug.startsWith('/')) slug = '/' + slug;
+
+  // Check ticker slug: /ticker/:symbol or /stonk/:symbol
+  const tickerMatch = slug.match(/^\\/(?:ticker|stonk)\\/([A-Za-z0-9_.-]+)$/i);
+  if (tickerMatch) {{
+    const sym = tickerMatch[1].toUpperCase();
+    activateTab('stonks', false);
+    openTickerModal(sym, pushHistory);
+    return;
+  }}
+
+  // Check whale slug: /@:username or /whale/:username
+  const whaleMatch = slug.match(/^\\/(?:@|whale\\/)([A-Za-z0-9_.-]+)$/i);
+  if (whaleMatch) {{
+    const u = whaleMatch[1];
+    activateTab('whales', false);
+    openWhaleModal(u, pushHistory);
+    return;
+  }}
+
+  // Check top-level routes
+  if (slug === '/all') {{
+    activateTab('stonks', pushHistory, '/all');
+    setStockFilter('all');
+    return;
+  }}
+  if (slug === '/etfs') {{
+    activateTab('stonks', pushHistory, '/etfs');
+    setStockFilter('etfs');
+    return;
+  }}
+  if (slug === '/whales') {{
+    activateTab('whales', pushHistory, '/whales');
+    return;
+  }}
+  if (slug === '/shadow') {{
+    activateTab('shadow', pushHistory, '/shadow');
+    return;
+  }}
+
+  // Default: /stonks
+  activateTab('stonks', pushHistory, '/stonks');
+}}
+
+function activateTab(tabId, pushHistory = true, newSlug = null) {{
+  currentRoute = newSlug || ('/' + tabId);
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  document.getElementById('tab-' + tabId).classList.add('active');
+
+  const navBtn = document.getElementById('tabNav-' + (tabId === 'stonks' && currentStockFilter === 'etfs' ? 'etfs' : tabId)) || document.getElementById('tabNav-' + tabId);
+  if (navBtn) navBtn.classList.add('active');
+
+  const pane = document.getElementById('view-' + tabId);
+  if (pane) pane.classList.add('active');
+
+  if (pushHistory && window.history && window.history.pushState) {{
+    window.history.pushState(null, '', currentRoute);
+  }}
+}}
+
+window.addEventListener('popstate', () => {{
+  parseInitialRoute();
+}});
+
+// RANKING MODE CONTROLLER
+function setRankMode(mode) {{
+  currentRankMode = mode;
+  document.querySelectorAll('.rank-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('rankBtn-' + mode);
+  if (btn) btn.classList.add('active');
+
+  if (mode === 'whale') {{
+    activeSortColumn = 'whalesValue'; activeSortAsc = false;
+  }} else if (mode === 'value') {{
+    activeSortColumn = 'totalValue'; activeSortAsc = false;
+  }} else if (mode === 'owners') {{
+    activeSortColumn = 'owners'; activeSortAsc = false;
+  }} else if (mode === 'gainers') {{
+    activeSortColumn = 'changePercent'; activeSortAsc = false;
+  }} else if (mode === 'dips') {{
+    activeSortColumn = 'changePercent'; activeSortAsc = true;
+  }} else if (mode === 'chat') {{
+    activeSortColumn = 'chatroomMembers'; activeSortAsc = false;
+  }}
+
+  updateHeaderSortIndicators();
+  filterStocks();
 }}
 
 // STOCK FILTERS
 function setStockFilter(mode) {{
   currentStockFilter = mode;
-  document.querySelectorAll('#tab-stocks .filter-btn').forEach(b => b.classList.remove('active'));
-  if (mode === 'all') document.getElementById('btnStockAll').classList.add('active');
-  if (mode === 'whales') document.getElementById('btnStockWhales').classList.add('active');
-  if (mode === 'owners') document.getElementById('btnStockOwners').classList.add('active');
-  if (mode === 'gainers') document.getElementById('btnStockGainers').classList.add('active');
-  if (mode === 'chat') document.getElementById('btnStockChat').classList.add('active');
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('btnFilter-' + mode);
+  if (btn) btn.classList.add('active');
+  
+  if (mode === 'etfs') {{
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tabNav-etfs').classList.add('active');
+  }} else {{
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tabNav-stonks').classList.add('active');
+  }}
+
   filterStocks();
+}}
+
+function sortTableColumn(col) {{
+  if (activeSortColumn === col) {{
+    activeSortAsc = !activeSortAsc;
+  }} else {{
+    activeSortColumn = col;
+    activeSortAsc = (col === 'rank' || col === 'ticker' || col === 'name' || col === 'type') ? true : false;
+  }}
+  updateHeaderSortIndicators();
+  applyCurrentSort();
+  renderStocks(filteredStocks);
+}}
+
+function updateHeaderSortIndicators() {{
+  document.querySelectorAll('th').forEach(th => {{
+    th.classList.remove('sorted-asc', 'sorted-desc');
+  }});
+  const activeTh = document.getElementById('th-' + activeSortColumn);
+  if (activeTh) {{
+    activeTh.classList.add(activeSortAsc ? 'sorted-asc' : 'sorted-desc');
+  }}
 }}
 
 function filterStocks() {{
   const q = (document.getElementById('stockSearch').value || '').toLowerCase().trim();
+  
   filteredStocks = STOCKS_DATA.filter(s => {{
     if (q && !s.ticker.toLowerCase().includes(q) && !s.name.toLowerCase().includes(q)) {{
       return false;
     }}
     if (currentStockFilter === 'whales') return s.whalesValue >= 1000000;
-    if (currentStockFilter === 'owners') return s.owners >= 100;
+    if (currentStockFilter === 'etfs') return s.isETF;
+    if (currentStockFilter === 'stocks') return !s.isETF;
+    if (currentStockFilter === 'owners') return s.owners >= 50;
     if (currentStockFilter === 'gainers') return s.changePercent >= 2.0;
     if (currentStockFilter === 'chat') return s.chatroomMembers >= 2000;
     return true;
   }});
 
-  // Sort according to category filter
-  if (currentStockFilter === 'whales') {{
-    filteredStocks.sort((a, b) => b.whalesValue - a.whalesValue);
-  }} else if (currentStockFilter === 'owners') {{
-    filteredStocks.sort((a, b) => b.owners - a.owners);
-  }} else if (currentStockFilter === 'gainers') {{
-    filteredStocks.sort((a, b) => b.changePercent - a.changePercent);
-  }} else if (currentStockFilter === 'chat') {{
-    filteredStocks.sort((a, b) => b.chatroomMembers - a.chatroomMembers);
-  }} else {{
-    filteredStocks.sort((a, b) => a.rank - b.rank);
-  }}
-
+  applyCurrentSort();
   renderStocks(filteredStocks);
+}}
+
+function applyCurrentSort() {{
+  filteredStocks.sort((a, b) => {{
+    let vA = a[activeSortColumn];
+    let vB = b[activeSortColumn];
+
+    if (activeSortColumn === 'rank') {{
+      vA = getDisplayRank(a);
+      vB = getDisplayRank(b);
+    }}
+
+    if (typeof vA === 'string') {{
+      return activeSortAsc ? vA.localeCompare(vB) : vB.localeCompare(vA);
+    }}
+    return activeSortAsc ? (vA - vB) : (vB - vA);
+  }});
+}}
+
+function getDisplayRank(s) {{
+  if (currentRankMode === 'whale') return s.rankWhaleCapital;
+  if (currentRankMode === 'value') return s.rankPlatformValue;
+  if (currentRankMode === 'owners') return s.rankOwners;
+  if (currentRankMode === 'gainers') return s.rankGainers;
+  if (currentRankMode === 'dips') return s.rankDips || s.rankWhaleCapital;
+  if (currentRankMode === 'chat') return s.rankChat;
+  return s.rankWhaleCapital;
 }}
 
 function renderStocks(list) {{
   const body = document.getElementById('stocksBody');
   if (list.length === 0) {{
-    body.innerHTML = '<tr><td colspan="9" style="text-align: center; color: var(--text-muted); padding: 30px;">No stocks match your filter query.</td></tr>';
+    body.innerHTML = '<tr><td colspan="10" style="text-align: center; color: var(--text-muted); padding: 30px;">No securities match your filter query.</td></tr>';
     return;
   }}
 
-  body.innerHTML = list.map(s => {{
+  body.innerHTML = list.map((s, idx) => {{
     const sign = s.changePercent >= 0 ? '+' : '';
     const cls = s.changePercent >= 0 ? 'pos-green' : 'neg-red';
     
@@ -813,16 +1424,26 @@ function renderStocks(list) {{
       return `<span class="reason-badge badge-${{b.color}}">${{b.label}}</span>`;
     }}).join('');
 
+    const typeBadge = s.isETF 
+      ? `<span class="reason-badge badge-amber" style="font-weight: 800;">ETF</span>`
+      : `<span class="reason-badge badge-cyan">STOCK</span>`;
+
     const whaleBackingHtml = s.whalesCount > 0 
       ? `<div style="font-weight: 700; color: var(--cyan);">${{s.whalesCount}} Whales ($${{(s.whalesValue/1000000).toFixed(1)}}M)</div>
-         <div style="font-size: 11px; color: var(--text-muted);">Top: @${{s.topWhale}}</div>`
+         <div style="font-size: 10px; color: var(--text-muted);">Top: @${{s.topWhale}}</div>`
       : `<span style="color: var(--text-muted); font-size: 11px;">0 tracked whales</span>`;
+
+    const displayRank = (activeSortColumn === 'rank' || activeSortColumn === 'whalesValue') ? getDisplayRank(s) : (idx + 1);
 
     return `
       <tr class="clickable-row" onclick="openTickerModal('${{s.ticker}}')">
-        <td style="color: var(--text-muted);">${{s.rank}}</td>
-        <td style="font-weight: 800; font-size: 14px; color: var(--cyan);">${{s.ticker}}</td>
-        <td style="color: var(--text-secondary); max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${{s.name}}</td>
+        <td style="color: var(--text-muted); font-weight: 700;">#${{displayRank}}</td>
+        <td>
+          <div style="font-weight: 800; font-size: 14px; color: var(--cyan);">${{s.ticker}}</div>
+          <span class="slug-pill" onclick="event.stopPropagation(); copySlug('/ticker/${{s.ticker}}')">🔗 /ticker/${{s.ticker}}</span>
+        </td>
+        <td>${{typeBadge}}</td>
+        <td style="color: var(--text-secondary); max-width: 170px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${{s.name}}</td>
         <td>
           <div>${{badgeHtml}}</div>
           <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">${{s.whyTop}}</div>
@@ -840,7 +1461,7 @@ function renderStocks(list) {{
 // WHALE RADAR
 function sortWhales(mode) {{
   currentWhaleSort = mode;
-  document.querySelectorAll('#tab-whales .filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#view-whales .filter-btn').forEach(b => b.classList.remove('active'));
   if (mode === 'value') document.getElementById('btnSortVal').classList.add('active');
   if (mode === 'ratio') document.getElementById('btnSortRatio').classList.add('active');
   if (mode === 'pnl') document.getElementById('btnSortPnL').classList.add('active');
@@ -898,161 +1519,305 @@ function renderWhales() {{
         </div>
         <div class="whale-metrics">
           <div>
-            <div class="w-metric-label">VERIFIED VALUE</div>
-            <div class="w-metric-val val-green">$${{Math.round(w.total_value).toLocaleString()}}</div>
+            <div class="whale-m-label">NET WORTH</div>
+            <div class="whale-m-val val-green">$${{Math.round(w.total_value).toLocaleString()}}</div>
           </div>
           <div>
-            <div class="w-metric-label">ALL-TIME P&L</div>
-            <div class="w-metric-val ${{pnlClass}}">${{pnlSign}}$${{Math.round(w.profit).toLocaleString()}}</div>
+            <div class="whale-m-label">TRACKED P&L</div>
+            <div class="whale-m-val ${{pnlClass}}">${{pnlSign}}$${{Math.round(w.profit).toLocaleString()}}</div>
           </div>
         </div>
-        <div class="holdings-row">
-          ${{topHoldings || '<span class="holding-chip">Cash Only</span>'}}
-        </div>
+        <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 6px; font-family: var(--font-mono);">TOP POSITIONS:</div>
+        <div class="holding-chips">${{topHoldings || '<span style="color: var(--text-muted); font-size: 11px;">No active holdings</span>'}}</div>
       </div>
     `;
   }}).join('');
 }}
 
-function renderShadowTable() {{
+function renderShadowWhales() {{
   const body = document.getElementById('shadowBody');
-  const sorted = [...WHALES_DATA].sort((a, b) => b.shadow_ratio - a.shadow_ratio).slice(0, 35);
+  const sorted = [...WHALES_DATA].sort((a, b) => b.shadow_ratio - a.shadow_ratio).slice(0, 60);
+
   body.innerHTML = sorted.map((w, idx) => {{
-    const topAssets = (w.top_positions || []).slice(0, 3).map(p => {{
-      return `<span style="color: var(--cyan); cursor: pointer;" onclick="event.stopPropagation(); openTickerModal('${{p.ticker}}')">${{p.ticker}}</span>`;
-    }}).join(', ');
+    const topHoldings = (w.top_positions || []).slice(0, 3).map(p => {{
+      const t = p.ticker || 'N/A';
+      return `<span class="holding-chip" onclick="event.stopPropagation(); openTickerModal('${{t}}')">${{t}}</span>`;
+    }}).join(' ');
 
     return `
       <tr class="clickable-row" onclick="openWhaleModal('${{w.username}}')">
         <td style="color: var(--text-muted);">#${{idx + 1}}</td>
-        <td style="font-weight: 700; color: var(--cyan);">@${{w.username}}</td>
-        <td style="font-weight: 700; color: var(--green);">$${{Math.round(w.total_value).toLocaleString()}}</td>
+        <td>
+          <div style="font-weight: 700; color: var(--cyan);">@${{w.username}}</div>
+          <span class="slug-pill" onclick="event.stopPropagation(); copySlug('/@${{w.username}}')">🔗 /@${{w.username}}</span>
+        </td>
+        <td class="val-green" style="font-weight: 700;">$${{Math.round(w.total_value).toLocaleString()}}</td>
         <td>${{w.followers.toLocaleString()}}</td>
-        <td style="font-weight: 700; color: var(--purple);">$${{Math.round(w.shadow_ratio).toLocaleString()}} / sub</td>
-        <td>${{topAssets || 'Cash'}}</td>
-        <td style="color: var(--text-muted); font-size: 11px;">${{w.verified_as_of ? w.verified_as_of.slice(0, 10) : 'N/A'}}</td>
+        <td class="val-purple" style="font-weight: 800;">$${{Math.round(w.shadow_ratio).toLocaleString()}} / sub</td>
+        <td>${{topHoldings}}</td>
+        <td><span class="whale-badge">VERIFIED</span></td>
       </tr>
     `;
   }}).join('');
 }}
 
-// MODAL CONTROLS
-function openWhaleModal(username) {{
-  hideModal('tickerModal');
-  const w = WHALES_DATA.find(x => x.username === username);
-  if (!w) return;
-  document.getElementById('whaleModalTitle').innerText = '@' + w.username + ' Portfolio';
-  document.getElementById('whaleModalSub').innerText = 'Verified Net Worth: $' + Math.round(w.total_value).toLocaleString() + ' | Followers: ' + w.followers.toLocaleString();
-  
-  const strip = document.getElementById('whaleModalStrip');
-  const pnlSign = w.profit >= 0 ? '+' : '';
-  const pnlCls = w.profit >= 0 ? 'pos-green' : 'neg-red';
-  strip.innerHTML = `
-    <div><div class="w-metric-label">VERIFIED VALUE</div><div class="w-metric-val val-green">$${{Math.round(w.total_value).toLocaleString()}}</div></div>
-    <div><div class="w-metric-label">UNREALIZED PROFIT</div><div class="w-metric-val ${{pnlCls}}">${{pnlSign}}$${{Math.round(w.profit).toLocaleString()}}</div></div>
-    <div><div class="w-metric-label">SHADOW RATIO</div><div class="w-metric-val val-purple">$${{Math.round(w.shadow_ratio).toLocaleString()}}/sub</div></div>
-    <div><div class="w-metric-label">POSITIONS</div><div class="w-metric-val val-cyan">${{w.positions_count || 0}}</div></div>
-  `;
-
-  const body = document.getElementById('whaleModalPositionsBody');
-  const positions = w.all_positions || w.top_positions || [];
-  if (positions.length === 0) {{
-    body.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">No open equity positions reported (Cash / Index).</td></tr>';
-  }} else {{
-    body.innerHTML = positions.map(p => {{
-      const pnl = p.profit || 0;
-      const pnlSign = pnl >= 0 ? '+' : '';
-      const pnlCls = pnl >= 0 ? 'pos-green' : 'neg-red';
-      return `
-        <tr class="clickable-row" onclick="openTickerModal('${{p.ticker}}')">
-          <td style="font-weight: 800; color: var(--cyan); text-decoration: underline;">${{p.ticker}}</td>
-          <td>${{Number(p.quantity).toLocaleString(undefined, {{maximumFractionDigits: 2}})}}</td>
-          <td>$${{Math.round(p.value || 0).toLocaleString()}}</td>
-          <td>$${{Math.round(p.cost_basis || 0).toLocaleString()}}</td>
-          <td class="${{pnlCls}}">${{pnlSign}}$${{Math.round(pnl).toLocaleString()}}</td>
-        </tr>
-      `;
-    }}).join('');
-  }}
-  document.getElementById('whaleModal').classList.add('active');
-}}
-
-function openTickerModal(ticker) {{
-  hideModal('whaleModal');
-  const stock = STOCKS_DATA.find(s => s.ticker === ticker) || {{
-    ticker: ticker,
-    name: ticker + ' Security',
-    price: 0,
-    changePercent: 0,
-    owners: 0,
-    chatroomMembers: 0,
-    whalesValue: 0
+// TICKER MODAL & HISTORICAL CHART
+function openTickerModal(ticker, pushHistory = true) {{
+  currentOpenTicker = ticker;
+  const s = STOCKS_DATA.find(x => x.ticker.toUpperCase() === ticker.toUpperCase()) || {{
+    ticker: ticker, name: ticker, price: 0, changePercent: 0, owners: 0, totalValue: 0, isETF: false
   }};
-  
-  const whalesHolding = TICKER_WHALES[ticker] || [];
-  const totalWhaleVal = whalesHolding.reduce((acc, x) => acc + x.value, 0);
 
-  document.getElementById('tickerModalTitle').innerText = '$' + ticker + ' &bull; ' + (stock.name || '');
-  document.getElementById('tickerModalSub').innerText = (stock.whyTop || 'Security detail and verified whale roster');
-  
-  const strip = document.getElementById('tickerModalStrip');
-  const sign = stock.changePercent >= 0 ? '+' : '';
-  const cls = stock.changePercent >= 0 ? 'pos-green' : 'neg-red';
-  strip.innerHTML = `
-    <div><div class="w-metric-label">PRICE</div><div class="w-metric-val">$${{stock.price ? stock.price.toFixed(2) : 'N/A'}}</div></div>
-    <div><div class="w-metric-label">24H CHANGE</div><div class="w-metric-val ${{cls}}">${{sign}}${{stock.changePercent ? stock.changePercent.toFixed(2) : '0.00'}}%</div></div>
-    <div><div class="w-metric-label">VERIFIED WHALE AUM</div><div class="w-metric-val val-green">$${{Math.round(totalWhaleVal).toLocaleString()}}</div></div>
-    <div><div class="w-metric-label">WHALE HOLDERS</div><div class="w-metric-val val-cyan">${{whalesHolding.length}} Accounts</div></div>
-    <div><div class="w-metric-label">APP OWNERS</div><div class="w-metric-val val-amber">${{stock.owners ? stock.owners.toLocaleString() : 'N/A'}}</div></div>
+  const whales = TICKER_WHALES[ticker] || [];
+  const totalWhaleVal = whales.reduce((acc, x) => acc + x.value, 0);
+
+  document.getElementById('tickerModalTitle').innerText = `$${{s.ticker}} • ${{s.name}}`;
+  document.getElementById('tickerModalSub').innerText = `${{s.isETF ? 'ETF' : 'Equity'}} | Live Price: $${{s.price.toFixed(2)}} (${{s.changePercent >= 0 ? '+' : ''}}${{s.changePercent.toFixed(2)}}%) | Tracked Value: $${{s.totalValue.toLocaleString()}}`;
+  document.getElementById('tickerModalSlugText').innerText = `https://ah.mphinance.com/ticker/${{s.ticker}}`;
+  document.getElementById('tickerModalWhalesCount').innerText = whales.length;
+
+  document.getElementById('tickerModalStrip').innerHTML = `
+    <div><div class="whale-m-label">PRICE</div><div class="whale-m-val">$${{s.price.toFixed(2)}}</div></div>
+    <div><div class="whale-m-label">24H CHANGE</div><div class="whale-m-val ${{s.changePercent >= 0 ? 'pos-green':'neg-red'}}">${{s.changePercent >= 0 ? '+' : ''}}${{s.changePercent.toFixed(2)}}%</div></div>
+    <div><div class="whale-m-label">WHALE CAPITAL</div><div class="whale-m-val val-cyan">$${{Math.round(totalWhaleVal).toLocaleString()}}</div></div>
+    <div><div class="whale-m-label">WHALE COUNT</div><div class="whale-m-val val-purple">${{whales.length}} Whales</div></div>
+    <div><div class="whale-m-label">APP OWNERS</div><div class="whale-m-val">${{s.owners.toLocaleString()}}</div></div>
   `;
 
-  const body = document.getElementById('tickerModalWhalesBody');
-  if (whalesHolding.length === 0) {{
-    body.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 20px;">No whales in our 395-ledger currently hold this stock.</td></tr>';
+  // RENDER HISTORICAL CANDLESTICK / LINE CHART
+  const chartBox = document.getElementById('tickerChartContainer');
+  const hist = HISTORIC_DATA[ticker];
+  if (hist && hist.bars && hist.bars.length > 0) {{
+    chartBox.style.display = 'block';
+    chartBox.innerHTML = renderSvgHistoricalChart(ticker, hist.bars);
   }} else {{
-    body.innerHTML = whalesHolding.map(w => {{
-      const pnl = w.profit || 0;
-      const pnlSign = pnl >= 0 ? '+' : '';
-      const pnlCls = pnl >= 0 ? 'pos-green' : 'neg-red';
+    chartBox.style.display = 'none';
+    chartBox.innerHTML = '';
+  }}
+
+  // WHALES TABLE
+  const body = document.getElementById('tickerModalWhalesBody');
+  if (whales.length === 0) {{
+    body.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 20px;">No tracked whales currently hold verified positions in this asset.</td></tr>';
+  }} else {{
+    body.innerHTML = whales.map(w => {{
+      const pnlSign = w.profit >= 0 ? '+' : '';
+      const pnlCls = w.profit >= 0 ? 'pos-green' : 'neg-red';
       return `
         <tr class="clickable-row" onclick="openWhaleModal('${{w.username}}')">
-          <td style="font-weight: 800; color: var(--cyan); text-decoration: underline;">@${{w.username}}</td>
-          <td>${{Number(w.shares).toLocaleString(undefined, {{maximumFractionDigits: 2}})}}</td>
-          <td style="font-weight: 700; color: var(--green);">$${{Math.round(w.value).toLocaleString()}}</td>
-          <td>$${{Math.round(w.cost_basis).toLocaleString()}}</td>
-          <td class="${{pnlCls}}">${{pnlSign}}$${{Math.round(pnl).toLocaleString()}}</td>
-          <td style="color: var(--text-muted);">${{w.followers.toLocaleString()}}</td>
+          <td style="font-weight: 700; color: var(--cyan);">@${{w.username}}</td>
+          <td>${{w.shares.toLocaleString()}}</td>
+          <td class="val-green" style="font-weight: 700;">$${{w.value.toLocaleString()}}</td>
+          <td>$${{w.cost_basis.toFixed(2)}}</td>
+          <td class="${{pnlCls}}">${{pnlSign}}$${{w.profit.toLocaleString()}}</td>
+          <td>${{w.followers.toLocaleString()}}</td>
         </tr>
       `;
     }}).join('');
   }}
 
   document.getElementById('tickerModal').classList.add('active');
+
+  if (pushHistory && window.history && window.history.pushState) {{
+    window.history.pushState(null, '', `/ticker/${{s.ticker}}`);
+  }}
+}}
+
+function renderSvgHistoricalChart(ticker, bars) {{
+  const width = 860;
+  const height = 180;
+  const padding = {{ top: 20, right: 30, bottom: 25, left: 50 }};
+  const plotW = width - padding.left - padding.right;
+  const plotH = height - padding.top - padding.bottom;
+
+  const closes = bars.map(b => b.close);
+  const minP = Math.min(...closes);
+  const maxP = Math.max(...closes);
+  const pRange = maxP - minP || 1;
+
+  const firstClose = closes[0];
+  const lastClose = closes[closes.length - 1];
+  const totalChangePct = ((lastClose - firstClose) / firstClose) * 100;
+  const isUp = totalChangePct >= 0;
+  const strokeColor = isUp ? '#10B981' : '#F43F5E';
+  const fillGradient = isUp ? 'url(#greenGrad)' : 'url(#redGrad)';
+
+  // Build points
+  const points = bars.map((b, i) => {{
+    const x = padding.left + (i / (bars.length - 1)) * plotW;
+    const y = padding.top + plotH - ((b.close - minP) / pRange) * plotH;
+    return `${{x.toFixed(1)}},${{y.toFixed(1)}}`;
+  }});
+
+  const polylineStr = points.join(' ');
+  const areaStr = `${{padding.left}},${{padding.top + plotH}} ` + polylineStr + ` ${{padding.left + plotW}},${{padding.top + plotH}}`;
+
+  return `
+    <div class="chart-box">
+      <div class="chart-header">
+        <div>
+          <span style="font-weight: 700; color: var(--text-primary); font-size: 13px;">${{ticker}} 44-Day Daily Performance Trend</span>
+          <span style="margin-left: 8px; font-size: 11px; color: var(--text-muted);">(Verified OHLCV Daily Bars)</span>
+        </div>
+        <div style="font-weight: 700; color: ${{strokeColor}};">
+          ${{isUp ? '+' : ''}}${{totalChangePct.toFixed(2)}}% over 44 days &bull; Low: $${{minP.toFixed(2)}} | High: $${{maxP.toFixed(2)}}
+        </div>
+      </div>
+      <svg class="chart-svg" viewBox="0 0 ${{width}} ${{height}}" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#10B981" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#10B981" stop-opacity="0.0"/>
+          </linearGradient>
+          <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F43F5E" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#F43F5E" stop-opacity="0.0"/>
+          </linearGradient>
+        </defs>
+        <!-- Horizontal gridlines -->
+        <line x1="${{padding.left}}" y1="${{padding.top}}" x2="${{width - padding.right}}" y2="${{padding.top}}" stroke="#1E293B" stroke-dasharray="4"/>
+        <line x1="${{padding.left}}" y1="${{padding.top + plotH/2}}" x2="${{width - padding.right}}" y2="${{padding.top + plotH/2}}" stroke="#1E293B" stroke-dasharray="4"/>
+        <line x1="${{padding.left}}" y1="${{padding.top + plotH}}" x2="${{width - padding.right}}" y2="${{padding.top + plotH}}" stroke="#1E293B"/>
+
+        <!-- Y Axis Labels -->
+        <text x="${{padding.left - 8}}" y="${{padding.top + 4}}" fill="#64748B" font-size="10" font-family="monospace" text-anchor="end">$${{maxP.toFixed(1)}}</text>
+        <text x="${{padding.left - 8}}" y="${{padding.top + plotH/2 + 3}}" fill="#64748B" font-size="10" font-family="monospace" text-anchor="end">$${{((maxP+minP)/2).toFixed(1)}}</text>
+        <text x="${{padding.left - 8}}" y="${{padding.top + plotH}}" fill="#64748B" font-size="10" font-family="monospace" text-anchor="end">$${{minP.toFixed(1)}}</text>
+
+        <!-- Area fill and Line -->
+        <polygon points="${{areaStr}}" fill="${{fillGradient}}" />
+        <polyline fill="none" stroke="${{strokeColor}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" points="${{polylineStr}}" />
+      </svg>
+    </div>
+  `;
+}}
+
+// WHALE MODAL
+function openWhaleModal(username, pushHistory = true) {{
+  currentOpenWhale = username;
+  const cleanU = username.replace(/^@/, '');
+  const w = WHALES_DATA.find(x => x.username.toLowerCase() === cleanU.toLowerCase());
+  if (!w) return;
+
+  document.getElementById('whaleModalTitle').innerText = `@${{w.username}} • Whale Dossier`;
+  document.getElementById('whaleModalSub').innerText = `Followers: ${{w.followers.toLocaleString()}} | Verified Capital: $${{Math.round(w.total_value).toLocaleString()}}`;
+  document.getElementById('whaleModalSlugText').innerText = `https://ah.mphinance.com/@${{w.username}}`;
+
+  const pnlSign = w.profit >= 0 ? '+' : '';
+  const pnlCls = w.profit >= 0 ? 'pos-green' : 'neg-red';
+
+  document.getElementById('whaleModalStrip').innerHTML = `
+    <div><div class="whale-m-label">NET WORTH</div><div class="whale-m-val val-green">$${{Math.round(w.total_value).toLocaleString()}}</div></div>
+    <div><div class="whale-m-label">TOTAL PROFIT</div><div class="whale-m-val ${{pnlCls}}">${{pnlSign}}$${{Math.round(w.profit).toLocaleString()}}</div></div>
+    <div><div class="whale-m-label">FOLLOWERS</div><div class="whale-m-val">${{w.followers.toLocaleString()}}</div></div>
+    <div><div class="whale-m-label">SHADOW RATIO</div><div class="whale-m-val val-purple">$${{Math.round(w.shadow_ratio).toLocaleString()}} / sub</div></div>
+  `;
+
+  const body = document.getElementById('whaleModalPositionsBody');
+  const pos = w.all_positions || [];
+  if (pos.length === 0) {{
+    body.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--text-muted); padding: 20px;">No public positions reported.</td></tr>';
+  }} else {{
+    body.innerHTML = pos.map(p => {{
+      const pSign = (p.profit || 0) >= 0 ? '+' : '';
+      const pCls = (p.profit || 0) >= 0 ? 'pos-green' : 'neg-red';
+      return `
+        <tr class="clickable-row" onclick="hideModal('whaleModal'); openTickerModal('${{p.ticker}}')">
+          <td style="font-weight: 800; color: var(--cyan);">${{p.ticker}}</td>
+          <td>${{Number(p.quantity || 0).toLocaleString()}}</td>
+          <td class="val-green" style="font-weight: 700;">$${{Number(p.value || 0).toLocaleString()}}</td>
+          <td>$${{Number(p.cost_basis || 0).toFixed(2)}}</td>
+          <td class="${{pCls}}">${{pSign}}$${{Number(p.profit || 0).toLocaleString()}}</td>
+        </tr>
+      `;
+    }}).join('');
+  }}
+
+  document.getElementById('whaleModal').classList.add('active');
+
+  if (pushHistory && window.history && window.history.pushState) {{
+    window.history.pushState(null, '', `/@${{w.username}}`);
+  }}
 }}
 
 function hideModal(modalId) {{
   document.getElementById(modalId).classList.remove('active');
+  if (modalId === 'tickerModal') currentOpenTicker = null;
+  if (modalId === 'whaleModal') currentOpenWhale = null;
+
+  if (window.history && window.history.pushState) {{
+    window.history.pushState(null, '', currentRoute);
+  }}
 }}
 
-function closeModal(e, modalId) {{
-  if (e.target.id === modalId) hideModal(modalId);
+function closeModal(event, modalId) {{
+  if (event.target.classList.contains('modal-overlay')) {{
+    hideModal(modalId);
+  }}
 }}
 
-// Initialize
-renderStocks(STOCKS_DATA);
-renderWhales();
-renderShadowTable();
+// SLUG CLIPBOARD HELPERS
+function copySlug(slug) {{
+  const fullUrl = `https://ah.mphinance.com${{slug}}`;
+  navigator.clipboard.writeText(fullUrl).then(() => {{
+    alert(`Copied link to clipboard: ${{fullUrl}}`);
+  }}).catch(() => {{
+    prompt('Copy this permalink slug:', fullUrl);
+  }});
+}}
+
+function copyTickerSlug() {{
+  if (!currentOpenTicker) return;
+  const fullUrl = `https://ah.mphinance.com/ticker/${{currentOpenTicker}}`;
+  const btn = document.getElementById('tickerCopyBtn');
+  navigator.clipboard.writeText(fullUrl).then(() => {{
+    btn.innerText = '✅ Copied!';
+    setTimeout(() => {{ btn.innerText = '📋 Copy Slug Link'; }}, 2000);
+  }}).catch(() => {{
+    prompt('Copy this permalink slug:', fullUrl);
+  }});
+}}
+
+function copyWhaleSlug() {{
+  if (!currentOpenWhale) return;
+  const fullUrl = `https://ah.mphinance.com/@${{currentOpenWhale}}`;
+  const btn = document.getElementById('whaleCopyBtn');
+  navigator.clipboard.writeText(fullUrl).then(() => {{
+    btn.innerText = '✅ Copied!';
+    setTimeout(() => {{ btn.innerText = '📋 Copy Slug Link'; }}, 2000);
+  }}).catch(() => {{
+    prompt('Copy this permalink slug:', fullUrl);
+  }});
+}}
+
+// INITIAL LOAD
+document.addEventListener('DOMContentLoaded', () => {{
+  filterStocks();
+  renderWhales();
+  renderShadowWhales();
+  parseInitialRoute();
+}});
 </script>
 </body>
 </html>
 """
 
-# Write to root index.html
+# Write index.html
 with open(INDEX_FILE, "w", encoding="utf-8") as f:
     f.write(html_content)
-print(f"[+] Successfully wrote {INDEX_FILE} ({len(html_content):,} bytes)")
 
-# Also write to reports/afterhour_quant_terminal.html
 with open(REPORT_FILE, "w", encoding="utf-8") as f:
     f.write(html_content)
-print(f"[+] Successfully wrote {REPORT_FILE}")
+
+print(f"[+] Wrote updated index.html ({len(html_content)} bytes)")
+print(f"[+] Total stocks enriched: {len(stocks)} (ETFs: {etfs_count}, Equities: {equities_count})")
+print(f"[+] Total whales indexed: {len(whales)}")
+
+# Generate static slug directory mirrors so standard static file servers route cleanly
+STATIC_SLUGS = ["all", "stonks", "etfs", "whales", "shadow"]
+for slug in STATIC_SLUGS:
+    slug_dir = BASE_DIR / slug
+    slug_dir.mkdir(parents=True, exist_ok=True)
+    with open(slug_dir / "index.html", "w", encoding="utf-8") as f:
+        f.write(html_content)
+print(f"[+] Generated static HTML directory mirrors for: {STATIC_SLUGS}")
