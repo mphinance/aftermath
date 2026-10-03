@@ -17,6 +17,11 @@ import json
 import time
 import urllib.request
 import urllib.error
+import urllib.parse
+import http.server
+import uuid
+import queue
+import threading
 from pathlib import Path
 
 VERSION = "1.0.0"
@@ -30,6 +35,10 @@ LOCAL_API_DIR = SCRIPT_DIR / "api"
 # In-memory cache for API payloads (60-second TTL)
 _CACHE = {}
 _CACHE_TTL = 60.0
+
+# In-memory SSE message sessions
+_SESSIONS = {}
+_SESSIONS_LOCK = threading.Lock()
 
 def debug_log(msg: str):
     """Write debug log message to stderr (never stdout to avoid corrupting JSON-RPC)."""
@@ -682,9 +691,185 @@ def run_self_test():
 
     print("\n[+] All 6 MCP tools validated successfully.")
 
+# ==============================================================================
+# HTTP & SSE SERVER (FOR REMOTE MCP CLIENTS & MCP-REMOTE)
+# ==============================================================================
+
+class McpHttpHandler(http.server.BaseHTTPRequestHandler):
+    def log_message(self, format, *args):
+        # Route server logs through debug_log (stderr)
+        debug_log(f"HTTP {self.command} {self.path} - {format % args}")
+
+    def end_cors_headers(self):
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, HEAD")
+        self.send_header("Access-Control-Allow-Headers", "*")
+        self.send_header("Access-Control-Expose-Headers", "*")
+
+    def do_OPTIONS(self):
+        self.send_response(204)
+        self.end_cors_headers()
+        self.end_headers()
+
+    def do_GET(self):
+        parsed = urllib.parse.urlparse(self.path)
+        path = parsed.path.rstrip("/")
+        if not path:
+            path = "/"
+
+        if path in ("/sse", "/mcp/sse"):
+            session_id = uuid.uuid4().hex
+            q = queue.Queue()
+            with _SESSIONS_LOCK:
+                _SESSIONS[session_id] = q
+
+            self.send_response(200)
+            self.send_header("Content-Type", "text/event-stream")
+            self.send_header("Cache-Control", "no-cache")
+            self.send_header("Connection", "keep-alive")
+            self.send_header("X-Accel-Buffering", "no")
+            self.end_cors_headers()
+            self.end_headers()
+
+            # MCP SSE spec: send endpoint event with URI to post messages to
+            endpoint_msg = f"event: endpoint\r\ndata: /messages?sessionId={session_id}\r\n\r\n"
+            try:
+                self.wfile.write(endpoint_msg.encode("utf-8"))
+                self.wfile.flush()
+            except Exception as e:
+                with _SESSIONS_LOCK:
+                    _SESSIONS.pop(session_id, None)
+                return
+
+            debug_log(f"SSE client connected. Session: {session_id}")
+
+            try:
+                while True:
+                    try:
+                        msg = q.get(timeout=15.0)
+                        if msg is None:
+                            break
+                        chunk = f"event: message\r\ndata: {msg}\r\n\r\n"
+                        self.wfile.write(chunk.encode("utf-8"))
+                        self.wfile.flush()
+                    except queue.Empty:
+                        # Send SSE keepalive comment
+                        self.wfile.write(b": ping\r\n\r\n")
+                        self.wfile.flush()
+            except (BrokenPipeError, ConnectionResetError, Exception) as e:
+                debug_log(f"SSE client disconnected {session_id}: {e}")
+            finally:
+                with _SESSIONS_LOCK:
+                    _SESSIONS.pop(session_id, None)
+
+        elif path in ("/health", "/status", "/"):
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_cors_headers()
+            self.end_headers()
+            res = {
+                "status": "ok",
+                "server": SERVER_NAME,
+                "version": VERSION,
+                "protocol": "2024-11-05",
+                "endpoints": {
+                    "sse": "/sse",
+                    "messages": "/messages?sessionId={id}",
+                    "direct_rpc": "/api/mcp"
+                },
+                "tools_count": len(MCP_TOOLS_DEFINITIONS)
+            }
+            self.wfile.write(json.dumps(res, indent=2).encode("utf-8"))
+
+        else:
+            self.send_response(404)
+            self.end_cors_headers()
+            self.end_headers()
+            self.wfile.write(b"Not Found")
+
+    def do_POST(self):
+        parsed = urllib.parse.urlparse(self.path)
+        path = parsed.path.rstrip("/")
+        content_len = int(self.headers.get("Content-Length", 0))
+        body = self.rfile.read(content_len).decode("utf-8") if content_len > 0 else ""
+
+        try:
+            req = json.loads(body) if body else {}
+        except Exception as e:
+            self.send_response(400)
+            self.end_cors_headers()
+            self.end_headers()
+            self.wfile.write(b"Invalid JSON")
+            return
+
+        if path in ("/messages", "/mcp/messages"):
+            params = urllib.parse.parse_qs(parsed.query)
+            session_id = params.get("sessionId", [None])[0] or params.get("session_id", [None])[0]
+            if not session_id or session_id not in _SESSIONS:
+                self.send_response(400)
+                self.end_cors_headers()
+                self.end_headers()
+                self.wfile.write(b"Invalid or missing sessionId")
+                return
+
+            resp = handle_jsonrpc(req)
+            if resp is not None:
+                q = _SESSIONS.get(session_id)
+                if q:
+                    q.put(json.dumps(resp))
+
+            self.send_response(202)
+            self.send_header("Content-Type", "text/plain")
+            self.end_cors_headers()
+            self.end_headers()
+            self.wfile.write(b"Accepted")
+
+        elif path in ("/api/mcp", "/mcp", "/rpc"):
+            resp = handle_jsonrpc(req)
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_cors_headers()
+            self.end_headers()
+            self.wfile.write(json.dumps(resp or {}).encode("utf-8"))
+
+        else:
+            self.send_response(404)
+            self.end_cors_headers()
+            self.end_headers()
+            self.wfile.write(b"Not Found")
+
+def run_http_server(port: int = 8088, host: str = "0.0.0.0"):
+    """Run concurrent threaded HTTP + SSE MCP server."""
+    server_addr = (host, port)
+    httpd = http.server.ThreadingHTTPServer(server_addr, McpHttpHandler)
+    debug_log(f"Starting {SERVER_NAME} HTTP+SSE server listening on http://{host}:{port}")
+    debug_log(f"  SSE endpoint:        http://{host}:{port}/sse")
+    debug_log(f"  Messages endpoint:   http://{host}:{port}/messages?sessionId=<id>")
+    debug_log(f"  Direct RPC endpoint: http://{host}:{port}/api/mcp")
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        debug_log("HTTP server shutting down.")
+    finally:
+        httpd.server_close()
+
 def main():
     if len(sys.argv) > 1 and sys.argv[1] in ("--test", "-t", "test"):
         run_self_test()
+        sys.exit(0)
+
+    # Check for HTTP/SSE server mode
+    port = None
+    for idx, arg in enumerate(sys.argv):
+        if arg in ("--port", "-p") and idx + 1 < len(sys.argv):
+            port = int(sys.argv[idx + 1])
+        elif arg.startswith("--port="):
+            port = int(arg.split("=")[1])
+        elif arg in ("--serve", "--sse"):
+            port = 8088
+
+    if port:
+        run_http_server(port=port)
         sys.exit(0)
 
     debug_log(f"Starting {SERVER_NAME} v{VERSION} in stdio mode (MCP spec 2024-11-05)")

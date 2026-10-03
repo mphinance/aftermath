@@ -681,8 +681,9 @@
           <h2 class="section-title"><span>&#x1F50C;</span> 30-Second Client Configuration</h2>
           <div class="section-sub">Copy-paste into your IDE or desktop assistant settings</div>
         </div>
-        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--neon-green);">
-          Server URL: https://ah.mphinance.com/mcp/server.py
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--neon-green); display: flex; gap: 14px; flex-wrap: wrap;">
+          <span>SSE Stream: <strong>https://ah.mphinance.com/sse</strong></span>
+          <span>JSON-RPC: <strong>https://ah.mphinance.com/api/mcp</strong></span>
         </div>
       </div>
 
@@ -693,7 +694,7 @@
           <button class="setup-tab-btn" id="tab-btn-agy" onclick="selectSetupTab('agy')">&#x1F680; Antigravity CLI (AGY)</button>
           <button class="setup-tab-btn" id="tab-btn-windsurf" onclick="selectSetupTab('windsurf')">&#x1F3C4; Windsurf</button>
           <button class="setup-tab-btn" id="tab-btn-standalone" onclick="selectSetupTab('standalone')">&#x1F40D; Standalone Python</button>
-          <button class="setup-tab-btn" id="tab-btn-sdk" onclick="selectSetupTab('sdk')">&#x2699;&#xFE0F; FastMCP Python SDK</button>
+          <button class="setup-tab-btn" id="tab-btn-sdk" onclick="selectSetupTab('sdk')">&#x2699;&#xFE0F; Direct HTTP / cURL</button>
         </div>
 
         <!-- CLAUDE DESKTOP -->
@@ -704,20 +705,22 @@
           <ol class="steps-list">
             <li><strong>macOS:</strong> <code>~/Library/Application Support/Claude/claude_desktop_config.json</code></li>
             <li><strong>Windows:</strong> <code>%APPDATA%\Claude\claude_desktop_config.json</code></li>
+            <li><strong>Linux:</strong> <code>~/.config/Claude/claude_desktop_config.json</code></li>
           </ol>
 
           <div class="config-box">
             <div class="config-header">
-              <span>claude_desktop_config.json</span>
+              <span>claude_desktop_config.json (Remote SSE via mcp-remote)</span>
               <button class="copy-btn" onclick="copySnippet('code-claude', this)">Copy Config</button>
             </div>
             <pre><code id="code-claude">{
   "mcpServers": {
     "aftermath": {
-      "command": "python3",
+      "command": "npx",
       "args": [
-        "-c",
-        "import urllib.request; exec(urllib.request.urlopen('https://ah.mphinance.com/mcp/server.py').read().decode('utf-8'))"
+        "-y",
+        "mcp-remote",
+        "https://ah.mphinance.com/sse"
       ]
     }
   }
@@ -743,10 +746,11 @@
             <pre><code id="code-cursor">{
   "mcpServers": {
     "aftermath": {
-      "command": "python3",
+      "command": "npx",
       "args": [
-        "-c",
-        "import urllib.request; exec(urllib.request.urlopen('https://ah.mphinance.com/mcp/server.py').read().decode('utf-8'))"
+        "-y",
+        "mcp-remote",
+        "https://ah.mphinance.com/sse"
       ]
     }
   }
@@ -769,11 +773,15 @@
               <span>bash</span>
               <button class="copy-btn" onclick="copySnippet('code-agy', this)">Copy Command</button>
             </div>
-            <pre><code id="code-agy">agy mcp add aftermath --command python3 -- -c "import urllib.request; exec(urllib.request.urlopen('https://ah.mphinance.com/mcp/server.py').read().decode('utf-8'))"</code></pre>
+            <pre><code id="code-agy"># Add remote SSE transport via mcp-remote proxy
+agy mcp add aftermath-remote --command npx -- -y mcp-remote https://ah.mphinance.com/sse
+
+# Or add local Python script (if repo is cloned locally)
+agy mcp add aftermath --command python3 -- /home/mpha/projects/aftermath/mcp_server.py</code></pre>
           </div>
 
           <p style="color: var(--text-muted); font-size: 13px; margin-top: 10px;">
-            Or create a persistent MCP definition file at <code>~/.gemini/antigravity-cli/mcp/aftermath.json</code>.
+            Or configure persistent MCP definitions in <code>~/.gemini/config/mcp_config.json</code>.
           </p>
         </div>
 
@@ -791,10 +799,11 @@
             <pre><code id="code-windsurf">{
   "mcpServers": {
     "aftermath": {
-      "command": "python3",
+      "command": "npx",
       "args": [
-        "-c",
-        "import urllib.request; exec(urllib.request.urlopen('https://ah.mphinance.com/mcp/server.py').read().decode('utf-8'))"
+        "-y",
+        "mcp-remote",
+        "https://ah.mphinance.com/sse"
       ]
     }
   }
@@ -814,41 +823,41 @@
               <button class="copy-btn" onclick="copySnippet('code-standalone', this)">Copy Command</button>
             </div>
             <pre><code id="code-standalone"># 1. Download standalone server
-curl -sSL https://ah.mphinance.com/mcp/server.py -o aftermath_mcp.py
+curl -sSL https://ah.mphinance.com/mcp_server.py -o aftermath_mcp.py
 
 # 2. Run diagnostic self-test
 python3 aftermath_mcp.py --test
 
-# 3. Use in local STDIO mode
+# 3. Start local SSE daemon on port 8089
+python3 aftermath_mcp.py --port 8089
+
+# 4. Or use in local STDIO mode
 python3 aftermath_mcp.py</code></pre>
           </div>
         </div>
 
-        <!-- FASTMCP SDK -->
+        <!-- DIRECT HTTP / cURL -->
         <div class="setup-content" id="content-sdk">
           <p style="color: var(--text-primary); font-size: 14px;">
-            Embed directly into custom agent swarms using the official <code>FastMCP</code> SDK (<code>pip install mcp httpx</code>):
+            Execute MCP tools directly over HTTP JSON-RPC 2.0 without maintaining an SSE connection:
           </p>
 
           <div class="config-box">
             <div class="config-header">
-              <span>python</span>
+              <span>bash (cURL)</span>
               <button class="copy-btn" onclick="copySnippet('code-sdk', this)">Copy Code</button>
             </div>
-            <pre><code id="code-sdk">from mcp.server.fastmcp import FastMCP
-import httpx
-
-mcp = FastMCP("aftermath-altdata")
-
-@mcp.tool()
-async def get_market_tape() -> dict:
-    """Retrieve real-time whale macro liquidity, dry powder cash, and inflow leaders."""
-    async with httpx.AsyncClient() as client:
-        resp = await client.get("https://ah.mphinance.com/api/market.json")
-        return resp.json()
-
-if __name__ == "__main__":
-    mcp.run(transport="stdio")</code></pre>
+            <pre><code id="code-sdk">curl -s -X POST https://ah.mphinance.com/api/mcp \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "tools/call",
+    "params": {
+      "name": "get_market_tape",
+      "arguments": {}
+    }
+  }'</code></pre>
           </div>
         </div>
       </div>

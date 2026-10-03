@@ -1,48 +1,106 @@
-# 🧬 AfterMath: AfterHour Forensic Autopsy & Signal Intelligence Engine
+# 🧬 AfterMath: Retail Financial Intelligence, Live Alpha Terminal & MCP Server
 
-> A quantitative forensic scraper and analytics engine for retail social trading feeds. We pull 100% of a trader's lifetime posts, measure the disclosure gap, audit follow-through reality, and extract mechanical signal flow.
+> Quantitative alt-data terminal, Model Context Protocol (MCP) server, and forensic autopsy engine auditing social trading feeds, verified portfolios, and macro tape liquidity.
+> 
+> Production Terminal: **[https://ah.mphinance.com](https://ah.mphinance.com)**  
+> Interactive Swagger API: **[https://ah.mphinance.com/docs](https://ah.mphinance.com/docs)**  
+> MCP Web Portal: **[https://ah.mphinance.com/mcp](https://ah.mphinance.com/mcp)**  
+> Remote MCP SSE: **[https://ah.mphinance.com/sse](https://ah.mphinance.com/sse)**  
+> Partner Terminal: **[TraderMatrix Pro](https://www.tradermatrix.pro/?ref=MPHINANCE)**
 
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)](tests/)
-[![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](pyproject.toml)
-[![License](https://img.shields.io/badge/license-MIT-purple.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/status-live%20production-brightgreen.svg)](https://ah.mphinance.com)
+[![Swagger](https://img.shields.io/badge/docs-OpenAPI%203.1-blue.svg)](https://ah.mphinance.com/docs)
+[![MCP](https://img.shields.io/badge/MCP-2024--11--05-purple.svg)](https://ah.mphinance.com/mcp)
+[![Tracked Capital](https://img.shields.io/badge/tracked%20capital-%24169M%2B-gold.svg)](https://ah.mphinance.com/whales)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](LICENSE)
 
 ---
 
 ## 🎯 What is AfterMath?
 
-Social trading feeds are full of noise. AfterMath is an engine built to stop grading traders by vibe and start grading them by math. 
+AfterMath is an institutional-grade intelligence platform that audits retail social trading platforms by math rather than vibe.
 
-Using **Artemis** (autonomous device automation) and public feed architecture, we scraped the complete lifetime post history of **40 active retail traders**. We didn't take a sample or just look at their green months. We pulled all **33,090 posts** from day one to the present.
-
-Then we ran every trader through a standardized, unsparing forensic autopsy to measure their actual exit discipline, gain-to-loss disclosure ratio, and structural trading behavior:
-
-```text
-You are a senior quantitative trading analyst conducting a deep forensic
-autopsy on AfterHour trader @{username} (#{rank} most active followed
-trader with {lifetime_posts} lifetime posts).
-
-Read through their lifetime posts and conduct a quantitative, mechanical,
-and psychological breakdown:
-1. Executive Profile: Trader philosophy, post cadence, active timeline.
-2. Ticker Universe & Catalysts: Core assets, options vs equities, macro vs technical.
-3. Risk Management & PnL Reality: Profit-taking vs bag-holding, documented wins vs blow-ups.
-4. Behavioral & Sentiment Signals: Linguistic tells, reaction to volatility and red days.
-5. Quantitative Verdict:
-   - Algorithmic Classification Tags
-   - Algorithmic Alpha Score (0 to 100) & Expectancy
-   - Signal Flow Ingestion Matrix (INGEST, FADE, FIREWALL, EXIT rules)
-6. Chronological Milestone & Catalyst Log.
-```
-
-Three variables change between runs: the handle, the rank, and the post count. Nobody gets a softball. The trader with 2,682 posts and the trader with 57 posts face the identical interrogation.
+The ecosystem combines four engines:
+1. **Live Alt-Data Terminal**: Real-time tracking of 500 verified securities, 64 ETFs, and 395 verified whale accounts holding **$169,001,648.72** in verified brokerage equity.
+2. **Model Context Protocol (MCP) Server**: Zero-dependency remote SSE and direct JSON-RPC server connecting Claude Desktop, Cursor, and autonomous AI agents directly to retail positioning data.
+3. **High-Performance Edge API**: Sub-25ms edge-cached REST endpoints and OpenAPI 3.1 explorer documenting all data feeds.
+4. **Forensic Autopsy Engine**: Lifetime audit of 33,090 posts across 40 traders measuring disclosure filters, phantom exits, and mechanical signal flow.
 
 ---
 
-## 📊 The Numbers: The Disclosure Reality
+## ⚡ Live Production Terminal (`ah.mphinance.com`)
 
-When you strip away self-reported brokerage syncs (which glitch on illiquid option marks, capital deposits, and unlinking events) and measure what traders **actually write**, the true anatomy of retail social trading appears:
+The production web interface delivers instant quantitative filtering across four primary terminal views:
 
+- **[Live Equities & ETFs Leaderboard](https://ah.mphinance.com/stonks)**: 500 securities enriched with verified owner counts, total platform equity, whale capital backing, conviction intensity ($/holder), and chatroom activity.
+- **[ETF & Index Tracker](https://ah.mphinance.com/etfs)**: 64 index funds, leveraged ETFs (`TQQQ`, `MSTU`, `NVDL`), cash reserves (`SGOV`), and crypto vehicles (`IBIT`).
+- **[Verified Whale Directory](https://ah.mphinance.com/whales)**: 395 verified portfolios with liquid dry powder cash balances, today's P&L, open profits, and granular position breakdowns.
+- **[Shadow Whales / Clout Inversion Index](https://ah.mphinance.com/shadow)**: Whales ranked by **Shadow Ratio** (`total_value / followers`). Unmasks silent millionaires who post minimal social noise while managing eight-figure books.
+
+---
+
+## 🤖 Model Context Protocol (MCP) Server
+
+Connect any LLM, agent framework, or IDE directly to live AfterHour alt-data:
+
+```bash
+# Instant connection via mcp-remote proxy
+npx -y mcp-remote https://ah.mphinance.com/sse
 ```
+
+### Complete MCP Tools Available
+
+| Tool Name | Purpose | Key Inputs |
+|---|---|---|
+| `get_market_tape` | Macro tape liquidity, whale cash reserves, inflow leaders | None |
+| `get_top_equities` | Filter and rank 500 stocks and ETFs by capital, conviction, or volume | `sort_by`, `min_owners`, `limit` |
+| `get_etf_flows` | 64 index and thematic ETFs with whale capital and expense ratios | `sort_by`, `limit` |
+| `get_whale_portfolio` | Inspect verified positions, cost basis, profit, and cash for any whale | `username` |
+| `get_ticker_intel` | Security dossier, whale holders list, and 90-day daily OHLCV bars | `ticker`, `include_bars` |
+| `get_conviction_screener` | High dollar-per-holder accumulation radar | `min_intensity`, `min_owners` |
+
+For detailed connection examples (Claude Desktop, Cursor IDE, Antigravity CLI, Python scripts), read the full [MCP Server Documentation](file:///home/mpha/projects/aftermath/docs/MCP.md).
+
+---
+
+## 📡 Edge REST API & Documentation
+
+All API endpoints are public, zero-auth, CORS-unrestricted (`*`), and cached at the edge:
+
+- **Interactive Swagger UI**: [https://ah.mphinance.com/docs](https://ah.mphinance.com/docs)
+- **OpenAPI 3.1 Spec**: [https://ah.mphinance.com/api/openapi.json](https://ah.mphinance.com/api/openapi.json)
+- **Comprehensive API Guide**: [docs/API.md](file:///home/mpha/projects/aftermath/docs/API.md)
+
+### Key Endpoints
+
+```bash
+# Live Market Radar
+curl -sL https://ah.mphinance.com/api/market.json
+
+# All 500 Equities and ETFs
+curl -sL https://ah.mphinance.com/api/stonks.json
+
+# 395 Verified Whales and Millionaires
+curl -sL https://ah.mphinance.com/api/whales.json
+
+# Granular Ticker Dossier (e.g. ASTS)
+curl -sL https://ah.mphinance.com/api/ticker/ASTS.json
+
+# Direct JSON-RPC MCP Tool Execution
+curl -s -X POST https://ah.mphinance.com/api/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_market_tape","arguments":{}}}'
+```
+
+---
+
+## 🔬 The Forensic Study: The Disclosure Gap
+
+The foundation of AfterMath began by scraping the complete lifetime post history of 40 active retail traders using **Artemis** (autonomous device capture) and feed ingestion: 33,090 total posts.
+
+When you audit what traders actually disclose in public versus what happens to their trades, the structural reality appears:
+
+```text
 Positions announced as buys          3,660
 Ever closed in public                1,739   (47.5%)
 Never mentioned again as an exit     1,921   (52.5%)
@@ -55,15 +113,15 @@ Posts tagged Loss                      233   (11.87 gains per loss)
 ```
 
 ### 1. The Missing Exit (52.5% Phantom Rate)
-**52.5% of every position announced as a buy simply never gets a closing post.** It is never sold, never stopped out, and never admitted. The trade doesn't conclude; it just goes quiet. That silence is the empirical signature of a bagholder.
+52.5% of every position announced as a buy never receives a closing post. It is never sold, never stopped out, and never admitted. The trade goes quiet, which is the empirical signature of a bagholder.
 
 ### 2. The 11.87:1 Gain/Loss Illusion
-Traders post **11.87 gains for every 1 loss**. Across two and a half years of mixed market regimes, retail traders are not 12 times better at trading than they are bad at it. That number is not a performance record—it is a **disclosure filter**.
+Traders post 11.87 gains for every 1 loss. Across multi-year market cycles, retail traders are not 12 times better at trading than they are bad at it. That ratio is not a performance record: it is a disclosure filter.
 
 ### 3. The LLM Scoring Hallucination
-When identical prompts and post datasets were evaluated across two frontier models, the **mean absolute score disagreement was 32.3 points**:
+When identical post archives were evaluated across frontier models, the mean absolute score disagreement was 32.3 points:
 
-```
+```text
                     First Pass    Second Pass    Delta
 @RyanLP                 89            14          -75
 @terridactil            84            24          -60
@@ -78,15 +136,12 @@ When identical prompts and post datasets were evaluated across two frontier mode
 @Dallaslongcall         12            34          +22
 ```
 
-Across all 40 traders, the correlation between an AI's confidence score and the trader's actual real-world follow-through rate was **0.20**. An AI scoring prompt doesn't measure edge; it measures how persuasive the trader's prose sounds.
+Across all 40 traders, the correlation between an AI confidence score and real-world follow-through was only **0.20**. An unconstrained LLM grading prompt measures how persuasive a trader writes, not whether they have edge.
 
----
+### 4. What Survived: The Mechanical Ingestion Matrix
+Subjective scores were discarded in favor of mechanical behavioral extraction:
 
-## ⚡ What Actually Survived: The Signal Flow Ingestion Matrix
-
-The scores went in the trash. What survived was **mechanical behavioral extraction**:
-
-```
+```text
 @Tiger_
 Classification: FUNDAMENTAL_QUALITY_COMPOUNDER / LEVERAGED_CONTRARIAN_DIP_BUYER
 
@@ -100,132 +155,66 @@ FIREWALL  Zero stop-loss discipline. Single names routinely run 20-50%
 EXIT      Tiered mechanical trim: bank 1/3 at +50%, 1/3 at +100%, trail rest.
 ```
 
-```
-@Tradeless
-Classification: PERMA_BEAR_MACRO_HEDGER / THEMATIC_LIST_AGGREGATOR
-
-INGEST    Scrape thematic sector watchlists as an ideation screener feed.
-FADE      Treat clusters of bearish index-put disclosures during uptrends
-          as sentiment-extreme exhaustion tells.
-FIREWALL  Never ingest sizing, entry mechanics, or stop-loss placement.
-          Hard-blacklist instrument class: uncapped-size 0DTE index options.
-```
-
-*"Harvest his watchlist, never his sizing"* is actionable alpha. *"He scored an 82"* is meaningless noise.
-
 ---
 
-## 🏗️ System Architecture
+## 🏗️ Production Infrastructure & Coolify Runbook
 
-```mermaid
-flowchart TD
-    subgraph MobileCapture["1. Native Android Capture (Artemis)"]
-        ADB[Android Device / ADB] --> REC[recorder.py<br/>Frame Diff Capture]
-        REC --> OCR[parse_following_frames.py<br/>Tesseract OCR]
-        OCR --> USERS[Candidate Handles]
-    end
+The terminal and MCP server run on Coolify infrastructure:
 
-    subgraph Ingestion["2. Resilient Feed Pipeline"]
-        USERS --> CLIENT[afterhour.py<br/>Cursor Paginator]
-        CLIENT --> RETRY{504 Timeout?}
-        RETRY -- Yes --> BACKOFF[Exponential Backoff<br/>Dynamic Page Shrink: 50 -> 25 -> 10]
-        BACKOFF --> CLIENT
-        RETRY -- No --> ARCHIVE[JSON & Markdown Archives]
-    end
+- **Host**: `coolify` (`5.161.247.12`)
+- **Webroot**: `/home/mph/apps/ah-portal`
+- **Routing**: Traefik with automated LetsEncrypt SSL over HTTP/2.
+- **Containers**:
+  - `ah-mphinance`: High performance `nginx:alpine` serving static web pages, SPA routing (`try_files $uri $uri/ /index.html;`), Swagger explorer, and edge JSON.
+  - `ah-mcp`: Python 3.12 Alpine container exposing HTTP/SSE port `8089` for `/sse`, `/messages`, and `/api/mcp`.
 
-    subgraph Analytics["3. Quantitative Forensics"]
-        ARCHIVE --> FT[followthrough.py<br/>Audit Entries vs Exits]
-        ARCHIVE --> FREQ[analyze_frequency.py<br/>Cadence & Cashtag Matrix]
-    end
+### Build & Deploy Commands
 
-    subgraph AgenticDossiers["4. Subagent Autopsy Engine"]
-        ARCHIVE --> LLM[Multi-Model Prompts<br/>Sonnet + Flash]
-        LLM --> DOSSIERS[40 Standardized Quant Dossiers]
-        DOSSIERS --> VERDICT[parse_dossiers.py<br/>Signal Ingestion Matrix]
-    end
+```bash
+# 1. Rebuild static HTML terminal and JSON datasets
+python3 build_github_pages.py
 
-    subgraph Presentation["5. Interactive UI"]
-        ARCHIVE --> UI[streamlit_app.py<br/>Interactive Dashboard]
-        DOSSIERS --> UI
-    end
+# 2. Sync to Coolify production webroot
+rsync -avz --delete \
+  --exclude '.git' --exclude '__pycache__' --exclude 'afterhour.zip' --exclude 'data/following' \
+  index.html default.conf sitemap.xml mcp_server.py api all stonks etfs whales shadow sitemap docs mcp \
+  coolify:/home/mph/apps/ah-portal/
+
+# 3. Reload Nginx container
+ssh coolify "docker restart ah-mphinance"
 ```
 
 ---
 
 ## 📂 Repository Layout
 
-```
+```text
 aftermath/
-├── afterhour.py                 # Resilient public feed API client & cursor paginator
-├── followthrough.py             # Forensic entry-vs-exit followthrough calculator
-├── download_single_trader_lifetime.py # CLI: Download 100% lifetime history for a handle
-├── download_markdown_dossiers.py# CLI: Batch sequential post archiver
-├── parse_dossiers.py            # Extracts structured cards from quant dossiers
-├── analyze_frequency.py         # Velocity and posting cadence auditor
-├── recalc_real_frequency.py     # 7D / 30D volume recalculation
-├── split_active_following.py    # Segregates active vs dormant accounts
-├── recorder.py                  # Artemis ADB screen capture recorder
-├── parse_following_frames.py    # OpenCV/Tesseract frame OCR parser
-├── streamlit_app.py             # Streamlit visual exploration dashboard
-├── data/
-│   ├── following/               # 40 Complete raw JSON archives (*_all_posts.json)
-│   └── samples/                 # Sample multi-thousand post fixtures
-├── reports/
-│   ├── dossiers/                # 40 In-depth forensic quant dossiers
-│   │   └── sonnet/              # Frontier model benchmark comparisons
-│   ├── posts/                   # Complete markdown archives of 33,090 posts
-│   └── analysis/                # followthrough.json, verdicts_*.json, Substack essay
-└── tests/                       # Unit tests (100% mocked, zero network reliance)
+├── docs/                        # Comprehensive documentation
+│   ├── API.md                   # REST API and endpoint specifications
+│   ├── MCP.md                   # Model Context Protocol integration guide
+│   └── index.html               # Swagger UI explorer
+├── mcp_server.py                # Multi-transport MCP server (stdio, SSE, JSON-RPC)
+├── build_github_pages.py        # Static terminal builder & JSON generator
+├── api/                         # Pre-computed edge JSON API feeds
+│   ├── market.json              # Macro tape liquidity & radar
+│   ├── stonks.json              # 500 verified equities & ETFs
+│   ├── etfs.json                # 64 verified ETFs & index funds
+│   ├── whales.json              # 395 verified portfolios ($169M+ equity)
+│   ├── shadow.json              # Clout Inversion index
+│   ├── openapi.json             # OpenAPI 3.1 specification
+│   └── ticker/                  # 500 individual ticker dossiers with OHLCV bars
+├── mcp/                         # MCP landing page and web guides
+├── followthrough.py             # Forensic entry-vs-exit calculator
+├── afterhour.py                 # Resilient feed scraper client
+├── data/                        # Raw historical post archives
+└── reports/                     # Forensic quant dossiers and analysis
 ```
 
 ---
 
-## 🚀 Quickstart
+## 📜 Policies & Licensing
 
-### 1. Installation
-
-```bash
-git clone https://github.com/mphinance/aftermath.git
-cd aftermath
-pip install -r requirements.txt
-```
-
-### 2. Run the Follow-Through Forensic Autopsy
-
-Recompute the disclosure rates, gain/loss ratios, and exit discipline across all 40 accounts:
-
-```bash
-python3 followthrough.py
-```
-
-### 3. Download Any Trader's Lifetime Post History
-
-Extract every public post from day one into structured JSON and Markdown:
-
-```bash
-python3 download_single_trader_lifetime.py <username>
-```
-
-### 4. Launch the Interactive Dashboard
-
-```bash
-streamlit run streamlit_app.py
-```
-
-Features:
-- Full posting cadence heatmaps (day of week vs hour of day)
-- Cashtag / ticker distribution graphs
-- Tag breakdown (Gain vs Loss vs DD vs YOLO)
-- Full unvarnished data table with instantaneous CSV export
-
-### 5. Run Unit Tests
-
-```bash
-pytest tests/test_afterhour.py
-```
-
----
-
-## 📜 License
-
-MIT License. In data we trust.
+1. **Read-Only Intelligence**: Artemis automation and AfterMath tools are strictly read-only. Automated posting or commenting to live social feeds is prohibited.
+2. **Affiliate & Partner Funnel**: Public interfaces route to [TraderMatrix Pro](https://www.tradermatrix.pro/?ref=MPHINANCE).
+3. **License**: MIT License.
