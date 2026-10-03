@@ -765,7 +765,7 @@
         <!-- ANTIGRAVITY CLI -->
         <div class="setup-content" id="content-agy">
           <p style="color: var(--text-primary); font-size: 14px;">
-            Add the AfterMath MCP server directly to Google Antigravity (AGY) agent loops via the CLI:
+            Add the AfterMath MCP server to Google Gemini CLI & Antigravity. <strong>Note:</strong> Gemini requires explicit <code>--transport sse</code> (otherwise it defaults to stdio and errors with <em>"The MCP server could not be reached. Check the URL"</em>):
           </p>
 
           <div class="config-box">
@@ -773,15 +773,19 @@
               <span>bash</span>
               <button class="copy-btn" onclick="copySnippet('code-agy', this)">Copy Command</button>
             </div>
-            <pre><code id="code-agy"># Add remote SSE transport via mcp-remote proxy
+            <pre><code id="code-agy"># 1. Native Gemini CLI with SSE transport
+gemini mcp add aftermath https://ah.mphinance.com/sse --transport sse
+
+# 2. Or add to Antigravity CLI via mcp-remote
 agy mcp add aftermath-remote --command npx -- -y mcp-remote https://ah.mphinance.com/sse
 
-# Or add local Python script (if repo is cloned locally)
-agy mcp add aftermath --command python3 -- /home/mpha/projects/aftermath/mcp_server.py</code></pre>
+# 3. Verify connection
+gemini mcp list
+# Output: ✓ aftermath: https://ah.mphinance.com/sse (sse) - Connected</code></pre>
           </div>
 
           <p style="color: var(--text-muted); font-size: 13px; margin-top: 10px;">
-            Or configure persistent MCP definitions in <code>~/.gemini/config/mcp_config.json</code>.
+            Or add directly to <code>.gemini/settings.json</code> with <code>"type": "sse"</code> and <code>"url": "https://ah.mphinance.com/sse"</code>.
           </p>
         </div>
 

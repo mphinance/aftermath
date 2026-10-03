@@ -105,9 +105,47 @@ Restart Cursor or click **Refresh** in Cursor Settings > MCP to discover all 6 t
 
 ---
 
-### 4. Google Antigravity CLI Setup
+---
 
-Add the server to your `~/.gemini/config/mcp_config.json`:
+### 4. Google Gemini CLI & Antigravity (AGY) Setup
+
+#### Common Error: "The MCP server could not be reached. Check the URL."
+If you add an MCP server in Gemini without specifying the transport type, **Gemini defaults to `stdio` transport**. When given a URL under `stdio`, Gemini interprets the URL string as a local command binary on your computer, resulting in connection failure and the generic error: *"The MCP server could not be reached. Check the URL."*
+
+#### The Fix: Explicitly Specify `--transport sse`
+
+Add the server using the `--transport sse` (or `-t sse`) flag:
+
+```bash
+# User Scope (available in all projects)
+gemini mcp add aftermath https://ah.mphinance.com/sse --transport sse --scope user
+
+# Or Project Scope (.gemini/settings.json)
+gemini mcp add aftermath https://ah.mphinance.com/sse --transport sse
+```
+
+Or configure `.gemini/settings.json` directly:
+
+```json
+{
+  "mcpServers": {
+    "aftermath": {
+      "url": "https://ah.mphinance.com/sse",
+      "type": "sse"
+    }
+  }
+}
+```
+
+Verify connection status:
+```bash
+gemini mcp list
+# Output:
+# ✓ aftermath: https://ah.mphinance.com/sse (sse) - Connected
+```
+
+#### Alternative: Antigravity CLI Tool Schemas
+In Google Antigravity, add to `~/.gemini/config/mcp_config.json`:
 
 ```json
 {
@@ -124,7 +162,7 @@ Add the server to your `~/.gemini/config/mcp_config.json`:
 }
 ```
 
-Tool definitions are automatically discovered from `~/.gemini/antigravity-cli/mcp/aftermath/`.
+Native tool definitions reside in `~/.gemini/antigravity-cli/mcp/aftermath/`.
 
 ---
 
