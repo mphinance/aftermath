@@ -14,7 +14,7 @@
 - **Zero Authentication Required**: All endpoints are public and open.
 - **Edge Cached**: Hosted on Coolify high-performance Nginx with HTTP/2 and gzip compression.
 - **Unrestricted CORS**: `Access-Control-Allow-Origin: *` is enabled across all endpoints for direct browser, Node.js, Python, and agent loop execution.
-- **Sub-Millisecond Response**: Pre-computed static and dynamic JSON edge files return in ~10–25ms globally.
+- **Sub-Millisecond Response**: Pre-computed static and dynamic JSON edge files return in ~10 to 25ms globally.
 
 ---
 

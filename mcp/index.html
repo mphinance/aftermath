@@ -583,6 +583,30 @@
       line-height: 1.6;
     }
 
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 16px rgba(255, 209, 102, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 32px rgba(255, 209, 102, 0.85);
+      }
+    }
+
+    .tab-badge-new {
+      background: linear-gradient(135deg, #ff007a, #9d4edd);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 999px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 0 8px rgba(255, 0, 122, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
     .tm-funnel-btn {
       background: linear-gradient(135deg, #ffd166, #ff9f1c);
       color: #07090e;
@@ -596,12 +620,58 @@
       align-items: center;
       gap: 8px;
       transition: all 0.2s ease;
+      animation: pulse-glow 3s infinite ease-in-out;
     }
 
     .tm-funnel-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(255, 209, 102, 0.6);
+      box-shadow: 0 0 30px rgba(255, 209, 102, 0.8);
       color: #000;
+    }
+
+    @media (max-width: 768px) {
+      .top-navbar {
+        padding: 12px 16px;
+      }
+      .main-container {
+        padding: 24px 16px 60px;
+      }
+      .hero h1 {
+        font-size: 28px;
+      }
+      .hero p {
+        font-size: 15px;
+      }
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+      .btn-hero {
+        width: 100%;
+        justify-content: center;
+      }
+      .setup-tabs {
+        padding-bottom: 4px;
+      }
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+      .sandbox-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .sandbox-select, .sandbox-input {
+        min-width: 100%;
+      }
+      .tm-funnel-card {
+        padding: 20px;
+        flex-direction: column;
+        text-align: center;
+      }
+      .tm-funnel-btn {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     /* Footer */
@@ -667,8 +737,9 @@
       </div>
 
       <div class="hero-actions">
-        <button class="btn-hero primary" onclick="scrollToSetup('claude')">&#x1F4CB; Copy Claude Config</button>
-        <button class="btn-hero secondary" onclick="scrollToSetup('cursor')">&#x1F4CB; Copy Cursor Config</button>
+        <button class="btn-hero primary" onclick="scrollToSetup('gemini-web')">&#x1F310; Connect Gemini Web</button>
+        <button class="btn-hero secondary" onclick="scrollToSetup('claude')">&#x1F4CB; Claude Desktop</button>
+        <button class="btn-hero secondary" onclick="scrollToSetup('cursor')">&#x2728; Cursor IDE</button>
         <a href="#sandbox" class="btn-hero secondary">&#x26A1; Test Live Sandbox</a>
         <a href="/docs" class="btn-hero secondary">&#x1F4D6; Swagger API Docs</a>
       </div>
@@ -689,9 +760,9 @@
 
       <div class="setup-card">
         <div class="setup-tabs">
-          <button class="setup-tab-btn active" id="tab-btn-claude" onclick="selectSetupTab('claude')">&#x1F9E0; Claude Desktop</button>
+          <button class="setup-tab-btn active" id="tab-btn-gemini-web" onclick="selectSetupTab('gemini-web')">&#x1F310; Gemini Web <span class="tab-badge-new">&#x1F525; NEW</span></button>
+          <button class="setup-tab-btn" id="tab-btn-claude" onclick="selectSetupTab('claude')">&#x1F9E0; Claude Desktop</button>
           <button class="setup-tab-btn" id="tab-btn-cursor" onclick="selectSetupTab('cursor')">&#x2728; Cursor IDE</button>
-          <button class="setup-tab-btn" id="tab-btn-gemini-web" onclick="selectSetupTab('gemini-web')">&#x1F310; Gemini Web (gemini.google.com)</button>
           <button class="setup-tab-btn" id="tab-btn-agy" onclick="selectSetupTab('agy')">&#x1F680; Antigravity (AGY)</button>
           <button class="setup-tab-btn" id="tab-btn-windsurf" onclick="selectSetupTab('windsurf')">&#x1F3C4; Windsurf</button>
           <button class="setup-tab-btn" id="tab-btn-standalone" onclick="selectSetupTab('standalone')">&#x1F40D; Standalone Python</button>
@@ -699,7 +770,7 @@
         </div>
 
         <!-- GEMINI WEB (gemini.google.com) -->
-        <div class="setup-content" id="content-gemini-web">
+        <div class="setup-content active" id="content-gemini-web">
           <p style="color: var(--text-primary); font-size: 14px;">
             Connect AfterMath directly to Google Gemini on the web at <strong>gemini.google.com</strong> via native <strong>Streamable HTTP</strong>:
           </p>
@@ -725,7 +796,7 @@
         </div>
 
         <!-- CLAUDE DESKTOP -->
-        <div class="setup-content active" id="content-claude">
+        <div class="setup-content" id="content-claude">
           <p style="color: var(--text-primary); font-size: 14px;">
             Open your Claude Desktop configuration file at:
           </p>
