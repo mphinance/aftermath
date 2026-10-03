@@ -15,7 +15,7 @@
 AfterMath MCP supports multiple standard transports out of the box with zero external Python dependencies:
 
 1. **Remote SSE (Server-Sent Events) via `mcp-remote`**:
-   The standard production transport conforming to MCP specification `2024-11-05`. Connect any desktop or CLI agent over HTTPS without downloading code or running local daemons.
+   Legacy HTTP+SSE transport conforming to MCP specification `2024-11-05`. Connect any desktop or CLI agent over HTTPS without downloading code or running local daemons. Note: clients that dropped `2024-11-05` (such as Google Antigravity) must reach this through the `mcp-remote` stdio bridge rather than a native `url` config.
 2. **Direct JSON-RPC over HTTP POST**:
    Send standard JSON-RPC 2.0 requests directly to `https://ah.mphinance.com/api/mcp` without maintaining long-lived SSE connections. Ideal for stateless agent loops, serverless functions, or quick terminal audits.
 3. **Local Stdio Transport**:
@@ -107,45 +107,44 @@ Restart Cursor or click **Refresh** in Cursor Settings > MCP to discover all 6 t
 
 ---
 
-### 4. Google Gemini CLI & Antigravity (AGY) Setup
+### 4. Google Antigravity (AGY) Setup
 
-#### Common Error: "The MCP server could not be reached. Check the URL."
-If you add an MCP server in Gemini without specifying the transport type, **Gemini defaults to `stdio` transport**. When given a URL under `stdio`, Gemini interprets the URL string as a local command binary on your computer, resulting in connection failure and the generic error: *"The MCP server could not be reached. Check the URL."*
+> **Which client?** The standalone `gemini` CLI is on its way out: its free
+> personal OAuth tier now fails with
+> `IneligibleTierError: This client is no longer supported for Gemini Code Assist for individuals`.
+> The supported successor is **Google Antigravity**, which reads a different
+> config file and speaks different transports. The instructions below target
+> Antigravity.
 
-#### The Fix: Explicitly Specify `--transport sse`
+#### Transports Antigravity supports
 
-Add the server using the `--transport sse` (or `-t sse`) flag:
+Antigravity's MCP client supports **only** these two transports:
 
-```bash
-# User Scope (available in all projects)
-gemini mcp add aftermath https://ah.mphinance.com/sse --transport sse --scope user
+| Transport | Config key | Notes |
+|---|---|---|
+| **Stdio** | `command` + `args` | Local process speaking JSON-RPC on stdin/stdout. |
+| **Streamable HTTP** (spec `2025-03-26`) | `url` | Remote endpoint, usually `/mcp`. |
 
-# Or Project Scope (.gemini/settings.json)
-gemini mcp add aftermath https://ah.mphinance.com/sse --transport sse
+**The legacy HTTP+SSE transport (spec `2024-11-05`, i.e. `/sse`) is NOT
+supported.** Pointing `url` at `/sse` will fail. For a server that only speaks
+legacy SSE, run the `mcp-remote` bridge as a **Stdio** server instead.
+
+#### Protocol version negotiation
+
+Antigravity requires a protocol version of **`2025-03-26` or newer**. The server
+now echoes the client's requested `protocolVersion` when it is in
+`{2025-06-18, 2025-03-26, 2024-11-05}` and otherwise replies with its newest
+supported version. A server that hard-codes `2024-11-05` is rejected by
+Antigravity with:
+
+```
+MCP server connection closed unexpectedly for aftermath: invalid request
 ```
 
-Or configure `.gemini/settings.json` directly:
+#### Config file: `~/.gemini/config/mcp_config.json`
 
-```json
-{
-  "mcpServers": {
-    "aftermath": {
-      "url": "https://ah.mphinance.com/sse",
-      "type": "sse"
-    }
-  }
-}
-```
-
-Verify connection status:
-```bash
-gemini mcp list
-# Output:
-# ✓ aftermath: https://ah.mphinance.com/sse (sse) - Connected
-```
-
-#### Alternative: Antigravity CLI Tool Schemas
-In Google Antigravity, add to `~/.gemini/config/mcp_config.json`:
+Register the server once, using either the local stdio server or the remote
+bridge:
 
 ```json
 {
@@ -162,7 +161,19 @@ In Google Antigravity, add to `~/.gemini/config/mcp_config.json`:
 }
 ```
 
-Native tool definitions reside in `~/.gemini/antigravity-cli/mcp/aftermath/`.
+- `aftermath` runs the repository copy directly over stdio (no Node required).
+- `aftermath-remote` bridges the edge SSE endpoint to stdio via `mcp-remote`.
+
+Native tool definitions are cached under `~/.gemini/antigravity-cli/mcp/aftermath/`.
+
+#### Legacy `gemini` CLI (deprecated)
+
+The `gemini` CLI still parses SSE servers, so `gemini mcp list` can report
+`✓ aftermath ... (sse) - Connected`. That is a transport-level check only, and
+it no longer implies the CLI is usable: interactive calls fail at
+authentication because Google retired the personal Code Assist tier for this
+client. Migrate to Antigravity, or authenticate the CLI with an API key
+(`GEMINI_API_KEY`) instead of `oauth-personal`.
 
 ---
 
