@@ -737,6 +737,10 @@ html_content = f"""<!DOCTYPE html>
     padding: 16px 20px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 118px;
   }}
   .clickable-card {{
     cursor: pointer;
@@ -767,11 +771,15 @@ html_content = f"""<!DOCTYPE html>
   }}
   .stat-label {{
     font-size: 11px;
-    color: var(--text-muted);
+    color: #94A3B8;
     font-family: var(--font-mono);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 6px;
+    transition: color 0.2s ease;
+  }}
+  .clickable-card:hover .stat-label {{
+    color: #F1F5F9;
   }}
   .stat-value {{
     font-size: 26px;
@@ -779,10 +787,16 @@ html_content = f"""<!DOCTYPE html>
     font-family: var(--font-mono);
     line-height: 1.1;
     margin-bottom: 4px;
+    font-variant-numeric: tabular-nums;
   }}
   .stat-sub {{
     font-size: 11px;
-    color: var(--text-secondary);
+    color: #CBD5E1;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 1.4;
   }}
   .val-green {{ color: var(--green); }}
   .val-cyan {{ color: var(--cyan); }}
@@ -1189,6 +1203,54 @@ html_content = f"""<!DOCTYPE html>
   }}
   .pos-green {{ color: var(--green); }}
   .neg-red {{ color: var(--red); }}
+
+  /* INSTITUTIONAL TABULAR PRECISION & SIZING BARS */
+  th.num-col, td.num-col {{
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }}
+  .reason-col {{
+    max-width: 220px;
+    min-width: 150px;
+  }}
+  .reason-wrap {{
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }}
+  .relative-bar-cell {{
+    position: relative;
+    overflow: hidden;
+  }}
+  .relative-bar-fill {{
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 0;
+  }}
+  .relative-bar-whale {{
+    background: rgba(0, 240, 255, 0.12);
+    border-right: 2px solid rgba(0, 240, 255, 0.55);
+  }}
+  .relative-bar-total {{
+    background: rgba(16, 185, 129, 0.12);
+    border-right: 2px solid rgba(16, 185, 129, 0.55);
+  }}
+  .perf-chip {{
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    white-space: nowrap;
+  }}
 
   /* BADGES & PILLS */
   .reason-badge {{
@@ -1622,7 +1684,9 @@ html_content = f"""<!DOCTYPE html>
         <span class="stat-arrow">&nearr;</span>
       </div>
       <div class="stat-value val-cyan">${total_app_value:,.0f}</div>
-      <div class="stat-sub">{total_app_owners:,} retail positions tracked</div>
+      <div class="stat-sub">
+        <span>{total_app_owners:,} retail positions tracked</span>
+      </div>
     </div>
     <div class="stat-card clickable-card" onclick="openWhalesView()" title="Inspect all 395 verified whale portfolios">
       <div class="stat-label">
@@ -1630,7 +1694,9 @@ html_content = f"""<!DOCTYPE html>
         <span class="stat-arrow">&nearr;</span>
       </div>
       <div class="stat-value val-green">${total_whale_val:,.0f}</div>
-      <div class="stat-sub">{len(whales)} portfolios &bull; ${total_cash_reserves/1_000_000:.1f}M cash</div>
+      <div class="stat-sub">
+        <span>{len(whales)} portfolios &bull; ${total_cash_reserves/1_000_000:.1f}M cash</span>
+      </div>
     </div>
     <div class="stat-card clickable-card" onclick="filterMillionaires()" title="Filter the 32 verified millionaire accounts">
       <div class="stat-label">
@@ -1638,7 +1704,10 @@ html_content = f"""<!DOCTYPE html>
         <span class="stat-arrow">&nearr;</span>
       </div>
       <div class="stat-value val-purple">{millionaires_count} ACCOUNTS</div>
-      <div class="stat-sub">Controlling $110.8M+ AUM &bull; <strong style="color: var(--purple);">Filter &nearr;</strong></div>
+      <div class="stat-sub">
+        <span>Controlling $110.8M+ AUM</span>
+        <strong style="color: var(--purple); font-size: 11px;">Filter &nearr;</strong>
+      </div>
     </div>
     <div class="stat-card clickable-card" onclick="openStocksView('whale')" title="Inspect 500 securities universe">
       <div class="stat-label">
@@ -1646,7 +1715,9 @@ html_content = f"""<!DOCTYPE html>
         <span class="stat-arrow">&nearr;</span>
       </div>
       <div class="stat-value val-amber">{len(stocks)} SECURITIES</div>
-      <div class="stat-sub">{equities_count} Stocks &bull; {etfs_count} ETFs segregated</div>
+      <div class="stat-sub">
+        <span>{equities_count} Stocks &bull; {etfs_count} ETFs segregated</span>
+      </div>
     </div>
     <div class="stat-card clickable-card" onclick="openWhaleModal('{whales[0]['username']}')" title="Inspect @{whales[0]['username']}">
       <div class="stat-label">
@@ -1654,7 +1725,9 @@ html_content = f"""<!DOCTYPE html>
         <span class="stat-arrow">&nearr;</span>
       </div>
       <div class="stat-value val-green">${whales[0]['total_value']:,.0f}</div>
-      <div class="stat-sub">@{whales[0]['username']} (${whales[0]['shadow_ratio']:,.0f}/sub)</div>
+      <div class="stat-sub">
+        <span>@{whales[0]['username']} (${whales[0]['shadow_ratio']:,.0f}/sub)</span>
+      </div>
     </div>
   </div>
 
@@ -1873,14 +1946,14 @@ html_content = f"""<!DOCTYPE html>
               <th class="sortable" id="th-ticker" onclick="sortTableColumn('ticker')">Ticker / Slug</th>
               <th class="sortable" id="th-type" onclick="sortTableColumn('type')">Type</th>
               <th class="sortable" id="th-name" onclick="sortTableColumn('name')">Company / Asset Name</th>
-              <th>Why It's Top / Quant Reason</th>
-              <th class="sortable sorted-desc" id="th-whalesValue" onclick="sortTableColumn('whalesValue')">Whale Capital</th>
-              <th class="sortable" id="th-totalValue" onclick="sortTableColumn('totalValue')">Total Value ($)</th>
-              <th class="sortable" id="th-owners" onclick="sortTableColumn('owners')">Owners</th>
-              <th class="sortable" id="th-intensity" onclick="sortTableColumn('intensity')">$/Holder</th>
-              <th class="sortable" id="th-price" onclick="sortTableColumn('price')">Price ($)</th>
-              <th class="sortable" id="th-changePercent" onclick="sortTableColumn('changePercent')">24h %</th>
-              <th class="sortable" id="th-chatroomMembers" onclick="sortTableColumn('chatroomMembers')">Chatroom</th>
+              <th style="max-width: 220px;">Why It's Top / Quant Reason</th>
+              <th class="sortable sorted-desc num-col" id="th-whalesValue" onclick="sortTableColumn('whalesValue')">Whale Capital</th>
+              <th class="sortable num-col" id="th-totalValue" onclick="sortTableColumn('totalValue')">Total Value ($)</th>
+              <th class="sortable num-col" id="th-owners" onclick="sortTableColumn('owners')">Owners</th>
+              <th class="sortable num-col" id="th-intensity" onclick="sortTableColumn('intensity')">$/Holder</th>
+              <th class="sortable num-col" id="th-price" onclick="sortTableColumn('price')">Price ($)</th>
+              <th class="sortable num-col" id="th-changePercent" onclick="sortTableColumn('changePercent')">24h %</th>
+              <th class="sortable num-col" id="th-chatroomMembers" onclick="sortTableColumn('chatroomMembers')">Chatroom</th>
             </tr>
           </thead>
           <tbody id="stocksBody"></tbody>
@@ -1915,9 +1988,9 @@ html_content = f"""<!DOCTYPE html>
             <tr>
               <th>Rank</th>
               <th>Whale Handle / Slug</th>
-              <th>Verified Equity</th>
-              <th>Followers</th>
-              <th>$/Follower Ratio</th>
+              <th class="num-col">Verified Equity</th>
+              <th class="num-col">Followers</th>
+              <th class="num-col">$/Follower Ratio</th>
               <th>Top Concentrated Holdings</th>
               <th>Verified Status</th>
             </tr>
@@ -2099,11 +2172,11 @@ html_content = f"""<!DOCTYPE html>
           <thead>
             <tr>
               <th>Whale Handle (Click to Inspect)</th>
-              <th>Shares Owned</th>
-              <th>Position Value</th>
-              <th>Entry Cost Basis</th>
-              <th>Unrealized P&L</th>
-              <th>Followers</th>
+              <th class="num-col">Shares Owned</th>
+              <th class="num-col">Position Value</th>
+              <th class="num-col">Entry Cost Basis</th>
+              <th class="num-col">Unrealized P&L</th>
+              <th class="num-col">Followers</th>
             </tr>
           </thead>
           <tbody id="tickerModalWhalesBody"></tbody>
@@ -2136,10 +2209,10 @@ html_content = f"""<!DOCTYPE html>
             <tr>
               <th>Ticker / Holding</th>
               <th>Asset Name</th>
-              <th>Quantity</th>
-              <th>Position Value</th>
-              <th>Cost Basis</th>
-              <th>Unrealized P&L</th>
+              <th class="num-col">Quantity</th>
+              <th class="num-col">Position Value</th>
+              <th class="num-col">Cost Basis</th>
+              <th class="num-col">Unrealized P&L</th>
             </tr>
           </thead>
           <tbody id="whaleModalPositionsBody"></tbody>
@@ -2201,6 +2274,36 @@ function fmtShares(val) {{
     minimumFractionDigits: dec,
     maximumFractionDigits: dec
   }});
+}}
+
+const maxWhaleVal = Math.max(...STOCKS_DATA.map(x => x.whalesValue || 0), 1);
+const maxTotalVal = Math.max(...STOCKS_DATA.map(x => x.totalValue || 0), 1);
+
+function getPerfHeatmap(pct) {{
+  const isPos = pct >= 0;
+  const abs = Math.abs(pct);
+  const alpha = Math.min(0.48, 0.10 + (abs / 8.0) * 0.38);
+  const color = isPos ? 'var(--green)' : 'var(--red)';
+  const bg = isPos ? `rgba(16, 185, 129, ${{alpha.toFixed(2)}})` : `rgba(244, 63, 94, ${{alpha.toFixed(2)}})`;
+  const border = isPos ? `rgba(16, 185, 129, ${{(alpha + 0.12).toFixed(2)}})` : `rgba(244, 63, 94, ${{(alpha + 0.12).toFixed(2)}})`;
+  return {{ color, bg, border }};
+}}
+
+function renderMiniSparkline(bars, isPos) {{
+  if (!bars || bars.length < 2) return '';
+  const closes = bars.map(b => b.close);
+  const min = Math.min(...closes);
+  const max = Math.max(...closes);
+  const range = max - min || 1;
+  const w = 36;
+  const h = 14;
+  const points = closes.map((c, i) => {{
+    const x = (i / (closes.length - 1)) * (w - 2) + 1;
+    const y = h - 2 - ((c - min) / range) * (h - 4);
+    return `${{x.toFixed(1)}},${{y.toFixed(1)}}`;
+  }}).join(' ');
+  const color = isPos ? 'var(--green)' : 'var(--red)';
+  return `<svg width="${{w}}" height="${{h}}" style="vertical-align: middle; margin-right: 6px; flex-shrink: 0;"><polyline fill="none" stroke="${{color}}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="${{points}}" /></svg>`;
 }}
 
 // ROUTING & SLUGS SYSTEM
@@ -2436,7 +2539,9 @@ function renderStocks(list) {{
 
   body.innerHTML = list.map((s, idx) => {{
     const sign = s.changePercent >= 0 ? '+' : '';
-    const cls = s.changePercent >= 0 ? 'pos-green' : 'neg-red';
+    const hm = getPerfHeatmap(s.changePercent);
+    const hist = HISTORIC_DATA[s.ticker];
+    const sparkSvg = (hist && hist.bars) ? renderMiniSparkline(hist.bars, s.changePercent >= 0) : '';
     
     const badgeHtml = (s.badges || []).map(b => {{
       return `<span class="reason-badge badge-${{b.color}}">${{b.label}}</span>`;
@@ -2453,6 +2558,10 @@ function renderStocks(list) {{
 
     const displayRank = (activeSortColumn === 'rank' || activeSortColumn === 'whalesValue') ? getDisplayRank(s) : (idx + 1);
 
+    const whaleBarPct = Math.min(100, Math.max(0, ((s.whalesValue || 0) / maxWhaleVal) * 100));
+    const totalBarPct = Math.min(100, Math.max(0, ((s.totalValue || 0) / maxTotalVal) * 100));
+    const cleanWhyTop = (s.whyTop || '').replace(/"/g, '&quot;');
+
     return `
       <tr class="clickable-row" onclick="openTickerModal('${{s.ticker}}')">
         <td style="color: var(--text-muted); font-weight: 700;">#${{displayRank}}</td>
@@ -2462,17 +2571,30 @@ function renderStocks(list) {{
         </td>
         <td>${{typeBadge}}</td>
         <td style="color: var(--text-secondary); max-width: 170px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${{s.name}}</td>
-        <td>
-          <div>${{badgeHtml}}</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">${{s.whyTop}}</div>
+        <td class="reason-col" title="${{cleanWhyTop}}">
+          <div class="reason-wrap">${{badgeHtml}}</div>
+          <div class="reason-wrap" style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">${{s.whyTop}}</div>
         </td>
-        <td>${{whaleBackingHtml}}</td>
-        <td style="font-weight: 700;">$${{(s.totalValue/1000000).toFixed(2)}}M</td>
-        <td>${{s.owners.toLocaleString()}}</td>
-        <td style="color: var(--purple); font-weight: 700;">$${{Math.round(s.intensity).toLocaleString()}}</td>
-        <td>${{fmtCurrency(s.price, 2)}}</td>
-        <td class="${{cls}}">${{sign}}${{s.changePercent.toFixed(2)}}%</td>
-        <td style="color: var(--text-muted);">${{s.chatroomMembers.toLocaleString()}}</td>
+        <td class="num-col relative-bar-cell">
+          ${{whaleBarPct > 0 ? `<div class="relative-bar-fill relative-bar-whale" style="width: ${{whaleBarPct.toFixed(1)}}%;"></div>` : ''}}
+          <div style="position: relative; z-index: 1;">${{whaleBackingHtml}}</div>
+        </td>
+        <td class="num-col relative-bar-cell" style="font-weight: 700;">
+          ${{totalBarPct > 0 ? `<div class="relative-bar-fill relative-bar-total" style="width: ${{totalBarPct.toFixed(1)}}%;"></div>` : ''}}
+          <div style="position: relative; z-index: 1;">$${{(s.totalValue/1000000).toFixed(2)}}M</div>
+        </td>
+        <td class="num-col">${{s.owners.toLocaleString()}}</td>
+        <td class="num-col" style="color: var(--purple); font-weight: 700;">$${{Math.round(s.intensity).toLocaleString()}}</td>
+        <td class="num-col">${{fmtCurrency(s.price, 2)}}</td>
+        <td class="num-col">
+          <div style="display: inline-flex; align-items: center; justify-content: flex-end;">
+            ${{sparkSvg}}
+            <span class="perf-chip" style="background: ${{hm.bg}}; border: 1px solid ${{hm.border}}; color: ${{hm.color}};">
+              ${{sign}}${{s.changePercent.toFixed(2)}}%
+            </span>
+          </div>
+        </td>
+        <td class="num-col" style="color: var(--text-muted);">${{s.chatroomMembers.toLocaleString()}}</td>
       </tr>
     `;
   }}).join('');
@@ -2576,9 +2698,9 @@ function renderShadowWhales() {{
           <div style="font-weight: 700; color: var(--cyan);">@${{w.username}}</div>
           <span class="slug-pill" onclick="event.stopPropagation(); copySlug('/@${{w.username}}')">🔗 /@${{w.username}}</span>
         </td>
-        <td class="val-green" style="font-weight: 700;">${{fmtCurrency(w.total_value, 0)}}</td>
-        <td>${{Number(w.followers || 0).toLocaleString('en-US')}}</td>
-        <td class="val-purple" style="font-weight: 800;">${{fmtCurrency(w.shadow_ratio, 0)}} / sub</td>
+        <td class="val-green num-col" style="font-weight: 700;">${{fmtCurrency(w.total_value, 0)}}</td>
+        <td class="num-col">${{Number(w.followers || 0).toLocaleString('en-US')}}</td>
+        <td class="val-purple num-col" style="font-weight: 800;">${{fmtCurrency(w.shadow_ratio, 0)}} / sub</td>
         <td>${{topHoldings}}</td>
         <td><span class="whale-badge">VERIFIED</span></td>
       </tr>
@@ -2661,11 +2783,11 @@ function openTickerModal(ticker, pushHistory = true) {{
       return `
         <tr class="clickable-row" onclick="openWhaleModal('${{w.username}}')">
           <td style="font-weight: 700; color: var(--cyan);">@${{w.username}}</td>
-          <td>${{qtyFmt}}</td>
-          <td class="val-green" style="font-weight: 700;">${{valFmt}}</td>
-          <td style="font-weight: 600;">${{costFmt}}</td>
-          <td class="${{profObj.cls}}" style="font-weight: 700;">${{profObj.formatted}}</td>
-          <td>${{Number(w.followers || 0).toLocaleString('en-US')}}</td>
+          <td class="num-col">${{qtyFmt}}</td>
+          <td class="val-green num-col" style="font-weight: 700;">${{valFmt}}</td>
+          <td class="num-col" style="font-weight: 600;">${{costFmt}}</td>
+          <td class="${{profObj.cls}} num-col" style="font-weight: 700;">${{profObj.formatted}}</td>
+          <td class="num-col">${{Number(w.followers || 0).toLocaleString('en-US')}}</td>
         </tr>
       `;
     }}).join('');
@@ -2781,10 +2903,10 @@ function openWhaleModal(username, pushHistory = true) {{
         <tr class="clickable-row" onclick="hideModal('whaleModal'); openTickerModal('${{cleanTicker}}')">
           <td style="font-weight: 800; color: var(--cyan);">${{cleanTicker}}</td>
           <td style="color: var(--text-secondary); max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${{secName}}</td>
-          <td>${{qtyFmt}}</td>
-          <td class="val-green" style="font-weight: 700;">${{valFmt}}</td>
-          <td style="font-weight: 600;">${{costFmt}}</td>
-          <td class="${{profObj.cls}}" style="font-weight: 700;">${{profObj.formatted}}</td>
+          <td class="num-col">${{qtyFmt}}</td>
+          <td class="val-green num-col" style="font-weight: 700;">${{valFmt}}</td>
+          <td class="num-col" style="font-weight: 600;">${{costFmt}}</td>
+          <td class="${{profObj.cls}} num-col" style="font-weight: 700;">${{profObj.formatted}}</td>
         </tr>
       `;
     }}).join('');
