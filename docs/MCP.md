@@ -143,13 +143,27 @@ MCP server connection closed unexpectedly for aftermath: invalid request
 
 #### Config file: `~/.gemini/config/mcp_config.json`
 
-Register the server once, using either the local stdio server or the remote
-bridge:
+Register the server once. The cleanest option is the native Streamable HTTP
+endpoint (no Node, no local process):
 
 ```json
 {
   "mcpServers": {
-    "aftermath": {
+    "aftermath": { "url": "https://ah.mphinance.com/api/mcp" }
+  }
+}
+```
+
+`/api/mcp` is a stateless Streamable HTTP endpoint: it answers requests with
+`application/json`, acknowledges notification-only POSTs with an empty `202`,
+and replies `405` to `GET` (no server-initiated stream).
+
+Alternatives, if you would rather run locally or bridge the legacy SSE stream:
+
+```json
+{
+  "mcpServers": {
+    "aftermath-local": {
       "command": "python3",
       "args": ["/home/mpha/projects/aftermath/mcp_server.py"]
     },
@@ -161,8 +175,8 @@ bridge:
 }
 ```
 
-- `aftermath` runs the repository copy directly over stdio (no Node required).
-- `aftermath-remote` bridges the edge SSE endpoint to stdio via `mcp-remote`.
+- `aftermath-local` runs the repository copy directly over stdio (no Node required).
+- `aftermath-remote` bridges the legacy edge SSE endpoint to stdio via `mcp-remote`.
 
 Native tool definitions are cached under `~/.gemini/antigravity-cli/mcp/aftermath/`.
 
