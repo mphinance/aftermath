@@ -179,6 +179,33 @@
     position: relative;
     overflow: hidden;
   }
+  .clickable-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .clickable-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--cyan);
+    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.18);
+  }
+  .clickable-card:active {
+    transform: translateY(0);
+  }
+  .clickable-card .stat-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .clickable-card .stat-arrow {
+    opacity: 0.4;
+    font-size: 13px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .clickable-card:hover .stat-arrow {
+    opacity: 1;
+    transform: translate(2px, -2px);
+    color: var(--cyan);
+  }
   .stat-label {
     font-size: 11px;
     color: var(--text-muted);
@@ -974,7 +1001,7 @@
         <span>&#x1F4D6;</span>
         <span>Docs</span>
       </a>
-      <button class="sitemap-header-btn" onclick="switchRoute('/sitemap')">
+      <button class="sitemap-header-btn" onclick="openSitemapView()">
         <span>&#x1F5FA;&#xFE0F;</span>
         <span>Sitemap</span>
       </button>
@@ -1028,26 +1055,46 @@
     </div>
   </div>
 
-  <!-- MACRO STATS -->
+  <!-- MACRO STATS (5 INTERACTIVE CARDS) -->
   <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-label">TOTAL VERIFIED WHALE CAPITAL</div>
+    <div class="stat-card clickable-card" onclick="openStocksView('value')" title="Sort all 500 securities by platform equity">
+      <div class="stat-label">
+        <span>TOTAL APP EQUITY</span>
+        <span class="stat-arrow">&nearr;</span>
+      </div>
+      <div class="stat-value val-cyan">$163,196,518</div>
+      <div class="stat-sub">11,727 retail positions tracked</div>
+    </div>
+    <div class="stat-card clickable-card" onclick="openWhalesView()" title="Inspect all 395 verified whale portfolios">
+      <div class="stat-label">
+        <span>TOTAL WHALE CAPITAL</span>
+        <span class="stat-arrow">&nearr;</span>
+      </div>
       <div class="stat-value val-green">$169,043,373</div>
-      <div class="stat-sub">395 verified portfolios tracked</div>
+      <div class="stat-sub">395 portfolios &bull; $9.0M cash</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-label">VERIFIED MILLIONAIRES</div>
-      <div class="stat-value val-cyan">31 ACCOUNTS</div>
-      <div class="stat-sub">Controlling $110.8M+ AUM</div>
+    <div class="stat-card clickable-card" onclick="filterMillionaires()" title="Filter the 32 verified millionaire accounts">
+      <div class="stat-label">
+        <span>VERIFIED MILLIONAIRES</span>
+        <span class="stat-arrow">&nearr;</span>
+      </div>
+      <div class="stat-value val-purple">31 ACCOUNTS</div>
+      <div class="stat-sub">Controlling $110.8M+ AUM &bull; <strong style="color: var(--purple);">Filter &nearr;</strong></div>
     </div>
-    <div class="stat-card">
-      <div class="stat-label">TRACKED UNIVERSE</div>
-      <div class="stat-value val-purple">500 SECURITIES</div>
+    <div class="stat-card clickable-card" onclick="openStocksView('whale')" title="Inspect 500 securities universe">
+      <div class="stat-label">
+        <span>TRACKED UNIVERSE</span>
+        <span class="stat-arrow">&nearr;</span>
+      </div>
+      <div class="stat-value val-amber">500 SECURITIES</div>
       <div class="stat-sub">436 Stocks &bull; 64 ETFs segregated</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-label">TOP TRACKED WHALE</div>
-      <div class="stat-value val-amber">$16,300,937</div>
+    <div class="stat-card clickable-card" onclick="openWhaleModal('TrogdorStrikesAgain')" title="Inspect @TrogdorStrikesAgain">
+      <div class="stat-label">
+        <span>TOP TRACKED WHALE</span>
+        <span class="stat-arrow">&nearr;</span>
+      </div>
+      <div class="stat-value val-green">$16,300,937</div>
       <div class="stat-sub">@TrogdorStrikesAgain ($1,124/sub)</div>
     </div>
   </div>
@@ -1089,7 +1136,7 @@
           </div>
           <div class="radar-row-right">
             <div class="radar-row-val">$19.36M</div>
-            <div class="radar-row-meta">179 holders • $18.4M whale</div>
+            <div class="radar-row-meta"><span class='pos-green'>+1.0%</span> &bull; 179 holders</div>
           </div>
         </div>
         
@@ -1103,7 +1150,7 @@
           </div>
           <div class="radar-row-right">
             <div class="radar-row-val">$17.20M</div>
-            <div class="radar-row-meta">146 holders • $16.4M whale</div>
+            <div class="radar-row-meta"><span class='pos-green'>+2.5%</span> &bull; 146 holders</div>
           </div>
         </div>
         
@@ -1117,7 +1164,7 @@
           </div>
           <div class="radar-row-right">
             <div class="radar-row-val">$13.85M</div>
-            <div class="radar-row-meta">133 holders • $1.7M whale</div>
+            <div class="radar-row-meta"><span class='neg-red'>-0.7%</span> &bull; 133 holders</div>
           </div>
         </div>
         
@@ -1131,7 +1178,7 @@
           </div>
           <div class="radar-row-right">
             <div class="radar-row-val">$13.50M</div>
-            <div class="radar-row-meta">321 holders • $10.9M whale</div>
+            <div class="radar-row-meta"><span class='pos-green'>+1.3%</span> &bull; 321 holders</div>
           </div>
         </div>
         
@@ -1145,7 +1192,7 @@
           </div>
           <div class="radar-row-right">
             <div class="radar-row-val">$8.02M</div>
-            <div class="radar-row-meta">119 holders • $7.6M whale</div>
+            <div class="radar-row-meta"><span class='pos-green'>+1.0%</span> &bull; 119 holders</div>
           </div>
         </div>
         
@@ -1172,8 +1219,8 @@
             </div>
           </div>
           <div class="radar-row-right">
-            <div class="radar-row-val">321 Owners</div>
-            <div class="radar-row-meta">$13.50M total • $233.95</div>
+            <div class="radar-row-val">321 Holders</div>
+            <div class="radar-row-meta"><span class='pos-green'>+1.3%</span> &bull; $13.50M app equity</div>
           </div>
         </div>
         
@@ -1186,8 +1233,8 @@
             </div>
           </div>
           <div class="radar-row-right">
-            <div class="radar-row-val">228 Owners</div>
-            <div class="radar-row-meta">$1.48M total • $7.29</div>
+            <div class="radar-row-val">228 Holders</div>
+            <div class="radar-row-meta"><span class='pos-green'>+2.4%</span> &bull; $1.48M app equity</div>
           </div>
         </div>
         
@@ -1200,8 +1247,8 @@
             </div>
           </div>
           <div class="radar-row-right">
-            <div class="radar-row-val">197 Owners</div>
-            <div class="radar-row-meta">$3.95M total • $707.33</div>
+            <div class="radar-row-val">197 Holders</div>
+            <div class="radar-row-meta"><span class='pos-green'>+0.7%</span> &bull; $3.95M app equity</div>
           </div>
         </div>
         
@@ -1214,8 +1261,8 @@
             </div>
           </div>
           <div class="radar-row-right">
-            <div class="radar-row-val">187 Owners</div>
-            <div class="radar-row-meta">$3.41M total • $517.13</div>
+            <div class="radar-row-val">187 Holders</div>
+            <div class="radar-row-meta"><span class='pos-green'>+0.8%</span> &bull; $3.41M app equity</div>
           </div>
         </div>
         
@@ -1228,8 +1275,8 @@
             </div>
           </div>
           <div class="radar-row-right">
-            <div class="radar-row-val">181 Owners</div>
-            <div class="radar-row-meta">$2.33M total • $251.15</div>
+            <div class="radar-row-val">181 Holders</div>
+            <div class="radar-row-meta"><span class='pos-green'>+1.2%</span> &bull; $2.33M app equity</div>
           </div>
         </div>
         
@@ -1257,7 +1304,7 @@
           </div>
           <div class="radar-row-right">
             <div class="radar-row-val">$188,752</div>
-            <div class="radar-row-meta">18 holders • $3.4M cap</div>
+            <div class="radar-row-meta"><span class='val-purple'>$/holder</span> &bull; 18 owners</div>
           </div>
         </div>
         
@@ -1271,7 +1318,7 @@
           </div>
           <div class="radar-row-right">
             <div class="radar-row-val">$117,814</div>
-            <div class="radar-row-meta">146 holders • $17.2M cap</div>
+            <div class="radar-row-meta"><span class='val-purple'>$/holder</span> &bull; 146 owners</div>
           </div>
         </div>
         
@@ -1285,7 +1332,7 @@
           </div>
           <div class="radar-row-right">
             <div class="radar-row-val">$108,129</div>
-            <div class="radar-row-meta">179 holders • $19.4M cap</div>
+            <div class="radar-row-meta"><span class='val-purple'>$/holder</span> &bull; 179 owners</div>
           </div>
         </div>
         
@@ -1299,7 +1346,7 @@
           </div>
           <div class="radar-row-right">
             <div class="radar-row-val">$104,169</div>
-            <div class="radar-row-meta">133 holders • $13.9M cap</div>
+            <div class="radar-row-meta"><span class='val-purple'>$/holder</span> &bull; 133 owners</div>
           </div>
         </div>
         
@@ -1313,7 +1360,7 @@
           </div>
           <div class="radar-row-right">
             <div class="radar-row-val">$67,419</div>
-            <div class="radar-row-meta">119 holders • $8.0M cap</div>
+            <div class="radar-row-meta"><span class='val-purple'>$/holder</span> &bull; 119 owners</div>
           </div>
         </div>
         
@@ -1501,6 +1548,7 @@
         <button class="filter-btn active" id="btnSortVal" onclick="sortWhales('value')">Sort: Net Worth ($)</button>
         <button class="filter-btn" id="btnSortRatio" onclick="sortWhales('ratio')">Sort: $/Follower Ratio</button>
         <button class="filter-btn" id="btnSortPnL" onclick="sortWhales('pnl')">Sort: Total Profit</button>
+        <button class="filter-btn" id="btnSortMillionaires" onclick="filterMillionaires()">💎 Millionaires (31)</button>
       </div>
     </div>
     <div class="whale-grid" id="whaleContainer"></div>
@@ -1539,23 +1587,23 @@
         <span style="font-family: var(--font-mono); font-size: 11px; color: var(--cyan);">5 Direct Navigation Endpoints</span>
       </div>
       <div class="sitemap-grid">
-        <a class="sitemap-card" onclick="switchRoute('/stonks')">
+        <a class="sitemap-card" href="javascript:void(0)" onclick="openStocksView('whale')">
           <div class="sitemap-card-title">/stonks <span>&rarr;</span></div>
           <div class="sitemap-card-desc">Top 500 securities universe ranked by Whale Capital, Value, Owners, and Momentum.</div>
         </a>
-        <a class="sitemap-card" onclick="switchRoute('/etfs')">
+        <a class="sitemap-card" href="javascript:void(0)" onclick="switchRoute('/etfs', true, true)">
           <div class="sitemap-card-title">/etfs <span>&rarr;</span></div>
           <div class="sitemap-card-desc">Dedicated index and sector funds directory with 64 segregated ETFs.</div>
         </a>
-        <a class="sitemap-card" onclick="switchRoute('/whales')">
+        <a class="sitemap-card" href="javascript:void(0)" onclick="openWhalesView()">
           <div class="sitemap-card-title">/whales <span>&rarr;</span></div>
           <div class="sitemap-card-desc">Whale Radar featuring 395 verified portfolios controlling $169.0M+ AUM.</div>
         </a>
-        <a class="sitemap-card" onclick="switchRoute('/shadow')">
+        <a class="sitemap-card" href="javascript:void(0)" onclick="switchRoute('/shadow', true, true)">
           <div class="sitemap-card-title">/shadow <span>&rarr;</span></div>
           <div class="sitemap-card-desc">The Clout Inversion index sorting under-followed high-net-worth accounts.</div>
         </a>
-        <a class="sitemap-card" onclick="switchRoute('/all')">
+        <a class="sitemap-card" href="javascript:void(0)" onclick="switchRoute('/all', true, true)">
           <div class="sitemap-card-title">/all <span>&rarr;</span></div>
           <div class="sitemap-card-desc">Complete unpaginated securities leaderboard with multi-column sorting.</div>
         </a>
@@ -1568,7 +1616,7 @@
         <span style="font-family: var(--font-mono); font-size: 11px; color: var(--green);">Click handle to open Whale Dossier</span>
       </div>
       <div class="sitemap-chip-cloud">
-        <a class="sitemap-chip" onclick="openWhaleModal('TrogdorStrikesAgain')"><strong style="color: var(--cyan);">@TrogdorStrikesAgain</strong><span class="sitemap-chip-meta">$16.30M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('SlowmoInvestor')"><strong style="color: var(--cyan);">@SlowmoInvestor</strong><span class="sitemap-chip-meta">$16.14M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('Trescommas')"><strong style="color: var(--cyan);">@Trescommas</strong><span class="sitemap-chip-meta">$15.06M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('SIRJACK')"><strong style="color: var(--cyan);">@SIRJACK</strong><span class="sitemap-chip-meta">$12.28M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('CptNut')"><strong style="color: var(--cyan);">@CptNut</strong><span class="sitemap-chip-meta">$5.28M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('OCmd')"><strong style="color: var(--cyan);">@OCmd</strong><span class="sitemap-chip-meta">$3.98M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('NOLA')"><strong style="color: var(--cyan);">@NOLA</strong><span class="sitemap-chip-meta">$3.77M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('dteich16')"><strong style="color: var(--cyan);">@dteich16</strong><span class="sitemap-chip-meta">$3.59M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('skrt')"><strong style="color: var(--cyan);">@skrt</strong><span class="sitemap-chip-meta">$2.39M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('muffin_man')"><strong style="color: var(--cyan);">@muffin_man</strong><span class="sitemap-chip-meta">$2.13M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('engineered')"><strong style="color: var(--cyan);">@engineered</strong><span class="sitemap-chip-meta">$2.10M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('GuaGuaQingWa')"><strong style="color: var(--cyan);">@GuaGuaQingWa</strong><span class="sitemap-chip-meta">$2.03M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('AnalysisPilot')"><strong style="color: var(--cyan);">@AnalysisPilot</strong><span class="sitemap-chip-meta">$1.89M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('apollox')"><strong style="color: var(--cyan);">@apollox</strong><span class="sitemap-chip-meta">$1.76M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('uponly')"><strong style="color: var(--cyan);">@uponly</strong><span class="sitemap-chip-meta">$1.64M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('lordgoldneyes00')"><strong style="color: var(--cyan);">@lordgoldneyes00</strong><span class="sitemap-chip-meta">$1.63M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('jterra11')"><strong style="color: var(--cyan);">@jterra11</strong><span class="sitemap-chip-meta">$1.58M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('humanfly')"><strong style="color: var(--cyan);">@humanfly</strong><span class="sitemap-chip-meta">$1.53M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('bluewhackadoo')"><strong style="color: var(--cyan);">@bluewhackadoo</strong><span class="sitemap-chip-meta">$1.49M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('BearHugger')"><strong style="color: var(--cyan);">@BearHugger</strong><span class="sitemap-chip-meta">$1.46M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('Zanger')"><strong style="color: var(--cyan);">@Zanger</strong><span class="sitemap-chip-meta">$1.39M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('robinoods')"><strong style="color: var(--cyan);">@robinoods</strong><span class="sitemap-chip-meta">$1.36M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('wabisabi')"><strong style="color: var(--cyan);">@wabisabi</strong><span class="sitemap-chip-meta">$1.35M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('dankermann')"><strong style="color: var(--cyan);">@dankermann</strong><span class="sitemap-chip-meta">$1.12M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('geo21208')"><strong style="color: var(--cyan);">@geo21208</strong><span class="sitemap-chip-meta">$1.12M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('oldntired')"><strong style="color: var(--cyan);">@oldntired</strong><span class="sitemap-chip-meta">$1.10M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('drew1618t')"><strong style="color: var(--cyan);">@drew1618t</strong><span class="sitemap-chip-meta">$1.10M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('greym')"><strong style="color: var(--cyan);">@greym</strong><span class="sitemap-chip-meta">$1.08M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('CompoundingGains')"><strong style="color: var(--cyan);">@CompoundingGains</strong><span class="sitemap-chip-meta">$1.08M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('Bobdog')"><strong style="color: var(--cyan);">@Bobdog</strong><span class="sitemap-chip-meta">$1.06M</span></a> <a class="sitemap-chip" onclick="openWhaleModal('twotothreepedals')"><strong style="color: var(--cyan);">@twotothreepedals</strong><span class="sitemap-chip-meta">$1.03M</span></a>
+        <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('TrogdorStrikesAgain')"><strong style="color: var(--cyan);">@TrogdorStrikesAgain</strong><span class="sitemap-chip-meta">$16.30M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('SlowmoInvestor')"><strong style="color: var(--cyan);">@SlowmoInvestor</strong><span class="sitemap-chip-meta">$16.14M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('Trescommas')"><strong style="color: var(--cyan);">@Trescommas</strong><span class="sitemap-chip-meta">$15.06M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('SIRJACK')"><strong style="color: var(--cyan);">@SIRJACK</strong><span class="sitemap-chip-meta">$12.28M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('CptNut')"><strong style="color: var(--cyan);">@CptNut</strong><span class="sitemap-chip-meta">$5.28M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('OCmd')"><strong style="color: var(--cyan);">@OCmd</strong><span class="sitemap-chip-meta">$3.98M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('NOLA')"><strong style="color: var(--cyan);">@NOLA</strong><span class="sitemap-chip-meta">$3.77M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('dteich16')"><strong style="color: var(--cyan);">@dteich16</strong><span class="sitemap-chip-meta">$3.59M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('skrt')"><strong style="color: var(--cyan);">@skrt</strong><span class="sitemap-chip-meta">$2.39M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('muffin_man')"><strong style="color: var(--cyan);">@muffin_man</strong><span class="sitemap-chip-meta">$2.13M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('engineered')"><strong style="color: var(--cyan);">@engineered</strong><span class="sitemap-chip-meta">$2.10M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('GuaGuaQingWa')"><strong style="color: var(--cyan);">@GuaGuaQingWa</strong><span class="sitemap-chip-meta">$2.03M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('AnalysisPilot')"><strong style="color: var(--cyan);">@AnalysisPilot</strong><span class="sitemap-chip-meta">$1.89M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('apollox')"><strong style="color: var(--cyan);">@apollox</strong><span class="sitemap-chip-meta">$1.76M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('uponly')"><strong style="color: var(--cyan);">@uponly</strong><span class="sitemap-chip-meta">$1.64M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('lordgoldneyes00')"><strong style="color: var(--cyan);">@lordgoldneyes00</strong><span class="sitemap-chip-meta">$1.63M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('jterra11')"><strong style="color: var(--cyan);">@jterra11</strong><span class="sitemap-chip-meta">$1.58M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('humanfly')"><strong style="color: var(--cyan);">@humanfly</strong><span class="sitemap-chip-meta">$1.53M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('bluewhackadoo')"><strong style="color: var(--cyan);">@bluewhackadoo</strong><span class="sitemap-chip-meta">$1.49M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('BearHugger')"><strong style="color: var(--cyan);">@BearHugger</strong><span class="sitemap-chip-meta">$1.46M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('Zanger')"><strong style="color: var(--cyan);">@Zanger</strong><span class="sitemap-chip-meta">$1.39M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('robinoods')"><strong style="color: var(--cyan);">@robinoods</strong><span class="sitemap-chip-meta">$1.36M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('wabisabi')"><strong style="color: var(--cyan);">@wabisabi</strong><span class="sitemap-chip-meta">$1.35M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('dankermann')"><strong style="color: var(--cyan);">@dankermann</strong><span class="sitemap-chip-meta">$1.12M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('geo21208')"><strong style="color: var(--cyan);">@geo21208</strong><span class="sitemap-chip-meta">$1.12M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('oldntired')"><strong style="color: var(--cyan);">@oldntired</strong><span class="sitemap-chip-meta">$1.10M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('drew1618t')"><strong style="color: var(--cyan);">@drew1618t</strong><span class="sitemap-chip-meta">$1.10M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('greym')"><strong style="color: var(--cyan);">@greym</strong><span class="sitemap-chip-meta">$1.08M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('CompoundingGains')"><strong style="color: var(--cyan);">@CompoundingGains</strong><span class="sitemap-chip-meta">$1.08M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('Bobdog')"><strong style="color: var(--cyan);">@Bobdog</strong><span class="sitemap-chip-meta">$1.06M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal('twotothreepedals')"><strong style="color: var(--cyan);">@twotothreepedals</strong><span class="sitemap-chip-meta">$1.03M</span></a>
       </div>
     </div>
 
@@ -1578,7 +1626,7 @@
         <span style="font-family: var(--font-mono); font-size: 11px; color: var(--amber);">Click ticker to open ETF Deep-Dive</span>
       </div>
       <div class="sitemap-chip-cloud">
-        <a class="sitemap-chip" onclick="openTickerModal('QQQ')"><strong style="color: var(--amber);">$QQQ</strong><span class="sitemap-chip-meta">$7.6M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('SPY')"><strong style="color: var(--amber);">$SPY</strong><span class="sitemap-chip-meta">$7.1M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('VOO')"><strong style="color: var(--amber);">$VOO</strong><span class="sitemap-chip-meta">$3.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('VTI')"><strong style="color: var(--amber);">$VTI</strong><span class="sitemap-chip-meta">$2.1M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('SGOV')"><strong style="color: var(--amber);">$SGOV</strong><span class="sitemap-chip-meta">$1.9M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('DRAM')"><strong style="color: var(--amber);">$DRAM</strong><span class="sitemap-chip-meta">$1.2M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('SCHD')"><strong style="color: var(--amber);">$SCHD</strong><span class="sitemap-chip-meta">$0.8M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('IBIT')"><strong style="color: var(--amber);">$IBIT</strong><span class="sitemap-chip-meta">$0.8M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('SPMO')"><strong style="color: var(--amber);">$SPMO</strong><span class="sitemap-chip-meta">$0.8M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('VGT')"><strong style="color: var(--amber);">$VGT</strong><span class="sitemap-chip-meta">$0.5M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('SMH')"><strong style="color: var(--amber);">$SMH</strong><span class="sitemap-chip-meta">$0.5M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('VT')"><strong style="color: var(--amber);">$VT</strong><span class="sitemap-chip-meta">$0.4M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('IVV')"><strong style="color: var(--amber);">$IVV</strong><span class="sitemap-chip-meta">$0.4M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('SCHG')"><strong style="color: var(--amber);">$SCHG</strong><span class="sitemap-chip-meta">$0.3M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('QQQM')"><strong style="color: var(--amber);">$QQQM</strong><span class="sitemap-chip-meta">$0.3M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('VXUS')"><strong style="color: var(--amber);">$VXUS</strong><span class="sitemap-chip-meta">$0.3M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('MSTU')"><strong style="color: var(--amber);">$MSTU</strong><span class="sitemap-chip-meta">$0.3M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('FBTC')"><strong style="color: var(--amber);">$FBTC</strong><span class="sitemap-chip-meta">$0.3M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('ROBN')"><strong style="color: var(--amber);">$ROBN</strong><span class="sitemap-chip-meta">$0.3M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('TQQQ')"><strong style="color: var(--amber);">$TQQQ</strong><span class="sitemap-chip-meta">$0.2M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('SOXL')"><strong style="color: var(--amber);">$SOXL</strong><span class="sitemap-chip-meta">$0.2M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('QQQI')"><strong style="color: var(--amber);">$QQQI</strong><span class="sitemap-chip-meta">$0.2M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('JEPI')"><strong style="color: var(--amber);">$JEPI</strong><span class="sitemap-chip-meta">$0.2M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('GBTC')"><strong style="color: var(--amber);">$GBTC</strong><span class="sitemap-chip-meta">$0.2M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('ETHU')"><strong style="color: var(--amber);">$ETHU</strong><span class="sitemap-chip-meta">$0.2M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('ETHA')"><strong style="color: var(--amber);">$ETHA</strong><span class="sitemap-chip-meta">$0.2M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('VUG')"><strong style="color: var(--amber);">$VUG</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('GLD')"><strong style="color: var(--amber);">$GLD</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('MSTY')"><strong style="color: var(--amber);">$MSTY</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('ULTY')"><strong style="color: var(--amber);">$ULTY</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('IWM')"><strong style="color: var(--amber);">$IWM</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('JEPQ')"><strong style="color: var(--amber);">$JEPQ</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('SLV')"><strong style="color: var(--amber);">$SLV</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('CONY')"><strong style="color: var(--amber);">$CONY</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('CONL')"><strong style="color: var(--amber);">$CONL</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('ARKK')"><strong style="color: var(--amber);">$ARKK</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('NVDY')"><strong style="color: var(--amber);">$NVDY</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('QTUM')"><strong style="color: var(--amber);">$QTUM</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('XLE')"><strong style="color: var(--amber);">$XLE</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('NVDL')"><strong style="color: var(--amber);">$NVDL</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('VOOG')"><strong style="color: var(--amber);">$VOOG</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('ETH')"><strong style="color: var(--amber);">$ETH</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('SPXL')"><strong style="color: var(--amber);">$SPXL</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('BITO')"><strong style="color: var(--amber);">$BITO</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('SPYG')"><strong style="color: var(--amber);">$SPYG</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('TLT')"><strong style="color: var(--amber);">$TLT</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('TSLL')"><strong style="color: var(--amber);">$TSLL</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('TSLY')"><strong style="color: var(--amber);">$TSLY</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('BTC')"><strong style="color: var(--amber);">$BTC</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('YINN')"><strong style="color: var(--amber);">$YINN</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('SQQQ')"><strong style="color: var(--amber);">$SQQQ</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('VXX')"><strong style="color: var(--amber);">$VXX</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('FXI')"><strong style="color: var(--amber);">$FXI</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('BITX')"><strong style="color: var(--amber);">$BITX</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('YMAX')"><strong style="color: var(--amber);">$YMAX</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('MSTX')"><strong style="color: var(--amber);">$MSTX</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('PLTY')"><strong style="color: var(--amber);">$PLTY</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('USO')"><strong style="color: var(--amber);">$USO</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('MSOS')"><strong style="color: var(--amber);">$MSOS</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('UVXY')"><strong style="color: var(--amber);">$UVXY</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('UVIX')"><strong style="color: var(--amber);">$UVIX</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('NVD')"><strong style="color: var(--amber);">$NVD</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('SPLG')"><strong style="color: var(--amber);">$SPLG</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" onclick="openTickerModal('SPXS')"><strong style="color: var(--amber);">$SPXS</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a>
+        <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('QQQ')"><strong style="color: var(--amber);">$QQQ</strong><span class="sitemap-chip-meta">$7.6M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SPY')"><strong style="color: var(--amber);">$SPY</strong><span class="sitemap-chip-meta">$7.1M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('VOO')"><strong style="color: var(--amber);">$VOO</strong><span class="sitemap-chip-meta">$3.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('VTI')"><strong style="color: var(--amber);">$VTI</strong><span class="sitemap-chip-meta">$2.1M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SGOV')"><strong style="color: var(--amber);">$SGOV</strong><span class="sitemap-chip-meta">$1.9M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('DRAM')"><strong style="color: var(--amber);">$DRAM</strong><span class="sitemap-chip-meta">$1.2M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SCHD')"><strong style="color: var(--amber);">$SCHD</strong><span class="sitemap-chip-meta">$0.8M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('IBIT')"><strong style="color: var(--amber);">$IBIT</strong><span class="sitemap-chip-meta">$0.8M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SPMO')"><strong style="color: var(--amber);">$SPMO</strong><span class="sitemap-chip-meta">$0.8M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('VGT')"><strong style="color: var(--amber);">$VGT</strong><span class="sitemap-chip-meta">$0.5M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SMH')"><strong style="color: var(--amber);">$SMH</strong><span class="sitemap-chip-meta">$0.5M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('VT')"><strong style="color: var(--amber);">$VT</strong><span class="sitemap-chip-meta">$0.4M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('IVV')"><strong style="color: var(--amber);">$IVV</strong><span class="sitemap-chip-meta">$0.4M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SCHG')"><strong style="color: var(--amber);">$SCHG</strong><span class="sitemap-chip-meta">$0.3M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('QQQM')"><strong style="color: var(--amber);">$QQQM</strong><span class="sitemap-chip-meta">$0.3M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('VXUS')"><strong style="color: var(--amber);">$VXUS</strong><span class="sitemap-chip-meta">$0.3M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('MSTU')"><strong style="color: var(--amber);">$MSTU</strong><span class="sitemap-chip-meta">$0.3M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('FBTC')"><strong style="color: var(--amber);">$FBTC</strong><span class="sitemap-chip-meta">$0.3M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('ROBN')"><strong style="color: var(--amber);">$ROBN</strong><span class="sitemap-chip-meta">$0.3M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('TQQQ')"><strong style="color: var(--amber);">$TQQQ</strong><span class="sitemap-chip-meta">$0.2M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SOXL')"><strong style="color: var(--amber);">$SOXL</strong><span class="sitemap-chip-meta">$0.2M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('QQQI')"><strong style="color: var(--amber);">$QQQI</strong><span class="sitemap-chip-meta">$0.2M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('JEPI')"><strong style="color: var(--amber);">$JEPI</strong><span class="sitemap-chip-meta">$0.2M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('GBTC')"><strong style="color: var(--amber);">$GBTC</strong><span class="sitemap-chip-meta">$0.2M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('ETHU')"><strong style="color: var(--amber);">$ETHU</strong><span class="sitemap-chip-meta">$0.2M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('ETHA')"><strong style="color: var(--amber);">$ETHA</strong><span class="sitemap-chip-meta">$0.2M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('VUG')"><strong style="color: var(--amber);">$VUG</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('GLD')"><strong style="color: var(--amber);">$GLD</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('MSTY')"><strong style="color: var(--amber);">$MSTY</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('ULTY')"><strong style="color: var(--amber);">$ULTY</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('IWM')"><strong style="color: var(--amber);">$IWM</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('JEPQ')"><strong style="color: var(--amber);">$JEPQ</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SLV')"><strong style="color: var(--amber);">$SLV</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('CONY')"><strong style="color: var(--amber);">$CONY</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('CONL')"><strong style="color: var(--amber);">$CONL</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('ARKK')"><strong style="color: var(--amber);">$ARKK</strong><span class="sitemap-chip-meta">$0.1M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('NVDY')"><strong style="color: var(--amber);">$NVDY</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('QTUM')"><strong style="color: var(--amber);">$QTUM</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('XLE')"><strong style="color: var(--amber);">$XLE</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('NVDL')"><strong style="color: var(--amber);">$NVDL</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('VOOG')"><strong style="color: var(--amber);">$VOOG</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('ETH')"><strong style="color: var(--amber);">$ETH</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SPXL')"><strong style="color: var(--amber);">$SPXL</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('BITO')"><strong style="color: var(--amber);">$BITO</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SPYG')"><strong style="color: var(--amber);">$SPYG</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('TLT')"><strong style="color: var(--amber);">$TLT</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('TSLL')"><strong style="color: var(--amber);">$TSLL</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('TSLY')"><strong style="color: var(--amber);">$TSLY</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('BTC')"><strong style="color: var(--amber);">$BTC</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('YINN')"><strong style="color: var(--amber);">$YINN</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SQQQ')"><strong style="color: var(--amber);">$SQQQ</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('VXX')"><strong style="color: var(--amber);">$VXX</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('FXI')"><strong style="color: var(--amber);">$FXI</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('BITX')"><strong style="color: var(--amber);">$BITX</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('YMAX')"><strong style="color: var(--amber);">$YMAX</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('MSTX')"><strong style="color: var(--amber);">$MSTX</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('PLTY')"><strong style="color: var(--amber);">$PLTY</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('USO')"><strong style="color: var(--amber);">$USO</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('MSOS')"><strong style="color: var(--amber);">$MSOS</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('UVXY')"><strong style="color: var(--amber);">$UVXY</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('UVIX')"><strong style="color: var(--amber);">$UVIX</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('NVD')"><strong style="color: var(--amber);">$NVD</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SPLG')"><strong style="color: var(--amber);">$SPLG</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SPXS')"><strong style="color: var(--amber);">$SPXS</strong><span class="sitemap-chip-meta">$0.0M Whale</span></a>
       </div>
     </div>
 
@@ -1588,7 +1636,7 @@
         <span style="font-family: var(--font-mono); font-size: 11px; color: var(--purple);">Click ticker to open Stock Deep-Dive</span>
       </div>
       <div class="sitemap-chip-cloud">
-        <a class="sitemap-chip" onclick="openTickerModal('AAPL')"><strong style="color: var(--cyan);">$AAPL</strong><span class="sitemap-chip-meta">$18.4M</span></a> <a class="sitemap-chip" onclick="openTickerModal('ASTS')"><strong style="color: var(--cyan);">$ASTS</strong><span class="sitemap-chip-meta">$16.4M</span></a> <a class="sitemap-chip" onclick="openTickerModal('NVDA')"><strong style="color: var(--cyan);">$NVDA</strong><span class="sitemap-chip-meta">$10.9M</span></a> <a class="sitemap-chip" onclick="openTickerModal('TSLA')"><strong style="color: var(--cyan);">$TSLA</strong><span class="sitemap-chip-meta">$3.6M</span></a> <a class="sitemap-chip" onclick="openTickerModal('ANET')"><strong style="color: var(--cyan);">$ANET</strong><span class="sitemap-chip-meta">$3.4M</span></a> <a class="sitemap-chip" onclick="openTickerModal('MU')"><strong style="color: var(--cyan);">$MU</strong><span class="sitemap-chip-meta">$3.1M</span></a> <a class="sitemap-chip" onclick="openTickerModal('HOOD')"><strong style="color: var(--cyan);">$HOOD</strong><span class="sitemap-chip-meta">$2.8M</span></a> <a class="sitemap-chip" onclick="openTickerModal('MSFT')"><strong style="color: var(--cyan);">$MSFT</strong><span class="sitemap-chip-meta">$2.7M</span></a> <a class="sitemap-chip" onclick="openTickerModal('META')"><strong style="color: var(--cyan);">$META</strong><span class="sitemap-chip-meta">$2.5M</span></a> <a class="sitemap-chip" onclick="openTickerModal('COIN')"><strong style="color: var(--cyan);">$COIN</strong><span class="sitemap-chip-meta">$2.4M</span></a> <a class="sitemap-chip" onclick="openTickerModal('AMZN')"><strong style="color: var(--cyan);">$AMZN</strong><span class="sitemap-chip-meta">$1.7M</span></a> <a class="sitemap-chip" onclick="openTickerModal('PLTR')"><strong style="color: var(--cyan);">$PLTR</strong><span class="sitemap-chip-meta">$1.7M</span></a> <a class="sitemap-chip" onclick="openTickerModal('LLY')"><strong style="color: var(--cyan);">$LLY</strong><span class="sitemap-chip-meta">$1.4M</span></a> <a class="sitemap-chip" onclick="openTickerModal('GOOGL')"><strong style="color: var(--cyan);">$GOOGL</strong><span class="sitemap-chip-meta">$1.3M</span></a> <a class="sitemap-chip" onclick="openTickerModal('AMD')"><strong style="color: var(--cyan);">$AMD</strong><span class="sitemap-chip-meta">$1.3M</span></a> <a class="sitemap-chip" onclick="openTickerModal('AVGO')"><strong style="color: var(--cyan);">$AVGO</strong><span class="sitemap-chip-meta">$1.2M</span></a> <a class="sitemap-chip" onclick="openTickerModal('RKLB')"><strong style="color: var(--cyan);">$RKLB</strong><span class="sitemap-chip-meta">$1.0M</span></a> <a class="sitemap-chip" onclick="openTickerModal('RDDT')"><strong style="color: var(--cyan);">$RDDT</strong><span class="sitemap-chip-meta">$0.9M</span></a> <a class="sitemap-chip" onclick="openTickerModal('NBIS')"><strong style="color: var(--cyan);">$NBIS</strong><span class="sitemap-chip-meta">$0.9M</span></a> <a class="sitemap-chip" onclick="openTickerModal('ONDS')"><strong style="color: var(--cyan);">$ONDS</strong><span class="sitemap-chip-meta">$0.8M</span></a> <a class="sitemap-chip" onclick="openTickerModal('UPS')"><strong style="color: var(--cyan);">$UPS</strong><span class="sitemap-chip-meta">$0.7M</span></a> <a class="sitemap-chip" onclick="openTickerModal('GOOG')"><strong style="color: var(--cyan);">$GOOG</strong><span class="sitemap-chip-meta">$0.6M</span></a> <a class="sitemap-chip" onclick="openTickerModal('SNDK')"><strong style="color: var(--cyan);">$SNDK</strong><span class="sitemap-chip-meta">$0.6M</span></a> <a class="sitemap-chip" onclick="openTickerModal('IREN')"><strong style="color: var(--cyan);">$IREN</strong><span class="sitemap-chip-meta">$0.6M</span></a> <a class="sitemap-chip" onclick="openTickerModal('BYND')"><strong style="color: var(--cyan);">$BYND</strong><span class="sitemap-chip-meta">$0.6M</span></a> <a class="sitemap-chip" onclick="openTickerModal('CRWV')"><strong style="color: var(--cyan);">$CRWV</strong><span class="sitemap-chip-meta">$0.5M</span></a> <a class="sitemap-chip" onclick="openTickerModal('INTC')"><strong style="color: var(--cyan);">$INTC</strong><span class="sitemap-chip-meta">$0.4M</span></a> <a class="sitemap-chip" onclick="openTickerModal('MSTR')"><strong style="color: var(--cyan);">$MSTR</strong><span class="sitemap-chip-meta">$0.4M</span></a> <a class="sitemap-chip" onclick="openTickerModal('GME')"><strong style="color: var(--cyan);">$GME</strong><span class="sitemap-chip-meta">$0.4M</span></a> <a class="sitemap-chip" onclick="openTickerModal('UNH')"><strong style="color: var(--cyan);">$UNH</strong><span class="sitemap-chip-meta">$0.4M</span></a> <a class="sitemap-chip" onclick="openTickerModal('NFLX')"><strong style="color: var(--cyan);">$NFLX</strong><span class="sitemap-chip-meta">$0.4M</span></a> <a class="sitemap-chip" onclick="openTickerModal('LUNR')"><strong style="color: var(--cyan);">$LUNR</strong><span class="sitemap-chip-meta">$0.4M</span></a> <a class="sitemap-chip" onclick="openTickerModal('OPEN')"><strong style="color: var(--cyan);">$OPEN</strong><span class="sitemap-chip-meta">$0.4M</span></a> <a class="sitemap-chip" onclick="openTickerModal('QS')"><strong style="color: var(--cyan);">$QS</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" onclick="openTickerModal('BE')"><strong style="color: var(--cyan);">$BE</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" onclick="openTickerModal('HIMS')"><strong style="color: var(--cyan);">$HIMS</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" onclick="openTickerModal('SNOW')"><strong style="color: var(--cyan);">$SNOW</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" onclick="openTickerModal('SOFI')"><strong style="color: var(--cyan);">$SOFI</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" onclick="openTickerModal('BULL')"><strong style="color: var(--cyan);">$BULL</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" onclick="openTickerModal('COST')"><strong style="color: var(--cyan);">$COST</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" onclick="openTickerModal('ALAB')"><strong style="color: var(--cyan);">$ALAB</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" onclick="openTickerModal('RIVN')"><strong style="color: var(--cyan);">$RIVN</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" onclick="openTickerModal('MP')"><strong style="color: var(--cyan);">$MP</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" onclick="openTickerModal('OKTA')"><strong style="color: var(--cyan);">$OKTA</strong><span class="sitemap-chip-meta">$0.2M</span></a> <a class="sitemap-chip" onclick="openTickerModal('RXRX')"><strong style="color: var(--cyan);">$RXRX</strong><span class="sitemap-chip-meta">$0.2M</span></a>
+        <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('AAPL')"><strong style="color: var(--cyan);">$AAPL</strong><span class="sitemap-chip-meta">$18.4M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('ASTS')"><strong style="color: var(--cyan);">$ASTS</strong><span class="sitemap-chip-meta">$16.4M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('NVDA')"><strong style="color: var(--cyan);">$NVDA</strong><span class="sitemap-chip-meta">$10.9M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('TSLA')"><strong style="color: var(--cyan);">$TSLA</strong><span class="sitemap-chip-meta">$3.6M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('ANET')"><strong style="color: var(--cyan);">$ANET</strong><span class="sitemap-chip-meta">$3.4M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('MU')"><strong style="color: var(--cyan);">$MU</strong><span class="sitemap-chip-meta">$3.1M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('HOOD')"><strong style="color: var(--cyan);">$HOOD</strong><span class="sitemap-chip-meta">$2.8M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('MSFT')"><strong style="color: var(--cyan);">$MSFT</strong><span class="sitemap-chip-meta">$2.7M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('META')"><strong style="color: var(--cyan);">$META</strong><span class="sitemap-chip-meta">$2.5M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('COIN')"><strong style="color: var(--cyan);">$COIN</strong><span class="sitemap-chip-meta">$2.4M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('AMZN')"><strong style="color: var(--cyan);">$AMZN</strong><span class="sitemap-chip-meta">$1.7M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('PLTR')"><strong style="color: var(--cyan);">$PLTR</strong><span class="sitemap-chip-meta">$1.7M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('LLY')"><strong style="color: var(--cyan);">$LLY</strong><span class="sitemap-chip-meta">$1.4M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('GOOGL')"><strong style="color: var(--cyan);">$GOOGL</strong><span class="sitemap-chip-meta">$1.3M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('AMD')"><strong style="color: var(--cyan);">$AMD</strong><span class="sitemap-chip-meta">$1.3M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('AVGO')"><strong style="color: var(--cyan);">$AVGO</strong><span class="sitemap-chip-meta">$1.2M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('RKLB')"><strong style="color: var(--cyan);">$RKLB</strong><span class="sitemap-chip-meta">$1.0M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('RDDT')"><strong style="color: var(--cyan);">$RDDT</strong><span class="sitemap-chip-meta">$0.9M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('NBIS')"><strong style="color: var(--cyan);">$NBIS</strong><span class="sitemap-chip-meta">$0.9M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('ONDS')"><strong style="color: var(--cyan);">$ONDS</strong><span class="sitemap-chip-meta">$0.8M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('UPS')"><strong style="color: var(--cyan);">$UPS</strong><span class="sitemap-chip-meta">$0.7M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('GOOG')"><strong style="color: var(--cyan);">$GOOG</strong><span class="sitemap-chip-meta">$0.6M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SNDK')"><strong style="color: var(--cyan);">$SNDK</strong><span class="sitemap-chip-meta">$0.6M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('IREN')"><strong style="color: var(--cyan);">$IREN</strong><span class="sitemap-chip-meta">$0.6M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('BYND')"><strong style="color: var(--cyan);">$BYND</strong><span class="sitemap-chip-meta">$0.6M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('CRWV')"><strong style="color: var(--cyan);">$CRWV</strong><span class="sitemap-chip-meta">$0.5M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('INTC')"><strong style="color: var(--cyan);">$INTC</strong><span class="sitemap-chip-meta">$0.4M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('MSTR')"><strong style="color: var(--cyan);">$MSTR</strong><span class="sitemap-chip-meta">$0.4M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('GME')"><strong style="color: var(--cyan);">$GME</strong><span class="sitemap-chip-meta">$0.4M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('UNH')"><strong style="color: var(--cyan);">$UNH</strong><span class="sitemap-chip-meta">$0.4M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('NFLX')"><strong style="color: var(--cyan);">$NFLX</strong><span class="sitemap-chip-meta">$0.4M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('LUNR')"><strong style="color: var(--cyan);">$LUNR</strong><span class="sitemap-chip-meta">$0.4M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('OPEN')"><strong style="color: var(--cyan);">$OPEN</strong><span class="sitemap-chip-meta">$0.4M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('QS')"><strong style="color: var(--cyan);">$QS</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('BE')"><strong style="color: var(--cyan);">$BE</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('HIMS')"><strong style="color: var(--cyan);">$HIMS</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SNOW')"><strong style="color: var(--cyan);">$SNOW</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('SOFI')"><strong style="color: var(--cyan);">$SOFI</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('BULL')"><strong style="color: var(--cyan);">$BULL</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('COST')"><strong style="color: var(--cyan);">$COST</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('ALAB')"><strong style="color: var(--cyan);">$ALAB</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('RIVN')"><strong style="color: var(--cyan);">$RIVN</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('MP')"><strong style="color: var(--cyan);">$MP</strong><span class="sitemap-chip-meta">$0.3M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('OKTA')"><strong style="color: var(--cyan);">$OKTA</strong><span class="sitemap-chip-meta">$0.2M</span></a> <a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal('RXRX')"><strong style="color: var(--cyan);">$RXRX</strong><span class="sitemap-chip-meta">$0.2M</span></a>
       </div>
     </div>
 
@@ -1777,14 +1825,15 @@ function parseInitialRoute() {
   const path = window.location.pathname.replace(/\/index\.html$/, '');
   const hash = window.location.hash.replace(/^#/, '');
   const route = hash || path || '/stonks';
-  navigateRoute(route, false);
+  const isDirectSubroute = (route === '/sitemap' || route === '/whales' || route === '/etfs' || route === '/shadow' || route === '/all');
+  navigateRoute(route, false, isDirectSubroute);
 }
 
-function switchRoute(slug, pushHistory = true) {
-  navigateRoute(slug, pushHistory);
+function switchRoute(slug, pushHistory = true, shouldScroll = true) {
+  navigateRoute(slug, pushHistory, shouldScroll);
 }
 
-function navigateRoute(slug, pushHistory = true) {
+function navigateRoute(slug, pushHistory = true, shouldScroll = false) {
   if (!slug || slug === '/' || slug === '') slug = '/stonks';
   slug = slug.trim();
   if (slug.startsWith('#')) slug = slug.substring(1);
@@ -1793,7 +1842,7 @@ function navigateRoute(slug, pushHistory = true) {
   const tickerMatch = slug.match(/^\/(?:ticker|stonk)\/([A-Za-z0-9_.-]+)$/i);
   if (tickerMatch) {
     const sym = tickerMatch[1].toUpperCase();
-    activateTab('stonks', false);
+    activateTab('stonks', false, null, shouldScroll);
     openTickerModal(sym, pushHistory);
     return;
   }
@@ -1801,38 +1850,38 @@ function navigateRoute(slug, pushHistory = true) {
   const whaleMatch = slug.match(/^\/(?:@|whale\/)([A-Za-z0-9_.-]+)$/i);
   if (whaleMatch) {
     const u = whaleMatch[1];
-    activateTab('whales', false);
+    activateTab('whales', false, null, shouldScroll);
     openWhaleModal(u, pushHistory);
     return;
   }
 
   if (slug === '/sitemap') {
-    activateTab('sitemap', pushHistory, '/sitemap');
+    activateTab('sitemap', pushHistory, '/sitemap', shouldScroll);
     return;
   }
   if (slug === '/all') {
-    activateTab('stonks', pushHistory, '/all');
+    activateTab('stonks', pushHistory, '/all', shouldScroll);
     setStockFilter('all');
     return;
   }
   if (slug === '/etfs') {
-    activateTab('stonks', pushHistory, '/etfs');
+    activateTab('stonks', pushHistory, '/etfs', shouldScroll);
     setStockFilter('etfs');
     return;
   }
   if (slug === '/whales') {
-    activateTab('whales', pushHistory, '/whales');
+    activateTab('whales', pushHistory, '/whales', shouldScroll);
     return;
   }
   if (slug === '/shadow') {
-    activateTab('shadow', pushHistory, '/shadow');
+    activateTab('shadow', pushHistory, '/shadow', shouldScroll);
     return;
   }
 
-  activateTab('stonks', pushHistory, '/stonks');
+  activateTab('stonks', pushHistory, '/stonks', shouldScroll);
 }
 
-function activateTab(tabId, pushHistory = true, newSlug = null) {
+function activateTab(tabId, pushHistory = true, newSlug = null, shouldScroll = false) {
   currentRoute = newSlug || ('/' + tabId);
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
@@ -1844,11 +1893,44 @@ function activateTab(tabId, pushHistory = true, newSlug = null) {
   if (navBtn) navBtn.classList.add('active');
 
   const pane = document.getElementById('view-' + tabId);
-  if (pane) pane.classList.add('active');
+  if (pane) {
+    pane.classList.add('active');
+    if (shouldScroll) {
+      setTimeout(() => {
+        pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+    }
+  }
 
   if (pushHistory && window.history && window.history.pushState) {
     window.history.pushState(null, '', currentRoute);
   }
+}
+
+function openSitemapView() {
+  switchRoute('/sitemap', true, true);
+  const pane = document.getElementById('view-sitemap');
+  if (pane) pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function openWhalesView() {
+  switchRoute('/whales', true, true);
+  const pane = document.getElementById('view-whales');
+  if (pane) pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function filterMillionaires() {
+  switchRoute('/whales', true, true);
+  sortWhales('millionaires');
+  const pane = document.getElementById('view-whales');
+  if (pane) pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function openStocksView(mode = 'whale') {
+  switchRoute('/stonks', true, true);
+  if (mode) setRankMode(mode);
+  const pane = document.getElementById('view-stonks');
+  if (pane) pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 window.addEventListener('popstate', () => {
@@ -2020,18 +2102,23 @@ function sortWhales(mode) {
   if (mode === 'value') document.getElementById('btnSortVal').classList.add('active');
   if (mode === 'ratio') document.getElementById('btnSortRatio').classList.add('active');
   if (mode === 'pnl') document.getElementById('btnSortPnL').classList.add('active');
+  if (mode === 'millionaires') {
+    const mb = document.getElementById('btnSortMillionaires');
+    if (mb) mb.classList.add('active');
+  }
   filterWhales();
 }
 
 function filterWhales() {
   const q = (document.getElementById('whaleSearch').value || '').toLowerCase().trim();
   filteredWhales = WHALES_DATA.filter(w => {
+    if (currentWhaleSort === 'millionaires' && w.total_value < 1000000) return false;
     if (!q) return true;
     if (w.username.toLowerCase().includes(q)) return true;
     return (w.all_positions || []).some(p => p.ticker && p.ticker.toLowerCase().includes(q));
   });
 
-  if (currentWhaleSort === 'value') {
+  if (currentWhaleSort === 'value' || currentWhaleSort === 'millionaires') {
     filteredWhales.sort((a, b) => b.total_value - a.total_value);
   } else if (currentWhaleSort === 'ratio') {
     filteredWhales.sort((a, b) => b.shadow_ratio - a.shadow_ratio);

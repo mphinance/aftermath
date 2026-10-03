@@ -215,6 +215,9 @@ etfs_list = [s for s in stocks if s["isETF"]]
 etfs_count = len(etfs_list)
 equities_count = len(stocks) - etfs_count
 
+total_app_value = sum(s["totalValue"] for s in stocks)
+total_app_owners = sum(s["owners"] for s in stocks)
+
 # Macro & Market Alt-Data Radar Calculations
 top_by_total_value = sorted(stocks, key=lambda x: x["totalValue"], reverse=True)[:5]
 top_by_owners = sorted([x for x in stocks if x["ticker"] not in ["BTC", "ETH"]], key=lambda x: x["owners"], reverse=True)[:5]
@@ -518,16 +521,19 @@ def build_radar_rows(items, mode):
         sym = x["ticker"]
         name = x["name"]
         typ = "ETF" if x["isETF"] else "STOCK"
+        chg = x.get("changePercent", 0)
+        chg_sign = "+" if chg >= 0 else ""
+        chg_class = "pos-green" if chg >= 0 else "neg-red"
         
         if mode == "value":
             val_str = f"${x['totalValue']/1_000_000:.2f}M"
-            meta_str = f"{x['owners']:,} holders • ${(x['whalesValue']/1_000_000):.1f}M whale"
+            meta_str = f"<span class='{chg_class}'>{chg_sign}{chg:.1f}%</span> &bull; {x['owners']:,} holders"
         elif mode == "owners":
-            val_str = f"{x['owners']:,} Owners"
-            meta_str = f"${x['totalValue']/1_000_000:.2f}M total • ${x['price']:.2f}"
+            val_str = f"{x['owners']:,} Holders"
+            meta_str = f"<span class='{chg_class}'>{chg_sign}{chg:.1f}%</span> &bull; ${x['totalValue']/1_000_000:.2f}M app equity"
         elif mode == "intensity":
             val_str = f"${x['intensity']:,.0f}"
-            meta_str = f"{x['owners']:,} holders • ${x['totalValue']/1_000_000:.1f}M cap"
+            meta_str = f"<span class='val-purple'>$/holder</span> &bull; {x['owners']:,} owners"
 
         rows.append(f"""
         <div class="radar-row" onclick="openTickerModal('{sym}')">
@@ -731,6 +737,33 @@ html_content = f"""<!DOCTYPE html>
     padding: 16px 20px;
     position: relative;
     overflow: hidden;
+  }}
+  .clickable-card {{
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }}
+  .clickable-card:hover {{
+    transform: translateY(-2px);
+    border-color: var(--cyan);
+    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.18);
+  }}
+  .clickable-card:active {{
+    transform: translateY(0);
+  }}
+  .clickable-card .stat-label {{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }}
+  .clickable-card .stat-arrow {{
+    opacity: 0.4;
+    font-size: 13px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }}
+  .clickable-card:hover .stat-arrow {{
+    opacity: 1;
+    transform: translate(2px, -2px);
+    color: var(--cyan);
   }}
   .stat-label {{
     font-size: 11px;
@@ -1527,7 +1560,7 @@ html_content = f"""<!DOCTYPE html>
         <span>&#x1F4D6;</span>
         <span>Docs</span>
       </a>
-      <button class="sitemap-header-btn" onclick="switchRoute('/sitemap')">
+      <button class="sitemap-header-btn" onclick="openSitemapView()">
         <span>&#x1F5FA;&#xFE0F;</span>
         <span>Sitemap</span>
       </button>
@@ -1581,26 +1614,46 @@ html_content = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- MACRO STATS -->
+  <!-- MACRO STATS (5 INTERACTIVE CARDS) -->
   <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-label">TOTAL VERIFIED WHALE CAPITAL</div>
+    <div class="stat-card clickable-card" onclick="openStocksView('value')" title="Sort all 500 securities by platform equity">
+      <div class="stat-label">
+        <span>TOTAL APP EQUITY</span>
+        <span class="stat-arrow">&nearr;</span>
+      </div>
+      <div class="stat-value val-cyan">${total_app_value:,.0f}</div>
+      <div class="stat-sub">{total_app_owners:,} retail positions tracked</div>
+    </div>
+    <div class="stat-card clickable-card" onclick="openWhalesView()" title="Inspect all 395 verified whale portfolios">
+      <div class="stat-label">
+        <span>TOTAL WHALE CAPITAL</span>
+        <span class="stat-arrow">&nearr;</span>
+      </div>
       <div class="stat-value val-green">${total_whale_val:,.0f}</div>
-      <div class="stat-sub">{len(whales)} verified portfolios tracked</div>
+      <div class="stat-sub">{len(whales)} portfolios &bull; ${total_cash_reserves/1_000_000:.1f}M cash</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-label">VERIFIED MILLIONAIRES</div>
-      <div class="stat-value val-cyan">{millionaires_count} ACCOUNTS</div>
-      <div class="stat-sub">Controlling $110.8M+ AUM</div>
+    <div class="stat-card clickable-card" onclick="filterMillionaires()" title="Filter the 32 verified millionaire accounts">
+      <div class="stat-label">
+        <span>VERIFIED MILLIONAIRES</span>
+        <span class="stat-arrow">&nearr;</span>
+      </div>
+      <div class="stat-value val-purple">{millionaires_count} ACCOUNTS</div>
+      <div class="stat-sub">Controlling $110.8M+ AUM &bull; <strong style="color: var(--purple);">Filter &nearr;</strong></div>
     </div>
-    <div class="stat-card">
-      <div class="stat-label">TRACKED UNIVERSE</div>
-      <div class="stat-value val-purple">{len(stocks)} SECURITIES</div>
+    <div class="stat-card clickable-card" onclick="openStocksView('whale')" title="Inspect 500 securities universe">
+      <div class="stat-label">
+        <span>TRACKED UNIVERSE</span>
+        <span class="stat-arrow">&nearr;</span>
+      </div>
+      <div class="stat-value val-amber">{len(stocks)} SECURITIES</div>
       <div class="stat-sub">{equities_count} Stocks &bull; {etfs_count} ETFs segregated</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-label">TOP TRACKED WHALE</div>
-      <div class="stat-value val-amber">${whales[0]['total_value']:,.0f}</div>
+    <div class="stat-card clickable-card" onclick="openWhaleModal('{whales[0]['username']}')" title="Inspect @{whales[0]['username']}">
+      <div class="stat-label">
+        <span>TOP TRACKED WHALE</span>
+        <span class="stat-arrow">&nearr;</span>
+      </div>
+      <div class="stat-value val-green">${whales[0]['total_value']:,.0f}</div>
       <div class="stat-sub">@{whales[0]['username']} (${whales[0]['shadow_ratio']:,.0f}/sub)</div>
     </div>
   </div>
@@ -1844,6 +1897,7 @@ html_content = f"""<!DOCTYPE html>
         <button class="filter-btn active" id="btnSortVal" onclick="sortWhales('value')">Sort: Net Worth ($)</button>
         <button class="filter-btn" id="btnSortRatio" onclick="sortWhales('ratio')">Sort: $/Follower Ratio</button>
         <button class="filter-btn" id="btnSortPnL" onclick="sortWhales('pnl')">Sort: Total Profit</button>
+        <button class="filter-btn" id="btnSortMillionaires" onclick="filterMillionaires()">💎 Millionaires ({millionaires_count})</button>
       </div>
     </div>
     <div class="whale-grid" id="whaleContainer"></div>
@@ -1882,23 +1936,23 @@ html_content = f"""<!DOCTYPE html>
         <span style="font-family: var(--font-mono); font-size: 11px; color: var(--cyan);">5 Direct Navigation Endpoints</span>
       </div>
       <div class="sitemap-grid">
-        <a class="sitemap-card" onclick="switchRoute('/stonks')">
+        <a class="sitemap-card" href="javascript:void(0)" onclick="openStocksView('whale')">
           <div class="sitemap-card-title">/stonks <span>&rarr;</span></div>
           <div class="sitemap-card-desc">Top 500 securities universe ranked by Whale Capital, Value, Owners, and Momentum.</div>
         </a>
-        <a class="sitemap-card" onclick="switchRoute('/etfs')">
+        <a class="sitemap-card" href="javascript:void(0)" onclick="switchRoute('/etfs', true, true)">
           <div class="sitemap-card-title">/etfs <span>&rarr;</span></div>
           <div class="sitemap-card-desc">Dedicated index and sector funds directory with 64 segregated ETFs.</div>
         </a>
-        <a class="sitemap-card" onclick="switchRoute('/whales')">
+        <a class="sitemap-card" href="javascript:void(0)" onclick="openWhalesView()">
           <div class="sitemap-card-title">/whales <span>&rarr;</span></div>
           <div class="sitemap-card-desc">Whale Radar featuring 395 verified portfolios controlling $169.0M+ AUM.</div>
         </a>
-        <a class="sitemap-card" onclick="switchRoute('/shadow')">
+        <a class="sitemap-card" href="javascript:void(0)" onclick="switchRoute('/shadow', true, true)">
           <div class="sitemap-card-title">/shadow <span>&rarr;</span></div>
           <div class="sitemap-card-desc">The Clout Inversion index sorting under-followed high-net-worth accounts.</div>
         </a>
-        <a class="sitemap-card" onclick="switchRoute('/all')">
+        <a class="sitemap-card" href="javascript:void(0)" onclick="switchRoute('/all', true, true)">
           <div class="sitemap-card-title">/all <span>&rarr;</span></div>
           <div class="sitemap-card-desc">Complete unpaginated securities leaderboard with multi-column sorting.</div>
         </a>
@@ -1911,7 +1965,7 @@ html_content = f"""<!DOCTYPE html>
         <span style="font-family: var(--font-mono); font-size: 11px; color: var(--green);">Click handle to open Whale Dossier</span>
       </div>
       <div class="sitemap-chip-cloud">
-        {' '.join([f'<a class="sitemap-chip" onclick="openWhaleModal(\'{w["username"]}\')"><strong style="color: var(--cyan);">@{w["username"]}</strong><span class="sitemap-chip-meta">${w["total_value"]/1_000_000:.2f}M</span></a>' for w in millionaires])}
+        {' '.join([f'<a class="sitemap-chip" href="javascript:void(0)" onclick="openWhaleModal(\'{w["username"]}\')"><strong style="color: var(--cyan);">@{w["username"]}</strong><span class="sitemap-chip-meta">${w["total_value"]/1_000_000:.2f}M</span></a>' for w in millionaires])}
       </div>
     </div>
 
@@ -1921,7 +1975,7 @@ html_content = f"""<!DOCTYPE html>
         <span style="font-family: var(--font-mono); font-size: 11px; color: var(--amber);">Click ticker to open ETF Deep-Dive</span>
       </div>
       <div class="sitemap-chip-cloud">
-        {' '.join([f'<a class="sitemap-chip" onclick="openTickerModal(\'{s["ticker"]}\')"><strong style="color: var(--amber);">${s["ticker"]}</strong><span class="sitemap-chip-meta">${s["whalesValue"]/1_000_000:.1f}M Whale</span></a>' for s in etfs_list])}
+        {' '.join([f'<a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal(\'{s["ticker"]}\')"><strong style="color: var(--amber);">${s["ticker"]}</strong><span class="sitemap-chip-meta">${s["whalesValue"]/1_000_000:.1f}M Whale</span></a>' for s in etfs_list])}
       </div>
     </div>
 
@@ -1931,7 +1985,7 @@ html_content = f"""<!DOCTYPE html>
         <span style="font-family: var(--font-mono); font-size: 11px; color: var(--purple);">Click ticker to open Stock Deep-Dive</span>
       </div>
       <div class="sitemap-chip-cloud">
-        {' '.join([f'<a class="sitemap-chip" onclick="openTickerModal(\'{s["ticker"]}\')"><strong style="color: var(--cyan);">${s["ticker"]}</strong><span class="sitemap-chip-meta">${s["whalesValue"]/1_000_000:.1f}M</span></a>' for s in [x for x in stocks if not x['isETF']][:45]])}
+        {' '.join([f'<a class="sitemap-chip" href="javascript:void(0)" onclick="openTickerModal(\'{s["ticker"]}\')"><strong style="color: var(--cyan);">${s["ticker"]}</strong><span class="sitemap-chip-meta">${s["whalesValue"]/1_000_000:.1f}M</span></a>' for s in [x for x in stocks if not x['isETF']][:45]])}
       </div>
     </div>
 
@@ -2120,14 +2174,15 @@ function parseInitialRoute() {{
   const path = window.location.pathname.replace(/\\/index\\.html$/, '');
   const hash = window.location.hash.replace(/^#/, '');
   const route = hash || path || '/stonks';
-  navigateRoute(route, false);
+  const isDirectSubroute = (route === '/sitemap' || route === '/whales' || route === '/etfs' || route === '/shadow' || route === '/all');
+  navigateRoute(route, false, isDirectSubroute);
 }}
 
-function switchRoute(slug, pushHistory = true) {{
-  navigateRoute(slug, pushHistory);
+function switchRoute(slug, pushHistory = true, shouldScroll = true) {{
+  navigateRoute(slug, pushHistory, shouldScroll);
 }}
 
-function navigateRoute(slug, pushHistory = true) {{
+function navigateRoute(slug, pushHistory = true, shouldScroll = false) {{
   if (!slug || slug === '/' || slug === '') slug = '/stonks';
   slug = slug.trim();
   if (slug.startsWith('#')) slug = slug.substring(1);
@@ -2136,7 +2191,7 @@ function navigateRoute(slug, pushHistory = true) {{
   const tickerMatch = slug.match(/^\\/(?:ticker|stonk)\\/([A-Za-z0-9_.-]+)$/i);
   if (tickerMatch) {{
     const sym = tickerMatch[1].toUpperCase();
-    activateTab('stonks', false);
+    activateTab('stonks', false, null, shouldScroll);
     openTickerModal(sym, pushHistory);
     return;
   }}
@@ -2144,38 +2199,38 @@ function navigateRoute(slug, pushHistory = true) {{
   const whaleMatch = slug.match(/^\\/(?:@|whale\\/)([A-Za-z0-9_.-]+)$/i);
   if (whaleMatch) {{
     const u = whaleMatch[1];
-    activateTab('whales', false);
+    activateTab('whales', false, null, shouldScroll);
     openWhaleModal(u, pushHistory);
     return;
   }}
 
   if (slug === '/sitemap') {{
-    activateTab('sitemap', pushHistory, '/sitemap');
+    activateTab('sitemap', pushHistory, '/sitemap', shouldScroll);
     return;
   }}
   if (slug === '/all') {{
-    activateTab('stonks', pushHistory, '/all');
+    activateTab('stonks', pushHistory, '/all', shouldScroll);
     setStockFilter('all');
     return;
   }}
   if (slug === '/etfs') {{
-    activateTab('stonks', pushHistory, '/etfs');
+    activateTab('stonks', pushHistory, '/etfs', shouldScroll);
     setStockFilter('etfs');
     return;
   }}
   if (slug === '/whales') {{
-    activateTab('whales', pushHistory, '/whales');
+    activateTab('whales', pushHistory, '/whales', shouldScroll);
     return;
   }}
   if (slug === '/shadow') {{
-    activateTab('shadow', pushHistory, '/shadow');
+    activateTab('shadow', pushHistory, '/shadow', shouldScroll);
     return;
   }}
 
-  activateTab('stonks', pushHistory, '/stonks');
+  activateTab('stonks', pushHistory, '/stonks', shouldScroll);
 }}
 
-function activateTab(tabId, pushHistory = true, newSlug = null) {{
+function activateTab(tabId, pushHistory = true, newSlug = null, shouldScroll = false) {{
   currentRoute = newSlug || ('/' + tabId);
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
@@ -2187,11 +2242,44 @@ function activateTab(tabId, pushHistory = true, newSlug = null) {{
   if (navBtn) navBtn.classList.add('active');
 
   const pane = document.getElementById('view-' + tabId);
-  if (pane) pane.classList.add('active');
+  if (pane) {{
+    pane.classList.add('active');
+    if (shouldScroll) {{
+      setTimeout(() => {{
+        pane.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+      }}, 60);
+    }}
+  }}
 
   if (pushHistory && window.history && window.history.pushState) {{
     window.history.pushState(null, '', currentRoute);
   }}
+}}
+
+function openSitemapView() {{
+  switchRoute('/sitemap', true, true);
+  const pane = document.getElementById('view-sitemap');
+  if (pane) pane.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+}}
+
+function openWhalesView() {{
+  switchRoute('/whales', true, true);
+  const pane = document.getElementById('view-whales');
+  if (pane) pane.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+}}
+
+function filterMillionaires() {{
+  switchRoute('/whales', true, true);
+  sortWhales('millionaires');
+  const pane = document.getElementById('view-whales');
+  if (pane) pane.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+}}
+
+function openStocksView(mode = 'whale') {{
+  switchRoute('/stonks', true, true);
+  if (mode) setRankMode(mode);
+  const pane = document.getElementById('view-stonks');
+  if (pane) pane.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
 }}
 
 window.addEventListener('popstate', () => {{
@@ -2363,18 +2451,23 @@ function sortWhales(mode) {{
   if (mode === 'value') document.getElementById('btnSortVal').classList.add('active');
   if (mode === 'ratio') document.getElementById('btnSortRatio').classList.add('active');
   if (mode === 'pnl') document.getElementById('btnSortPnL').classList.add('active');
+  if (mode === 'millionaires') {{
+    const mb = document.getElementById('btnSortMillionaires');
+    if (mb) mb.classList.add('active');
+  }}
   filterWhales();
 }}
 
 function filterWhales() {{
   const q = (document.getElementById('whaleSearch').value || '').toLowerCase().trim();
   filteredWhales = WHALES_DATA.filter(w => {{
+    if (currentWhaleSort === 'millionaires' && w.total_value < 1000000) return false;
     if (!q) return true;
     if (w.username.toLowerCase().includes(q)) return true;
     return (w.all_positions || []).some(p => p.ticker && p.ticker.toLowerCase().includes(q));
   }});
 
-  if (currentWhaleSort === 'value') {{
+  if (currentWhaleSort === 'value' || currentWhaleSort === 'millionaires') {{
     filteredWhales.sort((a, b) => b.total_value - a.total_value);
   }} else if (currentWhaleSort === 'ratio') {{
     filteredWhales.sort((a, b) => b.shadow_ratio - a.shadow_ratio);
