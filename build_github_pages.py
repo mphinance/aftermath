@@ -65,15 +65,20 @@ for w in whales:
         if p.get("name") and t not in ticker_extra_names:
             ticker_extra_names[t] = p.get("name")
 
+        p["quantity"] = round(p.get("quantity", 0), 2)
+        p["value"] = round(p.get("value", 0), 2)
+        p["cost_basis"] = round(p.get("cost_basis", 0), 2)
+        p["profit"] = round(p.get("profit", 0), 2)
+
         if t not in ticker_to_whales:
             ticker_to_whales[t] = []
         ticker_to_whales[t].append({
             "username": w["username"],
             "followers": w.get("followers", 0),
-            "shares": round(p.get("quantity", 0), 2),
-            "value": round(p.get("value", 0), 2),
-            "cost_basis": round(p.get("cost_basis", 0), 2),
-            "profit": round(p.get("profit", 0), 2),
+            "shares": p["quantity"],
+            "value": p["value"],
+            "cost_basis": p["cost_basis"],
+            "profit": p["profit"],
         })
 
 # Sort each ticker's whales by value descending
@@ -1580,11 +1585,207 @@ html_content = f"""<!DOCTYPE html>
     margin-bottom: 12px;
     font-family: var(--font-mono);
     font-size: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }}
+  .chart-svg-wrap {{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
   }}
   .chart-svg {{
     width: 100%;
-    height: 190px;
+    height: auto;
+    max-height: 220px;
     display: block;
+  }}
+
+  /* HOLDING CHIPS CASCASE */
+  .holding-chips-wrap {{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-width: 240px;
+  }}
+  .holding-chip {{
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(0, 240, 255, 0.1);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    color: var(--cyan);
+    font-size: 11px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }}
+  .holding-chip:hover {{
+    background: var(--cyan);
+    color: #000;
+  }}
+
+  /* TABLE RESPONSIVE SCROLLING */
+  .table-responsive {{
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }}
+
+  /* TOAST NOTIFICATION */
+  .toast-popup {{
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #0B1017;
+    border: 1px solid var(--green);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+    color: var(--text-primary);
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    z-index: 99999;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }}
+  .toast-popup.show {{
+    opacity: 1;
+    transform: translateY(0);
+  }}
+
+  /* RESPONSIVE DESIGN & MOBILE OPTIMIZATIONS (390px - 768px) */
+  @media (max-width: 768px) {{
+    body {{
+      overflow-x: hidden;
+    }}
+    .container {{
+      padding: 14px 12px 50px 12px;
+      overflow-x: hidden;
+    }}
+    header {{
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      padding-bottom: 12px;
+    }}
+    .brand {{
+      width: 100%;
+    }}
+    .brand-title h1 {{
+      font-size: 18px;
+    }}
+    .header-badges {{
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 8px;
+    }}
+    .sitemap-header-btn, .tm-header-btn, .gh-link {{
+      min-height: 44px;
+      padding: 8px 12px;
+      font-size: 11px;
+    }}
+    .rank-selector-strip {{
+      overflow-x: auto;
+      white-space: nowrap;
+      padding-bottom: 6px;
+      -webkit-overflow-scrolling: touch;
+    }}
+    .filter-group {{
+      width: 100%;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding-bottom: 6px;
+      -webkit-overflow-scrolling: touch;
+    }}
+    .filter-btn, .rank-btn, .tab-btn {{
+      min-height: 44px;
+      padding: 10px 14px;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }}
+    .search-input {{
+      min-height: 44px;
+      font-size: 13px;
+    }}
+    .hide-mobile {{
+      display: none !important;
+    }}
+    th.col-rank, td.col-rank {{
+      display: none !important;
+    }}
+    th.col-ticker, td.col-ticker {{
+      position: sticky;
+      left: 0;
+      z-index: 5;
+      background: var(--bg-surface);
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.6);
+      min-width: 105px;
+    }}
+    th.col-ticker {{
+      background: var(--bg-card);
+      z-index: 6;
+    }}
+    tr.clickable-row:hover td.col-ticker {{
+      background: var(--bg-card-hover);
+    }}
+    .sitemap-grid {{
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }}
+    .modal-box {{
+      width: 95%;
+      margin: 10px auto;
+      max-height: 92vh;
+    }}
+    .modal-body {{
+      padding: 14px 14px;
+    }}
+    .modal-header {{
+      padding: 14px 16px;
+    }}
+    .modal-stat-strip {{
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding: 10px;
+      margin-bottom: 14px;
+    }}
+    .whale-m-label {{
+      font-size: 9px;
+      margin-bottom: 2px;
+    }}
+    .whale-m-val {{
+      font-size: 13px;
+    }}
+    .chart-box {{
+      padding: 10px;
+    }}
+    .chart-header {{
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      font-size: 11px;
+    }}
+    .chart-svg {{
+      height: 140px;
+    }}
+  }}
+
+  @media (min-width: 769px) and (max-width: 1100px) {{
+    .sitemap-grid {{
+      grid-template-columns: repeat(2, 1fr);
+    }}
   }}
 
   footer {{
@@ -1938,15 +2139,15 @@ html_content = f"""<!DOCTYPE html>
     </div>
 
     <div class="table-card">
-      <div style="overflow-x: auto;">
+      <div class="table-responsive">
         <table id="stocksTable">
           <thead>
             <tr>
-              <th class="sortable" id="th-rank" onclick="sortTableColumn('rank')">Rank</th>
-              <th class="sortable" id="th-ticker" onclick="sortTableColumn('ticker')">Ticker / Slug</th>
+              <th class="sortable col-rank" id="th-rank" onclick="sortTableColumn('rank')">Rank</th>
+              <th class="sortable col-ticker" id="th-ticker" onclick="sortTableColumn('ticker')">Ticker / Slug</th>
               <th class="sortable" id="th-type" onclick="sortTableColumn('type')">Type</th>
               <th class="sortable" id="th-name" onclick="sortTableColumn('name')">Company / Asset Name</th>
-              <th style="max-width: 220px;">Why It's Top / Quant Reason</th>
+              <th class="reason-col hide-mobile" style="max-width: 220px;">Why It's Top / Quant Reason</th>
               <th class="sortable sorted-desc num-col" id="th-whalesValue" onclick="sortTableColumn('whalesValue')">Whale Capital</th>
               <th class="sortable num-col" id="th-totalValue" onclick="sortTableColumn('totalValue')">Total Value ($)</th>
               <th class="sortable num-col" id="th-owners" onclick="sortTableColumn('owners')">Owners</th>
@@ -1982,7 +2183,7 @@ html_content = f"""<!DOCTYPE html>
       <strong style="color: var(--cyan);">The Clout Inversion Law</strong>: Retail clout on trading social networks is inversely correlated with verified capital. The accounts below hold seven- and eight-figure verified portfolios while flying completely under the radar with minimal followers.
     </div>
     <div class="table-card">
-      <div style="overflow-x: auto;">
+      <div class="table-responsive">
         <table>
           <thead>
             <tr>
@@ -2167,7 +2368,7 @@ html_content = f"""<!DOCTYPE html>
       <div style="font-size: 13px; font-weight: 700; margin-bottom: 10px; color: var(--text-primary);">
         Verified Whales Holding This Asset (<span id="tickerModalWhalesCount">0</span>):
       </div>
-      <div style="overflow-x: auto;">
+      <div class="table-responsive">
         <table>
           <thead>
             <tr>
@@ -2203,7 +2404,7 @@ html_content = f"""<!DOCTYPE html>
       </div>
 
       <div id="whaleModalStrip" class="modal-stat-strip"></div>
-      <div style="overflow-x: auto;">
+      <div class="table-responsive">
         <table>
           <thead>
             <tr>
@@ -2220,6 +2421,12 @@ html_content = f"""<!DOCTYPE html>
       </div>
     </div>
   </div>
+</div>
+
+<!-- FLOATING TOAST NOTIFICATION -->
+<div id="toastNotification" class="toast-popup">
+  <span style="color: var(--green);">⚡</span>
+  <span id="toastMsg">Copied!</span>
 </div>
 
 <script>
@@ -2564,14 +2771,14 @@ function renderStocks(list) {{
 
     return `
       <tr class="clickable-row" onclick="openTickerModal('${{s.ticker}}')">
-        <td style="color: var(--text-muted); font-weight: 700;">#${{displayRank}}</td>
-        <td>
+        <td class="col-rank" style="color: var(--text-muted); font-weight: 700;">#${{displayRank}}</td>
+        <td class="col-ticker">
           <div style="font-weight: 800; font-size: 14px; color: var(--cyan);">${{s.ticker}}</div>
-          <span class="slug-pill" onclick="event.stopPropagation(); copySlug('/ticker/${{s.ticker}}')">🔗 /ticker/${{s.ticker}}</span>
+          <span class="slug-pill" onclick="event.stopPropagation(); copySlug('/ticker/${{s.ticker}}', event)">🔗 /ticker/${{s.ticker}}</span>
         </td>
         <td>${{typeBadge}}</td>
         <td style="color: var(--text-secondary); max-width: 170px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${{s.name}}</td>
-        <td class="reason-col" title="${{cleanWhyTop}}">
+        <td class="reason-col hide-mobile" title="${{cleanWhyTop}}">
           <div class="reason-wrap">${{badgeHtml}}</div>
           <div class="reason-wrap" style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">${{s.whyTop}}</div>
         </td>
@@ -2696,12 +2903,12 @@ function renderShadowWhales() {{
         <td style="color: var(--text-muted);">#${{idx + 1}}</td>
         <td>
           <div style="font-weight: 700; color: var(--cyan);">@${{w.username}}</div>
-          <span class="slug-pill" onclick="event.stopPropagation(); copySlug('/@${{w.username}}')">🔗 /@${{w.username}}</span>
+          <span class="slug-pill" onclick="event.stopPropagation(); copySlug('/@${{w.username}}', event)">🔗 /@${{w.username}}</span>
         </td>
         <td class="val-green num-col" style="font-weight: 700;">${{fmtCurrency(w.total_value, 0)}}</td>
         <td class="num-col">${{Number(w.followers || 0).toLocaleString('en-US')}}</td>
         <td class="val-purple num-col" style="font-weight: 800;">${{fmtCurrency(w.shadow_ratio, 0)}} / sub</td>
-        <td>${{topHoldings}}</td>
+        <td><div class="holding-chips-wrap">${{topHoldings}}</div></td>
         <td><span class="whale-badge">VERIFIED</span></td>
       </tr>
     `;
@@ -2839,28 +3046,30 @@ function renderSvgHistoricalChart(ticker, bars) {{
           ${{isUp ? '+' : ''}}${{totalChangePct.toFixed(2)}}% over 44 days &bull; Low: $${{minP.toFixed(2)}} | High: $${{maxP.toFixed(2)}}
         </div>
       </div>
-      <svg class="chart-svg" viewBox="0 0 ${{width}} ${{height}}" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#10B981" stop-opacity="0.25"/>
-            <stop offset="100%" stop-color="#10B981" stop-opacity="0.0"/>
-          </linearGradient>
-          <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#F43F5E" stop-opacity="0.25"/>
-            <stop offset="100%" stop-color="#F43F5E" stop-opacity="0.0"/>
-          </linearGradient>
-        </defs>
-        <line x1="${{padding.left}}" y1="${{padding.top}}" x2="${{width - padding.right}}" y2="${{padding.top}}" stroke="#1E293B" stroke-dasharray="4"/>
-        <line x1="${{padding.left}}" y1="${{padding.top + plotH/2}}" x2="${{width - padding.right}}" y2="${{padding.top + plotH/2}}" stroke="#1E293B" stroke-dasharray="4"/>
-        <line x1="${{padding.left}}" y1="${{padding.top + plotH}}" x2="${{width - padding.right}}" y2="${{padding.top + plotH}}" stroke="#1E293B"/>
+      <div class="chart-svg-wrap">
+        <svg class="chart-svg" viewBox="0 0 ${{width}} ${{height}}" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#10B981" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#10B981" stop-opacity="0.0"/>
+            </linearGradient>
+            <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F43F5E" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#F43F5E" stop-opacity="0.0"/>
+            </linearGradient>
+          </defs>
+          <line x1="${{padding.left}}" y1="${{padding.top}}" x2="${{width - padding.right}}" y2="${{padding.top}}" stroke="#1E293B" stroke-dasharray="4"/>
+          <line x1="${{padding.left}}" y1="${{padding.top + plotH/2}}" x2="${{width - padding.right}}" y2="${{padding.top + plotH/2}}" stroke="#1E293B" stroke-dasharray="4"/>
+          <line x1="${{padding.left}}" y1="${{padding.top + plotH}}" x2="${{width - padding.right}}" y2="${{padding.top + plotH}}" stroke="#1E293B"/>
 
-        <text x="${{padding.left - 8}}" y="${{padding.top + 4}}" fill="#64748B" font-size="10" font-family="monospace" text-anchor="end">$${{maxP.toFixed(1)}}</text>
-        <text x="${{padding.left - 8}}" y="${{padding.top + plotH/2 + 3}}" fill="#64748B" font-size="10" font-family="monospace" text-anchor="end">$${{((maxP+minP)/2).toFixed(1)}}</text>
-        <text x="${{padding.left - 8}}" y="${{padding.top + plotH}}" fill="#64748B" font-size="10" font-family="monospace" text-anchor="end">$${{minP.toFixed(1)}}</text>
+          <text x="${{padding.left - 8}}" y="${{padding.top + 4}}" fill="#64748B" font-size="10" font-family="monospace" text-anchor="end">$${{maxP.toFixed(1)}}</text>
+          <text x="${{padding.left - 8}}" y="${{padding.top + plotH/2 + 3}}" fill="#64748B" font-size="10" font-family="monospace" text-anchor="end">$${{((maxP+minP)/2).toFixed(1)}}</text>
+          <text x="${{padding.left - 8}}" y="${{padding.top + plotH}}" fill="#64748B" font-size="10" font-family="monospace" text-anchor="end">$${{minP.toFixed(1)}}</text>
 
-        <polygon points="${{areaStr}}" fill="${{fillGradient}}" />
-        <polyline fill="none" stroke="${{strokeColor}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" points="${{polylineStr}}" />
-      </svg>
+          <polygon points="${{areaStr}}" fill="${{fillGradient}}" />
+          <polyline fill="none" stroke="${{strokeColor}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" points="${{polylineStr}}" />
+        </svg>
+      </div>
     </div>
   `;
 }}
@@ -2935,11 +3144,53 @@ function closeModal(event, modalId) {{
   }}
 }}
 
+// TACTILE MICRO-INTERACTION NOTIFICATIONS
+function showToast(msg = 'Copied to clipboard!') {{
+  const toast = document.getElementById('toastNotification');
+  const toastMsg = document.getElementById('toastMsg');
+  if (!toast) return;
+  if (toastMsg) toastMsg.innerText = msg;
+  toast.classList.add('show');
+  setTimeout(() => {{
+    toast.classList.remove('show');
+  }}, 2200);
+}}
+
+function triggerCopyFeedback(btn, originalHtml = '📋 Copy Slug Link') {{
+  if (!btn) return;
+  btn.innerHTML = '⚡ Copied!';
+  btn.style.background = 'var(--green)';
+  btn.style.color = '#000';
+  btn.style.borderColor = 'var(--green)';
+  btn.style.boxShadow = '0 0 16px rgba(16, 185, 129, 0.6)';
+  setTimeout(() => {{
+    btn.innerHTML = originalHtml;
+    btn.style.background = '';
+    btn.style.color = '';
+    btn.style.borderColor = '';
+    btn.style.boxShadow = '';
+  }}, 1800);
+}}
+
 // SLUG CLIPBOARD HELPERS
-function copySlug(slug) {{
+function copySlug(slug, evt) {{
   const fullUrl = `https://ah.mphinance.com${{slug}}`;
+  if (evt && evt.currentTarget) {{
+    const pill = evt.currentTarget;
+    const oldText = pill.innerText;
+    pill.innerText = '⚡ Copied!';
+    pill.style.background = 'var(--green)';
+    pill.style.color = '#000';
+    pill.style.borderColor = 'var(--green)';
+    setTimeout(() => {{
+      pill.innerText = oldText;
+      pill.style.background = '';
+      pill.style.color = '';
+      pill.style.borderColor = '';
+    }}, 1500);
+  }}
   navigator.clipboard.writeText(fullUrl).then(() => {{
-    alert(`Copied link to clipboard: ${{fullUrl}}`);
+    showToast(`Copied: ${{fullUrl}}`);
   }}).catch(() => {{
     prompt('Copy this permalink slug:', fullUrl);
   }});
@@ -2949,9 +3200,9 @@ function copyTickerSlug() {{
   if (!currentOpenTicker) return;
   const fullUrl = `https://ah.mphinance.com/ticker/${{currentOpenTicker}}`;
   const btn = document.getElementById('tickerCopyBtn');
+  triggerCopyFeedback(btn, '📋 Copy Slug Link');
   navigator.clipboard.writeText(fullUrl).then(() => {{
-    btn.innerText = '✅ Copied!';
-    setTimeout(() => {{ btn.innerText = '📋 Copy Slug Link'; }}, 2000);
+    showToast(`Copied $${{currentOpenTicker}} permalink!`);
   }}).catch(() => {{
     prompt('Copy this permalink slug:', fullUrl);
   }});
@@ -2961,9 +3212,9 @@ function copyWhaleSlug() {{
   if (!currentOpenWhale) return;
   const fullUrl = `https://ah.mphinance.com/@${{currentOpenWhale}}`;
   const btn = document.getElementById('whaleCopyBtn');
+  triggerCopyFeedback(btn, '📋 Copy Slug Link');
   navigator.clipboard.writeText(fullUrl).then(() => {{
-    btn.innerText = '✅ Copied!';
-    setTimeout(() => {{ btn.innerText = '📋 Copy Slug Link'; }}, 2000);
+    showToast(`Copied @${{currentOpenWhale}} dossier link!`);
   }}).catch(() => {{
     prompt('Copy this permalink slug:', fullUrl);
   }});
