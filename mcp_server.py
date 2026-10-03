@@ -42,6 +42,7 @@ LOCAL_API_DIR = SCRIPT_DIR / "api"
 
 # In-memory cache for API payloads (60-second TTL)
 _CACHE = {}
+_CACHE_LOCK = threading.Lock()
 _CACHE_TTL = 60.0
 
 # In-memory SSE message sessions
@@ -57,10 +58,11 @@ def debug_log(msg: str):
 def fetch_json(endpoint: str):
     """Fetch JSON from local disk if available, otherwise fetch from edge API with cache."""
     now = time.time()
-    if endpoint in _CACHE:
-        data, ts = _CACHE[endpoint]
-        if now - ts < _CACHE_TTL:
-            return data
+    with _CACHE_LOCK:
+        if endpoint in _CACHE:
+            data, ts = _CACHE[endpoint]
+            if now - ts < _CACHE_TTL:
+                return data
 
     # 1. Try local repository file
     local_path = LOCAL_API_DIR / endpoint
@@ -68,7 +70,8 @@ def fetch_json(endpoint: str):
         try:
             with open(local_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
-                _CACHE[endpoint] = (data, now)
+                with _CACHE_LOCK:
+                    _CACHE[endpoint] = (data, now)
                 return data
         except Exception as e:
             debug_log(f"Local file read failed for {endpoint}: {e}")
@@ -85,11 +88,13 @@ def fetch_json(endpoint: str):
         )
         with urllib.request.urlopen(req, timeout=10.0) as resp:
             data = json.loads(resp.read().decode("utf-8"))
-            _CACHE[endpoint] = (data, now)
+            with _CACHE_LOCK:
+                _CACHE[endpoint] = (data, now)
             return data
     except Exception as e:
         debug_log(f"Remote fetch failed for {url}: {e}")
         return None
+
 
 # ==============================================================================
 # TOOL IMPLEMENTATIONS
@@ -901,16 +906,16 @@ class McpHttpHandler(http.server.BaseHTTPRequestHandler):
 
             payload, had_response = handle_jsonrpc_payload(req)
             if had_response:
-                q = _SESSIONS.get(session_id)
-                if q:
-                    for msg in (payload if isinstance(payload, list) else [payload]):
-                        q.put(json.dumps(msg))
+                with _SESSIONS_LOCK:
+                    q = _SESSIONS.get(session_id)
+                    if q:
+                        for msg in (payload if isinstance(payload, list) else [payload]):
+                            q.put(json.dumps(msg))
 
             self.send_response(202)
-            self.send_header("Content-Type", "text/plain")
+            self.send_header("Content-Type", "application/json")
             self.end_cors_headers()
             self.end_headers()
-            self.wfile.write(b"Accepted")
 
         elif path in ("/api/mcp", "/mcp", "/rpc"):
             # Stateless Streamable HTTP (spec 2025-03-26): a POST carrying only
@@ -919,6 +924,7 @@ class McpHttpHandler(http.server.BaseHTTPRequestHandler):
             payload, had_response = handle_jsonrpc_payload(req)
             if not had_response:
                 self.send_response(202)
+                self.send_header("Content-Type", "application/json")
                 self.end_cors_headers()
                 self.end_headers()
                 return

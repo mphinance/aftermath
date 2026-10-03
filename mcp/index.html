@@ -691,10 +691,37 @@
         <div class="setup-tabs">
           <button class="setup-tab-btn active" id="tab-btn-claude" onclick="selectSetupTab('claude')">&#x1F9E0; Claude Desktop</button>
           <button class="setup-tab-btn" id="tab-btn-cursor" onclick="selectSetupTab('cursor')">&#x2728; Cursor IDE</button>
-          <button class="setup-tab-btn" id="tab-btn-agy" onclick="selectSetupTab('agy')">&#x1F680; Antigravity CLI (AGY)</button>
+          <button class="setup-tab-btn" id="tab-btn-gemini-web" onclick="selectSetupTab('gemini-web')">&#x1F310; Gemini Web (gemini.google.com)</button>
+          <button class="setup-tab-btn" id="tab-btn-agy" onclick="selectSetupTab('agy')">&#x1F680; Antigravity (AGY)</button>
           <button class="setup-tab-btn" id="tab-btn-windsurf" onclick="selectSetupTab('windsurf')">&#x1F3C4; Windsurf</button>
           <button class="setup-tab-btn" id="tab-btn-standalone" onclick="selectSetupTab('standalone')">&#x1F40D; Standalone Python</button>
           <button class="setup-tab-btn" id="tab-btn-sdk" onclick="selectSetupTab('sdk')">&#x2699;&#xFE0F; Direct HTTP / cURL</button>
+        </div>
+
+        <!-- GEMINI WEB (gemini.google.com) -->
+        <div class="setup-content" id="content-gemini-web">
+          <p style="color: var(--text-primary); font-size: 14px;">
+            Connect AfterMath directly to Google Gemini on the web at <strong>gemini.google.com</strong> via native <strong>Streamable HTTP</strong>:
+          </p>
+          <ol class="steps-list">
+            <li>Go to <strong><a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" style="color: var(--neon-cyan);">gemini.google.com</a></strong> on your computer.</li>
+            <li>In the left sidebar, click <strong>Settings & help</strong> &gt; <strong>Connected Apps</strong> (or <strong>Personal Intelligence</strong> &gt; <strong>Connected Apps</strong>).</li>
+            <li>Under <strong>Custom apps</strong>, click <strong>Add a custom app</strong>.</li>
+            <li>Paste the Streamable HTTP server URL: <code>https://ah.mphinance.com/api/mcp</code></li>
+            <li>Click <strong>Next</strong> / <strong>Connect</strong> (Zero API key or authentication required).</li>
+          </ol>
+
+          <div class="config-box">
+            <div class="config-header">
+              <span>Gemini Web MCP URL (Streamable HTTP)</span>
+              <button class="copy-btn" onclick="copySnippet('code-gemini-web', this)">Copy URL</button>
+            </div>
+            <pre><code id="code-gemini-web">https://ah.mphinance.com/api/mcp</code></pre>
+          </div>
+
+          <div class="prompt-chip">
+            <span>&#x26A0;&#xFE0F;</span> <strong>Important:</strong> Do not use <code>/sse</code>. Gemini Web requires the Streamable HTTP endpoint (<code>/api/mcp</code>). Entering <code>/sse</code> triggers <em>"The MCP server could not be reached. Check the URL"</em>.
+          </div>
         </div>
 
         <!-- CLAUDE DESKTOP -->

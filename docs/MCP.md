@@ -191,7 +191,37 @@ client. Migrate to Antigravity, or authenticate the CLI with an API key
 
 ---
 
-### 5. Direct JSON-RPC HTTP POST (No SSE Required)
+### 5. Google Gemini Web App (`gemini.google.com`) Setup
+
+Google Gemini now supports adding custom apps backed by Model Context Protocol (MCP) servers directly in the consumer web interface at [gemini.google.com](https://gemini.google.com).
+
+#### Why "The MCP server could not be reached. Check the URL" Happened
+1. **Gemini Web does NOT support SSE (`/sse`)**: Gemini Web exclusively uses the modern **Streamable HTTP** transport (spec `2025-03-26`). Entering `https://ah.mphinance.com/sse` fails immediately with *"The MCP server could not be reached. Check the URL."*
+2. **Protocol version negotiation**: Gemini Web sends initialization probes expecting a negotiated protocol version (`2025-03-26` or `2025-06-18`). The live server at `https://ah.mphinance.com/api/mcp` now fully negotiates this.
+
+#### Exact URL to Use in Gemini Web
+```text
+https://ah.mphinance.com/api/mcp
+```
+
+#### Step-by-Step Connection Guide
+1. Navigate to **[gemini.google.com](https://gemini.google.com)** on your desktop browser.
+2. At the bottom of the left sidebar, click **Settings & help** (or **Settings**).
+3. Select **Connected Apps** (if not visible directly, look under **Personal Intelligence** > **Connected Apps**).
+4. In the **Custom apps** section, click **Add a custom app**.
+5. Paste the Streamable HTTP server URL:
+   ```text
+   https://ah.mphinance.com/api/mcp
+   ```
+6. Click **Next** / **Connect**. Since AfterMath is completely open, zero-auth financial intelligence, no OAuth or API keys are required.
+7. Once connected, invoke the tools in your Gemini chats:
+   - *"@aftermath What are the top 5 high-conviction stocks held by verified whales?"*
+   - *"@aftermath What is the current dry powder cash across tracked whales?"*
+   - *"@aftermath Show me the verified portfolio for @SirJackALot."*
+
+---
+
+### 6. Direct JSON-RPC HTTP POST (No SSE Required)
 
 For autonomous scripts, curl, or serverless execution, execute tools directly:
 
