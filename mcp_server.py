@@ -47,6 +47,7 @@ _CACHE_TTL = 60.0
 # In-memory SSE message sessions
 _SESSIONS = {}
 _SESSIONS_LOCK = threading.Lock()
+SERVER_START_TIME = time.time()
 
 def debug_log(msg: str):
     """Write debug log message to stderr (never stdout to avoid corrupting JSON-RPC)."""
@@ -822,7 +823,7 @@ class McpHttpHandler(http.server.BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b"Method Not Allowed: POST JSON-RPC to this endpoint")
 
-        elif path in ("/health", "/status", "/"):
+        elif path in ("/health", "/status", "/api/health", "/api/mcp/health", "/"):
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_cors_headers()
@@ -836,8 +837,10 @@ class McpHttpHandler(http.server.BaseHTTPRequestHandler):
                     "streamable_http": "/api/mcp",
                     "sse": "/sse",
                     "messages": "/messages?sessionId={id}",
-                    "direct_rpc": "/api/mcp"
+                    "direct_rpc": "/api/mcp",
+                    "health": "/health"
                 },
+                "uptime_seconds": round(time.time() - SERVER_START_TIME, 1),
                 "tools_count": len(MCP_TOOLS_DEFINITIONS)
             }
             self.wfile.write(json.dumps(res, indent=2).encode("utf-8"))
@@ -847,6 +850,29 @@ class McpHttpHandler(http.server.BaseHTTPRequestHandler):
             self.end_cors_headers()
             self.end_headers()
             self.wfile.write(b"Not Found")
+
+    def do_HEAD(self):
+        parsed = urllib.parse.urlparse(self.path)
+        path = parsed.path.rstrip("/")
+        if path in ("/health", "/status", "/api/health", "/api/mcp/health", "/"):
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_cors_headers()
+            self.end_headers()
+        elif path == "/sse":
+            self.send_response(200)
+            self.send_header("Content-Type", "text/event-stream")
+            self.end_cors_headers()
+            self.end_headers()
+        elif path in ("/api/mcp", "/mcp", "/rpc"):
+            self.send_response(405)
+            self.send_header("Allow", "POST, OPTIONS")
+            self.end_cors_headers()
+            self.end_headers()
+        else:
+            self.send_response(404)
+            self.end_cors_headers()
+            self.end_headers()
 
     def do_POST(self):
         parsed = urllib.parse.urlparse(self.path)

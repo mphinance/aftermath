@@ -6,8 +6,8 @@ Zero-dependency, production-grade MCP server exposing real-time AfterHour alt-da
 whale holdings, conviction intensity, and macro tape liquidity to AI agents
 (Claude Desktop, Cursor IDE, Antigravity CLI, Windsurf, custom autonomous loops).
 
-Protocol: Model Context Protocol (MCP) Specification (2024-11-05)
-Transport: stdio (JSON-RPC 2.0)
+Protocol: Model Context Protocol (MCP) Specification (2025-06-18 / 2025-03-26 / 2024-11-05)
+Transport: stdio (JSON-RPC 2.0), legacy HTTP+SSE, and stateless Streamable HTTP
 Endpoints Source: https://ah.mphinance.com/api
 Dependencies: None (Standard Python 3.8+ library only)
 """
@@ -24,9 +24,17 @@ import queue
 import threading
 from pathlib import Path
 
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 SERVER_NAME = "aftermath-altdata"
 BASE_URL = "https://ah.mphinance.com/api"
+
+# Protocol versions this server understands, newest first. We echo the client's
+# requested version when we support it (required by the MCP spec: "If the server
+# supports the requested protocol version, it MUST respond with the same
+# version"). Clients such as Google Antigravity require >= 2025-03-26 and will
+# drop the connection if the server answers with the legacy 2024-11-05.
+SUPPORTED_PROTOCOL_VERSIONS = ("2025-06-18", "2025-03-26", "2024-11-05")
+DEFAULT_PROTOCOL_VERSION = SUPPORTED_PROTOCOL_VERSIONS[0]
 
 # Local fallback cache directory if available
 SCRIPT_DIR = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
@@ -39,6 +47,7 @@ _CACHE_TTL = 60.0
 # In-memory SSE message sessions
 _SESSIONS = {}
 _SESSIONS_LOCK = threading.Lock()
+SERVER_START_TIME = time.time()
 
 def debug_log(msg: str):
     """Write debug log message to stderr (never stdout to avoid corrupting JSON-RPC)."""
@@ -531,29 +540,53 @@ def handle_jsonrpc(req: dict) -> dict:
 
     # Handshake & Lifecycle
     if method == "initialize":
-        client_version = params.get("protocolVersion", "2024-11-05")
+        requested = params.get("protocolVersion")
+        # Echo the client's version when supported, otherwise fall back to our
+        # newest supported version (never silently downgrade the client).
+        if requested in SUPPORTED_PROTOCOL_VERSIONS:
+            negotiated_version = requested
+        else:
+            negotiated_version = DEFAULT_PROTOCOL_VERSION
         return {
             "jsonrpc": "2.0",
             "id": msg_id,
             "result": {
-                "protocolVersion": "2024-11-05",
+                "protocolVersion": negotiated_version,
                 "capabilities": {
                     "tools": {"listChanged": False},
-                    "resources": {"subscribe": False, "listChanged": False}
+                    "resources": {"subscribe": False, "listChanged": False},
+                    "prompts": {"listChanged": False}
                 },
                 "serverInfo": {
                     "name": SERVER_NAME,
                     "version": VERSION
-                }
+                },
+                "instructions": (
+                    "Real-time AfterHour alt-data: verified whale portfolios, "
+                    "conviction intensity, ETF flows, and the macro tape."
+                )
             }
         }
 
-    if method == "notifications/initialized":
-        # Notification: no response required
+    # Notifications never receive a response.
+    if method.startswith("notifications/"):
         return None
 
     if method == "ping":
         return {"jsonrpc": "2.0", "id": msg_id, "result": {}}
+
+    # Advertised-but-empty capabilities: 2025-* clients probe these at startup.
+    if method == "prompts/list":
+        return {"jsonrpc": "2.0", "id": msg_id, "result": {"prompts": []}}
+
+    if method == "resources/templates/list":
+        return {"jsonrpc": "2.0", "id": msg_id, "result": {"resourceTemplates": []}}
+
+    if method == "logging/setLevel":
+        return {"jsonrpc": "2.0", "id": msg_id, "result": {}}
+
+    if method == "completion/complete":
+        return {"jsonrpc": "2.0", "id": msg_id, "result": {"completion": {"values": []}}}
 
     # Tools
     if method == "tools/list":
@@ -653,6 +686,24 @@ def handle_jsonrpc(req: dict) -> dict:
         "id": msg_id,
         "error": {"code": -32601, "message": f"Method '{method}' not implemented"}
     }
+
+def handle_jsonrpc_payload(req):
+    """Dispatch a single JSON-RPC request or a batch (array).
+
+    Returns ``(payload, had_response)`` where ``had_response`` is False when the
+    payload contained only notifications/respondless messages (e.g. the MCP
+    ``notifications/initialized`` handshake).
+    """
+    if isinstance(req, list):
+        responses = [handle_jsonrpc(r) for r in req if isinstance(r, dict)]
+        responses = [r for r in responses if r is not None]
+        if not responses:
+            return None, False
+        return responses, True
+    resp = handle_jsonrpc(req)
+    if resp is None:
+        return None, False
+    return resp, True
 
 # ==============================================================================
 # MAIN STDIO LOOP & SELF-TEST
@@ -762,7 +813,17 @@ class McpHttpHandler(http.server.BaseHTTPRequestHandler):
                 with _SESSIONS_LOCK:
                     _SESSIONS.pop(session_id, None)
 
-        elif path in ("/health", "/status", "/"):
+        elif path in ("/api/mcp", "/mcp", "/rpc"):
+            # Streamable HTTP allows the server to decline a server-initiated
+            # stream; 405 is the spec-blessed response (a 404 reads as fatal to
+            # some clients). Message delivery happens over POST instead.
+            self.send_response(405)
+            self.send_header("Allow", "POST, OPTIONS")
+            self.end_cors_headers()
+            self.end_headers()
+            self.wfile.write(b"Method Not Allowed: POST JSON-RPC to this endpoint")
+
+        elif path in ("/health", "/status", "/api/health", "/api/mcp/health", "/"):
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_cors_headers()
@@ -771,12 +832,15 @@ class McpHttpHandler(http.server.BaseHTTPRequestHandler):
                 "status": "ok",
                 "server": SERVER_NAME,
                 "version": VERSION,
-                "protocol": "2024-11-05",
+                "protocols": list(SUPPORTED_PROTOCOL_VERSIONS),
                 "endpoints": {
+                    "streamable_http": "/api/mcp",
                     "sse": "/sse",
                     "messages": "/messages?sessionId={id}",
-                    "direct_rpc": "/api/mcp"
+                    "direct_rpc": "/api/mcp",
+                    "health": "/health"
                 },
+                "uptime_seconds": round(time.time() - SERVER_START_TIME, 1),
                 "tools_count": len(MCP_TOOLS_DEFINITIONS)
             }
             self.wfile.write(json.dumps(res, indent=2).encode("utf-8"))
@@ -786,6 +850,29 @@ class McpHttpHandler(http.server.BaseHTTPRequestHandler):
             self.end_cors_headers()
             self.end_headers()
             self.wfile.write(b"Not Found")
+
+    def do_HEAD(self):
+        parsed = urllib.parse.urlparse(self.path)
+        path = parsed.path.rstrip("/")
+        if path in ("/health", "/status", "/api/health", "/api/mcp/health", "/"):
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_cors_headers()
+            self.end_headers()
+        elif path == "/sse":
+            self.send_response(200)
+            self.send_header("Content-Type", "text/event-stream")
+            self.end_cors_headers()
+            self.end_headers()
+        elif path in ("/api/mcp", "/mcp", "/rpc"):
+            self.send_response(405)
+            self.send_header("Allow", "POST, OPTIONS")
+            self.end_cors_headers()
+            self.end_headers()
+        else:
+            self.send_response(404)
+            self.end_cors_headers()
+            self.end_headers()
 
     def do_POST(self):
         parsed = urllib.parse.urlparse(self.path)
@@ -812,11 +899,12 @@ class McpHttpHandler(http.server.BaseHTTPRequestHandler):
                 self.wfile.write(b"Invalid or missing sessionId")
                 return
 
-            resp = handle_jsonrpc(req)
-            if resp is not None:
+            payload, had_response = handle_jsonrpc_payload(req)
+            if had_response:
                 q = _SESSIONS.get(session_id)
                 if q:
-                    q.put(json.dumps(resp))
+                    for msg in (payload if isinstance(payload, list) else [payload]):
+                        q.put(json.dumps(msg))
 
             self.send_response(202)
             self.send_header("Content-Type", "text/plain")
@@ -825,12 +913,20 @@ class McpHttpHandler(http.server.BaseHTTPRequestHandler):
             self.wfile.write(b"Accepted")
 
         elif path in ("/api/mcp", "/mcp", "/rpc"):
-            resp = handle_jsonrpc(req)
+            # Stateless Streamable HTTP (spec 2025-03-26): a POST carrying only
+            # requests gets a JSON body; a POST carrying only notifications or
+            # responses is acknowledged with 202 and an empty body.
+            payload, had_response = handle_jsonrpc_payload(req)
+            if not had_response:
+                self.send_response(202)
+                self.end_cors_headers()
+                self.end_headers()
+                return
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_cors_headers()
             self.end_headers()
-            self.wfile.write(json.dumps(resp or {}).encode("utf-8"))
+            self.wfile.write(json.dumps(payload).encode("utf-8"))
 
         else:
             self.send_response(404)
@@ -843,6 +939,7 @@ def run_http_server(port: int = 8088, host: str = "0.0.0.0"):
     server_addr = (host, port)
     httpd = http.server.ThreadingHTTPServer(server_addr, McpHttpHandler)
     debug_log(f"Starting {SERVER_NAME} HTTP+SSE server listening on http://{host}:{port}")
+    debug_log(f"  Streamable HTTP:     http://{host}:{port}/api/mcp  (POST, stateless)")
     debug_log(f"  SSE endpoint:        http://{host}:{port}/sse")
     debug_log(f"  Messages endpoint:   http://{host}:{port}/messages?sessionId=<id>")
     debug_log(f"  Direct RPC endpoint: http://{host}:{port}/api/mcp")
@@ -884,15 +981,20 @@ def main():
                 continue
 
             req = json.loads(line)
-            resp = handle_jsonrpc(req)
-            if resp is not None:
-                out = json.dumps(resp)
+            # Support JSON-RPC 2.0 batch requests (arrays) as well as singles;
+            # notification-only batches intentionally produce no output.
+            payload, had_response = handle_jsonrpc_payload(req)
+            if had_response:
+                out = json.dumps(payload)
                 sys.stdout.write(out + "\n")
                 sys.stdout.flush()
         except KeyboardInterrupt:
             break
+        except BrokenPipeError:
+            # Client closed the pipe (normal shutdown); exit quietly.
+            break
         except Exception as e:
-            debug_log(f"Fatal loop exception: {e}")
+            debug_log(f"Loop exception (continuing): {e}")
 
 if __name__ == "__main__":
     main()

@@ -136,3 +136,29 @@ def test_streamable_http_get_reports_405_not_404(http_base):
     with pytest.raises(urllib.error.HTTPError) as excinfo:
         urllib.request.urlopen(http_base + "/api/mcp", timeout=10)
     assert excinfo.value.code == 405
+
+
+@pytest.mark.parametrize("path", ["/health", "/status", "/api/health", "/api/mcp/health"])
+def test_health_endpoint_returns_json_status(http_base, path):
+    req = urllib.request.Request(http_base + path)
+    with urllib.request.urlopen(req, timeout=10) as resp:
+        assert resp.status == 200
+        assert "application/json" in resp.headers.get("Content-Type", "")
+        data = json.loads(resp.read().decode("utf-8"))
+    assert data["status"] == "ok"
+    assert data["server"] == "aftermath-altdata"
+    assert "uptime_seconds" in data
+    assert "protocols" in data
+
+
+def test_head_method_supported_on_health_and_sse(http_base):
+    for path, expected_status in [("/health", 200), ("/api/health", 200), ("/api/mcp", 405)]:
+        req = urllib.request.Request(http_base + path, method="HEAD")
+        if expected_status == 405:
+            with pytest.raises(urllib.error.HTTPError) as excinfo:
+                urllib.request.urlopen(req, timeout=10)
+            assert excinfo.value.code == 405
+        else:
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                assert resp.status == expected_status
+
