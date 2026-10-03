@@ -2169,6 +2169,40 @@ let filteredWhales = [...WHALES_DATA];
 let currentOpenTicker = null;
 let currentOpenWhale = null;
 
+// FINANCIAL & COMMAS FORMATTERS
+function fmtCurrency(val, decimals = 2) {{
+  if (val === null || val === undefined || isNaN(val)) return '$0.00';
+  const num = Number(val);
+  const sign = num < 0 ? '-' : '';
+  const abs = Math.abs(num);
+  return sign + '$' + abs.toLocaleString('en-US', {{
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  }});
+}}
+
+function fmtPnL(val, decimals = 2) {{
+  const num = Number(val || 0);
+  const sign = num >= 0 ? '+' : '-';
+  const cls = num >= 0 ? 'pos-green' : 'neg-red';
+  const formatted = sign + '$' + Math.abs(num).toLocaleString('en-US', {{
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  }});
+  return {{ cls, formatted }};
+}}
+
+function fmtShares(val) {{
+  const num = Number(val || 0);
+  const sign = num < 0 ? '-' : '';
+  const abs = Math.abs(num);
+  const dec = abs % 1 === 0 ? 0 : 2;
+  return sign + abs.toLocaleString('en-US', {{
+    minimumFractionDigits: dec,
+    maximumFractionDigits: dec
+  }});
+}}
+
 // ROUTING & SLUGS SYSTEM
 function parseInitialRoute() {{
   const path = window.location.pathname.replace(/\\/index\\.html$/, '');
@@ -2436,7 +2470,7 @@ function renderStocks(list) {{
         <td style="font-weight: 700;">$${{(s.totalValue/1000000).toFixed(2)}}M</td>
         <td>${{s.owners.toLocaleString()}}</td>
         <td style="color: var(--purple); font-weight: 700;">$${{Math.round(s.intensity).toLocaleString()}}</td>
-        <td>$${{s.price.toFixed(2)}}</td>
+        <td>${{fmtCurrency(s.price, 2)}}</td>
         <td class="${{cls}}">${{sign}}${{s.changePercent.toFixed(2)}}%</td>
         <td style="color: var(--text-muted);">${{s.chatroomMembers.toLocaleString()}}</td>
       </tr>
@@ -2492,9 +2526,9 @@ function renderWhales() {{
       return `<span class="holding-chip" onclick="event.stopPropagation(); openTickerModal('${{t}}')">${{t}}: $${{k}}k</span>`;
     }}).join('');
 
-    const pnlSign = w.profit >= 0 ? '+' : '';
-    const pnlClass = w.profit >= 0 ? 'pos-green' : 'neg-red';
-    const ratioStr = '$' + Math.round(w.shadow_ratio).toLocaleString() + '/sub';
+    const pnlObj = fmtPnL(w.profit, 0);
+    const ratioStr = fmtCurrency(w.shadow_ratio, 0) + '/sub';
+    const nwStr = fmtCurrency(w.total_value, 0);
 
     return `
       <div class="whale-card" onclick="openWhaleModal('${{w.username}}')">
@@ -2511,11 +2545,11 @@ function renderWhales() {{
         <div class="whale-metrics">
           <div>
             <div class="whale-m-label">NET WORTH</div>
-            <div class="whale-m-val val-green">$${{Math.round(w.total_value).toLocaleString()}}</div>
+            <div class="whale-m-val val-green">${{nwStr}}</div>
           </div>
           <div>
             <div class="whale-m-label">TRACKED P&L</div>
-            <div class="whale-m-val ${{pnlClass}}">${{pnlSign}}$${{Math.round(w.profit).toLocaleString()}}</div>
+            <div class="whale-m-val ${{pnlObj.cls}}">${{pnlObj.formatted}}</div>
           </div>
         </div>
         <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 6px; font-family: var(--font-mono);">TOP POSITIONS:</div>
@@ -2542,9 +2576,9 @@ function renderShadowWhales() {{
           <div style="font-weight: 700; color: var(--cyan);">@${{w.username}}</div>
           <span class="slug-pill" onclick="event.stopPropagation(); copySlug('/@${{w.username}}')">🔗 /@${{w.username}}</span>
         </td>
-        <td class="val-green" style="font-weight: 700;">$${{Math.round(w.total_value).toLocaleString()}}</td>
-        <td>${{w.followers.toLocaleString()}}</td>
-        <td class="val-purple" style="font-weight: 800;">$${{Math.round(w.shadow_ratio).toLocaleString()}} / sub</td>
+        <td class="val-green" style="font-weight: 700;">${{fmtCurrency(w.total_value, 0)}}</td>
+        <td>${{Number(w.followers || 0).toLocaleString('en-US')}}</td>
+        <td class="val-purple" style="font-weight: 800;">${{fmtCurrency(w.shadow_ratio, 0)}} / sub</td>
         <td>${{topHoldings}}</td>
         <td><span class="whale-badge">VERIFIED</span></td>
       </tr>
@@ -2586,17 +2620,21 @@ function openTickerModal(ticker, pushHistory = true) {{
     }};
   }}
 
+  const priceFmt = fmtCurrency(s.price, 2);
+  const chgSign = s.changePercent >= 0 ? '+' : '';
+  const chgCls = s.changePercent >= 0 ? 'pos-green' : 'neg-red';
+
   document.getElementById('tickerModalTitle').innerText = `$${{s.ticker}} • ${{s.name}}`;
-  document.getElementById('tickerModalSub').innerText = `${{s.isETF ? 'ETF' : 'Equity'}} | Price: $${{s.price.toFixed(2)}} | Tracked Whale Capital: $${{Math.round(totalWhaleVal).toLocaleString()}}`;
+  document.getElementById('tickerModalSub').innerText = `${{s.isETF ? 'ETF' : 'Equity'}} | Price: ${{priceFmt}} | Tracked Whale Capital: ${{fmtCurrency(totalWhaleVal, 0)}}`;
   document.getElementById('tickerModalSlugText').innerText = `https://ah.mphinance.com/ticker/${{s.ticker}}`;
   document.getElementById('tickerModalWhalesCount').innerText = whales.length;
 
   document.getElementById('tickerModalStrip').innerHTML = `
-    <div><div class="whale-m-label">PRICE</div><div class="whale-m-val">$${{s.price.toFixed(2)}}</div></div>
-    <div><div class="whale-m-label">24H CHANGE</div><div class="whale-m-val ${{s.changePercent >= 0 ? 'pos-green':'neg-red'}}">${{s.changePercent >= 0 ? '+' : ''}}${{s.changePercent.toFixed(2)}}%</div></div>
-    <div><div class="whale-m-label">WHALE CAPITAL</div><div class="whale-m-val val-cyan">$${{Math.round(totalWhaleVal).toLocaleString()}}</div></div>
+    <div><div class="whale-m-label">PRICE</div><div class="whale-m-val">${{priceFmt}}</div></div>
+    <div><div class="whale-m-label">24H CHANGE</div><div class="whale-m-val ${{chgCls}}">${{chgSign}}${{s.changePercent.toFixed(2)}}%</div></div>
+    <div><div class="whale-m-label">WHALE CAPITAL</div><div class="whale-m-val val-cyan">${{fmtCurrency(totalWhaleVal, 0)}}</div></div>
     <div><div class="whale-m-label">WHALE COUNT</div><div class="whale-m-val val-purple">${{whales.length}} Whales</div></div>
-    <div><div class="whale-m-label">APP OWNERS</div><div class="whale-m-val">${{s.owners.toLocaleString()}}</div></div>
+    <div><div class="whale-m-label">APP OWNERS</div><div class="whale-m-val">${{Number(s.owners || 0).toLocaleString('en-US')}}</div></div>
   `;
 
   // RENDER HISTORICAL CANDLESTICK / LINE CHART
@@ -2616,16 +2654,18 @@ function openTickerModal(ticker, pushHistory = true) {{
     body.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 20px;">No tracked whales currently hold verified positions in this asset.</td></tr>';
   }} else {{
     body.innerHTML = whales.map(w => {{
-      const pnlSign = w.profit >= 0 ? '+' : '';
-      const pnlCls = w.profit >= 0 ? 'pos-green' : 'neg-red';
+      const profObj = fmtPnL(w.profit, 2);
+      const valFmt = fmtCurrency(w.value, 2);
+      const costFmt = fmtCurrency(w.cost_basis, 2);
+      const qtyFmt = fmtShares(w.shares);
       return `
         <tr class="clickable-row" onclick="openWhaleModal('${{w.username}}')">
           <td style="font-weight: 700; color: var(--cyan);">@${{w.username}}</td>
-          <td>${{w.shares.toLocaleString()}}</td>
-          <td class="val-green" style="font-weight: 700;">$${{w.value.toLocaleString()}}</td>
-          <td>$${{w.cost_basis.toFixed(2)}}</td>
-          <td class="${{pnlCls}}">${{pnlSign}}$${{w.profit.toLocaleString()}}</td>
-          <td>${{w.followers.toLocaleString()}}</td>
+          <td>${{qtyFmt}}</td>
+          <td class="val-green" style="font-weight: 700;">${{valFmt}}</td>
+          <td style="font-weight: 600;">${{costFmt}}</td>
+          <td class="${{profObj.cls}}" style="font-weight: 700;">${{profObj.formatted}}</td>
+          <td>${{Number(w.followers || 0).toLocaleString('en-US')}}</td>
         </tr>
       `;
     }}).join('');
@@ -2711,17 +2751,16 @@ function openWhaleModal(username, pushHistory = true) {{
   if (!w) return;
 
   document.getElementById('whaleModalTitle').innerText = `@${{w.username}} • Whale Dossier`;
-  document.getElementById('whaleModalSub').innerText = `Followers: ${{w.followers.toLocaleString()}} | Verified Capital: $${{Math.round(w.total_value).toLocaleString()}}`;
+  document.getElementById('whaleModalSub').innerText = `Followers: ${{Number(w.followers || 0).toLocaleString('en-US')}} | Verified Capital: ${{fmtCurrency(w.total_value, 0)}}`;
   document.getElementById('whaleModalSlugText').innerText = `https://ah.mphinance.com/@${{w.username}}`;
 
-  const pnlSign = w.profit >= 0 ? '+' : '';
-  const pnlCls = w.profit >= 0 ? 'pos-green' : 'neg-red';
+  const profSummary = fmtPnL(w.profit, 0);
 
   document.getElementById('whaleModalStrip').innerHTML = `
-    <div><div class="whale-m-label">NET WORTH</div><div class="whale-m-val val-green">$${{Math.round(w.total_value).toLocaleString()}}</div></div>
-    <div><div class="whale-m-label">TOTAL PROFIT</div><div class="whale-m-val ${{pnlCls}}">${{pnlSign}}$${{Math.round(w.profit).toLocaleString()}}</div></div>
-    <div><div class="whale-m-label">FOLLOWERS</div><div class="whale-m-val">${{w.followers.toLocaleString()}}</div></div>
-    <div><div class="whale-m-label">SHADOW RATIO</div><div class="whale-m-val val-purple">$${{Math.round(w.shadow_ratio).toLocaleString()}} / sub</div></div>
+    <div><div class="whale-m-label">NET WORTH</div><div class="whale-m-val val-green">${{fmtCurrency(w.total_value, 0)}}</div></div>
+    <div><div class="whale-m-label">TOTAL PROFIT</div><div class="whale-m-val ${{profSummary.cls}}">${{profSummary.formatted}}</div></div>
+    <div><div class="whale-m-label">FOLLOWERS</div><div class="whale-m-val">${{Number(w.followers || 0).toLocaleString('en-US')}}</div></div>
+    <div><div class="whale-m-label">SHADOW RATIO</div><div class="whale-m-val val-purple">${{fmtCurrency(w.shadow_ratio, 0)}} / sub</div></div>
   `;
 
   const body = document.getElementById('whaleModalPositionsBody');
@@ -2730,19 +2769,22 @@ function openWhaleModal(username, pushHistory = true) {{
     body.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 20px;">No public positions reported.</td></tr>';
   }} else {{
     body.innerHTML = pos.map(p => {{
-      const pSign = (p.profit || 0) >= 0 ? '+' : '';
-      const pCls = (p.profit || 0) >= 0 ? 'pos-green' : 'neg-red';
       const cleanTicker = (p.ticker || '').toUpperCase();
       const secName = p.name || EXTRA_TICKER_NAMES[cleanTicker] || cleanTicker;
-      
+
+      const qtyFmt = fmtShares(p.quantity);
+      const valFmt = fmtCurrency(p.value, 2);
+      const costFmt = fmtCurrency(p.cost_basis, 2);
+      const profObj = fmtPnL(p.profit, 2);
+
       return `
         <tr class="clickable-row" onclick="hideModal('whaleModal'); openTickerModal('${{cleanTicker}}')">
           <td style="font-weight: 800; color: var(--cyan);">${{cleanTicker}}</td>
           <td style="color: var(--text-secondary); max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${{secName}}</td>
-          <td>${{Number(p.quantity || 0).toLocaleString()}}</td>
-          <td class="val-green" style="font-weight: 700;">$${{Number(p.value || 0).toLocaleString()}}</td>
-          <td>$${{Number(p.cost_basis || 0).toFixed(2)}}</td>
-          <td class="${{pCls}}">${{pSign}}$${{Number(p.profit || 0).toLocaleString()}}</td>
+          <td>${{qtyFmt}}</td>
+          <td class="val-green" style="font-weight: 700;">${{valFmt}}</td>
+          <td style="font-weight: 600;">${{costFmt}}</td>
+          <td class="${{profObj.cls}}" style="font-weight: 700;">${{profObj.formatted}}</td>
         </tr>
       `;
     }}).join('');
