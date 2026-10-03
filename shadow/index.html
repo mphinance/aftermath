@@ -1165,16 +1165,17 @@
       position: sticky;
       left: 0;
       z-index: 5;
-      background: var(--bg-surface);
-      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.6);
+      background: #0B1017 !important;
+      border-right: 1px solid var(--border-accent) !important;
+      box-shadow: 4px 0 12px rgba(0, 0, 0, 0.75);
       min-width: 105px;
     }
     th.col-ticker {
-      background: var(--bg-card);
+      background: #101722 !important;
       z-index: 6;
     }
     tr.clickable-row:hover td.col-ticker {
-      background: var(--bg-card-hover);
+      background: #162030 !important;
     }
     .sitemap-grid {
       grid-template-columns: 1fr;
@@ -2097,8 +2098,9 @@ let currentOpenWhale = null;
 
 // FINANCIAL & COMMAS FORMATTERS
 function fmtCurrency(val, decimals = 2) {
-  if (val === null || val === undefined || isNaN(val)) return '$0.00';
+  if (val === null || val === undefined || val === '') return '$0.00';
   const num = Number(val);
+  if (isNaN(num)) return '$0.00';
   const sign = num < 0 ? '-' : '';
   const abs = Math.abs(num);
   return sign + '$' + abs.toLocaleString('en-US', {
@@ -2108,9 +2110,11 @@ function fmtCurrency(val, decimals = 2) {
 }
 
 function fmtPnL(val, decimals = 2) {
-  const num = Number(val || 0);
-  const sign = num >= 0 ? '+' : '-';
-  const cls = num >= 0 ? 'pos-green' : 'neg-red';
+  if (val === null || val === undefined || val === '') return { cls: '', formatted: '$0.00' };
+  const num = Number(val);
+  if (isNaN(num) || num === 0) return { cls: '', formatted: '$0.00' };
+  const sign = num > 0 ? '+' : '-';
+  const cls = num > 0 ? 'pos-green' : 'neg-red';
   const formatted = sign + '$' + Math.abs(num).toLocaleString('en-US', {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals
@@ -2119,7 +2123,9 @@ function fmtPnL(val, decimals = 2) {
 }
 
 function fmtShares(val) {
-  const num = Number(val || 0);
+  if (val === null || val === undefined || val === '') return '0';
+  const num = Number(val);
+  if (isNaN(num)) return '0';
   const sign = num < 0 ? '-' : '';
   const abs = Math.abs(num);
   const dec = abs % 1 === 0 ? 0 : 2;
@@ -2791,14 +2797,17 @@ function closeModal(event, modalId) {
 }
 
 // TACTILE MICRO-INTERACTION NOTIFICATIONS
+let toastTimer = null;
 function showToast(msg = 'Copied to clipboard!') {
   const toast = document.getElementById('toastNotification');
   const toastMsg = document.getElementById('toastMsg');
   if (!toast) return;
   if (toastMsg) toastMsg.innerText = msg;
   toast.classList.add('show');
-  setTimeout(() => {
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
     toast.classList.remove('show');
+    toastTimer = null;
   }, 2200);
 }
 
