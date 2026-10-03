@@ -2104,12 +2104,12 @@ html_content = f"""<!DOCTYPE html>
     <button class="tab-btn" id="tabNav-sitemap" onclick="switchRoute('/sitemap')">
       <span>&#x1F5FA;&#xFE0F;</span> Directory &amp; Sitemap
     </button>
-    <a href="/mcp" class="tab-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; color: var(--cyan); border-color: rgba(0, 210, 255, 0.4);">
+    <button type="button" class="tab-btn" onclick="window.location.href='/mcp'" style="display: inline-flex; align-items: center; gap: 6px; color: var(--cyan); border-color: rgba(0, 210, 255, 0.4);">
       <span>&#x1F916;</span> MCP Server
-    </a>
-    <a href="/docs" class="tab-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; color: var(--green); border-color: rgba(0, 245, 155, 0.4);">
+    </button>
+    <button type="button" class="tab-btn" onclick="window.location.href='/docs'" style="display: inline-flex; align-items: center; gap: 6px; color: var(--green); border-color: rgba(0, 245, 155, 0.4);">
       <span>&#x1F4D6;</span> Swagger API
-    </a>
+    </button>
   </div>
 
   <!-- TAB 1: TOP STONKS & TAXONOMY -->
