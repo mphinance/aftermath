@@ -1,0 +1,3871 @@
+[
+ {
+  "id": "ajfreealart32/570",
+  "channel": "t.me/ajfreealart32",
+  "date": "2026-10-13T15:22:16+00:00",
+  "text": "🎯 $AAPL 352.50 Calls 10/14 $0.32 Entry\n🔴 Stop: 5min close under $345.67",
+  "expected": [
+   {
+    "ticker": "AAPL",
+    "side": "call",
+    "strike": 352.5,
+    "expiry": "2026-10-14",
+    "entry_price": 0.32,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "ajfreealart32/549",
+  "channel": "t.me/ajfreealart32",
+  "date": "2026-10-08T13:48:18+00:00",
+  "text": "SPY 777C 0.47 Odte",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 777,
+    "expiry": "2026-10-08",
+    "entry_price": 0.47,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "ajfreealart32/563",
+  "channel": "t.me/ajfreealart32",
+  "date": "2026-10-09T14:15:48+00:00",
+  "text": "MRVL bearflag holding, just need to see a flush below 267.5 support and we get 262",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "alphasyndicate11/370",
+  "channel": "t.me/alphasyndicate11",
+  "date": "2026-06-10T14:28:42+00:00",
+  "text": "$SPY 745C @.32 lotto",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 745,
+    "expiry": null,
+    "entry_price": 0.32,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "alphasyndicate11/372",
+  "channel": "t.me/alphasyndicate11",
+  "date": "2026-06-10T14:30:41+00:00",
+  "text": "VIP Group still eating. Join in to receive calls earlier and join the winning team🚀🚀🚀",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "alphasyndicate11/367",
+  "channel": "t.me/alphasyndicate11",
+  "date": "2026-06-09T14:38:24+00:00",
+  "text": "$TGT @.30 | +120% 🔥 🔥 🔥   SOLD MOST , LEFT RUNNERS",
+  "expected": [
+   {
+    "ticker": "TGT",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 120
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "alphasyndicate11/381",
+  "channel": "t.me/alphasyndicate11",
+  "date": "2026-07-24T15:29:47+00:00",
+  "text": "$Spy 744 calls .54",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 744,
+    "expiry": null,
+    "entry_price": 0.54,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "alphasyndicate11/380",
+  "channel": "t.me/alphasyndicate11",
+  "date": "2026-07-23T09:45:01+00:00",
+  "text": "Coming back here with hundreds of messages, people checking up on me, I really want to appreciate everyone that checked in on me. I was sadly going through some health issues but we are back stronger. Hopefully we stay longer again before any other bad news😂. \nTraderxsphere is back! \n\nLet’s get back on track.",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "ApextraderKoryphae/1659",
+  "channel": "t.me/apextraderkoryphae",
+  "date": "2026-10-09T18:36:36+00:00",
+  "text": "$NFLX 70P @.02",
+  "expected": [
+   {
+    "ticker": "NFLX",
+    "side": "put",
+    "strike": 70,
+    "expiry": null,
+    "entry_price": 0.02,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "ApextraderKoryphae/1667",
+  "channel": "t.me/apextraderkoryphae",
+  "date": "2026-10-13T17:46:07+00:00",
+  "text": "$IDA 140c  10/16 @ 0.40",
+  "expected": [
+   {
+    "ticker": "IDA",
+    "side": "call",
+    "strike": 140,
+    "expiry": "2026-10-16",
+    "entry_price": 0.4,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "ApextraderKoryphae/1662",
+  "channel": "t.me/apextraderkoryphae",
+  "date": "2026-10-12T20:12:56+00:00",
+  "text": "We just hit +$126K in 6 days! 🚀\n\nFirst, all glory to God. Grateful for the journey, my team, and everyone who continues to support what we’re building. 💛\n\nI want to give back to the community (as always), so I’m opening up a 50% discount on the Lifetime Plan. 👑\n\n$1,999.99 → $999 (5 spots only) ONE TIME.\n\nPay once, get lifetime access, and never pay again.\n\nIf you’ve been waiting for the right time to join us, this is your chance.\n\nLet’s lock in for life. 🤝 @everyone",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "axisalgorithmictrade/198",
+  "channel": "t.me/axisalgorithmictrade",
+  "date": "2026-10-09T13:44:21+00:00",
+  "text": "Opened 1 $AMZN 260C 10/09 @ $0.49",
+  "expected": [
+   {
+    "ticker": "AMZN",
+    "side": "call",
+    "strike": 260,
+    "expiry": "2026-10-09",
+    "entry_price": 0.49,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "axisalgorithmictrade/187",
+  "channel": "t.me/axisalgorithmictrade",
+  "date": "2026-10-07T13:57:32+00:00",
+  "text": "Opened 500 $AAPL 337.5C 10/07 @ $0.45 (Actual Cost: $0.45)",
+  "expected": [
+   {
+    "ticker": "AAPL",
+    "side": "call",
+    "strike": 337.5,
+    "expiry": "2026-10-07",
+    "entry_price": 0.45,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "axisalgorithmictrade/183",
+  "channel": "t.me/axisalgorithmictrade",
+  "date": "2026-10-06T15:05:28+00:00",
+  "text": "🚨Opened 10 $MU 1100C 10/07 @ $2.70",
+  "expected": [
+   {
+    "ticker": "MU",
+    "side": "call",
+    "strike": 1100,
+    "expiry": "2026-10-07",
+    "entry_price": 2.7,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "axisalgorithmictrade/189",
+  "channel": "t.me/axisalgorithmictrade",
+  "date": "2026-10-08T14:01:13+00:00",
+  "text": "Opened 10 $SPX 7790C 10/08 @ $7.71",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "call",
+    "strike": 7790,
+    "expiry": "2026-10-08",
+    "entry_price": 7.71,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "axisalgorithmictrade/184",
+  "channel": "t.me/axisalgorithmictrade",
+  "date": "2026-10-07T13:35:16+00:00",
+  "text": "GOOD MORNING AXIS COMMUNITY🏔️🏆\n\nA new trading day is here!  Stay focused, stay disciplined, and trust the strategy. Let’s stay patient, capitalize on the right opportunities, and make the most of today’s market.\n\nWishing everyone a strong and profitable day ahead! 💰📈",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "bincofreealert/5964",
+  "channel": "t.me/bincofreealert",
+  "date": "2026-10-13T14:37:45+00:00",
+  "text": "Got 3.3 on $SPX puts for +27% Gains 💸 \n\n$QQQ puts got .8 for +10% Gains 💸 \n\nSold last on this bounce",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "put",
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 27,
+    "exit_price": 3.3
+   },
+   {
+    "ticker": "QQQ",
+    "side": "put",
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 10,
+    "exit_price": 0.8
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "bincofreealert/5963",
+  "channel": "t.me/bincofreealert",
+  "date": "2026-10-13T14:36:16+00:00",
+  "text": "Nvm QQQ puts green",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "bincofreealert/5972",
+  "channel": "t.me/bincofreealert",
+  "date": "2026-10-13T14:51:51+00:00",
+  "text": "SL is close for me. Final gamble I'm taking today",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "blackcardfreechannel/174",
+  "channel": "t.me/blackcardfreechannel",
+  "date": "2026-09-23T14:09:25+00:00",
+  "text": "🟢 Entry · $SMCI 10/02 44C @ $1.38 · small\n🎯 Recommended TP ~$2.18 (+58%) · Score 62.4 · 73% est. win",
+  "expected": [
+   {
+    "ticker": "SMCI",
+    "side": "call",
+    "strike": 44,
+    "expiry": "2026-10-02",
+    "entry_price": 1.38,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "blackcardfreechannel/179",
+  "channel": "t.me/blackcardfreechannel",
+  "date": "2026-10-01T13:52:05+00:00",
+  "text": "$MU 10/05 1000P @ $6.80\n\n🔻 Exit · +18%\n1/4 position · $5.78 → $6.80",
+  "expected": [
+   {
+    "ticker": "MU",
+    "side": "put",
+    "strike": 1000,
+    "expiry": "2026-10-05",
+    "entry_price": 5.78,
+    "action": "close",
+    "result_pct": 18,
+    "exit_price": 6.8
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "blackcardfreechannel/175",
+  "channel": "t.me/blackcardfreechannel",
+  "date": "2026-09-23T14:10:43+00:00",
+  "text": "🔻 Exit · $PLTR 10/02 195C @ $3.62 · +11%\nALL OUT · $3.25 → $3.62",
+  "expected": [
+   {
+    "ticker": "PLTR",
+    "side": "call",
+    "strike": 195,
+    "expiry": "2026-10-02",
+    "entry_price": 3.25,
+    "action": "close",
+    "result_pct": 11,
+    "exit_price": 3.62
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "blackcardfreechannel/172",
+  "channel": "t.me/blackcardfreechannel",
+  "date": "2026-09-23T13:42:22+00:00",
+  "text": "🔻 Exit · $PLTR 10/02 195C @ $5.00 · +54%\n1/3 position · $3.25 → $5.00",
+  "expected": [
+   {
+    "ticker": "PLTR",
+    "side": "call",
+    "strike": 195,
+    "expiry": "2026-10-02",
+    "entry_price": 3.25,
+    "action": "close",
+    "result_pct": 54,
+    "exit_price": 5.0
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "BlockWave10/1915",
+  "channel": "t.me/blockwave10",
+  "date": "2026-10-12T13:49:38+00:00",
+  "text": "Opened 25 $TSLA 385C 10/12 @ $0.60",
+  "expected": [
+   {
+    "ticker": "TSLA",
+    "side": "call",
+    "strike": 385,
+    "expiry": "2026-10-12",
+    "entry_price": 0.6,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "BlockWave10/1916",
+  "channel": "t.me/blockwave10",
+  "date": "2026-10-12T14:14:04+00:00",
+  "text": "Opened 10 $SPX 7810P 10/12 @ $7.70",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "put",
+    "strike": 7810,
+    "expiry": "2026-10-12",
+    "entry_price": 7.7,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "BlockWave10/1911",
+  "channel": "t.me/blockwave10",
+  "date": "2026-10-09T15:00:23+00:00",
+  "text": "Opened 20 $SPX 7805C 10/09@ $4.90",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "call",
+    "strike": 7805,
+    "expiry": "2026-10-09",
+    "entry_price": 4.9,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "BlockWave10/1909",
+  "channel": "t.me/blockwave10",
+  "date": "2026-10-09T14:35:15+00:00",
+  "text": "Closed 10 SPXW 7805C 10/09 @ $3.70 (Entry: $3.80) | Gain: -2.6%\nOpened: 10:17 AM ET\nTrade Summary\nTotal Closed: 25/25\nAverage Close Price: $4.00\nTotal Profit: $+500.00",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "call",
+    "strike": 7805,
+    "expiry": "2026-10-09",
+    "entry_price": 3.8,
+    "action": "close",
+    "result_pct": -2.6,
+    "exit_price": 3.7
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "BlockWave10/1919",
+  "channel": "t.me/blockwave10",
+  "date": "2026-10-13T13:53:06+00:00",
+  "text": "Good day, everyone.\n\nI won’t be very active today, as I have several important meetings to attend and responsibilities to take care of. My priority is to ensure everything is on track for the week ahead.\n\nWe still have a lot planned, and there are more opportunities to look forward to. In the meantime, stay focused, remain prepared, and keep an eye out for any opportunities that come your way.\n\nI’ll share further updates when I’m available. Thank you for your understanding and continued support.🔥🫡",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "blue_falcon_capital/71",
+  "channel": "t.me/blue_falcon_capital",
+  "date": "2026-07-01T14:09:08+00:00",
+  "text": "$IWM | 20%",
+  "expected": [
+   {
+    "ticker": "IWM",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "blue_falcon_capital/79",
+  "channel": "t.me/blue_falcon_capital",
+  "date": "2026-07-02T14:00:04+00:00",
+  "text": "Currently down -40%. I might cut and re enter if we make another high. \n\nIm still confident on a pullback. $SPY",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "blue_falcon_capital/70",
+  "channel": "t.me/blue_falcon_capital",
+  "date": "2026-07-01T13:52:21+00:00",
+  "text": "🟢 Calls Above: 301.48\n🔴 Puts Below: 297.74\n\n$AMZN\n\n🟢 Calls Above: 242.00",
+  "expected": [
+   {
+    "ticker": "AMZN",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "blue_falcon_capital/85",
+  "channel": "t.me/blue_falcon_capital",
+  "date": "2026-07-02T15:00:58+00:00",
+  "text": "As long as my soldiers print. I did a good job. 💙 $SPY \n\nWho’s paid?",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "blue_falcon_capital/90",
+  "channel": "t.me/blue_falcon_capital",
+  "date": "2026-07-02T15:05:08+00:00",
+  "text": "🔥🔥🔥💰",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "bob_signalsfreealert/6196",
+  "channel": "t.me/bob_signalsfreealert",
+  "date": "2026-10-12T14:04:51+00:00",
+  "text": "$QQQ@1.10 from 0.90 | +22%🔥🔥\n\nCame to my fill too",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": 0.9,
+    "action": "close",
+    "result_pct": 22,
+    "exit_price": 1.1
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "bob_signalsfreealert/6192",
+  "channel": "t.me/bob_signalsfreealert",
+  "date": "2026-10-09T20:16:51+00:00",
+  "text": "📈 MR BOB | TRADE RECAP 🔥\n\n📅 10/09/2026\n\nCLOSED TRADES\n\n🟢 $QQQ 750P — +95%\n🟢 $SPY 778C — +72.13%\n🟢 $TSLA 380P — +65%\n🟢 $SPY 778P — +37.25%\n🔴 $TSLA 390C — -94%\n\nPERFORMANCE\n\n📊 Total Trades: 5\n🟢 Wins: 4\n🔴 Losses: 1\n🎯 Win Rate: 80%\n📈 Combined Net Gain: +175.38%\n💰 Average Winning Trade: +67.35%\n\nMR BOB — Precision. Discipline. Execution. 📊🔥\n\nADMIN: @Mr_BOB9",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": "put",
+    "strike": 750,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 95
+   },
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 778,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 72.13
+   },
+   {
+    "ticker": "TSLA",
+    "side": "put",
+    "strike": 380,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 65
+   },
+   {
+    "ticker": "SPY",
+    "side": "put",
+    "strike": 778,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 37.25
+   },
+   {
+    "ticker": "TSLA",
+    "side": "call",
+    "strike": 390,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": -94
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "bob_signalsfreealert/6199",
+  "channel": "t.me/bob_signalsfreealert",
+  "date": "2026-10-12T21:24:19+00:00",
+  "text": "📈 MR BOB | TRADE RECAP 🔥\n\n📅 10/12/2026\n\nCLOSED TRADES\n\n🟢 $QQQ 747P — +41%\n\nSTILL HOLDING \n\n👀 $HOOD 112C\n👀 $DRAM 56C\n👀 $MIDD 110C\n👀 $MSFT 550C\n\nPERFORMANCE\n\n📊 Total Trades: 1 Closed\n🟢 Wins: 1\n🔴 Losses: 0\n🎯 Win Rate: 100%\n📈 Combined Net Gain: +41%\n💰 Average Winning Trade: +41%\n\n⏳ 4 Active Setups Remaining\n\nMR BOB — Precision. Discipline. Execution. 📊🔥\n\nADMIN: @Mr_BOB9",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": "put",
+    "strike": 747,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 41
+   },
+   {
+    "ticker": "HOOD",
+    "side": "call",
+    "strike": 112,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   },
+   {
+    "ticker": "DRAM",
+    "side": "call",
+    "strike": 56,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   },
+   {
+    "ticker": "MIDD",
+    "side": "call",
+    "strike": 110,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   },
+   {
+    "ticker": "MSFT",
+    "side": "call",
+    "strike": 550,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "bob_signalsfreealert/6197",
+  "channel": "t.me/bob_signalsfreealert",
+  "date": "2026-10-12T14:06:27+00:00",
+  "text": "$QQQ@1.27 from 0.90 | +41%🔥🔥\n\nBANG!",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": 0.9,
+    "action": "close",
+    "result_pct": 41,
+    "exit_price": 1.27
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "bob_signalsfreealert/6191",
+  "channel": "t.me/bob_signalsfreealert",
+  "date": "2026-10-09T17:21:38+00:00",
+  "text": "+37.25%🔥🔥",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "bzjzhzhzuzzu/2226",
+  "channel": "t.me/bzjzhzhzuzzu",
+  "date": "2026-10-13T14:02:59+00:00",
+  "text": "🚨 QQQ TRADE UPDATE 🚨\n\n🚀 $QQQ 10/13 746C @ $0.49",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": "call",
+    "strike": 746,
+    "expiry": "2026-10-13",
+    "entry_price": 0.49,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "bzjzhzhzuzzu/2210",
+  "channel": "t.me/bzjzhzhzuzzu",
+  "date": "2026-10-09T14:44:46+00:00",
+  "text": "🚨 SPCX TRADE CALL 🚨\n\n🚀 $SPCX 10/16 170/172.5C CDS @ $0.55",
+  "expected": [
+   {
+    "ticker": "SPCX",
+    "side": "call",
+    "strike": null,
+    "expiry": "2026-10-16",
+    "entry_price": 0.55,
+    "action": "open",
+    "result_pct": null,
+    "kind": "spread",
+    "strikes": [
+     170,
+     172.5
+    ]
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "bzjzhzhzuzzu/2213",
+  "channel": "t.me/bzjzhzhzuzzu",
+  "date": "2026-10-09T17:55:41+00:00",
+  "text": "🚨 TER TRADE CALL 🚨\n\n🚀 $TER 10/16 420/425C CDS @ $1.30",
+  "expected": [
+   {
+    "ticker": "TER",
+    "side": "call",
+    "strike": null,
+    "expiry": "2026-10-16",
+    "entry_price": 1.3,
+    "action": "open",
+    "result_pct": null,
+    "kind": "spread",
+    "strikes": [
+     420,
+     425
+    ]
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "bzjzhzhzuzzu/2228",
+  "channel": "t.me/bzjzhzhzuzzu",
+  "date": "2026-10-13T19:37:34+00:00",
+  "text": "🚨 NVDA TRADE CALL 🚨\n\n🚀 $NVDA 10/19 230C @ $2.65",
+  "expected": [
+   {
+    "ticker": "NVDA",
+    "side": "call",
+    "strike": 230,
+    "expiry": "2026-10-19",
+    "entry_price": 2.65,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "bzjzhzhzuzzu/2229",
+  "channel": "t.me/bzjzhzhzuzzu",
+  "date": "2026-10-13T19:42:27+00:00",
+  "text": "Have a great day.",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "CrestEdgeRoom/2428",
+  "channel": "t.me/crestedgeroom",
+  "date": "2026-10-12T14:11:29+00:00",
+  "text": "Opened 10 $SPX 7810P 10/12 @ $7.70",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "put",
+    "strike": 7810,
+    "expiry": "2026-10-12",
+    "entry_price": 7.7,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "CrestEdgeRoom/2437",
+  "channel": "t.me/crestedgeroom",
+  "date": "2026-10-12T15:47:05+00:00",
+  "text": "$MU Trade Review Clear Path to Anchor 🎯 \n\nClean setup today.🏆\n\nThe Setup: • $1,000 Anchor acting as our upside target • Strong positive Charm stacked at $995–$1,000 • Price flushed into the $975–$980 area before stabilizing • Clear path back toward the Anchor.\n\nThe Execution: • Waited for the 5-minute BT Cloud flip to confirm the bounce • Entered on confirmation, not while price was falling • Scalped the move higher and sold into strength • Took profits rather than waiting for the full $1,000 target.\n\nKey Takeaway: Dealer positioning gives us the levels. Price action gives us the entry. Risk management tells us when to exit.",
+  "expected": [
+   {
+    "ticker": "MU",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "CrestEdgeRoom/2446",
+  "channel": "t.me/crestedgeroom",
+  "date": "2026-10-13T18:53:04+00:00",
+  "text": "$AAPL 347.5C 10/16\n\nEntry Price: $1.35\n\nSetup: $341.08 Pivot Bounce\n\n🚨",
+  "expected": [
+   {
+    "ticker": "AAPL",
+    "side": "call",
+    "strike": 347.5,
+    "expiry": "2026-10-16",
+    "entry_price": 1.35,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "CrestEdgeRoom/2438",
+  "channel": "t.me/crestedgeroom",
+  "date": "2026-10-12T15:51:53+00:00",
+  "text": "Everything from the moment I was preparing to enter this call was shared in the VIP, including the full breakdown. 🚨 is used to highlight my high-conviction calls, with the complete setup explained inside the VIP.",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "CrestEdgeRoom/2432",
+  "channel": "t.me/crestedgeroom",
+  "date": "2026-10-12T14:12:02+00:00",
+  "text": "I TOLD Y’ALL DON’T MISS IS!!!!",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "DannyCWayneTradingRoom/46",
+  "channel": "t.me/dannycwaynetradingroom",
+  "date": "2026-10-05T18:00:17+00:00",
+  "text": "RUNNERS ARE GONE! $QQQ smoked the highs! Absolute monster session.",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "DannyCWayneTradingRoom/49",
+  "channel": "t.me/dannycwaynetradingroom",
+  "date": "2026-10-05T19:08:35+00:00",
+  "text": "$SPX 7795C .60 LOTTO SIZE",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "call",
+    "strike": 7795,
+    "expiry": null,
+    "entry_price": 0.6,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "DannyCWayneTradingRoom/60",
+  "channel": "t.me/dannycwaynetradingroom",
+  "date": "2026-10-13T14:15:03+00:00",
+  "text": "$SPY $SPX\nCall Wall at 779. Put Wall at 777. That gives us a razor-thin two-point box to monitor. Watching how price reacts at these boundaries for the next breakout or trap.",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   },
+   {
+    "ticker": "SPX",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "DannyCWayneTradingRoom/62",
+  "channel": "t.me/dannycwaynetradingroom",
+  "date": "2026-10-13T18:04:57+00:00",
+  "text": "$IDA 140 CALL 10/16 @ 0.35\n\nDAY / SWING TRADE",
+  "expected": [
+   {
+    "ticker": "IDA",
+    "side": "call",
+    "strike": 140,
+    "expiry": "2026-10-16",
+    "entry_price": 0.35,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "DannyCWayneTradingRoom/57",
+  "channel": "t.me/dannycwaynetradingroom",
+  "date": "2026-10-13T14:10:01+00:00",
+  "text": "Live Gamma - 777",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "de_gainers_free_circle/3407",
+  "channel": "t.me/de_gainers_free_circle",
+  "date": "2026-10-13T21:41:19+00:00",
+  "text": "DG DE GAINERS 🔥\n\nMy options daily recap:\n\nMSFT 550C 200%✅\nQQQ 742P 161.2%✅\nQQQ calls 160%✅\nQQQ puts 53%✅\nQQQ puts 21%✅\nHOOD 10/16 112C 10.49%✅\nSPY puts 18%✅\nTSLA 372.5P 15.34%✅\nSPY puts 10%✅\nSPY calls LOSS❌\nHIMS 31C LOSS❌\n\nWinrate: 81.8%🐐\nTotal: 649.03%🔥\n\nADMIN: @MR_GAINS2",
+  "expected": [
+   {
+    "ticker": "MSFT",
+    "side": "call",
+    "strike": 550,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 200
+   },
+   {
+    "ticker": "QQQ",
+    "side": "put",
+    "strike": 742,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 161.2
+   },
+   {
+    "ticker": "QQQ",
+    "side": "call",
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 160
+   },
+   {
+    "ticker": "QQQ",
+    "side": "put",
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 53
+   },
+   {
+    "ticker": "QQQ",
+    "side": "put",
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 21
+   },
+   {
+    "ticker": "HOOD",
+    "side": "call",
+    "strike": 112,
+    "expiry": "2026-10-16",
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 10.49
+   },
+   {
+    "ticker": "SPY",
+    "side": "put",
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 18
+   },
+   {
+    "ticker": "TSLA",
+    "side": "put",
+    "strike": 372.5,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 15.34
+   },
+   {
+    "ticker": "SPY",
+    "side": "put",
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 10
+   },
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": null
+   },
+   {
+    "ticker": "HIMS",
+    "side": "call",
+    "strike": 31,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "de_gainers_free_circle/3397",
+  "channel": "t.me/de_gainers_free_circle",
+  "date": "2026-10-13T16:28:23+00:00",
+  "text": "Calls on watch",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "de_gainers_free_circle/3393",
+  "channel": "t.me/de_gainers_free_circle",
+  "date": "2026-10-13T15:12:51+00:00",
+  "text": "Let’s goo",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "Dennis1btc1/3683",
+  "channel": "t.me/dennis1btc1",
+  "date": "2026-10-07T18:11:46+00:00",
+  "text": "$NEAR LONG\n\nTake: 5.752. \nStop: 4.981.",
+  "expected": [
+   {
+    "ticker": "NEAR",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "Dennis1btc1/3684",
+  "channel": "t.me/dennis1btc1",
+  "date": "2026-10-07T20:27:36+00:00",
+  "text": "$NEAR LONG  Take: 5.752.  Stop: 4.981.",
+  "expected": [
+   {
+    "ticker": "NEAR",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "Dennis1btc1/3695",
+  "channel": "t.me/dennis1btc1",
+  "date": "2026-10-12T15:39:50+00:00",
+  "text": "🤌🤌🤌",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "gpt2136/472",
+  "channel": "t.me/gpt2136",
+  "date": "2026-10-13T18:29:53+00:00",
+  "text": "$GRMN 290 Call 10/16 ☢️",
+  "expected": [
+   {
+    "ticker": "GRMN",
+    "side": "call",
+    "strike": 290,
+    "expiry": "2026-10-16",
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "gpt2136/483",
+  "channel": "t.me/gpt2136",
+  "date": "2026-10-13T18:40:34+00:00",
+  "text": "HIGH CONFIDENCE ☢️\n\n$REPX 50 Call 10/16 .20🚨",
+  "expected": [
+   {
+    "ticker": "REPX",
+    "side": "call",
+    "strike": 50,
+    "expiry": "2026-10-16",
+    "entry_price": 0.2,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "gpt2136/476",
+  "channel": "t.me/gpt2136",
+  "date": "2026-10-13T18:32:01+00:00",
+  "text": "$TX close to ITM, these can 10x",
+  "expected": [
+   {
+    "ticker": "TX",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "gpt2136/481",
+  "channel": "t.me/gpt2136",
+  "date": "2026-10-13T18:40:07+00:00",
+  "text": "$SDRL UP 200% ☢️☢️☢️\n\nWE ARE SO BACK",
+  "expected": [
+   {
+    "ticker": "SDRL",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "gpt2136/484",
+  "channel": "t.me/gpt2136",
+  "date": "2026-10-13T18:41:34+00:00",
+  "text": "ADDED HEAVY ☢️☢️☢️",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "legacypublicroom/420",
+  "channel": "t.me/legacypublicroom",
+  "date": "2026-10-06T15:58:35+00:00",
+  "text": "🚨 $AWI 175 CALL 10/16 @ .50",
+  "expected": [
+   {
+    "ticker": "AWI",
+    "side": "call",
+    "strike": 175,
+    "expiry": "2026-10-16",
+    "entry_price": 0.5,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "legacypublicroom/419",
+  "channel": "t.me/legacypublicroom",
+  "date": "2026-10-02T18:19:18+00:00",
+  "text": "ADDING HEAVY\n\n🚨 $AVNT 45 CALL 10/16 @ .15",
+  "expected": [
+   {
+    "ticker": "AVNT",
+    "side": "call",
+    "strike": 45,
+    "expiry": "2026-10-16",
+    "entry_price": 0.15,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "legacypublicroom/398",
+  "channel": "t.me/legacypublicroom",
+  "date": "2026-07-10T13:14:13+00:00",
+  "text": "VIP Results Yesterday 🔥",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "moonwalkertrades2/1660",
+  "channel": "t.me/moonwalkertrades2",
+  "date": "2026-10-13T14:18:21+00:00",
+  "text": "I dont think SPY Calls will recover soon guys.\nQuestion here is when should we cut? I Il hold for a while to reduce the loss. Please use your own stop loss.",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "moonwalkertrades2/1649",
+  "channel": "t.me/moonwalkertrades2",
+  "date": "2026-10-13T13:37:04+00:00",
+  "text": "$QQQ 744C Odte 0.41",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": "call",
+    "strike": 744,
+    "expiry": "2026-10-13",
+    "entry_price": 0.41,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "moonwalkertrades2/1655",
+  "channel": "t.me/moonwalkertrades2",
+  "date": "2026-10-13T13:56:24+00:00",
+  "text": "SEE GREEN TAKE GREEN",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "Mrfortunefreeflow/1577",
+  "channel": "t.me/mrfortunefreeflow",
+  "date": "2026-10-12T14:17:22+00:00",
+  "text": "above the 9 ema on ES I cut the puts",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "Mrfortunefreeflow/1582",
+  "channel": "t.me/mrfortunefreeflow",
+  "date": "2026-10-12T14:41:29+00:00",
+  "text": "crwd puts @ 31%\n\nlove it❤️✅",
+  "expected": [
+   {
+    "ticker": "CRWD",
+    "side": "put",
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 31
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "Mrfortunefreeflow/1573",
+  "channel": "t.me/mrfortunefreeflow",
+  "date": "2026-10-12T14:12:45+00:00",
+  "text": "spy puts @ 20%",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "put",
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 20
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "Mrfortunefreeflow/1578",
+  "channel": "t.me/mrfortunefreeflow",
+  "date": "2026-10-12T14:20:41+00:00",
+  "text": "Those NVDA  227.50P are at 2.60 from .72 should’ve held runners 🥲🤷‍♂️ +261% if anyone decided to degen but I did not lmao  IM SHAKING",
+  "expected": [
+   {
+    "ticker": "NVDA",
+    "side": "put",
+    "strike": 227.5,
+    "expiry": null,
+    "entry_price": 0.72,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "Mrfortunefreeflow/1586",
+  "channel": "t.me/mrfortunefreeflow",
+  "date": "2026-10-13T14:04:28+00:00",
+  "text": "Odte",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "mrquickerfreealert/3767",
+  "channel": "t.me/mrquickerfreealert",
+  "date": "2026-10-13T14:21:13+00:00",
+  "text": "There's the bounce on ES. Taking profits on $QQQ",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "mrquickerfreealert/3768",
+  "channel": "t.me/mrquickerfreealert",
+  "date": "2026-10-13T14:21:13+00:00",
+  "text": "$QQQ | 15%🔥🔥RETURN!!",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 15
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "mrquickerfreealert/3775",
+  "channel": "t.me/mrquickerfreealert",
+  "date": "2026-10-13T16:10:03+00:00",
+  "text": "$SPY OCT/13 777PUT e.68 ODTE",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "put",
+    "strike": 777,
+    "expiry": "2026-10-13",
+    "entry_price": 0.68,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "mrquickerfreealert/3764",
+  "channel": "t.me/mrquickerfreealert",
+  "date": "2026-10-13T13:48:54+00:00",
+  "text": "$MSFT | @6.00 from 2.00 | + 200% 🚀🔥",
+  "expected": [
+   {
+    "ticker": "MSFT",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": 2.0,
+    "action": "close",
+    "result_pct": 200,
+    "exit_price": 6.0
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "mrquickerfreealert/3758",
+  "channel": "t.me/mrquickerfreealert",
+  "date": "2026-10-13T10:02:34+00:00",
+  "text": "DAILY TRADING MINDSET🎐TO MAKE YOU A GOOD TRADER —— MR QUICKER \n\nToday’s key word is EMOTIONAL TRADING \n\nThe market doesn’t care about your emotions. \n\nDon’t enter because you’re afraid of missing out, Don’t hold because you refuse to accept a loss. \n\n𝑭𝒐𝒍𝒍𝒐𝒘 𝒚𝒐𝒖𝒓 𝒑𝒍𝒂𝒏. 🎯",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "Queen_free_entries/973",
+  "channel": "t.me/queen_free_entries",
+  "date": "2026-10-12T19:26:01+00:00",
+  "text": "TRIM\n\naapl calls @ 10%",
+  "expected": [
+   {
+    "ticker": "AAPL",
+    "side": "call",
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 10
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "Queen_free_entries/972",
+  "channel": "t.me/queen_free_entries",
+  "date": "2026-10-12T19:21:09+00:00",
+  "text": "SWING OPEN\n\n10/14 $AAPL CALLS $ 342.50 @ 1.55\n\n PLAYING INTO THE CLOSE IF THEY LOOK GOOD I WILL HOLD TILL TOMORROW",
+  "expected": [
+   {
+    "ticker": "AAPL",
+    "side": "call",
+    "strike": 342.5,
+    "expiry": "2026-10-14",
+    "entry_price": 1.55,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "Queen_free_entries/969",
+  "channel": "t.me/queen_free_entries",
+  "date": "2026-10-12T14:41:11+00:00",
+  "text": "$QQQ  +150%",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 150
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "Queen_free_entries/981",
+  "channel": "t.me/queen_free_entries",
+  "date": "2026-10-13T14:42:28+00:00",
+  "text": "$SPY 778 calls @ 0.60",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 778,
+    "expiry": null,
+    "entry_price": 0.6,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "Queen_free_entries/967",
+  "channel": "t.me/queen_free_entries",
+  "date": "2026-10-12T14:18:36+00:00",
+  "text": "closed remaining two at be. That was a beautiful trade. Volume incoming, level break, spy broke pre market low with strength. A+",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "qwackersol/1",
+  "channel": "t.me/qwackersol",
+  "date": "2025-08-14T14:36:51+00:00",
+  "text": "Channel created",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "stockmarketvault/3224",
+  "channel": "t.me/stockmarketvault",
+  "date": "2026-10-13T18:10:16+00:00",
+  "text": "Everyone lets go in on   $SPY 778.83 put 13/10",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "put",
+    "strike": 778.83,
+    "expiry": "2026-10-13",
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "stockmarketvault/3210",
+  "channel": "t.me/stockmarketvault",
+  "date": "2026-10-13T09:53:07+00:00",
+  "text": "$GOOGL 357.5 CALL 12/10 @.25 🚨🚨",
+  "expected": [
+   {
+    "ticker": "GOOGL",
+    "side": "call",
+    "strike": 357.5,
+    "expiry": "2026-12-10",
+    "entry_price": 0.25,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "stockmarketvault/3215",
+  "channel": "t.me/stockmarketvault",
+  "date": "2026-10-13T18:10:16+00:00",
+  "text": "Everyone lets go in on   $SPY 778.83 put 13/10",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "put",
+    "strike": 778.83,
+    "expiry": "2026-10-13",
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "stockmarketvault/3214",
+  "channel": "t.me/stockmarketvault",
+  "date": "2026-10-13T18:10:16+00:00",
+  "text": "Everyone lets go in on \n\n$SPY 778.83 put 13/10",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "put",
+    "strike": 778.83,
+    "expiry": "2026-10-13",
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "stockmarketvault/3227",
+  "channel": "t.me/stockmarketvault",
+  "date": "2026-10-13T22:49:31+00:00",
+  "text": "THE STOCK MARKET VAULT pinned «🎉 WELCOME TO THE COMMUNITY!  To everyone who has recently joined, you’re all highly welcome. We’re glad to have you here.  For any questions, support, or assistance, please feel free to contact the admin:»",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "stockwise01/220",
+  "channel": "t.me/stockwise01",
+  "date": "2026-10-01T13:59:17+00:00",
+  "text": "$STRA 💸\n$80 16 OCT 26 CALL \n$0.80 ➡️ $1.60 🏄🏻‍♂️🏄🏻‍♂️🏄🏻‍♂️\n100% GAINER ☢️☢️☢️",
+  "expected": [
+   {
+    "ticker": "STRA",
+    "side": "call",
+    "strike": 80,
+    "expiry": "2026-10-16",
+    "entry_price": 0.8,
+    "action": "close",
+    "result_pct": 100,
+    "exit_price": 1.6
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "stockwise01/214",
+  "channel": "t.me/stockwise01",
+  "date": "2026-09-29T15:46:46+00:00",
+  "text": "$SCHL below my fill for those who want to get in below my fill🏄\n\nswinging just like the $35 call which went 100% overnight",
+  "expected": [
+   {
+    "ticker": "SCHL",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "stockwise01/229",
+  "channel": "t.me/stockwise01",
+  "date": "2026-10-02T13:58:36+00:00",
+  "text": "Good morning Family ❤️❤️",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "tradevisionst/319",
+  "channel": "t.me/tradevisionst",
+  "date": "2026-10-12T16:33:17+00:00",
+  "text": "$MU 1010C 10/12 @ $0.43 🎯💰",
+  "expected": [
+   {
+    "ticker": "MU",
+    "side": "call",
+    "strike": 1010,
+    "expiry": "2026-10-12",
+    "entry_price": 0.43,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "tradevisionst/311",
+  "channel": "t.me/tradevisionst",
+  "date": "2026-10-12T15:50:50+00:00",
+  "text": "Just locked in on $MU 👀🎯 Let’s see how this plays out! 🔥",
+  "expected": [
+   {
+    "ticker": "MU",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "tradevisionst/307",
+  "channel": "t.me/tradevisionst",
+  "date": "2026-10-09T19:02:28+00:00",
+  "text": "AAPL 337.5C 10/9 @0.27",
+  "expected": [
+   {
+    "ticker": "AAPL",
+    "side": "call",
+    "strike": 337.5,
+    "expiry": "2026-10-09",
+    "entry_price": 0.27,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "tradevisionst/317",
+  "channel": "t.me/tradevisionst",
+  "date": "2026-10-12T16:09:10+00:00",
+  "text": "$MU 1010C 10/12 @ $0.43 🎯💰",
+  "expected": [
+   {
+    "ticker": "MU",
+    "side": "call",
+    "strike": 1010,
+    "expiry": "2026-10-12",
+    "entry_price": 0.43,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "tradevisionst/321",
+  "channel": "t.me/tradevisionst",
+  "date": "2026-10-13T14:43:58+00:00",
+  "text": "yesterday we caught 3 bags a 300% play. \n\n🗣️TURN THEM NOTIFICATIONS ON 🥂",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "trexfreecircle/382",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-10-13T18:32:01+00:00",
+  "text": "$REPX 50 Call 10/16🚨",
+  "expected": [
+   {
+    "ticker": "REPX",
+    "side": "call",
+    "strike": 50,
+    "expiry": "2026-10-16",
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "trexfreecircle/364",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-10-12T18:50:02+00:00",
+  "text": "HIGH CONFIDENCE☢️\n\n$KSP| 100 Call 10/16.35🚨",
+  "expected": [
+   {
+    "ticker": "KSP",
+    "side": "call",
+    "strike": 100,
+    "expiry": "2026-10-16",
+    "entry_price": 0.35,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "trexfreecircle/373",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-10-13T17:02:13+00:00",
+  "text": "$GRMN 290 Call 10/16☢️",
+  "expected": [
+   {
+    "ticker": "GRMN",
+    "side": "call",
+    "strike": 290,
+    "expiry": "2026-10-16",
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "trexfreecircle/365",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-10-12T18:50:19+00:00",
+  "text": "THIS CAN GO 10X☢️\n\n$KSPI 100 Call 10/16🚨",
+  "expected": [
+   {
+    "ticker": "KSPI",
+    "side": "call",
+    "strike": 100,
+    "expiry": "2026-10-16",
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "trexfreecircle/380",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-10-13T18:30:44+00:00",
+  "text": "ADDED HEAVY☢️☢️",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "VanguardStockUpdates68/326",
+  "channel": "t.me/vanguardstockupdates68",
+  "date": "2026-09-22T20:49:12+00:00",
+  "text": "Muse could be one of the most used AI apps since ChatGPT\n\nThis is HUGE for $PYPL",
+  "expected": [
+   {
+    "ticker": "PYPL",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "VanguardStockUpdates68/338",
+  "channel": "t.me/vanguardstockupdates68",
+  "date": "2026-09-23T11:19:20+00:00",
+  "text": "Seeing lots of $SOFI on my feed\n\nRule of 40 score of 70\n\n40% adjusted net revenue growth + 30% adjusted EBITDA margin\n\nThis is fundamentally mispriced imo\n\nSoFi is building one of the strongest financial platforms in the world\n\nI think it can become a top 10 financial institution long term",
+  "expected": [
+   {
+    "ticker": "SOFI",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "VanguardStockUpdates68/336",
+  "channel": "t.me/vanguardstockupdates68",
+  "date": "2026-09-22T21:06:38+00:00",
+  "text": "USE CODE “FIFTY” AT CHECKOUT FOR 50% OFF LIFETIME TIER TODAY ONLY☢️  •DAILY LIVE TRADING WITH LIVESTREAM🎙️  •DAILY TRADE IDEAS💡  • BE MENTORED AND TRADE ALONGSIDE ME DAILY🧠  •ACCESS TO ALL FUTURE ACCOUNT CHALLENGES💸  •TRADING EDUCATION & MORE➕",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "vertexpublic/151",
+  "channel": "t.me/vertexpublic",
+  "date": "2026-07-06T14:27:30+00:00",
+  "text": "$QQQ 80% now",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "vertexpublic/143",
+  "channel": "t.me/vertexpublic",
+  "date": "2026-07-06T13:54:46+00:00",
+  "text": "Bought commons of $dgxx on my regular account",
+  "expected": [
+   {
+    "ticker": "DGXX",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "sample"
+ },
+ {
+  "id": "vertexpublic/135",
+  "channel": "t.me/vertexpublic",
+  "date": "2026-07-01T13:50:10+00:00",
+  "text": "PROTECT",
+  "expected": [],
+  "source": "sample"
+ },
+ {
+  "id": "trexfreecircle/308",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-10-05T17:04:53+00:00",
+  "text": "$CLH best set up out",
+  "expected": [
+   {
+    "ticker": "CLH",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "bob_signalsfreealert/6154",
+  "channel": "t.me/bob_signalsfreealert",
+  "date": "2026-10-02T17:59:56+00:00",
+  "text": "$SPY 767p 0.28",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "put",
+    "strike": 767,
+    "expiry": null,
+    "entry_price": 0.28,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "mrquickerfreealert/3774",
+  "channel": "t.me/mrquickerfreealert",
+  "date": "2026-10-13T15:00:49+00:00",
+  "text": "a VIP member review on $MSFT call yesterday 👆",
+  "expected": [
+   {
+    "ticker": "MSFT",
+    "side": "call",
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "moonwalkertrades2/1546",
+  "channel": "t.me/moonwalkertrades2",
+  "date": "2026-09-29T14:00:49+00:00",
+  "text": "$GOOGL 345C 1DTE $1.03",
+  "expected": [
+   {
+    "ticker": "GOOGL",
+    "side": "call",
+    "strike": 345,
+    "expiry": "2026-09-30",
+    "entry_price": 1.03,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "mrquickerfreealert/3742",
+  "channel": "t.me/mrquickerfreealert",
+  "date": "2026-10-12T13:48:22+00:00",
+  "text": "$QQQ | 50%🔥🔥RETURN!!",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 50
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "trexfreecircle/327",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-10-06T15:32:08+00:00",
+  "text": "THIS CAN GO 300%🦅\n\n$FMX 125 Call 10/16🚨",
+  "expected": [
+   {
+    "ticker": "FMX",
+    "side": "call",
+    "strike": 125,
+    "expiry": "2026-10-16",
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "axisalgorithmictrade/121",
+  "channel": "t.me/axisalgorithmictrade",
+  "date": "2026-07-15T14:36:46+00:00",
+  "text": "$1.00 on $LZB here! 25% return! 🏆",
+  "expected": [
+   {
+    "ticker": "LZB",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 25
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "stockmarketvault/3121",
+  "channel": "t.me/stockmarketvault",
+  "date": "2026-10-13T09:53:04+00:00",
+  "text": "$OCG giving scalps!🔥 \n \nNeeds breakout!",
+  "expected": [
+   {
+    "ticker": "OCG",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "stockmarketvault/3132",
+  "channel": "t.me/stockmarketvault",
+  "date": "2026-10-13T09:53:05+00:00",
+  "text": "$2.61 on $SFM here. 🥷 250% GAIN. ☢️☢️☢️",
+  "expected": [
+   {
+    "ticker": "SFM",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 250
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "ajfreealart32/492",
+  "channel": "t.me/ajfreealart32",
+  "date": "2026-09-30T14:03:56+00:00",
+  "text": "TRIM\n90% MSFT",
+  "expected": [
+   {
+    "ticker": "MSFT",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 90
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "Queen_free_entries/869",
+  "channel": "t.me/queen_free_entries",
+  "date": "2026-10-02T15:27:55+00:00",
+  "text": "$SPY 774C @.28 lotto size ; looking for a trend continuation above the 15min 9EMA, with a potential PT of 773.74-775 ; sweep under 770 SL",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 774,
+    "expiry": null,
+    "entry_price": 0.28,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "CrestEdgeRoom/2439",
+  "channel": "t.me/crestedgeroom",
+  "date": "2026-10-12T15:54:10+00:00",
+  "text": "The VIP channel is much more than just getting calls early. You get REAL-TIME UPDATES on entries, trims, stop-losses, exits, trade adjustments, and the full breakdown behind each setup.\n\nFor those of you who have been struggling to keep up with the market, time entries properly, or know when to take profits, the VIP gives you a clearer way to follow the process and learn along the way.\n\nIf you’re serious about improving as a trader, joining the VIP could be one of the best steps you take. Don’t miss out on the opportunity to get access to the full setups and real-time updates. Come join us and see the difference for yourself! 🚀🏆\n\nDm admin “VIP” to secure your spot! Only limited spots left don’t miss it! \n\n📥  @crestedge",
+  "expected": [],
+  "source": "holdout"
+ },
+ {
+  "id": "Queen_free_entries/911",
+  "channel": "t.me/queen_free_entries",
+  "date": "2026-10-06T16:50:26+00:00",
+  "text": "$SPY 786C 9/Oct @ 92\nLotto Day / Swing",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 786,
+    "expiry": "2026-10-09",
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "CrestEdgeRoom/2336",
+  "channel": "t.me/crestedgeroom",
+  "date": "2026-10-05T14:46:46+00:00",
+  "text": "VIP members are already off to a strong start this morning. 🚨 \n\n$AMZN delivered a solid move right out of the gate, putting everyone who caught the move in a great position early. 📈🏆",
+  "expected": [
+   {
+    "ticker": "AMZN",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "bzjzhzhzuzzu/2203",
+  "channel": "t.me/bzjzhzhzuzzu",
+  "date": "2026-10-08T14:56:27+00:00",
+  "text": "🚨 SPY 0DTE TRADE CALL 🚨\n\n🚀 $SPY 0DTE 776C @ $0.64",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 776,
+    "expiry": "2026-10-08",
+    "entry_price": 0.64,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "trexfreecircle/325",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-10-06T15:14:54+00:00",
+  "text": "$GPC ultra high confidence set up",
+  "expected": [
+   {
+    "ticker": "GPC",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "bincofreealert/5867",
+  "channel": "t.me/bincofreealert",
+  "date": "2026-10-09T16:19:02+00:00",
+  "text": "$NVDA 230P @here   size for 0  .58",
+  "expected": [
+   {
+    "ticker": "NVDA",
+    "side": "put",
+    "strike": 230,
+    "expiry": null,
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "gpt2136/488",
+  "channel": "t.me/gpt2136",
+  "date": "2026-10-13T18:42:38+00:00",
+  "text": "$SDRL 200% RETURN 🔥🔥🔥\n\nTURN ON POST NOTIFICATIONS 🔔",
+  "expected": [
+   {
+    "ticker": "SDRL",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 200
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "tradevisionst/242",
+  "channel": "t.me/tradevisionst",
+  "date": "2026-09-28T15:01:18+00:00",
+  "text": "$SPY 764 CALLS @ $1.29 🔥🚀",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 764,
+    "expiry": null,
+    "entry_price": 1.29,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "mrquickerfreealert/3689",
+  "channel": "t.me/mrquickerfreealert",
+  "date": "2026-10-08T16:24:18+00:00",
+  "text": "$ESNT BTO \nOCT/08\n65C e:0.70",
+  "expected": [
+   {
+    "ticker": "ESNT",
+    "side": "call",
+    "strike": 65,
+    "expiry": "2026-10-08",
+    "entry_price": 0.7,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "bincofreealert/5916",
+  "channel": "t.me/bincofreealert",
+  "date": "2026-10-13T13:44:52+00:00",
+  "text": "There’s 1.44  @here   +21%",
+  "expected": [],
+  "source": "holdout"
+ },
+ {
+  "id": "blue_falcon_capital/32",
+  "channel": "t.me/blue_falcon_capital",
+  "date": "2026-06-26T13:43:51+00:00",
+  "text": "IWM 298 Calls \n@.64 0DTE",
+  "expected": [
+   {
+    "ticker": "IWM",
+    "side": "call",
+    "strike": 298,
+    "expiry": "2026-06-26",
+    "entry_price": 0.64,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "ApextraderKoryphae/1566",
+  "channel": "t.me/apextraderkoryphae",
+  "date": "2026-09-21T22:43:05+00:00",
+  "text": "⚡ 09/21/2026 TRADE RECAP \n\n$NVDA 225C ’n  +340%\n$MSFT 497.5C ’n +46%\n$QQQ 734C ’n +255%\n$SPY  768C ’n +1,200%\n$AMZN 257.5C ’n +507%\n$AVGO 363.5C ’n +166%\n\n6/6 Today🔥💪\n\nAnother solid session",
+  "expected": [
+   {
+    "ticker": "NVDA",
+    "side": "call",
+    "strike": 225,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 340
+   },
+   {
+    "ticker": "MSFT",
+    "side": "call",
+    "strike": 497.5,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 46
+   },
+   {
+    "ticker": "QQQ",
+    "side": "call",
+    "strike": 734,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 255
+   },
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 768,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 1200
+   },
+   {
+    "ticker": "AMZN",
+    "side": "call",
+    "strike": 257.5,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 507
+   },
+   {
+    "ticker": "AVGO",
+    "side": "call",
+    "strike": 363.5,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 166
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "gpt2136/443",
+  "channel": "t.me/gpt2136",
+  "date": "2026-10-08T19:51:25+00:00",
+  "text": "$RGA undervalued contracts",
+  "expected": [
+   {
+    "ticker": "RGA",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "ApextraderKoryphae/1572",
+  "channel": "t.me/apextraderkoryphae",
+  "date": "2026-09-22T14:33:29+00:00",
+  "text": "$NVDA 232.5C @.42",
+  "expected": [
+   {
+    "ticker": "NVDA",
+    "side": "call",
+    "strike": 232.5,
+    "expiry": null,
+    "entry_price": 0.42,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "bzjzhzhzuzzu/2188",
+  "channel": "t.me/bzjzhzhzuzzu",
+  "date": "2026-10-06T15:01:45+00:00",
+  "text": "🚨 ALAB TRADE CALL 🚨\n\n🚀 $ALAB 10/16 385/395C CDS @ $5.10",
+  "expected": [
+   {
+    "ticker": "ALAB",
+    "side": "call",
+    "strike": null,
+    "expiry": "2026-10-16",
+    "entry_price": 5.1,
+    "action": "open",
+    "result_pct": null,
+    "kind": "spread",
+    "strikes": [
+     385,
+     395
+    ]
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "blackcardfreechannel/68",
+  "channel": "t.me/blackcardfreechannel",
+  "date": "2026-09-14T14:54:50+00:00",
+  "text": "🟢 Entry · $MU 09/14 900P @ $2.20 · small\n🎯 Recommended TP ~$3.16 (+44%) · Score 61.6 · 72% est. win",
+  "expected": [
+   {
+    "ticker": "MU",
+    "side": "put",
+    "strike": 900,
+    "expiry": "2026-09-14",
+    "entry_price": 2.2,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "CrestEdgeRoom/2331",
+  "channel": "t.me/crestedgeroom",
+  "date": "2026-10-05T13:55:51+00:00",
+  "text": "Closed 5 $AMZN 255C 10/05 (\n@ $0.26 (Entry: $0.15) | Gain: +72.1%🏆💯",
+  "expected": [
+   {
+    "ticker": "AMZN",
+    "side": "call",
+    "strike": 255,
+    "expiry": "2026-10-05",
+    "entry_price": 0.15,
+    "action": "close",
+    "result_pct": 72.1,
+    "exit_price": 0.26
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "moonwalkertrades2/1612",
+  "channel": "t.me/moonwalkertrades2",
+  "date": "2026-10-07T15:13:44+00:00",
+  "text": "TRIM\n$AMZN 30% here for those that tailed",
+  "expected": [
+   {
+    "ticker": "AMZN",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 30
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "moonwalkertrades2/1619",
+  "channel": "t.me/moonwalkertrades2",
+  "date": "2026-10-07T16:45:34+00:00",
+  "text": "anyways.... 105% here on QQQ",
+  "expected": [],
+  "source": "holdout"
+ },
+ {
+  "id": "stockmarketvault/3153",
+  "channel": "t.me/stockmarketvault",
+  "date": "2026-10-13T09:53:05+00:00",
+  "text": "VIP STOCK ALERTS TRADE RECAP 13/5;\n\nAll trades are alerted with ENTRIES, EXITS, STOP LOSS and GUIDANCE in ⁠⁠⁠⁠⁠⁠VIP CHANNEL with Full TRANSPARENCY.\n\nPre-Market (4:00am to 9:30am EST)0am EST)\n$11.00s -> $11.60. 🟢\nRADE RECAP$2.60 break -> $3.30. 🟢\nE RECAP 13$3.55 break -> $3.30. 🔴\nE RECAP 13$2.10 break -> $1.80. 🔴\nE RECAP 1$0.57s -> $2.38. 🟢👑\n\nMarket Open (9:30am EST to 4:00pm EST)\nOCG $2.36 -> $2.68. 🟢\nS TRADE RE$4.1s -> $5.40. 🟢 (Swing)\nRECAP 13/5$2.00s -> $2.30. 🟢\n TRADE REC$3.45 -> $34.80. 🟢👑\nRADE RECA$2.30 -> $2.70. 🟢\nS TRADE R$2.30 -> $2.9s. 🟢\nS TRADE RE$2.14 -> $3.40. 🟢\nS TRADE RE$0.62s -> $1.90. 🟢👑\nRADE RECA$2.5s -> $3.7s. 🟢\nS TRADE RE$3.55 -> $4.2s. 🟢\nS TRADE RE$25.xx -> $34.00s. 🟢 (lottos)\n\nAfter Hours (4:00pm EST to 8:00pm EST)\nAEHL $4.20 break -> $6.00s. 🟢\n\n# Absolutely INSANE DAY IN THE MARKETS. DXF nailed 300%, QUCY nailed 120%, TDIC nailed 908%.",
+  "expected": [],
+  "source": "holdout"
+ },
+ {
+  "id": "ajfreealart32/480",
+  "channel": "t.me/ajfreealart32",
+  "date": "2026-09-25T19:40:48+00:00",
+  "text": "GLD @15%\nAMZN @5%\nSLV @5%\n\nTaking some GLD to derisk",
+  "expected": [],
+  "source": "holdout"
+ },
+ {
+  "id": "tradevisionst/267",
+  "channel": "t.me/tradevisionst",
+  "date": "2026-10-05T15:39:41+00:00",
+  "text": "774C’s @.40 lotto size",
+  "expected": [],
+  "source": "holdout"
+ },
+ {
+  "id": "CrestEdgeRoom/2372",
+  "channel": "t.me/crestedgeroom",
+  "date": "2026-10-07T15:16:19+00:00",
+  "text": "$AMZN BANGGG",
+  "expected": [
+   {
+    "ticker": "AMZN",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "CrestEdgeRoom/2434",
+  "channel": "t.me/crestedgeroom",
+  "date": "2026-10-12T15:43:01+00:00",
+  "text": "Closed 1 $MU 1000C 10/12 @\n$1.73 (Entry: $1.40) | Gain: +23.6%🏆📈\nOpened: 11:35 AM ET\nTrade Summary\nTotal Closed: 1/1\nAverage Close Price: $1.73\nTotal Profit: $+33.00🏆",
+  "expected": [
+   {
+    "ticker": "MU",
+    "side": "call",
+    "strike": 1000,
+    "expiry": "2026-10-12",
+    "entry_price": 1.4,
+    "action": "close",
+    "result_pct": 23.6,
+    "exit_price": 1.73
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "bincofreealert/5939",
+  "channel": "t.me/bincofreealert",
+  "date": "2026-10-13T14:06:19+00:00",
+  "text": "$QQQ \n160% 🔥4.42 now!!!",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "blue_falcon_capital/40",
+  "channel": "t.me/blue_falcon_capital",
+  "date": "2026-06-29T13:43:32+00:00",
+  "text": "OH GOD!!!!!!\n\nI JUST MADE $19,000+ ON $ABBV \n\nI DO NOT MISS ON MY HIGH CONFIDENCES!!!!!!",
+  "expected": [
+   {
+    "ticker": "ABBV",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "stockwise01/120",
+  "channel": "t.me/stockwise01",
+  "date": "2026-09-08T07:25:26+00:00",
+  "text": "$AAPL UP 50% AT 0.63 💰🚀",
+  "expected": [
+   {
+    "ticker": "AAPL",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "Dennis1btc1/3576",
+  "channel": "t.me/dennis1btc1",
+  "date": "2026-09-13T19:00:27+00:00",
+  "text": "🔥 WHAT IF THE FED DOESN’T HIKE?   The Fed announces its decision on Wednesday, September 16. And here’s the interesting part.  Polymarket puts the odds of a 25 bps hike at around 80%.   Even Goldman Sachs   Basically, the market is preparing for money to get…",
+  "expected": [],
+  "source": "holdout"
+ },
+ {
+  "id": "gpt2136/455",
+  "channel": "t.me/gpt2136",
+  "date": "2026-10-08T19:54:54+00:00",
+  "text": "$RNR can go on a absolutely generational run",
+  "expected": [
+   {
+    "ticker": "RNR",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "de_gainers_free_circle/3309",
+  "channel": "t.me/de_gainers_free_circle",
+  "date": "2026-10-12T14:06:33+00:00",
+  "text": "22%🔥🔥",
+  "expected": [],
+  "source": "holdout"
+ },
+ {
+  "id": "legacypublicroom/324",
+  "channel": "t.me/legacypublicroom",
+  "date": "2026-07-02T01:05:55+00:00",
+  "text": "Still holding my other QQQ calls 730C 7/7 down 8%.",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": "call",
+    "strike": 730,
+    "expiry": "2026-07-07",
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "BlockWave10/1892",
+  "channel": "t.me/blockwave10",
+  "date": "2026-10-08T13:53:15+00:00",
+  "text": "Opened 10 $SPX 7790C 10/08 @ $7.71",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "call",
+    "strike": 7790,
+    "expiry": "2026-10-08",
+    "entry_price": 7.71,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "bzjzhzhzuzzu/2177",
+  "channel": "t.me/bzjzhzhzuzzu",
+  "date": "2026-10-06T13:41:49+00:00",
+  "text": "🚨 ALAB TRADE CALL 🚨\n\n🚀 $ALAB 10/16 385/395C CDS @ $4.50",
+  "expected": [
+   {
+    "ticker": "ALAB",
+    "side": "call",
+    "strike": null,
+    "expiry": "2026-10-16",
+    "entry_price": 4.5,
+    "action": "open",
+    "result_pct": null,
+    "kind": "spread",
+    "strikes": [
+     385,
+     395
+    ]
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "Queen_free_entries/955",
+  "channel": "t.me/queen_free_entries",
+  "date": "2026-10-09T15:02:24+00:00",
+  "text": "msft calls @ 25%",
+  "expected": [
+   {
+    "ticker": "MSFT",
+    "side": "call",
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 25
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "bincofreealert/5931",
+  "channel": "t.me/bincofreealert",
+  "date": "2026-10-13T13:58:16+00:00",
+  "text": "Added $QQQ 10/13 746c @ .49",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": "call",
+    "strike": 746,
+    "expiry": "2026-10-13",
+    "entry_price": 0.49,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "DannyCWayneTradingRoom/52",
+  "channel": "t.me/dannycwaynetradingroom",
+  "date": "2026-10-12T15:06:24+00:00",
+  "text": "Watching for calls at 777\n\n$SPY $SPX",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   },
+   {
+    "ticker": "SPX",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "bzjzhzhzuzzu/2110",
+  "channel": "t.me/bzjzhzhzuzzu",
+  "date": "2026-09-24T14:23:48+00:00",
+  "text": "🚨 SPX TRADE CALL 🚨\n\n🚀 $SPX 9/24 7720C @ $3.20",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "call",
+    "strike": 7720,
+    "expiry": "2026-09-24",
+    "entry_price": 3.2,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "gpt2136/459",
+  "channel": "t.me/gpt2136",
+  "date": "2026-10-08T19:55:30+00:00",
+  "text": "10X POTENTIAL ☢️\n\n$UMBF 140 Call 10/16 🚨",
+  "expected": [
+   {
+    "ticker": "UMBF",
+    "side": "call",
+    "strike": 140,
+    "expiry": "2026-10-16",
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "trexfreecircle/313",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-10-05T17:23:00+00:00",
+  "text": "$GRMN $330 in October potential",
+  "expected": [
+   {
+    "ticker": "GRMN",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "tradevisionst/268",
+  "channel": "t.me/tradevisionst",
+  "date": "2026-10-05T15:46:56+00:00",
+  "text": "774C’s @.40 lotto size",
+  "expected": [],
+  "source": "holdout"
+ },
+ {
+  "id": "ajfreealart32/547",
+  "channel": "t.me/ajfreealart32",
+  "date": "2026-10-08T13:44:04+00:00",
+  "text": "15%",
+  "expected": [],
+  "source": "holdout"
+ },
+ {
+  "id": "stockmarketvault/3211",
+  "channel": "t.me/stockmarketvault",
+  "date": "2026-10-13T09:53:07+00:00",
+  "text": "$GOOGL 357.5 CALL 12/10 @.25 🚨🚨",
+  "expected": [
+   {
+    "ticker": "GOOGL",
+    "side": "call",
+    "strike": 357.5,
+    "expiry": "2026-12-10",
+    "entry_price": 0.25,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "blackcardfreechannel/74",
+  "channel": "t.me/blackcardfreechannel",
+  "date": "2026-09-15T13:38:52+00:00",
+  "text": "🔻 Exit · $CRCL 09/18 90P @ $3.60 · +15%\n1/4 position · $3.12 → $3.60",
+  "expected": [
+   {
+    "ticker": "CRCL",
+    "side": "put",
+    "strike": 90,
+    "expiry": "2026-09-18",
+    "entry_price": 3.12,
+    "action": "close",
+    "result_pct": 15,
+    "exit_price": 3.6
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "trexfreecircle/354",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-10-09T18:43:23+00:00",
+  "text": "THIS CAN GO 1000%🦅\n\n$SEIC 110 Call 10/16🚨",
+  "expected": [
+   {
+    "ticker": "SEIC",
+    "side": "call",
+    "strike": 110,
+    "expiry": "2026-10-16",
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "stockmarketvault/3187",
+  "channel": "t.me/stockmarketvault",
+  "date": "2026-10-13T09:53:06+00:00",
+  "text": "prediction play\n\n11am EDT $80300 “yes” \n\nEntry: $39 a con \n\n\nHigh risk prediction play , don’t go heavy!",
+  "expected": [],
+  "source": "holdout"
+ },
+ {
+  "id": "CrestEdgeRoom/2380",
+  "channel": "t.me/crestedgeroom",
+  "date": "2026-10-07T16:04:51+00:00",
+  "text": "Partially Closed 15 $SPX 7775P 10/07 @ $3.80 (Entry: $3.40) | Gain: +11.8%🏆\nOpened: 11:54 AM ET\nPartial Close\nClosed: 15/30 (50%)\nRemaining: 15 @ $3.40\nTrade Summary\nTotal Closed: 15/30\nAverage Close Price: $3.80\nTotal Profit: $+600.00🏆",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "put",
+    "strike": 7775,
+    "expiry": "2026-10-07",
+    "entry_price": 3.4,
+    "action": "close",
+    "result_pct": 11.8,
+    "exit_price": 3.8
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "gpt2136/453",
+  "channel": "t.me/gpt2136",
+  "date": "2026-10-08T19:53:45+00:00",
+  "text": "HIGH CONFIDENCE ☢️\n\n$RNR 350 Call 10/16 .75🚨",
+  "expected": [
+   {
+    "ticker": "RNR",
+    "side": "call",
+    "strike": 350,
+    "expiry": "2026-10-16",
+    "entry_price": 0.75,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "bzjzhzhzuzzu/2201",
+  "channel": "t.me/bzjzhzhzuzzu",
+  "date": "2026-10-08T14:38:55+00:00",
+  "text": "🚨 CRWD TRADE CALL 🚨\n\n🚀 $CRWD 10/09 275C @ $2.37",
+  "expected": [
+   {
+    "ticker": "CRWD",
+    "side": "call",
+    "strike": 275,
+    "expiry": "2026-10-09",
+    "entry_price": 2.37,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "axisalgorithmictrade/153",
+  "channel": "t.me/axisalgorithmictrade",
+  "date": "2026-09-30T14:18:00+00:00",
+  "text": "Opened 50 $SPCX 155C 10/02 @ $0.85 (Actual Cost: $0.85)",
+  "expected": [
+   {
+    "ticker": "SPCX",
+    "side": "call",
+    "strike": 155,
+    "expiry": "2026-10-02",
+    "entry_price": 0.85,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "blue_falcon_capital/20",
+  "channel": "t.me/blue_falcon_capital",
+  "date": "2026-06-25T14:07:03+00:00",
+  "text": "$SPY | 450% 🅱️ANK 🏦",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "Queen_free_entries/894",
+  "channel": "t.me/queen_free_entries",
+  "date": "2026-10-06T13:29:04+00:00",
+  "text": "SPY call on watch",
+  "expected": [],
+  "source": "holdout"
+ },
+ {
+  "id": "Queen_free_entries/923",
+  "channel": "t.me/queen_free_entries",
+  "date": "2026-10-07T14:15:58+00:00",
+  "text": "Looking for 1.20-1.30~ on $AAPL for trim which would be 336~ area",
+  "expected": [
+   {
+    "ticker": "AAPL",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "bzjzhzhzuzzu/2196",
+  "channel": "t.me/bzjzhzhzuzzu",
+  "date": "2026-10-07T16:50:46+00:00",
+  "text": "🚨 CIFR TRADE CALL 🚨\n\n🚀 $CIFR 10/16 14.5P @ $0.72",
+  "expected": [
+   {
+    "ticker": "CIFR",
+    "side": "put",
+    "strike": 14.5,
+    "expiry": "2026-10-16",
+    "entry_price": 0.72,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "vertexpublic/150",
+  "channel": "t.me/vertexpublic",
+  "date": "2026-07-06T14:17:36+00:00",
+  "text": "$QQQ 65% now",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "gpt2136/448",
+  "channel": "t.me/gpt2136",
+  "date": "2026-10-08T19:53:00+00:00",
+  "text": "$AFL 116 Call 10/09 🚨",
+  "expected": [
+   {
+    "ticker": "AFL",
+    "side": "call",
+    "strike": 116,
+    "expiry": "2026-10-09",
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "blackcardfreechannel/151",
+  "channel": "t.me/blackcardfreechannel",
+  "date": "2026-09-21T14:00:48+00:00",
+  "text": "🔻 Exit · $ARM 09/25 310C @ $11.10 · +38%\n1/4 position · $8.07 → $11.10",
+  "expected": [
+   {
+    "ticker": "ARM",
+    "side": "call",
+    "strike": 310,
+    "expiry": "2026-09-25",
+    "entry_price": 8.07,
+    "action": "close",
+    "result_pct": 38,
+    "exit_price": 11.1
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "ApextraderKoryphae/1571",
+  "channel": "t.me/apextraderkoryphae",
+  "date": "2026-09-22T14:28:29+00:00",
+  "text": "$NVDA 232.5C @.42",
+  "expected": [
+   {
+    "ticker": "NVDA",
+    "side": "call",
+    "strike": 232.5,
+    "expiry": null,
+    "entry_price": 0.42,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "bob_signalsfreealert/6186",
+  "channel": "t.me/bob_signalsfreealert",
+  "date": "2026-10-08T23:49:56+00:00",
+  "text": "📈 MR BOB | TRADE RECAP 🔥\n\n📅 October 8, 2026\n\nCLOSED TRADES\n\n🟢 $QQQ 754P — +985%\n🟢 $SPY 776C — +300%\n🟢 $QQQ 755C — +204%\n🟢 $QQQ 756C — +50%\n🟢 $SPY 776C — +32%\n🟢 $SPX 7810C — +30%\n🔴 $IWM 278C — -60%\n🔴 $SPY 777C — -30%\n🔴 $QQQ 751P — Loss\n\nPERFORMANCE\n\n📊 9 Trades | 6 Wins | 3 Losses\n🎯 Win Rate: 66.67%\n💰 Combined Listed Returns: +1,511%*\n🔥 Average Winning Trade: +266.83%\n\nMR BOB — Precision. Discipline. Execution. 📊🔥\n\n👤 ADMIN: @Mr_BOB9",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": "put",
+    "strike": 754,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 985
+   },
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 776,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 300
+   },
+   {
+    "ticker": "QQQ",
+    "side": "call",
+    "strike": 755,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 204
+   },
+   {
+    "ticker": "QQQ",
+    "side": "call",
+    "strike": 756,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 50
+   },
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 776,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 32
+   },
+   {
+    "ticker": "SPX",
+    "side": "call",
+    "strike": 7810,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 30
+   },
+   {
+    "ticker": "IWM",
+    "side": "call",
+    "strike": 278,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": -60
+   },
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 777,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": -30
+   },
+   {
+    "ticker": "QQQ",
+    "side": "put",
+    "strike": 751,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "Queen_free_entries/952",
+  "channel": "t.me/queen_free_entries",
+  "date": "2026-10-09T14:52:53+00:00",
+  "text": "$SPY 777 calls @ 0.61",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 777,
+    "expiry": null,
+    "entry_price": 0.61,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "trexfreecircle/293",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-10-01T17:20:27+00:00",
+  "text": "$BFAM UP 20%☢️☢️\n\nLETS GO🔥\n\nTURN ON POST NOTIFICATIONS 🔔",
+  "expected": [
+   {
+    "ticker": "BFAM",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "BlockWave10/1818",
+  "channel": "t.me/blockwave10",
+  "date": "2026-09-28T15:08:53+00:00",
+  "text": "Opened 10 $SPX 7700C 09/28 @ $3.70",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "call",
+    "strike": 7700,
+    "expiry": "2026-09-28",
+    "entry_price": 3.7,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "holdout"
+ },
+ {
+  "id": "axisalgorithmictrade/191",
+  "channel": "t.me/axisalgorithmictrade",
+  "date": "2026-10-08T14:02:17+00:00",
+  "text": "Closed 150 $SPX 7800C 10/08\n@ $4.70 (Entry: $3.80) | Gain: +23.7%🏆\nOpened: 9:47 AM ET\nTrade Summary\nTotal Closed: 150/150\nAverage Close Price: $4.70\nTotal Profit: $+13500.00🏆",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "call",
+    "strike": 7800,
+    "expiry": "2026-10-08",
+    "entry_price": 3.8,
+    "action": "close",
+    "result_pct": 23.7,
+    "exit_price": 4.7
+   }
+  ],
+  "source": "regression"
+ },
+ {
+  "id": "alphasyndicate11/365",
+  "channel": "t.me/alphasyndicate11",
+  "date": "2026-06-09T14:38:07+00:00",
+  "text": "$100,000 TRADE ALERT 🔥 \n\n6/12 $TGT 133c @.16\n\nADDED SUPER HEAVYYYYY",
+  "expected": [
+   {
+    "ticker": "TGT",
+    "side": "call",
+    "strike": 133,
+    "expiry": "2026-06-12",
+    "entry_price": 0.16,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "regression"
+ },
+ {
+  "id": "ApextraderKoryphae/1656",
+  "channel": "t.me/apextraderkoryphae",
+  "date": "2026-10-08T17:29:59+00:00",
+  "text": "$AMZN 252.5P 09/10 @.38",
+  "expected": [
+   {
+    "ticker": "AMZN",
+    "side": "put",
+    "strike": 252.5,
+    "expiry": null,
+    "entry_price": 0.38,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "regression"
+ },
+ {
+  "id": "bincofreealert/5957",
+  "channel": "t.me/bincofreealert",
+  "date": "2026-10-13T14:32:06+00:00",
+  "text": "BTO $QQQ 10/13 741p .69  \n\nBTO $SPX 10/13 7785p @ 2.5",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": "put",
+    "strike": 741,
+    "expiry": "2026-10-13",
+    "entry_price": 0.69,
+    "action": "open",
+    "result_pct": null
+   },
+   {
+    "ticker": "SPX",
+    "side": "put",
+    "strike": 7785,
+    "expiry": "2026-10-13",
+    "entry_price": 2.5,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "regression"
+ },
+ {
+  "id": "alphasyndicate11/366",
+  "channel": "t.me/alphasyndicate11",
+  "date": "2026-06-09T14:38:07+00:00",
+  "text": "$TGT @.30 | +120% 🔥 🔥 🔥 \n\nSOLD MOST , LEFT RUNNERS",
+  "expected": [
+   {
+    "ticker": "TGT",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 120
+   }
+  ],
+  "source": "regression"
+ },
+ {
+  "id": "tradevisionst/323",
+  "channel": "t.me/tradevisionst",
+  "date": "2026-10-13T16:05:41+00:00",
+  "text": "$SPY 777 PUT @.68 0DTE",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "put",
+    "strike": 777,
+    "expiry": "2026-10-13",
+    "entry_price": 0.68,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "regression"
+ },
+ {
+  "id": "blackcardfreechannel/130",
+  "channel": "t.me/blackcardfreechannel",
+  "date": "2026-09-18T13:57:24+00:00",
+  "text": "🔻 Exit · $AMD 09/18 555C @ $1.95 · +2%\n1/2 position · $1.92 → $1.95",
+  "expected": [
+   {
+    "ticker": "AMD",
+    "side": "call",
+    "strike": 555,
+    "expiry": "2026-09-18",
+    "entry_price": 1.92,
+    "action": "close",
+    "result_pct": 2,
+    "exit_price": 1.95
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "blackcardfreechannel/138",
+  "channel": "t.me/blackcardfreechannel",
+  "date": "2026-09-21T13:34:38+00:00",
+  "text": "🟢 Entry · $MU 09/21 1075C @ $2.14 · B grade\n🎯 Recommended TP ~$3.10 (+45%) · Score 70.2 · 76% est. win",
+  "expected": [
+   {
+    "ticker": "MU",
+    "side": "call",
+    "strike": 1075,
+    "expiry": "2026-09-21",
+    "entry_price": 2.14,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "alphasyndicate11/377",
+  "channel": "t.me/alphasyndicate11",
+  "date": "2026-06-11T14:20:53+00:00",
+  "text": "$SPY 719P @.54",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "put",
+    "strike": 719,
+    "expiry": null,
+    "entry_price": 0.54,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "alphasyndicate11/315",
+  "channel": "t.me/alphasyndicate11",
+  "date": "2026-05-14T20:42:22+00:00",
+  "text": "$SPY 748C @.45 lotto size",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "call",
+    "strike": 748,
+    "expiry": null,
+    "entry_price": 0.45,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "bob_signalsfreealert/6149",
+  "channel": "t.me/bob_signalsfreealert",
+  "date": "2026-10-01T17:42:40+00:00",
+  "text": "**Our SPX 7650 calls went 32.00 from our 5.50 entry INSANE!\n\nSold all out other calls a tad too early but godaamnn**",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "call",
+    "strike": 7650,
+    "expiry": null,
+    "entry_price": 5.5,
+    "action": "close",
+    "result_pct": null,
+    "exit_price": 32.0
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "gpt2136/437",
+  "channel": "t.me/gpt2136",
+  "date": "2026-10-08T19:50:00+00:00",
+  "text": "NOVEMBER SWING🍁\n\n$RGCO 25 Call 11/20 🚨",
+  "expected": [
+   {
+    "ticker": "RGCO",
+    "side": "call",
+    "strike": 25,
+    "expiry": "2026-11-20",
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "alphasyndicate11/346",
+  "channel": "t.me/alphasyndicate11",
+  "date": "2026-06-08T13:55:34+00:00",
+  "text": "$SYNA 160 CALL 6/18 @ 1.30 🚨",
+  "expected": [
+   {
+    "ticker": "SYNA",
+    "side": "call",
+    "strike": 160,
+    "expiry": "2026-06-18",
+    "entry_price": 1.3,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "Queen_free_entries/924",
+  "channel": "t.me/queen_free_entries",
+  "date": "2026-10-07T14:20:18+00:00",
+  "text": "Trim\n\n$AAPL 10/9 340c @ 1.25 🔥",
+  "expected": [
+   {
+    "ticker": "AAPL",
+    "side": "call",
+    "strike": 340,
+    "expiry": "2026-10-09",
+    "entry_price": null,
+    "action": "close",
+    "result_pct": null,
+    "exit_price": 1.25
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "trexfreecircle/362",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-10-12T14:26:08+00:00",
+  "text": "THIS CAN GO 500%🦅\n\n$MANH 230 Call 10/16🚨",
+  "expected": [
+   {
+    "ticker": "MANH",
+    "side": "call",
+    "strike": 230,
+    "expiry": "2026-10-16",
+    "entry_price": null,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "trexfreecircle/281",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-09-30T15:56:55+00:00",
+  "text": "HIGH CONFIDENCE☢️\n\n$SXT 145 Call 10/16.95🚨",
+  "expected": [
+   {
+    "ticker": "SXT",
+    "side": "call",
+    "strike": 145,
+    "expiry": "2026-10-16",
+    "entry_price": 0.95,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "trexfreecircle/356",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-10-09T18:56:28+00:00",
+  "text": "HIGH CONFIDENCE☢️\n\n$QLYS 220 Call 10/16.90🚨",
+  "expected": [
+   {
+    "ticker": "QLYS",
+    "side": "call",
+    "strike": 220,
+    "expiry": "2026-10-16",
+    "entry_price": 0.9,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "ajfreealart32/484",
+  "channel": "t.me/ajfreealart32",
+  "date": "2026-09-29T13:32:33+00:00",
+  "text": "NVDA 235C 0.77",
+  "expected": [
+   {
+    "ticker": "NVDA",
+    "side": "call",
+    "strike": 235,
+    "expiry": null,
+    "entry_price": 0.77,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "bzjzhzhzuzzu/2166",
+  "channel": "t.me/bzjzhzhzuzzu",
+  "date": "2026-10-01T14:50:36+00:00",
+  "text": "🚨 QQQ TRADE ALERT 🚨\n\n🚀 $QQQ 10/01 743C @ $0.80",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": "call",
+    "strike": 743,
+    "expiry": "2026-10-01",
+    "entry_price": 0.8,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "bob_signalsfreealert/6125",
+  "channel": "t.me/bob_signalsfreealert",
+  "date": "2026-09-29T13:41:40+00:00",
+  "text": "Contract:  QQQ 9/29 737P \n \nUp 55%🔥🔥 \n \nNotes: ****",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": "put",
+    "strike": 737,
+    "expiry": "2026-09-29",
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "bob_signalsfreealert/6143",
+  "channel": "t.me/bob_signalsfreealert",
+  "date": "2026-10-01T13:39:40+00:00",
+  "text": "UPDATE:\n\nContract: QQQ 10/01 746C\n\nUp 20%🔥🔥\n\nNotes:",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": "call",
+    "strike": 746,
+    "expiry": "2026-10-01",
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "bzjzhzhzuzzu/2164",
+  "channel": "t.me/bzjzhzhzuzzu",
+  "date": "2026-10-01T14:25:41+00:00",
+  "text": "🚨 $QQQ TRADE UPDATE 🚨\n\n🚀 10/01 738P  \n\n💰 +128%",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": "put",
+    "strike": 738,
+    "expiry": "2026-10-01",
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 128
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "tradevisionst/281",
+  "channel": "t.me/tradevisionst",
+  "date": "2026-10-08T19:48:25+00:00",
+  "text": "$WMT 110 PUTS .36 OCT 9",
+  "expected": [
+   {
+    "ticker": "WMT",
+    "side": "put",
+    "strike": 110,
+    "expiry": "2026-10-09",
+    "entry_price": 0.36,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "Queen_free_entries/974",
+  "channel": "t.me/queen_free_entries",
+  "date": "2026-10-12T19:42:23+00:00",
+  "text": "TRIM\n\naapl calls @ 20%",
+  "expected": [
+   {
+    "ticker": "AAPL",
+    "side": "call",
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 20
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "blackcardfreechannel/135",
+  "channel": "t.me/blackcardfreechannel",
+  "date": "2026-09-18T14:23:07+00:00",
+  "text": "🟢 Entry · $SPX 09/18 7600P @ $5.10 · 🎰 lotto (risk profits)\n🎯 Recommended TP ~$8.83 (+73%) · Score 65.5 · 76% est. win",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "put",
+    "strike": 7600,
+    "expiry": "2026-09-18",
+    "entry_price": 5.1,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "bincofreealert/5873",
+  "channel": "t.me/bincofreealert",
+  "date": "2026-10-09T17:43:50+00:00",
+  "text": "I Closed \n$PENG 10/16 75c @ 3.00",
+  "expected": [
+   {
+    "ticker": "PENG",
+    "side": "call",
+    "strike": 75,
+    "expiry": "2026-10-16",
+    "entry_price": null,
+    "action": "close",
+    "result_pct": null,
+    "exit_price": 3.0
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "trexfreecircle/332",
+  "channel": "t.me/trexfreecircle",
+  "date": "2026-10-06T17:11:55+00:00",
+  "text": "HIGH CONFIDENCE☢️\n\n$H 170 Call 10/16 1.05🚨",
+  "expected": [
+   {
+    "ticker": "H",
+    "side": "call",
+    "strike": 170,
+    "expiry": "2026-10-16",
+    "entry_price": 1.05,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "mrquickerfreealert/3668",
+  "channel": "t.me/mrquickerfreealert",
+  "date": "2026-10-08T14:09:20+00:00",
+  "text": "$QQQ\nOCT/08\n755C e.91",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": "call",
+    "strike": 755,
+    "expiry": "2026-10-08",
+    "entry_price": 0.91,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "axisalgorithmictrade/125",
+  "channel": "t.me/axisalgorithmictrade",
+  "date": "2026-09-28T14:04:05+00:00",
+  "text": "Closed 10 $SPX 7720C 09/28\n@ $8.40 (Entry: $7.90) | Gain: +6.3%💯🏆",
+  "expected": [
+   {
+    "ticker": "SPX",
+    "side": "call",
+    "strike": 7720,
+    "expiry": "2026-09-28",
+    "entry_price": 7.9,
+    "action": "close",
+    "result_pct": 6.3,
+    "exit_price": 8.4
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "moonwalkertrades2/1553",
+  "channel": "t.me/moonwalkertrades2",
+  "date": "2026-09-29T15:20:25+00:00",
+  "text": "EXIT\n$JPM 345C -42%",
+  "expected": [
+   {
+    "ticker": "JPM",
+    "side": "call",
+    "strike": 345,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": -42
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "axisalgorithmictrade/94",
+  "channel": "t.me/axisalgorithmictrade",
+  "date": "2026-07-10T13:44:10+00:00",
+  "text": "$META \n$625 10 JUL 26 (W) CALL 100\n$2.49 ➡️ $52.30 🏆🚀\n2,000% GAINER👑",
+  "expected": [
+   {
+    "ticker": "META",
+    "side": "call",
+    "strike": 625,
+    "expiry": "2026-07-10",
+    "entry_price": 2.49,
+    "action": "close",
+    "result_pct": 2000,
+    "exit_price": 52.3
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "mrquickerfreealert/3770",
+  "channel": "t.me/mrquickerfreealert",
+  "date": "2026-10-13T14:21:13+00:00",
+  "text": "$QQQ | 42%🔥🔥RETURN!!",
+  "expected": [
+   {
+    "ticker": "QQQ",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 42
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "stockmarketvault/3169",
+  "channel": "t.me/stockmarketvault",
+  "date": "2026-10-13T09:53:06+00:00",
+  "text": "$1.80 on $BTI here. 🥷 800% GAIN. ☢️☢️☢️",
+  "expected": [
+   {
+    "ticker": "BTI",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": 800
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "DannyCWayneTradingRoom/25",
+  "channel": "t.me/dannycwaynetradingroom",
+  "date": "2026-10-02T15:56:36+00:00",
+  "text": "Cutting $SPY for a loss.\n​Holding $SPX zero-day zero-or-hero from here. If you can't stomach that risk, cut it.",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "close",
+    "result_pct": null
+   },
+   {
+    "ticker": "SPX",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "tradevisionst/253",
+  "channel": "t.me/tradevisionst",
+  "date": "2026-09-29T15:23:37+00:00",
+  "text": "$SPY 761 PUTS @ $1.30 — 1DTE   Let’s get this bag! 💰🧨",
+  "expected": [
+   {
+    "ticker": "SPY",
+    "side": "put",
+    "strike": 761,
+    "expiry": "2026-09-30",
+    "entry_price": 1.3,
+    "action": "open",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "Queen_free_entries/879",
+  "channel": "t.me/queen_free_entries",
+  "date": "2026-10-02T19:53:48+00:00",
+  "text": "$AVGO\nOnly thing I’m really interested at the moment but I’ll wait for next week. \nWatching Nov 400C’s",
+  "expected": [
+   {
+    "ticker": "AVGO",
+    "side": null,
+    "strike": null,
+    "expiry": null,
+    "entry_price": null,
+    "action": "mention",
+    "result_pct": null
+   }
+  ],
+  "source": "blind"
+ },
+ {
+  "id": "blackcardfreechannel/107",
+  "channel": "t.me/blackcardfreechannel",
+  "date": "2026-09-17T14:01:36+00:00",
+  "text": "🔻 Exit · $AMD 09/18 550C @ $4.00 · +90%\nALL OUT · $2.10 → $4.00",
+  "expected": [
+   {
+    "ticker": "AMD",
+    "side": "call",
+    "strike": 550,
+    "expiry": "2026-09-18",
+    "entry_price": 2.1,
+    "action": "close",
+    "result_pct": 90,
+    "exit_price": 4.0
+   }
+  ],
+  "source": "blind"
+ }
+]

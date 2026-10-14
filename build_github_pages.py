@@ -375,6 +375,7 @@ with open(API_DIR / "mcp-schema.json", "w", encoding="utf-8") as f:
 # Telegram-funnel flag list (data courtesy of telegramscammers.com)
 import subprocess, sys as _sys
 subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel.py")], check=True)
+subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel_calls.py")], check=True)
 
 openapi_spec = {
     "openapi": "3.1.0",
@@ -493,11 +494,27 @@ openapi_spec = {
                 "responses": {"200": {"description": "Flagged account list"}}
             }
         },
+        "/api/funnel-tickers.json": {
+            "get": {
+                "tags": ["MCP & AI Agents"],
+                "summary": "Telegram Funnel Ticker Rankings",
+                "description": "Tickers most called out by flagged AfterHour accounts and their public Telegram channels. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
+                "responses": {"200": {"description": "Ranked tickers with ah_accounts, ah_posts, tg_channels, tg_posts"}}
+            }
+        },
+        "/api/funnel-calls.json": {
+            "get": {
+                "tags": ["MCP & AI Agents"],
+                "summary": "Telegram Funnel Parsed Callouts",
+                "description": "Most recent 300 parsed trade callouts from public Telegram channels, with scored outcomes where available. Quoted results are channel claims; small sample. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
+                "responses": {"200": {"description": "Parsed callouts"}}
+            }
+        },
         "/api/mcp-schema.json": {
             "get": {
                 "tags": ["MCP & AI Agents"],
                 "summary": "Model Context Protocol (MCP) Tool Schemas",
-                "description": "Returns the official JSON Schema catalog for all 11 MCP tools exposed for autonomous AI agents and IDEs.",
+                "description": "Returns the official JSON Schema catalog for all 13 MCP tools exposed for autonomous AI agents and IDEs.",
                 "responses": {
                     "200": {
                         "description": "Model Context Protocol tool catalog"
@@ -543,6 +560,8 @@ sitemap_urls = [
     ("https://ah.mphinance.com/shadow", "0.8", "daily"),
     ("https://ah.mphinance.com/scamcheck", "0.8", "daily"),
     ("https://ah.mphinance.com/api/funnel.json", "0.7", "daily"),
+    ("https://ah.mphinance.com/api/funnel-tickers.json", "0.6", "daily"),
+    ("https://ah.mphinance.com/api/funnel-calls.json", "0.6", "daily"),
     ("https://ah.mphinance.com/sitemap", "0.8", "daily"),
     ("https://ah.mphinance.com/docs", "0.9", "daily"),
     ("https://ah.mphinance.com/mcp", "0.9", "daily"),

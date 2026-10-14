@@ -38,6 +38,16 @@ button{min-height:48px;padding:0 22px;background:var(--green);color:#04120c;bord
 .mates a{font:12px var(--mono);padding:4px 8px;background:var(--surface);border:1px solid var(--border);border-radius:6px;text-decoration:none}
 .cta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .cta a{min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border:1px solid var(--border);border-radius:8px;text-decoration:none;font-size:13px;font-weight:600}
+.note{margin-top:10px;padding:8px 10px;border:1px solid var(--gold);border-radius:8px;color:var(--gold);font-size:13px}
+.sec{margin-top:34px}.sec h2{font-size:18px;margin-bottom:4px}.sec p{color:var(--muted);font-size:13px}
+.bars{display:grid;gap:6px;margin-top:12px}
+.bar{position:relative;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:44px;padding:0 12px;background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:13px}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:rgba(0,210,255,.16);z-index:0}
+.bar span{position:relative;z-index:1}.bar .t{font:600 14px var(--mono)}.bar .n{color:var(--muted);text-align:right}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:12px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.kpi b{display:block;font:600 20px var(--mono)}.kpi span{color:var(--muted);font-size:12px}
+.muted{color:var(--muted);font-size:12.5px;margin-top:34px}
 .fine{margin-top:34px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px}
 </style>
 </head>
@@ -54,6 +64,9 @@ button{min-height:48px;padding:0 22px;background:var(--green);color:#04120c;bord
   </form>
   <div class="stats" id="stats"></div>
   <div id="out" aria-live="polite"></div>
+  <section class="sec" id="push" hidden><h2>What they push</h2><p>Tickers most often pushed by flagged accounts on AfterHour and in the Telegram channels they link to.</p><div class="bars" id="bars"></div></section>
+  <section class="sec" id="tape" hidden><h2>Callouts vs the tape</h2><p id="tapesub"></p><div class="kpis" id="kpis"></div></section>
+  <p class="muted" id="collect" hidden></p>
   <p class="fine">Data curated by <a href="https://telegramscammers.com" target="_blank" rel="noopener">TelegramScammers.com</a>, enriched by AfterMath with post history. "Flagged" means flagged for investigation, not a finding of fraud. Tiers: <b>reported</b> single observation, <b>corroborated</b> shared Telegram link across accounts, <b>verified</b> proof captured and admin-checked. Found one that isn't listed? <a href="https://telegramscammers.com/submit" target="_blank" rel="noopener">Submit intel</a>. Raw data: <a href="/api/funnel.json">funnel.json</a>.</p>
 </main>
 <script>
@@ -65,18 +78,39 @@ async function load(){
   try{const r=await fetch('/api/funnel.json');DB=await r.json();
     $('stats').innerHTML='';
     [[DB.count,'accounts flagged'],[DB.tiers.verified||0,'verified'],[DB.tiers.corroborated||0,'corroborated'],[DB.shared_link_clusters.length,'shared-link clusters']].forEach(([n,l])=>{const s=el('span');const b=el('b',null,n);s.append(b,' '+l);$('stats').append(s)});
+    try{extras()}catch(e){}
     const p=new URLSearchParams(location.search).get('q');if(p){$('q').value=p;check(p)}
   }catch(e){$('out').append(el('div','res',"Couldn't load the database. Try again in a minute."))}
+}
+function extras(){
+  const T=(DB.tickers||[]).slice(0,10);
+  if(T.length){const mx=Math.max(...T.map(t=>t.ah_accounts||0),1);
+    T.forEach(t=>{const b=el('div','bar');const i=el('i');i.style.width=Math.round(100*(t.ah_accounts||0)/mx)+'%';
+      b.append(i,el('span','t',t.ticker),el('span','n',(t.ah_accounts||0)+' accounts, '+(t.tg_channels||0)+' channels'));$('bars').append(b)});
+    $('push').hidden=false}
+  const o=DB.callouts&&DB.callouts.outcomes,n=o?o.n_scored||0:0;
+  if(o&&n>=100){
+    const pct=v=>v==null?'n/a':Math.round(v*100)+'%';
+    $('tapesub').textContent='Option callouts from linked public Telegram channels, scored at expiry against the underlying close. '+n+' scored. '+(o.sample_warning||'');
+    [[pct(o.win_rate),'finished in profit'],[o.median_return==null?'n/a':Math.round(o.median_return)+'%','median return'],[pct(o.share_worth_zero),'expired worthless']].forEach(([v,l])=>{const k=el('div','kpi');k.append(el('b',null,v),el('span',null,l));$('kpis').append(k)});
+    $('tape').hidden=false}
+  else{$('collect').textContent='Collecting data: '+n+' scored callouts so far, need 100 before we publish rates';$('collect').hidden=false}
 }
 function card(a){
   const c=el('div','res hit');const h=el('h2',null,'@'+a.username);h.append(el('span','badge '+a.tier,a.tier));c.append(h);
   const row=(k,v)=>{const r=el('div','row');r.append(el('b',null,k+': '),document.createTextNode(v));c.append(r)};
   row('Telegram',a.telegram_link||'none found');
+  (a.channels||[]).forEach(ch=>{
+    if(ch.channel_alive===false){c.append(el('div','note','This invite link no longer resolves ('+ch.link+'). It may have been revoked, truncated or deleted.'))}
+    else if(ch.channel_title){row('Channel',ch.channel_title+(ch.channel_members!=null?' ('+Number(ch.channel_members).toLocaleString('en-US')+' members)':''))}
+  });
+  if((a.tickers_pushed||[]).length)row('Tickers pushed',a.tickers_pushed.join(', '));
   row('Account created',a.created_at||'unknown');
   row('Followers',a.num_followers==null?'unknown':a.num_followers);
   row('Posts',a.post_count+(a.posts_mentioning_telegram?` (${a.posts_mentioning_telegram} mention Telegram)`:''));
   if(a.max_duplicate_post>=3)row('Copy-paste posting','same post repeated '+a.max_duplicate_post+' times');
-  const mates=a.telegram_link?DB.accounts.filter(x=>x.telegram_link===a.telegram_link&&x.username!==a.username):[];
+  const my=a.telegram_links||(a.telegram_link?[a.telegram_link]:[]);
+  const mates=my.length?DB.accounts.filter(x=>x.username!==a.username&&(x.telegram_links||[x.telegram_link]).some(l=>l&&my.includes(l))):[];
   if(mates.length){const r=el('div','row');r.append(el('b',null,'Same link used by '+mates.length+' other account'+(mates.length>1?'s':'')+':'));c.append(r);const m=el('div','mates');mates.forEach(x=>{const l=el('a',null,'@'+x.username);l.href='https://afterhour.com/'+encodeURIComponent(x.username);l.target='_blank';l.rel='noopener';m.append(l)});c.append(m)}
   const cta=el('div','cta');
   [['TelegramScammers listing','https://telegramscammers.com/database'],['AfterHour profile',a.afterhour_url]].forEach(([t,u])=>{const l=el('a',null,t+' ↗');l.href=u;l.target='_blank';l.rel='noopener';cta.append(l)});
@@ -85,8 +119,8 @@ function card(a){
 function check(raw){
   const out=$('out');out.innerHTML='';const q=norm(raw);if(!q||!DB)return;
   const u=q.replace(/^@/,''),h=q.startsWith('t.me/')?q:'t.me/'+u;
-  let hits=DB.accounts.filter(a=>a.username.toLowerCase()===u||(a.telegram_link&&(a.telegram_link===q||a.telegram_link===h)));
-  if(!hits.length&&u.length>=4)hits=DB.accounts.filter(a=>a.username.toLowerCase().includes(u)||(a.telegram_link||'').includes(u)).slice(0,10);
+  let hits=DB.accounts.filter(a=>a.username.toLowerCase()===u||((a.telegram_links||[a.telegram_link]).some(l=>l&&(l===q||l===h))));
+  if(!hits.length&&u.length>=4)hits=DB.accounts.filter(a=>a.username.toLowerCase().includes(u)||(a.telegram_links||[a.telegram_link||'']).some(l=>(l||'').includes(u))).slice(0,10);
   if(hits.length){const t=el('div','res');t.append(el('h2',null,hits.length+' match'+(hits.length>1?'es':'')+' found'));t.append(el('div','row','Flagged for investigation, not a finding of fraud. Look at the evidence before you decide.'));out.append(t);hits.forEach(a=>out.append(card(a)))}
   else{const m=el('div','res miss');m.append(el('h2',null,'No match'));m.append(el('div','row',"Not in the database. That is not a clean bill of health: new accounts and channels show up all the time, and invite links get rotated."));
     const cta=el('div','cta');const l=el('a',null,'Report it to TelegramScammers ↗');l.href='https://telegramscammers.com/submit';l.target='_blank';l.rel='noopener';cta.append(l);m.append(cta);out.append(m)}

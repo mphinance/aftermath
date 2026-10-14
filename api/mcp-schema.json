@@ -323,6 +323,53 @@
         },
         "additionalProperties": false
       }
+    },
+    {
+      "name": "get_funnel_callouts",
+      "description": "Parsed trade callouts (ticker, side, strike, expiry, entry, action, quoted result) from public Telegram channels linked to flagged AfterHour accounts, with an independent scored 'outcome' where available. Quoted results are the channel's own claims, and the sample is small. Flagged for investigation, not a finding of fraud. Curated by https://telegramscammers.com.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": {
+            "type": "string",
+            "description": "Ticker symbol, e.g. 'SPY'"
+          },
+          "channel": {
+            "type": "string",
+            "description": "Channel handle or t.me link (substring match)"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "open",
+              "close",
+              "mention"
+            ],
+            "description": "Filter by callout action"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Max callouts to return (default 25, max 100)",
+            "default": 25
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_funnel_tickers",
+      "description": "Tickers most called out by flagged AfterHour accounts and the Telegram channels they link to, ranked, with account, channel and post counts. Flagged for investigation, not a finding of fraud. Curated by https://telegramscammers.com.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Max tickers to return (default 25, max 100)",
+            "default": 25
+          }
+        },
+        "additionalProperties": false
+      }
     }
   ],
   "resources": [

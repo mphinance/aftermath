@@ -183,3 +183,66 @@ def test_head_method_supported_on_health_and_sse(http_base):
             with urllib.request.urlopen(req, timeout=10) as resp:
                 assert resp.status == expected_status
 
+
+
+# --- funnel callouts / tickers -------------------------------------------------
+
+_CALLS = {
+    "credit": "https://telegramscammers.com", "disclaimer": "Flagged for investigation, not a finding of fraud.",
+    "quoted_results_are_channel_claims": "note", "small_sample_warning": "small", "total_parsed": 3,
+    "calls": [
+        {"channel": "t.me/alpha", "ticker": "SPY", "action": "open", "posted": "2026-10-02"},
+        {"channel": "t.me/alpha", "ticker": "SPY", "action": "close", "posted": "2026-10-03", "result_pct": 50.0},
+        {"channel": "t.me/beta", "ticker": "NVDA", "action": "open", "posted": "2026-10-04"},
+    ],
+}
+_TICKERS = {"credit": "https://telegramscammers.com", "disclaimer": "d",
+            "tickers": [{"ticker": "SPY", "tg_posts": 5}, {"ticker": "QQQ", "tg_posts": 2}]}
+
+
+def _patch_fetch(monkeypatch, files):
+    monkeypatch.setattr(mcp_server, "fetch_json", lambda name: files.get(name))
+
+
+def test_funnel_tools_registered_and_defined():
+    names = {t["name"] for t in mcp_server.MCP_TOOLS_DEFINITIONS}
+    assert {"get_funnel_callouts", "get_funnel_tickers"} <= names
+    assert len(mcp_server.TOOLS_MAP) == len(mcp_server.MCP_TOOLS_DEFINITIONS) == 13
+
+
+def test_funnel_callouts_happy_path(monkeypatch):
+    _patch_fetch(monkeypatch, {"funnel-calls.json": _CALLS})
+    out = mcp_server.tool_get_funnel_callouts({"ticker": "$spy", "limit": 1})
+    assert out["matched"] == 2 and len(out["callouts"]) == 1
+    assert out["ticker_counts"] == {"SPY": 2}
+    assert out["source"] == "https://telegramscammers.com"
+    assert "not a finding of fraud" in out["disclaimer"]
+    only_close = mcp_server.tool_get_funnel_callouts({"action": "close", "channel": "t.me/alpha"})
+    assert only_close["matched"] == 1
+
+
+def test_funnel_callouts_empty_match(monkeypatch):
+    _patch_fetch(monkeypatch, {"funnel-calls.json": _CALLS})
+    out = mcp_server.tool_get_funnel_callouts({"ticker": "ZZZZ"})
+    assert out["matched"] == 0 and out["callouts"] == [] and out["ticker_counts"] == {}
+    assert out["source"] == "https://telegramscammers.com"
+
+
+def test_funnel_callouts_missing_file(monkeypatch):
+    _patch_fetch(monkeypatch, {})
+    assert "error" in mcp_server.tool_get_funnel_callouts({})
+
+
+def test_funnel_tickers_happy_path_and_limit(monkeypatch):
+    _patch_fetch(monkeypatch, {"funnel-tickers.json": _TICKERS})
+    out = mcp_server.tool_get_funnel_tickers({"limit": 1})
+    assert out["total_tickers"] == 2 and [t["ticker"] for t in out["tickers"]] == ["SPY"]
+    assert out["source"] == "https://telegramscammers.com"
+
+
+def test_funnel_tickers_empty_and_missing(monkeypatch):
+    _patch_fetch(monkeypatch, {"funnel-tickers.json": {"tickers": []}})
+    out = mcp_server.tool_get_funnel_tickers({})
+    assert out["tickers"] == [] and out["source"] == "https://telegramscammers.com"
+    _patch_fetch(monkeypatch, {})
+    assert "error" in mcp_server.tool_get_funnel_tickers({})

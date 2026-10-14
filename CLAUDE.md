@@ -200,3 +200,17 @@ Flag list `accounts.json` is curated by **https://telegramscammers.com** (the ow
 - `data/telegram_funnel/candidates_*.json` and `recon_candidates.json` are unreviewed third-party accounts and are gitignored on purpose. Do not commit them.
 - **Scheduled watcher:** `tg_watch.py` runs daily 13:15 UTC from `mph`'s crontab on the Coolify box, in `/home/mph/apps/aftermath-watch` (sparse clone, outside the webroot; `run_watch.sh` hard-resets to `origin/main` each run, so don't hand-edit there). Report: `ssh coolify cat /home/mph/apps/aftermath-watch/reports/analysis/funnel_watch.md`. Changes to `tg_recon.py`/`tg_watch.py`/`accounts.json` go live on the next run after a push.
 - Deploy only the touched files (the tree has many regenerated files); restart **both** `ah-mcp` and `ah-mphinance`.
+
+---
+
+## Telegram Funnel Tracking (scamcheck)
+
+Full detail in `docs/FUNNEL.md`. Flag list is curated by https://telegramscammers.com (credit and link wherever shown); wording is always "flagged for investigation, not a finding of fraud".
+
+- **Pipeline order**: `tg_calls.py` -> `tg_outcomes.py` -> `funnel_tickers.py` -> `analyze_funnel.py` -> `build_funnel.py` -> `build_funnel_calls.py` (the last two also run by `build_github_pages.py`). `tg_outcomes.py` scores callouts by hold-to-expiry intrinsic vs Yahoo public bars; small sample, channel quotes are unverified.
+- **Served**: `/scamcheck`, `/api/funnel.json`, `/api/funnel-tickers.json`, `/api/funnel-calls.json`, MCP tools `get_funnel_accounts`, `get_funnel_callouts`, `get_funnel_tickers` (13 tools total).
+- **UI rule**: scamcheck hides outcome rates until 100 callouts are scored.
+- **Server cron**: `tg_watch.py` daily 13:15 UTC on Coolify, checkout `/home/mph/apps/aftermath-watch` (outside the webroot, sparse: `tg_recon.py tg_watch.py tg_calls.py accounts.json reports/analysis/funnel_watch.md`). New dependencies of `tg_watch.py` must be added to the sparse list. Merge its archive locally with `tg_merge_archive.py`.
+- **Deploy**: the documented `--delete` rsync is unsafe here (webroot has unrelated files). Copy only touched files, back up to `.bak_overnight` first, then `docker restart ah-mcp ah-mphinance` (`ah-mcp` serves `mcp_server.py`).
+- **Never public**: `candidates_*.json`, `recon_candidates.json`, `recon_pivot.json`, `handoff_private/`, `posts_archive.jsonl`, snapshots, price cache. Unreviewed third-party accounts may be innocent.
+- **Never**: post, follow, comment, or join Telegram channels from automation.

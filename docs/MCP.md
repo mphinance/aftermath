@@ -109,7 +109,7 @@ In your project root or user config directory, create or edit `.cursor/mcp.json`
 }
 ```
 
-Restart Cursor or click **Refresh** in Cursor Settings > MCP to discover all 11 tools.
+Restart Cursor or click **Refresh** in Cursor Settings > MCP to discover all 13 tools.
 
 ---
 

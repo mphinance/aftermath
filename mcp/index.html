@@ -733,7 +733,7 @@
       <div class="feature-pills">
         <div class="pill"><span>&#x26A1;</span> Sub-Millisecond Edge Latency</div>
         <div class="pill"><span>&#x1F513;</span> Zero API Keys or Auth Tokens</div>
-        <div class="pill"><span>&#x1F6E0;&#xFE0F;</span> 11 Production Tools</div>
+        <div class="pill"><span>&#x1F6E0;&#xFE0F;</span> 13 Production Tools</div>
         <div class="pill"><span>&#x1F40D;</span> Pure Python 3 (Zero External Dependencies)</div>
       </div>
 
@@ -970,7 +970,7 @@ python3 aftermath_mcp.py</code></pre>
     <section>
       <div class="section-header">
         <div>
-          <h2 class="section-title"><span>&#x1F6E0;&#xFE0F;</span> The 11 Production MCP Tools</h2>
+          <h2 class="section-title"><span>&#x1F6E0;&#xFE0F;</span> The 13 Production MCP Tools</h2>
           <div class="section-sub">Standard JSON-RPC tools exposed to your language model</div>
         </div>
         <div>
@@ -1130,6 +1130,32 @@ python3 aftermath_mcp.py</code></pre>
             </div>
             <div class="tool-schema">
               <strong>Inputs:</strong> username, telegram_link, tier, limit
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div>
+            <span class="tool-badge">SCAM CHECK &bull; NEW</span>
+            <div class="tool-name">get_funnel_callouts</div>
+            <div class="tool-desc">
+              Trade callouts parsed from public Telegram channels tied to flagged accounts: ticker, side, strike, expiry, entry, and a scored outcome where one exists. Quoted results are the channels' own claims, and the sample is small. Data curated by <a href="https://telegramscammers.com" target="_blank" rel="noopener">TelegramScammers.com</a> (<a href="https://telegramscammers.com/database" target="_blank" rel="noopener">database</a> &bull; <a href="https://telegramscammers.com/submit" target="_blank" rel="noopener">submit intel</a>). Flagged for investigation, not a finding of fraud.
+            </div>
+            <div class="tool-schema">
+              <strong>Inputs:</strong> ticker, channel, action, limit
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div>
+            <span class="tool-badge">SCAM CHECK &bull; NEW</span>
+            <div class="tool-name">get_funnel_tickers</div>
+            <div class="tool-desc">
+              Ranked tickers pushed by flagged AfterHour accounts and their Telegram channels, with account, post and channel counts. Data curated by <a href="https://telegramscammers.com" target="_blank" rel="noopener">TelegramScammers.com</a> (<a href="https://telegramscammers.com/database" target="_blank" rel="noopener">database</a> &bull; <a href="https://telegramscammers.com/submit" target="_blank" rel="noopener">submit intel</a>). Flagged for investigation, not a finding of fraud.
+            </div>
+            <div class="tool-schema">
+              <strong>Inputs:</strong> limit
             </div>
           </div>
         </div>

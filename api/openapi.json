@@ -143,7 +143,7 @@
           "MCP & AI Agents"
         ],
         "summary": "Model Context Protocol (MCP) Tool Schemas",
-        "description": "Returns the official JSON Schema catalog for all 11 MCP tools exposed for autonomous AI agents and IDEs.",
+        "description": "Returns the official JSON Schema catalog for all 13 MCP tools exposed for autonomous AI agents and IDEs.",
         "responses": {
           "200": {
             "description": "Model Context Protocol tool catalog"
@@ -161,6 +161,34 @@
         "responses": {
           "200": {
             "description": "Flagged account list"
+          }
+        }
+      }
+    },
+    "/api/funnel-tickers.json": {
+      "get": {
+        "tags": [
+          "MCP & AI Agents"
+        ],
+        "summary": "Telegram Funnel Ticker Rankings",
+        "description": "Tickers most called out by flagged AfterHour accounts and their public Telegram channels. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/funnel-calls.json": {
+      "get": {
+        "tags": [
+          "MCP & AI Agents"
+        ],
+        "summary": "Telegram Funnel Parsed Callouts",
+        "description": "Most recent 300 parsed trade callouts from public Telegram channels, with scored outcomes where available. Quoted results are channel claims; small sample. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }

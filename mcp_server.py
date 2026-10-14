@@ -578,6 +578,58 @@ def tool_get_funnel_accounts(args: dict) -> dict:
         "shared_link_clusters": data.get("shared_link_clusters") if not (user or tier or link) else None,
     }
 
+FUNNEL_CREDIT = "https://telegramscammers.com"
+FUNNEL_DISCLAIMER = ("Flagged for investigation, not a finding of fraud. "
+                     "Quoted results are the channel's own claims; small sample, not statistically meaningful.")
+
+
+def tool_get_funnel_callouts(args: dict) -> dict:
+    """Parsed trade callouts from public Telegram channels linked to flagged accounts (data: telegramscammers.com)."""
+    data = fetch_json("funnel-calls.json")
+    if not data:
+        return {"error": "funnel-calls.json currently synchronizing"}
+    ticker = (args.get("ticker") or "").strip().lstrip("$").upper()
+    channel = (args.get("channel") or "").strip().lower().replace("https://", "").replace("http://", "").lstrip("@/")
+    action = (args.get("action") or "").strip().lower()
+    try:
+        limit = max(1, min(int(args.get("limit", 25)), 100))
+    except (TypeError, ValueError):
+        limit = 25
+    rows = data.get("calls", [])
+    if ticker:
+        rows = [r for r in rows if (r.get("ticker") or "").upper() == ticker]
+    if channel:
+        rows = [r for r in rows if channel in (r.get("channel") or "").lower()]
+    if action:
+        rows = [r for r in rows if r.get("action") == action]
+    counts: dict = {}
+    for r in rows:
+        counts[r.get("ticker")] = counts.get(r.get("ticker"), 0) + 1
+    return {
+        "source": data.get("credit") or FUNNEL_CREDIT, "disclaimer": data.get("disclaimer") or FUNNEL_DISCLAIMER,
+        "quoted_results_are_channel_claims": data.get("quoted_results_are_channel_claims"),
+        "small_sample_warning": data.get("small_sample_warning"),
+        "total_parsed": data.get("total_parsed"), "matched": len(rows),
+        "ticker_counts": dict(sorted(counts.items(), key=lambda kv: -kv[1])),
+        "callouts": rows[:limit],
+    }
+
+
+def tool_get_funnel_tickers(args: dict) -> dict:
+    """Tickers most called out by flagged AfterHour accounts and their Telegram channels (data: telegramscammers.com)."""
+    data = fetch_json("funnel-tickers.json")
+    if not data:
+        return {"error": "funnel-tickers.json currently synchronizing"}
+    try:
+        limit = max(1, min(int(args.get("limit", 25)), 100))
+    except (TypeError, ValueError):
+        limit = 25
+    rows = data.get("tickers", [])
+    return {
+        "source": data.get("credit") or FUNNEL_CREDIT, "disclaimer": data.get("disclaimer") or FUNNEL_DISCLAIMER,
+        "total_tickers": len(rows), "tickers": rows[:limit],
+    }
+
 
 def tool_get_social_feed(args: dict) -> dict:
     """Retrieve live community posts, commentary, and broker-verified trade snapshots from AfterHour."""
@@ -657,6 +709,8 @@ TOOLS_MAP = {
     "get_price_history": tool_get_price_history,
     "get_social_feed": tool_get_social_feed,
     "get_funnel_accounts": tool_get_funnel_accounts,
+    "get_funnel_callouts": tool_get_funnel_callouts,
+    "get_funnel_tickers": tool_get_funnel_tickers,
 }
 
 # MCP Tool Schemas definition (MCP 2024-11-05 standard)
@@ -926,6 +980,31 @@ MCP_TOOLS_DEFINITIONS = [
                 "telegram_link": {"type": "string", "description": "t.me link or handle to look up (e.g. 't.me/gammasphere47')"},
                 "tier": {"type": "string", "enum": ["reported", "corroborated", "verified"], "description": "Filter by evidence tier"},
                 "limit": {"type": "integer", "description": "Max accounts to return (default 25, max 100)", "default": 25}
+            },
+            "additionalProperties": False
+        }
+    },
+    {
+        "name": "get_funnel_callouts",
+        "description": "Parsed trade callouts (ticker, side, strike, expiry, entry, action, quoted result) from public Telegram channels linked to flagged AfterHour accounts, with an independent scored 'outcome' where available. Quoted results are the channel's own claims, and the sample is small. Flagged for investigation, not a finding of fraud. Curated by https://telegramscammers.com.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "ticker": {"type": "string", "description": "Ticker symbol, e.g. 'SPY'"},
+                "channel": {"type": "string", "description": "Channel handle or t.me link (substring match)"},
+                "action": {"type": "string", "enum": ["open", "close", "mention"], "description": "Filter by callout action"},
+                "limit": {"type": "integer", "description": "Max callouts to return (default 25, max 100)", "default": 25}
+            },
+            "additionalProperties": False
+        }
+    },
+    {
+        "name": "get_funnel_tickers",
+        "description": "Tickers most called out by flagged AfterHour accounts and the Telegram channels they link to, ranked, with account, channel and post counts. Flagged for investigation, not a finding of fraud. Curated by https://telegramscammers.com.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "limit": {"type": "integer", "description": "Max tickers to return (default 25, max 100)", "default": 25}
             },
             "additionalProperties": False
         }

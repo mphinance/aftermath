@@ -17,6 +17,8 @@
   <url><loc>https://ah.mphinance.com/api/shadow.json</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
   <url><loc>https://ah.mphinance.com/api/openapi.json</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://ah.mphinance.com/api/funnel.json</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ah.mphinance.com/api/funnel-tickers.json</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ah.mphinance.com/api/funnel-calls.json</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
   <url><loc>https://ah.mphinance.com/api/mcp-schema.json</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://ah.mphinance.com/ticker/AAPL</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ah.mphinance.com/ticker/ASTS</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
