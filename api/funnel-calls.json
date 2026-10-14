@@ -1,14 +1,259 @@
 {
  "source": "AfterMath parser over public Telegram channel posts (passive, read-only)",
- "generated_at": "2026-10-14T20:23:24Z",
+ "generated_at": "2026-10-14T21:23:58Z",
  "credit": "https://telegramscammers.com",
  "disclaimer": "Channels and accounts here are flagged for investigation, not a finding of fraud. Flag list curated by https://telegramscammers.com.",
- "small_sample_warning": "Based on 1146 scored option callouts posted 2026-06-08 to 2026-10-13 from public channels. Scores are hold-to-expiry intrinsic value against the entry price the channel quoted, with no slippage or fees; most are same-day index and large-cap options. Channels usually quote early exits, which are not what is scored here. A limited sample, not a settled rate, and not advice.",
+ "small_sample_warning": "Based on 2134 scored option callouts posted 2026-05-26 to 2026-10-13 from public channels. Scores are hold-to-expiry intrinsic value against the entry price the channel quoted, with no slippage or fees; most are same-day index and large-cap options. Channels usually quote early exits, which are not what is scored here. A limited sample, not a settled rate, and not advice.",
  "quoted_results_are_channel_claims": "quoted_results_are_channel_claims: result_pct is what the channel itself posted, not verified, and winners dominate quoted closes (survivorship). Use 'outcome' (scored against the real tape) where present.",
- "total_parsed": 8630,
+ "total_parsed": 14706,
  "count": 1000,
- "calls_with_scored_outcome": 67,
+ "calls_with_scored_outcome": 65,
  "calls": [
+  {
+   "channel": "t.me/mrquickerfreealert",
+   "posted": "2026-10-14T19:23:50+00:00",
+   "ticker": "GL",
+   "kind": "option",
+   "side": "call",
+   "strike": 170.0,
+   "expiry": "2026-10-16",
+   "entry_price": 0.0,
+   "action": "open",
+   "result_pct": null,
+   "text": "BTO $GL OCT/16 170CALL e.0.75",
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-10-16 not yet passed",
+    "expiry_effective": "2026-10-16",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/bzjzhzhzuzzu",
+   "posted": "2026-10-14T18:40:40+00:00",
+   "ticker": "GL",
+   "kind": "option",
+   "side": "call",
+   "strike": 170.0,
+   "expiry": "2026-10-16",
+   "entry_price": 0.75,
+   "action": "open",
+   "result_pct": null,
+   "text": "🚨 GL TRADE CALL 🚨 🚀 $GL 10/16 170C @ $0.75",
+   "parse_flags": [
+    "duplicate_echo"
+   ],
+   "outcome": {
+    "status": "excluded",
+    "reason": "parse_flag: duplicate_echo",
+    "expiry_effective": "2026-10-16",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/bzjzhzhzuzzu",
+   "posted": "2026-10-14T18:37:41+00:00",
+   "ticker": "GL",
+   "kind": "option",
+   "side": "call",
+   "strike": 170.0,
+   "expiry": "2026-10-16",
+   "entry_price": 0.75,
+   "action": "open",
+   "result_pct": null,
+   "text": "🚨 GL TRADE CALL 🚨 🚀 $GL 10/16 170C @ $0.75",
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-10-16 not yet passed",
+    "expiry_effective": "2026-10-16",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/de_gainers_free_circle",
+   "posted": "2026-10-14T18:35:41+00:00",
+   "ticker": "GL",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": 0.75,
+   "action": "mention",
+   "result_pct": null,
+   "text": "$GL @0.90 from 0.75 | QUICK 20% ❤️",
+   "parse_flags": [
+    "pct_unlabelled",
+    "price_update"
+   ]
+  },
+  {
+   "channel": "t.me/bzjzhzhzuzzu",
+   "posted": "2026-10-14T17:44:54+00:00",
+   "ticker": "SPCX",
+   "kind": "option",
+   "side": "call",
+   "strike": 160.0,
+   "expiry": "2026-10-19",
+   "entry_price": 0.8,
+   "action": "open",
+   "result_pct": null,
+   "text": "🚨 SPCX TRADE CALL 🚨 🚀 $SPCX 10/19 160C @ $0.80",
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-10-19 not yet passed",
+    "expiry_effective": "2026-10-19",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/de_gainers_free_circle",
+   "posted": "2026-10-14T17:44:02+00:00",
+   "ticker": "QQQ",
+   "kind": "option",
+   "side": "put",
+   "strike": 728.0,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": 577.0,
+   "text": "DG DE GAINERS 🔥 My options daily recap: QQQ 728P 577%✅ QQQ 735P 300%✅ NVDA 222.5P 327.4%✅ QQQ 738C 60%✅ SPY calls LOSS❌ SPY calls LOSS❌ QQQ puts LOSS❌ QQQ call...",
+   "parse_flags": [
+    "no_expiry",
+    "recap_item",
+    "result_claim"
+   ]
+  },
+  {
+   "channel": "t.me/de_gainers_free_circle",
+   "posted": "2026-10-14T17:44:02+00:00",
+   "ticker": "QQQ",
+   "kind": "option",
+   "side": "put",
+   "strike": 735.0,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": 300.0,
+   "text": "DG DE GAINERS 🔥 My options daily recap: QQQ 728P 577%✅ QQQ 735P 300%✅ NVDA 222.5P 327.4%✅ QQQ 738C 60%✅ SPY calls LOSS❌ SPY calls LOSS❌ QQQ puts LOSS❌ QQQ call...",
+   "parse_flags": [
+    "no_expiry",
+    "recap_item",
+    "result_claim"
+   ]
+  },
+  {
+   "channel": "t.me/de_gainers_free_circle",
+   "posted": "2026-10-14T17:44:02+00:00",
+   "ticker": "NVDA",
+   "kind": "option",
+   "side": "put",
+   "strike": 222.5,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": 327.4,
+   "text": "DG DE GAINERS 🔥 My options daily recap: QQQ 728P 577%✅ QQQ 735P 300%✅ NVDA 222.5P 327.4%✅ QQQ 738C 60%✅ SPY calls LOSS❌ SPY calls LOSS❌ QQQ puts LOSS❌ QQQ call...",
+   "parse_flags": [
+    "no_expiry",
+    "recap_item",
+    "result_claim"
+   ]
+  },
+  {
+   "channel": "t.me/de_gainers_free_circle",
+   "posted": "2026-10-14T17:44:02+00:00",
+   "ticker": "QQQ",
+   "kind": "option",
+   "side": "call",
+   "strike": 738.0,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": 60.0,
+   "text": "DG DE GAINERS 🔥 My options daily recap: QQQ 728P 577%✅ QQQ 735P 300%✅ NVDA 222.5P 327.4%✅ QQQ 738C 60%✅ SPY calls LOSS❌ SPY calls LOSS❌ QQQ puts LOSS❌ QQQ call...",
+   "parse_flags": [
+    "no_expiry",
+    "recap_item",
+    "result_claim"
+   ]
+  },
+  {
+   "channel": "t.me/de_gainers_free_circle",
+   "posted": "2026-10-14T17:44:02+00:00",
+   "ticker": "SPY",
+   "kind": "stock",
+   "side": "call",
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": null,
+   "text": "DG DE GAINERS 🔥 My options daily recap: QQQ 728P 577%✅ QQQ 735P 300%✅ NVDA 222.5P 327.4%✅ QQQ 738C 60%✅ SPY calls LOSS❌ SPY calls LOSS❌ QQQ puts LOSS❌ QQQ call...",
+   "parse_flags": [
+    "contract_unknown",
+    "loss_no_pct",
+    "no_strike",
+    "recap_item"
+   ]
+  },
+  {
+   "channel": "t.me/de_gainers_free_circle",
+   "posted": "2026-10-14T17:44:02+00:00",
+   "ticker": "SPY",
+   "kind": "stock",
+   "side": "call",
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": null,
+   "text": "DG DE GAINERS 🔥 My options daily recap: QQQ 728P 577%✅ QQQ 735P 300%✅ NVDA 222.5P 327.4%✅ QQQ 738C 60%✅ SPY calls LOSS❌ SPY calls LOSS❌ QQQ puts LOSS❌ QQQ call...",
+   "parse_flags": [
+    "contract_unknown",
+    "duplicate_echo",
+    "loss_no_pct",
+    "no_strike",
+    "recap_item"
+   ]
+  },
+  {
+   "channel": "t.me/de_gainers_free_circle",
+   "posted": "2026-10-14T17:44:02+00:00",
+   "ticker": "QQQ",
+   "kind": "stock",
+   "side": "put",
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": null,
+   "text": "DG DE GAINERS 🔥 My options daily recap: QQQ 728P 577%✅ QQQ 735P 300%✅ NVDA 222.5P 327.4%✅ QQQ 738C 60%✅ SPY calls LOSS❌ SPY calls LOSS❌ QQQ puts LOSS❌ QQQ call...",
+   "parse_flags": [
+    "contract_unknown",
+    "loss_no_pct",
+    "no_strike",
+    "recap_item"
+   ]
+  },
+  {
+   "channel": "t.me/de_gainers_free_circle",
+   "posted": "2026-10-14T17:44:02+00:00",
+   "ticker": "QQQ",
+   "kind": "stock",
+   "side": "call",
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": null,
+   "text": "DG DE GAINERS 🔥 My options daily recap: QQQ 728P 577%✅ QQQ 735P 300%✅ NVDA 222.5P 327.4%✅ QQQ 738C 60%✅ SPY calls LOSS❌ SPY calls LOSS❌ QQQ puts LOSS❌ QQQ call...",
+   "parse_flags": [
+    "contract_unknown",
+    "loss_no_pct",
+    "no_strike",
+    "recap_item"
+   ]
+  },
   {
    "channel": "t.me/de_gainers_free_circle",
    "posted": "2026-10-14T16:52:44+00:00",
@@ -18917,264 +19162,6 @@
    "parse_flags": [
     "result_claim"
    ]
-  },
-  {
-   "channel": "t.me/apextraderkoryphae",
-   "posted": "2026-10-07T15:15:13+00:00",
-   "ticker": "AMZN",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "mention",
-   "result_pct": null,
-   "text": "$AMZN | 2 Fucking bags ⚡💰"
-  },
-  {
-   "channel": "t.me/moonwalkertrades2",
-   "posted": "2026-10-07T15:13:44+00:00",
-   "ticker": "AMZN",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 30.0,
-   "text": "TRIM $AMZN 30% here for those that tailed",
-   "parse_flags": [
-    "contract_unknown",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/moonwalkertrades2",
-   "posted": "2026-10-07T15:13:16+00:00",
-   "ticker": "NVDA",
-   "kind": "option",
-   "side": "call",
-   "strike": 237.5,
-   "expiry": "2026-10-07",
-   "entry_price": 0.59,
-   "action": "open",
-   "result_pct": null,
-   "text": "$NVDA 237.5C 10/07 @0.59",
-   "outcome": {
-    "status": "scored",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null,
-    "price_source": "yahoo",
-    "underlying_close_at_expiry": 237.47,
-    "intrinsic": 0.0,
-    "worthless": true,
-    "breakeven_level": 238.09,
-    "pnl_per_contract": -59.0,
-    "return_multiple": 0.0,
-    "return_pct": -100.0,
-    "win": false,
-    "touched_breakeven_optimistic": true,
-    "touch_window": "5m"
-   }
-  },
-  {
-   "channel": "t.me/apextraderkoryphae",
-   "posted": "2026-10-07T15:13:10+00:00",
-   "ticker": "AMZN",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 170.0,
-   "text": "$AMZN | +170% Only one MF APEX 🔥",
-   "parse_flags": [
-    "contract_unknown",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/mrquickerfreealert",
-   "posted": "2026-10-07T15:12:20+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "mention",
-   "result_pct": null,
-   "text": "$QQQ back green 🟢🟢 if you missed it the first time - NO COMPLAINTS.",
-   "parse_flags": [
-    "hindsight"
-   ]
-  },
-  {
-   "channel": "t.me/moonwalkertrades2",
-   "posted": "2026-10-07T15:11:11+00:00",
-   "ticker": "AMZN",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "mention",
-   "result_pct": null,
-   "text": "$AMZN bullflag setup to 260 .... this can help QQQ as well"
-  },
-  {
-   "channel": "t.me/mrfortunefreeflow",
-   "posted": "2026-10-07T15:10:32+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "mention",
-   "result_pct": null,
-   "text": "$QQQ back green if you missed it the first time - NO COMPLAINTS",
-   "parse_flags": [
-    "hindsight"
-   ]
-  },
-  {
-   "channel": "t.me/apextraderkoryphae",
-   "posted": "2026-10-07T15:09:55+00:00",
-   "ticker": "AMZN",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "mention",
-   "result_pct": null,
-   "text": "$AMZN | clean move clean profits MF APEX ⚡😮‍💨"
-  },
-  {
-   "channel": "t.me/apextraderkoryphae",
-   "posted": "2026-10-07T15:08:12+00:00",
-   "ticker": "AMZN",
-   "kind": "option",
-   "side": "call",
-   "strike": 257.5,
-   "expiry": null,
-   "entry_price": 0.12,
-   "action": "open",
-   "result_pct": null,
-   "text": "$AMZN 257.5C @.12",
-   "parse_flags": [
-    "duplicate_echo",
-    "no_expiry"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: duplicate_echo",
-    "expiry_effective": null,
-    "expiry_note": "no expiry (unknown, not assumed 0DTE)"
-   }
-  },
-  {
-   "channel": "t.me/moonwalkertrades2",
-   "posted": "2026-10-07T15:06:56+00:00",
-   "ticker": "AMZN",
-   "kind": "option",
-   "side": "call",
-   "strike": 260.0,
-   "expiry": "2026-10-09",
-   "entry_price": 0.88,
-   "action": "open",
-   "result_pct": null,
-   "text": "$AMZN 260C 10/9 0.88 fill",
-   "parse_flags": [
-    "cross_channel_echo",
-    "entry_from_tail"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: cross_channel_echo",
-    "expiry_effective": "2026-10-09",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/apextraderkoryphae",
-   "posted": "2026-10-07T15:05:54+00:00",
-   "ticker": "AMZN",
-   "kind": "option",
-   "side": "call",
-   "strike": 257.5,
-   "expiry": null,
-   "entry_price": 0.12,
-   "action": "open",
-   "result_pct": null,
-   "text": "$AMZN 257.5C @.12",
-   "parse_flags": [
-    "duplicate_echo",
-    "no_expiry"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: duplicate_echo",
-    "expiry_effective": null,
-    "expiry_note": "no expiry (unknown, not assumed 0DTE)"
-   }
-  },
-  {
-   "channel": "t.me/ajfreealart32",
-   "posted": "2026-10-07T15:05:26+00:00",
-   "ticker": "AMZN",
-   "kind": "option",
-   "side": "call",
-   "strike": 260.0,
-   "expiry": "2026-10-09",
-   "entry_price": 0.88,
-   "action": "open",
-   "result_pct": null,
-   "text": "AMZN 260C 10/9 0.88 fill",
-   "parse_flags": [
-    "entry_from_tail"
-   ],
-   "outcome": {
-    "status": "scored",
-    "expiry_effective": "2026-10-09",
-    "expiry_note": null,
-    "price_source": "yahoo",
-    "underlying_close_at_expiry": 262.43,
-    "intrinsic": 2.43,
-    "worthless": false,
-    "breakeven_level": 260.88,
-    "pnl_per_contract": 155.0,
-    "return_multiple": 2.7614,
-    "return_pct": 176.14,
-    "win": true,
-    "touched_breakeven_optimistic": true,
-    "touch_window": "5m"
-   }
-  },
-  {
-   "channel": "t.me/apextraderkoryphae",
-   "posted": "2026-10-07T15:01:04+00:00",
-   "ticker": "AMZN",
-   "kind": "option",
-   "side": "call",
-   "strike": 257.5,
-   "expiry": null,
-   "entry_price": 0.12,
-   "action": "open",
-   "result_pct": null,
-   "text": "$AMZN 257.5C @.12",
-   "parse_flags": [
-    "duplicate_echo",
-    "no_expiry"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: duplicate_echo",
-    "expiry_effective": null,
-    "expiry_note": "no expiry (unknown, not assumed 0DTE)"
-   }
   }
  ]
 }

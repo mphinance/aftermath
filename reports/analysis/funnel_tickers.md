@@ -1,47 +1,47 @@
 # Tickers called out by flagged funnel accounts
 
-Sources: 1469 AfterHour ticker mentions, 6213 cashtag mentions in archived public Telegram posts.
+Sources: 1469 AfterHour ticker mentions, 10059 cashtag mentions in archived public Telegram posts.
 Ranked by breadth (distinct accounts + distinct channels), then volume. Calls are promo copy, not recommendations.
 
 | Ticker | AH accounts | AH posts | TG channels | TG posts |
 |---|---:|---:|---:|---:|
-| $SPY | 44 | 186 | 23 | 942 |
-| $QQQ | 21 | 148 | 22 | 564 |
-| $NVDA | 20 | 34 | 21 | 162 |
-| $TSLA | 19 | 40 | 20 | 312 |
-| $AAPL | 18 | 44 | 21 | 147 |
-| $SPX | 19 | 91 | 19 | 703 |
-| $AMZN | 14 | 47 | 19 | 171 |
-| $MU | 13 | 27 | 18 | 244 |
-| $SPCX | 16 | 51 | 13 | 118 |
-| $META | 12 | 20 | 16 | 173 |
-| $MSFT | 13 | 24 | 14 | 77 |
-| $GOOGL | 9 | 26 | 16 | 86 |
-| $IWM | 11 | 21 | 13 | 137 |
-| $SNDK | 8 | 11 | 13 | 75 |
-| $AMD | 6 | 9 | 14 | 96 |
-| $PLTR | 6 | 21 | 11 | 53 |
-| $NFLX | 5 | 6 | 8 | 22 |
-| $ARM | 4 | 6 | 8 | 33 |
-| $HOOD | 4 | 7 | 8 | 27 |
-| $NBIS | 3 | 3 | 9 | 24 |
-| $INTC | 2 | 4 | 9 | 42 |
-| $COST | 5 | 17 | 6 | 15 |
-| $MRNA | 3 | 5 | 7 | 49 |
-| $MSTR | 2 | 3 | 8 | 45 |
-| $SOFI | 5 | 8 | 5 | 25 |
-| $MRVL | 3 | 4 | 7 | 17 |
+| $SPY | 44 | 186 | 27 | 1413 |
+| $QQQ | 21 | 148 | 25 | 958 |
+| $NVDA | 20 | 34 | 25 | 261 |
+| $SPX | 19 | 91 | 23 | 1093 |
+| $TSLA | 19 | 40 | 23 | 498 |
+| $AAPL | 18 | 44 | 22 | 243 |
+| $MU | 13 | 27 | 23 | 336 |
+| $AMZN | 14 | 47 | 20 | 212 |
+| $SPCX | 16 | 51 | 16 | 137 |
+| $META | 12 | 20 | 19 | 263 |
+| $MSFT | 13 | 24 | 15 | 151 |
+| $GOOGL | 9 | 26 | 19 | 106 |
+| $IWM | 11 | 21 | 16 | 197 |
+| $SNDK | 8 | 11 | 18 | 117 |
+| $AMD | 6 | 9 | 15 | 108 |
+| $PLTR | 6 | 21 | 15 | 73 |
+| $HOOD | 4 | 7 | 12 | 77 |
+| $MRNA | 3 | 5 | 13 | 73 |
+| $NFLX | 5 | 6 | 11 | 49 |
+| $INTC | 2 | 4 | 12 | 70 |
+| $SOFI | 5 | 8 | 9 | 43 |
+| $COST | 5 | 17 | 9 | 30 |
+| $ARM | 4 | 6 | 10 | 39 |
+| $WMT | 2 | 3 | 11 | 54 |
+| $NBIS | 3 | 3 | 10 | 26 |
+| $MRVL | 3 | 4 | 10 | 25 |
+| $MSTR | 2 | 3 | 10 | 49 |
+| $HIMS | 2 | 3 | 10 | 30 |
+| $IREN | 0 | 0 | 12 | 30 |
+| $AVGO | 1 | 1 | 10 | 73 |
+| $COIN | 1 | 1 | 10 | 44 |
+| $OPEN | 1 | 1 | 10 | 14 |
+| $IBM | 3 | 9 | 7 | 31 |
+| $ABBV | 1 | 4 | 9 | 28 |
+| $SMCI | 3 | 8 | 7 | 15 |
 | $DRAM | 5 | 6 | 5 | 10 |
-| $AVGO | 1 | 1 | 8 | 53 |
-| $WMT | 2 | 3 | 7 | 34 |
-| $HIMS | 2 | 3 | 7 | 14 |
-| $COIN | 1 | 1 | 7 | 38 |
-| $CRWD | 1 | 1 | 7 | 22 |
-| $SMCI | 3 | 8 | 5 | 13 |
-| $OKLO | 3 | 7 | 5 | 13 |
-| $OPEN | 1 | 1 | 7 | 10 |
-| $HD | 3 | 13 | 4 | 10 |
-| $NKE | 2 | 3 | 5 | 19 |
-| $QCOM | 2 | 9 | 5 | 12 |
-| $BTC | 4 | 8 | 3 | 11 |
-| $DELL | 2 | 2 | 5 | 16 |
+| $NKE | 2 | 3 | 7 | 40 |
+| $HD | 3 | 13 | 6 | 28 |
+| $OKLO | 3 | 7 | 6 | 14 |
+| $DELL | 2 | 2 | 7 | 18 |

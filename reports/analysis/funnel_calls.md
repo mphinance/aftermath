@@ -1,76 +1,76 @@
 # Funnel callouts parsed from public Telegram posts
 
-14118 archived posts -> 8958 ticker records; 2600 are echoes (same contract, same channel or another one, same day) and are excluded below.
+25365 archived posts -> 14706 ticker records; 4232 are echoes (same contract, same channel or another one, same day) and are excluded below.
 
-Unique option/spread calls: 4278 (2068 opens, 1471 closes, 739 mentions). Opens with a clean contract (strike, side, expiry, entry price all present): 1422.
+Unique option/spread calls: 7033 (3525 opens, 2097 closes, 1411 mentions). Opens with a clean contract (strike, side, expiry, entry price all present): 2493.
 
-Closes (any kind) that quote a result: 1714; positive: 1573/1714; mean quoted +114.2%. Quoted results are the channel's own claims, not verified fills.
+Closes (any kind) that quote a result: 2496; positive: 2343/2496; mean quoted +125.6%. Quoted results are the channel's own claims, not verified fills.
 
 ## Option calls by channel
-- t.me/bob_signalsfreealert: 546
-- t.me/bzjzhzhzuzzu: 449
-- t.me/bincofreealert: 359
-- t.me/moonwalkertrades2: 339
-- t.me/crestedgeroom: 330
-- t.me/queen_free_entries: 286
+- t.me/bob_signalsfreealert: 1265
+- t.me/crestedgeroom: 817
+- t.me/moonwalkertrades2: 762
+- t.me/bzjzhzhzuzzu: 740
+- t.me/de_gainers_free_circle: 552
+- t.me/bincofreealert: 353
+- t.me/apextraderkoryphae: 321
+- t.me/blockwave10: 316
+- t.me/queen_free_entries: 283
 - t.me/ajfreealart32: 278
-- t.me/blockwave10: 224
-- t.me/apextraderkoryphae: 191
-- t.me/mrquickerfreealert: 181
+- t.me/mrquickerfreealert: 266
 - t.me/blackcardfreechannel: 174
-- t.me/de_gainers_free_circle: 159
 
 ## Most-opened tickers
-- $SPX: 274
-- $SPY: 272
-- $QQQ: 209
-- $TSLA: 131
-- $MU: 73
-- $NVDA: 66
-- $AMZN: 58
-- $AAPL: 52
-- $META: 48
-- $IWM: 45
-- $AMD: 32
-- $SPCX: 31
-- $GOOGL: 29
-- $SNDK: 24
-- $MSFT: 20
+- $SPX: 491
+- $SPY: 420
+- $QQQ: 381
+- $TSLA: 239
+- $MU: 111
+- $NVDA: 109
+- $META: 91
+- $AMZN: 82
+- $IWM: 78
+- $AAPL: 77
+- $SNDK: 51
+- $MSFT: 48
+- $AMD: 42
+- $GOOGL: 41
+- $SPCX: 40
 
 ## Parse flags (all records)
-- no_expiry: 2320
-- result_claim: 2052
-- duplicate_echo: 1874
-- index_option: 1309
-- recap_item: 1101
-- cross_channel_echo: 726
-- entry_unknown: 681
-- entry_from_tail: 477
-- pct_unlabelled: 432
-- contract_unknown: 419
-- price_update: 416
-- list_item: 370
-- posted_date_suspect: 359
-- expiry_0dte_tag: 317
-- tp_sl_present: 230
-- ticker_list: 216
-- recap_holding: 214
-- no_strike: 213
-- has_summary: 201
-- unrealized_pct: 147
-- alias_spxw: 132
-- exit_price_only: 110
-- expiry_far: 64
-- crypto: 52
-- hindsight: 52
-- expiry_dte_tag: 36
-- loss_no_pct: 34
-- expiry_before_post: 26
+- no_expiry: 3149
+- result_claim: 3018
+- duplicate_echo: 2943
+- index_option: 2234
+- cross_channel_echo: 1289
+- recap_item: 1227
+- entry_unknown: 1083
+- price_update: 851
+- contract_unknown: 775
+- list_item: 773
+- entry_from_tail: 710
+- pct_unlabelled: 702
+- posted_date_suspect: 483
+- unrealized_pct: 394
+- expiry_0dte_tag: 389
+- ticker_list: 337
+- has_summary: 310
+- tp_sl_present: 292
+- no_strike: 269
+- alias_spxw: 256
+- recap_holding: 230
+- exit_price_only: 215
+- expiry_far: 102
+- hindsight: 98
+- crypto: 55
+- expiry_dte_tag: 48
+- entry_implausible: 41
+- loss_no_pct: 38
+- spread: 38
+- expiry_before_post: 35
 - date_dmy: 26
-- entry_implausible: 20
-- spread: 18
-- date_dmy_possible: 13
-- pct_mismatch: 7
+- date_dmy_possible: 18
+- pct_mismatch: 16
 - spread_suspect: 2
 
 ## Sample opens

@@ -57,3 +57,17 @@ def test_server_rebuild_cannot_strip_paths_from_funnel_json(tmp_path):
     assert run(tmp_path, {"count": 150, "callouts": {"paths": {"n_scored": 1527}}}, live, "funnel") == 0
     assert run(tmp_path, stripped, {"count": 150, "callouts": {"paths": None}}, "funnel") == 0
     assert run(tmp_path, {"count": 0}, None, "funnel") == 1
+
+
+def paths(n):
+    return {"generated_at": "2026-10-14T00:00:00Z", "pooled": {"intraday": {"n": n}}}
+
+
+def test_option_paths_cannot_shrink_but_can_grow_and_first_publish():
+    import tempfile
+    tmp = Path(tempfile.mkdtemp())
+    assert run(tmp, paths(300), paths(2696), "paths") == 1          # server with a thin bar archive
+    assert run(tmp, paths(2800), paths(2696), "paths") == 0         # growth
+    assert run(tmp, paths(2600), paths(2696), "paths") == 0         # within the 80% tolerance
+    assert run(tmp, paths(0), None, "paths") == 1                   # empty is never published
+    assert run(tmp, paths(10), None, "paths") == 0                  # first publish
