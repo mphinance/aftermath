@@ -39,8 +39,11 @@ wallets = sum(1 for g in fps if g["type"] in ("eth", "btc", "tron", "paypal", "c
 watch = (B/"reports/analysis/funnel_watch.md")
 wl = [l[2:] for l in watch.read_text().splitlines() if l.startswith("- ")] if watch.exists() else []
 have_diff = watch.exists()
+prof_diff = len(list((B/"data/telegram_funnel/snapshots").glob("profiles_*.json"))) >= 2
 def wcount(*keys): return sum(1 for l in wl if any(l.startswith(k) for k in keys))
-def wtxt(base, *keys): return (f"{wcount(*keys)} so far. " if have_diff else "Needs two snapshots to diff. ") + base
+def wtxt(base, *keys, prof=False):
+    ok = prof_diff if prof else have_diff
+    return ("" if ok else "Needs two snapshots to diff. ") + base
 if watch.exists():
     wnote = f"{len(wl)} change(s) since baseline" if wl and wl[0] != "no changes" else "baseline set, no changes yet"
 else:
@@ -50,10 +53,10 @@ SIG = [
  ("c","Identical channel copy",f"{len(ident)} pairs","Word-for-word descriptions on supposedly separate channels."),
  ("c","Shared admin or handle",f"{len(admins)} found","Same @admin, email or payment handle across channels links operators."),
  ("c","Dead or truncated invite",f"{len(dead)} of {len(ch)}","Generic Telegram page. Listing link needs a re-check."),
- ("w","Link rotated",("changes" if have_diff else "pending"),wtxt("Account swaps its bio invite after a burn.","LINK ROTATED")),
- ("w","Account gone",("changes" if have_diff else "pending"),wtxt("Deleted or banned on AfterHour.","ACCOUNT GONE")),
- ("w","Channel dead or revived",("changes" if have_diff else "pending"),wtxt("Channels get nuked and re-spun.","WENT DEAD","REVIVED")),
- ("w","Member jump or rewrite",("changes" if have_diff else "pending"),wtxt("Growth spikes and copy rewrites.","members","description","renamed")),
+ ("w","Link rotated",("changes" if prof_diff else "pending"),wtxt("Account swaps its bio invite after a burn.","LINK ROTATED",prof=True)),
+ ("w","Account gone",("changes" if prof_diff else "pending"),wtxt("Deleted or banned on AfterHour.","ACCOUNT GONE",prof=True)),
+ ("w","Channel dead or revived",("0 so far" if have_diff else "pending"),wtxt("Channels get nuked and re-spun.","WENT DEAD","REVIVED")),
+ ("w","Member jump or rewrite",("0 so far" if have_diff else "pending"),wtxt("Growth spikes and copy rewrites.","members","description","renamed")),
 ]
 sigcards = "".join(f'<div class="sig {k}"><div class="sk">{"LIVE" if k=="c" else "OVER TIME"}</div><b>{e(n)}</b><div class="sv">{e(v)}</div><p>{e(d)}</p></div>' for k,n,v,d in SIG)
 PIPE = [("accounts.json","85 flagged accounts"),("pull_funnel_posts.py","post history"),("tg_recon.py","public t.me previews"),("tg_watch.py","snapshot + diff"),("funnel.json","API, MCP, /scamcheck")]
