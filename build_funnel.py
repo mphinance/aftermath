@@ -120,11 +120,15 @@ def path_summary():
     if not i or not i.get("n"):
         return None
     hr = i.get("headline_rule") or {}
+    cl = (((d or {}).get("robustness") or {}).get("cluster_by_day_95_range")) or {}
     return {"n_scored": i["n"], "window_start": window[0], "window_end": window[1],
             "ended_green_rate": i["ended_green"]["rate"], "ended_green_ci": i["ended_green"]["ci"],
             "median_peak_pct": i["peak_pct"]["median"], "median_drawdown_pct": i["drawdown_pct"]["median"],
             "tp_first_rate": hr.get("tp_first_rate"), "sl_first_rate": hr.get("sl_first_rate"),
             "tp_first_ci": hr.get("tp_first_ci"), "sl_first_ci": hr.get("sl_first_ci"),
+            "ended_green_cluster_ci": cl.get("ended_green"), "tp_first_cluster_ci": cl.get("tp_first"),
+            "sl_first_cluster_ci": cl.get("sl_first"), "rule_mean_cluster_ci": cl.get("rule_mean_return_pct"),
+            "cluster_note": "Ranges marked cluster resample whole calendar days, because calls on one day are not independent.",
             "rule": "+50% target / -50% stop within 30 minutes of the fill", "rule_mean_return_pct": hr.get("mean_return_pct"),
             "method": ("Contract's own 5-minute trade bars for the 30 minutes after an in-session post; fill = open of the first bar at or "
                        "after the post; ended above fill = last close above the fill. Trade prints, no spread or slippage. Details: /scorecard")}

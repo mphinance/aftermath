@@ -48,3 +48,12 @@ def test_server_rebuild_cannot_strip_price_paths_from_full_export(tmp_path):
     assert run(tmp_path, stripped, {"count": 8958}, "callsfull") == 0        # live has no paths yet: allowed
     assert run(tmp_path, stripped, None, "callsfull") == 0
     assert run(tmp_path, {"count": 0, "path_count": 0}, None, "callsfull") == 1
+
+
+def test_server_rebuild_cannot_strip_paths_from_funnel_json(tmp_path):
+    live = {"count": 150, "callouts": {"paths": {"n_scored": 1527}}}
+    stripped = {"count": 150, "callouts": {"paths": None}}
+    assert run(tmp_path, stripped, live, "funnel") == 1
+    assert run(tmp_path, {"count": 150, "callouts": {"paths": {"n_scored": 1527}}}, live, "funnel") == 0
+    assert run(tmp_path, stripped, {"count": 150, "callouts": {"paths": None}}, "funnel") == 0
+    assert run(tmp_path, {"count": 0}, None, "funnel") == 1

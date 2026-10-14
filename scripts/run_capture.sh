@@ -1,8 +1,8 @@
 #!/bin/bash
-# After-close capture of option price paths for called-out contracts (Coolify cron, Mon-Fri 20:30 UTC = 4:30pm ET).
-# Yahoo serves 5-minute option bars for the CURRENT session only, and a contract's bars vanish the day after it
-# expires, so this must run every trading day shortly after the close; the archive it builds cannot be rebuilt later.
-# Called by /home/mph/apps/aftermath-watch/run_capture.sh after it fast-forwards the checkout. Passive, read-only.
+# After-close capture of option price paths for called-out contracts. NOT scheduled anywhere: the server cron entry was removed and path scoring now
+# uses Alpaca bars locally (tg_option_paths.py backfill). Yahoo serves 5-minute option bars for the CURRENT session only, and a contract's bars vanish the day after it
+# expires, so if this is ever run it must run every trading day shortly after the close; the archive it builds cannot be rebuilt later.
+# Historical note: it was once called by /home/mph/apps/aftermath-watch/run_capture.sh. Passive, read-only.
 set -u
 cd "$(dirname "$0")/.." || exit 1
 mkdir -p data/telegram_funnel reports/analysis api

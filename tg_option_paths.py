@@ -264,7 +264,8 @@ def path_metrics(bars, fill, quoted):
     return out
 
 
-def score(delay_bars=0, write=True):
+def score(delay_bars=0, write=True, hold_window=False):
+    """hold_window=True: with a fill delay, keep the exposure at WINDOW_MIN minutes after the delayed fill (not post+WINDOW_MIN)."""
     calls = []
     for line in (TF / "calls.jsonl").open():
         if line.strip():
@@ -316,13 +317,19 @@ def score(delay_bars=0, write=True):
         if gap > MAX_FILL_GAP_MIN:
             r.update(status="unscorable", reason=f"illiquid: first print {gap:.0f} min after {'the post' if intraday else 'the open'}"); rows.append(r); continue
         if delay_bars:                    # a follower acts a few minutes after the post: fill on a later bar
-            win = win[delay_bars:]
+            if hold_window and len(win) > delay_bars:
+                t0 = win[delay_bars][0]
+                lim = min(t0 + WINDOW_MIN * 60, sess(day)[1])
+                win = [b for b in b5 if t0 <= b[0] < lim]
+            else:
+                win = win[delay_bars:]
             if not win:
                 r.update(status="unscorable", reason="no bars after the fill delay"); rows.append(r); continue
         fill = win[0][1]
+        gap_s = int(win[0][0] - start) if not delay_bars else None
         if not fill:
             r.update(status="unscorable", reason="no fill price"); rows.append(r); continue
-        r.update(status="scored", session=day.isoformat(), truncated=(win[-1][0] + 300 < end - 300), **path_metrics(win, fill, c.get("entry_price")))
+        r.update(status="scored", session=day.isoformat(), fill_gap_s=(gap_s if intraday else None), truncated=(win[-1][0] + 300 < end - 300), **path_metrics(win, fill, c.get("entry_price")))
         rows.append(r)
     if not write:
         return rows

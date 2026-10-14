@@ -11,6 +11,7 @@ Run order: python3 tg_option_paths.py score; python3 build_funnel_paths.py
 import collections
 import json
 import math
+import random
 import statistics
 import sys
 from datetime import datetime, timezone
@@ -204,7 +205,8 @@ def coverage(rows, total_opens):
         {"stage": "  of which daily callout (whole next session)", "n": sum(1 for r in sc if r.get("category") == "daily")},
     ]
     return {"stages": stages, "unscorable_by_reason": [{"reason": k, "n": v} for k, v in reasons.most_common()],
-            "no_bars_by_category": dict(nobars), "status_counts": dict(st)}
+            "no_bars_by_category": dict(nobars), "status_counts": dict(st),
+            "no_bars_unknown_note": "'unknown' = the contract was not captured at all (older than the data retains, or not listed), so the call was never placed in the intraday or daily window."}
 
 
 def count_total_opens():
@@ -219,28 +221,52 @@ def count_total_opens():
     return n
 
 
-def delay_row(d, rows):
-    g = [r for r in rows if r.get("status") == "scored" and r.get("category") == "intraday" and is_public(r.get("channel"))]
+def _ckey(r):
+    return (r.get("id"), r.get("ticker"), r.get("side"), r.get("strike"), r.get("expiry"))
+
+
+def _intraday(rows):
+    return [r for r in rows if r.get("status") == "scored" and r.get("category") == "intraday" and is_public(r.get("channel"))]
+
+
+def delay_row(d, g, short=None):
     n = len(g)
     green = sum(1 for r in g if r["end_ret_pct"] > 0)
     hr = next((x for x in rule_table(g) if x["rule"] == HEADLINE_RULE), None) if g else None
-    return {"delay_bars": d, "delay_minutes": d * 5, "n": n, "green_rate": round(green / n, 4) if n else None,
-            "green_ci": wilson(green, n), "mean_end_return_pct": _mean([r["end_ret_pct"] for r in g]),
-            "tp_first_rate": hr["tp_first_rate"] if hr else None, "sl_first_rate": hr["sl_first_rate"] if hr else None,
-            "rule_mean_return_pct": hr["mean_return_pct"] if hr else None}
+    out = {"delay_bars": d, "delay_minutes": d * 5, "n": n, "green_rate": round(green / n, 4) if n else None,
+           "green_ci": wilson(green, n), "mean_end_return_pct": _mean([r["end_ret_pct"] for r in g]),
+           "tp_first_rate": hr["tp_first_rate"] if hr else None, "sl_first_rate": hr["sl_first_rate"] if hr else None,
+           "rule_mean_return_pct": hr["mean_return_pct"] if hr else None}
+    if short is not None:       # same calls, but the window ends at post+30 min so a later fill sees a shorter window
+        sh = next((x for x in rule_table(short) if x["rule"] == HEADLINE_RULE), None) if short else None
+        out["shortened_window"] = {"n": len(short), "tp_first_rate": sh["tp_first_rate"] if sh else None,
+                                   "sl_first_rate": sh["sl_first_rate"] if sh else None,
+                                   "rule_mean_return_pct": sh["mean_return_pct"] if sh else None}
+    return out
 
 
 def delay_sensitivity(base_rows, previous):
-    """Fill N five-minute bars later. Needs the local bar archive; otherwise the previous file's block is reused."""
-    note = "Re-scored from the local bar archive with the fill moved N five-minute bars after the post (intraday calls only)."
+    """Fill N five-minute bars after the first available bar. Like for like: only calls scored at every delay, and the
+    exposure window is kept at 30 minutes after the delayed fill. The old shortened-window variant is kept for comparison.
+    Needs the local bar archive; otherwise the previous file's block is reused."""
+    note = ("Re-scored from the local bar archive with the fill moved N five-minute bars after the first bar at or after the post "
+            "(intraday calls only). Only calls that have bars at every delay are used (same n in every row), and each delayed fill gets "
+            "its own full 30-minute window (capped at the session close).")
     if TP is not None:
         try:
-            out = []
-            for d in DELAYS:
-                rows = base_rows if d == 0 else TP.score(d, write=False)
-                out.append(delay_row(d, rows))
+            held = {0: _intraday(base_rows)}
+            short = {0: held[0]}
+            for d in DELAYS[1:]:
+                held[d] = _intraday(TP.score(d, write=False, hold_window=True))
+                short[d] = _intraday(TP.score(d, write=False))
+            common = set(map(_ckey, held[0]))
+            for d in DELAYS[1:]:
+                common &= set(map(_ckey, held[d])) & set(map(_ckey, short[d]))
+            out = [delay_row(d, [r for r in held[d] if _ckey(r) in common], [r for r in short[d] if _ckey(r) in common]) for d in DELAYS]
             if out[0]["n"] > 0:
-                return {"rows": out, "note": note, "rule": HEADLINE_RULE, "reused_from_previous": False}
+                return {"rows": out, "note": note, "rule": HEADLINE_RULE, "reused_from_previous": False,
+                        "n_pooled_headline": len(held[0]), "n_dropped_for_like_for_like": len(held[0]) - out[0]["n"],
+                        "like_for_like": True}
         except Exception as e:                      # missing calls.jsonl or bars
             print(f"delay sensitivity unavailable ({type(e).__name__}); reusing previous block", file=sys.stderr)
     prev = (previous or {}).get("delay_sensitivity")
@@ -251,6 +277,76 @@ def delay_sensitivity(base_rows, previous):
         return prev
     return {"rows": [], "note": note + " Not available: no bar archive on this machine and no previous block.", "rule": HEADLINE_RULE,
             "reused_from_previous": False}
+
+
+def fill_gap(g):
+    """Seconds from the post to the start of the fill bar (the bar containing the post is skipped)."""
+    v = sorted(r["fill_gap_s"] for r in g if r.get("fill_gap_s") is not None)
+    n = len(v)
+    if not n:
+        return None
+    return {"n": n, "median_s": round(statistics.median(v)), "p90_s": v[min(n - 1, int(0.9 * n))],
+            "over_300s": _share(sum(1 for x in v if x > 300), n), "over_600s": _share(sum(1 for x in v if x > 600), n)}
+
+
+def _cluster_ci(g, stat, reps=2000, seed=7):
+    """Percentile interval for stat(rows) resampling whole calendar days (calls on one day are not independent)."""
+    days = collections.defaultdict(list)
+    for r in g:
+        days[(r.get("posted") or "")[:10]].append(r)
+    keys = list(days)
+    if len(keys) < 5:
+        return [None, None]
+    rng = random.Random(seed)
+    vals = []
+    for _ in range(reps):
+        samp = [r for k in (rng.choice(keys) for _ in keys) for r in days[k]]
+        vals.append(stat(samp))
+    vals.sort()
+    return [round(vals[int(0.025 * reps)], 4), round(vals[int(0.975 * reps) - 1], 4)]
+
+
+def robustness(g, all_rows):
+    """Clustering, duplicates, bias checks and selection effects for the pooled intraday sample."""
+    n = len(g)
+    if not n:
+        return None
+    perday = collections.Counter((r.get("posted") or "")[:10] for r in g)
+    ck = collections.Counter((_ckey(r)[1:], (r.get("session") or "")) for r in g)
+    cm = collections.Counter((_ckey(r)[1:], (r.get("posted") or "")[:16]) for r in g)
+    tk = collections.Counter(r["ticker"] for r in g)
+    seen, dedup = set(), []
+    for r in sorted(g, key=lambda x: x.get("posted") or ""):
+        k = (_ckey(r)[1:], (r.get("posted") or "")[:16])
+        if k not in seen:
+            seen.add(k); dedup.append(r)
+    def green(x): return sum(1 for r in x if r["end_ret_pct"] > 0) / len(x)
+    def tpf(x): return sum(1 for r in x if r.get(HEADLINE_RULE) == "tp") / len(x)
+    def slf(x): return sum(1 for r in x if r.get(HEADLINE_RULE) == "sl") / len(x)
+    def mret(x): return statistics.mean(r[HEADLINE_RULE + "_ret"] for r in x)
+    dd = rule_table(dedup)[0]
+    sc_all = [r for r in all_rows if r.get("status") == "scored"]
+    trunc = [r for r in g if r.get("truncated")]
+    return {
+        "n": n, "distinct_days": len(perday), "max_calls_in_one_day": max(perday.values()),
+        "top_ticker": {"ticker": tk.most_common(1)[0][0], "n": tk.most_common(1)[0][1]},
+        "extra_rows_same_contract_same_day": sum(v - 1 for v in ck.values() if v > 1),
+        "extra_rows_same_contract_same_minute": sum(v - 1 for v in cm.values() if v > 1),
+        "cluster_by_day_95_range": {"ended_green": _cluster_ci(g, green), "tp_first": _cluster_ci(g, tpf),
+                                    "sl_first": _cluster_ci(g, slf), "rule_mean_return_pct": _cluster_ci(g, mret)},
+        "without_same_minute_duplicates": {"n": len(dedup), "ended_green": _share(sum(1 for r in dedup if r["end_ret_pct"] > 0), len(dedup)),
+                                           "tp_first_rate": dd["tp_first_rate"], "sl_first_rate": dd["sl_first_rate"],
+                                           "rule_mean_return_pct": dd["mean_return_pct"]},
+        "selection": {"scored_rows": len(sc_all), "truncated_window_rows": len(trunc),
+                      "two_or_fewer_bars": sum(1 for r in g if (r.get("n_bars") or 0) <= 2),
+                      "neither_level_hit_valued_at_last_print": sum(1 for r in g if r.get(HEADLINE_RULE) == "none")},
+        "vendor_crosscheck": {"contract_days_compared": 311, "close_within_1_cent": 296, "low_agrees": 243, "high_agrees": 170,
+                              "vendor_high_above_reference": 110, "vendor_high_above_by_more_than_10pct": 33,
+                              "vendor_high_below_reference": 31,
+                              "note": ("One-off manual comparison of the Alpaca 5-minute bars (day high/low/close) with archived Yahoo daily bars. "
+                                       "Extra prints in the Alpaca feed raise peaks and TP-first; part of the gap may be partial-day capture of the Yahoo archive. "
+                                       "Treat peak and TP-first as upper-leaning.")},
+    }
 
 
 def methodology():
@@ -274,18 +370,22 @@ def methodology():
             f"Intraday calls get {WINDOW_MIN} minutes because these channels post quick scalps; daily callouts get the whole next regular session.",
             "Fill is the open of the first 5-minute trade bar at or after the post, so it is a trade print, not a quote you could have hit.",
             "Peak is the highest traded price in the window relative to the fill; drawdown is the lowest, relative to the fill.",
-            "Repost de-duplication: the same trade posted again (same channel, or copied across channels) is collapsed to the first post before scoring.",
+            "Repost de-duplication: an echo of the same trade within a channel, or recognised by the parser as a cross-channel copy, is collapsed before scoring. Copies posted in the same minute that the parser did not recognise remain in the sample (counts in the robustness block).",
             "A post is scored once per contract. The channel's own quoted entry is shown only to test whether it could have been filled.",
             "Only public channels are scored. Parsing is automatic and can be wrong.",
         ],
         "limitations": [
             "Bars are trade prints, not bid and ask. Spread and slippage are NOT modelled, so true results for someone trading these calls would be worse, most of all on wide-spread, low-priced contracts.",
-            "Option bars come from an indicative data feed; some venues or prints may be missing and a bar's open may differ from what was available at the second of the post.",
+            "Option bars come from an indicative data feed; some venues or prints may be missing and a bar's open may differ from what was available at the second of the post. A one-off comparison against archived Yahoo daily bars (311 contract-days) found closes matched in 95%, lows in 78% and highs in only 55%, with the feed's high above Yahoo's in 110 cases (33 by more than 10%). Peaks and TP-first are therefore upper-leaning (part of the gap may be partial-day capture in the reference).",
+            "The fill is the open of the first 5-minute bar starting at or after the post, so the bar containing the post is skipped: the median gap from post to that bar is about 2.5 minutes (90th percentile about 4.6 minutes, see fill_gap). The 0-minute row is therefore not an instant fill, and every delay row is that much later still.",
+            "The quoted-entry comparison is between the channel's quote and the fill price after that gap, not the price at the second of the post.",
+            "Statistical ranges (Wilson) treat calls as independent. They are not: calls cluster on a few days, tickers (SPX) and channels, and some copies of the same contract remain. Day-clustered ranges in the robustness block are wider and are the better guide.",
             f"The {WINDOW_MIN}-minute window is short by design. It describes what happened right after a call, not what a different exit rule or a longer hold would have done.",
             "A same-bar tie between the take-profit and stop-loss levels counts as the stop, which is conservative; the true order inside a 5-minute bar is unknown.",
             "A quoted entry far below the contract's traded price at the post could not have been filled; those are counted and shown rather than removed.",
             "The sample covers a limited date range and a few busy channels; rates describe this sample and are not settled estimates.",
-            "Calls with no bars, thin trading or an illiquid first print are excluded from the scored sample (see the coverage funnel), which can flatter or penalise the result.",
+            "Calls with no bars, thin trading or an illiquid first print are excluded from the scored sample (see the coverage funnel). Contracts that never traded or opened illiquid are plausibly the worst outcomes, so the exclusion probably flatters the result.",
+            "Some windows end early (the contract stopped printing) and some rest on 2 or fewer bars; where neither level is hit the position is valued at the last print, which can be stale. Counts are in the robustness block.",
             "Not advice. Flagged for investigation, not a finding of fraud.",
         ],
     }
@@ -330,6 +430,7 @@ def build(rows, previous=None, total_opens=None, generated_at=None):
         "coverage": coverage(rows, total_opens),
         "pooled": {"intraday": block(intr), "daily": block(daily)},
         "delay_sensitivity": delay_sensitivity(rows, previous),
+        "fill_gap": fill_gap(intr), "robustness": robustness(intr, rows),
         "by_channel": by_channel, "by_ticker": by_ticker, "by_session_hour": by_hour,
         "n_channels": len(chans),
     }

@@ -27,11 +27,11 @@ if [ -d "$PUBLISH_DIR" ]; then
   # Publish gate, per file (FORCE_PUBLISH=1 skips the shrink check only, never the freshness check):
   #   1. fresh: built by this run (newer than $STAMP), so a failed build cannot republish the committed copy
   #   2. populated: count > 0 (scorecard: both options and FX halves)
-  #   3. never shrinks (the path-enriched funnel-calls-full.json also must not lose its path_count: price paths are built
+  #   3. never shrinks (the path-enriched funnel-calls-full.json and funnel.json (callouts.paths n_scored) also must not lose their path count: price paths are built
   #      locally only, so a server rebuild cannot replace the local file; funnel-option-paths.json is never published from here): against the file already live, options n_scored and callout totals must stay >= 80% and FX
   #      scored signals >= 50% (FX ages out of Yahoo's 60-day 5m window, options only accumulate). A run on a thin
   #      archive (e.g. the server's, which is smaller than the local one) therefore cannot replace a richer live file.
-  for spec in funnel.json:count funnel-calls-full.json:callsfull funnel-calls.json:count funnel-tickers.json:count funnel-scorecard.json:scorecard funnel-fx-signals.json:fx; do
+  for spec in funnel.json:funnel funnel-calls-full.json:callsfull funnel-calls.json:count funnel-tickers.json:count funnel-scorecard.json:scorecard funnel-fx-signals.json:fx; do
     f="${spec%%:*}"; key="${spec##*:}"
     if [ ! "api/$f" -nt "$STAMP" ]; then echo "skip publish $f (not rebuilt by this run)"; continue; fi
     if python3 - "api/$f" "$PUBLISH_DIR/$f" "$key" "${FORCE_PUBLISH:-0}" <<'PY'
@@ -48,6 +48,8 @@ def metrics(d, key):
                 "fx n_signals_scored": ((d.get("fx") or {}).get("pooled") or {}).get("n_signals_scored", 0)}
     if key == "callsfull":      # path_count is only non-zero when built where the local bar archive exists (never on the server)
         return {"total": d.get("count", 0), "path_count": d.get("path_count", 0)}
+    if key == "funnel":         # callouts.paths (the /scamcheck headline) only exists when built where the bar archive is (never on the server)
+        return {"total": d.get("count", 0), "path_count": ((d.get("callouts") or {}).get("paths") or {}).get("n_scored", 0)}
     return {"total": d.get("total_parsed") or d.get("count", 0)}
 OPTIONAL = {"path_count"}       # may be zero in a new file, but must never drop below what is already live
 MIN_KEEP = {"options n_scored": 0.8, "fx n_signals_scored": 0.5, "total": 0.5 if key == "fx" else 0.8, "path_count": 1.0}

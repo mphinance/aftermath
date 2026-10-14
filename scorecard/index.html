@@ -99,6 +99,8 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--surface);padding:
   <div id="pathDelay"></div>
   <h3>Could the quoted entry be filled?</h3>
   <p class="lede" id="pathReal"></p>
+  <h3>How much to trust these ranges</h3>
+  <p class="lede" id="pathRobust"></p>
   <h3>Coverage: from posts to scored</h3>
   <div id="pathFunnel"></div>
   <p class="hint" id="pathReasons"></p>
@@ -496,7 +498,7 @@ function paths(P){
     ['TP first '+hr.tp_first+' of '+I.n+' (95% range '+ci(hr.tp_first_ci)+')','measured from the fill within the 30-minute window'],
     ['SL first '+hr.sl_first+' of '+I.n+' (95% range '+ci(hr.sl_first_ci)+')','a bar touching both levels counts as the stop'],
     ['Neither '+hr.neither+' of '+I.n,'valued at the last close in the window'],
-    ['Mean return under this rule '+pcs(hr.mean_return_pct),'percent of the fill, before spread and slippage, which are not modelled and would make it worse']]));
+    ['Mean return under this rule '+pcs(hr.mean_return_pct)+(P.robustness&&P.robustness.cluster_by_day_95_range.rule_mean_return_pct[0]!=null?' (95% range allowing for same-day clustering '+pcs(P.robustness.cluster_by_day_95_range.rule_mean_return_pct[0])+' to '+pcs(P.robustness.cluster_by_day_95_range.rule_mean_return_pct[1])+')':''),'percent of the fill, before spread and slippage, which are not modelled and would make it worse']]));
   var dn=$('pathDaily');
   if(Dd&&Dd.n){var dg=Dd.ended_green;dn.textContent='Daily callouts (posted before the open, after the close or on a weekend, judged over the whole next session): n = '+Dd.n+', ended above the fill '+pct(dg.rate)+' (95% range '+ci(dg.ci)+'), median peak '+pcm(Dd.peak_pct.median)+', median drawdown '+pcm(Dd.drawdown_pct.median)+', median end of session '+pcm(Dd.end_return_pct.median)+'. A very small sample, shown for completeness.'}
   else dn.textContent='No scored daily callouts yet.';
@@ -509,23 +511,28 @@ function paths(P){
     {h:'Neither',num:1,v:function(r){return r.neither},f:function(r){return String(r.neither)}},
     {h:'Mean return',num:1,v:function(r){return r.mean_return_pct},f:function(r){return pcs(r.mean_return_pct)},cls:function(r){return retCls(r.mean_return_pct)}}],rows,{nosort:true});
   var ds=P.delay_sensitivity||{};
-  $('pathDelayLede').textContent='A follower cannot act at the second of the post. Here the fill is moved later by '+(ds.rows||[]).map(function(r){return r.delay_minutes}).join(', ')+' minutes (whole 5-minute bars) and everything is re-scored; n falls a little because some contracts stop printing. '+(ds.reused_from_previous?'These rows come from the previous build. ':'')+'The +50% / -50% rule is used.';
+  var ghh=P.fill_gap;
+  $('pathDelayLede').textContent='The fill is the open of the first 5-minute bar that starts at or after the post, so the bar holding the post is skipped'+(ghh?': the median gap from post to that bar is '+Math.round(ghh.median_s/6)/10+' minutes (90th percentile '+Math.round(ghh.p90_s/6)/10+' minutes; '+pct(ghh.over_300s.rate)+' of '+ghh.n+' calls wait over 5 minutes)':'')+'. So the 0-minute row is not an instant fill. Rows below add 5, 10 and 15 more minutes on top of that. '+(ds.like_for_like?'Like for like: only the '+(ds.rows&&ds.rows[0]?ds.rows[0].n:'')+' calls that have bars at every delay are used, so n is the same in every row, and each delayed fill is followed for its own full 30 minutes (to the close at the latest). The last column shows the older, shortened-window version for the same calls (window still ends 30 minutes after the post), which flatters later fills because they are exposed for less time. ':'Rows from an older build are not like for like (n and window length differ). ')+(ds.reused_from_previous?'These rows come from the previous build. ':'')+'The +50% / -50% rule is used. Later fills still look better in this sample; a small sample over few days, so do not read it as a rule.';
   if((ds.rows||[]).length)mkTable($('pathDelay'),[
-    {h:'Fill delay',v:function(r){return r.delay_minutes},f:function(r){return r.delay_minutes+' min'}},
+    {h:'Extra delay',v:function(r){return r.delay_minutes},f:function(r){return '+'+r.delay_minutes+' min'}},
     {h:'n',num:1,v:function(r){return r.n},f:function(r){return String(r.n)}},
     {h:'Ended above fill',num:1,v:function(r){return r.green_rate},f:function(r){return pct(r.green_rate)+' ('+ci(r.green_ci)+')'}},
     {h:'Mean end return',num:1,v:function(r){return r.mean_end_return_pct},f:function(r){return pcs(r.mean_end_return_pct)},cls:function(r){return retCls(r.mean_end_return_pct)}},
     {h:'TP first',num:1,v:function(r){return r.tp_first_rate},f:function(r){return pct(r.tp_first_rate)}},
     {h:'SL first',num:1,v:function(r){return r.sl_first_rate},f:function(r){return pct(r.sl_first_rate)}},
-    {h:'Mean return, rule',num:1,v:function(r){return r.rule_mean_return_pct},f:function(r){return pcs(r.rule_mean_return_pct)},cls:function(r){return retCls(r.rule_mean_return_pct)}}],ds.rows,{nosort:true});
+    {h:'Mean return, rule',num:1,v:function(r){return r.rule_mean_return_pct},f:function(r){return pcs(r.rule_mean_return_pct)},cls:function(r){return retCls(r.rule_mean_return_pct)}},
+    {h:'Shortened window: SL first / mean return',num:1,v:function(r){return r.shortened_window?r.shortened_window.rule_mean_return_pct:null},f:function(r){var w=r.shortened_window;return w?pct(w.sl_first_rate)+' / '+pcs(w.rule_mean_return_pct):'n/a'}}],ds.rows,{nosort:true});
   else $('pathDelay').appendChild(el('p','empty','Not available.'));
   if(qr&&qr.n){var un=qr.unfillable_quote_more_than_25pct_below_fill,wi=qr.within_25pct,ab=qr.quoted_more_than_25pct_above_fill;
-    $('pathReal').textContent='Of '+qr.n+' in-session calls that quoted an entry price, the median quoted entry was '+pcs(qr.median_quoted_vs_fill_pct)+' away from the contract\'s actual traded price at the post. '+pct(un.rate)+' ('+un.k+' of '+un.n+', range '+ci(un.ci)+') quoted an entry more than 25% BELOW the price the contract was trading at, so that entry could not have been filled; '+pct(wi.rate)+' were within 25% either way and '+pct(ab.rate)+' quoted more than 25% above. Median traded volume in the window was '+(lq&&lq.median_window_volume!=null?Number(lq.median_window_volume).toLocaleString('en-US'):'n/a')+' contracts, and '+(lq?pct(lq.thin_under_20_contracts.rate):'n/a')+' of calls traded under 20 contracts in the window.'}
+    $('pathReal').textContent='Of '+qr.n+' in-session calls that quoted an entry price, the median quoted entry was '+pcs(qr.median_quoted_vs_fill_pct)+' away from the contract\'s first traded price after the post (the fill; median '+(ghh?Math.round(ghh.median_s/6)/10+' minutes later':'a few minutes later')+'). '+pct(un.rate)+' ('+un.k+' of '+un.n+', range '+ci(un.ci)+') quoted an entry more than 25% BELOW the fill price, so that entry could not have been filled; '+pct(wi.rate)+' were within 25% either way and '+pct(ab.rate)+' quoted more than 25% above. Median traded volume in the window was '+(lq&&lq.median_window_volume!=null?Number(lq.median_window_volume).toLocaleString('en-US'):'n/a')+' contracts, and '+(lq?pct(lq.thin_under_20_contracts.rate):'n/a')+' of calls traded under 20 contracts in the window.'}
   else $('pathReal').textContent='No quoted entries to compare.';
   var cv=(P.coverage&&P.coverage.stages)||[];
   mkTable($('pathFunnel'),[{h:'Stage',v:function(r){return r.stage.trim()}},{h:'Records',num:1,v:function(r){return r.n},f:function(r){return String(r.n)}}],cv,{nosort:true});
   var rs=(P.coverage&&P.coverage.unscorable_by_reason)||[];
   $('pathReasons').textContent=rs.length?'Unscorable: '+rs.map(function(x){return x.n+' x '+x.reason}).join('; ')+'.':'';
+  var rb=P.robustness,cl=rb&&rb.cluster_by_day_95_range;
+  $('pathRobust').textContent=rb?'The 95% ranges beside each rate treat every call as independent, and they are not: the '+rb.n+' calls come from '+rb.distinct_days+' days (up to '+rb.max_calls_in_one_day+' on one day), '+rb.top_ticker.n+' are '+rb.top_ticker.ticker+', '+rb.extra_rows_same_contract_same_day+' rows repeat a contract already scored that day and '+rb.extra_rows_same_contract_same_minute+' repeat a contract and post minute (copies the parser did not recognise as echoes, so they remain). Resampling whole days gives wider ranges: ended above fill '+ci(cl.ended_green)+', TP first '+ci(cl.tp_first)+', SL first '+ci(cl.sl_first)+', mean +50/-50 return '+(cl.rule_mean_return_pct&&cl.rule_mean_return_pct[0]!=null?pcs(cl.rule_mean_return_pct[0])+' to '+pcs(cl.rule_mean_return_pct[1]):'n/a')+'. Dropping the same-minute repeats (n='+rb.without_same_minute_duplicates.n+') changes ended above fill to '+pct(rb.without_same_minute_duplicates.ended_green.rate)+' and the mean +50/-50 return to '+pcs(rb.without_same_minute_duplicates.rule_mean_return_pct)+'. Selection and data caveats: calls with no bars or an illiquid first print are left out and are plausibly the worst outcomes, so the sample probably flatters; '+rb.selection.truncated_window_rows+' windows end early because the contract stopped printing and '+rb.selection.two_or_fewer_bars+' rest on 2 or fewer bars; '+rb.selection.neither_level_hit_valued_at_last_print+' calls hit neither level and are valued at the last print, which can be stale. A spot check of the bars against archived Yahoo daily bars matched closes in '+Math.round(100*rb.vendor_crosscheck.close_within_1_cent/rb.vendor_crosscheck.contract_days_compared)+'% of '+rb.vendor_crosscheck.contract_days_compared+' contract-days but day highs in only '+Math.round(100*rb.vendor_crosscheck.high_agrees/rb.vendor_crosscheck.contract_days_compared)+'%, with the bars\' high above Yahoo\'s in '+rb.vendor_crosscheck.vendor_high_above_reference+' cases, so peaks and TP first lean high.':'';
+  if(P.coverage&&P.coverage.no_bars_unknown_note)$('pathReasons').textContent+=' No-bars rows without a window category: '+P.coverage.no_bars_unknown_note;
   function stat(first){return first.concat([
     {h:'n',num:1,v:function(r){return r.n},f:function(r){return String(r.n)}},
     {h:'Ended above fill',num:1,v:function(r){return r.green_rate},f:function(r){return r.n?pct(r.green_rate)+' ('+ci(r.green_ci)+')':'n/a'}},
@@ -536,7 +543,7 @@ function paths(P){
     {h:'-50% first',num:1,v:function(r){return r.sl_first_rate},f:function(r){return r.n?pct(r.sl_first_rate):'n/a'}},
     {h:'Mean return, +50/-50',num:1,v:function(r){return r.rule_mean_return_pct},f:function(r){return pcs(r.rule_mean_return_pct)},cls:function(r){return retCls(r.rule_mean_return_pct)}},
     {h:'Median volume',num:1,v:function(r){return r.median_window_volume},f:function(r){return r.median_window_volume==null?'n/a':Number(r.median_window_volume).toLocaleString('en-US')}},
-    {h:'Quote unfillable',num:1,v:function(r){return r.unfillable_quote_rate},f:function(r){return pct(r.unfillable_quote_rate)}}])}
+    {h:'Quote unfillable (of calls with a quote)',num:1,v:function(r){return r.unfillable_quote_rate},f:function(r){return r.unfillable_quote_n?pct(r.unfillable_quote_rate)+' of '+r.unfillable_quote_n+' quoted':'n/a'}}])}
   function drawPC(){
     var all=P.by_channel||[];
     var rows=all.filter(function(r){return PSMALL||!r.small});

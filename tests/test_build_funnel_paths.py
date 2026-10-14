@@ -90,3 +90,15 @@ def test_delay_sensitivity_reuses_previous_without_bars(monkeypatch):
     out = bp.delay_sensitivity([], prev)
     assert out["reused_from_previous"] is True and out["rows"][0]["n"] == 3
     assert bp.delay_sensitivity([], None)["rows"] == []
+
+
+def test_robustness_counts_clustering_and_same_minute_repeats():
+    rows = [_row(i, posted=f"2026-09-{10 + i % 7:02d}T14:{i % 50:02d}:00+00:00") for i in range(40)]
+    rows.append(dict(rows[0], id="t.me/other/1"))          # same contract and minute as rows[0], other channel
+    rb = bp.robustness(rows, rows)
+    assert rb["n"] == 41 and rb["distinct_days"] == 7
+    assert rb["extra_rows_same_contract_same_minute"] >= 1
+    assert rb["without_same_minute_duplicates"]["n"] == 41 - rb["extra_rows_same_contract_same_minute"]
+    lo, hi = rb["cluster_by_day_95_range"]["ended_green"]
+    assert lo is not None and lo <= hi
+    assert bp.fill_gap([dict(r, fill_gap_s=g) for r, g in zip(rows, range(100, 141))])["median_s"] == 120
