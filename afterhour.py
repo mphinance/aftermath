@@ -51,6 +51,19 @@ def _get(url: str, retries: int = 6, timeout: int = 60):
 
 
 def profile_id(username: str) -> str:
+    """Resolve a username to its prf_ id via the public profile API (the web-page
+    scrape below broke when afterhour.com started 301-ing profiles to www)."""
+    try:
+        d = _get(f"https://api.afterhour.com/public/profile?username={username}")
+        if isinstance(d, dict) and str(d.get("id", "")).startswith("prf_"):
+            return d["id"]
+    except urllib.error.HTTPError as e:
+        if e.code != 404:
+            raise
+    return _profile_id_from_page(username)
+
+
+def _profile_id_from_page(username: str) -> str:
     """Your username isn't what the API uses internally — dig your prf_ id out of
     your profile page's embedded Next.js data first."""
     try:

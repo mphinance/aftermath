@@ -25,3 +25,10 @@ Thumbs.db
 
 # Local recordings buffer (generated during ADB capture)
 recordings/
+
+# Telegram funnel: unreviewed candidate accounts and third-party files
+data/telegram_funnel/candidates_*.json
+data/telegram_funnel/recon_candidates.json
+Telegram funnel channel list.pdf
+data/archive_*/
+data/archive_latest

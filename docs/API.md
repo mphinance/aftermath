@@ -200,3 +200,10 @@
 - `GET /api/mcp-schema.json`: Complete Model Context Protocol tool and resource manifest.
 - `GET /sitemap.xml`: Standard XML sitemap with 616 indexed routes.
 
+---
+
+### 9. Telegram Funnel Accounts
+- **Path**: `GET /api/funnel.json`
+- **Description**: AfterHour accounts flagged for funneling traders into Telegram channels, with evidence tier (`reported`, `corroborated`, `verified`), shared-link clusters and posting stats. Data curated by [TelegramScammers.com](https://telegramscammers.com). Flagged for investigation, not a finding of fraud.
+- **Lookup UI**: `https://ah.mphinance.com/scamcheck`. **MCP tool**: `get_funnel_accounts`.
+- See [FUNNEL.md](FUNNEL.md).

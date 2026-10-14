@@ -187,3 +187,15 @@ git push origin main
    - Always keep `absolute_redirect off;` in `default.conf`. Otherwise, requests to directory paths like `/all` redirect to `http://...` before hitting Traefik's HTTPS redirect.
 4. **Broker Snapshot Position Math**:
    - In AfterHour's raw JSON, `amount_k` is account value in **thousands** of dollars (e.g. 57382 = $57.4M, not $57.4k). Option contract quantities represent underlying shares (contracts × 100).
+
+---
+
+## 🛡️ Telegram Funnel Tracking (`/scamcheck`, `api/funnel.json`)
+
+Flag list `accounts.json` is curated by **https://telegramscammers.com** (the owner is a friend; we cannot touch his site, only send him data). We enrich it and serve it: `api/funnel.json`, MCP tool `get_funnel_accounts`, static page `scamcheck/index.html`. Full pipeline and gotchas in `docs/FUNNEL.md`.
+
+- Rebuild: `python3 build_funnel.py` (also called by `build_github_pages.py`). `scamcheck/` and `mcp/index.html` are hand-written static pages, not generated.
+- `tg_recon.py` is passive (public t.me previews only). Invite hashes are **case-sensitive**: use `telegram_links`, not the lowercased `telegram_links_norm`.
+- `afterhour.com/<user>` 301s to www and the page scrape is dead; use `api.afterhour.com/public/profile?username=`.
+- `data/telegram_funnel/candidates_*.json` and `recon_candidates.json` are unreviewed third-party accounts and are gitignored on purpose. Do not commit them.
+- Deploy only the touched files (the tree has many regenerated files); restart **both** `ah-mcp` and `ah-mphinance`.

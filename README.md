@@ -58,6 +58,13 @@ npx -y mcp-remote https://ah.mphinance.com/sse
 | `get_whale_portfolio` | Inspect verified positions, cost basis, profit, and cash for any whale | `username` |
 | `get_ticker_intel` | Security dossier, whale holders list, and 90-day daily OHLCV bars | `ticker`, `include_bars` |
 | `get_conviction_screener` | High dollar-per-holder accumulation radar | `min_intensity`, `min_owners` |
+| `screen_whales` | Screen the 395 verified portfolios by value, holdings, ticker exposure | see `api/mcp-schema.json` |
+| `get_shadow_whales` | Clout Inversion ranking: capital per follower | see `api/mcp-schema.json` |
+| `get_price_history` | Daily OHLCV bars for a ticker | `ticker`, `limit` |
+| `get_social_feed` | Live community posts and broker-verified snapshots | `ticker`, `username`, `limit` |
+| `get_funnel_accounts` | Check a username or t.me link against accounts flagged for Telegram funnels (data: [TelegramScammers.com](https://telegramscammers.com)) | `username`, `telegram_link`, `tier`, `limit` |
+
+**Check before you join:** [`/scamcheck`](https://ah.mphinance.com/scamcheck) is a lookup page over the same Telegram-funnel data. See [docs/FUNNEL.md](docs/FUNNEL.md).
 
 For detailed connection examples (Claude Desktop, Cursor IDE, Antigravity CLI, Python scripts), read the full [MCP Server Documentation](file:///home/mpha/projects/aftermath/docs/MCP.md).
 
@@ -193,6 +200,7 @@ aftermath/
 ├── docs/                        # Comprehensive documentation
 │   ├── API.md                   # REST API and endpoint specifications
 │   ├── MCP.md                   # Model Context Protocol integration guide
+│   ├── FUNNEL.md                # Telegram-funnel tracking: pipeline, recon, gotchas
 │   └── index.html               # Swagger UI explorer
 ├── mcp_server.py                # Multi-transport MCP server (stdio, SSE, JSON-RPC)
 ├── build_github_pages.py        # Static terminal builder & JSON generator
@@ -202,9 +210,14 @@ aftermath/
 │   ├── etfs.json                # 64 verified ETFs & index funds
 │   ├── whales.json              # 395 verified portfolios ($169M+ equity)
 │   ├── shadow.json              # Clout Inversion index
+│   ├── funnel.json              # Telegram-funnel flag list (TelegramScammers.com data)
 │   ├── openapi.json             # OpenAPI 3.1 specification
 │   └── ticker/                  # 500 individual ticker dossiers with OHLCV bars
 ├── mcp/                         # MCP landing page and web guides
+├── scamcheck/                   # Check-before-you-join lookup page
+├── accounts.json                # Flagged Telegram-funnel accounts (curated by telegramscammers.com)
+├── pull_funnel_posts.py / analyze_funnel.py / build_funnel.py / tg_recon.py / render_recon.py  # funnel pipeline
+├── handoff/                     # crawl.py + agent brief for the list owner
 ├── followthrough.py             # Forensic entry-vs-exit calculator
 ├── afterhour.py                 # Resilient feed scraper client
 ├── data/                        # Raw historical post archives
