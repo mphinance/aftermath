@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Callout Signals | AfterMath</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Trade callouts posted by Telegram channels linked to flagged AfterHour accounts: time, ticker, strike, entry, and how each one finished against the tape.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📡</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07090e;--card:#0d1117;--surface:#131b26;--border:#1f2937;--green:#00f59b;--cyan:#00d2ff;--gold:#ffd166;--red:#ff5c7a;--text:#e6edf3;--muted:#8b949e;--sans:'Plus Jakarta Sans',-apple-system,'Segoe UI',sans-serif;--mono:'JetBrains Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5;min-height:100vh}
+a{color:var(--cyan)}
+.nav{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border);background:rgba(13,17,23,.92);position:sticky;top:0;z-index:10}
+.nav a{min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none;font-size:13px;font-weight:600}
+.nav a:hover,.nav a.on{border-color:var(--cyan);color:var(--cyan)}
+main{max-width:900px;margin:0 auto;padding:28px 16px 56px}
+h1{font-size:clamp(26px,5vw,38px);font-weight:800;letter-spacing:-.5px}h1 span{color:var(--green)}
+.sub{color:var(--muted);margin:10px 0 18px;max-width:680px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:16px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.kpi b{display:block;font:600 20px var(--mono)}.kpi span{color:var(--muted);font-size:12px}
+.ctl{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:8px}
+input,select{min-height:44px;padding:0 12px;background:var(--card);border:1px solid var(--border);border-radius:10px;color:var(--text);font:14px var(--mono);width:100%}
+input:focus,select:focus{outline:2px solid var(--cyan);outline-offset:1px}
+.chk{display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--muted);font-size:13px;margin:6px 0 16px}
+.chk label{display:inline-flex;align-items:center;gap:6px;min-height:32px;cursor:pointer}
+.chk input{width:auto;min-height:0}
+#feed{display:grid;gap:10px}
+.sig{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--cyan);border-radius:10px;padding:12px 14px}
+.sig.close{border-left-color:var(--gold)}.sig.mention{border-left-color:var(--muted)}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;color:var(--muted);font-size:12.5px}
+.top .ch{font-family:var(--mono);overflow-wrap:anywhere}
+.k{font:600 17px var(--mono);margin:6px 0;overflow-wrap:anywhere}
+.k .t{color:var(--green)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.chip{font:600 11px var(--mono);text-transform:uppercase;padding:3px 8px;border-radius:99px;background:var(--surface);border:1px solid var(--border);color:var(--muted)}
+.chip.win{color:var(--green);border-color:var(--green)}.chip.loss{color:var(--red);border-color:var(--red)}.chip.pend{color:var(--gold);border-color:var(--gold)}.chip.claim{color:var(--cyan);border-color:var(--cyan)}
+details{margin-top:8px;color:var(--muted);font-size:12.5px}summary{cursor:pointer;min-height:28px;display:flex;align-items:center}
+details p{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:4px;font-family:var(--mono);font-size:12px}
+.empty{color:var(--muted);padding:24px 0;text-align:center}
+.more{margin-top:14px;min-height:48px;width:100%;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:10px;font:600 14px var(--sans);cursor:pointer}
+.fine{margin-top:34px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px}
+.fine p+p{margin-top:8px}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/">📊 Live Terminal</a><a href="/whales">🐋 Whales</a><a href="/signals" class="on">📡 Signals</a><a href="/scamcheck">🛡️ Scam Check</a><a href="/mcp">🤖 MCP</a><a href="/docs">📖 API</a>
+</nav>
+<main>
+  <h1>Callout <span>signals</span></h1>
+  <p class="sub">Trades called out by public Telegram channels linked to accounts flagged for funneling traders into Telegram. Each row shows when it was posted, what was called, and, once the contract expires, how it finished against the real tape.</p>
+  <div class="kpis" id="kpis"></div>
+  <div class="ctl">
+    <input id="fq" type="text" placeholder="Ticker, e.g. SPX" aria-label="Filter by ticker" autocapitalize="characters">
+    <select id="fch" aria-label="Filter by channel"><option value="">All channels</option></select>
+    <select id="fact" aria-label="Callout type">
+      <option value="open">Opens (new entries)</option><option value="close">Closes (exits)</option><option value="all">Everything, incl. mentions</option>
+    </select>
+  </div>
+  <div class="chk">
+    <label><input type="checkbox" id="fsc"> Scored at expiry only</label>
+    <label><input type="checkbox" id="fec"> Show repeat posts</label>
+  </div>
+  <div id="feed" aria-live="polite"></div>
+  <button class="more" id="more" hidden>Show more</button>
+  <div class="fine">
+    <p>Source: public Telegram channel posts, parsed by AfterMath. Channels and accounts here are flagged for investigation, not a finding of fraud. Flag list curated by <a href="https://telegramscammers.com" target="_blank" rel="noopener">TelegramScammers.com</a>.</p>
+    <p id="method"></p>
+    <p>Claimed results are what the channel itself posted, not verified. Parsing is automatic and can be wrong; the raw post text is under each row. Not advice. Data: <a href="/api/funnel-calls.json">funnel-calls.json</a>, MCP tool <code>get_funnel_callouts</code>.</p>
+  </div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+let ALL=[],SHOWN=0;const STEP=40;
+const et=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+const dfmt=iso=>{if(!iso)return null;const d=new Date(iso+'T12:00:00Z');return d.toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'})};
+const ago=ms=>{const m=Math.round(ms/60000);if(m<60)return Math.max(m,1)+'m ago';const h=Math.round(m/60);if(h<48)return h+'h ago';return Math.round(h/24)+'d ago'};
+const echo=r=>(r.parse_flags||[]).some(f=>f==='duplicate_echo'||f==='cross_channel_echo');
+function outcomeChip(r){
+  const o=r.outcome;if(!o||r.action!=='open'||r.kind!=='option')return null;
+  if(o.status==='pending')return['pend','pending, expires '+(dfmt(o.expiry_effective)||'soon')];
+  if(o.status==='scored'){
+    if(o.worthless)return['loss','expired worthless'];
+    const p=o.return_pct;if(p==null)return['pend','scored'];
+    return[p>=0?'win':'loss',(p>=0?'+':'')+Math.round(p)+'% at expiry'];
+  }
+  return['','not scored'];
+}
+function row(r){
+  const c=el('div','sig '+r.action);
+  const top=el('div','top');
+  top.append(el('span',null,et.format(new Date(r.posted))+' ET'),el('span','ch',(r.channel||'').replace(/^t\.me\//,'t.me/')));
+  c.append(top);
+  const k=el('div','k');
+  const t=el('span','t','$'+r.ticker);k.append(t);
+  let s='';
+  if(r.kind==='option'){
+    s=' '+(r.strike!=null?r.strike:'?')+(r.side?r.side[0].toUpperCase():'')
+      +(r.expiry?'  exp '+dfmt(r.expiry):'')
+      +(r.entry_price!=null?'  @ '+r.entry_price:'');
+  }
+  k.append(document.createTextNode(s));c.append(k);
+  const ch=el('div','chips');
+  ch.append(el('span','chip',r.action));
+  const oc=outcomeChip(r);if(oc)ch.append(el('span','chip '+oc[0],oc[1]));
+  if(r.action==='close'&&r.result_pct!=null)ch.append(el('span','chip claim','claimed '+(r.result_pct>=0?'+':'')+r.result_pct+'%'));
+  if(echo(r))ch.append(el('span','chip','repeat post'));
+  c.append(ch);
+  if(r.text){const d=el('details');d.append(el('summary',null,'Original post'),el('p',null,r.text));c.append(d)}
+  return c;
+}
+function filtered(){
+  const q=$('fq').value.trim().replace(/^\$/,'').toUpperCase(),ch=$('fch').value,act=$('fact').value;
+  return ALL.filter(r=>{
+    if(q&&!(r.ticker||'').toUpperCase().includes(q))return false;
+    if(ch&&r.channel!==ch)return false;
+    if(act==='open'&&!(r.action==='open'&&r.kind==='option'))return false;
+    if(act==='close'&&r.action!=='close')return false;
+    if($('fsc').checked&&!(r.outcome&&r.outcome.status==='scored'))return false;
+    if(!$('fec').checked&&echo(r))return false;
+    return true;
+  });
+}
+function render(reset){
+  const rows=filtered();if(reset)SHOWN=0;
+  const f=$('feed');if(reset)f.innerHTML='';
+  const next=rows.slice(SHOWN,SHOWN+STEP);next.forEach(r=>f.append(row(r)));SHOWN+=next.length;
+  if(!rows.length){f.innerHTML='';f.append(el('div','empty','No callouts match these filters.'))}
+  $('more').hidden=SHOWN>=rows.length;$('more').textContent='Show more ('+(rows.length-SHOWN)+' left)';
+}
+async function load(){
+  try{
+    const d=await (await fetch('/api/funnel-calls.json')).json();ALL=d.calls||[];
+    const opens=ALL.filter(r=>r.action==='open'&&r.kind==='option');
+    const chans=[...new Set(ALL.map(r=>r.channel).filter(Boolean))].sort();
+    chans.forEach(c=>{const o=el('option',null,c);o.value=c;$('fch').append(o)});
+    const last=ALL.length?new Date(ALL[0].posted):null;
+    [[opens.length,'option opens in feed'],[chans.length,'channels'],[last?ago(Date.now()-last):'n/a','latest callout'],[d.calls_with_scored_outcome||0,'scored at expiry']].forEach(([v,l])=>{const k=el('div','kpi');k.append(el('b',null,v),el('span',null,l));$('kpis').append(k)});
+    $('method').textContent=d.small_sample_warning||'';
+    if(d.generated_at){const u=el('p',null,'Feed updated '+et.format(new Date(d.generated_at))+' ET.');$('method').after(u)}
+    render(true);
+  }catch(e){$('feed').append(el('div','empty',"Couldn't load the callout feed. Try again in a minute."))}
+}
+['fq','fch','fact','fsc','fec'].forEach(i=>$(i).addEventListener(i==='fq'?'input':'change',()=>render(true)));
+$('more').addEventListener('click',()=>render(false));
+load();
+</script>
+</body>
+</html>

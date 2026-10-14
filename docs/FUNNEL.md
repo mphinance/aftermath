@@ -67,6 +67,10 @@ Scores option callouts from `calls.jsonl` against the underlying's real price, u
 
 **UI gate:** `scamcheck` shows outcome rates ("Callouts vs the tape") only when `callouts.outcomes.n_scored` is 100 or more; below that it shows "Collecting data" with no percentages. `api/funnel.json` always carries the numbers. Wording stays "flagged for investigation, not a finding of fraud", with credit to TelegramScammers.com.
 
+### `/signals` (callout feed page) and daily auto-publish
+`signals/index.html` is a static page at https://ah.mphinance.com/signals reading `api/funnel-calls.json`: newest-first callouts (time in ET, channel, ticker, strike, side, expiry, entry, open or close), filters (ticker, channel, type, scored-only, repeat posts), a scored-at-expiry chip per option open, and the channel's own claimed result on closes. Repeat posts are hidden by default. The feed shows its `generated_at` stamp.
+The Coolify cron (`scripts/run_watch.sh`, called by the server's `run_watch.sh` wrapper after it fast-forwards the checkout) runs `tg_watch.py`, `tg_outcomes.py`, `funnel_tickers.py` and `build_funnel_calls.py`, validates the two JSON files and atomically publishes `api/funnel-calls.json` and `api/funnel-tickers.json` into `/home/mph/apps/ah-portal/api/`. It does not rebuild `api/funnel.json` (accounts, clusters, outcome summary); that still needs a manual `build_funnel.py` plus deploy.
+
 ### Handoff for the list owner
 `handoff/crawl.py` (zero-dependency feed sweeper) and `handoff/AGENT_BRIEF.md` (instructions for his agent). The feed sweep is low-yield: ~1 new Telegram-linked account per 1,200 authors scanned. Mining existing scam-list posts and shared-link pivots finds far more.
 
