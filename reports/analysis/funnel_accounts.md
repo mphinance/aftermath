@@ -32,7 +32,7 @@
 - t.me/+p7rxbmljryu2otko: ['justprime', 'Primestocks']
 - t.me/+erjl9hnmo2kzyzfk: ['stockproft', 'vanguard8']
 
-## Most-promoted tickers across funnel accounts
+## Tickers most often in an account's top 3 (see funnel_tickers.md for real post counts)
 - $SPY: 28 posts
 - $QQQ: 14 posts
 - $SPX: 9 posts

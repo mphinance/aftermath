@@ -46,7 +46,7 @@ lines=[f"# Telegram Funnel Accounts: AfterMath pass ({n} accounts)\n",
  f"- Repeat-post spammers (same body >=3x): {[r['username'] for r in rows if r['max_dup_post']>=3]}",
  "\n## Creation cadence (month)", *[f"- {k}: {v}" for k,v in sorted(C.Counter((r['created'] or '?')[:7] for r in rows).items())],
  "\n## Shared links", *[f"- {k}: {[r['username'] for r in rows if r['link']==k]}" for k,_ in shared],
- "\n## Most-promoted tickers across funnel accounts", *[f"- ${t}: {c} posts" for t,c in C.Counter(t for r in rows for t,c in [(x,1) for x,_ in r['top_tickers']]).most_common(12)],
+ "\n## Tickers most often in an account's top 3 (see funnel_tickers.md for real post counts)", *[f"- ${t}: {c} posts" for t,c in C.Counter(t for r in rows for t,c in [(x,1) for x,_ in r['top_tickers']]).most_common(12)],
  "\n## Top by post volume", *[f"- @{r['username']} ({r['tier']}): {r['posts']} posts, {r['followers']} followers, eng {r['engagement']}" for r in sorted(rows,key=lambda r:-r['posts'])[:10]]]
 (out/"funnel_accounts.md").write_text("\n".join(lines))
 print("\n".join(lines))

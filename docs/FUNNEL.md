@@ -22,6 +22,7 @@ python3 analyze_funnel.py        # cadence, ticker bait, copy-paste spam -> repo
 python3 build_funnel.py          # accounts.json + post stats -> api/funnel.json (also run by build_github_pages.py)
 python3 tg_recon.py              # passive Telegram previews -> data/telegram_funnel/recon.json
 python3 tg_watch.py              # snapshot + diff over time (link rotation, dead channels, member jumps, new wallets) -> reports/analysis/funnel_watch.md; schedule daily
+python3 funnel_tickers.py          # tickers called out (AfterHour posts + archived Telegram posts) -> reports/analysis/funnel_tickers.md
 python3 render_recon.py          # recon.json -> reports/analysis/funnel_recon.html (PNG: screenshot at 1200px, 2x)
 ```
 
