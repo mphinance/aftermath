@@ -33,18 +33,18 @@
 - t.me/+erjl9hnmo2kzyzfk: ['stockproft', 'vanguard8']
 
 ## Tickers most often in an account's top 3 (see funnel_tickers.md for real post counts)
-- $SPY: 28 posts
-- $QQQ: 14 posts
-- $SPX: 9 posts
-- $AAPL: 8 posts
-- $TSLA: 7 posts
-- $MU: 6 posts
-- $NVDA: 5 posts
-- $META: 5 posts
-- $SPCX: 5 posts
-- $AMZN: 4 posts
-- $SOFI: 3 posts
-- $RXRX: 3 posts
+- $SPY: 28 accounts
+- $QQQ: 14 accounts
+- $SPX: 9 accounts
+- $AAPL: 8 accounts
+- $TSLA: 7 accounts
+- $MU: 6 accounts
+- $NVDA: 5 accounts
+- $META: 5 accounts
+- $SPCX: 5 accounts
+- $AMZN: 4 accounts
+- $SOFI: 3 accounts
+- $RXRX: 3 accounts
 
 ## Top by post volume
 - @Seneri (verified): 267 posts, 36 followers, eng 327
