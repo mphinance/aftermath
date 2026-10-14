@@ -38,8 +38,7 @@ input:focus,select:focus{outline:2px solid var(--cyan);outline-offset:1px}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
 .chip{font:600 11px var(--mono);text-transform:uppercase;padding:3px 8px;border-radius:99px;background:var(--surface);border:1px solid var(--border);color:var(--muted)}
 .chip.win{color:var(--green);border-color:var(--green)}.chip.loss{color:var(--red);border-color:var(--red)}.chip.pend{color:var(--gold);border-color:var(--gold)}.chip.claim{color:var(--cyan);border-color:var(--cyan)}
-details{margin-top:8px;color:var(--muted);font-size:12.5px}summary{cursor:pointer;min-height:28px;display:flex;align-items:center}
-details p{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:4px;font-family:var(--mono);font-size:12px}
+.orig{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:8px;padding:8px 10px;background:var(--surface);border-radius:8px;color:var(--text);font-family:var(--mono);font-size:12px;line-height:1.45}
 .tabs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
 .tabs button{min-height:44px;padding:0 16px;background:var(--card);color:var(--muted);border:1px solid var(--border);border-radius:10px;font:600 13px var(--sans);cursor:pointer}
 .tabs button.on{color:var(--cyan);border-color:var(--cyan)}
@@ -104,7 +103,7 @@ td.cell{text-align:center;font-family:var(--mono);font-size:12px}
   <div class="fine">
     <p>Source: public Telegram channel posts, parsed by AfterMath. Channels and accounts here are flagged for investigation, not a finding of fraud. Flag list curated by <a href="https://telegramscammers.com" target="_blank" rel="noopener">TelegramScammers.com</a>.</p>
     <p id="method"></p>
-    <p>Claimed results are what the channel itself posted, not verified. Parsing is automatic and can be wrong; the raw post text is under each row. Not advice. Data: <a href="/api/funnel-calls.json">funnel-calls.json</a>, MCP tool <code>get_funnel_callouts</code>.</p>
+    <p>Claimed results are what the channel itself posted, not verified. Parsing is automatic and can be wrong; the original post is shown under each row. Not advice. Data: <a href="/api/funnel-calls.json">funnel-calls.json</a>, MCP tool <code>get_funnel_callouts</code>.</p>
   </div>
 </main>
 <script>
@@ -150,7 +149,7 @@ function card(r){
   const oc=outcomeChip(r);if(oc)ch.append(el('span','chip '+oc[0],oc[1]));
   if(r.action==='close'&&r.result_pct!=null)ch.append(el('span','chip claim','claimed '+(r.result_pct>=0?'+':'')+r.result_pct+'%'));
   if(echo(r))ch.append(el('span','chip','repeat post'));c.append(ch);
-  if(r.text){const d=el('details');d.append(el('summary',null,'Original post'),el('p',null,r.text));c.append(d)}
+  if(r.text){c.append(el('p','orig',r.text))}
   return c;
 }
 function filtered(){
