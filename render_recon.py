@@ -17,7 +17,7 @@ total = sum(mem(c) for c in sized)
 rank = {"verified": 3, "corroborated": 2, "reported": 1}
 tier = lambda c: max((acc[u]["tier"] for u in c["afterhour_accounts"] if u in acc), key=lambda t: rank[t])
 title = lambda c: (c["preview"] or {}).get("title") or c["link"]
-top = sorted(sized, key=mem, reverse=True)[:10]
+top = sorted(sized, key=mem, reverse=True)[:7]
 mx = mem(top[0]) if top else 1
 bars = "".join(f'<div class="bar"><div class="bl"><b>{e(title(c))}</b><span>{len(c["afterhour_accounts"])} account{"s" if len(c["afterhour_accounts"])>1 else ""}</span></div><div class="track"><div class="fill {tier(c)}" style="width:{max(3,mem(c)/mx*100):.1f}%"></div></div><div class="bn">{mem(c):,}</div></div>' for c in top)
 multi = sorted([c for c in live if len(c["afterhour_accounts"]) > 1], key=lambda c: (-len(c["afterhour_accounts"]), -mem(c)))
@@ -32,6 +32,32 @@ twins = "".join(f'<div class="twin"><q>{e((g["description"] or "").replace(chr(1
 fps = S["shared_fingerprints"]
 fpt = "".join(f'<div class="twin"><b>{e(g["type"])}:</b> <code>{e(g["value"])}</code><span>{" &middot; ".join(e(l) for l in g["links"])}</span></div>' for g in fps[:3])
 pub = sum(1 for c in ch if c["public_posts_seen"])
+clusters = len(multi)
+cl_accts = len({u for c in multi for u in c["afterhour_accounts"]})
+admins = [g for g in fps if g["type"] in ("mentions", "email", "eth", "btc", "tron", "paypal", "cashapp")]
+wallets = sum(1 for g in fps if g["type"] in ("eth", "btc", "tron", "paypal", "cashapp"))
+watch = (B/"reports/analysis/funnel_watch.md")
+wl = [l[2:] for l in watch.read_text().splitlines() if l.startswith("- ")] if watch.exists() else []
+have_diff = watch.exists()
+def wcount(*keys): return sum(1 for l in wl if any(l.startswith(k) for k in keys))
+def wtxt(base, *keys): return (f"{wcount(*keys)} so far. " if have_diff else "Needs two snapshots to diff. ") + base
+if watch.exists():
+    wnote = f"{len(wl)} change(s) since baseline" if wl and wl[0] != "no changes" else "baseline set, no changes yet"
+else:
+    wnote = "baseline captured"
+SIG = [
+ ("c","Shared invite link",f"{clusters} channels / {cl_accts} accounts","Several accounts push the exact same invite. Operators reuse; independents do not."),
+ ("c","Identical channel copy",f"{len(ident)} pairs","Word-for-word descriptions on supposedly separate channels."),
+ ("c","Shared admin or handle",f"{len(admins)} found","Same @admin, email or payment handle across channels links operators."),
+ ("c","Dead or truncated invite",f"{len(dead)} of {len(ch)}","Generic Telegram page. Listing link needs a re-check."),
+ ("w","Link rotated",("changes" if have_diff else "pending"),wtxt("Account swaps its bio invite after a burn.","LINK ROTATED")),
+ ("w","Account gone",("changes" if have_diff else "pending"),wtxt("Deleted or banned on AfterHour.","ACCOUNT GONE")),
+ ("w","Channel dead or revived",("changes" if have_diff else "pending"),wtxt("Channels get nuked and re-spun.","WENT DEAD","REVIVED")),
+ ("w","Member jump or rewrite",("changes" if have_diff else "pending"),wtxt("Growth spikes and copy rewrites.","members","description","renamed")),
+]
+sigcards = "".join(f'<div class="sig {k}"><div class="sk">{"LIVE" if k=="c" else "OVER TIME"}</div><b>{e(n)}</b><div class="sv">{e(v)}</div><p>{e(d)}</p></div>' for k,n,v,d in SIG)
+PIPE = [("accounts.json","85 flagged accounts"),("pull_funnel_posts.py","post history"),("tg_recon.py","public t.me previews"),("tg_watch.py","snapshot + diff"),("funnel.json","API, MCP, /scamcheck")]
+pipe = "".join(f'<div class="step"><code>{e(a)}</code><span>{e(b)}</span></div>' for a,b in PIPE)
 big = top[0] if top else None
 doc = f'''<!doctype html><html><head><meta charset="utf-8"><style>
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
@@ -51,14 +77,17 @@ doc = f'''<!doctype html><html><head><meta charset="utf-8"><style>
 .fr{{grid-column:span 7}}.front{{background:var(--s);border-radius:10px;padding:11px 13px;margin-bottom:8px}}.fh{{display:flex;justify-content:space-between;font-size:13.5px}}.fh span{{font:700 13px 'JetBrains Mono';color:var(--y)}}.chips{{margin-top:6px;display:flex;flex-wrap:wrap;gap:5px}}.chips i{{font:500 11px 'JetBrains Mono';font-style:normal;background:#0b1118;border:1px solid var(--bd);padding:2px 7px;border-radius:99px;color:var(--c)}}
 .cp{{grid-column:span 5}}.twin{{background:var(--s);border-radius:10px;padding:11px 13px;margin-bottom:8px;font-size:12px;color:var(--m);overflow-wrap:anywhere}}.twin q{{display:block;color:var(--t);font-size:12.5px;margin-bottom:5px}}.twin b{{color:var(--t)}}code{{font-family:'JetBrains Mono';color:var(--y)}}.twin span{{display:block;margin-top:4px;font:500 11px 'JetBrains Mono'}}
 .note{{grid-column:span 12;display:flex;gap:30px;align-items:center;background:#1a1218;border-color:#4a2230}}.note b{{color:var(--r);font:700 38px 'JetBrains Mono'}}.note p{{font-size:13.5px;color:var(--m)}}.note p em{{color:var(--t);font-style:normal}}
+.pipe{{grid-column:span 12;display:flex;align-items:center;gap:0;padding:16px 18px}}.step{{flex:1;background:var(--s);border-radius:10px;padding:10px 12px;position:relative;margin-right:22px}}.step:last-child{{margin-right:0}}.step:not(:last-child):after{{content:'\\2192';position:absolute;right:-19px;top:50%;transform:translateY(-50%);color:var(--c);font-size:16px}}.step code{{display:block;font-size:12.5px;color:var(--g)}}.step span{{font-size:11px;color:var(--m)}}.sigs{{grid-column:span 12}}.sg{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}}.sig{{background:var(--s);border-radius:12px;padding:14px;border-top:3px solid var(--c)}}.sig.w{{border-top-color:var(--y)}}.sk{{font:700 9.5px 'JetBrains Mono';letter-spacing:1.4px;color:var(--c)}}.sig.w .sk{{color:var(--y)}}.sig b{{display:block;font-size:14px;margin:6px 0 2px}}.sv{{font:700 20px 'JetBrains Mono';color:var(--t);margin-bottom:6px}}.sig p{{font-size:11.5px;color:var(--m);line-height:1.45}}.wn{{font:500 11.5px 'JetBrains Mono';color:var(--y);margin-top:12px}}
 .ft{{color:var(--m);font-size:11.5px;margin-top:18px;display:flex;justify-content:space-between}}
 </style></head><body>
-<div class="hd"><div><h1>Telegram Funnel <span>Recon</span></h1><div class="sub">Passive sweep of the public Telegram previews behind every flagged AfterHour account. No joins, no logins, no posts.</div></div><div class="tag">AfterMath &times; TelegramScammers.com<br>ah.mphinance.com/scamcheck</div></div>
+<div class="hd"><div><h1>Telegram Funnel <span>Recon</span></h1><div class="sub">Passive pipeline over the public Telegram previews behind every flagged AfterHour account, with the signals it tracks. No joins, no logins, no posts.</div></div><div class="tag">github.com/mphinance/aftermath<br>docs/FUNNEL.md</div></div>
 <div class="grid">
 <div class="t hero"><h2>Combined reach</h2><b>{total:,}</b><p><em>members</em> across {len(sized)} channels with a public count, all pushed by <em>{len(acc)} AfterHour accounts</em>. Biggest single funnel: <em>{e(title(big)) if big else ""}</em> at {mem(big):,}.</p></div>
 <div class="t donut"><h2>Link health</h2><div class="ring"><div>{len(live)}</div></div><p>of {len(ch)} channels resolve.<br><b>{len(dead)}</b> invalid or truncated invites</p></div>
 <div class="t stat"><h2>Public w/ posts</h2><b>{pub}</b><span>channels let us read recent posts without joining</span></div>
 <div class="t stat"><h2>Shared by 2+</h2><b>{len(multi)}</b><span>channels fronted by multiple accounts</span></div>
+<div class="t pipe">{pipe}</div>
+<div class="t sigs"><h2>Signals tracked</h2><div class="sg">{sigcards}</div><div class="wn">tg_watch: {wnote} &middot; run it daily and these turn into alerts</div></div>
 <div class="t top"><h2>Biggest funnels by members</h2>{bars}<div class="leg"><i class="v">verified</i><i class="cr">corroborated</i><i>reported</i> strongest evidence tier on the AfterHour side</div></div>
 <div class="t size"><h2>Channel size</h2>{buckets}<p class="leg" style="margin-top:14px">Member counts from Telegram's own public preview at time of run.</p></div>
 <div class="t fr"><h2>One channel, many fronts</h2>{fronts}</div>
