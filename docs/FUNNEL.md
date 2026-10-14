@@ -21,6 +21,7 @@ python3 pull_funnel_posts.py     # full post history per account -> data/telegra
 python3 analyze_funnel.py        # cadence, ticker bait, copy-paste spam -> reports/analysis/funnel_accounts.{json,md}
 python3 build_funnel.py          # accounts.json + post stats -> api/funnel.json (also run by build_github_pages.py)
 python3 tg_recon.py              # passive Telegram previews -> data/telegram_funnel/recon.json
+python3 tg_watch.py              # snapshot + diff over time (link rotation, dead channels, member jumps, new wallets) -> reports/analysis/funnel_watch.md; schedule daily
 python3 render_recon.py          # recon.json -> reports/analysis/funnel_recon.html (PNG: screenshot at 1200px, 2x)
 ```
 
@@ -31,6 +32,9 @@ Fetches only the public web previews Telegram serves to anyone: `t.me/<handle>` 
 - A generic "You are invited to a group chat" page means the invite is invalid, revoked or truncated; the script marks it `alive: false`.
 - `--reanalyze` re-runs filters and clustering on an existing output with no network.
 - Stock tickers (`$SPY`) are filtered out of the cashtag fingerprint.
+
+### `tg_watch.py` (change tracking)
+Runs `tg_recon.py` plus a re-check of every flagged AfterHour profile, saves a timestamped snapshot under `data/telegram_funnel/snapshots/` (gitignored), diffs against the previous one, and archives new public posts (deduped) to `posts_archive.jsonl`. Flags: bio link rotated, account gone, channel dead or revived, member jump (100 or 10%), description rewritten, renamed, new wallets/prices/admins, new cross-promoted channels. `--no-fetch` re-diffs the two newest snapshots offline. Public channel history beyond the newest ~20 posts is not paged yet (`t.me/s/<handle>?before=<id>` would do it).
 
 ### Handoff for the list owner
 `handoff/crawl.py` (zero-dependency feed sweeper) and `handoff/AGENT_BRIEF.md` (instructions for his agent). The feed sweep is low-yield: ~1 new Telegram-linked account per 1,200 authors scanned. Mining existing scam-list posts and shared-link pivots finds far more.

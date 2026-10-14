@@ -32,3 +32,5 @@ data/telegram_funnel/recon_candidates.json
 Telegram funnel channel list.pdf
 data/archive_*/
 data/archive_latest
+data/telegram_funnel/snapshots/
+data/telegram_funnel/posts_archive.jsonl

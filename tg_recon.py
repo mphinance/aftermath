@@ -139,7 +139,7 @@ def main():
         text = " ".join([(pv or {}).get("description") or ""] + [p["text"] for p in ps])
         row = {"link": link, "afterhour_accounts": by_link[link], "alive": is_alive(pv),
                "preview": pv, "public_posts_seen": len(ps), "fingerprints": fingerprints(text, link),
-               "recent_posts": ps[-5:]}
+               "recent_posts": ps}
         res.append(row)
         print(f"[{i}/{len(links)}] {link}: {(pv or {}).get('title')!r} members={(pv or {}).get('members')} posts={len(ps)}", file=sys.stderr, flush=True)
 
