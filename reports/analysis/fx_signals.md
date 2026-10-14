@@ -8,7 +8,7 @@ Stage order (each stage counts what survives the previous one): bulk-timestamp e
 
 | stage | n | note |
 |---|---:|---|
-| posts in archive (all channels) | 13478 | 27 channels |
+| posts in archive (all channels) | 13618 | 27 channels |
 | posts naming an instrument and a side | 386 | includes 107 with no SL/TP (heads-up posts, analysis, result claims), not scored |
 | signal-shaped (instrument + side + SL or TP) | 279 | |
 | after valid-date filter | 224 | 55 dropped: (channel, timestamp) shared by 6 or more posts. Many are same-second repost bursts: only 16 distinct signals exist solely inside those groups (see section 6 for the groups) |
@@ -19,7 +19,7 @@ Stage order (each stage counts what survives the previous one): bulk-timestamp e
 | filled (market or touch) | 63 | not filled: cancelled_tp_before_fill 30, cancelled_sl_before_fill 6, not_filled_in_window 2 |
 | scored (full horizon of data, valid levels) | 63 | market-fill variant 51, touch-fill variant 12. Excluded after fill: 0 |
 
-Non-signal posts (no instrument, no side, or no levels) are not rows; only `data/telegram_funnel/fx_claims.jsonl` keeps the follow-up claims among them (93 claims captured, 3 of them from bulk-timestamp posts).
+Non-signal posts (no instrument, no side, or no levels) are not rows; only `data/telegram_funnel/fx_claims.jsonl` keeps the follow-up claims among them (94 claims captured, 3 of them from bulk-timestamp posts).
 
 ## 2. Instruments seen
 
@@ -28,21 +28,21 @@ Non-signal posts (no instrument, no side, or no levels) are not rows; only `data
 | XAUUSD | 290 | 214 | 55 | 0.1 | GC=F |
 | US30 | 25 | 24 | 2 | 1 | YM=F |
 | BTCUSD | 23 | 2 | 1 | unsupported | BTC-USD |
-| XRPUSD | 9 | 7 | 0 | unsupported | none |
 | SOLUSD | 9 | 4 | 0 | unsupported | none |
+| XRPUSD | 9 | 7 | 0 | unsupported | none |
 | ETHUSD | 7 | 5 | 0 | unsupported | ETH-USD |
 | NAS100 | 5 | 5 | 3 | 1 | NQ=F |
 | FX:GBPCHF | 3 | 3 | 0 | 0.0001 | GBPCHF=X |
+| LINKUSD | 2 | 2 | 0 | unsupported | none |
 | HBARUSD | 2 | 2 | 0 | unsupported | none |
 | MTLUSD | 2 | 2 | 0 | unsupported | none |
 | SUIUSD | 2 | 2 | 0 | unsupported | none |
 | ONGUSD | 2 | 2 | 0 | unsupported | none |
-| LINKUSD | 2 | 2 | 0 | unsupported | none |
+| DOGEUSD | 1 | 1 | 0 | unsupported | none |
+| ACTUSD | 1 | 1 | 0 | unsupported | none |
 | AVAXUSD | 1 | 1 | 1 | unsupported | AVAX-USD |
 | FX:EURUSD | 1 | 1 | 0 | 0.0001 | none |
 | FX:USDCAD | 1 | 1 | 1 | 0.0001 | USDCAD=X |
-| ACTUSD | 1 | 1 | 0 | unsupported | none |
-| DOGEUSD | 1 | 1 | 0 | unsupported | none |
 
 ## 3. Yahoo symbol validation
 
@@ -184,7 +184,7 @@ Same-timestamp groups (SV, 6 or more posts at one exact second). Composition sho
 
 ## 7. Channel follow-up claims (not scored)
 
-93 claim-like posts (90 outside bulk timestamps) saved to `data/telegram_funnel/fx_claims.jsonl`: secure_be 53, sl_hit 24, pips 10, tp_hit 9, running 8. These are the channel's own words ("Tp1 done", "+180 pips", "running 110+ pips") without an attached trade id, so they cannot be matched to one signal yet. Next step if wanted: join each claim to the most recent unresolved signal before it and compare the claimed pips with the tape.
+94 claim-like posts (91 outside bulk timestamps) saved to `data/telegram_funnel/fx_claims.jsonl`: secure_be 53, sl_hit 24, tp_hit 10, pips 10, running 8. These are the channel's own words ("Tp1 done", "+180 pips", "running 110+ pips") without an attached trade id, so they cannot be matched to one signal yet. Next step if wanted: join each claim to the most recent unresolved signal before it and compare the claimed pips with the tape.
 
 stockmarketvault stated pip figures outside bulk timestamps: n=7, median 180, max 590.
 

@@ -19,12 +19,15 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--pages", type=int, default=40)
     ap.add_argument("--only", default="")
+    ap.add_argument("--until", default="", help="stop walking back once posts are older than this date (YYYY-MM-DD)")
+    ap.add_argument("--accounts", default=str(BASE / "accounts.json"))
+    ap.add_argument("--out", default=str(ARCH), help="append here; use a separate file and merge later while other jobs read the archive")
     a = ap.parse_args()
     seen = set()
     if ARCH.exists():
         seen = {json.loads(l)["id"] for l in ARCH.open() if l.strip()}
     handles = {}
-    for acc in json.load(open(BASE / "accounts.json")):
+    for acc in json.load(open(a.accounts)):
         for raw in acc.get("telegram_links", []):
             h = raw.rstrip("/").split("/")[-1]
             if h and not h.startswith("+"):
@@ -32,9 +35,9 @@ def main():
     todo = [h for k, h in sorted(handles.items()) if not a.only or a.only.lower() in k]
     total = 0
     for i, h in enumerate(todo, 1):
-        ps = tg_recon.posts(h, a.pages)
+        ps = tg_recon.posts(h, a.pages, a.until or None)
         new = [p for p in ps if p.get("id") and p["id"] not in seen]
-        with ARCH.open("a") as f:
+        with open(a.out, "a") as f:
             for p in new:
                 seen.add(p["id"])
                 f.write(json.dumps({**p, "channel": "t.me/" + h.lower(), "first_seen": "deep_backfill"}, ensure_ascii=False) + "\n")

@@ -2,7 +2,7 @@
 """Pull full post history for every account in accounts.json (read-only API, serial)."""
 import json, sys, time
 from pathlib import Path
-from afterhour import fetch_all_posts, normalize
+from afterhour import fetch_all_posts, normalize, profile_id
 
 BASE = Path(__file__).resolve().parent
 OUT = BASE / "data" / "telegram_funnel"
@@ -13,8 +13,11 @@ for a in accts:
     if f.exists():
         continue
     pid = a.get("profile_id")
-    if not pid:
-        print("no pid", a["username"]); continue
+    if not pid:  # hand-added upstream rows can lack it: resolve via the public profile API
+        try:
+            pid = profile_id(a["username"])
+        except Exception as e:
+            print("no pid", a["username"], e); continue
     try:
         posts = [normalize(i) for i in fetch_all_posts(pid)]
     except Exception as e:

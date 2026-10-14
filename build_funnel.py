@@ -71,6 +71,7 @@ for a in accts:
         "max_duplicate_post": max(dup.values(), default=0),
         "top_tickers": [t for t, _ in tick.most_common(3)],
         "tickers_pushed": [t for t, _ in tick.most_common(3)],
+        "risk_score": a.get("risk_score"), "risk_factors": a.get("risk_factors"), "age_days": a.get("age_days"),
         "afterhour_url": f"https://afterhour.com/{a['username']}",
         "listing_url": f"{SITE}/database",
     })

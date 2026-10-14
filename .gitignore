@@ -38,3 +38,5 @@ data/telegram_funnel/calls.jsonl
 data/telegram_funnel/price_cache/
 handoff_private/
 data/telegram_funnel/recon_pivot.json
+data/telegram_funnel/option_bars/
+data/telegram_funnel/option_paths.jsonl

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Daily Telegram-funnel run (Coolify host cron, 13:15 UTC). Passive: public t.me previews, public AfterHour
 # profile API and Yahoo public price bars only. Called by /home/mph/apps/aftermath-watch/run_watch.sh after it
-# fast-forwards the checkout. Publishes four JSON files to the live webroot, gated (fresh, populated, never shrinks) and swapped atomically.
+# fast-forwards the checkout. Publishes four JSON files to the live webroot, validated and swapped atomically.
 # Every step after tg_watch is failure-tolerant: a failed step keeps the previous data and never aborts the publish.
 set -u
 cd "$(dirname "$0")/.." || exit 1
@@ -10,12 +10,19 @@ mkdir -p data/telegram_funnel reports/analysis api
 # Freshness stamp: a file counts as built by THIS run only if it is newer than this marker. After the git reset the
 # checkout holds committed copies of api/*.json; without this check a failed build would publish them over the live files.
 STAMP="$(mktemp)"; trap 'rm -f "$STAMP"' EXIT
+python3 sync_upstream.py || echo "sync_upstream failed (keeping current accounts.json)"
+timeout 900 python3 pull_funnel_posts.py >/dev/null || echo "pull_funnel_posts failed or timed out"   # fetches history for NEW accounts only
 timeout 3000 python3 tg_watch.py        # snapshot, diff vs previous, archive new public posts, parse callouts
 timeout 2400 python3 tg_outcomes.py >/dev/null || echo "tg_outcomes failed or timed out (keeping previous outcomes)"
+# build_funnel.py reads data/telegram_funnel/recon.json: point it at the snapshot tg_watch just took
+latest=$(ls -1 data/telegram_funnel/snapshots/recon_*.json 2>/dev/null | tail -1)
+[ -n "$latest" ] && cp "$latest" data/telegram_funnel/recon.json
 python3 funnel_tickers.py >/dev/null || echo "funnel_tickers failed"
 python3 build_funnel_calls.py || echo "build_funnel_calls failed"
 timeout 1500 python3 tg_fx_signals.py >/dev/null || echo "tg_fx_signals failed or timed out (keeping previous fx signals)"
 python3 build_funnel_scorecard.py || echo "build_funnel_scorecard failed"
+python3 build_funnel.py || echo "build_funnel failed"
+python3 build_funnel_export.py || echo "build_funnel_export failed"
 if [ -d "$PUBLISH_DIR" ]; then
   # Publish gate, per file (FORCE_PUBLISH=1 skips the shrink check only, never the freshness check):
   #   1. fresh: built by this run (newer than $STAMP), so a failed build cannot republish the committed copy
@@ -23,7 +30,7 @@ if [ -d "$PUBLISH_DIR" ]; then
   #   3. never shrinks: against the file already live, options n_scored and callout totals must stay >= 80% and FX
   #      scored signals >= 50% (FX ages out of Yahoo's 60-day 5m window, options only accumulate). A run on a thin
   #      archive (e.g. the server's, which is smaller than the local one) therefore cannot replace a richer live file.
-  for spec in funnel-calls.json:count funnel-tickers.json:count funnel-scorecard.json:scorecard funnel-fx-signals.json:fx; do
+  for spec in funnel.json:count funnel-calls-full.json:count funnel-calls.json:count funnel-tickers.json:count funnel-scorecard.json:scorecard funnel-fx-signals.json:fx; do
     f="${spec%%:*}"; key="${spec##*:}"
     if [ ! "api/$f" -nt "$STAMP" ]; then echo "skip publish $f (not rebuilt by this run)"; continue; fi
     if python3 - "api/$f" "$PUBLISH_DIR/$f" "$key" "${FORCE_PUBLISH:-0}" <<'PY'
@@ -55,6 +62,7 @@ sys.exit(0)
 PY
     then
       cp "api/$f" "$PUBLISH_DIR/.$f.tmp" && mv "$PUBLISH_DIR/.$f.tmp" "$PUBLISH_DIR/$f" && echo "published $f"
+      if [ "$f" = "funnel-calls-full.json" ] && [ -f api/funnel-calls-full.csv ]; then cp api/funnel-calls-full.csv "$PUBLISH_DIR/.funnel-calls-full.csv.tmp" && mv "$PUBLISH_DIR/.funnel-calls-full.csv.tmp" "$PUBLISH_DIR/funnel-calls-full.csv" && echo "published funnel-calls-full.csv"; fi
     else
       echo "skip publish $f (empty, invalid or smaller than the live file)"
     fi

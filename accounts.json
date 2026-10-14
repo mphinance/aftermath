@@ -26,7 +26,12 @@
   "destination_platform": "telegram",
   "listing_id": "TS-001",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 128,
+  "risk_score": 20,
+  "risk_factors": [
+   "single funnel observation"
+  ]
  },
  {
   "username": "alphasyndicatetrd",
@@ -55,7 +60,13 @@
   "destination_platform": "telegram",
   "listing_id": "TS-002",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 133,
+  "risk_score": 30,
+  "risk_factors": [
+   "single funnel observation",
+   "private invite link"
+  ]
  },
  {
   "username": "APEXSTOCKHUB",
@@ -84,7 +95,12 @@
   "destination_platform": "telegram",
   "listing_id": "TS-003",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 73,
+  "risk_score": 20,
+  "risk_factors": [
+   "single funnel observation"
+  ]
  },
  {
   "username": "Apextrade3",
@@ -113,7 +129,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-004",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 20,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "axisalgorithmictrade",
@@ -142,7 +165,12 @@
   "destination_platform": "telegram",
   "listing_id": "TS-005",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 16,
+  "risk_score": 20,
+  "risk_factors": [
+   "single funnel observation"
+  ]
  },
  {
   "username": "beatdaodds",
@@ -171,7 +199,13 @@
   "destination_platform": "telegram",
   "listing_id": "TS-006",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 106,
+  "risk_score": 30,
+  "risk_factors": [
+   "single funnel observation",
+   "private invite link"
+  ]
  },
  {
   "username": "black_card07",
@@ -200,7 +234,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-007",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 14,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "0 followers"
+  ]
  },
  {
   "username": "blockwave01",
@@ -229,7 +270,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-008",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 19,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "0 followers"
+  ]
  },
  {
   "username": "BondMaster355",
@@ -257,8 +305,16 @@
   "platform": "afterhour",
   "destination_platform": "telegram",
   "listing_id": "TS-009",
-  "tier": "reported",
-  "cluster_key": null
+  "tier": "corroborated",
+  "cluster_key": "t.me/+844hh2q2ffs4y2nk",
+  "age_days": 19,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "Capitalguru",
@@ -287,7 +343,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-010",
   "tier": "corroborated",
-  "cluster_key": "t.me/+96dwha7da9oxy2m8"
+  "cluster_key": "t.me/+96dwha7da9oxy2m8",
+  "age_days": 127,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "private invite link",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "ChartX",
@@ -316,7 +379,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-011",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 12,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "ClintAwana",
@@ -345,7 +415,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-012",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 36,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "clintonstocks2",
@@ -374,7 +451,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-013",
   "tier": "verified",
-  "cluster_key": "t.me/clintonstock1"
+  "cluster_key": "t.me/clintonstock1",
+  "age_days": 132,
+  "risk_score": 60,
+  "risk_factors": [
+   "evidence captured & checked",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "clone1",
@@ -403,7 +487,13 @@
   "destination_platform": "telegram",
   "listing_id": "TS-014",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 65,
+  "risk_score": 30,
+  "risk_factors": [
+   "single funnel observation",
+   "private invite link"
+  ]
  },
  {
   "username": "cooper_",
@@ -432,7 +522,16 @@
   "destination_platform": "telegram",
   "listing_id": "TS-015",
   "tier": "corroborated",
-  "cluster_key": "t.me/+khxj76ebbx1hmtyo"
+  "cluster_key": "t.me/+khxj76ebbx1hmtyo",
+  "age_days": 37,
+  "risk_score": 75,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "CRESTOPTIONS",
@@ -461,7 +560,16 @@
   "destination_platform": "telegram",
   "listing_id": "TS-016",
   "tier": "verified",
-  "cluster_key": "t.me/crestedgeroom"
+  "cluster_key": "t.me/crestedgeroom",
+  "age_days": 23,
+  "risk_score": 85,
+  "risk_factors": [
+   "evidence captured & checked",
+   "burner pattern: new + low posts",
+   "0 followers",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "crestoverload",
@@ -490,7 +598,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-017",
   "tier": "verified",
-  "cluster_key": "t.me/crestedgeroom"
+  "cluster_key": "t.me/crestedgeroom",
+  "age_days": 14,
+  "risk_score": 60,
+  "risk_factors": [
+   "evidence captured & checked",
+   "0 followers",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "DannyCWayne",
@@ -519,7 +634,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-018",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 11,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "0 followers"
+  ]
  },
  {
   "username": "dennisbtc",
@@ -548,7 +670,12 @@
   "destination_platform": "telegram",
   "listing_id": "TS-019",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 91,
+  "risk_score": 20,
+  "risk_factors": [
+   "single funnel observation"
+  ]
  },
  {
   "username": "DGainers",
@@ -577,7 +704,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-020",
   "tier": "corroborated",
-  "cluster_key": "t.me/f_trad_free_channel"
+  "cluster_key": "t.me/f_trad_free_channel",
+  "age_days": 13,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "DocICU",
@@ -606,7 +740,12 @@
   "destination_platform": "telegram",
   "listing_id": "TS-021",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 648,
+  "risk_score": 20,
+  "risk_factors": [
+   "single funnel observation"
+  ]
  },
  {
   "username": "Einsteinofwallstreet",
@@ -635,7 +774,13 @@
   "destination_platform": "telegram",
   "listing_id": "TS-022",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 6,
+  "risk_score": 35,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts"
+  ]
  },
  {
   "username": "ExitSurfer308",
@@ -664,7 +809,13 @@
   "destination_platform": "telegram",
   "listing_id": "TS-023",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 110,
+  "risk_score": 30,
+  "risk_factors": [
+   "single funnel observation",
+   "0 followers"
+  ]
  },
  {
   "username": "ExitTitan000",
@@ -693,7 +844,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-024",
   "tier": "verified",
-  "cluster_key": "t.me/mrquickerfreealert"
+  "cluster_key": "t.me/mrquickerfreealert",
+  "age_days": 20,
+  "risk_score": 60,
+  "risk_factors": [
+   "evidence captured & checked",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "falcon01",
@@ -722,7 +880,13 @@
   "destination_platform": "telegram",
   "listing_id": "TS-025",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 103,
+  "risk_score": 30,
+  "risk_factors": [
+   "single funnel observation",
+   "0 followers"
+  ]
  },
  {
   "username": "gamma_sphere0",
@@ -751,7 +915,16 @@
   "destination_platform": "telegram",
   "listing_id": "TS-026",
   "tier": "verified",
-  "cluster_key": "t.me/gammasphere47"
+  "cluster_key": "t.me/gammasphere47",
+  "age_days": 8,
+  "risk_score": 85,
+  "risk_factors": [
+   "evidence captured & checked",
+   "burner pattern: new + low posts",
+   "0 followers",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "gammalart",
@@ -780,7 +953,16 @@
   "destination_platform": "telegram",
   "listing_id": "TS-027",
   "tier": "verified",
-  "cluster_key": "t.me/gammasphere47"
+  "cluster_key": "t.me/gammasphere47",
+  "age_days": 2,
+  "risk_score": 85,
+  "risk_factors": [
+   "evidence captured & checked",
+   "burner pattern: new + low posts",
+   "0 followers",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "gammaspere",
@@ -809,7 +991,15 @@
   "destination_platform": "telegram",
   "listing_id": "TS-028",
   "tier": "verified",
-  "cluster_key": "t.me/gammasphere47"
+  "cluster_key": "t.me/gammasphere47",
+  "age_days": 92,
+  "risk_score": 70,
+  "risk_factors": [
+   "evidence captured & checked",
+   "0 followers",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "hamiltonstock",
@@ -838,7 +1028,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-029",
   "tier": "verified",
-  "cluster_key": "t.me/clintonstock1"
+  "cluster_key": "t.me/clintonstock1",
+  "age_days": 132,
+  "risk_score": 60,
+  "risk_factors": [
+   "evidence captured & checked",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "helpinghand",
@@ -867,7 +1064,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-030",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 47,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "hiddenzon",
@@ -896,7 +1100,12 @@
   "destination_platform": "telegram",
   "listing_id": "TS-031",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 78,
+  "risk_score": 20,
+  "risk_factors": [
+   "single funnel observation"
+  ]
  },
  {
   "username": "jackieshaw",
@@ -929,7 +1138,16 @@
   "destination_platform": "telegram",
   "listing_id": "TS-032",
   "tier": "corroborated",
-  "cluster_key": "t.me/+l5ymfjlfwzq4mde8"
+  "cluster_key": "t.me/+l5ymfjlfwzq4mde8",
+  "age_days": 12,
+  "risk_score": 75,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "Jackson87",
@@ -958,7 +1176,15 @@
   "destination_platform": "telegram",
   "listing_id": "TS-033",
   "tier": "corroborated",
-  "cluster_key": "t.me/bzjzhzhzuzzu"
+  "cluster_key": "t.me/bzjzhzhzuzzu",
+  "age_days": 175,
+  "risk_score": 60,
+  "risk_factors": [
+   "shared link across accounts",
+   "0 followers",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "justprime",
@@ -987,7 +1213,15 @@
   "destination_platform": "telegram",
   "listing_id": "TS-034",
   "tier": "corroborated",
-  "cluster_key": "t.me/+p7rxbmljryu2otko"
+  "cluster_key": "t.me/+p7rxbmljryu2otko",
+  "age_days": 17,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "KapGain",
@@ -1016,7 +1250,16 @@
   "destination_platform": "telegram",
   "listing_id": "TS-035",
   "tier": "corroborated",
-  "cluster_key": "t.me/bzjzhzhzuzzu"
+  "cluster_key": "t.me/bzjzhzhzuzzu",
+  "age_days": 13,
+  "risk_score": 70,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "0 followers",
+   "shared Telegram link",
+   "pseudonymous operator"
+  ]
  },
  {
   "username": "Kor_yphe23",
@@ -1044,8 +1287,15 @@
   "platform": "afterhour",
   "destination_platform": "telegram",
   "listing_id": "TS-036",
-  "tier": "reported",
-  "cluster_key": null
+  "tier": "corroborated",
+  "cluster_key": "t.me/apextraderkoryphae",
+  "age_days": 110,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "0 followers",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "MarginConqueror948",
@@ -1074,7 +1324,16 @@
   "destination_platform": "telegram",
   "listing_id": "TS-037",
   "tier": "verified",
-  "cluster_key": "t.me/mrquickerfreealert"
+  "cluster_key": "t.me/mrquickerfreealert",
+  "age_days": 26,
+  "risk_score": 85,
+  "risk_factors": [
+   "evidence captured & checked",
+   "burner pattern: new + low posts",
+   "0 followers",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "MAYA_BLAKE",
@@ -1103,7 +1362,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-038",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 51,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "0 followers"
+  ]
  },
  {
   "username": "Michealanderson",
@@ -1132,7 +1398,12 @@
   "destination_platform": "telegram",
   "listing_id": "TS-039",
   "tier": "verified",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 15,
+  "risk_score": 40,
+  "risk_factors": [
+   "evidence captured & checked"
+  ]
  },
  {
   "username": "MISTER_GAIN",
@@ -1161,7 +1432,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-040",
   "tier": "corroborated",
-  "cluster_key": "t.me/f_trad_free_channel"
+  "cluster_key": "t.me/f_trad_free_channel",
+  "age_days": 16,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "MomentumWhisper145",
@@ -1190,7 +1468,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-041",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 5,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "0 followers"
+  ]
  },
  {
   "username": "money_maker",
@@ -1219,7 +1504,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-042",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 4,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "moonwalker7",
@@ -1247,8 +1539,16 @@
   "platform": "afterhour",
   "destination_platform": "telegram",
   "listing_id": "TS-043",
-  "tier": "reported",
-  "cluster_key": null
+  "tier": "corroborated",
+  "cluster_key": "t.me/moonwalkertrades2",
+  "age_days": 16,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "mr_bob32",
@@ -1276,8 +1576,14 @@
   "platform": "afterhour",
   "destination_platform": "telegram",
   "listing_id": "TS-044",
-  "tier": "reported",
-  "cluster_key": null
+  "tier": "corroborated",
+  "cluster_key": "t.me/bob_signalsfreealert",
+  "age_days": 138,
+  "risk_score": 40,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "MR_FORTUNE",
@@ -1306,7 +1612,12 @@
   "destination_platform": "telegram",
   "listing_id": "TS-045",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 7,
+  "risk_score": 20,
+  "risk_factors": [
+   "single funnel observation"
+  ]
  },
  {
   "username": "Mr_pri",
@@ -1327,7 +1638,13 @@
   "destination_platform": "telegram",
   "listing_id": "TS-046",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": null,
+  "risk_score": 15,
+  "risk_factors": [
+   "single funnel observation",
+   "no link found"
+  ]
  },
  {
   "username": "Mr_Q1",
@@ -1356,7 +1673,15 @@
   "destination_platform": "telegram",
   "listing_id": "TS-047",
   "tier": "verified",
-  "cluster_key": "t.me/mrquickerfreealert"
+  "cluster_key": "t.me/mrquickerfreealert",
+  "age_days": 89,
+  "risk_score": 70,
+  "risk_factors": [
+   "evidence captured & checked",
+   "0 followers",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "NexD",
@@ -1385,7 +1710,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-048",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 57,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "noguesswork3",
@@ -1414,7 +1746,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-049",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 6,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "nostress_profits",
@@ -1443,7 +1782,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-050",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 34,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "Owenmoshey",
@@ -1472,7 +1818,13 @@
   "destination_platform": "telegram",
   "listing_id": "TS-051",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 49,
+  "risk_score": 35,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts"
+  ]
  },
  {
   "username": "pecolastocks",
@@ -1501,7 +1853,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-052",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 23,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "Pentagon",
@@ -1530,7 +1889,13 @@
   "destination_platform": "telegram",
   "listing_id": "TS-053",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 129,
+  "risk_score": 30,
+  "risk_factors": [
+   "single funnel observation",
+   "private invite link"
+  ]
  },
  {
   "username": "PivotalFX",
@@ -1559,7 +1924,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-054",
   "tier": "corroborated",
-  "cluster_key": "t.me/+96dwha7da9oxy2m8"
+  "cluster_key": "t.me/+96dwha7da9oxy2m8",
+  "age_days": 134,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "private invite link",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "PortfolioAnalyst18",
@@ -1588,7 +1960,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-055",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 26,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "Pratt_stock",
@@ -1617,7 +1996,13 @@
   "destination_platform": "telegram",
   "listing_id": "TS-056",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 64,
+  "risk_score": 30,
+  "risk_factors": [
+   "single funnel observation",
+   "private invite link"
+  ]
  },
  {
   "username": "Primestocks",
@@ -1646,7 +2031,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-057",
   "tier": "corroborated",
-  "cluster_key": "t.me/+p7rxbmljryu2otko"
+  "cluster_key": "t.me/+p7rxbmljryu2otko",
+  "age_days": 101,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "private invite link",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "profitpathfinder03",
@@ -1675,7 +2067,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-058",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 15,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "remy1",
@@ -1703,8 +2102,15 @@
   "platform": "afterhour",
   "destination_platform": "telegram",
   "listing_id": "TS-059",
-  "tier": "reported",
-  "cluster_key": null
+  "tier": "corroborated",
+  "cluster_key": "t.me/legacypublicroom",
+  "age_days": 119,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "0 followers",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "ReversalPlayer615",
@@ -1732,8 +2138,14 @@
   "platform": "afterhour",
   "destination_platform": "telegram",
   "listing_id": "TS-060",
-  "tier": "reported",
-  "cluster_key": null
+  "tier": "corroborated",
+  "cluster_key": "t.me/ajfreealart32",
+  "age_days": 15,
+  "risk_score": 40,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "Rixk",
@@ -1762,7 +2174,16 @@
   "destination_platform": "telegram",
   "listing_id": "TS-061",
   "tier": "corroborated",
-  "cluster_key": "t.me/+l5ymfjlfwzq4mde8"
+  "cluster_key": "t.me/+l5ymfjlfwzq4mde8",
+  "age_days": 13,
+  "risk_score": 75,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "Ronk",
@@ -1791,7 +2212,16 @@
   "destination_platform": "telegram",
   "listing_id": "TS-062",
   "tier": "corroborated",
-  "cluster_key": "t.me/+l5ymfjlfwzq4mde8"
+  "cluster_key": "t.me/+l5ymfjlfwzq4mde8",
+  "age_days": 28,
+  "risk_score": 75,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "Seneri",
@@ -1820,7 +2250,12 @@
   "destination_platform": "telegram",
   "listing_id": "TS-063",
   "tier": "verified",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 19,
+  "risk_score": 40,
+  "risk_factors": [
+   "evidence captured & checked"
+  ]
  },
  {
   "username": "seven33",
@@ -1848,8 +2283,15 @@
   "platform": "afterhour",
   "destination_platform": "telegram",
   "listing_id": "TS-064",
-  "tier": "reported",
-  "cluster_key": null
+  "tier": "corroborated",
+  "cluster_key": "t.me/driftkingalerts",
+  "age_days": 10,
+  "risk_score": 55,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "shaw12",
@@ -1878,7 +2320,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-065",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 28,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "SignalPlanner95",
@@ -1907,7 +2356,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-066",
   "tier": "verified",
-  "cluster_key": null
+  "cluster_key": "t.me/bincofreealert",
+  "age_days": 14,
+  "risk_score": 60,
+  "risk_factors": [
+   "evidence captured & checked",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "skynet11",
@@ -1936,7 +2392,15 @@
   "destination_platform": "telegram",
   "listing_id": "TS-067",
   "tier": "corroborated",
-  "cluster_key": "t.me/+l5ymfjlfwzq4mde8"
+  "cluster_key": "t.me/+l5ymfjlfwzq4mde8",
+  "age_days": null,
+  "risk_score": 60,
+  "risk_factors": [
+   "shared link across accounts",
+   "private invite link",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "skytec",
@@ -1969,7 +2433,16 @@
   "destination_platform": "telegram",
   "listing_id": "TS-068",
   "tier": "corroborated",
-  "cluster_key": "t.me/+l5ymfjlfwzq4mde8"
+  "cluster_key": "t.me/+l5ymfjlfwzq4mde8",
+  "age_days": 27,
+  "risk_score": 75,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link",
+   "no public footprint"
+  ]
  },
  {
   "username": "sliqstar",
@@ -1998,7 +2471,12 @@
   "destination_platform": "telegram",
   "listing_id": "TS-069",
   "tier": "verified",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": null,
+  "risk_score": 40,
+  "risk_factors": [
+   "evidence captured & checked"
+  ]
  },
  {
   "username": "smartmoneyorder02",
@@ -2026,8 +2504,14 @@
   "platform": "afterhour",
   "destination_platform": "telegram",
   "listing_id": "TS-070",
-  "tier": "reported",
-  "cluster_key": null
+  "tier": "corroborated",
+  "cluster_key": "t.me/smartmoneyorderfreeflow",
+  "age_days": 71,
+  "risk_score": 40,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "stockacisst",
@@ -2056,7 +2540,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-071",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 34,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "Stockacist008",
@@ -2085,7 +2576,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-072",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 17,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "stockdragon1",
@@ -2114,7 +2612,13 @@
   "destination_platform": "telegram",
   "listing_id": "TS-073",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 83,
+  "risk_score": 30,
+  "risk_factors": [
+   "single funnel observation",
+   "private invite link"
+  ]
  },
  {
   "username": "stockmap",
@@ -2143,7 +2647,13 @@
   "destination_platform": "telegram",
   "listing_id": "TS-074",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 132,
+  "risk_score": 30,
+  "risk_factors": [
+   "single funnel observation",
+   "private invite link"
+  ]
  },
  {
   "username": "stockprof",
@@ -2171,8 +2681,16 @@
   "platform": "afterhour",
   "destination_platform": "telegram",
   "listing_id": "TS-075",
-  "tier": "reported",
-  "cluster_key": null
+  "tier": "corroborated",
+  "cluster_key": "t.me/vanguardstockupdates68",
+  "age_days": 51,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "0 followers",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "stockproft",
@@ -2201,7 +2719,15 @@
   "destination_platform": "telegram",
   "listing_id": "TS-076",
   "tier": "corroborated",
-  "cluster_key": "t.me/+erjl9hnmo2kzyzfk"
+  "cluster_key": "t.me/+erjl9hnmo2kzyzfk",
+  "age_days": 43,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "stockpros",
@@ -2230,7 +2756,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-077",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 13,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "STOCKWISE",
@@ -2259,7 +2792,12 @@
   "destination_platform": "telegram",
   "listing_id": "TS-078",
   "tier": "verified",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 186,
+  "risk_score": 40,
+  "risk_factors": [
+   "evidence captured & checked"
+  ]
  },
  {
   "username": "t_rex_trade",
@@ -2288,7 +2826,12 @@
   "destination_platform": "telegram",
   "listing_id": "TS-079",
   "tier": "verified",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 63,
+  "risk_score": 40,
+  "risk_factors": [
+   "evidence captured & checked"
+  ]
  },
  {
   "username": "the_mentalist",
@@ -2317,7 +2860,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-080",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 23,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "0 followers"
+  ]
  },
  {
   "username": "TrendCollector618",
@@ -2346,7 +2896,12 @@
   "destination_platform": "telegram",
   "listing_id": "TS-081",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 13,
+  "risk_score": 20,
+  "risk_factors": [
+   "single funnel observation"
+  ]
  },
  {
   "username": "vanguard8",
@@ -2375,7 +2930,15 @@
   "destination_platform": "telegram",
   "listing_id": "TS-082",
   "tier": "corroborated",
-  "cluster_key": "t.me/+erjl9hnmo2kzyzfk"
+  "cluster_key": "t.me/+erjl9hnmo2kzyzfk",
+  "age_days": 30,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link"
+  ]
  },
  {
   "username": "verified",
@@ -2404,7 +2967,14 @@
   "destination_platform": "telegram",
   "listing_id": "TS-083",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 10,
+  "risk_score": 45,
+  "risk_factors": [
+   "single funnel observation",
+   "burner pattern: new + low posts",
+   "private invite link"
+  ]
  },
  {
   "username": "WICKED_GAINER",
@@ -2433,7 +3003,12 @@
   "destination_platform": "telegram",
   "listing_id": "TS-084",
   "tier": "reported",
-  "cluster_key": null
+  "cluster_key": null,
+  "age_days": 11,
+  "risk_score": 20,
+  "risk_factors": [
+   "single funnel observation"
+  ]
  },
  {
   "username": "William_Stocks",
@@ -2462,6 +3037,2311 @@
   "destination_platform": "telegram",
   "listing_id": "TS-085",
   "tier": "corroborated",
-  "cluster_key": "t.me/+khxj76ebbx1hmtyo"
+  "cluster_key": "t.me/+khxj76ebbx1hmtyo",
+  "age_days": 60,
+  "risk_score": 75,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "AJ9",
+  "profile_id": "prf_bb54027ac30d42e2acea74226426ca5d",
+  "telegram_handles": [
+   "ajfreealart32"
+  ],
+  "telegram_links": [
+   "https://t.me/ajfreealart32"
+  ],
+  "bio": "Trusted market updates, clear analysis & smart trade insights ",
+  "link_in_bio": "https://t.me/ajfreealart32",
+  "created_at": "2026-08-20",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/ajfreealart32"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-086",
+  "tier": "corroborated",
+  "cluster_key": "t.me/ajfreealart32",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 55,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "0 followers",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "Alexbell",
+  "profile_id": "prf_92b1c62af7e148cb9453ec0b9bc79aa5",
+  "telegram_handles": [
+   "clintonstock1"
+  ],
+  "telegram_links": [
+   "https://t.me/clintonstock1"
+  ],
+  "bio": "Trading stocks & crypto with structure\nEvery move planned, every risk defined 🎯\nNo guessing — just execution\nProcess always comes first\n",
+  "link_in_bio": "https://t.me/clintonstock1",
+  "created_at": "2026-06-06",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/clintonstock1"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-087",
+  "tier": "verified",
+  "cluster_key": "t.me/clintonstock1",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 130,
+  "risk_score": 60,
+  "risk_factors": [
+   "evidence captured & checked",
+   "0 followers",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "Apextrader67",
+  "profile_id": "prf_28e5414ab1b14bd29c13479ef784f63e",
+  "telegram_handles": [
+   "ApextraderKoryphae"
+  ],
+  "telegram_links": [
+   "https://t.me/ApextraderKoryphae"
+  ],
+  "bio": "👑 APEX\n💰 Building wealth one trade at a time\n📊 Options Trader | Market Strategist\n🏛️ Join the Telegram👇",
+  "link_in_bio": "https://t.me/ApextraderKoryphae",
+  "created_at": "2026-06-30",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/apextraderkoryphae"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-088",
+  "tier": "corroborated",
+  "cluster_key": "t.me/apextraderkoryphae",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 106,
+  "risk_score": 40,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "BeartrapThrasher36",
+  "profile_id": "prf_8fca920844d341a4b692e6ccb6b216f0",
+  "telegram_handles": [
+   "+kHxJ76ebbx1hMTY0"
+  ],
+  "telegram_links": [
+   "https://t.me/+kHxJ76ebbx1hMTY0"
+  ],
+  "bio": "Options Trader, Scalper, Market Strategist • Turning Market Volatility into Daily Income ➡️ ",
+  "link_in_bio": "https://t.me/+kHxJ76ebbx1hMTY0",
+  "created_at": "2026-08-19",
+  "post_count": 0,
+  "num_followers": 7,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+khxj76ebbx1hmtyo"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-089",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+khxj76ebbx1hmtyo",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 56,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "CapitalNavigator415",
+  "profile_id": "prf_47916a6c3bba4becb4fe8b449dda34f9",
+  "telegram_handles": [
+   "NovaTrade02"
+  ],
+  "telegram_links": [
+   "https://t.me/NovaTrade02"
+  ],
+  "bio": null,
+  "link_in_bio": "https://t.me/NovaTrade02",
+  "created_at": "2026-08-20",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/novatrade02"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-090",
+  "tier": "corroborated",
+  "cluster_key": "t.me/novatrade02",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 55,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "0 followers",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "DE_GAINERS",
+  "profile_id": "prf_13d70a80ecad40c6ab572feb67f17346",
+  "telegram_handles": [
+   "F_TRAD_FREE_CHANNEL"
+  ],
+  "telegram_links": [
+   "https://t.me/F_TRAD_FREE_CHANNEL"
+  ],
+  "bio": "Building De Gainers one trade at a time.\nSharing market analysis, disciplined execution, and risk-focused trading",
+  "link_in_bio": "https://t.me/F_TRAD_FREE_CHANNEL",
+  "created_at": "2026-07-29",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/f_trad_free_channel"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-091",
+  "tier": "corroborated",
+  "cluster_key": "t.me/f_trad_free_channel",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 77,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "DE_GAINERS101",
+  "profile_id": "prf_98a424d77f9d4c29a9ee3def38ceee52",
+  "telegram_handles": [
+   "F_TRAD_FREE_CHANNEL"
+  ],
+  "telegram_links": [
+   "https://t.me/F_TRAD_FREE_CHANNEL"
+  ],
+  "bio": "\nNavigating global markets with discipline and precision.\nTechnical analysis • Risk management • Price action • Every trade documented.",
+  "link_in_bio": "https://t.me/F_TRAD_FREE_CHANNEL",
+  "created_at": "2026-07-29",
+  "post_count": 0,
+  "num_followers": 2,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/f_trad_free_channel"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-092",
+  "tier": "corroborated",
+  "cluster_key": "t.me/f_trad_free_channel",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 77,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "EARNERS",
+  "profile_id": "prf_42dd8c61128242ec98a7e44347a2a756",
+  "telegram_handles": [
+   "F_TRAD_FREE_CHANNEL"
+  ],
+  "telegram_links": [
+   "https://t.me/F_TRAD_FREE_CHANNEL"
+  ],
+  "bio": "God’s Timing. 🕊️",
+  "link_in_bio": "https://t.me/F_TRAD_FREE_CHANNEL",
+  "created_at": "2026-08-31",
+  "post_count": 0,
+  "num_followers": 6,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/f_trad_free_channel"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-093",
+  "tier": "corroborated",
+  "cluster_key": "t.me/f_trad_free_channel",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 44,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "EntryScholar477",
+  "profile_id": "prf_e00433fafc2e409fa4cf50a2827de126",
+  "telegram_handles": [
+   "legacypublicroom"
+  ],
+  "telegram_links": [
+   "https://t.me/legacypublicroom"
+  ],
+  "bio": "👑 Building a legacy through trading 📈 One setup at a time",
+  "link_in_bio": "https://t.me/legacypublicroom",
+  "created_at": "2026-06-27",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/legacypublicroom"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-094",
+  "tier": "corroborated",
+  "cluster_key": "t.me/legacypublicroom",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 109,
+  "risk_score": 40,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "EntrySpy862",
+  "profile_id": "prf_15164ffd6169428f8651c0ebb6a45c7d",
+  "telegram_handles": [
+   "bincofreealert"
+  ],
+  "telegram_links": [
+   "https://t.me/bincofreealert"
+  ],
+  "bio": null,
+  "link_in_bio": "https://t.me/bincofreealert",
+  "created_at": "2026-09-29",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/bincofreealert"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-095",
+  "tier": "verified",
+  "cluster_key": "t.me/bincofreealert",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 15,
+  "risk_score": 65,
+  "risk_factors": [
+   "evidence captured & checked",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "FinanceParagon611",
+  "profile_id": "prf_e8651a5f477140f0b22832d9fe0d2bb0",
+  "telegram_handles": [
+   "+g2BhdV1gnkIyZDMx"
+  ],
+  "telegram_links": [
+   "https://t.me/+g2BhdV1gnkIyZDMx"
+  ],
+  "bio": "Wealth Builders Club Learn • Invest • Grow Insights • Ideas • Wealth",
+  "link_in_bio": "https://t.me/+g2BhdV1gnkIyZDMx",
+  "created_at": "2026-07-28",
+  "post_count": 0,
+  "num_followers": 8,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+g2bhdv1gnklyzdmx"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-096",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+g2bhdv1gnklyzdmx",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 78,
+  "risk_score": 60,
+  "risk_factors": [
+   "shared link across accounts",
+   "private invite link",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "FiscalPlayer50",
+  "profile_id": "prf_7c94af5dc201402ab56e3dcb7ea3a6b5",
+  "telegram_handles": [
+   "+g2BhdV1gnkIyZDMx"
+  ],
+  "telegram_links": [
+   "https://t.me/+g2BhdV1gnkIyZDMx"
+  ],
+  "bio": "    Building wealth one move at a time.",
+  "link_in_bio": "https://t.me/+g2BhdV1gnkIyZDMx",
+  "created_at": "2026-06-19",
+  "post_count": 0,
+  "num_followers": 4,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+g2bhdv1gnklyzdmx"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-097",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+g2bhdv1gnklyzdmx",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 117,
+  "risk_score": 60,
+  "risk_factors": [
+   "shared link across accounts",
+   "private invite link",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "GAINERS1",
+  "profile_id": "prf_c5fa6694da534f86ba299c158c3e8b06",
+  "telegram_handles": [
+   "F_TRAD_FREE_CHANNEL"
+  ],
+  "telegram_links": [
+   "https://t.me/F_TRAD_FREE_CHANNEL"
+  ],
+  "bio": "\n\nOptions flow. Clean setups. Disciplined execution.\nTrading with purpose, not emotions. ✨",
+  "link_in_bio": "https://t.me/F_TRAD_FREE_CHANNEL",
+  "created_at": "2026-08-25",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/f_trad_free_channel"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-098",
+  "tier": "corroborated",
+  "cluster_key": "t.me/f_trad_free_channel",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 50,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "G_alert",
+  "profile_id": "prf_f6e87929b88c4ef6896012092d10559b",
+  "telegram_handles": [
+   "gammasphere47"
+  ],
+  "telegram_links": [
+   "https://t.me/gammasphere47"
+  ],
+  "bio": "🚨Options Signals & Smart Stock Entries \n🏆Day Trader💸🔥\n🚀 Join My trading community⬇️\n",
+  "link_in_bio": "https://t.me/gammasphere47",
+  "created_at": "2026-08-28",
+  "post_count": 0,
+  "num_followers": 4,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/gammasphere47"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-099",
+  "tier": "verified",
+  "cluster_key": "t.me/gammasphere47",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 47,
+  "risk_score": 75,
+  "risk_factors": [
+   "evidence captured & checked",
+   "burner pattern: new + low posts",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "Libertytrader",
+  "profile_id": "prf_0d9b90e58f8147468b8967f8714b9909",
+  "telegram_handles": [
+   "bzjzhzhzuzzu"
+  ],
+  "telegram_links": [
+   "https://t.me/bzjzhzhzuzzu"
+  ],
+  "bio": "📈 Professional Trader\nHelping you trade smarter with quality setups and consistent market insights.\nVIP Signals | Risk Management |",
+  "link_in_bio": "https://t.me/bzjzhzhzuzzu",
+  "created_at": "2026-09-22",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/bzjzhzhzuzzu"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-100",
+  "tier": "corroborated",
+  "cluster_key": "t.me/bzjzhzhzuzzu",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 22,
+  "risk_score": 55,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "MARS_LEE",
+  "profile_id": "prf_b4188e73054e4e45937ad05d4551c525",
+  "telegram_handles": [
+   "xyrofxfreegains19"
+  ],
+  "telegram_links": [
+   "https://t.me/xyrofxfreegains19"
+  ],
+  "bio": "I study the charts, follow the trend and respect risk. Trading is not luck — it’s discipline, timing, and consistency over time.",
+  "link_in_bio": "https://t.me/xyrofxfreegains19",
+  "created_at": "2026-08-18",
+  "post_count": 0,
+  "num_followers": 3,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/xyrofxfreegains19"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-101",
+  "tier": "verified",
+  "cluster_key": "t.me/xyrofxfreegains19",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 57,
+  "risk_score": 65,
+  "risk_factors": [
+   "evidence captured & checked",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "MOLLY_",
+  "profile_id": "prf_154bbcda88bb47a69ed80223bed45582",
+  "telegram_handles": [
+   "xyrofxfreegains19"
+  ],
+  "telegram_links": [
+   "https://t.me/xyrofxfreegains19"
+  ],
+  "bio": "I study the charts, follow the trend and respect risk. Trading is not luck — it’s discipline, timing, and consistency over time.",
+  "link_in_bio": "https://t.me/xyrofxfreegains19",
+  "created_at": "2026-08-12",
+  "post_count": 0,
+  "num_followers": 2,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/xyrofxfreegains19"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-102",
+  "tier": "verified",
+  "cluster_key": "t.me/xyrofxfreegains19",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 63,
+  "risk_score": 50,
+  "risk_factors": [
+   "evidence captured & checked",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "MOONWALKER02",
+  "profile_id": "prf_d4d858149d81451c845534f3a3c0ab47",
+  "telegram_handles": [
+   "moonwalkertrades2"
+  ],
+  "telegram_links": [
+   "https://t.me/moonwalkertrades2"
+  ],
+  "bio": "Stop relying on hype and uncertainty. Access clear trade setups, premium strategies, and practical guidance built for traders who want consist",
+  "link_in_bio": "https://t.me/moonwalkertrades2",
+  "created_at": "2026-06-29",
+  "post_count": 0,
+  "num_followers": 7,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/moonwalkertrades2"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-103",
+  "tier": "corroborated",
+  "cluster_key": "t.me/moonwalkertrades2",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 107,
+  "risk_score": 40,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "MR_BINCO52",
+  "profile_id": "prf_7daff0505db546f0aee37e0bfa6316dd",
+  "telegram_handles": [
+   "bincofreealert"
+  ],
+  "telegram_links": [
+   "https://t.me/bincofreealert"
+  ],
+  "bio": null,
+  "link_in_bio": "https://t.me/bincofreealert",
+  "created_at": "2026-08-19",
+  "post_count": 0,
+  "num_followers": 10,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/bincofreealert"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-104",
+  "tier": "verified",
+  "cluster_key": "t.me/bincofreealert",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 56,
+  "risk_score": 65,
+  "risk_factors": [
+   "evidence captured & checked",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "MarginDreamer243",
+  "profile_id": "prf_a1e21440fd8a4a4592c23a221cddb80a",
+  "telegram_handles": [
+   "+g2BhdV1gnkIyZDMx"
+  ],
+  "telegram_links": [
+   "https://t.me/+g2BhdV1gnkIyZDMx"
+  ],
+  "bio": "Wealth Builders Club Learn • Invest • Grow Insights • Ideas • Wealth",
+  "link_in_bio": "https://t.me/+g2BhdV1gnkIyZDMx",
+  "created_at": "2026-07-06",
+  "post_count": 0,
+  "num_followers": 3,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+g2bhdv1gnklyzdmx"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-105",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+g2bhdv1gnklyzdmx",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 100,
+  "risk_score": 60,
+  "risk_factors": [
+   "shared link across accounts",
+   "private invite link",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "Maverick_chambl",
+  "profile_id": "prf_cc32bf24fab64e41a3682e9eaf080c32",
+  "telegram_handles": [
+   "Mavericksroom"
+  ],
+  "telegram_links": [
+   "https://t.me/Mavericksroom"
+  ],
+  "bio": "Option trading, Daily analytics and News Sharing my knowledge, investment ideas, and analysis.",
+  "link_in_bio": "https://t.me/Mavericksroom",
+  "created_at": "2026-08-12",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/mavericksroom"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-106",
+  "tier": "corroborated",
+  "cluster_key": "t.me/mavericksroom",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 63,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "0 followers",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "Maverick_chamble",
+  "profile_id": "prf_666e58f5f3b9416ab3d567621beff767",
+  "telegram_handles": [
+   "Mavericksroom"
+  ],
+  "telegram_links": [
+   "https://t.me/Mavericksroom"
+  ],
+  "bio": "Let's make it rain gains\n",
+  "link_in_bio": "https://t.me/Mavericksroom",
+  "created_at": "2026-08-10",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/mavericksroom"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-107",
+  "tier": "corroborated",
+  "cluster_key": "t.me/mavericksroom",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 65,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "0 followers",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "MrCashFlow1",
+  "profile_id": "prf_e5a7063ae274413896e79aa10dba015b",
+  "telegram_handles": [
+   "MRCASHFLOWFREEALERTS"
+  ],
+  "telegram_links": [
+   "https://t.me/MRCASHFLOWFREEALERTS"
+  ],
+  "bio": "Crypto & stock analyst. Teaching traders how to win. Daily setups, real entries, free signals. Discipline over luck join the community. Link below 🚀",
+  "link_in_bio": "https://t.me/MRCASHFLOWFREEALERTS",
+  "created_at": "2026-08-25",
+  "post_count": 0,
+  "num_followers": 2,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/mrcashflowfreealerts"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-108",
+  "tier": "corroborated",
+  "cluster_key": "t.me/mrcashflowfreealerts",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 50,
+  "risk_score": 55,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "MrGonzo01",
+  "profile_id": "prf_999abacec277413c9b87682c519011d2",
+  "telegram_handles": [
+   "MRCASHFLOWFREEALERTS"
+  ],
+  "telegram_links": [
+   "https://t.me/MRCASHFLOWFREEALERTS"
+  ],
+  "bio": "Crypto & Stock Analyst. Stay patient. Stay paid.",
+  "link_in_bio": "https://t.me/MRCASHFLOWFREEALERTS",
+  "created_at": "2026-08-18",
+  "post_count": 0,
+  "num_followers": 7,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/mrcashflowfreealerts"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-109",
+  "tier": "corroborated",
+  "cluster_key": "t.me/mrcashflowfreealerts",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 57,
+  "risk_score": 55,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "Mr_Gains",
+  "profile_id": "prf_9f8722de8e744c0da0286d7e1315e193",
+  "telegram_handles": [
+   "F_TRAD_FREE_CHANNEL"
+  ],
+  "telegram_links": [
+   "https://t.me/F_TRAD_FREE_CHANNEL"
+  ],
+  "bio": "Quiet moves. Clean setups. Loud results. 📈",
+  "link_in_bio": "https://t.me/F_TRAD_FREE_CHANNEL",
+  "created_at": "2026-08-10",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/f_trad_free_channel"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-110",
+  "tier": "corroborated",
+  "cluster_key": "t.me/f_trad_free_channel",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 65,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "Mrbobsignals",
+  "profile_id": "prf_a60650e352414bb4bff9c4d0a469a028",
+  "telegram_handles": [
+   "bob_signalsfreealert"
+  ],
+  "telegram_links": [
+   "https://t.me/bob_signalsfreealert"
+  ],
+  "bio": null,
+  "link_in_bio": "https://t.me/bob_signalsfreealert",
+  "created_at": "2026-07-19",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/bob_signalsfreealert"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-111",
+  "tier": "corroborated",
+  "cluster_key": "t.me/bob_signalsfreealert",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 87,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "0 followers",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "Mrsteele",
+  "profile_id": "prf_3b6bee595cae402ab83ae4407650e465",
+  "telegram_handles": [
+   "cartersteele21"
+  ],
+  "telegram_links": [
+   "https://t.me/cartersteele21"
+  ],
+  "bio": "Where Trading Meets Technology🔱\nhttps://t.me/cartersteele21",
+  "link_in_bio": "https://t.me/cartersteele21",
+  "created_at": "2026-08-21",
+  "post_count": 0,
+  "num_followers": 12,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/cartersteele21"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-112",
+  "tier": "corroborated",
+  "cluster_key": "t.me/cartersteele21",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 54,
+  "risk_score": 55,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "OptionCatalyst396",
+  "profile_id": "prf_c25459121f594d9e864972ffaedd5d44",
+  "telegram_handles": [
+   "+kHxJ76ebbx1hMTY0"
+  ],
+  "telegram_links": [
+   "https://t.me/+kHxJ76ebbx1hMTY0"
+  ],
+  "bio": "Options Trader, Scalper, Market Strategist • Turning Market Volatility into Daily Income ➡️ ",
+  "link_in_bio": "https://t.me/+kHxJ76ebbx1hMTY0",
+  "created_at": "2026-08-12",
+  "post_count": 0,
+  "num_followers": 6,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+khxj76ebbx1hmtyo"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-113",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+khxj76ebbx1hmtyo",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 63,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "private invite link",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "PhtSamuel",
+  "profile_id": "prf_7e970ed334e34c2080a5cee02510040c",
+  "telegram_handles": [
+   "cartersteele21"
+  ],
+  "telegram_links": [
+   "https://t.me/cartersteele21"
+  ],
+  "bio": "📈 FxTrader. 👁️Turning market structure into opportunity. Say less, Control yourself,  Strategy over Emotions🦊 Say Less🤫",
+  "link_in_bio": "https://t.me/cartersteele21",
+  "created_at": "2026-08-20",
+  "post_count": 0,
+  "num_followers": 5,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/cartersteele21"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-114",
+  "tier": "corroborated",
+  "cluster_key": "t.me/cartersteele21",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 55,
+  "risk_score": 55,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "ResistanceSplicer912",
+  "profile_id": "prf_78447e7bac954b15a74328b8eb743bc6",
+  "telegram_handles": [
+   "NovaTrade02"
+  ],
+  "telegram_links": [
+   "https://t.me/NovaTrade02"
+  ],
+  "bio": null,
+  "link_in_bio": "https://t.me/NovaTrade02",
+  "created_at": "2026-08-22",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/novatrade02"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-115",
+  "tier": "corroborated",
+  "cluster_key": "t.me/novatrade02",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 53,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "0 followers",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "RiskGuru204",
+  "profile_id": "prf_0e0eabc2ed79494b86bb1da9d67b9fce",
+  "telegram_handles": [
+   "NovaTrade02"
+  ],
+  "telegram_links": [
+   "https://t.me/NovaTrade02"
+  ],
+  "bio": null,
+  "link_in_bio": "https://t.me/NovaTrade02",
+  "created_at": "2026-08-28",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/novatrade02"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-116",
+  "tier": "corroborated",
+  "cluster_key": "t.me/novatrade02",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 47,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "0 followers",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "SHUMDY09",
+  "profile_id": "prf_97b594d646434a38bd0e8b699bc42dd3",
+  "telegram_handles": [
+   "shumdyfreealerts1"
+  ],
+  "telegram_links": [
+   "https://t.me/shumdyfreealerts1"
+  ],
+  "bio": "Cut the noise and guesswork. Get precise trade setups, exclusive strategies, and straightforward guidance designed for serious traders.",
+  "link_in_bio": "https://t.me/shumdyfreealerts1",
+  "created_at": "2026-06-25",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/shumdyfreealerts1"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-117",
+  "tier": "corroborated",
+  "cluster_key": "t.me/shumdyfreealerts1",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 111,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "SHUMDY26",
+  "profile_id": "prf_e6d8fa3b328f4ed99c4c9adb7b347ce0",
+  "telegram_handles": [
+   "shumdyfreealerts1"
+  ],
+  "telegram_links": [
+   "https://t.me/shumdyfreealerts1"
+  ],
+  "bio": "Cut the noise and guesswork. Get precise trade setups, exclusive strategies, and straightforward guidance designed for serious traders.",
+  "link_in_bio": "https://t.me/shumdyfreealerts1",
+  "created_at": "2026-06-09",
+  "post_count": 0,
+  "num_followers": 8,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/shumdyfreealerts1"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-118",
+  "tier": "corroborated",
+  "cluster_key": "t.me/shumdyfreealerts1",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 127,
+  "risk_score": 40,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "SHUMDY40",
+  "profile_id": "prf_6a4de371af2a4d79b30342c3027ff466",
+  "telegram_handles": [
+   "shumdyfreealerts1"
+  ],
+  "telegram_links": [
+   "https://t.me/shumdyfreealerts1"
+  ],
+  "bio": "Cut the noise and guesswork. Get precise trade setups, exclusive strategies, and straightforward guidance designed for serious traders.",
+  "link_in_bio": "https://t.me/shumdyfreealerts1",
+  "created_at": "2026-06-16",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/shumdyfreealerts1"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-119",
+  "tier": "corroborated",
+  "cluster_key": "t.me/shumdyfreealerts1",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 120,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "0 followers",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "SHUMDY99",
+  "profile_id": "prf_4cc1aedb5f2344498b068a942e88be6e",
+  "telegram_handles": [
+   "shumdyfreealerts1"
+  ],
+  "telegram_links": [
+   "https://t.me/shumdyfreealerts1"
+  ],
+  "bio": "Cut the noise and guesswork. Get precise trade setups, exclusive strategies, and straightforward guidance designed for serious traders.",
+  "link_in_bio": "https://t.me/shumdyfreealerts1",
+  "created_at": "2026-06-03",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/shumdyfreealerts1"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-120",
+  "tier": "corroborated",
+  "cluster_key": "t.me/shumdyfreealerts1",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 133,
+  "risk_score": 40,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "ShortJuggler37",
+  "profile_id": "prf_4a4cbf2b61f7430c9c5e96c9570f6ffd",
+  "telegram_handles": [
+   "+g2BhdV1gnkIyZDMx"
+  ],
+  "telegram_links": [
+   "https://t.me/+g2BhdV1gnkIyZDMx"
+  ],
+  "bio": "Wealth Builders Club Learn • Invest • Grow Insights • Ideas • Wealth",
+  "link_in_bio": "https://t.me/+g2BhdV1gnkIyZDMx",
+  "created_at": "2026-06-25",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+g2bhdv1gnklyzdmx"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-121",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+g2bhdv1gnklyzdmx",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 111,
+  "risk_score": 60,
+  "risk_factors": [
+   "shared link across accounts",
+   "private invite link",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "SpreadFox501",
+  "profile_id": "prf_9c98603d51764aaea48b710c682c04e1",
+  "telegram_handles": [
+   "SPYMaster8"
+  ],
+  "telegram_links": [
+   "https://t.me/SPYMaster8"
+  ],
+  "bio": null,
+  "link_in_bio": "https://t.me/SPYMaster8",
+  "created_at": "2026-08-14",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/spymaster8"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-122",
+  "tier": "corroborated",
+  "cluster_key": "t.me/spymaster8",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 61,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "0 followers",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "SpreadSpy808",
+  "profile_id": "prf_a8a66cee9de3499981176a88aae15f2f",
+  "telegram_handles": [
+   "whalecryptotradingsignals"
+  ],
+  "telegram_links": [
+   "https://t.me/whalecryptotradingsignals"
+  ],
+  "bio": "10+ years experience | Price Action Only |\nTrade smart | Trade like whales.\n\n📩VIP ACCESS: Contact Admin\nTelegram channel link ",
+  "link_in_bio": "https://t.me/whalecryptotradingsignals",
+  "created_at": "2026-08-30",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/whalecryptotradingsignals"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-123",
+  "tier": "corroborated",
+  "cluster_key": "t.me/whalecryptotradingsignals",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 45,
+  "risk_score": 55,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "SpreadStrategist951",
+  "profile_id": "prf_4f8aa3d2ec2b4e889da7e7ea26781552",
+  "telegram_handles": [
+   "+g2BhdV1gnkIyZDMx"
+  ],
+  "telegram_links": [
+   "https://t.me/+g2BhdV1gnkIyZDMx"
+  ],
+  "bio": "Wealth Builders Club Learn • Invest • Grow Insights • Ideas • Wealth",
+  "link_in_bio": "https://t.me/+g2BhdV1gnkIyZDMx",
+  "created_at": "2026-06-27",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+g2bhdv1gnklyzdmx"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-124",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+g2bhdv1gnklyzdmx",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 109,
+  "risk_score": 60,
+  "risk_factors": [
+   "shared link across accounts",
+   "private invite link",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "Stockacist002",
+  "profile_id": "prf_404969732fdf4fed88f546d0e48b11c8",
+  "telegram_handles": [
+   "+mShhMN6KsB8yNWU0"
+  ],
+  "telegram_links": [
+   "https://t.me/+mShhMN6KsB8yNWU0"
+  ],
+  "bio": "TG link has been posted, search below ",
+  "link_in_bio": "https://t.me/+mShhMN6KsB8yNWU0",
+  "created_at": "2026-09-15",
+  "post_count": 0,
+  "num_followers": 9,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+mshhmn6ksb8ynwuo"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-125",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+mshhmn6ksb8ynwuo",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 29,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "Stockacist3",
+  "profile_id": "prf_d4c149dc178b43b0a6bba38a522ac91b",
+  "telegram_handles": [
+   "+mShhMN6KsB8yNWU0"
+  ],
+  "telegram_links": [
+   "https://t.me/+mShhMN6KsB8yNWU0"
+  ],
+  "bio": "Link has been posted, search below ",
+  "link_in_bio": "https://t.me/+mShhMN6KsB8yNWU0",
+  "created_at": "2026-09-13",
+  "post_count": 0,
+  "num_followers": 7,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+mshhmn6ksb8ynwuo"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-126",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+mshhmn6ksb8ynwuo",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 31,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "StrategyWhisperer205",
+  "profile_id": "prf_87079486c8424e2c83b410d0331af3cb",
+  "telegram_handles": [
+   "+844HH2q2Ffs4Y2Nk"
+  ],
+  "telegram_links": [
+   "https://t.me/+844HH2q2Ffs4Y2Nk"
+  ],
+  "bio": "Stock related only ",
+  "link_in_bio": "https://t.me/+844HH2q2Ffs4Y2Nk",
+  "created_at": "2026-08-25",
+  "post_count": 0,
+  "num_followers": 7,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+844hh2q2ffs4y2nk"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-127",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+844hh2q2ffs4y2nk",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 50,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "TargetThrasher796",
+  "profile_id": "prf_0dbb625b165947ba871000bbf865a8d1",
+  "telegram_handles": [
+   "bob_signalsfreealert"
+  ],
+  "telegram_links": [
+   "https://t.me/bob_signalsfreealert"
+  ],
+  "bio": "no noise, no guessing.\nJust elite setups, private strategies, and real guidance for traders ready to level up®...",
+  "link_in_bio": "https://t.me/bob_signalsfreealert",
+  "created_at": "2026-06-19",
+  "post_count": 0,
+  "num_followers": 6,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/bob_signalsfreealert"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-128",
+  "tier": "corroborated",
+  "cluster_key": "t.me/bob_signalsfreealert",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 117,
+  "risk_score": 40,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "WallstreetChaser305",
+  "profile_id": "prf_0da3bf53a31243cf8237d6a08997c630",
+  "telegram_handles": [
+   "NovaTrade02"
+  ],
+  "telegram_links": [
+   "https://t.me/NovaTrade02"
+  ],
+  "bio": null,
+  "link_in_bio": "https://t.me/NovaTrade02",
+  "created_at": "2026-08-06",
+  "post_count": 0,
+  "num_followers": 3,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/novatrade02"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-129",
+  "tier": "corroborated",
+  "cluster_key": "t.me/novatrade02",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 69,
+  "risk_score": 40,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "alexright",
+  "profile_id": "prf_260af8112ffb4c949fb0462a76a5fe6e",
+  "telegram_handles": [
+   "+wLbV13T0ClMwZTBk"
+  ],
+  "telegram_links": [
+   "https://t.me/+wLbV13T0ClMwZTBk"
+  ],
+  "bio": null,
+  "link_in_bio": "https://t.me/+wLbV13T0ClMwZTBk",
+  "created_at": "2026-06-26",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+wlbv13toclmwztbk"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-130",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+wlbv13toclmwztbk",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 110,
+  "risk_score": 60,
+  "risk_factors": [
+   "shared link across accounts",
+   "0 followers",
+   "private invite link",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "bobsignals21",
+  "profile_id": "prf_b2bb905c273b4e728c7c68efd7b15ae3",
+  "telegram_handles": [
+   "bob_signalsfreealert"
+  ],
+  "telegram_links": [
+   "https://t.me/bob_signalsfreealert"
+  ],
+  "bio": "no noise, no guessing.\nJust elite setups, private strategies, and real guidance for traders ready to level up®...",
+  "link_in_bio": "https://t.me/bob_signalsfreealert",
+  "created_at": "2026-08-19",
+  "post_count": 0,
+  "num_followers": 7,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/bob_signalsfreealert"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-131",
+  "tier": "corroborated",
+  "cluster_key": "t.me/bob_signalsfreealert",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 56,
+  "risk_score": 55,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "gammash",
+  "profile_id": "prf_65fbbbd6cce5472a95bb38604bf90d74",
+  "telegram_handles": [
+   "gammasphere47"
+  ],
+  "telegram_links": [
+   "https://t.me/gammasphere47"
+  ],
+  "bio": "🚨Options Signals & Smart Stock Entries \n🏆Day Trader💸🔥\n🚀 Join My trading community⬇️",
+  "link_in_bio": "https://t.me/gammasphere47",
+  "created_at": "2026-07-31",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/gammasphere47"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-132",
+  "tier": "verified",
+  "cluster_key": "t.me/gammasphere47",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 75,
+  "risk_score": 70,
+  "risk_factors": [
+   "evidence captured & checked",
+   "0 followers",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "gammasphere47",
+  "profile_id": "prf_88fb58334c834533a542d8602093a838",
+  "telegram_handles": [
+   "gammasphere47"
+  ],
+  "telegram_links": [
+   "https://t.me/gammasphere47"
+  ],
+  "bio": "🚨Options Signals & Smart Stock Entries \n🏆Day Trader💸🔥\n🚀 Join My trading community⬇️",
+  "link_in_bio": "https://t.me/gammasphere47",
+  "created_at": "2026-08-13",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/gammasphere47"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-133",
+  "tier": "verified",
+  "cluster_key": "t.me/gammasphere47",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 62,
+  "risk_score": 55,
+  "risk_factors": [
+   "evidence captured & checked",
+   "shared Telegram link",
+   "pseudonymous operator"
+  ]
+ },
+ {
+  "username": "jerryright",
+  "profile_id": "prf_6199cb3e6f494ad59bdf1e1f5dd55214",
+  "telegram_handles": [
+   "+wLbV13T0ClMwZTBk"
+  ],
+  "telegram_links": [
+   "https://t.me/+wLbV13T0ClMwZTBk"
+  ],
+  "bio": null,
+  "link_in_bio": "https://t.me/+wLbV13T0ClMwZTBk",
+  "created_at": "2026-06-29",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+wlbv13toclmwztbk"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-134",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+wlbv13toclmwztbk",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 107,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "private invite link",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "mQC",
+  "profile_id": "prf_08d20e928bb44fff9a575dcbd6c9d6d9",
+  "telegram_handles": [
+   "mrquickerfreealert"
+  ],
+  "telegram_links": [
+   "https://t.me/mrquickerfreealert"
+  ],
+  "bio": "A professional trader. Improving. One trade at a time expectations includes: market analysis. key levels. trade ideas. educational content. 🧑🏻‍💻",
+  "link_in_bio": "https://t.me/mrquickerfreealert",
+  "created_at": "2026-09-13",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/mrquickerfreealert"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-135",
+  "tier": "verified",
+  "cluster_key": "t.me/mrquickerfreealert",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 31,
+  "risk_score": 85,
+  "risk_factors": [
+   "evidence captured & checked",
+   "burner pattern: new + low posts",
+   "0 followers",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "masais",
+  "profile_id": "prf_343b563ee05d48189d1d44d42c7e77a6",
+  "telegram_handles": [
+   "whalecryptotradingsignals"
+  ],
+  "telegram_links": [
+   "https://t.me/whalecryptotradingsignals"
+  ],
+  "bio": "Want to stay updated with crypto trading opportunities? Join my crypto signals channel for market analysis, trading ideas, and potential entry \n",
+  "link_in_bio": "https://t.me/whalecryptotradingsignals",
+  "created_at": "2026-08-29",
+  "post_count": 0,
+  "num_followers": 2,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/whalecryptotradingsignals"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-136",
+  "tier": "corroborated",
+  "cluster_key": "t.me/whalecryptotradingsignals",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 46,
+  "risk_score": 55,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "moonwalker17",
+  "profile_id": "prf_d6b21fd9f7f9494bad2f1d696b7bf975",
+  "telegram_handles": [
+   "moonwalkertrades2"
+  ],
+  "telegram_links": [
+   "https://t.me/moonwalkertrades2"
+  ],
+  "bio": "Stop relying on hype and uncertainty.Access clear trade setups, premium strategies,and practical guidance built for traders who want consistent results.",
+  "link_in_bio": "https://t.me/moonwalkertrades2",
+  "created_at": "2026-06-25",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/moonwalkertrades2"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-137",
+  "tier": "corroborated",
+  "cluster_key": "t.me/moonwalkertrades2",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 111,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "0 followers",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "mrkq",
+  "profile_id": "prf_025062aaa8cf4f5bb889c0a7689c7dd0",
+  "telegram_handles": [
+   "mrquickerfreealert",
+   "mrquickerfreealert/2915"
+  ],
+  "telegram_links": [
+   "https://t.me/mrquickerfreealert",
+   "https://t.me/mrquickerfreealert/2915"
+  ],
+  "bio": "A Trader. Executing. Improving. \nOne trade at a time.",
+  "link_in_bio": null,
+  "created_at": "2026-08-12",
+  "post_count": null,
+  "num_followers": 1,
+  "source": "agent-pivot-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/mrquickerfreealert",
+   "t.me/mrquickerfreealert/2915"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-138",
+  "tier": "verified",
+  "cluster_key": "t.me/mrquickerfreealert",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok",
+   "ok"
+  ],
+  "age_days": 63,
+  "risk_score": 60,
+  "risk_factors": [
+   "evidence captured & checked",
+   "shared Telegram link",
+   "no public footprint"
+  ]
+ },
+ {
+  "username": "primex2",
+  "profile_id": "prf_b3f16c5e443c436a9fa20f56e80b184b",
+  "telegram_handles": [
+   "SPYMaster8"
+  ],
+  "telegram_links": [
+   "https://t.me/SPYMaster8"
+  ],
+  "bio": null,
+  "link_in_bio": "https://t.me/SPYMaster8",
+  "created_at": "2026-08-08",
+  "post_count": 0,
+  "num_followers": 2,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/spymaster8"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-139",
+  "tier": "corroborated",
+  "cluster_key": "t.me/spymaster8",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 67,
+  "risk_score": 40,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "seven778",
+  "profile_id": "prf_f22a4f8cd31f4fa984058ee39f0579cc",
+  "telegram_handles": [
+   "driftkingalerts"
+  ],
+  "telegram_links": [
+   "https://t.me/driftkingalerts"
+  ],
+  "bio": "📈 DRIFTKING | TRADER\n🎯 Setups • Entries • Exits\n⚡ Real-Time Trade Alerts\n💎 Exclusive Plays\n🧠 Trade Smart. Stay Disciplined.\n📊 Results Speak Lo",
+  "link_in_bio": "https://t.me/driftkingalerts",
+  "created_at": "2026-09-16",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/driftkingalerts"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-140",
+  "tier": "corroborated",
+  "cluster_key": "t.me/driftkingalerts",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 28,
+  "risk_score": 55,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "smartmoneyorder01",
+  "profile_id": "prf_a83fe55f878b468bb815b9a2eff4108d",
+  "telegram_handles": [
+   "SmartMoneyOrderFreeFlow"
+  ],
+  "telegram_links": [
+   "https://t.me/SmartMoneyOrderFreeFlow"
+  ],
+  "bio": "Entries that hit\nExit that pay\nReal time alerts / coaching / Accountability",
+  "link_in_bio": "https://t.me/SmartMoneyOrderFreeFlow",
+  "created_at": "2026-08-03",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/smartmoneyorderfreeflow"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-141",
+  "tier": "corroborated",
+  "cluster_key": "t.me/smartmoneyorderfreeflow",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 72,
+  "risk_score": 40,
+  "risk_factors": [
+   "shared link across accounts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "stock6",
+  "profile_id": "prf_8073969c89fa4ab4a55043832d08e8ab",
+  "telegram_handles": [
+   "+eRjI9HNmO2kzYzFk"
+  ],
+  "telegram_links": [
+   "https://t.me/+eRjI9HNmO2kzYzFk"
+  ],
+  "bio": "Stock related only ",
+  "link_in_bio": "https://t.me/+eRjI9HNmO2kzYzFk",
+  "created_at": "2026-08-25",
+  "post_count": 0,
+  "num_followers": 1,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+erjl9hnmo2kzyzfk"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-142",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+erjl9hnmo2kzyzfk",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 50,
+  "risk_score": 65,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "private invite link",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "stock7",
+  "profile_id": "prf_cb322b444cb542eea34d8f9411dc8c3b",
+  "telegram_handles": [
+   "VanguardStockUpdates68"
+  ],
+  "telegram_links": [
+   "https://t.me/VanguardStockUpdates68"
+  ],
+  "bio": "Stock related only ",
+  "link_in_bio": "https://t.me/VanguardStockUpdates68",
+  "created_at": "2026-08-20",
+  "post_count": 0,
+  "num_followers": 2,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/vanguardstockupdates68"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-143",
+  "tier": "corroborated",
+  "cluster_key": "t.me/vanguardstockupdates68",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 55,
+  "risk_score": 55,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "stockalgo",
+  "profile_id": "prf_254a4c424d6a43c09dd337b902d32b49",
+  "telegram_handles": [
+   "+nNgqzM3bv_0xMGVk"
+  ],
+  "telegram_links": [
+   "https://t.me/+nNgqzM3bv_0xMGVk"
+  ],
+  "bio": null,
+  "link_in_bio": "https://t.me/+nNgqzM3bv_0xMGVk",
+  "created_at": "2026-06-23",
+  "post_count": 0,
+  "num_followers": 4,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+nngqzm3bv_oxmgvk"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-144",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+nngqzm3bv_oxmgvk",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 113,
+  "risk_score": 50,
+  "risk_factors": [
+   "shared link across accounts",
+   "private invite link",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "stockkyy",
+  "profile_id": "prf_514b2866529b4455be1bb25f334f77b5",
+  "telegram_handles": [
+   "+nNgqzM3bv_0xMGVk"
+  ],
+  "telegram_links": [
+   "https://t.me/+nNgqzM3bv_0xMGVk"
+  ],
+  "bio": "Stock godfather.",
+  "link_in_bio": "https://t.me/+nNgqzM3bv_0xMGVk",
+  "created_at": "2026-08-18",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+nngqzm3bv_oxmgvk"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-145",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+nngqzm3bv_oxmgvk",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 57,
+  "risk_score": 75,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "0 followers",
+   "private invite link",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "vanguard9",
+  "profile_id": "prf_e7396db146ca45e0aa4db70230686ee0",
+  "telegram_handles": [
+   "+erji9hnmo2kzyzfk"
+  ],
+  "telegram_links": [
+   "https://t.me/+erji9hnmo2kzyzfk"
+  ],
+  "bio": "",
+  "link_in_bio": null,
+  "created_at": "2026-09-14",
+  "post_count": null,
+  "num_followers": 0,
+  "source": "agent-pivot-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+erji9hnmo2kzyzfk"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-146",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+erji9hnmo2kzyzfk",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 30,
+  "risk_score": 75,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "0 followers",
+   "private invite link",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "vanstock6",
+  "profile_id": "prf_404e1ca4d65b4cc480d0063b0e599acc",
+  "telegram_handles": [
+   "VanguardStockUpdates68"
+  ],
+  "telegram_links": [
+   "https://t.me/VanguardStockUpdates68"
+  ],
+  "bio": "Stock related only ",
+  "link_in_bio": "https://t.me/VanguardStockUpdates68",
+  "created_at": "2026-08-21",
+  "post_count": 0,
+  "num_followers": 10,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/vanguardstockupdates68"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-147",
+  "tier": "corroborated",
+  "cluster_key": "t.me/vanguardstockupdates68",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 54,
+  "risk_score": 55,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "vanstock67",
+  "profile_id": "prf_159bdb5258c349129035bd24e0ad55e0",
+  "telegram_handles": [
+   "+erji9hnmo2kzyzfk"
+  ],
+  "telegram_links": [
+   "https://t.me/+erji9hnmo2kzyzfk"
+  ],
+  "bio": "",
+  "link_in_bio": null,
+  "created_at": "2026-09-14",
+  "post_count": null,
+  "num_followers": 0,
+  "source": "agent-pivot-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+erji9hnmo2kzyzfk"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-148",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+erji9hnmo2kzyzfk",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 30,
+  "risk_score": 75,
+  "risk_factors": [
+   "shared link across accounts",
+   "burner pattern: new + low posts",
+   "0 followers",
+   "private invite link",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "username": "willeright",
+  "profile_id": "prf_4d4922a855574c4dbc099e16a083e9b0",
+  "telegram_handles": [
+   "+wLbV13T0ClMwZTBk"
+  ],
+  "telegram_links": [
+   "https://t.me/+wLbV13T0ClMwZTBk"
+  ],
+  "bio": null,
+  "link_in_bio": "https://t.me/+wLbV13T0ClMwZTBk",
+  "created_at": "2026-06-24",
+  "post_count": 0,
+  "num_followers": 0,
+  "source": "agent-feed-sweep-2026-10-13",
+  "telegram_links_norm": [
+   "t.me/+wlbv13toclmwztbk"
+  ],
+  "platform": "afterhour",
+  "destination_platform": "telegram",
+  "listing_id": "TS-149",
+  "tier": "corroborated",
+  "cluster_key": "t.me/+wlbv13toclmwztbk",
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "age_days": 112,
+  "risk_score": 60,
+  "risk_factors": [
+   "shared link across accounts",
+   "0 followers",
+   "private invite link",
+   "shared Telegram link"
+  ]
+ },
+ {
+  "listing_id": "TS-150",
+  "username": "cont",
+  "bio": "Independent trader Forex •crypto •indices Discipline •patience •consistency",
+  "telegram_links": [
+   "https://t.me/+DUfKjdeI7v1kZGQ0"
+  ],
+  "telegram_handles": [
+   "+DUfKjdeI7v1kZGQ0"
+  ],
+  "link_status": "ok",
+  "link_statuses": [
+   "ok"
+  ],
+  "tier": "reported",
+  "followers": 0,
+  "following": 5,
+  "post_count": 1,
+  "created_at": null,
+  "cluster_key": null,
+  "found_by": "Patrick (manual find 2026-10-14)",
+  "found_date": "2026-10-14",
+  "age_days": null,
+  "risk_score": 30,
+  "risk_factors": [
+   "single funnel observation",
+   "private invite link"
+  ],
+  "telegram_links_norm": [
+   "t.me/+dufkjdei7v1kzgq0"
+  ],
+  "num_followers": 0,
+  "profile_id": null
  }
 ]

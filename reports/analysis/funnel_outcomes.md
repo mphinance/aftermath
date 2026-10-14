@@ -1,6 +1,6 @@
 # Funnel callouts vs the tape: outcomes
 
-Generated 2026-10-14 from `calls.jsonl` (8571 records). Source: `tg_outcomes.py`.
+Generated 2026-10-14 from `calls.jsonl` (8630 records). Source: `tg_outcomes.py`.
 
 > Scored n = 1146. Still a short window of tape; expiry-day moves dominate results.
 
@@ -16,22 +16,22 @@ Generated 2026-10-14 from `calls.jsonl` (8571 records). Source: `tg_outcomes.py`
 
 | Stage | Count |
 |---|---|
-| Option open records (action=open, kind=option) | 4070 |
-| minus excluded by parse flag `duplicate_echo` | 1557 |
-| minus excluded by parse flag `cross_channel_echo` | 533 |
+| Option open records (action=open, kind=option) | 4093 |
+| minus excluded by parse flag `duplicate_echo` | 1563 |
+| minus excluded by parse flag `cross_channel_echo` | 535 |
 | minus excluded by parse flag `expiry_before_post` | 19 |
 | minus excluded by parse flag `entry_implausible` | 13 |
 | minus excluded by parse flag `posted_date_suspect` | 34 |
 | minus excluded by parse flag `expiry_far` | 19 |
 | minus excluded by parse flag `entry_below_intrinsic` | 17 |
-| minus no expiry (unknown, not assumed 0DTE) | 390 |
+| minus no expiry (unknown, not assumed 0DTE) | 393 |
 | minus other unscorable (missing strike/side/entry, parser close, no price data) | 160 |
-| Remaining after same-channel/day dedupe | 1272 |
-| Pending (expiry not yet passed) | 125 |
+| Remaining after same-channel/day dedupe | 1284 |
+| Pending (expiry not yet passed) | 137 |
 | **Scored** (intrinsic at expiry, entry price present) | 1146 |
 | Distinct contracts among scored (across channels) | 1092 |
 
-Echoes (`duplicate_echo` + `cross_channel_echo`, 2090 records) are not scored; the first post of each contract is.
+Echoes (`duplicate_echo` + `cross_channel_echo`, 2098 records) are not scored; the first post of each contract is.
 Other unscorable reasons: missing entry_price (144); no price data for APPL (5); no price data for NDXP (3); no underlying bar on expiry date 2026-03-31 (1); no underlying bar on expiry date 2026-04-01 (1); no underlying bar on expiry date 2026-04-17 (1); no underlying bar on expiry date 2026-05-07 (1); no underlying bar on expiry date 2026-08-29 (1); no price data for AAIO (1); no price data for ABDE (1); no price data for APPLE (1)
 
 ## Pooled results (hold to expiry)
@@ -69,16 +69,16 @@ Quoted = `result_pct` on close posts (deduped by channel/ticker/day/value; inclu
 
 | Channel | Quoted closes n | Quoted median | Quoted mean | Scored opens n | Real win rate | Real median | Real mean | Worth zero | Gap (quoted mean - real mean) |
 |---|---|---|---|---|---|---|---|---|---|
-| bzjzhzhzuzzu | 5 | 150% | 468% | 208 | 17% | -100% | 24% | 79% | 444 pts |
+| bzjzhzhzuzzu | 7 | 128% | 333% | 208 | 17% | -100% | 24% | 79% | 310 pts |
 | moonwalkertrades2 | 85 | 48% | 112% | 147 | 16% | -100% | 53% | 79% | 59 pts |
 | blockwave10 | 67 | 47% | 78% | 137 | 30% | -100% | 28% | 62% | 50 pts |
-| crestedgeroom | 185 | 39% | 47% | 135 | 22% | -100% | 2% | 69% | 45 pts |
+| crestedgeroom | 186 | 39% | 47% | 135 | 22% | -100% | 2% | 69% | 45 pts |
 | queen_free_entries | 89 | 50% | 88% | 105 | 14% | -100% | -13% | 76% | 101 pts |
 | ajfreealart32 | 113 | 53% | 106% | 72 | 15% | -100% | -17% | 81% | 123 pts |
 | blackcardfreechannel | 115 | 26% | 35% | 54 | 13% | -100% | -30% | 76% | 65 pts |
 | bob_signalsfreealert | 232 | 62% | 116% | 50 | 32% | -100% | 21% | 62% | 94 pts |
 | bincofreealert | 256 | 50% | 120% | 48 | 19% | -100% | -52% | 77% | 173 pts |
-| mrquickerfreealert | 199 | 55% | 96% | 43 | 14% | -100% | -31% | 74% | 127 pts |
+| mrquickerfreealert | 201 | 55% | 95% | 43 | 14% | -100% | -31% | 74% | 126 pts |
 | mrfortunefreeflow | 70 | 44% | 70% | 41 | 27% | -100% | -20% | 59% | 90 pts |
 | axisalgorithmictrade | 34 | 37% | 141% | 24 | 29% | -100% | 1% | 71% | 140 pts |
 | tradevisionst | 1 | 24% | 24% | 21 | 14% | -100% | -5% | 71% | 29 pts |
@@ -86,10 +86,10 @@ Quoted = `result_pct` on close posts (deduped by channel/ticker/day/value; inclu
 | vanguardstockupdates68 | 2 | 45% | 45% | 10 | 10% | -100% | -78% | 90% | 123 pts |
 | gpt2136 | 22 | 98% | 359% | 8 | 12% | -100% | -70% | 75% | 430 pts |
 | vertexpublic | 7 | 7% | 18% | 7 | 0% | -100% | -100% | 100% | 118 pts |
-| de_gainers_free_circle | 127 | 45% | 72% | 6 | 0% | -73% | -66% | 50% | 139 pts |
+| de_gainers_free_circle | 129 | 45% | 76% | 6 | 0% | -73% | -66% | 50% | 142 pts |
 | blue_falcon_capital | 4 | 109% | 239% | 5 | 60% | 77% | 36% | 40% | 203 pts |
-| small channels (pooled, 4 ch) | 76 | 160% | 383% | 10 | 10% | -100% | 51% | 70% | 332 pts |
-| **ALL channels pooled** | 1702 | 50% | 110% | 1146 | 19% | -100% | 6% | 73% | 104 pts |
+| small channels (pooled, 4 ch) | 78 | 160% | 380% | 10 | 10% | -100% | 51% | 70% | 329 pts |
+| **ALL channels pooled** | 1711 | 50% | 110% | 1146 | 19% | -100% | 6% | 73% | 104 pts |
 
 Quoted closes include only trades the channel chose to announce a result for; real column includes every scored open, including those never followed up. Gap is in percentage points of return. Quoted and real are not the same trades, so this compares reporting, not individual fills.
 
@@ -107,5 +107,5 @@ Caveat: a close is an early exit and the real column is hold-to-expiry, so a quo
 - Quoted entry premiums are unverified; real fills on illiquid strikes are typically worse.
 - Echo posts (same trade reposted by several channels) are collapsed for the distinct-contract numbers but each channel counts it once in its own row.
 - Parser issues affecting this run: see `reports/analysis/outcomes_parser_notes.md`.
-- Pending opens (125) are excluded; longer-dated swings are not yet resolved.
+- Pending opens (137) are excluded; longer-dated swings are not yet resolved.
 - `expiry_far` records (19) are reported, not scored.

@@ -74,7 +74,7 @@ def preview(handle):
             "kind": kind, "extra": extra}
 
 
-def posts(handle, pages=1):
+def posts(handle, pages=1, until=None):
     """Public channel posts via t.me/s/<handle>; pages>1 walks back with ?before=<oldest id> (20 per page)."""
     out, before = [], None
     for _ in range(max(1, pages)):
@@ -93,6 +93,8 @@ def posts(handle, pages=1):
         if not ids:
             break
         out = page + out
+        if until and any((p.get("date") or "9") < until for p in page):
+            break  # reached the requested start date
         if min(ids) <= 1 or before == min(ids):
             break
         before = min(ids)
