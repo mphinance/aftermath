@@ -92,11 +92,16 @@ def main():
     for name, c in cand.items():
         au = c["au"]
         text = (au.get("bio") or "") + " " + " ".join(e["text"] for e in c["ev"])
-        links = sorted({norm(m.group(0)) for m in TME.finditer(text)} - {None})
+        raw = {}  # normalized -> original-case link. Invite hashes (t.me/+abc) are CASE-SENSITIVE; keep the original.
+        for m in TME.finditer(text):
+            n = norm(m.group(0))
+            if n:
+                raw.setdefault(n, "https://t.me/" + m.group(1))
+        links = sorted(raw)
         out.append({
             "username": name, "profile_id": au.get("id"), "bio": au.get("bio"),
-            "telegram_links_norm": links, "telegram_links": ["https://" + l for l in links],
-            "telegram_handles": [l.split("/", 1)[1] for l in links],
+            "telegram_links_norm": links, "telegram_links": [raw[l] for l in links],
+            "telegram_handles": [raw[l].split("/", 1)[1] for l in links],
             "created_at": (au.get("createdAt") or "")[:10] or None, "num_followers": au.get("numFollowers"),
             "platform": "afterhour", "destination_platform": "telegram",
             "source": f"crawl.py {date.today()}", "evidence": c["ev"],

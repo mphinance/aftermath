@@ -30,6 +30,8 @@ Your owner is not technical, so do this yourself end to end. Nothing here posts,
 - Regenerate `accounts.csv` and the Network page the same way you do today.
 
 ## Notes
+- Telegram invite hashes (`t.me/+AbC...`) are case-sensitive. Always keep the original-case link in `telegram_links`; the lowercased `telegram_links_norm` is only for matching, and a lowercased invite will not resolve.
+- Expect a low yield from the feed sweep itself (about 1 new Telegram-linked account per 1,200 authors scanned). The big finds usually come from mining scam-list posts for @-tagged accounts and from usernames that share a link with a known account.
 - The scanner only sees what is in the recent public feed, so a clean run does not mean there is nothing else out there. Run it again every few days.
 - If a request fails it retries with backoff; if the whole run stops early, rerun it.
 - Do not add any form-posting, following, or Telegram-joining logic to it.

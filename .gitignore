@@ -35,3 +35,6 @@ data/archive_latest
 data/telegram_funnel/snapshots/
 data/telegram_funnel/posts_archive.jsonl
 data/telegram_funnel/calls.jsonl
+data/telegram_funnel/price_cache/
+handoff_private/
+data/telegram_funnel/recon_pivot.json
