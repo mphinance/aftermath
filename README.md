@@ -69,7 +69,7 @@ All API endpoints are public, zero-auth, CORS-unrestricted (`*`), and cached at 
 
 - **Interactive Swagger UI**: [https://ah.mphinance.com/docs](https://ah.mphinance.com/docs)
 - **OpenAPI 3.1 Spec**: [https://ah.mphinance.com/api/openapi.json](https://ah.mphinance.com/api/openapi.json)
-- **Comprehensive API Guide**: [docs/API.md](file:///home/mpha/projects/aftermath/docs/API.md)
+- **Comprehensive API Guide**: [docs/API.md](docs/API.md)
 
 ### Key Endpoints
 

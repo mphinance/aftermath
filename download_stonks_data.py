@@ -131,7 +131,7 @@ def download_bulk_prices(tickers: list[str]):
     """Calls /stonks/tickers/prices for batch price quotes."""
     logging.info(f"[*] Downloading bulk real-time prices for {len(tickers)} tickers...")
     batch_str = ",".join(tickers)
-    url = f"https://api.afterhour.com/stonks/tickers/prices?tickers={batch_str}"
+    url = f"https://api.afterhour.com/stonks/tickers/prices?symbols={batch_str}"
     try:
         data = fetch_json(url)
         out_file = DATA_DIR / "top_stocks_prices.json"

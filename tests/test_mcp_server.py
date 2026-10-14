@@ -62,13 +62,34 @@ def test_tools_list_returns_every_registered_tool():
     assert {t["name"] for t in resp["result"]["tools"]} == set(mcp_server.TOOLS_MAP)
 
 
-def test_empty_capability_probes_return_empty_lists():
-    for method, key in (
-        ("prompts/list", "prompts"),
-        ("resources/templates/list", "resourceTemplates"),
-    ):
-        resp = mcp_server.handle_jsonrpc({"jsonrpc": "2.0", "id": 3, "method": method, "params": {}})
-        assert resp["result"][key] == []
+def test_prompts_list_and_get():
+    resp = mcp_server.handle_jsonrpc({"jsonrpc": "2.0", "id": 3, "method": "prompts/list", "params": {}})
+    prompts = resp["result"]["prompts"]
+    assert len(prompts) >= 3
+    assert {p["name"] for p in prompts} >= {"whale_dossier", "conviction_hunt", "shadow_whale_intel"}
+
+    # Test prompts/get for whale_dossier
+    get_resp = mcp_server.handle_jsonrpc({
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "prompts/get",
+        "params": {"name": "whale_dossier", "arguments": {"username": "SIRJACK"}}
+    })
+    assert "messages" in get_resp["result"]
+    assert "SIRJACK" in get_resp["result"]["messages"][0]["content"]["text"]
+
+
+def test_resources_templates_empty():
+    resp = mcp_server.handle_jsonrpc({"jsonrpc": "2.0", "id": 5, "method": "resources/templates/list", "params": {}})
+    assert resp["result"]["resourceTemplates"] == []
+
+
+def test_resources_list_and_read():
+    resp = mcp_server.handle_jsonrpc({"jsonrpc": "2.0", "id": 6, "method": "resources/list", "params": {}})
+    uris = {r["uri"] for r in resp["result"]["resources"]}
+    assert "aftermath://market-tape" in uris
+    assert "aftermath://shadow-whales" in uris
+    assert "aftermath://social-feed" in uris
 
 
 def test_notifications_get_no_response():

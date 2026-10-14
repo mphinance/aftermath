@@ -1,0 +1,8 @@
+# AfterMath / AfterHour Terminal
+> Verified retail and whale alt-data: portfolios, conviction intensity ($/holder), ETF flows, macro tape. No auth, read-only, CORS open.
+
+- [REST API guide](https://ah.mphinance.com/docs): Swagger explorer
+- [OpenAPI spec](https://ah.mphinance.com/api/openapi.json)
+- [MCP portal](https://ah.mphinance.com/mcp): Streamable HTTP at https://ah.mphinance.com/api/mcp, legacy SSE at https://ah.mphinance.com/sse
+- [MCP tool schema](https://ah.mphinance.com/api/mcp-schema.json)
+- [Market radar](https://ah.mphinance.com/api/market.json)

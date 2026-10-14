@@ -16,8 +16,8 @@
       "volume": 34459478,
       "chatroomMembers": 1836,
       "chatroomOnline": 0,
-      "whalesCount": 51,
-      "whalesValue": 7570235.87,
+      "whalesCount": 53,
+      "whalesValue": 7572746.87,
       "topWhale": "SIRJACK",
       "topWhaleValue": 5626928.56,
       "slug": "/ticker/QQQ",
@@ -41,7 +41,7 @@
           "color": "amber"
         }
       ],
-      "whyTop": "$7.6M whale capital (51 whales) &bull; 119 verified holders",
+      "whyTop": "$7.6M whale capital (53 whales) &bull; 119 verified holders",
       "rank": 4
     },
     {
@@ -59,8 +59,8 @@
       "volume": 46278192,
       "chatroomMembers": 17559,
       "chatroomOnline": 0,
-      "whalesCount": 63,
-      "whalesValue": 7136668.06,
+      "whalesCount": 66,
+      "whalesValue": 7137425.06,
       "topWhale": "SIRJACK",
       "topWhaleValue": 5152504.3,
       "slug": "/ticker/SPY",
@@ -88,7 +88,7 @@
           "color": "cyan"
         }
       ],
-      "whyTop": "$7.1M whale capital (63 whales) &bull; 137 verified holders &bull; 17,559 chat members",
+      "whyTop": "$7.1M whale capital (66 whales) &bull; 137 verified holders &bull; 17,559 chat members",
       "rank": 5
     },
     {
@@ -149,8 +149,8 @@
       "volume": 2944463,
       "chatroomMembers": 133,
       "chatroomOnline": 0,
-      "whalesCount": 44,
-      "whalesValue": 2129423.13,
+      "whalesCount": 46,
+      "whalesValue": 2070748.13,
       "topWhale": "NOLA",
       "topWhaleValue": 304281.95,
       "slug": "/ticker/VTI",
@@ -198,7 +198,7 @@
       "topWhaleValue": 794627.04,
       "slug": "/ticker/SGOV",
       "hasHistory": false,
-      "rankWhaleCapital": 15,
+      "rankWhaleCapital": 16,
       "rankPlatformValue": 17,
       "rankOwners": 26,
       "rankGainers": 260,
@@ -218,7 +218,7 @@
         }
       ],
       "whyTop": "$1.9M whale backing",
-      "rank": 15
+      "rank": 16
     },
     {
       "ticker": "DRAM",
@@ -284,7 +284,7 @@
       "topWhaleValue": 364788.96,
       "slug": "/ticker/SCHD",
       "hasHistory": false,
-      "rankWhaleCapital": 26,
+      "rankWhaleCapital": 27,
       "rankPlatformValue": 27,
       "rankOwners": 21,
       "rankGainers": 249,
@@ -304,7 +304,7 @@
         }
       ],
       "whyTop": "46 verified whales &bull; 117 verified holders",
-      "rank": 26
+      "rank": 27
     },
     {
       "ticker": "IBIT",
@@ -321,10 +321,10 @@
       "volume": 48555858,
       "chatroomMembers": 250,
       "chatroomOnline": 0,
-      "whalesCount": 36,
-      "whalesValue": 805957.31,
+      "whalesCount": 40,
+      "whalesValue": 799390.71,
       "topWhale": "Hodler302",
-      "topWhaleValue": 286980,
+      "topWhaleValue": 286980.0,
       "slug": "/ticker/IBIT",
       "hasHistory": true,
       "rankWhaleCapital": 28,
@@ -346,7 +346,7 @@
           "color": "amber"
         }
       ],
-      "whyTop": "36 verified whales",
+      "whyTop": "40 verified whales",
       "rank": 28
     },
     {
@@ -413,7 +413,7 @@
       "topWhaleValue": 388685.28,
       "slug": "/ticker/VGT",
       "hasHistory": false,
-      "rankWhaleCapital": 35,
+      "rankWhaleCapital": 36,
       "rankPlatformValue": 35,
       "rankOwners": 153,
       "rankGainers": 170,
@@ -429,7 +429,7 @@
         }
       ],
       "whyTop": "15 verified whales",
-      "rank": 35
+      "rank": 36
     },
     {
       "ticker": "SMH",
@@ -452,7 +452,7 @@
       "topWhaleValue": 236379.38,
       "slug": "/ticker/SMH",
       "hasHistory": false,
-      "rankWhaleCapital": 37,
+      "rankWhaleCapital": 39,
       "rankPlatformValue": 39,
       "rankOwners": 112,
       "rankGainers": 105,
@@ -468,7 +468,7 @@
         }
       ],
       "whyTop": "10 verified whales",
-      "rank": 37
+      "rank": 39
     },
     {
       "ticker": "VT",
@@ -485,13 +485,13 @@
       "volume": 1840846,
       "chatroomMembers": 29,
       "chatroomOnline": 0,
-      "whalesCount": 14,
-      "whalesValue": 388468.57,
+      "whalesCount": 15,
+      "whalesValue": 386768.57,
       "topWhale": "muffin_man",
       "topWhaleValue": 205703.71,
       "slug": "/ticker/VT",
       "hasHistory": false,
-      "rankWhaleCapital": 41,
+      "rankWhaleCapital": 44,
       "rankPlatformValue": 49,
       "rankOwners": 164,
       "rankGainers": 174,
@@ -506,8 +506,8 @@
           "color": "cyan"
         }
       ],
-      "whyTop": "14 verified whales",
-      "rank": 41
+      "whyTop": "15 verified whales",
+      "rank": 44
     },
     {
       "ticker": "IVV",
@@ -530,7 +530,7 @@
       "topWhaleValue": 142485.42,
       "slug": "/ticker/IVV",
       "hasHistory": false,
-      "rankWhaleCapital": 44,
+      "rankWhaleCapital": 45,
       "rankPlatformValue": 45,
       "rankOwners": 28,
       "rankGainers": 206,
@@ -550,7 +550,7 @@
         }
       ],
       "whyTop": "36 verified whales",
-      "rank": 44
+      "rank": 45
     },
     {
       "ticker": "SCHG",
@@ -573,7 +573,7 @@
       "topWhaleValue": 144546.97,
       "slug": "/ticker/SCHG",
       "hasHistory": false,
-      "rankWhaleCapital": 52,
+      "rankWhaleCapital": 54,
       "rankPlatformValue": 55,
       "rankOwners": 58,
       "rankGainers": 188,
@@ -593,7 +593,7 @@
         }
       ],
       "whyTop": "22 verified whales",
-      "rank": 52
+      "rank": 54
     },
     {
       "ticker": "QQQM",
@@ -616,7 +616,7 @@
       "topWhaleValue": 120365.7,
       "slug": "/ticker/QQQM",
       "hasHistory": false,
-      "rankWhaleCapital": 55,
+      "rankWhaleCapital": 56,
       "rankPlatformValue": 51,
       "rankOwners": 60,
       "rankGainers": 178,
@@ -636,7 +636,46 @@
         }
       ],
       "whyTop": "23 verified whales",
-      "rank": 55
+      "rank": 56
+    },
+    {
+      "ticker": "MSTU",
+      "name": "T-Rex 2X Long MSTR Daily Target ETF",
+      "friendlyName": "T-Rex Long MSTR Daily Target ETF",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 23,
+      "totalValue": 597455.37,
+      "intensity": 25976.32,
+      "marketCap": 808381183.4,
+      "price": 43.19,
+      "changePercent": -0.64,
+      "volume": 7115130,
+      "chatroomMembers": 27,
+      "chatroomOnline": 0,
+      "whalesCount": 17,
+      "whalesValue": 280440.03,
+      "topWhale": "mstreaker",
+      "topWhaleValue": 110141.46,
+      "slug": "/ticker/MSTU",
+      "hasHistory": false,
+      "rankWhaleCapital": 57,
+      "rankPlatformValue": 36,
+      "rankOwners": 148,
+      "rankGainers": 348,
+      "rankChat": 356,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "17 verified whales",
+      "rank": 57
     },
     {
       "ticker": "VXUS",
@@ -659,7 +698,7 @@
       "topWhaleValue": 113092.19,
       "slug": "/ticker/VXUS",
       "hasHistory": false,
-      "rankWhaleCapital": 56,
+      "rankWhaleCapital": 58,
       "rankPlatformValue": 56,
       "rankOwners": 63,
       "rankGainers": 165,
@@ -679,46 +718,7 @@
         }
       ],
       "whyTop": "20 verified whales",
-      "rank": 56
-    },
-    {
-      "ticker": "MSTU",
-      "name": "T-Rex 2X Long MSTR Daily Target ETF",
-      "friendlyName": "T-Rex Long MSTR Daily Target ETF",
-      "type": "ETF",
-      "isETF": true,
-      "owners": 23,
-      "totalValue": 597455.37,
-      "intensity": 25976.32,
-      "marketCap": 808381183.4,
-      "price": 43.19,
-      "changePercent": -0.64,
-      "volume": 7115130,
-      "chatroomMembers": 27,
-      "chatroomOnline": 0,
-      "whalesCount": 15,
-      "whalesValue": 280006.03,
-      "topWhale": "mstreaker",
-      "topWhaleValue": 110141.46,
-      "slug": "/ticker/MSTU",
-      "hasHistory": false,
-      "rankWhaleCapital": 57,
-      "rankPlatformValue": 36,
-      "rankOwners": 148,
-      "rankGainers": 348,
-      "rankChat": 356,
-      "badges": [
-        {
-          "label": "ETF",
-          "color": "amber"
-        },
-        {
-          "label": "WHALE CONSENSUS",
-          "color": "cyan"
-        }
-      ],
-      "whyTop": "15 verified whales",
-      "rank": 57
+      "rank": 58
     },
     {
       "ticker": "FBTC",
@@ -741,7 +741,7 @@
       "topWhaleValue": 223351.67,
       "slug": "/ticker/FBTC",
       "hasHistory": false,
-      "rankWhaleCapital": 58,
+      "rankWhaleCapital": 59,
       "rankPlatformValue": 69,
       "rankOwners": 260,
       "rankGainers": 306,
@@ -752,8 +752,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #58 by verified capital",
-      "rank": 58
+      "whyTop": "Rank #59 by verified capital",
+      "rank": 59
     },
     {
       "ticker": "ROBN",
@@ -773,10 +773,10 @@
       "whalesCount": 21,
       "whalesValue": 253450.59,
       "topWhale": "vixgod",
-      "topWhaleValue": 71148,
+      "topWhaleValue": 71148.0,
       "slug": "/ticker/ROBN",
       "hasHistory": false,
-      "rankWhaleCapital": 62,
+      "rankWhaleCapital": 63,
       "rankPlatformValue": 67,
       "rankOwners": 96,
       "rankGainers": 74,
@@ -792,7 +792,7 @@
         }
       ],
       "whyTop": "21 verified whales",
-      "rank": 62
+      "rank": 63
     },
     {
       "ticker": "TQQQ",
@@ -815,7 +815,7 @@
       "topWhaleValue": 62633.43,
       "slug": "/ticker/TQQQ",
       "hasHistory": false,
-      "rankWhaleCapital": 63,
+      "rankWhaleCapital": 66,
       "rankPlatformValue": 66,
       "rankOwners": 107,
       "rankGainers": 62,
@@ -831,50 +831,7 @@
         }
       ],
       "whyTop": "20 verified whales",
-      "rank": 63
-    },
-    {
-      "ticker": "SOXL",
-      "name": "Direxion Daily Semiconductor Bull 3X ETF",
-      "friendlyName": "Direxion Semicondct Bull",
-      "type": "ETF",
-      "isETF": true,
-      "owners": 29,
-      "totalValue": 298772.53,
-      "intensity": 10302.5,
-      "marketCap": 27137145796.8,
-      "price": 163.28,
-      "changePercent": 6.24,
-      "volume": 62144793,
-      "chatroomMembers": 210,
-      "chatroomOnline": 0,
-      "whalesCount": 17,
-      "whalesValue": 210987.48,
-      "topWhale": "hammythehamster",
-      "topWhaleValue": 82316.0,
-      "slug": "/ticker/SOXL",
-      "hasHistory": false,
-      "rankWhaleCapital": 68,
-      "rankPlatformValue": 64,
-      "rankOwners": 120,
-      "rankGainers": 21,
-      "rankChat": 89,
-      "badges": [
-        {
-          "label": "ETF",
-          "color": "amber"
-        },
-        {
-          "label": "WHALE CONSENSUS",
-          "color": "cyan"
-        },
-        {
-          "label": "TOP 24H SURGE",
-          "color": "green"
-        }
-      ],
-      "whyTop": "17 verified whales &bull; +6.2% intraday move",
-      "rank": 68
+      "rank": 66
     },
     {
       "ticker": "QQQI",
@@ -936,7 +893,7 @@
       "topWhaleValue": 125008.3,
       "slug": "/ticker/JEPI",
       "hasHistory": false,
-      "rankWhaleCapital": 73,
+      "rankWhaleCapital": 74,
       "rankPlatformValue": 78,
       "rankOwners": 154,
       "rankGainers": 235,
@@ -952,7 +909,89 @@
         }
       ],
       "whyTop": "12 verified whales",
-      "rank": 73
+      "rank": 74
+    },
+    {
+      "ticker": "SOXL",
+      "name": "Direxion Daily Semiconductor Bull 3X ETF",
+      "friendlyName": "Direxion Semicondct Bull",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 29,
+      "totalValue": 298772.53,
+      "intensity": 10302.5,
+      "marketCap": 27137145796.8,
+      "price": 163.28,
+      "changePercent": 6.24,
+      "volume": 62144793,
+      "chatroomMembers": 210,
+      "chatroomOnline": 0,
+      "whalesCount": 18,
+      "whalesValue": 190587.48,
+      "topWhale": "hammythehamster",
+      "topWhaleValue": 82316.0,
+      "slug": "/ticker/SOXL",
+      "hasHistory": false,
+      "rankWhaleCapital": 75,
+      "rankPlatformValue": 64,
+      "rankOwners": 120,
+      "rankGainers": 21,
+      "rankChat": 89,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "TOP 24H SURGE",
+          "color": "green"
+        }
+      ],
+      "whyTop": "18 verified whales &bull; +6.2% intraday move",
+      "rank": 75
+    },
+    {
+      "ticker": "SLV",
+      "name": "iShares Silver Trust",
+      "friendlyName": "iShares Silver",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 36,
+      "totalValue": 72424.08,
+      "intensity": 2011.78,
+      "marketCap": 29408270580,
+      "price": 54.64,
+      "changePercent": -0.69,
+      "volume": 17504577,
+      "chatroomMembers": 255,
+      "chatroomOnline": 0,
+      "whalesCount": 26,
+      "whalesValue": 186605.51,
+      "topWhale": "ZenQ",
+      "topWhaleValue": 288000.0,
+      "slug": "/ticker/SLV",
+      "hasHistory": false,
+      "rankWhaleCapital": 76,
+      "rankPlatformValue": 145,
+      "rankOwners": 85,
+      "rankGainers": 354,
+      "rankChat": 74,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        }
+      ],
+      "whyTop": "26 verified whales",
+      "rank": 76
     },
     {
       "ticker": "GBTC",
@@ -975,7 +1014,7 @@
       "topWhaleValue": 142212.29,
       "slug": "/ticker/GBTC",
       "hasHistory": false,
-      "rankWhaleCapital": 76,
+      "rankWhaleCapital": 79,
       "rankPlatformValue": 88,
       "rankOwners": 316,
       "rankGainers": 351,
@@ -986,8 +1025,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #76 by verified capital",
-      "rank": 76
+      "whyTop": "Rank #79 by verified capital",
+      "rank": 79
     },
     {
       "ticker": "ETHU",
@@ -1004,13 +1043,13 @@
       "volume": 6948849,
       "chatroomMembers": 29,
       "chatroomOnline": 0,
-      "whalesCount": 6,
-      "whalesValue": 178077.11,
+      "whalesCount": 7,
+      "whalesValue": 178107.11,
       "topWhale": "soontobeared",
       "topWhaleValue": 171042.88,
       "slug": "/ticker/ETHU",
       "hasHistory": false,
-      "rankWhaleCapital": 78,
+      "rankWhaleCapital": 82,
       "rankPlatformValue": 90,
       "rankOwners": 264,
       "rankGainers": 456,
@@ -1021,8 +1060,51 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #78 by verified capital",
-      "rank": 78
+      "whyTop": "Rank #82 by verified capital",
+      "rank": 82
+    },
+    {
+      "ticker": "GLD",
+      "name": "SPDR Gold Trust, SPDR Gold Shares",
+      "friendlyName": "SPDR Gold Trust",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 46,
+      "totalValue": 168121.45,
+      "intensity": 3654.81,
+      "marketCap": 140559940000,
+      "price": 380.2,
+      "changePercent": -0.67,
+      "volume": 9098992,
+      "chatroomMembers": 440,
+      "chatroomOnline": 1,
+      "whalesCount": 22,
+      "whalesValue": 173565.47,
+      "topWhale": "sir_cums_alot",
+      "topWhaleValue": 41258.0,
+      "slug": "/ticker/GLD",
+      "hasHistory": false,
+      "rankWhaleCapital": 85,
+      "rankPlatformValue": 94,
+      "rankOwners": 64,
+      "rankGainers": 353,
+      "rankChat": 47,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        },
+        {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
+          "label": "POPULAR RETAIL",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "22 verified whales",
+      "rank": 85
     },
     {
       "ticker": "ETHA",
@@ -1039,13 +1121,13 @@
       "volume": 39071368,
       "chatroomMembers": 106,
       "chatroomOnline": 0,
-      "whalesCount": 13,
-      "whalesValue": 158965.47,
+      "whalesCount": 15,
+      "whalesValue": 160051.47,
       "topWhale": "dreamer2",
       "topWhaleValue": 102889.5,
       "slug": "/ticker/ETHA",
       "hasHistory": false,
-      "rankWhaleCapital": 85,
+      "rankWhaleCapital": 87,
       "rankPlatformValue": 83,
       "rankOwners": 159,
       "rankGainers": 386,
@@ -1060,8 +1142,8 @@
           "color": "cyan"
         }
       ],
-      "whyTop": "13 verified whales",
-      "rank": 85
+      "whyTop": "15 verified whales",
+      "rank": 87
     },
     {
       "ticker": "VUG",
@@ -1084,7 +1166,7 @@
       "topWhaleValue": 46748.46,
       "slug": "/ticker/VUG",
       "hasHistory": false,
-      "rankWhaleCapital": 92,
+      "rankWhaleCapital": 95,
       "rankPlatformValue": 98,
       "rankOwners": 124,
       "rankGainers": 185,
@@ -1100,50 +1182,7 @@
         }
       ],
       "whyTop": "16 verified whales",
-      "rank": 92
-    },
-    {
-      "ticker": "GLD",
-      "name": "SPDR Gold Trust, SPDR Gold Shares",
-      "friendlyName": "SPDR Gold Trust",
-      "type": "ETF",
-      "isETF": true,
-      "owners": 46,
-      "totalValue": 168121.45,
-      "intensity": 3654.81,
-      "marketCap": 140559940000,
-      "price": 380.2,
-      "changePercent": -0.67,
-      "volume": 9098992,
-      "chatroomMembers": 440,
-      "chatroomOnline": 1,
-      "whalesCount": 21,
-      "whalesValue": 132307.47,
-      "topWhale": "Heisenburg",
-      "topWhaleValue": 38084,
-      "slug": "/ticker/GLD",
-      "hasHistory": false,
-      "rankWhaleCapital": 94,
-      "rankPlatformValue": 94,
-      "rankOwners": 64,
-      "rankGainers": 353,
-      "rankChat": 47,
-      "badges": [
-        {
-          "label": "ETF",
-          "color": "amber"
-        },
-        {
-          "label": "WHALE CONSENSUS",
-          "color": "cyan"
-        },
-        {
-          "label": "POPULAR RETAIL",
-          "color": "amber"
-        }
-      ],
-      "whyTop": "21 verified whales",
-      "rank": 94
+      "rank": 95
     },
     {
       "ticker": "MSTY",
@@ -1163,10 +1202,10 @@
       "whalesCount": 16,
       "whalesValue": 124676.15,
       "topWhale": "nomad29345",
-      "topWhaleValue": 70649,
+      "topWhaleValue": 70649.0,
       "slug": "/ticker/MSTY",
       "hasHistory": false,
-      "rankWhaleCapital": 98,
+      "rankWhaleCapital": 103,
       "rankPlatformValue": 72,
       "rankOwners": 98,
       "rankGainers": 311,
@@ -1182,7 +1221,7 @@
         }
       ],
       "whyTop": "16 verified whales",
-      "rank": 98
+      "rank": 103
     },
     {
       "ticker": "ULTY",
@@ -1205,7 +1244,7 @@
       "topWhaleValue": 35195.3,
       "slug": "/ticker/ULTY",
       "hasHistory": false,
-      "rankWhaleCapital": 103,
+      "rankWhaleCapital": 106,
       "rankPlatformValue": 47,
       "rankOwners": 122,
       "rankGainers": 148,
@@ -1221,7 +1260,7 @@
         }
       ],
       "whyTop": "17 verified whales",
-      "rank": 103
+      "rank": 106
     },
     {
       "ticker": "IWM",
@@ -1244,7 +1283,7 @@
       "topWhaleValue": 79627.71,
       "slug": "/ticker/IWM",
       "hasHistory": false,
-      "rankWhaleCapital": 124,
+      "rankWhaleCapital": 125,
       "rankPlatformValue": 127,
       "rankOwners": 57,
       "rankGainers": 192,
@@ -1264,7 +1303,7 @@
         }
       ],
       "whyTop": "22 verified whales",
-      "rank": 124
+      "rank": 125
     },
     {
       "ticker": "JEPQ",
@@ -1287,7 +1326,7 @@
       "topWhaleValue": 28258.15,
       "slug": "/ticker/JEPQ",
       "hasHistory": false,
-      "rankWhaleCapital": 129,
+      "rankWhaleCapital": 132,
       "rankPlatformValue": 133,
       "rankOwners": 175,
       "rankGainers": 230,
@@ -1303,46 +1342,7 @@
         }
       ],
       "whyTop": "13 verified whales",
-      "rank": 129
-    },
-    {
-      "ticker": "SLV",
-      "name": "iShares Silver Trust",
-      "friendlyName": "iShares Silver",
-      "type": "ETF",
-      "isETF": true,
-      "owners": 36,
-      "totalValue": 72424.08,
-      "intensity": 2011.78,
-      "marketCap": 29408270580,
-      "price": 54.64,
-      "changePercent": -0.69,
-      "volume": 17504577,
-      "chatroomMembers": 255,
-      "chatroomOnline": 0,
-      "whalesCount": 21,
-      "whalesValue": 57205.01,
-      "topWhale": "uponly",
-      "topWhaleValue": 21910.64,
-      "slug": "/ticker/SLV",
-      "hasHistory": false,
-      "rankWhaleCapital": 145,
-      "rankPlatformValue": 145,
-      "rankOwners": 85,
-      "rankGainers": 354,
-      "rankChat": 74,
-      "badges": [
-        {
-          "label": "ETF",
-          "color": "amber"
-        },
-        {
-          "label": "WHALE CONSENSUS",
-          "color": "cyan"
-        }
-      ],
-      "whyTop": "21 verified whales",
-      "rank": 145
+      "rank": 132
     },
     {
       "ticker": "CONY",
@@ -1362,10 +1362,10 @@
       "whalesCount": 11,
       "whalesValue": 54859.57,
       "topWhale": "nomad29345",
-      "topWhaleValue": 29445,
+      "topWhaleValue": 29445.0,
       "slug": "/ticker/CONY",
       "hasHistory": false,
-      "rankWhaleCapital": 151,
+      "rankWhaleCapital": 150,
       "rankPlatformValue": 152,
       "rankOwners": 210,
       "rankGainers": 446,
@@ -1381,7 +1381,7 @@
         }
       ],
       "whyTop": "11 verified whales",
-      "rank": 151
+      "rank": 150
     },
     {
       "ticker": "CONL",
@@ -1401,10 +1401,10 @@
       "whalesCount": 10,
       "whalesValue": 53019.6,
       "topWhale": "GordonGeiko",
-      "topWhaleValue": 19872,
+      "topWhaleValue": 19872.0,
       "slug": "/ticker/CONL",
       "hasHistory": false,
-      "rankWhaleCapital": 155,
+      "rankWhaleCapital": 156,
       "rankPlatformValue": 157,
       "rankOwners": 211,
       "rankGainers": 491,
@@ -1424,7 +1424,7 @@
         }
       ],
       "whyTop": "10 verified whales &bull; -6.6% pullback",
-      "rank": 155
+      "rank": 156
     },
     {
       "ticker": "ARKK",
@@ -1447,7 +1447,7 @@
       "topWhaleValue": 22579.49,
       "slug": "/ticker/ARKK",
       "hasHistory": false,
-      "rankWhaleCapital": 161,
+      "rankWhaleCapital": 163,
       "rankPlatformValue": 151,
       "rankOwners": 198,
       "rankGainers": 163,
@@ -1458,8 +1458,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #161 by verified capital",
-      "rank": 161
+      "whyTop": "Rank #163 by verified capital",
+      "rank": 163
     },
     {
       "ticker": "NVDY",
@@ -1482,7 +1482,7 @@
       "topWhaleValue": 10249.61,
       "slug": "/ticker/NVDY",
       "hasHistory": false,
-      "rankWhaleCapital": 186,
+      "rankWhaleCapital": 189,
       "rankPlatformValue": 207,
       "rankOwners": 241,
       "rankGainers": 215,
@@ -1493,8 +1493,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #186 by verified capital",
-      "rank": 186
+      "whyTop": "Rank #189 by verified capital",
+      "rank": 189
     },
     {
       "ticker": "QTUM",
@@ -1517,7 +1517,7 @@
       "topWhaleValue": 24029.19,
       "slug": "/ticker/QTUM",
       "hasHistory": false,
-      "rankWhaleCapital": 190,
+      "rankWhaleCapital": 193,
       "rankPlatformValue": 195,
       "rankOwners": 263,
       "rankGainers": 116,
@@ -1528,8 +1528,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #190 by verified capital",
-      "rank": 190
+      "whyTop": "Rank #193 by verified capital",
+      "rank": 193
     },
     {
       "ticker": "XLE",
@@ -1549,10 +1549,10 @@
       "whalesCount": 8,
       "whalesValue": 27071.4,
       "topWhale": "hammythehamster",
-      "topWhaleValue": 8253,
+      "topWhaleValue": 8253.0,
       "slug": "/ticker/XLE",
       "hasHistory": false,
-      "rankWhaleCapital": 203,
+      "rankWhaleCapital": 205,
       "rankPlatformValue": 216,
       "rankOwners": 223,
       "rankGainers": 220,
@@ -1563,8 +1563,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #203 by verified capital",
-      "rank": 203
+      "whyTop": "Rank #205 by verified capital",
+      "rank": 205
     },
     {
       "ticker": "NVDL",
@@ -1584,10 +1584,10 @@
       "whalesCount": 8,
       "whalesValue": 26114.04,
       "topWhale": "ryman12",
-      "topWhaleValue": 11556,
+      "topWhaleValue": 11556.0,
       "slug": "/ticker/NVDL",
       "hasHistory": false,
-      "rankWhaleCapital": 205,
+      "rankWhaleCapital": 206,
       "rankPlatformValue": 222,
       "rankOwners": 250,
       "rankGainers": 80,
@@ -1598,8 +1598,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #205 by verified capital",
-      "rank": 205
+      "whyTop": "Rank #206 by verified capital",
+      "rank": 206
     },
     {
       "ticker": "VOOG",
@@ -1654,10 +1654,10 @@
       "whalesCount": 102,
       "whalesValue": 22259.76,
       "topWhale": "houseflipper",
-      "topWhaleValue": 15276,
+      "topWhaleValue": 15276.0,
       "slug": "/ticker/ETH",
       "hasHistory": false,
-      "rankWhaleCapital": 217,
+      "rankWhaleCapital": 216,
       "rankPlatformValue": 236,
       "rankOwners": 4,
       "rankGainers": 385,
@@ -1677,7 +1677,7 @@
         }
       ],
       "whyTop": "102 verified whales &bull; 218 verified holders",
-      "rank": 217
+      "rank": 216
     },
     {
       "ticker": "SPXL",
@@ -1700,7 +1700,7 @@
       "topWhaleValue": 10800.86,
       "slug": "/ticker/SPXL",
       "hasHistory": false,
-      "rankWhaleCapital": 221,
+      "rankWhaleCapital": 225,
       "rankPlatformValue": 243,
       "rankOwners": 353,
       "rankGainers": 102,
@@ -1711,8 +1711,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #221 by verified capital",
-      "rank": 221
+      "whyTop": "Rank #225 by verified capital",
+      "rank": 225
     },
     {
       "ticker": "BITO",
@@ -1729,13 +1729,13 @@
       "volume": 88993964,
       "chatroomMembers": 62,
       "chatroomOnline": 0,
-      "whalesCount": 5,
-      "whalesValue": 20077.68,
+      "whalesCount": 6,
+      "whalesValue": 20082.68,
       "topWhale": "godsgrace",
       "topWhaleValue": 7852.61,
       "slug": "/ticker/BITO",
       "hasHistory": false,
-      "rankWhaleCapital": 223,
+      "rankWhaleCapital": 227,
       "rankPlatformValue": 240,
       "rankOwners": 293,
       "rankGainers": 330,
@@ -1746,8 +1746,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #223 by verified capital",
-      "rank": 223
+      "whyTop": "Rank #227 by verified capital",
+      "rank": 227
     },
     {
       "ticker": "SPYG",
@@ -1770,7 +1770,7 @@
       "topWhaleValue": 8430.12,
       "slug": "/ticker/SPYG",
       "hasHistory": false,
-      "rankWhaleCapital": 229,
+      "rankWhaleCapital": 233,
       "rankPlatformValue": 197,
       "rankOwners": 189,
       "rankGainers": 169,
@@ -1781,8 +1781,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #229 by verified capital",
-      "rank": 229
+      "whyTop": "Rank #233 by verified capital",
+      "rank": 233
     },
     {
       "ticker": "TLT",
@@ -1799,13 +1799,13 @@
       "volume": 61316439,
       "chatroomMembers": 45,
       "chatroomOnline": 0,
-      "whalesCount": 5,
-      "whalesValue": 18207.14,
+      "whalesCount": 6,
+      "whalesValue": 18208.14,
       "topWhale": "PoorlyTimedTrades",
-      "topWhaleValue": 15496,
+      "topWhaleValue": 15496.0,
       "slug": "/ticker/TLT",
       "hasHistory": false,
-      "rankWhaleCapital": 232,
+      "rankWhaleCapital": 236,
       "rankPlatformValue": 250,
       "rankOwners": 330,
       "rankGainers": 315,
@@ -1816,8 +1816,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #232 by verified capital",
-      "rank": 232
+      "whyTop": "Rank #236 by verified capital",
+      "rank": 236
     },
     {
       "ticker": "TSLL",
@@ -1834,13 +1834,13 @@
       "volume": 86231737,
       "chatroomMembers": 77,
       "chatroomOnline": 0,
-      "whalesCount": 8,
-      "whalesValue": 17603.54,
+      "whalesCount": 12,
+      "whalesValue": 14594.54,
       "topWhale": "Libramom2",
       "topWhaleValue": 10900.42,
       "slug": "/ticker/TSLL",
       "hasHistory": false,
-      "rankWhaleCapital": 235,
+      "rankWhaleCapital": 250,
       "rankPlatformValue": 245,
       "rankOwners": 203,
       "rankGainers": 5,
@@ -1851,12 +1851,16 @@
           "color": "amber"
         },
         {
+          "label": "WHALE CONSENSUS",
+          "color": "cyan"
+        },
+        {
           "label": "TOP 24H SURGE",
           "color": "green"
         }
       ],
-      "whyTop": "+9.2% intraday move",
-      "rank": 235
+      "whyTop": "12 verified whales &bull; +9.2% intraday move",
+      "rank": 250
     },
     {
       "ticker": "TSLY",
@@ -1879,7 +1883,7 @@
       "topWhaleValue": 4444.0,
       "slug": "/ticker/TSLY",
       "hasHistory": false,
-      "rankWhaleCapital": 254,
+      "rankWhaleCapital": 257,
       "rankPlatformValue": 221,
       "rankOwners": 256,
       "rankGainers": 28,
@@ -1895,7 +1899,7 @@
         }
       ],
       "whyTop": "+5.1% intraday move",
-      "rank": 254
+      "rank": 257
     },
     {
       "ticker": "BTC",
@@ -1918,7 +1922,7 @@
       "topWhaleValue": 3166.25,
       "slug": "/ticker/BTC",
       "hasHistory": false,
-      "rankWhaleCapital": 304,
+      "rankWhaleCapital": 308,
       "rankPlatformValue": 317,
       "rankOwners": 2,
       "rankGainers": 321,
@@ -1938,7 +1942,7 @@
         }
       ],
       "whyTop": "119 verified whales &bull; 288 verified holders",
-      "rank": 304
+      "rank": 308
     },
     {
       "ticker": "YINN",
@@ -1955,13 +1959,13 @@
       "volume": 3268961,
       "chatroomMembers": 40,
       "chatroomOnline": 0,
-      "whalesCount": 5,
-      "whalesValue": 5098.04,
+      "whalesCount": 6,
+      "whalesValue": 5398.04,
       "topWhale": "Bobdog",
       "topWhaleValue": 4912.04,
       "slug": "/ticker/YINN",
       "hasHistory": false,
-      "rankWhaleCapital": 310,
+      "rankWhaleCapital": 312,
       "rankPlatformValue": 328,
       "rankOwners": 315,
       "rankGainers": 490,
@@ -1977,7 +1981,7 @@
         }
       ],
       "whyTop": "-6.2% pullback",
-      "rank": 310
+      "rank": 312
     },
     {
       "ticker": "SQQQ",
@@ -2032,10 +2036,10 @@
       "whalesCount": 2,
       "whalesValue": 3497.4,
       "topWhale": "AIX",
-      "topWhaleValue": 3480,
+      "topWhaleValue": 3480.0,
       "slug": "/ticker/VXX",
       "hasHistory": false,
-      "rankWhaleCapital": 331,
+      "rankWhaleCapital": 333,
       "rankPlatformValue": 343,
       "rankOwners": 397,
       "rankGainers": 413,
@@ -2046,8 +2050,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #331 by verified capital",
-      "rank": 331
+      "whyTop": "Rank #333 by verified capital",
+      "rank": 333
     },
     {
       "ticker": "FXI",
@@ -2070,7 +2074,7 @@
       "topWhaleValue": 3429.14,
       "slug": "/ticker/FXI",
       "hasHistory": false,
-      "rankWhaleCapital": 332,
+      "rankWhaleCapital": 335,
       "rankPlatformValue": 342,
       "rankOwners": 441,
       "rankGainers": 422,
@@ -2081,8 +2085,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #332 by verified capital",
-      "rank": 332
+      "whyTop": "Rank #335 by verified capital",
+      "rank": 335
     },
     {
       "ticker": "BITX",
@@ -2100,12 +2104,12 @@
       "chatroomMembers": 75,
       "chatroomOnline": 0,
       "whalesCount": 2,
-      "whalesValue": 2490,
+      "whalesValue": 2490.0,
       "topWhale": "madcow",
-      "topWhaleValue": 1992,
+      "topWhaleValue": 1992.0,
       "slug": "/ticker/BITX",
       "hasHistory": false,
-      "rankWhaleCapital": 346,
+      "rankWhaleCapital": 349,
       "rankPlatformValue": 356,
       "rankOwners": 351,
       "rankGainers": 346,
@@ -2116,8 +2120,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #346 by verified capital",
-      "rank": 346
+      "whyTop": "Rank #349 by verified capital",
+      "rank": 349
     },
     {
       "ticker": "YMAX",
@@ -2140,7 +2144,7 @@
       "topWhaleValue": 1570.64,
       "slug": "/ticker/YMAX",
       "hasHistory": false,
-      "rankWhaleCapital": 349,
+      "rankWhaleCapital": 351,
       "rankPlatformValue": 248,
       "rankOwners": 265,
       "rankGainers": 253,
@@ -2151,8 +2155,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #349 by verified capital",
-      "rank": 349
+      "whyTop": "Rank #351 by verified capital",
+      "rank": 351
     },
     {
       "ticker": "MSTX",
@@ -2172,10 +2176,10 @@
       "whalesCount": 3,
       "whalesValue": 1919.16,
       "topWhale": "Dylweed",
-      "topWhaleValue": 991,
+      "topWhaleValue": 991.0,
       "slug": "/ticker/MSTX",
       "hasHistory": false,
-      "rankWhaleCapital": 355,
+      "rankWhaleCapital": 357,
       "rankPlatformValue": 362,
       "rankOwners": 329,
       "rankGainers": 355,
@@ -2186,8 +2190,43 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #355 by verified capital",
-      "rank": 355
+      "whyTop": "Rank #357 by verified capital",
+      "rank": 357
+    },
+    {
+      "ticker": "USO",
+      "name": "United States Oil Fund, LP",
+      "friendlyName": "United States Oil",
+      "type": "ETF",
+      "isETF": true,
+      "owners": 3,
+      "totalValue": 1142.88,
+      "intensity": 380.96,
+      "marketCap": 1971261469.9912002,
+      "price": 146.85,
+      "changePercent": -2.11,
+      "volume": 7752673,
+      "chatroomMembers": 47,
+      "chatroomOnline": 0,
+      "whalesCount": 5,
+      "whalesValue": 1681.1,
+      "topWhale": "Clintos",
+      "topWhaleValue": 639.0,
+      "slug": "/ticker/USO",
+      "hasHistory": false,
+      "rankWhaleCapital": 362,
+      "rankPlatformValue": 385,
+      "rankOwners": 403,
+      "rankGainers": 421,
+      "rankChat": 271,
+      "badges": [
+        {
+          "label": "ETF",
+          "color": "amber"
+        }
+      ],
+      "whyTop": "Rank #362 by verified capital",
+      "rank": 362
     },
     {
       "ticker": "PLTY",
@@ -2210,7 +2249,7 @@
       "topWhaleValue": 1166.25,
       "slug": "/ticker/PLTY",
       "hasHistory": false,
-      "rankWhaleCapital": 372,
+      "rankWhaleCapital": 375,
       "rankPlatformValue": 302,
       "rankOwners": 340,
       "rankGainers": 302,
@@ -2221,43 +2260,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #372 by verified capital",
-      "rank": 372
-    },
-    {
-      "ticker": "USO",
-      "name": "United States Oil Fund, LP",
-      "friendlyName": "United States Oil",
-      "type": "ETF",
-      "isETF": true,
-      "owners": 3,
-      "totalValue": 1142.88,
-      "intensity": 380.96,
-      "marketCap": 1971261469.9912002,
-      "price": 146.85,
-      "changePercent": -2.11,
-      "volume": 7752673,
-      "chatroomMembers": 47,
-      "chatroomOnline": 0,
-      "whalesCount": 3,
-      "whalesValue": 1144.1,
-      "topWhale": "Clintos",
-      "topWhaleValue": 639.0,
-      "slug": "/ticker/USO",
-      "hasHistory": false,
-      "rankWhaleCapital": 374,
-      "rankPlatformValue": 385,
-      "rankOwners": 403,
-      "rankGainers": 421,
-      "rankChat": 271,
-      "badges": [
-        {
-          "label": "ETF",
-          "color": "amber"
-        }
-      ],
-      "whyTop": "Rank #374 by verified capital",
-      "rank": 374
+      "whyTop": "Rank #375 by verified capital",
+      "rank": 375
     },
     {
       "ticker": "MSOS",
@@ -2280,7 +2284,7 @@
       "topWhaleValue": 509.58,
       "slug": "/ticker/MSOS",
       "hasHistory": false,
-      "rankWhaleCapital": 381,
+      "rankWhaleCapital": 383,
       "rankPlatformValue": 390,
       "rankOwners": 413,
       "rankGainers": 469,
@@ -2291,8 +2295,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #381 by verified capital",
-      "rank": 381
+      "whyTop": "Rank #383 by verified capital",
+      "rank": 383
     },
     {
       "ticker": "UVXY",
@@ -2315,7 +2319,7 @@
       "topWhaleValue": 339.4,
       "slug": "/ticker/UVXY",
       "hasHistory": false,
-      "rankWhaleCapital": 411,
+      "rankWhaleCapital": 414,
       "rankPlatformValue": 415,
       "rankOwners": 427,
       "rankGainers": 439,
@@ -2326,8 +2330,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #411 by verified capital",
-      "rank": 411
+      "whyTop": "Rank #414 by verified capital",
+      "rank": 414
     },
     {
       "ticker": "UVIX",
@@ -2350,7 +2354,7 @@
       "topWhaleValue": 36.09,
       "slug": "/ticker/UVIX",
       "hasHistory": false,
-      "rankWhaleCapital": 441,
+      "rankWhaleCapital": 443,
       "rankPlatformValue": 446,
       "rankOwners": 435,
       "rankGainers": 463,
@@ -2361,8 +2365,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #441 by verified capital",
-      "rank": 441
+      "whyTop": "Rank #443 by verified capital",
+      "rank": 443
     },
     {
       "ticker": "NVD",
@@ -2385,7 +2389,7 @@
       "topWhaleValue": 3.45,
       "slug": "/ticker/NVD",
       "hasHistory": false,
-      "rankWhaleCapital": 455,
+      "rankWhaleCapital": 456,
       "rankPlatformValue": 457,
       "rankOwners": 472,
       "rankGainers": 437,
@@ -2396,8 +2400,8 @@
           "color": "amber"
         }
       ],
-      "whyTop": "Rank #455 by verified capital",
-      "rank": 455
+      "whyTop": "Rank #456 by verified capital",
+      "rank": 456
     },
     {
       "ticker": "SPLG",

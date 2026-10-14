@@ -1,6 +1,6 @@
 # AfterMath Quantitative Alt-Data API Reference
 
-> Sub-millisecond, edge-cached alternative financial intelligence API tracking verified retail & whale equity, conviction intensity ($/holder), whale dry powder cash, and macro tape liquidity from the AfterHour social terminal.
+> Edge-cached alternative financial intelligence API tracking verified retail & whale equity, conviction intensity ($/holder), whale dry powder cash, and macro tape liquidity from the AfterHour social terminal.
 > 
 > Production URL: **https://ah.mphinance.com**  
 > Interactive Swagger Explorer: **https://ah.mphinance.com/docs**  
@@ -14,7 +14,7 @@
 - **Zero Authentication Required**: All endpoints are public and open.
 - **Edge Cached**: Hosted on Coolify high-performance Nginx with HTTP/2 and gzip compression.
 - **Unrestricted CORS**: `Access-Control-Allow-Origin: *` is enabled across all endpoints for direct browser, Node.js, Python, and agent loop execution.
-- **Sub-Millisecond Response**: Pre-computed static and dynamic JSON edge files return in ~10 to 25ms globally.
+- **Fast Static Responses**: Pre-computed JSON files, gzip-compressed with ETag/Last-Modified. Small files (`market.json`, `/api/ticker/*`) return in roughly 250 to 350ms; `whales.json` and `shadow.json` are ~3.8MB uncompressed, so expect 600ms+.
 
 ---
 
@@ -36,8 +36,8 @@
     "macro": {
       "whaleDryPowderCash": 8984781.39,
       "whaleNetGainToday": 3487492.28,
-      "whaleUnrealizedProfit": 21893412.10,
-      "totalWhaleAum": 169340582.45,
+      "whaleUnrealizedProfit": 57700078.87,
+      "totalWhaleAum": 169043372.56,
       "trackedWhalesCount": 395,
       "allocation": {
         "equityValue": 88523910.12,
