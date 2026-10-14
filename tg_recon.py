@@ -74,18 +74,29 @@ def preview(handle):
             "kind": kind, "extra": extra}
 
 
-def posts(handle):
-    h = fetch(f"https://t.me/s/{handle}")
-    if not h or "tgme_widget_message" not in h:
-        return []
-    out = []
-    for blk in re.split(r'(?=<div class="tgme_widget_message_wrap)', h)[1:]:
-        t = re.search(r'tgme_widget_message_text[^>]*>(.*?)</div>', blk, re.S)
-        d = re.search(r'<time[^>]*datetime="([^"]+)"', blk)
-        v = re.search(r'tgme_widget_message_views">([^<]+)<', blk)
-        pid = re.search(r'data-post="([^"]+)"', blk)
-        out.append({"id": pid.group(1) if pid else None, "date": d.group(1) if d else None,
-                    "views": v.group(1) if v else None, "text": strip(t.group(1)) if t else ""})
+def posts(handle, pages=1):
+    """Public channel posts via t.me/s/<handle>; pages>1 walks back with ?before=<oldest id> (20 per page)."""
+    out, before = [], None
+    for _ in range(max(1, pages)):
+        h = fetch(f"https://t.me/s/{handle}" + (f"?before={before}" if before else ""))
+        if not h or "tgme_widget_message" not in h:
+            break
+        page = []
+        for blk in re.split(r'(?=<div class="tgme_widget_message_wrap)', h)[1:]:
+            t = re.search(r'tgme_widget_message_text[^>]*>(.*?)</div>', blk, re.S)
+            d = re.search(r'<time[^>]*datetime="([^"]+)"', blk)
+            v = re.search(r'tgme_widget_message_views">([^<]+)<', blk)
+            pid = re.search(r'data-post="([^"]+)"', blk)
+            page.append({"id": pid.group(1) if pid else None, "date": d.group(1) if d else None,
+                         "views": v.group(1) if v else None, "text": strip(t.group(1)) if t else ""})
+        ids = [int(p["id"].split("/")[1]) for p in page if p["id"]]
+        if not ids:
+            break
+        out = page + out
+        if min(ids) <= 1 or before == min(ids):
+            break
+        before = min(ids)
+        time.sleep(1.0)
     return out
 
 
@@ -112,6 +123,7 @@ def main():
     ap.add_argument("--out", default="data/telegram_funnel/recon.json")
     ap.add_argument("--delay", type=float, default=1.5)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--post-pages", type=int, default=1, help="pages of public posts to walk back per channel (20 posts each)")
     ap.add_argument("--reanalyze", action="store_true", help="re-run filters/clustering on existing --out, no network")
     a = ap.parse_args()
     accts = json.load(open(a.known))
@@ -133,7 +145,7 @@ def main():
     for i, link in enumerate(links, 1):
         handle = re.split(r"(?:t\.me|telegram\.me)/", orig.get(link, link), flags=re.I)[-1].split("?")[0].strip("/")
         pv = preview(handle); time.sleep(a.delay)
-        ps = [] if handle.startswith("+") else posts(handle)
+        ps = [] if handle.startswith("+") else posts(handle, a.post_pages)
         if not handle.startswith("+"):
             time.sleep(a.delay)
         text = " ".join([(pv or {}).get("description") or ""] + [p["text"] for p in ps])

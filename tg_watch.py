@@ -39,7 +39,7 @@ def profile(username):
 def snapshot(stamp):
     SNAP.mkdir(parents=True, exist_ok=True)
     rec = SNAP / f"recon_{stamp}.json"
-    subprocess.run([sys.executable, str(BASE / "tg_recon.py"), "--known", str(BASE / "accounts.json"), "--out", str(rec)],
+    subprocess.run([sys.executable, str(BASE / "tg_recon.py"), "--known", str(BASE / "accounts.json"), "--out", str(rec), "--post-pages", "6"],
                    check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     prof = {}
     for a in json.load(open(BASE / "accounts.json")):
@@ -59,6 +59,10 @@ def snapshot(stamp):
                 if p.get("id") and p["id"] not in seen:
                     seen.add(p["id"]); new += 1
                     f.write(json.dumps({**p, "channel": c["link"], "first_seen": stamp}, ensure_ascii=False) + "\n")
+    try:
+        subprocess.run([sys.executable, str(BASE / "tg_calls.py")], check=True, stdout=subprocess.DEVNULL)
+    except Exception as e:
+        print(f"tg_calls failed: {e}", file=sys.stderr)
     return new
 
 

@@ -22,6 +22,7 @@ python3 analyze_funnel.py        # cadence, ticker bait, copy-paste spam -> repo
 python3 build_funnel.py          # accounts.json + post stats -> api/funnel.json (also run by build_github_pages.py)
 python3 tg_recon.py              # passive Telegram previews -> data/telegram_funnel/recon.json
 python3 tg_watch.py              # snapshot + diff over time (link rotation, dead channels, member jumps, new wallets) -> reports/analysis/funnel_watch.md; schedule daily
+python3 tg_calls.py                # parse trade callouts (ticker, strike, side, expiry, entry, quoted result) from archived Telegram posts -> data/telegram_funnel/calls.jsonl, reports/analysis/funnel_calls.md (run by tg_watch)
 python3 funnel_tickers.py          # tickers called out (AfterHour posts + archived Telegram posts) -> reports/analysis/funnel_tickers.md
 python3 render_recon.py          # recon.json -> reports/analysis/funnel_recon.html (PNG: screenshot at 1200px, 2x)
 ```
@@ -39,6 +40,9 @@ Runs `tg_recon.py` plus a re-check of every flagged AfterHour profile, saves a t
 
 #### Scheduled run (Coolify host)
 `tg_watch.py` runs daily at **13:15 UTC (9:15 ET)** from `mph`'s crontab on the Coolify box (`ssh coolify`). Checkout: `/home/mph/apps/aftermath-watch` (sparse, partial clone of this repo, deliberately **outside** the nginx webroot so snapshots are never served). `run_watch.sh` does `git fetch` + `reset --hard origin/main`, then `python3 tg_watch.py`. Output: `watch.log` and `reports/analysis/funnel_watch.md` in that directory; snapshots live in its `data/telegram_funnel/snapshots/` and the post archive in `data/telegram_funnel/posts_archive.jsonl`. The server keeps its own history, separate from the local one. Because of the hard reset, never edit files in that checkout by hand. Read the latest report with `ssh coolify cat /home/mph/apps/aftermath-watch/reports/analysis/funnel_watch.md`.
+
+### `tg_calls.py` (callout extraction)
+Offline parser over `posts_archive.jsonl`. One record per ticker mention: `action` (open, close, mention), option `side`/`strike`/`expiry`, `entry_price`, and `result_pct` when a close quotes one. Handles formats like `$NFLX 70P @.02`, `Opened 10 $SPX 7790C 10/08 @ $7.71`, `$BRZE 16 OCT 26 $25 CALL $0.95`, `Exit $PLTR 10/02 195C @ $5.75 +77%`. Regex-based and conservative; raw text is kept in every record. Quoted results are the channel's own claims. Winners dominate the quoted closes (survivorship), so measure outcomes against the real tape, not these numbers. `tg_watch.py` walks 6 pages (120 posts) back per public channel each run so busy channels are not missed between daily runs; `tg_recon.py --post-pages N` controls depth.
 
 ### Handoff for the list owner
 `handoff/crawl.py` (zero-dependency feed sweeper) and `handoff/AGENT_BRIEF.md` (instructions for his agent). The feed sweep is low-yield: ~1 new Telegram-linked account per 1,200 authors scanned. Mining existing scam-list posts and shared-link pivots finds far more.
