@@ -711,6 +711,7 @@
       <a href="/stonks" class="nav-btn">&#x1F4C8; 500 Equities</a>
       <a href="/etfs" class="nav-btn">&#x1F3DB;&#xFE0F; 64 ETFs</a>
       <a href="/docs" class="nav-btn">&#x1F4D6; Swagger API</a>
+      <a href="/scamcheck" class="nav-btn">&#x1F6E1;&#xFE0F; Scam Check</a>
       <a href="/sitemap" class="nav-btn">&#x1F5FA;&#xFE0F; Sitemap</a>
       <a href="https://www.tradermatrix.pro/?ref=MPHINANCE" target="_blank" rel="noopener noreferrer" class="nav-btn tm-cta">&#x26A1; TraderMatrix Pro &nearr;</a>
     </nav>
@@ -732,7 +733,7 @@
       <div class="feature-pills">
         <div class="pill"><span>&#x26A1;</span> Sub-Millisecond Edge Latency</div>
         <div class="pill"><span>&#x1F513;</span> Zero API Keys or Auth Tokens</div>
-        <div class="pill"><span>&#x1F6E0;&#xFE0F;</span> 6 Production Tools &bull; 4 Live Resources</div>
+        <div class="pill"><span>&#x1F6E0;&#xFE0F;</span> 11 Production Tools</div>
         <div class="pill"><span>&#x1F40D;</span> Pure Python 3 (Zero External Dependencies)</div>
       </div>
 
@@ -965,11 +966,11 @@ python3 aftermath_mcp.py</code></pre>
       </div>
     </section>
 
-    <!-- 6 TOOLS CATALOG -->
+    <!-- TOOLS CATALOG -->
     <section>
       <div class="section-header">
         <div>
-          <h2 class="section-title"><span>&#x1F6E0;&#xFE0F;</span> The 6 Production MCP Tools</h2>
+          <h2 class="section-title"><span>&#x1F6E0;&#xFE0F;</span> The 11 Production MCP Tools</h2>
           <div class="section-sub">Standard JSON-RPC tools exposed to your language model</div>
         </div>
         <div>
@@ -1066,6 +1067,71 @@ python3 aftermath_mcp.py</code></pre>
             </div>
           </div>
           <button class="tool-test-btn" onclick="runSandbox('get_conviction_screener')">Test in Sandbox &rarr;</button>
+        </div>
+
+        <div class="tool-card">
+          <div>
+            <span class="tool-badge">WHALE SCREENER</span>
+            <div class="tool-name">screen_whales</div>
+            <div class="tool-desc">
+              Screens the 395 verified portfolios by account value, holdings and ticker exposure.
+            </div>
+            <div class="tool-schema">
+              <strong>Inputs:</strong> see mcp-schema.json
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div>
+            <span class="tool-badge">CLOUT INVERSION</span>
+            <div class="tool-name">get_shadow_whales</div>
+            <div class="tool-desc">
+              Ranks accounts by capital-per-follower asymmetry: big money, no audience.
+            </div>
+            <div class="tool-schema">
+              <strong>Inputs:</strong> see mcp-schema.json
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div>
+            <span class="tool-badge">PRICE HISTORY</span>
+            <div class="tool-name">get_price_history</div>
+            <div class="tool-desc">
+              Daily OHLCV bars for a ticker, for trend and range context.
+            </div>
+            <div class="tool-schema">
+              <strong>Inputs:</strong> ticker, limit
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div>
+            <span class="tool-badge">SOCIAL TAPE</span>
+            <div class="tool-name">get_social_feed</div>
+            <div class="tool-desc">
+              Live community posts and broker-verified trade snapshots, filterable by ticker or trader.
+            </div>
+            <div class="tool-schema">
+              <strong>Inputs:</strong> ticker, username, limit
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div>
+            <span class="tool-badge">SCAM CHECK &bull; NEW</span>
+            <div class="tool-name">get_funnel_accounts</div>
+            <div class="tool-desc">
+              Check an AfterHour username or t.me link against 85 accounts flagged for funneling traders into Telegram, with evidence tier and shared-link clusters. Data curated by <a href="https://telegramscammers.com" target="_blank" rel="noopener">TelegramScammers.com</a> (<a href="https://telegramscammers.com/database" target="_blank" rel="noopener">database</a> &bull; <a href="https://telegramscammers.com/submit" target="_blank" rel="noopener">submit intel</a>). Flagged for investigation, not a finding of fraud.
+            </div>
+            <div class="tool-schema">
+              <strong>Inputs:</strong> username, telegram_link, tier, limit
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -3,7 +3,7 @@
   "info": {
     "title": "AfterMath Quant Alt-Data API",
     "version": "1.0.0",
-    "description": "Sub-millisecond, edge-cached alternative financial intelligence API tracking verified retail & whale equity, conviction intensity ($/holder), whale dry powder cash, and macro tape liquidity from AfterHour social terminal.",
+    "description": "Edge-cached alternative financial intelligence API tracking verified retail & whale equity, conviction intensity ($/holder), whale dry powder cash, and macro tape liquidity from AfterHour social terminal.",
     "contact": {
       "name": "Momentum Phinance",
       "url": "https://ah.mphinance.com"
@@ -143,10 +143,24 @@
           "MCP & AI Agents"
         ],
         "summary": "Model Context Protocol (MCP) Tool Schemas",
-        "description": "Returns the official JSON Schema catalog for all 6 MCP tools exposed for autonomous AI agents and IDEs.",
+        "description": "Returns the official JSON Schema catalog for all 11 MCP tools exposed for autonomous AI agents and IDEs.",
         "responses": {
           "200": {
             "description": "Model Context Protocol tool catalog"
+          }
+        }
+      }
+    },
+    "/api/funnel.json": {
+      "get": {
+        "tags": [
+          "MCP & AI Agents"
+        ],
+        "summary": "Telegram Funnel Accounts (via TelegramScammers.com)",
+        "description": "AfterHour accounts flagged for funneling traders into Telegram channels, with evidence tier and shared-link clusters. Data curated by https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
+        "responses": {
+          "200": {
+            "description": "Flagged account list"
           }
         }
       }

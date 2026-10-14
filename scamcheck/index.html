@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Check Before You Join | AfterMath</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Paste a Telegram link or AfterHour username and see if it is flagged for funneling traders into Telegram channels. Data from TelegramScammers.com.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07090e;--card:#0d1117;--surface:#131b26;--border:#1f2937;--green:#00f59b;--cyan:#00d2ff;--gold:#ffd166;--red:#ff5c7a;--text:#e6edf3;--muted:#8b949e;--sans:'Plus Jakarta Sans',-apple-system,'Segoe UI',sans-serif;--mono:'JetBrains Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5;min-height:100vh}
+a{color:var(--cyan)}
+.nav{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border);background:rgba(13,17,23,.92);position:sticky;top:0;z-index:10}
+.nav a{min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none;font-size:13px;font-weight:600}
+.nav a:hover,.nav a.on{border-color:var(--cyan);color:var(--cyan)}
+main{max-width:860px;margin:0 auto;padding:28px 16px 56px}
+h1{font-size:clamp(26px,5vw,38px);font-weight:800;letter-spacing:-.5px}
+h1 span{color:var(--green)}
+.sub{color:var(--muted);margin:10px 0 22px}
+.box{display:flex;gap:8px;flex-wrap:wrap}
+input{flex:1 1 260px;min-height:48px;padding:0 14px;background:var(--card);border:1px solid var(--border);border-radius:10px;color:var(--text);font:15px var(--mono)}
+input:focus{outline:2px solid var(--cyan);outline-offset:1px}
+button{min-height:48px;padding:0 22px;background:var(--green);color:#04120c;border:0;border-radius:10px;font:800 15px var(--sans);cursor:pointer}
+.stats{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted);font-size:13px;margin-top:14px}
+.stats b{color:var(--text)}
+#out{margin-top:24px;display:grid;gap:14px}
+.res{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:10px;padding:16px}
+.res.hit{border-left-color:var(--red)}
+.res.miss{border-left-color:var(--muted)}
+.res h2{font-size:16px;margin-bottom:6px}
+.badge{display:inline-block;font:600 11px var(--mono);text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--surface);border:1px solid var(--border);margin-left:6px;vertical-align:middle}
+.badge.verified{color:var(--red);border-color:var(--red)}.badge.corroborated{color:var(--gold);border-color:var(--gold)}.badge.reported{color:var(--cyan);border-color:var(--cyan)}
+.row{color:var(--muted);font-size:13px;margin-top:4px;overflow-wrap:anywhere}
+.row b{color:var(--text);font-weight:600}.mono{font-family:var(--mono)}
+.mates{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.mates a{font:12px var(--mono);padding:4px 8px;background:var(--surface);border:1px solid var(--border);border-radius:6px;text-decoration:none}
+.cta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.cta a{min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border:1px solid var(--border);border-radius:8px;text-decoration:none;font-size:13px;font-weight:600}
+.fine{margin-top:34px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/">📊 Live Terminal</a><a href="/whales">🐋 Whales</a><a href="/mcp">🤖 MCP</a><a href="/docs">📖 API</a><a href="/scamcheck" class="on">🛡️ Scam Check</a>
+</nav>
+<main>
+  <h1>Check before you <span>join</span></h1>
+  <p class="sub">Paste a Telegram link (t.me/...) or an AfterHour username. We check it against accounts flagged for funneling traders into Telegram channels.</p>
+  <form class="box" id="f" autocomplete="off">
+    <input id="q" type="text" placeholder="t.me/somechannel  or  username" aria-label="Telegram link or AfterHour username" autofocus>
+    <button type="submit">Check</button>
+  </form>
+  <div class="stats" id="stats"></div>
+  <div id="out" aria-live="polite"></div>
+  <p class="fine">Data curated by <a href="https://telegramscammers.com" target="_blank" rel="noopener">TelegramScammers.com</a>, enriched by AfterMath with post history. "Flagged" means flagged for investigation, not a finding of fraud. Tiers: <b>reported</b> single observation, <b>corroborated</b> shared Telegram link across accounts, <b>verified</b> proof captured and admin-checked. Found one that isn't listed? <a href="https://telegramscammers.com/submit" target="_blank" rel="noopener">Submit intel</a>. Raw data: <a href="/api/funnel.json">funnel.json</a>.</p>
+</main>
+<script>
+let DB=null;
+const $=id=>document.getElementById(id);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const norm=s=>{s=(s||'').trim().toLowerCase().replace(/^https?:\/\//,'').replace(/^www\./,'').replace(/^telegram\.me\//,'t.me/').replace(/[?#].*$/,'').replace(/\/+$/,'');return s};
+async function load(){
+  try{const r=await fetch('/api/funnel.json');DB=await r.json();
+    $('stats').innerHTML='';
+    [[DB.count,'accounts flagged'],[DB.tiers.verified||0,'verified'],[DB.tiers.corroborated||0,'corroborated'],[DB.shared_link_clusters.length,'shared-link clusters']].forEach(([n,l])=>{const s=el('span');const b=el('b',null,n);s.append(b,' '+l);$('stats').append(s)});
+    const p=new URLSearchParams(location.search).get('q');if(p){$('q').value=p;check(p)}
+  }catch(e){$('out').append(el('div','res',"Couldn't load the database. Try again in a minute."))}
+}
+function card(a){
+  const c=el('div','res hit');const h=el('h2',null,'@'+a.username);h.append(el('span','badge '+a.tier,a.tier));c.append(h);
+  const row=(k,v)=>{const r=el('div','row');r.append(el('b',null,k+': '),document.createTextNode(v));c.append(r)};
+  row('Telegram',a.telegram_link||'none found');
+  row('Account created',a.created_at||'unknown');
+  row('Followers',a.num_followers==null?'unknown':a.num_followers);
+  row('Posts',a.post_count+(a.posts_mentioning_telegram?` (${a.posts_mentioning_telegram} mention Telegram)`:''));
+  if(a.max_duplicate_post>=3)row('Copy-paste posting','same post repeated '+a.max_duplicate_post+' times');
+  const mates=a.telegram_link?DB.accounts.filter(x=>x.telegram_link===a.telegram_link&&x.username!==a.username):[];
+  if(mates.length){const r=el('div','row');r.append(el('b',null,'Same link used by '+mates.length+' other account'+(mates.length>1?'s':'')+':'));c.append(r);const m=el('div','mates');mates.forEach(x=>{const l=el('a',null,'@'+x.username);l.href='https://afterhour.com/'+encodeURIComponent(x.username);l.target='_blank';l.rel='noopener';m.append(l)});c.append(m)}
+  const cta=el('div','cta');
+  [['TelegramScammers listing','https://telegramscammers.com/database'],['AfterHour profile',a.afterhour_url]].forEach(([t,u])=>{const l=el('a',null,t+' ↗');l.href=u;l.target='_blank';l.rel='noopener';cta.append(l)});
+  c.append(cta);return c;
+}
+function check(raw){
+  const out=$('out');out.innerHTML='';const q=norm(raw);if(!q||!DB)return;
+  const u=q.replace(/^@/,''),h=q.startsWith('t.me/')?q:'t.me/'+u;
+  let hits=DB.accounts.filter(a=>a.username.toLowerCase()===u||(a.telegram_link&&(a.telegram_link===q||a.telegram_link===h)));
+  if(!hits.length&&u.length>=4)hits=DB.accounts.filter(a=>a.username.toLowerCase().includes(u)||(a.telegram_link||'').includes(u)).slice(0,10);
+  if(hits.length){const t=el('div','res');t.append(el('h2',null,hits.length+' match'+(hits.length>1?'es':'')+' found'));t.append(el('div','row','Flagged for investigation, not a finding of fraud. Look at the evidence before you decide.'));out.append(t);hits.forEach(a=>out.append(card(a)))}
+  else{const m=el('div','res miss');m.append(el('h2',null,'No match'));m.append(el('div','row',"Not in the database. That is not a clean bill of health: new accounts and channels show up all the time, and invite links get rotated."));
+    const cta=el('div','cta');const l=el('a',null,'Report it to TelegramScammers ↗');l.href='https://telegramscammers.com/submit';l.target='_blank';l.rel='noopener';cta.append(l);m.append(cta);out.append(m)}
+  history.replaceState(null,'','?q='+encodeURIComponent(raw.trim()));
+}
+$('f').addEventListener('submit',e=>{e.preventDefault();check($('q').value)});
+load();
+</script>
+</body>
+</html>

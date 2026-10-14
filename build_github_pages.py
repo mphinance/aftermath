@@ -54,32 +54,64 @@ for w in whales:
     flw = max(1, w.get("followers", 0))
     w["shadow_ratio"] = round(w["total_value"] / flw, 2)
     w["slug"] = f"/@{w['username']}"
+    w_opts = [pos for pos in w.get("all_positions", []) if pos.get("is_option")]
+    w["options_count"] = len(w_opts)
+    w["options_value"] = round(sum(pos.get("value", 0) for pos in w_opts), 2)
+    w["options_percent"] = round((w["options_value"] / max(1, w["total_value"])) * 100, 2)
     for p in w.get("all_positions", []):
-        t = p.get("ticker")
+        t = (p.get("ticker") or "").strip()
         if not t:
             continue
         if t.startswith("sec_"):
             t = p.get("name") or "UNLISTED"
             p["ticker"] = t
 
+        root_t = (p.get("root_ticker") or t).strip().upper()
         if p.get("name") and t not in ticker_extra_names:
             ticker_extra_names[t] = p.get("name")
+        if p.get("name") and root_t not in ticker_extra_names:
+            ticker_extra_names[root_t] = p.get("name")
 
-        p["quantity"] = round(p.get("quantity", 0), 2)
-        p["value"] = round(p.get("value", 0), 2)
-        p["cost_basis"] = round(p.get("cost_basis", 0), 2)
-        p["profit"] = round(p.get("profit", 0), 2)
+        p["quantity"] = round(float(p.get("quantity", 0) or 0), 2)
+        p["value"] = round(float(p.get("value", 0) or 0), 2)
+        p["cost_basis"] = round(float(p.get("cost_basis", 0) or 0), 2)
+        p["profit"] = round(float(p.get("profit", 0) or 0), 2)
 
-        if t not in ticker_to_whales:
-            ticker_to_whales[t] = []
-        ticker_to_whales[t].append({
+        is_opt = bool(p.get("is_option"))
+        opt_type = p.get("option_type")
+        strike = p.get("strike")
+        expiry = p.get("expiry")
+        contracts = p.get("contracts")
+        clean_sym = p.get("clean_symbol") or t
+
+        whale_item = {
             "username": w["username"],
             "followers": w.get("followers", 0),
             "shares": p["quantity"],
+            "contracts": contracts,
             "value": p["value"],
             "cost_basis": p["cost_basis"],
             "profit": p["profit"],
-        })
+            "is_option": is_opt,
+            "option_type": opt_type,
+            "strike": strike,
+            "expiry": expiry,
+            "clean_symbol": clean_sym,
+            "name": p.get("name") or clean_sym,
+            "raw_ticker": t,
+            "root_ticker": root_t,
+        }
+
+        # Index by root ticker so underlying asset deep dive lists option holders
+        if root_t not in ticker_to_whales:
+            ticker_to_whales[root_t] = []
+        ticker_to_whales[root_t].append(whale_item)
+
+        # Also index by exact raw ticker if different
+        if t != root_t:
+            if t not in ticker_to_whales:
+                ticker_to_whales[t] = []
+            ticker_to_whales[t].append(whale_item)
 
 # Sort each ticker's whales by value descending
 for t in ticker_to_whales:
@@ -233,11 +265,15 @@ total_profit_today = sum(w.get("profit_today", 0) for w in whales)
 total_unrealized_profit = sum(w.get("profit", 0) for w in whales)
 
 etf_tickers_set = set(e["ticker"] for e in etfs_list)
-whale_equity_cap = sum(sum(p.get("value", 0) for p in w.get("all_positions", []) if p.get("ticker") not in etf_tickers_set) for w in whales)
-whale_etf_cap = sum(sum(p.get("value", 0) for p in w.get("all_positions", []) if p.get("ticker") in etf_tickers_set) for w in whales)
-tot_classified = whale_equity_cap + whale_etf_cap or 1
+whale_options_cap = sum(sum(p.get("value", 0) for p in w.get("all_positions", []) if p.get("is_option")) for w in whales)
+whale_etf_cap = sum(sum(p.get("value", 0) for p in w.get("all_positions", []) if (not p.get("is_option")) and (p.get("root_ticker") in etf_tickers_set or p.get("ticker") in etf_tickers_set)) for w in whales)
+whale_equity_cap = sum(sum(p.get("value", 0) for p in w.get("all_positions", []) if (not p.get("is_option")) and (p.get("root_ticker") not in etf_tickers_set and p.get("ticker") not in etf_tickers_set)) for w in whales)
+tot_classified = whale_equity_cap + whale_etf_cap + whale_options_cap or 1
 equity_pct = (whale_equity_cap / tot_classified) * 100
 etf_pct = (whale_etf_cap / tot_classified) * 100
+options_pct = (whale_options_cap / tot_classified) * 100
+whale_options_whales_cnt = sum(1 for w in whales if w.get("options_count", 0) > 0)
+whale_options_positions_cnt = sum(w.get("options_count", 0) for w in whales)
 
 top_gainers_tape = sorted([x for x in stocks if x["totalValue"] >= 500_000], key=lambda x: x["changePercent"], reverse=True)[:4]
 
@@ -258,7 +294,11 @@ market_payload = {
             "equityValue": round(whale_equity_cap, 2),
             "equityPercent": round(equity_pct, 1),
             "etfValue": round(whale_etf_cap, 2),
-            "etfPercent": round(etf_pct, 1)
+            "etfPercent": round(etf_pct, 1),
+            "optionsValue": round(whale_options_cap, 2),
+            "optionsPercent": round(options_pct, 1),
+            "optionsWhalesCount": whale_options_whales_cnt,
+            "optionsPositionsCount": whale_options_positions_cnt
         }
     },
     "capitalInflowLeaders": [
@@ -332,12 +372,16 @@ mcp_schema_payload = {
 with open(API_DIR / "mcp-schema.json", "w", encoding="utf-8") as f:
     json.dump(mcp_schema_payload, f, indent=2)
 
+# Telegram-funnel flag list (data courtesy of telegramscammers.com)
+import subprocess, sys as _sys
+subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel.py")], check=True)
+
 openapi_spec = {
     "openapi": "3.1.0",
     "info": {
         "title": "AfterMath Quant Alt-Data API",
         "version": "1.0.0",
-        "description": "Sub-millisecond, edge-cached alternative financial intelligence API tracking verified retail & whale equity, conviction intensity ($/holder), whale dry powder cash, and macro tape liquidity from AfterHour social terminal.",
+        "description": "Edge-cached alternative financial intelligence API tracking verified retail & whale equity, conviction intensity ($/holder), whale dry powder cash, and macro tape liquidity from AfterHour social terminal.",
         "contact": {
             "name": "Momentum Phinance",
             "url": "https://ah.mphinance.com"
@@ -441,11 +485,19 @@ openapi_spec = {
                 }
             }
         },
+        "/api/funnel.json": {
+            "get": {
+                "tags": ["MCP & AI Agents"],
+                "summary": "Telegram Funnel Accounts (via TelegramScammers.com)",
+                "description": "AfterHour accounts flagged for funneling traders into Telegram channels, with evidence tier and shared-link clusters. Data curated by https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
+                "responses": {"200": {"description": "Flagged account list"}}
+            }
+        },
         "/api/mcp-schema.json": {
             "get": {
                 "tags": ["MCP & AI Agents"],
                 "summary": "Model Context Protocol (MCP) Tool Schemas",
-                "description": "Returns the official JSON Schema catalog for all 6 MCP tools exposed for autonomous AI agents and IDEs.",
+                "description": "Returns the official JSON Schema catalog for all 11 MCP tools exposed for autonomous AI agents and IDEs.",
                 "responses": {
                     "200": {
                         "description": "Model Context Protocol tool catalog"
@@ -489,6 +541,8 @@ sitemap_urls = [
     ("https://ah.mphinance.com/etfs", "0.9", "daily"),
     ("https://ah.mphinance.com/whales", "0.9", "daily"),
     ("https://ah.mphinance.com/shadow", "0.8", "daily"),
+    ("https://ah.mphinance.com/scamcheck", "0.8", "daily"),
+    ("https://ah.mphinance.com/api/funnel.json", "0.7", "daily"),
     ("https://ah.mphinance.com/sitemap", "0.8", "daily"),
     ("https://ah.mphinance.com/docs", "0.9", "daily"),
     ("https://ah.mphinance.com/mcp", "0.9", "daily"),
@@ -1418,6 +1472,129 @@ html_content = f"""<!DOCTYPE html>
     border-color: var(--cyan);
     color: var(--cyan);
   }}
+  .holding-chip-opt {{
+    background: rgba(157, 78, 221, 0.18) !important;
+    border-color: rgba(157, 78, 221, 0.5) !important;
+    color: #e0aaff !important;
+  }}
+  .holding-chip-opt:hover {{
+    border-color: #f72585 !important;
+    color: #fff !important;
+  }}
+
+  /* OPTIONS & ASSET BADGES */
+  .badge-call {{
+    background: rgba(0, 255, 136, 0.12);
+    color: #00ff88;
+    border: 1px solid rgba(0, 255, 136, 0.35);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: var(--font-mono);
+    font-weight: 800;
+    display: inline-block;
+    letter-spacing: 0.5px;
+  }}
+  .badge-put {{
+    background: rgba(255, 0, 85, 0.12);
+    color: #ff3366;
+    border: 1px solid rgba(255, 0, 85, 0.35);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: var(--font-mono);
+    font-weight: 800;
+    display: inline-block;
+    letter-spacing: 0.5px;
+  }}
+  .badge-short-call {{
+    background: rgba(255, 170, 0, 0.12);
+    color: #ffaa00;
+    border: 1px solid rgba(255, 170, 0, 0.35);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: var(--font-mono);
+    font-weight: 800;
+    display: inline-block;
+    letter-spacing: 0.5px;
+  }}
+  .badge-short-put {{
+    background: rgba(187, 134, 252, 0.12);
+    color: #bb86fc;
+    border: 1px solid rgba(187, 134, 252, 0.35);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: var(--font-mono);
+    font-weight: 800;
+    display: inline-block;
+    letter-spacing: 0.5px;
+  }}
+  .badge-stock {{
+    background: rgba(0, 240, 255, 0.08);
+    color: var(--cyan);
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    display: inline-block;
+  }}
+  .badge-etf {{
+    background: rgba(157, 78, 221, 0.12);
+    color: #c77dff;
+    border: 1px solid rgba(157, 78, 221, 0.3);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    display: inline-block;
+  }}
+
+  /* MODAL TAB FILTER BAR */
+  .modal-tab-bar {{
+    display: flex;
+    gap: 8px;
+    margin: 14px 0 16px 0;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    overflow-x: auto;
+  }}
+  .modal-tab-btn {{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }}
+  .modal-tab-btn:hover {{
+    color: var(--text-primary);
+    border-color: var(--text-muted);
+  }}
+  .modal-tab-btn.active {{
+    background: rgba(0, 240, 255, 0.12);
+    border-color: var(--cyan);
+    color: var(--cyan);
+    font-weight: 700;
+  }}
+  .modal-tab-count {{
+    font-size: 10px;
+    opacity: 0.75;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 6px;
+    border-radius: 10px;
+  }}
 
   /* SITEMAP / DIRECTORY STYLES */
   .sitemap-section {{
@@ -2034,12 +2211,12 @@ html_content = f"""<!DOCTYPE html>
               <span style="font-size: 14px;">&#x2696;&#xFE0F;</span>
               <div>
                 <div style="font-weight: 700; color: var(--text-primary);">Asset Allocation</div>
-                <div class="radar-row-sub">Risk equity vs Index/Beta</div>
+                <div class="radar-row-sub">Equities vs ETFs vs Options</div>
               </div>
             </div>
             <div class="radar-row-right">
-              <div class="radar-row-val val-cyan">{equity_pct:.0f}% / {etf_pct:.0f}%</div>
-              <div class="radar-row-meta">${whale_equity_cap/1_000_000:.1f}M Stocks &bull; ${whale_etf_cap/1_000_000:.1f}M ETFs</div>
+              <div class="radar-row-val val-cyan">{equity_pct:.0f}% / {etf_pct:.0f}% / {options_pct:.1f}%</div>
+              <div class="radar-row-meta">${whale_equity_cap/1_000_000:.1f}M Stk &bull; ${whale_etf_cap/1_000_000:.1f}M ETF &bull; ${whale_options_cap/1_000:.0f}k Opt</div>
             </div>
           </div>
 

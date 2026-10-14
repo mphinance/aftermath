@@ -135,7 +135,9 @@ Any AI assistant (Claude Desktop, Cursor IDE, Antigravity CLI, Windsurf) can con
   }
 }
 ```
-Exposes 6 production tools: `get_market_tape`, `get_top_equities`, `get_etf_flows`, `get_whale_portfolio`, `get_ticker_intel`, and `get_conviction_screener`.
+Exposes 11 production tools: `get_market_tape`, `get_top_equities`, `get_etf_flows`, `get_whale_portfolio`, `get_ticker_intel`, `get_conviction_screener`, `screen_whales`, `get_shadow_whales`, `get_price_history`, `get_social_feed`, and `get_funnel_accounts` (Telegram-funnel lookup; data from https://telegramscammers.com, built by `build_funnel.py` from `accounts.json`).
+
+**Deploy gotcha:** the MCP runs in the separate `ah-mcp` container (`python3 mcp_server.py --port 8089`, webroot bind-mounted read-only at `/app`). Changes to `mcp_server.py` need `ssh coolify "docker restart ah-mcp"`, not just `ah-mphinance`. Rsync list must include `accounts.json`-derived `api/funnel.json` (already under `api/`) and `mcp_server.py`.
 
 ### 7. Institutional Partner Funnel: TraderMatrix Pro
 Integrated throughout the terminal is the referral funnel to **TraderMatrix Pro**:

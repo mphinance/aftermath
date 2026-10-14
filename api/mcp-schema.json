@@ -158,6 +158,171 @@
         },
         "additionalProperties": false
       }
+    },
+    {
+      "name": "screen_whales",
+      "description": "Filter and rank 424 broker-verified whales and millionaires by net worth, cash reserves, unrealized profit, daily return, follower counts, and shadow ratio.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "min_net_worth": {
+            "type": "number",
+            "description": "Minimum verified portfolio value in USD (e.g. 1000000 for $1M+)",
+            "default": 0
+          },
+          "min_cash": {
+            "type": "number",
+            "description": "Minimum uninvested cash balance in USD (dry powder)",
+            "default": 0
+          },
+          "min_profit": {
+            "type": "number",
+            "description": "Minimum total unrealized profit in USD",
+            "default": 0
+          },
+          "min_profit_pct": {
+            "type": "number",
+            "description": "Minimum profit percentage (e.g. 25 for +25%)",
+            "default": 0
+          },
+          "min_followers": {
+            "type": "integer",
+            "description": "Minimum social followers on the platform",
+            "default": 0
+          },
+          "max_followers": {
+            "type": "integer",
+            "description": "Maximum social followers (useful for filtering stealth whales)"
+          },
+          "sort_by": {
+            "type": "string",
+            "enum": [
+              "net_worth",
+              "cash",
+              "profit",
+              "profit_percent",
+              "profit_today",
+              "followers",
+              "shadow_ratio"
+            ],
+            "description": "Metric to rank whales by (default: 'net_worth')",
+            "default": "net_worth"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of whales to return (default: 20, max: 100)",
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_shadow_whales",
+      "description": "Scan for Clout Inversions and stealth accounts: verified traders holding high capital ($500k+ to $15M+) with negligible retail followings (<500 followers).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "min_capital": {
+            "type": "number",
+            "description": "Minimum verified capital in USD (default: 500000)",
+            "default": 500000
+          },
+          "max_followers": {
+            "type": "integer",
+            "description": "Maximum allowed follower count (default: 500)",
+            "default": 500
+          },
+          "min_shadow_ratio": {
+            "type": "number",
+            "description": "Minimum verified capital divided by followers (default: 2000)",
+            "default": 2000
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of shadow whales to return (default: 20)",
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_price_history",
+      "description": "Retrieve daily OHLCV candlestick price bars and returns for core market benchmarks and equities (NVDA, TSLA, SPY, AAPL, QQQ, MSTR, ASTS, etc.).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": {
+            "type": "string",
+            "description": "Stock or ETF ticker symbol (e.g. 'NVDA', 'ASTS', 'SPY')"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Number of daily bars to return (default: 60, max: 120)",
+            "default": 60
+          }
+        },
+        "required": [
+          "ticker"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_social_feed",
+      "description": "Retrieve real-time community posts, commentary, sentiment, and broker-verified trade snapshots from AfterHour traders.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": {
+            "type": "string",
+            "description": "Filter posts mentioning a specific ticker (e.g. 'NVDA' or 'ASTS')"
+          },
+          "username": {
+            "type": "string",
+            "description": "Filter posts authored by a specific trader handle"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of posts to return (default: 20, max: 50)",
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_funnel_accounts",
+      "description": "Look up AfterHour accounts flagged for funneling traders into Telegram channels, with evidence tier (reported/corroborated/verified), shared invite-link clusters, and posting stats. Check a username or t.me link before you join. Flagged for investigation, not a finding of fraud. Curated by https://telegramscammers.com (database: /database, submit intel: /submit).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "AfterHour username (substring match)"
+          },
+          "telegram_link": {
+            "type": "string",
+            "description": "t.me link or handle to look up (e.g. 't.me/gammasphere47')"
+          },
+          "tier": {
+            "type": "string",
+            "enum": [
+              "reported",
+              "corroborated",
+              "verified"
+            ],
+            "description": "Filter by evidence tier"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Max accounts to return (default 25, max 100)",
+            "default": 25
+          }
+        },
+        "additionalProperties": false
+      }
     }
   ],
   "resources": [
@@ -183,6 +348,24 @@
       "uri": "aftermath://whales",
       "name": "Top Verified Whales",
       "description": "Top 50 verified whales ranked by net worth.",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "aftermath://shadow-whales",
+      "name": "Shadow Whales & Clout Inversions",
+      "description": "Stealth traders with massive verified capital and minimal retail followings.",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "aftermath://conviction",
+      "name": "Asymmetric Conviction Screener",
+      "description": "Top securities ranked by verified position size per holder ($/sub).",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "aftermath://social-feed",
+      "name": "Live Social Trade Feed",
+      "description": "Recent verified community posts and live trade snapshots.",
       "mimeType": "application/json"
     }
   ]

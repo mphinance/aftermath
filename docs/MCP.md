@@ -5,7 +5,7 @@
 > Production SSE URL: **https://ah.mphinance.com/sse**  
 > Direct JSON-RPC URL: **https://ah.mphinance.com/api/mcp**  
 > Interactive Web Portal: **https://ah.mphinance.com/mcp**  
-> REST API Reference: [API.md](file:///home/mpha/projects/aftermath/docs/API.md)  
+> REST API Reference: [API.md](API.md)  
 > OpenAPI Specification: **https://ah.mphinance.com/api/openapi.json**
 
 ---
@@ -73,11 +73,19 @@ If you have cloned the repository locally:
     "aftermath-local": {
       "command": "python3",
       "args": [
-        "/home/mpha/projects/aftermath/mcp_server.py"
+        "/absolute/path/to/aftermath/mcp_server.py"
       ]
     }
   }
 }
+```
+
+---
+
+### Claude Code
+
+```bash
+claude mcp add --transport http aftermath https://ah.mphinance.com/api/mcp
 ```
 
 ---
@@ -101,9 +109,7 @@ In your project root or user config directory, create or edit `.cursor/mcp.json`
 }
 ```
 
-Restart Cursor or click **Refresh** in Cursor Settings > MCP to discover all 6 tools.
-
----
+Restart Cursor or click **Refresh** in Cursor Settings > MCP to discover all 11 tools.
 
 ---
 
@@ -165,7 +171,7 @@ Alternatives, if you would rather run locally or bridge the legacy SSE stream:
   "mcpServers": {
     "aftermath-local": {
       "command": "python3",
-      "args": ["/home/mpha/projects/aftermath/mcp_server.py"]
+      "args": ["/absolute/path/to/aftermath/mcp_server.py"]
     },
     "aftermath-remote": {
       "command": "npx",

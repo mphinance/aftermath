@@ -24,7 +24,7 @@ import queue
 import threading
 from pathlib import Path
 
-VERSION = "1.1.0"
+VERSION = "1.2.0"
 SERVER_NAME = "aftermath-altdata"
 BASE_URL = "https://ah.mphinance.com/api"
 
@@ -121,6 +121,9 @@ def tool_get_top_equities(args: dict) -> dict:
     min_whale_capital = float(args.get("min_whale_capital", 0))
     min_conviction = float(args.get("min_conviction", 0))
     min_owners = int(args.get("min_owners", 0))
+    min_price = float(args.get("min_price", 0))
+    max_price = float(args.get("max_price", 0))
+    min_volume = float(args.get("min_volume", 0))
     asset_type = args.get("asset_type", "all").lower()
     sort_by = args.get("sort_by", "whale_capital").lower()
 
@@ -143,6 +146,15 @@ def tool_get_top_equities(args: dict) -> dict:
             continue
         if s.get("owners", 0) < min_owners:
             continue
+        price = float(s.get("price") or 0.0)
+        if min_price > 0 and price < min_price:
+            continue
+        if max_price > 0 and price > max_price:
+            continue
+        vol = float(s.get("volume") or 0)
+        if min_volume > 0 and vol < min_volume:
+            continue
+
         filtered.append({
             "ticker": s.get("ticker"),
             "name": s.get("name"),
@@ -162,10 +174,12 @@ def tool_get_top_equities(args: dict) -> dict:
         filtered.sort(key=lambda x: x["totalValue"], reverse=True)
     elif sort_by == "owners":
         filtered.sort(key=lambda x: x["owners"], reverse=True)
-    elif sort_by == "conviction":
+    elif sort_by in ("conviction", "conviction_intensity"):
         filtered.sort(key=lambda x: x["convictionPerHolder"], reverse=True)
-    elif sort_by == "change_percent":
+    elif sort_by in ("change_percent", "price_change_pct"):
         filtered.sort(key=lambda x: x["changePercent"], reverse=True)
+    elif sort_by == "price":
+        filtered.sort(key=lambda x: x["price"] or 0, reverse=True)
     else:  # whale_capital
         filtered.sort(key=lambda x: x["whaleCapital"], reverse=True)
 
@@ -179,6 +193,7 @@ def tool_get_etf_flows(args: dict) -> dict:
     """Inspect 64 ETFs ranked by whale backing, expense ratios, asset classes, and crowd breadth."""
     limit = int(args.get("limit", 20))
     sort_by = args.get("sort_by", "whale_capital").lower()
+    asset_class = (args.get("asset_class") or "all").lower()
 
     data = fetch_json("etfs.json")
     if not data or "securities" not in data:
@@ -187,6 +202,10 @@ def tool_get_etf_flows(args: dict) -> dict:
     etfs = data["securities"]
     formatted = []
     for e in etfs:
+        ac = (e.get("assetClass") or "").lower()
+        if asset_class != "all" and asset_class not in ac:
+            continue
+
         formatted.append({
             "ticker": e.get("ticker"),
             "name": e.get("name"),
@@ -207,6 +226,10 @@ def tool_get_etf_flows(args: dict) -> dict:
         formatted.sort(key=lambda x: x["totalValue"], reverse=True)
     elif sort_by == "change_percent":
         formatted.sort(key=lambda x: x["changePercent"], reverse=True)
+    elif sort_by == "conviction":
+        formatted.sort(key=lambda x: x["convictionPerHolder"], reverse=True)
+    elif sort_by == "expense_ratio":
+        formatted.sort(key=lambda x: x["expenseRatio"] or 0)
     else:
         formatted.sort(key=lambda x: x["whaleCapital"], reverse=True)
 
@@ -221,6 +244,8 @@ def tool_get_whale_portfolio(args: dict) -> dict:
     target_username = (args.get("username") or "").strip().lstrip("@").lower()
     if not target_username:
         return {"error": "Username argument is required (e.g. 'thealexperez' or 'SirJackALot')"}
+
+    min_pos_val = float(args.get("min_position_value", 0))
 
     data = fetch_json("whales.json")
     if not data or "whales" not in data:
@@ -243,14 +268,17 @@ def tool_get_whale_portfolio(args: dict) -> dict:
 
     positions = []
     for p in found.get("all_positions", []):
+        val = p.get("value", 0)
+        if val < min_pos_val:
+            continue
         positions.append({
             "ticker": p.get("ticker"),
             "name": p.get("name"),
             "quantity": p.get("quantity"),
-            "value": p.get("value"),
+            "value": val,
             "cost_basis": p.get("cost_basis"),
             "profit": p.get("profit"),
-            "percent_of_portfolio": round((p.get("value", 0) / max(1, found.get("total_value", 1))) * 100, 2)
+            "percent_of_portfolio": round((val / max(1, found.get("total_value", 1))) * 100, 2)
         })
 
     positions.sort(key=lambda x: x["value"], reverse=True)
@@ -259,10 +287,15 @@ def tool_get_whale_portfolio(args: dict) -> dict:
         "username": found.get("username"),
         "total_value": found.get("total_value"),
         "cash_balance": found.get("cash_balance", 0),
-        "profit_today": found.get("profit_today", 0),
+        "cost_basis": found.get("cost_basis", 0),
         "profit_total": found.get("profit", 0),
+        "profit_percent": found.get("profit_percent", 0),
+        "profit_today": found.get("profit_today", 0),
         "followers": found.get("followers", 0),
+        "following": found.get("following", 0),
+        "total_likes": found.get("total_likes", 0),
         "shadow_ratio": found.get("shadow_ratio", 0),
+        "verified_as_of": found.get("verified_as_of"),
         "position_count": len(positions),
         "positions": positions
     }
@@ -356,6 +389,261 @@ def tool_get_conviction_screener(args: dict) -> dict:
         "results": results[:limit]
     }
 
+def tool_screen_whales(args: dict) -> dict:
+    """Filter and rank all 424 verified whales by net worth, cash reserves, profit %, or social clout."""
+    min_net_worth = float(args.get("min_net_worth", 0))
+    min_cash = float(args.get("min_cash", 0))
+    min_profit = float(args.get("min_profit", 0))
+    min_profit_pct = float(args.get("min_profit_pct", 0))
+    min_followers = int(args.get("min_followers", 0))
+    max_followers = int(args.get("max_followers")) if args.get("max_followers") is not None else None
+    sort_by = args.get("sort_by", "net_worth").lower()
+    limit = int(args.get("limit", 20))
+
+    data = fetch_json("whales.json")
+    if not data or "whales" not in data:
+        return {"error": "Failed to load whales directory from edge API"}
+
+    whales = data["whales"]
+    filtered = []
+    for w in whales:
+        val = float(w.get("total_value", 0) or 0)
+        cash = float(w.get("cash_balance", 0) or 0)
+        profit = float(w.get("profit", 0) or 0)
+        profit_pct = float(w.get("profit_percent", 0) or 0)
+        followers = int(w.get("followers", 0) or 0)
+
+        if val < min_net_worth:
+            continue
+        if cash < min_cash:
+            continue
+        if profit < min_profit:
+            continue
+        if profit_pct < min_profit_pct:
+            continue
+        if followers < min_followers:
+            continue
+        if max_followers is not None and followers > max_followers:
+            continue
+
+        shadow_ratio = round(val / max(1, followers), 2)
+        filtered.append({
+            "username": w.get("username"),
+            "total_value": val,
+            "cash_balance": cash,
+            "cost_basis": w.get("cost_basis", 0),
+            "profit": profit,
+            "profit_percent": profit_pct,
+            "profit_today": w.get("profit_today", 0),
+            "followers": followers,
+            "following": w.get("following", 0),
+            "shadow_ratio": shadow_ratio,
+            "positions_count": w.get("positions_count", 0),
+            "top_positions": w.get("top_positions", [])[:5]
+        })
+
+    if sort_by in ("cash", "cash_balance"):
+        filtered.sort(key=lambda x: x["cash_balance"], reverse=True)
+    elif sort_by in ("profit", "pnl"):
+        filtered.sort(key=lambda x: x["profit"], reverse=True)
+    elif sort_by in ("profit_percent", "pnl_pct"):
+        filtered.sort(key=lambda x: x["profit_percent"], reverse=True)
+    elif sort_by in ("profit_today", "today_pnl"):
+        filtered.sort(key=lambda x: x["profit_today"], reverse=True)
+    elif sort_by == "followers":
+        filtered.sort(key=lambda x: x["followers"], reverse=True)
+    elif sort_by in ("shadow_ratio", "shadow"):
+        filtered.sort(key=lambda x: x["shadow_ratio"], reverse=True)
+    else:  # net_worth / total_value
+        filtered.sort(key=lambda x: x["total_value"], reverse=True)
+
+    return {
+        "total_matched": len(filtered),
+        "limit": limit,
+        "whales": filtered[:limit]
+    }
+
+def tool_get_shadow_whales(args: dict) -> dict:
+    """Scan for Clout Inversions / Shadow Whales: accounts with immense capital and minimal social following."""
+    min_capital = float(args.get("min_capital", 500000))
+    max_followers = int(args.get("max_followers", 500))
+    min_shadow_ratio = float(args.get("min_shadow_ratio", 2000))
+    limit = int(args.get("limit", 20))
+
+    data = fetch_json("shadow.json")
+    if not data or "whales" not in data:
+        data = fetch_json("whales.json")
+        if not data or "whales" not in data:
+            return {"error": "Failed to load shadow whales dataset"}
+
+    whales = data["whales"]
+    matched = []
+    for w in whales:
+        val = float(w.get("total_value", 0) or 0)
+        followers = int(w.get("followers", 0) or 0)
+        ratio = float(w.get("shadow_ratio", round(val / max(1, followers), 2)) or 0)
+
+        if val >= min_capital and followers <= max_followers and ratio >= min_shadow_ratio:
+            matched.append({
+                "username": w.get("username"),
+                "total_value": val,
+                "cash_balance": w.get("cash_balance", 0),
+                "followers": followers,
+                "shadow_ratio": ratio,
+                "profit": w.get("profit", 0),
+                "profit_percent": w.get("profit_percent", 0),
+                "top_positions": w.get("top_positions", [])[:3]
+            })
+
+    matched.sort(key=lambda x: x["shadow_ratio"], reverse=True)
+    return {
+        "total_matched": len(matched),
+        "limit": limit,
+        "whales": matched[:limit]
+    }
+
+def tool_get_price_history(args: dict) -> dict:
+    """Retrieve 60-day daily OHLCV candlestick price bars and returns for core market benchmarks and equities."""
+    ticker = (args.get("ticker") or "").strip().upper()
+    if not ticker:
+        return {"error": "Ticker symbol is required (e.g. 'NVDA', 'TSLA', 'SPY')"}
+    limit = int(args.get("limit", 60))
+
+    # 1. Try granular ticker file
+    data = fetch_json(f"ticker/{ticker}.json")
+    bars = []
+    if data and "history" in data:
+        bars = data.get("history", [])
+
+    # 2. Try historic_prices_sample.json locally
+    if not bars:
+        hist_sample = LOCAL_API_DIR.parent / "data" / "leaderboard" / "historic_prices_sample.json"
+        if hist_sample.exists():
+            try:
+                with open(hist_sample, encoding="utf-8") as f:
+                    hdata = json.load(f)
+                    bars = hdata.get("history", {}).get(ticker, {}).get("bars", [])
+            except Exception:
+                pass
+
+    if not bars:
+        return {
+            "error": f"Daily OHLCV bars not found for '{ticker}'. Available core tickers: AAPL, ASTS, NVDA, SPY, TSLA, MSTR, AMZN, MSFT, QQQ, PLTR, AMD, META, GOOGL, HOOD, COIN, SOFI, VOO, IBIT."
+        }
+
+    # Calculate summary metrics
+    closes = [b.get("close") for b in bars if b.get("close") is not None]
+    highs = [b.get("high") for b in bars if b.get("high") is not None]
+    lows = [b.get("low") for b in bars if b.get("low") is not None]
+    volumes = [b.get("volume") for b in bars if b.get("volume") is not None]
+
+    latest_close = closes[-1] if closes else 0
+    first_close = closes[0] if closes else 0
+    pct_return = round(((latest_close - first_close) / first_close) * 100, 2) if first_close else 0
+
+    return {
+        "ticker": ticker,
+        "timeframe": "1D",
+        "total_bars_available": len(bars),
+        "bars_returned": min(limit, len(bars)),
+        "summary": {
+            "latest_close": latest_close,
+            "high_period": max(highs) if highs else 0,
+            "low_period": min(lows) if lows else 0,
+            "period_return_percent": pct_return,
+            "average_volume": int(sum(volumes) / len(volumes)) if volumes else 0
+        },
+        "bars": bars[-limit:]
+    }
+
+def tool_get_funnel_accounts(args: dict) -> dict:
+    """AfterHour accounts flagged for funneling traders into Telegram channels (data: telegramscammers.com)."""
+    data = fetch_json("funnel.json")
+    if not data:
+        return {"error": "funnel.json currently synchronizing"}
+    user = (args.get("username") or "").strip().lstrip("@").lower()
+    tier = (args.get("tier") or "").strip().lower()
+    link = (args.get("telegram_link") or "").strip().lower().replace("https://", "").replace("http://", "")
+    limit = max(1, min(int(args.get("limit", 25)), 100))
+    rows = data.get("accounts", [])
+    if user:
+        rows = [r for r in rows if user in r["username"].lower()]
+    if tier:
+        rows = [r for r in rows if r["tier"] == tier]
+    if link:
+        rows = [r for r in rows if r.get("telegram_link") and link.lstrip("/") in r["telegram_link"]]
+    return {
+        "source": data.get("credit"), "database": data.get("database"), "disclaimer": data.get("disclaimer"),
+        "total_flagged": data.get("count"), "matched": len(rows), "accounts": rows[:limit],
+        "shared_link_clusters": data.get("shared_link_clusters") if not (user or tier or link) else None,
+    }
+
+
+def tool_get_social_feed(args: dict) -> dict:
+    """Retrieve live community posts, commentary, and broker-verified trade snapshots from AfterHour."""
+    target_ticker = (args.get("ticker") or "").strip().upper()
+    target_username = (args.get("username") or "").strip().lstrip("@").lower()
+    limit = int(args.get("limit", 20))
+
+    # 1. Try feed.json
+    data = fetch_json("feed.json")
+    posts = []
+    if data and "posts" in data:
+        posts = data["posts"]
+
+    # 2. Try loading from local archive if feed.json not yet written
+    if not posts:
+        feed_dir = LOCAL_API_DIR.parent / "data" / "archive_latest" / "social_feed"
+        if not feed_dir.exists():
+            archives = list(LOCAL_API_DIR.parent.glob("data/archive_*/social_feed"))
+            if archives:
+                feed_dir = archives[-1]
+
+        if feed_dir and feed_dir.exists():
+            for fn in sorted(feed_dir.glob("*.json")):
+                try:
+                    with open(fn, encoding="utf-8") as f:
+                        fd = json.load(f)
+                        for item in fd.get("items", []):
+                            post = item.get("post") or {}
+                            author = item.get("author") or {}
+                            snap = item.get("portfolioSnapshot") or {}
+                            secs = [s.get("tickerSymbol") for s in item.get("securities", []) if s.get("tickerSymbol")]
+                            posts.append({
+                                "id": post.get("id") or item.get("id"),
+                                "author": author.get("username"),
+                                "author_followers": author.get("numFollowers", 0),
+                                "created_at": post.get("createdAt") or item.get("createdAt"),
+                                "title": post.get("title", ""),
+                                "share_url": post.get("shareUrl", ""),
+                                "securities": secs,
+                                "view_count": item.get("viewCount", 0),
+                                "comment_count": item.get("commentCount", 0),
+                                "verified_snapshot": {
+                                    "total_value": snap.get("totalValue", 0),
+                                    "cash_balance": snap.get("cashBalance", 0),
+                                    "positions_count": len(snap.get("positionSnapshots", [])),
+                                    "verified_as_of": snap.get("verifiedAsOf")
+                                } if snap.get("totalValue") else None
+                            })
+                except Exception:
+                    pass
+
+    # Filter
+    filtered = []
+    for p in posts:
+        if target_ticker and target_ticker not in [s.upper() for s in p.get("securities", [])]:
+            continue
+        if target_username and (p.get("author") or "").lower() != target_username:
+            continue
+        filtered.append(p)
+
+    return {
+        "total_matched": len(filtered),
+        "limit": limit,
+        "posts": filtered[:limit]
+    }
+
 # Registry mapping tool name -> handler function
 TOOLS_MAP = {
     "get_market_tape": tool_get_market_tape,
@@ -364,6 +652,11 @@ TOOLS_MAP = {
     "get_whale_portfolio": tool_get_whale_portfolio,
     "get_ticker_intel": tool_get_ticker_intel,
     "get_conviction_screener": tool_get_conviction_screener,
+    "screen_whales": tool_screen_whales,
+    "get_shadow_whales": tool_get_shadow_whales,
+    "get_price_history": tool_get_price_history,
+    "get_social_feed": tool_get_social_feed,
+    "get_funnel_accounts": tool_get_funnel_accounts,
 }
 
 # MCP Tool Schemas definition (MCP 2024-11-05 standard)
@@ -499,6 +792,143 @@ MCP_TOOLS_DEFINITIONS = [
             },
             "additionalProperties": False
         }
+    },
+    {
+        "name": "screen_whales",
+        "description": "Filter and rank 424 broker-verified whales and millionaires by net worth, cash reserves, unrealized profit, daily return, follower counts, and shadow ratio.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "min_net_worth": {
+                    "type": "number",
+                    "description": "Minimum verified portfolio value in USD (e.g. 1000000 for $1M+)",
+                    "default": 0
+                },
+                "min_cash": {
+                    "type": "number",
+                    "description": "Minimum uninvested cash balance in USD (dry powder)",
+                    "default": 0
+                },
+                "min_profit": {
+                    "type": "number",
+                    "description": "Minimum total unrealized profit in USD",
+                    "default": 0
+                },
+                "min_profit_pct": {
+                    "type": "number",
+                    "description": "Minimum profit percentage (e.g. 25 for +25%)",
+                    "default": 0
+                },
+                "min_followers": {
+                    "type": "integer",
+                    "description": "Minimum social followers on the platform",
+                    "default": 0
+                },
+                "max_followers": {
+                    "type": "integer",
+                    "description": "Maximum social followers (useful for filtering stealth whales)",
+                },
+                "sort_by": {
+                    "type": "string",
+                    "enum": ["net_worth", "cash", "profit", "profit_percent", "profit_today", "followers", "shadow_ratio"],
+                    "description": "Metric to rank whales by (default: 'net_worth')",
+                    "default": "net_worth"
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": "Maximum number of whales to return (default: 20, max: 100)",
+                    "default": 20
+                }
+            },
+            "additionalProperties": False
+        }
+    },
+    {
+        "name": "get_shadow_whales",
+        "description": "Scan for Clout Inversions and stealth accounts: verified traders holding high capital ($500k+ to $15M+) with negligible retail followings (<500 followers).",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "min_capital": {
+                    "type": "number",
+                    "description": "Minimum verified capital in USD (default: 500000)",
+                    "default": 500000
+                },
+                "max_followers": {
+                    "type": "integer",
+                    "description": "Maximum allowed follower count (default: 500)",
+                    "default": 500
+                },
+                "min_shadow_ratio": {
+                    "type": "number",
+                    "description": "Minimum verified capital divided by followers (default: 2000)",
+                    "default": 2000
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": "Maximum number of shadow whales to return (default: 20)",
+                    "default": 20
+                }
+            },
+            "additionalProperties": False
+        }
+    },
+    {
+        "name": "get_price_history",
+        "description": "Retrieve daily OHLCV candlestick price bars and returns for core market benchmarks and equities (NVDA, TSLA, SPY, AAPL, QQQ, MSTR, ASTS, etc.).",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "ticker": {
+                    "type": "string",
+                    "description": "Stock or ETF ticker symbol (e.g. 'NVDA', 'ASTS', 'SPY')"
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": "Number of daily bars to return (default: 60, max: 120)",
+                    "default": 60
+                }
+            },
+            "required": ["ticker"],
+            "additionalProperties": False
+        }
+    },
+    {
+        "name": "get_social_feed",
+        "description": "Retrieve real-time community posts, commentary, sentiment, and broker-verified trade snapshots from AfterHour traders.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "ticker": {
+                    "type": "string",
+                    "description": "Filter posts mentioning a specific ticker (e.g. 'NVDA' or 'ASTS')"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Filter posts authored by a specific trader handle"
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": "Maximum number of posts to return (default: 20, max: 50)",
+                    "default": 20
+                }
+            },
+            "additionalProperties": False
+        }
+    },
+    {
+        "name": "get_funnel_accounts",
+        "description": "Look up AfterHour accounts flagged for funneling traders into Telegram channels, with evidence tier (reported/corroborated/verified), shared invite-link clusters, and posting stats. Check a username or t.me link before you join. Flagged for investigation, not a finding of fraud. Curated by https://telegramscammers.com (database: /database, submit intel: /submit).",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "username": {"type": "string", "description": "AfterHour username (substring match)"},
+                "telegram_link": {"type": "string", "description": "t.me link or handle to look up (e.g. 't.me/gammasphere47')"},
+                "tier": {"type": "string", "enum": ["reported", "corroborated", "verified"], "description": "Filter by evidence tier"},
+                "limit": {"type": "integer", "description": "Max accounts to return (default 25, max 100)", "default": 25}
+            },
+            "additionalProperties": False
+        }
     }
 ]
 
@@ -527,6 +957,71 @@ MCP_RESOURCES_DEFINITIONS = [
         "name": "Top Verified Whales",
         "description": "Top 50 verified whales ranked by net worth.",
         "mimeType": "application/json"
+    },
+    {
+        "uri": "aftermath://shadow-whales",
+        "name": "Shadow Whales & Clout Inversions",
+        "description": "Stealth traders with massive verified capital and minimal retail followings.",
+        "mimeType": "application/json"
+    },
+    {
+        "uri": "aftermath://conviction",
+        "name": "Asymmetric Conviction Screener",
+        "description": "Top securities ranked by verified position size per holder ($/sub).",
+        "mimeType": "application/json"
+    },
+    {
+        "uri": "aftermath://social-feed",
+        "name": "Live Social Trade Feed",
+        "description": "Recent verified community posts and live trade snapshots.",
+        "mimeType": "application/json"
+    }
+]
+
+# MCP Prompts (MCP 2024-11-05 / 2025-03-26 standard)
+MCP_PROMPTS_DEFINITIONS = [
+    {
+        "name": "whale_dossier",
+        "description": "Guided forensic audit of a verified whale portfolio: cash reserves, concentrated holdings, cost basis, unrealized P&L, and shadow ratio.",
+        "arguments": [
+            {
+                "name": "username",
+                "description": "AfterHour username of the whale to audit (e.g. 'SIRJACK' or 'TrogdorStrikesAgain')",
+                "required": True
+            }
+        ]
+    },
+    {
+        "name": "conviction_hunt",
+        "description": "Screen for asymmetric institutional accumulation where average capital per verified holder ($/sub) spikes before price discovery occurs.",
+        "arguments": [
+            {
+                "name": "min_conviction",
+                "description": "Minimum position size per holder in USD (default: '50000')",
+                "required": False
+            },
+            {
+                "name": "asset_type",
+                "description": "Asset classification ('all', 'stocks', 'etfs', default: 'all')",
+                "required": False
+            }
+        ]
+    },
+    {
+        "name": "shadow_whale_intel",
+        "description": "Unmask stealth whales with massive verified net worth ($1M+ to $15M+) who trade quietly with minimal retail followings.",
+        "arguments": [
+            {
+                "name": "min_capital",
+                "description": "Minimum portfolio value in USD (default: '1000000')",
+                "required": False
+            },
+            {
+                "name": "max_followers",
+                "description": "Maximum social followers to qualify as stealth (default: '250')",
+                "required": False
+            }
+        ]
     }
 ]
 
@@ -582,7 +1077,69 @@ def handle_jsonrpc(req: dict) -> dict:
 
     # Advertised-but-empty capabilities: 2025-* clients probe these at startup.
     if method == "prompts/list":
-        return {"jsonrpc": "2.0", "id": msg_id, "result": {"prompts": []}}
+        return {"jsonrpc": "2.0", "id": msg_id, "result": {"prompts": MCP_PROMPTS_DEFINITIONS}}
+
+    if method == "prompts/get":
+        prompt_name = params.get("name")
+        args = params.get("arguments", {})
+        if prompt_name == "whale_dossier":
+            u = args.get("username", "SIRJACK")
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "result": {
+                    "description": f"Audit verified whale @{u}",
+                    "messages": [
+                        {
+                            "role": "user",
+                            "content": {
+                                "type": "text",
+                                "text": f"Execute a deep forensic audit on @{u}. Call `get_whale_portfolio` with username='{u}' and `get_social_feed` with username='{u}'. Analyze cash allocation, risk posture, top concentrated bets, cost basis versus current price, and recent verified trade activity."
+                            }
+                        }
+                    ]
+                }
+            }
+        elif prompt_name == "conviction_hunt":
+            min_c = args.get("min_conviction", "50000")
+            asset_t = args.get("asset_type", "all")
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "result": {
+                    "description": "Hunt for asymmetric conviction",
+                    "messages": [
+                        {
+                            "role": "user",
+                            "content": {
+                                "type": "text",
+                                "text": f"Scan the AfterHour verified universe for high-conviction accumulation (min_conviction={min_c}, asset_type='{asset_t}'). Call `get_conviction_screener` and `get_top_equities` sorted by conviction. Identify tickers where small cohorts of verified whales have deployed massive capital per seat."
+                            }
+                        }
+                    ]
+                }
+            }
+        elif prompt_name == "shadow_whale_intel":
+            min_cap = args.get("min_capital", "1000000")
+            max_f = args.get("max_followers", "250")
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "result": {
+                    "description": "Unmask stealth whales",
+                    "messages": [
+                        {
+                            "role": "user",
+                            "content": {
+                                "type": "text",
+                                "text": f"Identify the top shadow whales on AfterHour. Call `get_shadow_whales` with min_capital={min_cap} and max_followers={max_f}. Detail their total net worth, follower count, shadow ratio, and top concentrated equity holdings."
+                            }
+                        }
+                    ]
+                }
+            }
+        else:
+            return {"jsonrpc": "2.0", "id": msg_id, "error": {"code": -32602, "message": f"Unknown prompt: {prompt_name}"}}
 
     if method == "resources/templates/list":
         return {"jsonrpc": "2.0", "id": msg_id, "result": {"resourceTemplates": []}}
@@ -616,18 +1173,17 @@ def handle_jsonrpc(req: dict) -> dict:
         try:
             handler = TOOLS_MAP[tool_name]
             result_data = handler(tool_args)
-            return {
-                "jsonrpc": "2.0",
-                "id": msg_id,
-                "result": {
-                    "content": [
-                        {
-                            "type": "text",
-                            "text": json.dumps(result_data, indent=2)
-                        }
-                    ]
-                }
+            result = {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": json.dumps(result_data, indent=2)
+                    }
+                ]
             }
+            if isinstance(result_data, dict):
+                result["structuredContent"] = result_data
+            return {"jsonrpc": "2.0", "id": msg_id, "result": result}
         except Exception as e:
             debug_log(f"Error calling {tool_name}: {e}")
             return {
@@ -665,6 +1221,12 @@ def handle_jsonrpc(req: dict) -> dict:
         elif uri == "aftermath://whales":
             wdata = fetch_json("whales.json") or {}
             payload = wdata.get("whales", [])[:50]
+        elif uri == "aftermath://shadow-whales":
+            payload = tool_get_shadow_whales({"limit": 50})
+        elif uri == "aftermath://conviction":
+            payload = tool_get_conviction_screener({"min_intensity": 50000, "limit": 50})
+        elif uri == "aftermath://social-feed":
+            payload = tool_get_social_feed({"limit": 50})
         else:
             return {
                 "jsonrpc": "2.0",
@@ -715,7 +1277,7 @@ def handle_jsonrpc_payload(req):
 # ==============================================================================
 
 def run_self_test():
-    """Execute local diagnostic test verifying all 6 tools."""
+    """Execute local diagnostic test verifying all 10 tools."""
     print(f"=== {SERVER_NAME} v{VERSION} Diagnostic Test ===")
     
     print("\n1. Testing get_market_tape...")
@@ -745,7 +1307,25 @@ def run_self_test():
     for r in t6.get("results", []):
         print(f"   ${r['ticker']} - ${r['convictionPerHolder']:,.0f}/sub ({r['owners']} owners)")
 
-    print("\n[+] All 6 MCP tools validated successfully.")
+    print("\n7. Testing screen_whales (min_net_worth=5M)...")
+    t7 = tool_screen_whales({"min_net_worth": 5000000, "limit": 3})
+    for w in t7.get("whales", []):
+        print(f"   @{w['username']} - Net Worth: ${w['total_value']:,.2f}, Cash: ${w['cash_balance']:,.2f}")
+
+    print("\n8. Testing get_shadow_whales (min_capital=1M, max_followers=300)...")
+    t8 = tool_get_shadow_whales({"min_capital": 1000000, "max_followers": 300, "limit": 3})
+    for s in t8.get("whales", []):
+        print(f"   @{s['username']} - Capital: ${s['total_value']:,.2f} / {s['followers']} flw (Ratio: ${s['shadow_ratio']:,.0f}/flw)")
+
+    print("\n9. Testing get_price_history (NVDA)...")
+    t9 = tool_get_price_history({"ticker": "NVDA", "limit": 5})
+    print(f"   $NVDA Bars: {t9.get('bars_returned')} returned, Latest Close: ${t9.get('summary', {}).get('latest_close')}")
+
+    print("\n10. Testing get_social_feed (limit=3)...")
+    t10 = tool_get_social_feed({"limit": 3})
+    print(f"   Feed posts returned: {len(t10.get('posts', []))}")
+
+    print("\n[+] All 10 MCP tools validated successfully.")
 
 # ==============================================================================
 # HTTP & SSE SERVER (FOR REMOTE MCP CLIENTS & MCP-REMOTE)
@@ -828,6 +1408,20 @@ class McpHttpHandler(http.server.BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b"Method Not Allowed: POST JSON-RPC to this endpoint")
 
+        elif path == "/api/mcp-schema.json":
+            body = json.dumps({
+                "version": "1.0.0",
+                "server": {"name": "aftermath-altdata", "documentation": "https://ah.mphinance.com/mcp"},
+                "tools": MCP_TOOLS_DEFINITIONS,
+                "resources": MCP_RESOURCES_DEFINITIONS,
+            }, indent=2).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_cors_headers()
+            self.end_headers()
+            self.wfile.write(body)
+
         elif path in ("/health", "/status", "/api/health", "/api/mcp/health", "/"):
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
@@ -888,10 +1482,14 @@ class McpHttpHandler(http.server.BaseHTTPRequestHandler):
         try:
             req = json.loads(body) if body else {}
         except Exception as e:
+            err = json.dumps({"jsonrpc": "2.0", "id": None,
+                              "error": {"code": -32700, "message": "Parse error: invalid JSON"}}).encode("utf-8")
             self.send_response(400)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(err)))
             self.end_cors_headers()
             self.end_headers()
-            self.wfile.write(b"Invalid JSON")
+            self.wfile.write(err)
             return
 
         if path in ("/messages", "/mcp/messages"):
