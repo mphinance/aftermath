@@ -6,8 +6,8 @@ set -u
 cd "$(dirname "$0")/.." || exit 1
 PUBLISH_DIR="${PUBLISH_DIR:-/home/mph/apps/ah-portal/api}"
 mkdir -p data/telegram_funnel reports/analysis api
-python3 tg_watch.py                     # snapshot, diff vs previous, archive new public posts, parse callouts
-python3 tg_outcomes.py   >/dev/null || echo "tg_outcomes failed (keeping previous outcomes)"
+timeout 3000 python3 tg_watch.py        # snapshot, diff vs previous, archive new public posts, parse callouts
+timeout 2400 python3 tg_outcomes.py >/dev/null || echo "tg_outcomes failed or timed out (keeping previous outcomes)"
 python3 funnel_tickers.py >/dev/null || echo "funnel_tickers failed"
 python3 build_funnel_calls.py || echo "build_funnel_calls failed"
 if [ -d "$PUBLISH_DIR" ]; then

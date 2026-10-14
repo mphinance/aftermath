@@ -1,0 +1,1215 @@
+{
+ "posts": [
+  {
+   "id": "stockmarketvault/2354",
+   "text": "❤️XAUUSD SELL  NOW 4394 /4398\nTP¹   4390\nTP²   4387\nTP³   4383\nTP⁴   4380\nTP⁵   4375\nTP⁶   4370\nTP⁷   4365\nTP⁸   4360\nTP⁹   4350\n\nSL     4408",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4394.0,
+     4398.0
+    ],
+    "sl": 4408.0,
+    "tps": [
+     [
+      4390.0,
+      "px"
+     ],
+     [
+      4387.0,
+      "px"
+     ],
+     [
+      4383.0,
+      "px"
+     ],
+     [
+      4380.0,
+      "px"
+     ],
+     [
+      4375.0,
+      "px"
+     ],
+     [
+      4370.0,
+      "px"
+     ],
+     [
+      4365.0,
+      "px"
+     ],
+     [
+      4360.0,
+      "px"
+     ],
+     [
+      4350.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2358",
+   "text": "Buy Gold @4392.8-4382.8\n\nSl :4378\n\nTp1: 4396.8\nTp2: 4400\n\n\nEnter Slowly-Layer with proper money management\n\nDo not rush your entries",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     4382.8,
+     4392.8
+    ],
+    "sl": 4378.0,
+    "tps": [
+     [
+      4396.8,
+      "px"
+     ],
+     [
+      4400.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2362",
+   "text": "𝙓𝘼𝙐𝙐𝙎𝘿 𝘽𝙐𝙔 𝙉𝙊𝙒\n\nENTRY ZONE: 4392.5 – 4387.5\n\nTP 1: 4394.5\nTP 2: 4404.5\n\nSL: 4382\n\nExecution depends on confirmation and your money management.",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     4387.5,
+     4392.5
+    ],
+    "sl": 4382.0,
+    "tps": [
+     [
+      4394.5,
+      "px"
+     ],
+     [
+      4404.5,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2366",
+   "text": "🚨 VIP TRADE ALERT 🚨\n\n✔️ Pair: XAUUSD SELL LIMIT \n\n○ Entry:4389\n\n🎯 Targets:\n○4374\n\n\n⛔️ SL: 4397.10\n\n🔥 Stay disciplined. Let the market do the work✨",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "limit",
+    "entry": [
+     4389.0,
+     4389.0
+    ],
+    "sl": 4397.1,
+    "tps": [
+     [
+      4374.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2369",
+   "text": "Gold Sell Now 4388 - 4395\n\nSl: 4298\n\nTP: 50/100PIPS",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4388.0,
+     4395.0
+    ],
+    "sl": 4298.0,
+    "tps": [
+     [
+      50.0,
+      "pips"
+     ],
+     [
+      100.0,
+      "pips"
+     ]
+    ]
+   },
+   "note": "SL 4298 is ~90 dollars from the entry, likely 4398"
+  },
+  {
+   "id": "stockmarketvault/2398",
+   "text": "avaxusd\n\nAVAX/USD H1 Sell 9.80\nSL 10.20\nTP 9.00\n\n✅ start trading",
+   "expected": {
+    "instrument": "AVAXUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     9.8,
+     9.8
+    ],
+    "sl": 10.2,
+    "tps": [
+     [
+      9.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2445",
+   "text": "gold buy now : 4351✅✅  sl : 4341 tp 1st: 4361 tp 2nd: 4371  Use Proper Entry & Money Management ‼️",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     4351.0,
+     4351.0
+    ],
+    "sl": 4341.0,
+    "tps": [
+     [
+      4361.0,
+      "px"
+     ],
+     [
+      4371.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2447",
+   "text": "📉EURUSD SELL 1.14729\n\n🟢TP1: 1.14664\n🟢TP2: 1.14600\n🟢TP3: 1.14471\n\n🔴 SL: 1.14858",
+   "expected": {
+    "instrument": "FX:EURUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     1.14729,
+     1.14729
+    ],
+    "sl": 1.14858,
+    "tps": [
+     [
+      1.14664,
+      "px"
+     ],
+     [
+      1.146,
+      "px"
+     ],
+     [
+      1.14471,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2453",
+   "text": "US30 BUY 52020\n\nTP 52060\nTP 52120\nTP 52170\nTP 52500\n\nSL 51900",
+   "expected": {
+    "instrument": "US30",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     52020.0,
+     52020.0
+    ],
+    "sl": 51900.0,
+    "tps": [
+     [
+      52060.0,
+      "px"
+     ],
+     [
+      52120.0,
+      "px"
+     ],
+     [
+      52170.0,
+      "px"
+     ],
+     [
+      52500.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2455",
+   "text": "Im selling Gold Now 4348 - 4355\n\nSl: 4358\n\nTP: 100/200PIPS",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4348.0,
+     4355.0
+    ],
+    "sl": 4358.0,
+    "tps": [
+     [
+      100.0,
+      "pips"
+     ],
+     [
+      200.0,
+      "pips"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2460",
+   "text": "Gold Short Zone:4345.5-4355.5\n\nStop: 4359.5\n\nTarget 1: 4341.5\nTarget 2: 4336\n\nEase in — layer your entries with proper risk management.\n\nDon’t rush it",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4345.5,
+     4355.5
+    ],
+    "sl": 4359.5,
+    "tps": [
+     [
+      4341.5,
+      "px"
+     ],
+     [
+      4336.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2468",
+   "text": "Gold Sell Now @ 4349 - 4355\n\nSl: 4259\n\nTP: 4339 / 4329",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4349.0,
+     4355.0
+    ],
+    "sl": 4259.0,
+    "tps": [
+     [
+      4339.0,
+      "px"
+     ],
+     [
+      4329.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2471",
+   "text": "🚀 XAUUSD | BUY SIGNAL 🟢\n\n📍 Entry: 4345–4350\n\n🛑 SL: 4338\n\n🎯 TP1: 4355\n🎯 TP2: 4360\n🎯 TP3: 4365\n🎯 TP4 :4370\n\n⚠️ Manage your risk. Trade with discipline.",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     4345.0,
+     4350.0
+    ],
+    "sl": 4338.0,
+    "tps": [
+     [
+      4355.0,
+      "px"
+     ],
+     [
+      4360.0,
+      "px"
+     ],
+     [
+      4365.0,
+      "px"
+     ],
+     [
+      4370.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2474",
+   "text": "Gold ready instant sell @4373-4378\n\nSL 4386\n\nTP 4363\nTP 4350",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4373.0,
+     4378.0
+    ],
+    "sl": 4386.0,
+    "tps": [
+     [
+      4363.0,
+      "px"
+     ],
+     [
+      4350.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2475",
+   "text": "$XAUUSD SELL NOW 4357🔽\n\nTP 4354\nTP 4351\nTP 4348\nTP 4345\n\nSL 4377\n~use proper $ management",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4357.0,
+     4357.0
+    ],
+    "sl": 4377.0,
+    "tps": [
+     [
+      4354.0,
+      "px"
+     ],
+     [
+      4351.0,
+      "px"
+     ],
+     [
+      4348.0,
+      "px"
+     ],
+     [
+      4345.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2476",
+   "text": "NAS100 SELL 30000\n\n‼️SL 30120\n🥇TP 29970\n🥈TP 29900\n🥉TP 29800\n🥉TP 29500",
+   "expected": {
+    "instrument": "NAS100",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     30000.0,
+     30000.0
+    ],
+    "sl": 30120.0,
+    "tps": [
+     [
+      29970.0,
+      "px"
+     ],
+     [
+      29900.0,
+      "px"
+     ],
+     [
+      29800.0,
+      "px"
+     ],
+     [
+      29500.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2502",
+   "text": "XAUUSD BUY NOW \n\nENTRY: 4328\nSecond Entry: 4324\n\nSL: 4308\n\nTP1: 4335\nTP2: 4342\nTP3: 4349\nTP4: open",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     4328.0,
+     4328.0
+    ],
+    "sl": 4308.0,
+    "tps": [
+     [
+      4335.0,
+      "px"
+     ],
+     [
+      4342.0,
+      "px"
+     ],
+     [
+      4349.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2529",
+   "text": "🚨TRADE ALERT 🚨\n\n✔️ Pair: XAUUSD BUY LIMIT \n\n○ Entry:4312\n\n🎯 Targets:\n○4342\n○4380\n\n⛔️ SL: 4289\n\n🔥 Stay disciplined. Let the market do the work✨✨",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "buy",
+    "order_type": "limit",
+    "entry": [
+     4312.0,
+     4312.0
+    ],
+    "sl": 4289.0,
+    "tps": [
+     [
+      4342.0,
+      "px"
+     ],
+     [
+      4380.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2532",
+   "text": "XAUUSD SELL 4317 - 4320\n\nTP 4313\nTP 4306\nTP 4300\nTP 4299\nTP 4296\n\n💥SL 4325",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4317.0,
+     4320.0
+    ],
+    "sl": 4325.0,
+    "tps": [
+     [
+      4313.0,
+      "px"
+     ],
+     [
+      4306.0,
+      "px"
+     ],
+     [
+      4300.0,
+      "px"
+     ],
+     [
+      4299.0,
+      "px"
+     ],
+     [
+      4296.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2547",
+   "text": "𝙓𝘼𝙐𝙐𝙎𝘿 𝙎𝙀𝙇𝙇 𝙉𝙊𝙒\n\nENTRY ZONE: 4281 - 4286\n\nTP 1: 4279\nTP 2: 4269\n\nSL: 4291\n\nExecution depends on confirmation and your money management.",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4281.0,
+     4286.0
+    ],
+    "sl": 4291.0,
+    "tps": [
+     [
+      4279.0,
+      "px"
+     ],
+     [
+      4269.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2549",
+   "text": "Gold Sell Now @ 4280 - 4286\n\nSl: 4290\n\nTP: 100/200PIPS",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4280.0,
+     4286.0
+    ],
+    "sl": 4290.0,
+    "tps": [
+     [
+      100.0,
+      "pips"
+     ],
+     [
+      200.0,
+      "pips"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2563",
+   "text": "GBPCHF BUY LIMIT at 1.0905\nSL 1.0810\nTP 1.1100",
+   "expected": {
+    "instrument": "FX:GBPCHF",
+    "side": "buy",
+    "order_type": "limit",
+    "entry": [
+     1.0905,
+     1.0905
+    ],
+    "sl": 1.081,
+    "tps": [
+     [
+      1.11,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2594",
+   "text": "XAUUSD BUY   4278.00\nTP 4282\nTP 4286\nTP 4210\nSL 4268",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     4278.0,
+     4278.0
+    ],
+    "sl": 4268.0,
+    "tps": [
+     [
+      4282.0,
+      "px"
+     ],
+     [
+      4286.0,
+      "px"
+     ],
+     [
+      4210.0,
+      "px"
+     ]
+    ]
+   },
+   "note": "third TP 4210 is on the wrong side of a buy"
+  },
+  {
+   "id": "stockmarketvault/2610",
+   "text": "⭐️Gold scalping signal!⭐️\n\n SELL GOLD\n\nEntry <4293-4303>\n\nStop Loss:4307\n\nTake profit 1:4289\nTake profit 2:4283\n\nEffective risk management is essential traders! \n\n\nNot financial advice. Trade and manage at your own risk ⛔️",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4293.0,
+     4303.0
+    ],
+    "sl": 4307.0,
+    "tps": [
+     [
+      4289.0,
+      "px"
+     ],
+     [
+      4283.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2669",
+   "text": "⭐️Gold scalping signal!⭐️\n\nWe are entering SELL $XAUUSD\n\nEnter <4144.5-4154.5>\n\nStop Loss:4158.5\n\nTake profit 1:4140.5\nTake profit 2:4138\n\nEffective risk management is essential traders!\n\n\nNot financial advice. Trade and manage at your own risk",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4144.5,
+     4154.5
+    ],
+    "sl": 4158.5,
+    "tps": [
+     [
+      4140.5,
+      "px"
+     ],
+     [
+      4138.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2674",
+   "text": "GOLD BUY NOW ! 📈\n\nPrice : 4348-46\n\nSL - 4142\nTP -/ 4152  / 4158 / 4165\n\nManage Layering And Money Management !",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     4346.0,
+     4348.0
+    ],
+    "sl": 4142.0,
+    "tps": [
+     [
+      4152.0,
+      "px"
+     ],
+     [
+      4158.0,
+      "px"
+     ],
+     [
+      4165.0,
+      "px"
+     ]
+    ]
+   },
+   "note": "entry written 4348-46 means 4346-4348; SL 4142 is a typo for 4342 or the entry is off by 200"
+  },
+  {
+   "id": "stockmarketvault/2685",
+   "text": "GOLD  SELL LIMIT 4140. 4144\n\nTP 4135\nTP 4130\nTP 4125\nTP 4120\nTP 4110\n\nSL 4154",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "limit",
+    "entry": [
+     4140.0,
+     4144.0
+    ],
+    "sl": 4154.0,
+    "tps": [
+     [
+      4135.0,
+      "px"
+     ],
+     [
+      4130.0,
+      "px"
+     ],
+     [
+      4125.0,
+      "px"
+     ],
+     [
+      4120.0,
+      "px"
+     ],
+     [
+      4110.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2719",
+   "text": "Gold buy now 4148 - 4144\n\nSL: 4140\n\nTP: 4150\nTP: 4152\nTP: 4154\nTP: 4156\nTP: 4158\nTP: open",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     4144.0,
+     4148.0
+    ],
+    "sl": 4140.0,
+    "tps": [
+     [
+      4150.0,
+      "px"
+     ],
+     [
+      4152.0,
+      "px"
+     ],
+     [
+      4154.0,
+      "px"
+     ],
+     [
+      4156.0,
+      "px"
+     ],
+     [
+      4158.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2744",
+   "text": "🚨 SIGNAL ALERT🚨\n\n🌐 #XAUUSD \n\n📊 Trade Details: 📉 #BUY \n\n⚪️ Entry Point: 4182\n🔴 Stop Loss (SL): 4173\n\n🟢 Take Profit 1 (TP1): 4185\n🟢 Take Profit 2 (TP2): 4190\n🟢 Take Profit 3 (TP3): 4198\n\n⚠️ Keep in mind to not risk more then 1-2% of your balance on this trade",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     4182.0,
+     4182.0
+    ],
+    "sl": 4173.0,
+    "tps": [
+     [
+      4185.0,
+      "px"
+     ],
+     [
+      4190.0,
+      "px"
+     ],
+     [
+      4198.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2750",
+   "text": "🚨 SIGNAL ALERT🚨\n\n🌐 #XAUUSD \n\n📊 Trade Details: 📈 #SELL \n\n⚪️ Entry Point: 4173\n🔴 Stop Loss (SL): 4182\n\n🟢 Take Profit 1 (TP1): 4170\n🟢 Take Profit 2 (TP2): 4165\n🟢 Take Profit 3 (TP3): 4157\n\n⚠️ Keep in mind to not risk more then 1-2% of your balance on this trade",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4173.0,
+     4173.0
+    ],
+    "sl": 4182.0,
+    "tps": [
+     [
+      4170.0,
+      "px"
+     ],
+     [
+      4165.0,
+      "px"
+     ],
+     [
+      4157.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2830",
+   "text": "GOLD  BUY  4181. 4178\n\nTP 4186\nTP 4190\nTP 4195\nTP 4200\nTP 4230\n\nSL 4168",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     4178.0,
+     4181.0
+    ],
+    "sl": 4168.0,
+    "tps": [
+     [
+      4186.0,
+      "px"
+     ],
+     [
+      4190.0,
+      "px"
+     ],
+     [
+      4195.0,
+      "px"
+     ],
+     [
+      4200.0,
+      "px"
+     ],
+     [
+      4230.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2857",
+   "text": "NFP sell limit \nᅠᅠ ￴￴￴￴ᅠᅠ ￴￴￴￴ᅠᅠ ￴￴￴￴ᅠᅠ ￴￴￴￴ᅠᅠ ￴￴￴￴ᅠᅠ ￴￴￴￴\nEntry 4219\nSL 4239\nTP 4200\nTP 4190\nTP 4180\nTP 4170",
+   "expected": null,
+   "note": "known gap: 'NFP sell limit' never names the instrument (gold at 4219), so it is not parsed"
+  },
+  {
+   "id": "stockmarketvault/2909",
+   "text": "XAUUSD SELL 4162 - 4159\n\nTP 4155\nTP 4150\nTP 4145\nTP 4140\nTP 4135\nTP OPEN\n\n💥SL 4166",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4159.0,
+     4162.0
+    ],
+    "sl": 4166.0,
+    "tps": [
+     [
+      4155.0,
+      "px"
+     ],
+     [
+      4150.0,
+      "px"
+     ],
+     [
+      4145.0,
+      "px"
+     ],
+     [
+      4140.0,
+      "px"
+     ],
+     [
+      4135.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2927",
+   "text": "US30 BUY 5130\n\n‼️SL 51000\n🥇TP 51160\n🥈TP 51230\n🥉TP 51330\n🥉TP 51630",
+   "expected": {
+    "instrument": "US30",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     5130.0,
+     5130.0
+    ],
+    "sl": 51000.0,
+    "tps": [
+     [
+      51160.0,
+      "px"
+     ],
+     [
+      51230.0,
+      "px"
+     ],
+     [
+      51330.0,
+      "px"
+     ],
+     [
+      51630.0,
+      "px"
+     ]
+    ]
+   },
+   "note": "typo: entry 5130 should be 51300 or so (SL 51000)"
+  },
+  {
+   "id": "stockmarketvault/2982",
+   "text": "USDCAD SELL NOW\nSTOPLOSS @ 1.43035\n\nTP @ 1.42500\nTP @ 1.42300\nTP @ 1.42025",
+   "expected": {
+    "instrument": "FX:USDCAD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     null,
+     null
+    ],
+    "sl": 1.43035,
+    "tps": [
+     [
+      1.425,
+      "px"
+     ],
+     [
+      1.423,
+      "px"
+     ],
+     [
+      1.42025,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2985",
+   "text": "US30 SELL 51700\n\n‼️SL 51830\n🥇TP 51670\n🥈TP 51600\n🥉TP 51500\n🥉TP 51200",
+   "expected": {
+    "instrument": "US30",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     51700.0,
+     51700.0
+    ],
+    "sl": 51830.0,
+    "tps": [
+     [
+      51670.0,
+      "px"
+     ],
+     [
+      51600.0,
+      "px"
+     ],
+     [
+      51500.0,
+      "px"
+     ],
+     [
+      51200.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/3031",
+   "text": "XAUUSD BUY now at 4112\nSL 4087\nTP 4164",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     4112.0,
+     4112.0
+    ],
+    "sl": 4087.0,
+    "tps": [
+     [
+      4164.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/3098",
+   "text": "GOLD SELL NOW\n\nSell @ 4195 - 4200\n\nSL🔴4205\nTP✅4185\nTP✅4175",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "sell",
+    "order_type": "market",
+    "entry": [
+     4195.0,
+     4200.0
+    ],
+    "sl": 4205.0,
+    "tps": [
+     [
+      4185.0,
+      "px"
+     ],
+     [
+      4175.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/3085",
+   "text": "📊 XAUUSD BUY SETUP\n\nENTRY ZONE: 4180-4177\n\n🎯 TARGETS:\nTP1: 4183\nTP2: 4186\nTP3: 4189\nTP4: 4192\nTP5: 4195\n\n\n❌ SL: 4170",
+   "expected": {
+    "instrument": "XAUUSD",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     4177.0,
+     4180.0
+    ],
+    "sl": 4170.0,
+    "tps": [
+     [
+      4183.0,
+      "px"
+     ],
+     [
+      4186.0,
+      "px"
+     ],
+     [
+      4189.0,
+      "px"
+     ],
+     [
+      4192.0,
+      "px"
+     ],
+     [
+      4195.0,
+      "px"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stockmarketvault/2353",
+   "text": "GOLD SELL NOW",
+   "expected": null
+  },
+  {
+   "id": "stockmarketvault/2351",
+   "text": "XAUUSD Analysis (18th September 2026)\n\n🔴SELL ZONE: 4365.93 - 4381.48 level\n\nSell Zone sits at the NYPM High, covering Previous Day High. Key areas for price to respect to reverse bearish for Asian. \n\nOnce tapped look for price to create a bearish confirmation on the 1/3/5M timeframe to capitalise on SELLS towards the 4350 level.",
+   "expected": null
+  },
+  {
+   "id": "stockmarketvault/2689",
+   "text": "Gold SeLL Running 110+ Pips🔽🔥",
+   "expected": null,
+   "note": "result claim, no levels"
+  },
+  {
+   "id": "stockmarketvault/2967",
+   "text": "GOLD SELL READY",
+   "expected": null
+  },
+  {
+   "id": "stockmarketvault/3126",
+   "text": "OVERNIGHT SWING 🔥🚨\n\n$ARW 230 CALL 5/15 avg .30🚨",
+   "expected": null
+  },
+  {
+   "id": "stockmarketvault/2517",
+   "text": "GUIDE TO BE A PROFITABLE TRADER 💯\n\nThis is my suggested lot sizes for you, make sure to remember this at ALL TIMES!\n\n$50 Capital 💡\nHigh risk = 0.05 lot\nMid risk = 0.03 lot\nLow risk = 0.01 lot\n\n$100 Capital 💡\nHigh risk = 0.10 lot\nMid risk = 0.05 lot\nLow risk = 0.02 lot\n\n$200 Capital 💡\nHigh risk = 0.15 lot\nMid risk = 0.10 lot\nLow risk = 0.05 lot\n\n$500 Capital 💡\nHigh risk = 0.40 lot\nMid risk = 0.25 lot\nLow risk = 0.10 lot\n\n$1000 Capital 💡\nHigh risk = 1.00 lot\nMid risk = 0.50 lot\nLow risk = 0.10 lot\n\nMake sure to choose lot sizes that match your account size. Always remember to put your stop loss.  If your capital slightly differs from the amounts stated, refer the above as a guide and calculate for your account. \n\nAlways remember...\n\nTRADING IS NOT GAMBLING‼️\n\nRome was not built in a day. Strategy to preserving your money is Crucial. Grow steadily, and with time, you'll build something remarkable!",
+   "expected": null
+  },
+  {
+   "id": "stockmarketvault/2440",
+   "text": "⚡️💡💡💡: 🇺🇸🇨🇳 U.S. and China begin trade talks in New York ahead of Xi Jinping’s visit 🚨",
+   "expected": null
+  },
+  {
+   "id": "Dennis1btc1/3577",
+   "text": "🔥 $BTC LONG\n\nEntry: $77,700. \nSL: 77,000. \nTP: 83,000.\n\nHigh-risk long we opened in the scalp channel yesterday.\n\nKeep in mind: this is a hedge against our main short.\n\n1–2%, max. Very risky trade, especially ahead of the Clarity Act and Fed news.\n\nStick to your risk limits! 🚬",
+   "expected": {
+    "instrument": "BTCUSD",
+    "side": "buy",
+    "order_type": "market",
+    "entry": [
+     77700.0,
+     77700.0
+    ],
+    "sl": 77000.0,
+    "tps": [
+     [
+      83000.0,
+      "px"
+     ]
+    ]
+   }
+  }
+ ],
+ "typo_cases": [
+  {
+   "id": "stockmarketvault/2927",
+   "market": 51050.0,
+   "expect": [
+    "typo_magnitude_entry"
+   ]
+  },
+  {
+   "id": "stockmarketvault/2369",
+   "market": 4390.0,
+   "expect": [
+    "sl_distance_implausible"
+   ]
+  },
+  {
+   "id": "stockmarketvault/2674",
+   "market": 4150.0,
+   "expect": [
+    "typo_price_off_market_entry"
+   ]
+  },
+  {
+   "id": "stockmarketvault/2445",
+   "market": 4351.0,
+   "expect": []
+  },
+  {
+   "id": "stockmarketvault/2985",
+   "market": 51690.0,
+   "expect": []
+  }
+ ],
+ "claims": [
+  {
+   "text": "Tp1 done ✅\n 80  pips running!",
+   "kinds": [
+    "tp_hit",
+    "pips"
+   ],
+   "pips": 80,
+   "tp_n": 1
+  },
+  {
+   "text": "+180 pips! ☝️\nTrade smart, earn smart 📊",
+   "kinds": [
+    "pips"
+   ],
+   "pips": 180,
+   "tp_n": null
+  },
+  {
+   "text": "Gold SeLL Running 110+ Pips🔽🔥",
+   "kinds": [
+    "pips",
+    "running"
+   ],
+   "pips": 110,
+   "tp_n": null
+  },
+  {
+   "text": "Gold hit risk , ready setup recovery !",
+   "kinds": [
+    "sl_hit"
+   ],
+   "pips": null,
+   "tp_n": null
+  },
+  {
+   "text": "Gold sell now 4339 - 4344  sl : 4349  tp1 : 4334 tp2 : 4324",
+   "kinds": null
+  }
+ ]
+}
