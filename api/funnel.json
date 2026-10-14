@@ -209,6 +209,8 @@
   "channels_covered": 26,
   "outcomes": {
    "n_scored": 253,
+   "window_start": "2026-06-08",
+   "window_end": "2026-10-13",
    "win_rate": 0.17,
    "median_return": -100.0,
    "share_worth_zero": 0.7708,

@@ -15,8 +15,12 @@ DISCLAIMER = ("Channels and accounts here are flagged for investigation, not a f
 CLAIMS_NOTE = ("quoted_results_are_channel_claims: result_pct is what the channel itself posted, "
                "not verified, and winners dominate quoted closes (survivorship). Use 'outcome' "
                "(scored against the real tape) where present.")
-SMALL_SAMPLE = ("Small sample: a few dozen parsed callouts from a handful of channels. "
-                "Do not treat any win rate here as statistically meaningful.")
+def sample_note(n, start, end):
+    span = f" posted {start} to {end}" if start and end else ""
+    return (f"Based on {n} scored option callouts{span} from public channels. Scores are hold-to-expiry intrinsic value "
+            "against the entry price the channel quoted, with no slippage or fees; most are same-day index and large-cap "
+            "options. Channels usually quote early exits, which are not what is scored here. A limited sample, not a "
+            "settled rate, and not advice.")
 MAX_CALLS = 300
 TEXT_LEN = 160
 OUTCOME_KEYS = ["status", "reason", "expiry_effective", "expiry_note", "price_source",
@@ -85,7 +89,10 @@ def main():
             r["outcome"] = {k: o[k] for k in OUTCOME_KEYS if k in o}
         rows.append(r)
 
-    common = {"credit": SITE, "disclaimer": DISCLAIMER, "small_sample_warning": SMALL_SAMPLE}
+    sc = [o for o in read_jsonl(tf / "outcomes.jsonl") if o.get("status") == "scored" and o.get("return_pct") is not None]
+    pd = sorted((o.get("posted") or "")[:10] for o in sc if o.get("posted"))
+    common = {"credit": SITE, "disclaimer": DISCLAIMER,
+              "small_sample_warning": sample_note(len(sc), pd[0] if pd else None, pd[-1] if pd else None)}
     t_rows = [{k: t.get(k) for k in ("ticker", "ah_accounts", "ah_posts", "tg_channels", "tg_posts")}
               for t in sorted(tickers, key=lambda t: -(t.get("score") or 0))]
     tickers_out = {"source": "AfterMath analysis of flagged AfterHour accounts and public Telegram channels",

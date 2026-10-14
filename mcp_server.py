@@ -561,10 +561,13 @@ def tool_get_funnel_accounts(args: dict) -> dict:
     data = fetch_json("funnel.json")
     if not data:
         return {"error": "funnel.json currently synchronizing"}
-    user = (args.get("username") or "").strip().lstrip("@").lower()
-    tier = (args.get("tier") or "").strip().lower()
-    link = (args.get("telegram_link") or "").strip().lower().replace("https://", "").replace("http://", "")
-    limit = max(1, min(int(args.get("limit", 25)), 100))
+    user = str(args.get("username") or "").strip().lstrip("@").lower()
+    tier = str(args.get("tier") or "").strip().lower()
+    link = str(args.get("telegram_link") or "").strip().lower().replace("https://", "").replace("http://", "")
+    try:
+        limit = max(1, min(int(args.get("limit", 25)), 100))
+    except (TypeError, ValueError):
+        limit = 25
     rows = data.get("accounts", [])
     if user:
         rows = [r for r in rows if user in r["username"].lower()]
@@ -588,9 +591,9 @@ def tool_get_funnel_callouts(args: dict) -> dict:
     data = fetch_json("funnel-calls.json")
     if not data:
         return {"error": "funnel-calls.json currently synchronizing"}
-    ticker = (args.get("ticker") or "").strip().lstrip("$").upper()
-    channel = (args.get("channel") or "").strip().lower().replace("https://", "").replace("http://", "").lstrip("@/")
-    action = (args.get("action") or "").strip().lower()
+    ticker = str(args.get("ticker") or "").strip().lstrip("$").upper()
+    channel = str(args.get("channel") or "").strip().lower().replace("https://", "").replace("http://", "").lstrip("@/")
+    action = str(args.get("action") or "").strip().lower()
     try:
         limit = max(1, min(int(args.get("limit", 25)), 100))
     except (TypeError, ValueError):

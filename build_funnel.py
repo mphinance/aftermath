@@ -87,8 +87,11 @@ rets = sorted(o["return_pct"] for o in scored)
 med = None
 if n:
     med = rets[n // 2] if n % 2 else (rets[n // 2 - 1] + rets[n // 2]) / 2
+posted = sorted((o.get("posted") or "")[:10] for o in scored if o.get("posted"))
 outcomes = {
     "n_scored": n,
+    "window_start": posted[0] if posted else None,
+    "window_end": posted[-1] if posted else None,
     "win_rate": round(sum(1 for o in scored if o.get("win")) / n, 4) if n else None,
     "median_return": round(med, 2) if med is not None else None,
     "share_worth_zero": round(sum(1 for o in scored if o.get("worthless")) / n, 4) if n else None,
