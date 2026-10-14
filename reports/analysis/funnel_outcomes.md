@@ -1,8 +1,8 @@
 # Funnel callouts vs the tape: outcomes
 
-Generated 2026-10-14 from `calls.jsonl` (1948 records). Source: `tg_outcomes.py`.
+Generated 2026-10-14 from `calls.jsonl` (8571 records). Source: `tg_outcomes.py`.
 
-> Scored n = 253. Still a short window of tape; expiry-day moves dominate results.
+> Scored n = 1146. Still a short window of tape; expiry-day moves dominate results.
 
 ## Method and assumptions
 
@@ -16,29 +16,30 @@ Generated 2026-10-14 from `calls.jsonl` (1948 records). Source: `tg_outcomes.py`
 
 | Stage | Count |
 |---|---|
-| Option open records (action=open, kind=option) | 799 |
-| minus excluded by parse flag `duplicate_echo` | 237 |
-| minus excluded by parse flag `cross_channel_echo` | 79 |
-| minus excluded by parse flag `expiry_before_post` | 3 |
-| minus excluded by parse flag `entry_implausible` | 5 |
-| minus excluded by parse flag `posted_date_suspect` | 14 |
-| minus excluded by parse flag `expiry_far` | 3 |
-| minus no expiry (unknown, not assumed 0DTE) | 81 |
-| minus other unscorable (missing strike/side/entry, parser close, no price data) | 38 |
-| Remaining after same-channel/day dedupe | 325 |
-| Pending (expiry not yet passed) | 71 |
-| **Scored** (intrinsic at expiry, entry price present) | 253 |
-| Distinct contracts among scored (across channels) | 243 |
+| Option open records (action=open, kind=option) | 4070 |
+| minus excluded by parse flag `duplicate_echo` | 1557 |
+| minus excluded by parse flag `cross_channel_echo` | 533 |
+| minus excluded by parse flag `expiry_before_post` | 19 |
+| minus excluded by parse flag `entry_implausible` | 13 |
+| minus excluded by parse flag `posted_date_suspect` | 34 |
+| minus excluded by parse flag `expiry_far` | 19 |
+| minus excluded by parse flag `entry_below_intrinsic` | 17 |
+| minus no expiry (unknown, not assumed 0DTE) | 390 |
+| minus other unscorable (missing strike/side/entry, parser close, no price data) | 160 |
+| Remaining after same-channel/day dedupe | 1272 |
+| Pending (expiry not yet passed) | 125 |
+| **Scored** (intrinsic at expiry, entry price present) | 1146 |
+| Distinct contracts among scored (across channels) | 1092 |
 
-Echoes (`duplicate_echo` + `cross_channel_echo`, 316 records) are not scored; the first post of each contract is.
-Other unscorable reasons: missing entry_price (38)
+Echoes (`duplicate_echo` + `cross_channel_echo`, 2090 records) are not scored; the first post of each contract is.
+Other unscorable reasons: missing entry_price (144); no price data for APPL (5); no price data for NDXP (3); no underlying bar on expiry date 2026-03-31 (1); no underlying bar on expiry date 2026-04-01 (1); no underlying bar on expiry date 2026-04-17 (1); no underlying bar on expiry date 2026-05-07 (1); no underlying bar on expiry date 2026-08-29 (1); no price data for AAIO (1); no price data for ABDE (1); no price data for APPLE (1)
 
 ## Pooled results (hold to expiry)
 
 | Basis | n | Win rate (P&L>0) | Median return | Mean return | Worth zero at expiry | Touched BE (optimistic) | Sum P&L, 1 contract each |
 |---|---|---|---|---|---|---|---|
-| Channel-level (deduped per channel) | 253 | 17% | -100% | -36% | 77% | 43% | $-27118 |
-| Distinct contracts | 243 | 16% | -100% | -37% | 77% | 44% | $-27059 |
+| Channel-level (deduped per channel) | 1146 | 19% | -100% | 6% | 73% | 44% | $24297 |
+| Distinct contracts | 1092 | 19% | -100% | 7% | 74% | 44% | $24732 |
 
 Return = intrinsic/entry - 1; -100% means expired worthless. Mean is dragged by a few multi-baggers; median is the typical open.
 
@@ -46,21 +47,21 @@ Return = intrinsic/entry - 1; -100% means expired worthless. Mean is dragged by 
 
 | Channel | Contract | Posted (UTC) | Entry | P&L/contract | Multiple | Touched BE |
 |---|---|---|---|---|---|---|
-| bzjzhzhzuzzu | AMD 600.0 C 2026-10-02 | 2026-09-25 15:23 | $3.70 | $3021 | 9.16x | yes |
-| blackcardfreechannel | MRNA 170.0 C 2026-09-25 | 2026-09-21 13:42 | $4.00 | $2488 | 7.22x | yes |
-| blackcardfreechannel | META 715.0 C 2026-09-21 | 2026-09-21 14:57 | $1.90 | $2434 | 13.81x | yes |
-| blockwave10 | SPX 7720.0 C 2026-09-25 | 2026-09-25 13:37 | $11.40 | $1201 | 2.05x | yes |
-| blackcardfreechannel | AMD 550.0 C 2026-09-18 | 2026-09-17 13:43 | $2.10 | $772 | 4.68x | yes |
+| moonwalkertrades2 | SPX 7550.0 C 2026-08-05 | 2026-07-31 16:50 | $6.80 | $16675 | 25.52x | yes |
+| bzjzhzhzuzzu | SPX 7550.0 C 2026-08-05 | 2026-08-03 14:03 | $6.80 | $16675 | 25.52x | yes |
+| ajfreealart32 | SNDK 1720.0 C 2026-09-18 | 2026-09-18 13:38 | $2.20 | $6962 | 32.65x | yes |
+| moonwalkertrades2 | SNDK 1729.0 C 2026-09-18 | 2026-09-18 15:46 | $2.20 | $6062 | 28.55x | yes |
+| crestedgeroom | AMD 570.0 C 2026-10-02 | 2026-09-16 13:35 | $6.40 | $5751 | 9.99x | yes |
 
 ## Bottom 5
 
 | Channel | Contract | Posted (UTC) | Entry | P&L/contract | Multiple | Touched BE |
 |---|---|---|---|---|---|---|
+| blockwave10 | NDX 29550.0 C 2026-09-09 | 2026-09-09 14:01 | $45.20 | $-4520 | 0.00x | no |
 | vertexpublic | SPX 7000.0 P 2026-07-17 | 2026-06-27 09:19 | $27.80 | $-2780 | 0.00x | no |
-| blackcardfreechannel | DELL 575.0 C 2026-09-18 | 2026-09-16 13:36 | $13.52 | $-1352 | 0.00x | yes |
-| apextraderkoryphae | WDC 470.0 C 2026-09-25 | 2026-09-23 16:05 | $10.30 | $-1030 | 0.00x | no |
-| crestedgeroom | SPX 7770.0 P 2026-10-07 | 2026-10-07 13:37 | $9.70 | $-970 | 0.00x | no |
-| axisalgorithmictrade | SPX 7720.0 C 2026-09-30 | 2026-09-30 14:03 | $9.69 | $-969 | 0.00x | no |
+| crestedgeroom | SNDK 1900.0 C 2026-08-21 | 2026-08-17 13:40 | $23.31 | $-2331 | 0.00x | no |
+| apextraderkoryphae | WDC 410.0 P 2026-09-18 | 2026-09-15 13:53 | $22.72 | $-2272 | 0.00x | no |
+| crestedgeroom | MU 1050.0 C 2026-08-28 | 2026-08-18 13:36 | $18.18 | $-1818 | 0.00x | no |
 
 ## Survivorship test: channel's quoted results vs real hold-to-expiry
 
@@ -68,39 +69,43 @@ Quoted = `result_pct` on close posts (deduped by channel/ticker/day/value; inclu
 
 | Channel | Quoted closes n | Quoted median | Quoted mean | Scored opens n | Real win rate | Real median | Real mean | Worth zero | Gap (quoted mean - real mean) |
 |---|---|---|---|---|---|---|---|---|---|
-| bzjzhzhzuzzu | 2 | 139% | 139% | 38 | 13% | -100% | -47% | 82% | 186 pts |
-| blackcardfreechannel | 83 | 26% | 36% | 35 | 14% | -100% | -12% | 77% | 48 pts |
-| ajfreealart32 | 28 | 40% | 60% | 28 | 14% | -100% | -64% | 82% | 123 pts |
-| blockwave10 | 2 | 38% | 38% | 28 | 18% | -100% | -65% | 82% | 103 pts |
-| axisalgorithmictrade | 27 | 32% | 120% | 26 | 19% | -100% | -52% | 69% | 171 pts |
-| crestedgeroom | 22 | 40% | 42% | 20 | 15% | -100% | -42% | 80% | 84 pts |
-| bob_signalsfreealert | 80 | 60% | 104% | 10 | 50% | -47% | 31% | 50% | 74 pts |
-| moonwalkertrades2 | 15 | 40% | 44% | 10 | 0% | -100% | -97% | 90% | 141 pts |
-| tradevisionst | 0 | - | - | 9 | 11% | -100% | 46% | 67% | - |
-| mrquickerfreealert | 25 | 51% | 80% | 8 | 0% | -100% | -100% | 100% | 180 pts |
-| vanguardstockupdates68 | 2 | 45% | 45% | 7 | 14% | -100% | -69% | 86% | 114 pts |
-| apextraderkoryphae | 10 | 212% | 324% | 7 | 43% | -32% | 74% | 43% | 250 pts |
-| queen_free_entries | 19 | 35% | 80% | 7 | 14% | -100% | -64% | 86% | 144 pts |
-| bincofreealert | 24 | 36% | 67% | 7 | 14% | -100% | -85% | 86% | 152 pts |
+| bzjzhzhzuzzu | 5 | 150% | 468% | 208 | 17% | -100% | 24% | 79% | 444 pts |
+| moonwalkertrades2 | 85 | 48% | 112% | 147 | 16% | -100% | 53% | 79% | 59 pts |
+| blockwave10 | 67 | 47% | 78% | 137 | 30% | -100% | 28% | 62% | 50 pts |
+| crestedgeroom | 185 | 39% | 47% | 135 | 22% | -100% | 2% | 69% | 45 pts |
+| queen_free_entries | 89 | 50% | 88% | 105 | 14% | -100% | -13% | 76% | 101 pts |
+| ajfreealart32 | 113 | 53% | 106% | 72 | 15% | -100% | -17% | 81% | 123 pts |
+| blackcardfreechannel | 115 | 26% | 35% | 54 | 13% | -100% | -30% | 76% | 65 pts |
+| bob_signalsfreealert | 232 | 62% | 116% | 50 | 32% | -100% | 21% | 62% | 94 pts |
+| bincofreealert | 256 | 50% | 120% | 48 | 19% | -100% | -52% | 77% | 173 pts |
+| mrquickerfreealert | 199 | 55% | 96% | 43 | 14% | -100% | -31% | 74% | 127 pts |
+| mrfortunefreeflow | 70 | 44% | 70% | 41 | 27% | -100% | -20% | 59% | 90 pts |
+| axisalgorithmictrade | 34 | 37% | 141% | 24 | 29% | -100% | 1% | 71% | 140 pts |
+| tradevisionst | 1 | 24% | 24% | 21 | 14% | -100% | -5% | 71% | 29 pts |
+| apextraderkoryphae | 13 | 166% | 274% | 15 | 20% | -100% | -19% | 73% | 293 pts |
+| vanguardstockupdates68 | 2 | 45% | 45% | 10 | 10% | -100% | -78% | 90% | 123 pts |
+| gpt2136 | 22 | 98% | 359% | 8 | 12% | -100% | -70% | 75% | 430 pts |
+| vertexpublic | 7 | 7% | 18% | 7 | 0% | -100% | -100% | 100% | 118 pts |
+| de_gainers_free_circle | 127 | 45% | 72% | 6 | 0% | -73% | -66% | 50% | 139 pts |
 | blue_falcon_capital | 4 | 109% | 239% | 5 | 60% | 77% | 36% | 40% | 203 pts |
-| small channels (pooled, 3 ch) | 75 | 60% | 171% | 8 | 12% | -100% | 84% | 75% | 87 pts |
-| **ALL channels pooled** | 418 | 42% | 97% | 253 | 17% | -100% | -36% | 77% | 133 pts |
+| small channels (pooled, 4 ch) | 76 | 160% | 383% | 10 | 10% | -100% | 51% | 70% | 332 pts |
+| **ALL channels pooled** | 1702 | 50% | 110% | 1146 | 19% | -100% | 6% | 73% | 104 pts |
 
 Quoted closes include only trades the channel chose to announce a result for; real column includes every scored open, including those never followed up. Gap is in percentage points of return. Quoted and real are not the same trades, so this compares reporting, not individual fills.
 
 ## Trade-level: quoted close vs same contract held to expiry
 
-- link = contract (exact contract match): n=122 pairs over 74 contracts. Quoted: win 86%, median 30%, mean 41%. Same contracts held to expiry: win 17%, median -100%, mean -40%. Quoted winners that expired worthless/loss if held: 87 of 105.
-- all links incl. ticker_day (looser match): n=156 pairs over 94 contracts. Quoted: win 88%, median 36%, mean 58%. Same contracts held to expiry: win 21%, median -100%, mean -28%. Quoted winners that expired worthless/loss if held: 109 of 138.
+- link = contract (exact contract match): n=492 pairs over 324 contracts. Quoted: win 90%, median 41%, mean 67%. Same contracts held to expiry: win 21%, median -100%, mean 2%. Quoted winners that expired worthless/loss if held: 344 of 443.
+- all links incl. ticker_day (looser match): n=601 pairs over 365 contracts. Quoted: win 91%, median 42%, mean 78%. Same contracts held to expiry: win 22%, median -100%, mean 5%. Quoted winners that expired worthless/loss if held: 417 of 545.
 
 Caveat: a close is an early exit and the real column is hold-to-expiry, so a quoted win that would have expired worthless is not a lie, it is a different trade. The comparison shows how much of a quoted edge depends on exiting at the right time. Pairs depend on the parser's open_id link; `ticker_day` links are weaker than `contract` links. Only closes whose paired open was scored appear here.
 
 ## Caveats
 
-- n = 253 scored opens over a short window (posts from 2026-06-08 to 2026-10-13); a few trending days move the whole table. Per-channel rows with n under 30 are noisy.
+- n = 1146 scored opens over a short window (posts from 2026-06-08 to 2026-10-13); a few trending days move the whole table. Per-channel rows with n under 30 are noisy.
 - Hold-to-expiry ignores that a trader may have exited early at a better (or worse) price; touch-breakeven is the optimistic bound for that.
 - Quoted entry premiums are unverified; real fills on illiquid strikes are typically worse.
 - Echo posts (same trade reposted by several channels) are collapsed for the distinct-contract numbers but each channel counts it once in its own row.
 - Parser issues affecting this run: see `reports/analysis/outcomes_parser_notes.md`.
-- Pending opens (71) are excluded; longer-dated swings are not yet resolved.
-- `expiry_far` records (3) are reported, not scored.
+- Pending opens (125) are excluded; longer-dated swings are not yet resolved.
+- `expiry_far` records (19) are reported, not scored.

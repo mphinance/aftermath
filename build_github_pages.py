@@ -376,6 +376,7 @@ with open(API_DIR / "mcp-schema.json", "w", encoding="utf-8") as f:
 import subprocess, sys as _sys
 subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel.py")], check=True)
 subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel_calls.py")], check=True)
+subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel_scorecard.py")], check=True)
 
 openapi_spec = {
     "openapi": "3.1.0",
@@ -510,11 +511,27 @@ openapi_spec = {
                 "responses": {"200": {"description": "Parsed callouts"}}
             }
         },
+        "/api/funnel-scorecard.json": {
+            "get": {
+                "tags": ["MCP & AI Agents"],
+                "summary": "Telegram Funnel Scorecard (options and forex/gold/index scoring)",
+                "description": "Public scoring of trade callouts from public Telegram channels against the real tape: option callouts held to expiry, and forex/gold/index signals (TP1 first vs SL first). Pooled and per channel, with sample sizes, Wilson 95% ranges and assumptions. Analysis of public posts, not advice. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
+                "responses": {"200": {"description": "Scorecard with options and fx sections"}}
+            }
+        },
+        "/api/funnel-fx-signals.json": {
+            "get": {
+                "tags": ["MCP & AI Agents"],
+                "summary": "Scored Forex/Gold/Index Signals",
+                "description": "Every scored forex, gold or index signal from public Telegram channels: levels, outcome (TP1 first, SL first), R multiples and the original post text. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
+                "responses": {"200": {"description": "Scored signals"}}
+            }
+        },
         "/api/mcp-schema.json": {
             "get": {
                 "tags": ["MCP & AI Agents"],
                 "summary": "Model Context Protocol (MCP) Tool Schemas",
-                "description": "Returns the official JSON Schema catalog for all 13 MCP tools exposed for autonomous AI agents and IDEs.",
+                "description": "Returns the official JSON Schema catalog for all 14 MCP tools exposed for autonomous AI agents and IDEs.",
                 "responses": {
                     "200": {
                         "description": "Model Context Protocol tool catalog"
@@ -562,6 +579,9 @@ sitemap_urls = [
     ("https://ah.mphinance.com/api/funnel.json", "0.7", "daily"),
     ("https://ah.mphinance.com/api/funnel-tickers.json", "0.6", "daily"),
     ("https://ah.mphinance.com/api/funnel-calls.json", "0.6", "daily"),
+    ("https://ah.mphinance.com/scorecard", "0.8", "daily"),
+    ("https://ah.mphinance.com/api/funnel-scorecard.json", "0.6", "daily"),
+    ("https://ah.mphinance.com/api/funnel-fx-signals.json", "0.6", "daily"),
     ("https://ah.mphinance.com/sitemap", "0.8", "daily"),
     ("https://ah.mphinance.com/docs", "0.9", "daily"),
     ("https://ah.mphinance.com/mcp", "0.9", "daily"),

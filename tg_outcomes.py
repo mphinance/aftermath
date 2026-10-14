@@ -156,7 +156,20 @@ def rolling_expiry(x):
 
 
 SKIP_FLAGS = ["duplicate_echo", "cross_channel_echo", "expiry_before_post", "entry_implausible",
-              "posted_date_suspect", "spread_suspect", "ticker_list", "expiry_far"]
+              "posted_date_suspect", "spread_suspect", "ticker_list", "expiry_far", "entry_below_intrinsic"]
+
+
+def entry_below_intrinsic(g, bars):
+    """Impossible quote screen. If, even at the best print of the post day (day low for calls, day high for puts),
+    the contract's intrinsic value exceeds the quoted premium by more than a wide margin, the quote cannot be a real
+    fill for that strike: it is a mis-parsed strike (1750 read as 175), a wrong ticker or a replayed old post. Such rows
+    would otherwise score as 200x winners and dominate the mean. Conservative: premium below intrinsic is an arbitrage."""
+    day = next((b for b in bars if b["d"] == g["posted"][:10]), None)
+    if day is None or g.get("entry_price") is None:
+        return False
+    K, e = g["strike"], g["entry_price"]
+    intr = (day["l"] - K) if g["side"] == "call" else (K - day["h"])
+    return intr > 1.5 * e + 0.5
 
 
 def is_close_text(t):
@@ -296,6 +309,10 @@ def main():
             continue
         if exp < g["posted"][:10]:
             g.update(status="unscorable", reason="expiry %s before post date (parser/typo)" % exp)
+            continue
+        if entry_below_intrinsic(g, bars):
+            g.update(status="excluded", reason="quoted premium below intrinsic value at post time (impossible fill: mis-parsed strike, wrong ticker or replayed post)",
+                     exclude_flag="entry_below_intrinsic")
             continue
         g.update(score_group(g, bars, src))
         if g["status"] == "scored" and g["entry_price"] is None:

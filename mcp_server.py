@@ -634,6 +634,47 @@ def tool_get_funnel_tickers(args: dict) -> dict:
     }
 
 
+def tool_get_funnel_scorecard(args: dict) -> dict:
+    """Scored results for option callouts (held to expiry) and forex/gold/index signals (TP1 first vs SL first) from public Telegram channels."""
+    data = fetch_json("funnel-scorecard.json")
+    if not data:
+        return {"error": "funnel-scorecard.json currently synchronizing"}
+    section = str(args.get("section") or "all").strip().lower()
+    if section not in ("options", "fx", "all"):
+        section = "all"
+    channel = str(args.get("channel") or "").strip().lower().replace("https://", "").replace("http://", "").lstrip("@/")
+
+    def keep(rows):
+        rows = rows if isinstance(rows, list) else []
+        if not channel:
+            return rows
+        return [r for r in rows if isinstance(r, dict) and channel in (r.get("channel") or "").lower()]
+
+    out = {
+        "source": data.get("credit") or FUNNEL_CREDIT, "disclaimer": data.get("disclaimer") or FUNNEL_DISCLAIMER,
+        "generated_at": data.get("generated_at"), "conventions": data.get("conventions"),
+        "methodology": data.get("methodology") or "https://ah.mphinance.com/scorecard",
+        "methodology_doc": data.get("methodology_doc"),
+        "section": section, "channel_filter": channel or None,
+    }
+    if section in ("options", "all"):
+        o = dict(data.get("options") or {})
+        if channel:
+            o["by_channel"] = keep(o.get("by_channel"))
+        out["options"] = o
+    if section in ("fx", "all"):
+        f = dict(data.get("fx") or {})
+        if channel:
+            f["by_channel"] = keep(f.get("by_channel"))
+            f["weekly_by_channel"] = keep(f.get("weekly_by_channel"))
+            f["content_timeline"] = keep(f.get("content_timeline"))
+            tv = dict(f.get("touch_variant") or {})
+            tv["by_channel"] = keep(tv.get("by_channel"))
+            f["touch_variant"] = tv
+        out["fx"] = f
+    return out
+
+
 def tool_get_social_feed(args: dict) -> dict:
     """Retrieve live community posts, commentary, and broker-verified trade snapshots from AfterHour."""
     target_ticker = (args.get("ticker") or "").strip().upper()
@@ -714,6 +755,7 @@ TOOLS_MAP = {
     "get_funnel_accounts": tool_get_funnel_accounts,
     "get_funnel_callouts": tool_get_funnel_callouts,
     "get_funnel_tickers": tool_get_funnel_tickers,
+    "get_funnel_scorecard": tool_get_funnel_scorecard,
 }
 
 # MCP Tool Schemas definition (MCP 2024-11-05 standard)
@@ -1008,6 +1050,18 @@ MCP_TOOLS_DEFINITIONS = [
             "type": "object",
             "properties": {
                 "limit": {"type": "integer", "description": "Max tickers to return (default 25, max 100)", "default": 25}
+            },
+            "additionalProperties": False
+        }
+    },
+    {
+        "name": "get_funnel_scorecard",
+        "description": "Public scoring results for trade callouts posted by Telegram channels linked to flagged AfterHour accounts: option callouts held to expiry (win rate, median and mean return, share expired worthless, by days to expiry, ticker and channel, plus quoted closes versus the same contracts held) and forex/gold/index signals scored against the real tape (TP1 first versus SL first, mean R, by instrument, channel and week). Every rate carries its sample size and a Wilson 95% range; assumptions and the basis-sensitivity range are included. Analysis of public posts, not advice. Flagged for investigation, not a finding of fraud. Credit https://telegramscammers.com. Method: https://ah.mphinance.com/scorecard",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "section": {"type": "string", "enum": ["options", "fx", "all"], "description": "Which part to return (default all)", "default": "all"},
+                "channel": {"type": "string", "description": "Channel handle or t.me link (substring match); filters the per-channel tables"}
             },
             "additionalProperties": False
         }

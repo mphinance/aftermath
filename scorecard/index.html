@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Callout Scorecard | AfterMath</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How trade callouts and forex/gold signals from Telegram channels linked to flagged AfterHour accounts finished against the real tape, with sample sizes, 95% ranges and every assumption shown.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07090e;--card:#0d1117;--surface:#131b26;--border:#1f2937;--green:#00f59b;--cyan:#00d2ff;--gold:#ffd166;--red:#ff5c7a;--text:#e6edf3;--muted:#8b949e;--sans:'Plus Jakarta Sans',-apple-system,'Segoe UI',sans-serif;--mono:'JetBrains Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;min-height:100vh;overflow-x:hidden}
+a{color:var(--cyan)}
+.nav{display:flex;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border);background:rgba(13,17,23,.92);position:sticky;top:0;z-index:10}
+.nav a{flex:0 0 auto;white-space:nowrap;min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none;font-size:13px;font-weight:600}
+.nav a:hover,.nav a.on{border-color:var(--cyan);color:var(--cyan)}
+main{max-width:1000px;margin:0 auto;padding:28px 16px 56px}
+h1{font-size:clamp(26px,5vw,38px);font-weight:800;letter-spacing:-.5px}h1 span{color:var(--green)}
+h2{font-size:clamp(20px,4vw,26px);font-weight:800;margin:44px 0 6px;letter-spacing:-.3px}
+h3{font-size:16px;font-weight:800;margin:26px 0 6px}
+p,li{overflow-wrap:anywhere}
+.sub{color:var(--muted);margin:10px 0 14px;max-width:720px}
+.note{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:10px;padding:12px 14px;margin:12px 0;color:var(--text);font-size:14px}
+.lede{color:var(--muted);font-size:14px;margin:4px 0 12px;max-width:760px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px;margin:14px 0}
+.hc{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--cyan);border-radius:12px;padding:16px}
+.hc.fx{border-top-color:var(--gold)}
+.hc .tag{font:600 11px var(--mono);text-transform:uppercase;color:var(--muted);letter-spacing:.5px}
+.hc .big{font:800 44px/1.1 var(--mono);margin:6px 0 2px;color:var(--green)}
+.hc .big.bad{color:var(--red)}
+.hc .what{font-size:14.5px;font-weight:600;margin-bottom:8px}
+.hc ul{list-style:none;color:var(--muted);font-size:13px;display:grid;gap:4px}
+.hc ul b{color:var(--text);font-family:var(--mono);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:10px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.kpi b{display:block;font:600 18px var(--mono)}.kpi span{color:var(--muted);font-size:12px}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:10px;background:var(--card);max-width:100%;margin:8px 0 4px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:8px 10px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--surface);color:var(--muted);font:600 11px var(--mono);text-transform:uppercase;padding:0}
+th button{all:unset;box-sizing:border-box;display:block;width:100%;min-height:44px;padding:8px 10px;cursor:pointer;font:inherit;text-transform:inherit;color:inherit;white-space:nowrap}
+th button:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
+th.on,th.on button{color:var(--cyan)}
+th.plain{padding:8px 10px}
+th.num,td.num{text-align:right;font-family:var(--mono)}
+th.num button{text-align:right}
+tr:last-child td{border-bottom:0}
+td.ch,td.mono{font-family:var(--mono);font-size:12px}
+td.win{color:var(--green)}td.loss{color:var(--red)}td.gold{color:var(--gold)}
+td.wrap{white-space:pre-wrap;min-width:300px;max-width:420px;overflow-wrap:anywhere;font-family:var(--mono);font-size:12px;line-height:1.45}
+td.small,tr.small td{color:var(--muted)}
+tr.txtrow td{padding:0;border-bottom:1px solid var(--border)}
+td.txt{padding:0!important;white-space:normal}
+td.txt div{position:sticky;left:0;white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--mono);font-size:12px;line-height:1.45;padding:6px 10px 10px;color:var(--muted)}
+tr.sigrow td{border-bottom:0}
+.hint{color:var(--muted);font-size:12.5px;margin:4px 0 10px}
+.ctl{display:flex;flex-wrap:wrap;gap:6px 18px;margin:8px 0}
+.ctl label{display:inline-flex;align-items:center;gap:8px;min-height:44px;cursor:pointer;color:var(--text);font-size:13.5px}
+.ctl input{width:20px;height:20px;accent-color:var(--cyan)}
+.more{margin-top:10px;min-height:48px;width:100%;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:10px;font:600 14px var(--sans);cursor:pointer}
+ul.bul{padding-left:20px;color:var(--text);font-size:14px;display:grid;gap:8px;margin:8px 0}
+ul.bul li{color:var(--text)}
+.tl{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin:10px 0;font-size:14px}
+.tl b.ch{font-family:var(--mono);font-size:13px;color:var(--cyan);overflow-wrap:anywhere}
+.tl p{margin-top:6px;color:var(--text)}
+.tl p.m{color:var(--muted);font-size:13px}
+.links{display:grid;gap:8px;margin:10px 0}
+.links a{display:flex;align-items:center;min-height:44px;padding:0 14px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-decoration:none;font:600 13px var(--mono);overflow-wrap:anywhere}
+.fine{margin-top:44px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px}
+.fine p+p{margin-top:8px}
+.empty{color:var(--muted);padding:18px 0}
+code{font-family:var(--mono);font-size:12.5px;background:var(--surface);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+@media(min-width:760px){.links{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/">📊 Live Terminal</a><a href="/whales">🐋 Whales</a><a href="/signals">📡 Signals</a><a href="/scorecard" class="on">📈 Scorecard</a><a href="/scamcheck">🛡️ Scam Check</a><a href="/mcp">🤖 MCP</a><a href="/docs">📖 API</a>
+</nav>
+<main>
+  <h1>Callout <span>scorecard</span></h1>
+  <p class="sub">How the trade callouts posted by public Telegram channels linked to accounts flagged for funneling traders into Telegram finished against the real market tape. Two parts: stock option callouts held to expiry, and forex, gold and index signals scored on whether the first target or the stop traded first. Every figure shows its sample size and a 95% range, and every assumption is written out below.</p>
+  <div class="note">Analysis of public posts. The accounts and channels are flagged for investigation, not a finding of fraud. This page describes what the tape shows under stated assumptions; it is not advice.</div>
+  <p class="hint" id="stamp">Loading scorecard...</p>
+  <div id="err" class="note" hidden></div>
+
+  <h2>Headline numbers</h2>
+  <p class="lede">Read each card with its sample size and range. A short window and a few active channels mean these are descriptions of this sample, not settled rates.</p>
+  <div class="cards" id="cards"></div>
+
+  <h2>Quoted result versus the same trade held to expiry</h2>
+  <p class="lede" id="pairedLede"></p>
+  <div class="kpis" id="pairedKpis"></div>
+  <p class="hint" id="pairedCaveat"></p>
+
+  <h2>Options: held to expiry</h2>
+  <p class="lede">Each option callout is scored as if held until expiry: intrinsic value at the expiry close of the underlying minus the entry premium the channel quoted. A win means intrinsic value finished above the quoted entry. Channels usually post an early exit instead, so this is a stress test of the callouts, not anyone's account record.</p>
+  <h3>Coverage: from posts to scored</h3>
+  <div id="optFunnel"></div>
+  <h3>By days to expiry</h3>
+  <div id="optDte"></div>
+  <h3>By ticker (15 most scored)</h3>
+  <div id="optTicker"></div>
+  <h3>By channel</h3>
+  <div class="ctl"><label><input type="checkbox" class="smallToggle"> Show small channels (n under 5)</label></div>
+  <div id="optChannel"></div>
+  <p class="hint">Quoted closes are the results the channel itself announced (deduplicated), not verified, and they cover only trades the channel chose to announce. Channels with n under 5 scored are hidden by default; they remain in the data file.</p>
+  <h3>Options methodology and assumptions</h3>
+  <ul class="bul" id="optAssume"></ul>
+
+  <h2>Forex, gold and index signals: TP1 first, SL first</h2>
+  <p class="lede">Signals with an entry, a stop and at least one target (for example a gold sell with a zone, SL and TP1 to TP3) are scored on 5-minute price bars after the post. TP1 first means the first target traded before the stop within 24 hours of the fill; SL first means the stop traded first. Results are in R, where 1R is the distance from the fill to the stop.</p>
+  <h3>Pooled, market-fill variant</h3>
+  <div id="fxPooled"></div>
+  <h3>By instrument</h3>
+  <div class="ctl"><label><input type="checkbox" class="smallToggle"> Show small rows (n under 5)</label></div>
+  <div id="fxInstr"></div>
+  <h3>By channel</h3>
+  <div id="fxChannel"></div>
+  <h3>By week</h3>
+  <div id="fxWeekly"></div>
+  <h3>Touch-fill variant (reported separately, never pooled)</h3>
+  <p class="lede" id="touchLede"></p>
+  <div id="fxTouch"></div>
+  <h3>How sensitive is this to the basis estimate?</h3>
+  <p class="lede" id="sensLede"></p>
+  <div id="fxSens"></div>
+  <h3>FX methodology and assumptions</h3>
+  <ul class="bul" id="fxAssume"></ul>
+
+  <h2>Content timeline: forex and gold versus stock and option posts</h2>
+  <p class="lede">Some channels post forex, gold or index signals and stock or option callouts at different times. This shows, per channel, the date range of each kind among posts the parser recognised. Posts whose exact timestamp is shared by 6 or more posts in one channel are bulk dumps (a history replay or backfill): their original posting dates are unknown, so they are counted separately and not used to date a switch.</p>
+  <div id="timeline"></div>
+  <h3>All channels</h3>
+  <div id="timelineTable"></div>
+
+  <h2>Every scored forex, gold and index signal</h2>
+  <p class="lede">The original post text is shown on every row. Levels are as parsed and can be wrong; check them against the text. Outcome codes: tp1, tp2 and so on mean that target traded before the stop; sl means the stop traded first.</p>
+  <div class="ctl"><label><input type="checkbox" id="sigTouch" checked> Include touch-fill signals</label></div>
+  <div id="fxSignals"></div>
+  <button class="more" id="sigMore" hidden>Show more signals</button>
+
+  <h2>Data</h2>
+  <div class="links">
+    <a href="/api/funnel-scorecard.json">/api/funnel-scorecard.json</a>
+    <a href="/api/funnel-fx-signals.json">/api/funnel-fx-signals.json</a>
+    <a href="/api/funnel-calls.json">/api/funnel-calls.json (callouts)</a>
+    <a href="/mcp">MCP tool: get_funnel_scorecard</a>
+  </div>
+
+  <div class="fine">
+    <p>Flag list and context credit: <a href="https://telegramscammers.com" target="_blank" rel="noopener">TelegramScammers.com</a>. "Flagged" means flagged for investigation, not a finding of fraud. This is a statistical description of public posts, with the sample size and a Wilson 95% range beside each rate. Parsing is automatic and can be wrong. Quoted results are the channels' own claims. Not advice.</p>
+    <p id="gen"></p>
+  </div>
+</main>
+<script>
+(function(){
+'use strict';
+var D=document;
+function el(tag,cls,text){var e=D.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
+function clear(n){while(n.firstChild)n.removeChild(n.firstChild)}
+function $(id){return D.getElementById(id)}
+function pct(x,d){return x==null?'n/a':(x*100).toFixed(d||0)+'%'}
+function ci(c){return(c&&c[0]!=null)?pct(c[0])+' to '+pct(c[1]):'n/a'}
+function pc(x){return x==null?'n/a':(x>0?'+':'')+Number(x).toFixed(0)+'%'}
+function rr(x){return x==null?'n/a':(x>0?'+':'')+Number(x).toFixed(2)+' R'}
+function ch(c){return String(c||'').replace(/^t\.me\//,'')}
+var SMALL=false;
+var renderers=[];
+
+/* ---------- sortable table ---------- */
+function fixTxt(){Array.prototype.forEach.call(D.querySelectorAll('.tw'),function(w){var w2=w.clientWidth-2;Array.prototype.forEach.call(w.querySelectorAll('td.txt div'),function(d){d.style.width=w2+'px'})})}
+window.addEventListener('resize',fixTxt);
+function mkTable(host,cols,rows,opt){
+  opt=opt||{};
+  var st={k:opt.sort!=null?opt.sort:-1,dir:opt.dir||-1};
+  function draw(){
+    clear(host);
+    if(!rows.length){host.appendChild(el('p','empty',opt.empty||'No rows.'));return}
+    var wrap=el('div','tw'),t=el('table'),thead=el('thead'),hr=el('tr');
+    cols.forEach(function(c,i){
+      var th=el('th',(c.num?'num':'')+(st.k===i?' on':''));
+      if(opt.nosort){th.className+=' plain';th.textContent=c.h}
+      else{
+        var b=el('button',null,c.h+(st.k===i?(st.dir<0?' ▼':' ▲'):''));
+        b.type='button';
+        b.addEventListener('click',function(){if(st.k===i)st.dir=-st.dir;else{st.k=i;st.dir=c.num?-1:1}draw()});
+        th.appendChild(b);
+        th.setAttribute('aria-sort',st.k===i?(st.dir<0?'descending':'ascending'):'none');
+      }
+      hr.appendChild(th)});
+    thead.appendChild(hr);t.appendChild(thead);
+    var data=rows.slice();
+    if(st.k>=0){var c=cols[st.k];data.sort(function(a,b){var x=c.v(a),y=c.v(b);
+      if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;
+      if(typeof x==='string')return st.dir*x.localeCompare(y);return st.dir*(x-y)})}
+    var tb=el('tbody');
+    data.forEach(function(r){
+      var tr=el('tr',(opt.rowCls?opt.rowCls(r):'')+(opt.textRow?' sigrow':''));
+      cols.forEach(function(c){var td=el('td',(c.num?'num ':'')+(c.cls?c.cls(r):''),c.f?c.f(r):String(c.v(r)==null?'n/a':c.v(r)));tr.appendChild(td)});
+      tb.appendChild(tr);
+      if(opt.textRow){var tr2=el('tr','txtrow'),tx=el('td','txt');tx.appendChild(el('div',null,opt.textRow(r)));tx.colSpan=cols.length;tr2.appendChild(tx);tb.appendChild(tr2)}});
+    t.appendChild(tb);wrap.appendChild(t);host.appendChild(wrap);fixTxt();
+  }
+  draw();
+}
+function simple(host,heads,rows){ /* non-sortable key/value style table */
+  clear(host);
+  var wrap=el('div','tw'),t=el('table'),hr=el('tr');
+  heads.forEach(function(h,i){var th=el('th','plain'+(i>0?' num':''),h);hr.appendChild(th)});
+  t.appendChild(el('thead')).appendChild(hr);
+  var tb=el('tbody');
+  rows.forEach(function(r){var tr=el('tr');r.forEach(function(c,i){tr.appendChild(el('td',i>0?'num':'',c))});tb.appendChild(tr)});
+  t.appendChild(tb);wrap.appendChild(t);host.appendChild(wrap);
+}
+function bullets(id,arr){var u=$(id);clear(u);(arr||[]).forEach(function(s){u.appendChild(el('li',null,s))})}
+function retCls(v){return v==null?'':(v>0?'win':'loss')}
+
+/* ---------- headline cards ---------- */
+function card(kind,tag,big,bad,what,items){
+  var c=el('div','hc '+kind);
+  c.appendChild(el('div','tag',tag));
+  c.appendChild(el('div','big'+(bad?' bad':''),big));
+  c.appendChild(el('div','what',what));
+  var u=el('ul');
+  items.forEach(function(it){var li=el('li');li.appendChild(el('b',null,it[0]));li.appendChild(D.createTextNode(' '+it[1]));u.appendChild(li)});
+  c.appendChild(u);return c;
+}
+function headline(S){
+  var h=$('cards');clear(h);
+  var o=S.options&&S.options.pooled,f=S.fx&&S.fx.pooled;
+  if(o&&o.n_scored){
+    h.appendChild(card('opt','Options, held to expiry',pct(o.win_rate),true,
+      'of '+o.n_scored+' scored option callouts finished above the quoted entry price when held to expiry',[
+      ['n = '+o.n_scored,'scored ('+o.n_distinct_contracts+' distinct contracts); posted '+o.window_start+' to '+o.window_end],
+      ['95% range '+ci(o.win_ci),'(Wilson interval on the share that finished above entry)'],
+      ['Median return '+pc(o.median_return),'; mean return '+pc(o.mean_return)+' of the quoted premium'+(o.mean_return_excl_top5!=null?' ('+pc(o.mean_return_excl_top5)+' without the 5 largest returns; a few multi-baggers move the mean)':'')],
+      [pct(o.worthless_share)+' expired worthless','(95% range '+ci(o.worthless_ci)+')'],
+      ['Assumes','the channel\'s quoted entry, no slippage or fees; early exits are not scored']]));
+  }else h.appendChild(card('opt','Options, held to expiry','n/a',false,'No scored option callouts yet',[]));
+  if(f&&f.market_fill_n){
+    var items=[
+      ['n = '+f.market_fill_n,'market-fill signals scored ('+f.n_signals_scored+' scored in all; '+(f.touch_fill_n||0)+' touch-fill are reported separately)'],
+      ['TP1 first '+pct(f.tp1_hit_rate)+' (95% range '+ci(f.tp1_ci)+'), SL first '+pct(f.sl_first_rate),'within 24 hours of the fill'],
+      ['Break-even needs '+pct(f.breakeven_tp1_rate),'at the observed average winning TP1 distance of '+(f.avg_winning_tp1_r!=null?f.avg_winning_tp1_r.toFixed(2):'n/a')+' R'],
+      ['Mean result '+rr(f.mean_r_tp1),'exiting at TP1 or the stop; '+rr(f.mean_r_last)+' holding to the last target; before spread and slippage']];
+    var sens=S.fx.sensitivity&&S.fx.sensitivity.range;
+    if(sens)items.push(['Basis check','across other basis assumptions gold TP1 first runs '+pct(sens.tp1_hit_rate[0])+' to '+pct(sens.tp1_hit_rate[1])+', mean R '+sens.mean_r_tp1[0].toFixed(2)+' to '+sens.mean_r_tp1[1].toFixed(2)]);
+    h.appendChild(card('fx','Forex, gold and index signals',pct(f.tp1_hit_rate),false,
+      'of '+f.market_fill_n+' market-fill signals traded TP1 first; the rest traded SL first',items));
+  }else h.appendChild(card('fx','Forex, gold and index signals','n/a',false,'No scored forex, gold or index signals yet',[]));
+}
+
+/* ---------- paired ---------- */
+function paired(S){
+  var p=S.options&&S.options.paired;
+  if(!p||!p.n_pairs){$('pairedLede').textContent='Not enough linked pairs yet.';return}
+  $('pairedLede').textContent='Channels post results when they close a trade. For '+p.n_pairs+' closes that link to an earlier scored open of the same contract ('+p.n_contracts+' contracts), here is the result the channel quoted next to what the same contract would have returned held to expiry. These are different trades (an early exit versus a hold), shown side by side to see how much a quoted result depends on the timing of the exit.';
+  var k=$('pairedKpis');clear(k);
+  function kp(b,s){var d=el('div','kpi');d.appendChild(el('b',null,b));d.appendChild(el('span',null,s));k.appendChild(d)}
+  kp(pct(p.quoted_win_rate),'quoted closes that were positive (n='+p.n_pairs+', range '+ci(p.quoted_win_ci)+')');
+  kp(pc(p.quoted_mean),'mean quoted result (median '+pc(p.quoted_median)+')');
+  kp(pct(p.held_win_rate),'same contracts above entry if held to expiry (range '+ci(p.held_win_ci)+')');
+  kp(pc(p.held_mean),'mean held-to-expiry return (median '+pc(p.held_median)+')');
+  kp(p.quoted_winners_that_would_have_lost+' of '+p.quoted_winners,'quoted winners that finished at or below entry if held (range '+ci(p.quoted_winners_that_would_have_lost_ci)+')');
+  var a=p.all_links;
+  $('pairedCaveat').textContent=p.caveat+' Link rule: '+p.link_rule+'.'+(a&&a.n_pairs?' With the looser same-ticker same-day links added: n='+a.n_pairs+', quoted positive '+pct(a.quoted_win_rate)+', held above entry '+pct(a.held_win_rate)+'.':'');
+}
+
+/* ---------- options ---------- */
+function optStatCols(extra){
+  var base=[
+   {h:'n scored',num:1,v:function(r){return r.n_scored},f:function(r){return String(r.n_scored)}},
+   {h:'Above entry at expiry',num:1,v:function(r){return r.win_rate},f:function(r){return pct(r.win_rate)+' ('+ci(r.win_ci)+')'}},
+   {h:'Median return',num:1,v:function(r){return r.median_return},f:function(r){return pc(r.median_return)},cls:function(r){return retCls(r.median_return)}},
+   {h:'Mean return',num:1,v:function(r){return r.mean_return},f:function(r){return pc(r.mean_return)},cls:function(r){return retCls(r.mean_return)}},
+   {h:'Expired worthless',num:1,v:function(r){return r.worthless_share},f:function(r){return pct(r.worthless_share)}}];
+  return base.concat(extra||[]);
+}
+function options(S){
+  var O=S.options||{};
+  var fn=O.coverage_funnel||[];
+  if(fn.length){
+    mkTable($('optFunnel'),[
+      {h:'Stage',v:function(r){return r.stage}},
+      {h:'Records',num:1,v:function(r){return r.n},f:function(r){return String(r.n)}}],
+      fn,{nosort:true,sort:-1});
+  }else $('optFunnel').appendChild(el('p','empty','No data.'));
+  mkTable($('optDte'),[{h:'Days to expiry',v:function(r){return r.bucket}}].concat(optStatCols()),O.by_dte_bucket||[],{sort:-1,nosort:true});
+  mkTable($('optTicker'),[{h:'Ticker',v:function(r){return r.ticker}}].concat(optStatCols()),O.by_ticker||[],{sort:1,dir:-1});
+  function drawCh(){
+    var rows=(O.by_channel||[]).filter(function(r){return SMALL||!r.small});
+    var hidden=(O.by_channel||[]).length-rows.length;
+    mkTable($('optChannel'),[{h:'Channel',cls:function(){return 'ch'},v:function(r){return ch(r.channel)}}].concat(optStatCols([
+      {h:'Quoted closes',num:1,v:function(r){return r.quoted_closes},f:function(r){return String(r.quoted_closes)}},
+      {h:'Mean quoted result',num:1,v:function(r){return r.quoted_mean_result},f:function(r){return pc(r.quoted_mean_result)}}])),rows,
+      {sort:1,dir:-1,rowCls:function(r){return r.small?'small':''},empty:'No channels with n of 5 or more.'});
+    if(hidden>0&&!SMALL)$('optChannel').appendChild(el('p','hint',hidden+' channels with n under 5 are hidden.'));
+  }
+  renderers.push(drawCh);drawCh();
+  bullets('optAssume',O.pooled&&O.pooled.hold_to_expiry_assumptions);
+}
+
+/* ---------- fx ---------- */
+function fxCols(first){
+  return first.concat([
+   {h:'n',num:1,v:function(r){return r.n},f:function(r){return String(r.n)}},
+   {h:'TP1 first',num:1,v:function(r){return r.tp1_hit_rate},f:function(r){return r.n?pct(r.tp1_hit_rate)+' ('+ci(r.tp1_ci)+')':'n/a'}},
+   {h:'SL first',num:1,v:function(r){return r.sl_first_rate},f:function(r){return r.n?pct(r.sl_first_rate):'n/a'}},
+   {h:'TP2 or later',num:1,v:function(r){return r.tp2plus_rate},f:function(r){return r.tp2plus_denominator?pct(r.tp2plus_rate)+' ('+r.tp2plus_n+'/'+r.tp2plus_denominator+')':'n/a'}},
+   {h:'Mean R at TP1',num:1,v:function(r){return r.mean_r_tp1},f:function(r){return rr(r.mean_r_tp1)},cls:function(r){return retCls(r.mean_r_tp1)}},
+   {h:'Mean R at last TP',num:1,v:function(r){return r.mean_r_last},f:function(r){return rr(r.mean_r_last)},cls:function(r){return retCls(r.mean_r_last)}},
+   {h:'Avg TP1 distance',num:1,v:function(r){return r.avg_tp1_distance_r},f:function(r){return r.avg_tp1_distance_r==null?'n/a':r.avg_tp1_distance_r.toFixed(2)+' R'}},
+   {h:'Break-even TP1 rate',num:1,v:function(r){return r.breakeven_tp1_rate},f:function(r){return pct(r.breakeven_tp1_rate)}}]);
+}
+function fx(S){
+  var F=S.fx||{};
+  var p=F.pooled||{};
+  if(p.market_fill_n){
+    var row=Object.assign({n:p.market_fill_n},p);
+    var host=$('fxPooled');
+    mkTable(host,fxCols([{h:'Scope',v:function(){return 'All market-fill signals'}}]),[row],{nosort:true});
+    var defs=p.outcome_definitions||{};
+    var u=el('ul','bul');
+    Object.keys(defs).forEach(function(k){u.appendChild(el('li',null,k.replace(/_/g,' ')+': '+defs[k]))});
+    host.appendChild(u);
+  }else $('fxPooled').appendChild(el('p','empty','No scored signals yet.'));
+  function drawI(){
+    var rows=(F.by_instrument||[]).filter(function(r){return r.n>0&&(SMALL||!r.small)});
+    mkTable($('fxInstr'),fxCols([{h:'Instrument',cls:function(){return 'ch'},v:function(r){return r.instrument}}]).concat([{h:'Touch-fill n',num:1,v:function(r){return r.touch_n},f:function(r){return String(r.touch_n)}}]),rows,{sort:1,dir:-1,rowCls:function(r){return r.small?'small':''},empty:'No instruments with n of 5 or more.'});
+    var hid=(F.by_instrument||[]).filter(function(r){return r.n>0}).length-rows.length;
+    if(hid>0&&!SMALL)$('fxInstr').appendChild(el('p','hint',hid+' instruments with n under 5 are hidden.'));
+  }
+  function drawC(){
+    var rows=(F.by_channel||[]).filter(function(r){return r.n>0&&(SMALL||!r.small)});
+    mkTable($('fxChannel'),fxCols([{h:'Channel',cls:function(){return 'ch'},v:function(r){return ch(r.channel)}}]).concat([{h:'Touch-fill n',num:1,v:function(r){return r.touch_n},f:function(r){return String(r.touch_n)}}]),rows,{sort:1,dir:-1,rowCls:function(r){return r.small?'small':''},empty:'No channels with n of 5 or more.'});
+    var hid=(F.by_channel||[]).filter(function(r){return r.n>0}).length-rows.length;
+    if(hid>0&&!SMALL)$('fxChannel').appendChild(el('p','hint',hid+' channels with n under 5 are hidden.'));
+  }
+  renderers.push(drawI);renderers.push(drawC);drawI();drawC();
+  var wk=$('fxWeekly');clear(wk);
+  if(!(F.weekly_by_channel||[]).length)wk.appendChild(el('p','empty','Weekly tables appear for channels with at least 30 scored signals.'));
+  (F.weekly_by_channel||[]).forEach(function(w){
+    wk.appendChild(el('p','lede',ch(w.channel)+': '+w.n_scored+' scored signals. '+w.note));
+    var host=el('div');wk.appendChild(host);
+    var rows=w.weeks.map(function(x){return Object.assign({week_start:x.week_start,posted:x.distinct_signals_posted,touch_n:x.touch_n,touch_hit:x.touch_tp1_hit_rate},x.stats||{n:0})});
+    mkTable(host,[{h:'Week starting',cls:function(){return 'mono'},v:function(r){return r.week_start}},
+      {h:'Signals posted',num:1,v:function(r){return r.posted},f:function(r){return String(r.posted)}}].concat(fxCols([]).slice(0,6)).concat([
+      {h:'Touch-fill n',num:1,v:function(r){return r.touch_n},f:function(r){return r.touch_n?r.touch_n+' ('+pct(r.touch_hit)+' TP1 first)':'0'}}]),rows,{sort:0,dir:1});
+  });
+  var tv=F.touch_variant||{};
+  $('touchLede').textContent=(tv.note||'')+' n = '+(tv.n||0)+'.';
+  if(tv.n&&tv.pooled){
+    var host=$('fxTouch');
+    mkTable(host,fxCols([{h:'Scope',v:function(){return 'All touch-fill signals'}}]),[tv.pooled],{nosort:true});
+    var sub=el('div');host.appendChild(sub);
+    mkTable(sub,fxCols([{h:'Instrument',cls:function(){return 'ch'},v:function(r){return r.instrument}}]),tv.by_instrument||[],{sort:1,dir:-1});
+  }
+  var se=F.sensitivity;
+  if(se&&se.rows){
+    var r=se.range;
+    $('sensLede').textContent=(se.note||'')+(r?' Across the shifted and constant-offset rows, gold market-fill TP1 first runs '+pct(r.tp1_hit_rate[0])+' to '+pct(r.tp1_hit_rate[1])+' and mean R at TP1 runs '+r.mean_r_tp1[0].toFixed(2)+' to '+r.mean_r_tp1[1].toFixed(2)+' (n '+r.n[0]+' to '+r.n[1]+'); the sign of the mean R '+(r.mean_r_tp1_same_sign?'is the same in every row':'changes between rows')+'. The basis is estimated from the channel\'s own stated entries, so these rows are the honest uncertainty band, not a precision claim.':'');
+    function cell(c){return c?('n='+c.n+(c.tp1_hit_rate!=null?', TP1 first '+pct(c.tp1_hit_rate)+', R at TP1 '+c.mean_r_tp1.toFixed(2)+(c.mean_r_last!=null?', R at last '+c.mean_r_last.toFixed(2):''):'')):'n/a'}
+    simple($('fxSens'),['Basis assumption','Gold, market-fill','Gold, touch-fill','All instruments, market-fill'],se.rows.map(function(x){return [x.mode,cell(x.gold_market),cell(x.gold_touch),cell(x.all_market)]}));
+  }else $('sensLede').textContent='Sensitivity table not available.';
+  bullets('fxAssume',F.assumptions);
+}
+
+/* ---------- timeline ---------- */
+function rng(a,b){return a?(a===b?a:a+' to '+b):'none'}
+function timeline(S){
+  var T=(S.fx&&S.fx.content_timeline)||[];
+  var host=$('timeline');clear(host);
+  var both=T.filter(function(c){return c.fx_posts>0});
+  if(!both.length)host.appendChild(el('p','empty','No channel with forex, gold or index signals in the archive yet.'));
+  both.forEach(function(c){
+    var d=el('div','tl');d.appendChild(el('b','ch',ch(c.channel)));
+    d.appendChild(el('p',null,'Forex, gold and index signal posts: '+c.fx_posts+' ('+rng(c.fx_first,c.fx_last)+'). Stock and option posts: '+c.stock_option_posts+(c.stock_option_posts?' ('+rng(c.stock_first,c.stock_last)+')':'')+'.'));
+    var inb=c.stock_option_posts_in_bulk_groups;
+    if(c.stock_option_posts>0){
+      if(c.stock_first_outside_bulk){
+        d.appendChild(el('p',null,'Outside bulk-dump timestamps, forex, gold and index signals run '+rng(c.fx_first_outside_bulk,c.fx_last_outside_bulk)+' and stock or option posts run '+rng(c.stock_first_outside_bulk,c.stock_last_outside_bulk)+'.'));
+      }else{
+        d.appendChild(el('p',null,'All '+c.stock_option_posts+' stock and option posts sit inside bulk-dump timestamps, so the archive cannot say when they were originally posted. Outside those dumps the channel\'s recognised posts are forex, gold and index signals ('+rng(c.fx_first_outside_bulk,c.fx_last_outside_bulk)+'). Whether the stock posts mark a change of format or a replay of older content cannot be settled from this data.'));
+      }
+    }
+    d.appendChild(el('p','m',inb+' of the stock and option posts share a timestamp with 5 or more other posts; '+c.bulk_group_count+' bulk timestamp group'+(c.bulk_group_count===1?'':'s')+' in this channel.'));
+    if(c.bulk_groups&&c.bulk_groups.length){
+      var h2=el('div');d.appendChild(h2);
+      mkTable(h2,[{h:'Bulk timestamp (UTC)',cls:function(){return 'mono'},v:function(r){return r.timestamp.replace('T',' ').slice(0,19)}},
+        {h:'Posts',num:1,v:function(r){return r.posts},f:function(r){return String(r.posts)}},
+        {h:'FX signal posts',num:1,v:function(r){return r.fx_signal_posts},f:function(r){return String(r.fx_signal_posts)}},
+        {h:'Stock or option posts',num:1,v:function(r){return r.stock_option_posts},f:function(r){return String(r.stock_option_posts)}}],c.bulk_groups,{sort:0,dir:1});
+    }
+    if(c.weeks&&c.weeks.length){
+      var h3=el('div');d.appendChild(h3);
+      mkTable(h3,[{h:'Week starting',cls:function(){return 'mono'},v:function(r){return r.week}},
+        {h:'FX signal posts',num:1,v:function(r){return r.fx},f:function(r){return String(r.fx)}},
+        {h:'Stock or option posts',num:1,v:function(r){return r.stock},f:function(r){return String(r.stock)}}],c.weeks,{sort:0,dir:1});
+    }
+    host.appendChild(d);
+  });
+  mkTable($('timelineTable'),[
+    {h:'Channel',cls:function(){return 'ch'},v:function(r){return ch(r.channel)}},
+    {h:'FX posts',num:1,v:function(r){return r.fx_posts},f:function(r){return String(r.fx_posts)}},
+    {h:'FX range',v:function(r){return r.fx_first||''},f:function(r){return rng(r.fx_first,r.fx_last)}},
+    {h:'Stock/option posts',num:1,v:function(r){return r.stock_option_posts},f:function(r){return String(r.stock_option_posts)}},
+    {h:'Stock/option range',v:function(r){return r.stock_first||''},f:function(r){return rng(r.stock_first,r.stock_last)}},
+    {h:'In bulk dumps',num:1,v:function(r){return r.stock_option_posts_in_bulk_groups},f:function(r){return String(r.stock_option_posts_in_bulk_groups)}}],T,{sort:1,dir:-1,empty:'No data.'});
+}
+
+/* ---------- signals table ---------- */
+var SIGS=[],shown=40;
+function sigs(){
+  var inc=$('sigTouch').checked;
+  var rows=SIGS.filter(function(s){return inc||s.variant==='market'});
+  var host=$('fxSignals');
+  mkTable(host,[
+    {h:'Posted (UTC)',cls:function(){return 'mono'},v:function(r){return r.date},f:function(r){return (r.date||'').replace('T',' ').slice(0,16)}},
+    {h:'Channel',cls:function(){return 'ch'},v:function(r){return ch(r.channel)}},
+    {h:'Instrument',v:function(r){return r.instrument}},
+    {h:'Side',v:function(r){return r.side}},
+    {h:'Entry',num:1,v:function(r){return r.entry_lo},f:function(r){return r.entry_lo==null?'n/a':(r.entry_hi!=null&&r.entry_hi!==r.entry_lo?r.entry_lo+' to '+r.entry_hi:String(r.entry_lo))}},
+    {h:'SL',num:1,v:function(r){return r.sl},f:function(r){return r.sl==null?'n/a':String(r.sl)}},
+    {h:'Targets',v:function(r){return (r.tps||[]).length},f:function(r){return (r.tps||[]).join(', ')||'n/a'}},
+    {h:'Fill',v:function(r){return r.variant}},
+    {h:'Outcome',v:function(r){return r.outcome},cls:function(r){return r.outcome==='sl'?'loss':(r.outcome?'win':'')}},
+    {h:'R at TP1',num:1,v:function(r){return r.r_tp1},f:function(r){return rr(r.r_tp1)},cls:function(r){return retCls(r.r_tp1)}},
+    {h:'Minutes to first event',num:1,v:function(r){return r.minutes_to_first_event},f:function(r){return r.minutes_to_first_event==null?'n/a':Number(r.minutes_to_first_event).toFixed(0)}}
+    ],
+    rows.slice(0,shown),{sort:0,dir:-1,empty:'No scored signals.',nosort:false,textRow:function(r){return 'Original post: '+(r.text||'(no text)')}});
+  var more=$('sigMore');more.hidden=rows.length<=shown;
+  more.textContent='Show more signals ('+Math.max(0,rows.length-shown)+' remaining of '+rows.length+')';
+}
+
+/* ---------- boot ---------- */
+function fetchJson(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(u+' '+r.status);return r.json()})}
+Promise.all([fetchJson('/api/funnel-scorecard.json'),fetchJson('/api/funnel-fx-signals.json').catch(function(){return {signals:[]}})]).then(function(res){
+  var S=res[0];SIGS=res[1].signals||[];
+  $('stamp').textContent='Data generated '+(S.generated_at||'unknown')+'. Rates are shares of the sample shown beside them.';
+  $('gen').textContent='Generated '+(S.generated_at||'')+'. Method notes: docs/FUNNEL.md in the repository. Data credit: '+(S.credit||'https://telegramscammers.com')+'.';
+  headline(S);paired(S);options(S);fx(S);timeline(S);sigs();
+  $('sigTouch').addEventListener('change',function(){shown=40;sigs()});
+  $('sigMore').addEventListener('click',function(){shown+=60;sigs()});
+  Array.prototype.forEach.call(D.querySelectorAll('.smallToggle'),function(cb){cb.addEventListener('change',function(){
+    SMALL=cb.checked;Array.prototype.forEach.call(D.querySelectorAll('.smallToggle'),function(o){o.checked=SMALL});
+    renderers.forEach(function(f){f()})})});
+}).catch(function(e){
+  $('stamp').textContent='';var er=$('err');er.hidden=false;er.textContent='Could not load the scorecard data ('+e.message+'). Try again shortly.';
+});
+})();
+</script>
+</body>
+</html>

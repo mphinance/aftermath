@@ -206,8 +206,8 @@ def _patch_fetch(monkeypatch, files):
 
 def test_funnel_tools_registered_and_defined():
     names = {t["name"] for t in mcp_server.MCP_TOOLS_DEFINITIONS}
-    assert {"get_funnel_callouts", "get_funnel_tickers"} <= names
-    assert len(mcp_server.TOOLS_MAP) == len(mcp_server.MCP_TOOLS_DEFINITIONS) == 13
+    assert {"get_funnel_callouts", "get_funnel_tickers", "get_funnel_scorecard"} <= names
+    assert len(mcp_server.TOOLS_MAP) == len(mcp_server.MCP_TOOLS_DEFINITIONS) == 14
 
 
 def test_funnel_callouts_happy_path(monkeypatch):
@@ -246,3 +246,35 @@ def test_funnel_tickers_empty_and_missing(monkeypatch):
     assert out["tickers"] == [] and out["source"] == "https://telegramscammers.com"
     _patch_fetch(monkeypatch, {})
     assert "error" in mcp_server.tool_get_funnel_tickers({})
+
+
+_SCORE = {
+    "credit": "https://telegramscammers.com", "disclaimer": "flagged for investigation, not a finding of fraud",
+    "generated_at": "2026-10-14T00:00:00Z", "methodology": "https://ah.mphinance.com/scorecard",
+    "options": {"pooled": {"n_scored": 10}, "by_channel": [{"channel": "t.me/alpha", "n_scored": 6}, {"channel": "t.me/beta", "n_scored": 4}]},
+    "fx": {"pooled": {"market_fill_n": 5}, "by_channel": [{"channel": "t.me/alpha"}, {"channel": "t.me/beta"}],
+           "weekly_by_channel": [{"channel": "t.me/alpha"}], "content_timeline": [{"channel": "t.me/beta"}],
+           "touch_variant": {"n": 1, "by_channel": [{"channel": "t.me/alpha"}]}},
+}
+
+
+def test_funnel_scorecard_sections_and_channel_filter(monkeypatch):
+    _patch_fetch(monkeypatch, {"funnel-scorecard.json": _SCORE})
+    both = mcp_server.tool_get_funnel_scorecard({})
+    assert "options" in both and "fx" in both and both["source"] == "https://telegramscammers.com"
+    assert "not a finding of fraud" in both["disclaimer"] and both["methodology"].endswith("/scorecard")
+    only = mcp_server.tool_get_funnel_scorecard({"section": "OPTIONS", "channel": "https://t.me/ALPHA"})
+    assert "fx" not in only and [r["channel"] for r in only["options"]["by_channel"]] == ["t.me/alpha"]
+    fx = mcp_server.tool_get_funnel_scorecard({"section": "fx", "channel": "beta"})
+    assert "options" not in fx and fx["fx"]["weekly_by_channel"] == [] and len(fx["fx"]["content_timeline"]) == 1
+    assert fx["fx"]["touch_variant"]["by_channel"] == []
+
+
+def test_funnel_scorecard_robust_inputs_and_missing(monkeypatch):
+    _patch_fetch(monkeypatch, {"funnel-scorecard.json": _SCORE})
+    out = mcp_server.tool_get_funnel_scorecard({"section": 5, "channel": ["x"]})
+    assert out["section"] == "all"
+    out = mcp_server.tool_get_funnel_scorecard({"section": None, "channel": None})
+    assert out["channel_filter"] is None
+    _patch_fetch(monkeypatch, {})
+    assert "error" in mcp_server.tool_get_funnel_scorecard({})

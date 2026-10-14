@@ -370,6 +370,30 @@
         },
         "additionalProperties": false
       }
+    },
+    {
+      "name": "get_funnel_scorecard",
+      "description": "Public scoring results for trade callouts posted by Telegram channels linked to flagged AfterHour accounts: option callouts held to expiry (win rate, median and mean return, share expired worthless, by days to expiry, ticker and channel, plus quoted closes versus the same contracts held) and forex/gold/index signals scored against the real tape (TP1 first versus SL first, mean R, by instrument, channel and week). Every rate carries its sample size and a Wilson 95% range; assumptions and the basis-sensitivity range are included. Analysis of public posts, not advice. Flagged for investigation, not a finding of fraud. Credit https://telegramscammers.com. Method: https://ah.mphinance.com/scorecard",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "section": {
+            "type": "string",
+            "enum": [
+              "options",
+              "fx",
+              "all"
+            ],
+            "description": "Which part to return (default all)",
+            "default": "all"
+          },
+          "channel": {
+            "type": "string",
+            "description": "Channel handle or t.me link (substring match); filters the per-channel tables"
+          }
+        },
+        "additionalProperties": false
+      }
     }
   ],
   "resources": [

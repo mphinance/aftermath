@@ -137,20 +137,6 @@
         }
       }
     },
-    "/api/mcp-schema.json": {
-      "get": {
-        "tags": [
-          "MCP & AI Agents"
-        ],
-        "summary": "Model Context Protocol (MCP) Tool Schemas",
-        "description": "Returns the official JSON Schema catalog for all 13 MCP tools exposed for autonomous AI agents and IDEs.",
-        "responses": {
-          "200": {
-            "description": "Model Context Protocol tool catalog"
-          }
-        }
-      }
-    },
     "/api/funnel.json": {
       "get": {
         "tags": [
@@ -189,6 +175,48 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/funnel-scorecard.json": {
+      "get": {
+        "tags": [
+          "MCP & AI Agents"
+        ],
+        "summary": "Telegram Funnel Scorecard (options and forex/gold/index scoring)",
+        "description": "Public scoring of trade callouts from public Telegram channels against the real tape: option callouts held to expiry, and forex/gold/index signals (TP1 first vs SL first). Pooled and per channel, with sample sizes, Wilson 95% ranges and assumptions. Analysis of public posts, not advice. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
+        "responses": {
+          "200": {
+            "description": "Scorecard with options and fx sections"
+          }
+        }
+      }
+    },
+    "/api/funnel-fx-signals.json": {
+      "get": {
+        "tags": [
+          "MCP & AI Agents"
+        ],
+        "summary": "Scored Forex/Gold/Index Signals",
+        "description": "Every scored forex, gold or index signal from public Telegram channels: levels, outcome (TP1 first, SL first), R multiples and the original post text. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
+        "responses": {
+          "200": {
+            "description": "Scored signals"
+          }
+        }
+      }
+    },
+    "/api/mcp-schema.json": {
+      "get": {
+        "tags": [
+          "MCP & AI Agents"
+        ],
+        "summary": "Model Context Protocol (MCP) Tool Schemas",
+        "description": "Returns the official JSON Schema catalog for all 14 MCP tools exposed for autonomous AI agents and IDEs.",
+        "responses": {
+          "200": {
+            "description": "Model Context Protocol tool catalog"
           }
         }
       }

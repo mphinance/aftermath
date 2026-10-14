@@ -101,119 +101,119 @@
    "ticker": "SPY",
    "ah_accounts": 39,
    "ah_posts": 180,
-   "tg_channels": 20,
-   "tg_posts": 244
+   "tg_channels": 23,
+   "tg_posts": 925
   },
   {
    "ticker": "QQQ",
    "ah_accounts": 20,
    "ah_posts": 147,
-   "tg_channels": 18,
-   "tg_posts": 138
+   "tg_channels": 22,
+   "tg_posts": 564
   },
   {
    "ticker": "NVDA",
    "ah_accounts": 20,
    "ah_posts": 34,
-   "tg_channels": 14,
-   "tg_posts": 53
+   "tg_channels": 21,
+   "tg_posts": 154
   },
   {
    "ticker": "TSLA",
    "ah_accounts": 18,
    "ah_posts": 39,
-   "tg_channels": 15,
-   "tg_posts": 41
-  },
-  {
-   "ticker": "SPX",
-   "ah_accounts": 18,
-   "ah_posts": 90,
-   "tg_channels": 14,
-   "tg_posts": 156
+   "tg_channels": 20,
+   "tg_posts": 306
   },
   {
    "ticker": "AAPL",
    "ah_accounts": 17,
    "ah_posts": 43,
-   "tg_channels": 13,
-   "tg_posts": 33
+   "tg_channels": 21,
+   "tg_posts": 145
   },
   {
-   "ticker": "SPCX",
-   "ah_accounts": 16,
-   "ah_posts": 51,
-   "tg_channels": 11,
-   "tg_posts": 27
+   "ticker": "SPX",
+   "ah_accounts": 18,
+   "ah_posts": 90,
+   "tg_channels": 19,
+   "tg_posts": 695
   },
   {
    "ticker": "AMZN",
    "ah_accounts": 13,
    "ah_posts": 46,
-   "tg_channels": 13,
-   "tg_posts": 78
-  },
-  {
-   "ticker": "MSFT",
-   "ah_accounts": 13,
-   "ah_posts": 24,
-   "tg_channels": 11,
-   "tg_posts": 29
+   "tg_channels": 19,
+   "tg_posts": 169
   },
   {
    "ticker": "MU",
    "ah_accounts": 12,
    "ah_posts": 26,
-   "tg_channels": 11,
-   "tg_posts": 42
+   "tg_channels": 18,
+   "tg_posts": 244
   },
   {
-   "ticker": "GOOGL",
-   "ah_accounts": 9,
-   "ah_posts": 26,
-   "tg_channels": 10,
-   "tg_posts": 28
+   "ticker": "SPCX",
+   "ah_accounts": 16,
+   "ah_posts": 51,
+   "tg_channels": 13,
+   "tg_posts": 118
   },
   {
    "ticker": "META",
    "ah_accounts": 12,
    "ah_posts": 20,
-   "tg_channels": 7,
-   "tg_posts": 14
+   "tg_channels": 16,
+   "tg_posts": 173
+  },
+  {
+   "ticker": "MSFT",
+   "ah_accounts": 13,
+   "ah_posts": 24,
+   "tg_channels": 14,
+   "tg_posts": 77
+  },
+  {
+   "ticker": "GOOGL",
+   "ah_accounts": 9,
+   "ah_posts": 26,
+   "tg_channels": 16,
+   "tg_posts": 86
   },
   {
    "ticker": "IWM",
    "ah_accounts": 10,
    "ah_posts": 20,
-   "tg_channels": 7,
-   "tg_posts": 27
+   "tg_channels": 13,
+   "tg_posts": 137
+  },
+  {
+   "ticker": "AMD",
+   "ah_accounts": 6,
+   "ah_posts": 9,
+   "tg_channels": 14,
+   "tg_posts": 96
   },
   {
    "ticker": "SNDK",
    "ah_accounts": 7,
    "ah_posts": 10,
-   "tg_channels": 5,
-   "tg_posts": 9
-  },
-  {
-   "ticker": "NFLX",
-   "ah_accounts": 5,
-   "ah_posts": 6,
-   "tg_channels": 7,
-   "tg_posts": 8
+   "tg_channels": 13,
+   "tg_posts": 75
   }
  ],
  "callouts": {
-  "option_opens": 799,
-  "option_closes": 378,
+  "option_opens": 4070,
+  "option_closes": 1697,
   "channels_covered": 26,
   "outcomes": {
-   "n_scored": 253,
+   "n_scored": 1163,
    "window_start": "2026-06-08",
    "window_end": "2026-10-13",
-   "win_rate": 0.17,
+   "win_rate": 0.2055,
    "median_return": -100.0,
-   "share_worth_zero": 0.7708,
+   "share_worth_zero": 0.7214,
    "sample_warning": "Callouts from public channels only, scored at expiry vs underlying close; survivorship and parser limits apply."
   }
  },

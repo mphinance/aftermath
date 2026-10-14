@@ -712,6 +712,7 @@
       <a href="/etfs" class="nav-btn">&#x1F3DB;&#xFE0F; 64 ETFs</a>
       <a href="/docs" class="nav-btn">&#x1F4D6; Swagger API</a>
       <a href="/signals" class="nav-btn">&#x1F4E1; Signals</a>
+      <a href="/scorecard" class="nav-btn">&#x1F4C8; Scorecard</a>
       <a href="/scamcheck" class="nav-btn">&#x1F6E1;&#xFE0F; Scam Check</a>
       <a href="/sitemap" class="nav-btn">&#x1F5FA;&#xFE0F; Sitemap</a>
       <a href="https://www.tradermatrix.pro/?ref=MPHINANCE" target="_blank" rel="noopener noreferrer" class="nav-btn tm-cta">&#x26A1; TraderMatrix Pro &nearr;</a>
@@ -734,7 +735,7 @@
       <div class="feature-pills">
         <div class="pill"><span>&#x26A1;</span> Sub-Millisecond Edge Latency</div>
         <div class="pill"><span>&#x1F513;</span> Zero API Keys or Auth Tokens</div>
-        <div class="pill"><span>&#x1F6E0;&#xFE0F;</span> 13 Production Tools</div>
+        <div class="pill"><span>&#x1F6E0;&#xFE0F;</span> 14 Production Tools</div>
         <div class="pill"><span>&#x1F40D;</span> Pure Python 3 (Zero External Dependencies)</div>
       </div>
 
@@ -971,7 +972,7 @@ python3 aftermath_mcp.py</code></pre>
     <section>
       <div class="section-header">
         <div>
-          <h2 class="section-title"><span>&#x1F6E0;&#xFE0F;</span> The 13 Production MCP Tools</h2>
+          <h2 class="section-title"><span>&#x1F6E0;&#xFE0F;</span> The 14 Production MCP Tools</h2>
           <div class="section-sub">Standard JSON-RPC tools exposed to your language model</div>
         </div>
         <div>
@@ -1157,6 +1158,19 @@ python3 aftermath_mcp.py</code></pre>
             </div>
             <div class="tool-schema">
               <strong>Inputs:</strong> limit
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div>
+            <span class="tool-badge">SCAM CHECK &bull; NEW</span>
+            <div class="tool-name">get_funnel_scorecard</div>
+            <div class="tool-desc">
+              Public scoring of trade callouts from Telegram channels linked to flagged AfterHour accounts: option callouts held to expiry and forex, gold and index signals scored TP1 first versus SL first. Pooled and per channel, with sample sizes, Wilson 95% ranges and every assumption. Analysis of public posts, not advice. Page: <a href="/scorecard">/scorecard</a>. Data curated by <a href="https://telegramscammers.com" target="_blank" rel="noopener">TelegramScammers.com</a>. Flagged for investigation, not a finding of fraud.
+            </div>
+            <div class="tool-schema">
+              <strong>Inputs:</strong> section (options, fx, all), channel
             </div>
           </div>
         </div>
