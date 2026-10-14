@@ -235,9 +235,9 @@ function headline(S){
   if(o&&o.n_scored){
     h.appendChild(card('opt','Options, held to expiry',pct(o.win_rate),true,
       'of '+o.n_scored+' scored option callouts finished above the quoted entry price when held to expiry',[
-      ['n = '+o.n_scored,'scored ('+o.n_distinct_contracts+' distinct contracts); posted '+o.window_start+' to '+o.window_end],
+      ['n = '+o.n_scored,'scored ('+o.n_distinct_contracts+' distinct contracts, '+(o.n_contract_days||o.n_distinct_contracts)+' contract-days); posted '+o.window_start+' to '+o.window_end],
       ['95% range '+ci(o.win_ci),'(Wilson interval on the share that finished above entry)'],
-      ['Median return '+pc(o.median_return),'; mean return '+pc(o.mean_return)+' of the quoted premium'+(o.mean_return_excl_top5!=null?' ('+pc(o.mean_return_excl_top5)+' without the 5 largest returns; a few multi-baggers move the mean)':'')],
+      ['Median return '+pc(o.median_return),'; the mean ('+pc(o.mean_return)+') is fragile: '+(o.mean_return_excl_top5!=null?pc(o.mean_return_excl_top5)+' without the 5 largest returns, and the single largest is '+pc(o.max_return)+'. Read the median and the share expired worthless first':'a few multi-baggers move it')],
       [pct(o.worthless_share)+' expired worthless','(95% range '+ci(o.worthless_ci)+')'],
       ['Assumes','the channel\'s quoted entry, no slippage or fees; early exits are not scored']]));
   }else h.appendChild(card('opt','Options, held to expiry','n/a',false,'No scored option callouts yet',[]));
@@ -247,6 +247,12 @@ function headline(S){
       ['TP1 first '+pct(f.tp1_hit_rate)+' (95% range '+ci(f.tp1_ci)+'), SL first '+pct(f.sl_first_rate),'within 24 hours of the fill'],
       ['Break-even needs '+pct(f.breakeven_tp1_rate),'at the observed average winning TP1 distance of '+(f.avg_winning_tp1_r!=null?f.avg_winning_tp1_r.toFixed(2):'n/a')+' R'],
       ['Mean result '+rr(f.mean_r_tp1),'exiting at TP1 or the stop; '+rr(f.mean_r_last)+' holding to the last target; before spread and slippage']];
+    var cn=f.concentration;
+    if(cn){
+      items.push(['Concentration',cn.top_channel_n+' of '+cn.n+' signals are one channel ('+cn.top_channel+') and '+cn.top_instrument_n+' are '+cn.top_instrument+'; one channel, mostly gold, signals not independent ('+cn.n_same_day_setup_groups+' same-day setup groups), so the range above understates the uncertainty']);
+      items.push(['Window','only '+(cn.window_days||'?')+' days ('+f.window_start+' to '+f.window_end+'), against about four months for options; the two headlines are not equal-length samples']);
+      if(cn.mean_r_tp1_range95)items.push(['Sign of the mean R','95% range '+cn.mean_r_tp1_range95[0].toFixed(2)+' to '+cn.mean_r_tp1_range95[1].toFixed(2)+' R at TP1; '+(cn.mean_r_sign_established?'the range excludes zero':'the range includes zero, so the sign is not statistically established and the result cannot be told apart from break-even')+' at this sample size']);
+    }
     var sens=S.fx.sensitivity&&S.fx.sensitivity.range;
     if(sens)items.push(['Basis check','across other basis assumptions gold TP1 first runs '+pct(sens.tp1_hit_rate[0])+' to '+pct(sens.tp1_hit_rate[1])+', mean R '+sens.mean_r_tp1[0].toFixed(2)+' to '+sens.mean_r_tp1[1].toFixed(2)]);
     h.appendChild(card('fx','Forex, gold and index signals',pct(f.tp1_hit_rate),false,

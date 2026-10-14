@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-14T10:56:26Z",
+ "generated_at": "2026-10-14T20:23:28Z",
  "credit": "https://telegramscammers.com",
  "disclaimer": "Analysis of public posts. Channels and accounts here are flagged for investigation, not a finding of fraud. Flag list curated by https://telegramscammers.com. Statistical description of what the tape shows under stated assumptions, with sample sizes and 95% ranges; not advice.",
  "source": "AfterMath analysis of public Telegram channel posts against the real tape (Yahoo public bars); passive and read-only",
@@ -26,8 +26,9 @@
    "touched_breakeven_optimistic_share": 0.4442,
    "max_return": 3164.54,
    "mean_return_excl_top5": -5.1349,
-   "n_distinct_contracts": 1092,
-   "distinct_contracts": {
+   "n_distinct_contracts": 1000,
+   "n_contract_days": 1092,
+   "contract_days": {
     "win_rate": 0.1914,
     "win_ci": [
      0.1692,
@@ -44,6 +45,23 @@
     "max_return": 3164.54,
     "mean_return_excl_top5": -4.975
    },
+   "distinct_contracts": {
+    "win_rate": 0.186,
+    "win_ci": [
+     0.1631,
+     0.2113
+    ],
+    "median_return": -100.0,
+    "mean_return": -2.6711,
+    "worthless_share": 0.743,
+    "worthless_ci": [
+     0.715,
+     0.7691
+    ],
+    "touched_breakeven_optimistic_share": 0.429,
+    "max_return": 3164.54,
+    "mean_return_excl_top5": -14.8453
+   },
    "window_start": "2026-06-08",
    "window_end": "2026-10-13",
    "return_unit": "percent of quoted entry premium, held to expiry; -100 = expired worthless",
@@ -53,7 +71,7 @@
     "Channels usually post an early exit, not a hold to expiry. Held-to-expiry is a different trade from the one a channel may have closed, so it is a stress test of the callouts, not a record of anyone's P&L.",
     "Entry premiums are the channels' own quoted fills and cannot be verified. Slippage, spreads and fees are ignored, which flatters the callouts.",
     "A missing expiry is treated as unknown, not as same-day, unless the parser saw an explicit 0DTE tag. Records without an expiry or an entry price are not scored.",
-    "Reposts of the same trade are collapsed (one row per channel, ticker, side, strike, expiry and post day); 'distinct contracts' also collapses the same contract posted by several channels.",
+    "Reposts of the same trade are collapsed (one row per channel, ticker, side, strike, expiry and post day); 'distinct contracts' is keyed on ticker, side, strike and expiry alone, so it also collapses the same contract posted on different days or by several channels; 'contract-days' keeps one row per contract per post day.",
     "Posts whose timestamp is shared by 6 or more posts in one channel (bulk history dumps), implausible entries and far-dated expiries are excluded rather than scored.",
     "Impossible quotes are excluded: if even the best print of the post day (day low for calls, day high for puts) leaves the contract's intrinsic value more than 1.5 times the quoted premium plus 0.5 above that premium, the quote cannot be a real fill for that strike (a mis-parsed strike, a wrong ticker or a replayed old post), so it is not scored. The count is in the coverage funnel.",
     "The mean return is dominated by a few multi-baggers, so the median and the share expired worthless describe the typical call better; the file also gives the mean without the 5 largest returns.",
@@ -63,19 +81,19 @@
   "coverage_funnel": [
    {
     "stage": "option open callouts parsed",
-    "n": 4070,
+    "n": 4093,
     "kind": "start"
    },
    {
     "stage": "excluded: same trade reposted in the same channel",
     "flag": "duplicate_echo",
-    "n": 1557,
+    "n": 1563,
     "kind": "removed"
    },
    {
     "stage": "excluded: same trade already posted by another channel",
     "flag": "cross_channel_echo",
-    "n": 533,
+    "n": 535,
     "kind": "removed"
    },
    {
@@ -110,7 +128,7 @@
    },
    {
     "stage": "unknown expiry (not assumed same-day)",
-    "n": 390,
+    "n": 393,
     "kind": "removed"
    },
    {
@@ -125,7 +143,7 @@
    },
    {
     "stage": "pending (expiry not yet passed)",
-    "n": 125,
+    "n": 137,
     "kind": "removed"
    },
    {
@@ -542,9 +560,9 @@
     "touched_breakeven_optimistic_share": 0.3798,
     "max_return": 2452.2,
     "mean_return_excl_top5": -13.98,
-    "quoted_closes": 5,
-    "quoted_mean_result": 467.8,
-    "quoted_median_result": 150.0,
+    "quoted_closes": 7,
+    "quoted_mean_result": 333.4286,
+    "quoted_median_result": 128.0,
     "small": false
    },
    {
@@ -611,9 +629,9 @@
     "touched_breakeven_optimistic_share": 0.4815,
     "max_return": 898.59,
     "mean_return_excl_top5": -28.3921,
-    "quoted_closes": 185,
-    "quoted_mean_result": 46.8914,
-    "quoted_median_result": 38.6,
+    "quoted_closes": 186,
+    "quoted_mean_result": 46.8457,
+    "quoted_median_result": 38.55,
     "small": false
    },
    {
@@ -749,9 +767,9 @@
     "touched_breakeven_optimistic_share": 0.5116,
     "max_return": 811.67,
     "mean_return_excl_top5": -85.9742,
-    "quoted_closes": 199,
-    "quoted_mean_result": 96.0721,
-    "quoted_median_result": 55.0,
+    "quoted_closes": 201,
+    "quoted_mean_result": 95.4694,
+    "quoted_median_result": 54.55,
     "small": false
    },
    {
@@ -933,8 +951,8 @@
     "touched_breakeven_optimistic_share": 0.8333,
     "max_return": -23.53,
     "mean_return_excl_top5": null,
-    "quoted_closes": 127,
-    "quoted_mean_result": 72.2865,
+    "quoted_closes": 129,
+    "quoted_mean_result": 76.065,
     "quoted_median_result": 45.0,
     "small": false
    },
@@ -1147,7 +1165,24 @@
    "breakeven_tp1_rate": 0.6398,
    "median_minutes_to_first_event": 43.1,
    "ambiguous_same_bar": 0,
-   "variant": "market-fill"
+   "variant": "market-fill",
+   "concentration": {
+    "n": 51,
+    "n_channels": 2,
+    "top_channel": "t.me/stockmarketvault",
+    "top_channel_n": 50,
+    "top_instrument": "XAUUSD",
+    "top_instrument_n": 44,
+    "n_same_day_setup_groups": 31,
+    "window_days": 30,
+    "mean_r_tp1_se": 0.125,
+    "mean_r_tp1_range95": [
+     -0.449,
+     0.042
+    ],
+    "mean_r_sign_established": false,
+    "caveat": "50 of 51 market-fill signals come from one channel (t.me/stockmarketvault) and 44 are XAUUSD; they fall in 31 same-day channel/instrument/side groups, so they are not 51 independent observations and the ranges understate the uncertainty. The window is 30 days."
+   }
   },
   "by_instrument": [
    {
@@ -1860,11 +1895,11 @@
     "fx_last": null,
     "fx_first_outside_bulk": null,
     "fx_last_outside_bulk": null,
-    "stock_option_posts": 716,
+    "stock_option_posts": 724,
     "stock_first": "2026-08-03",
-    "stock_last": "2026-10-13",
+    "stock_last": "2026-10-14",
     "stock_first_outside_bulk": "2026-08-03",
-    "stock_last_outside_bulk": "2026-10-13",
+    "stock_last_outside_bulk": "2026-10-14",
     "stock_option_posts_in_bulk_groups": 0,
     "bulk_groups": [],
     "bulk_group_count": 0,
@@ -1922,7 +1957,7 @@
      {
       "week": "2026-10-12",
       "fx": 0,
-      "stock": 11
+      "stock": 19
      }
     ]
    },
@@ -2128,11 +2163,11 @@
     "fx_last": null,
     "fx_first_outside_bulk": null,
     "fx_last_outside_bulk": null,
-    "stock_option_posts": 521,
+    "stock_option_posts": 523,
     "stock_first": "2026-08-10",
-    "stock_last": "2026-10-13",
+    "stock_last": "2026-10-14",
     "stock_first_outside_bulk": "2026-08-10",
-    "stock_last_outside_bulk": "2026-10-13",
+    "stock_last_outside_bulk": "2026-10-14",
     "stock_option_posts_in_bulk_groups": 0,
     "bulk_groups": [],
     "bulk_group_count": 0,
@@ -2185,7 +2220,7 @@
      {
       "week": "2026-10-12",
       "fx": 0,
-      "stock": 10
+      "stock": 12
      }
     ]
    },
@@ -2196,11 +2231,11 @@
     "fx_last": null,
     "fx_first_outside_bulk": null,
     "fx_last_outside_bulk": null,
-    "stock_option_posts": 498,
+    "stock_option_posts": 501,
     "stock_first": "2026-08-14",
-    "stock_last": "2026-10-13",
+    "stock_last": "2026-10-14",
     "stock_first_outside_bulk": "2026-08-14",
-    "stock_last_outside_bulk": "2026-10-13",
+    "stock_last_outside_bulk": "2026-10-14",
     "stock_option_posts_in_bulk_groups": 0,
     "bulk_groups": [],
     "bulk_group_count": 0,
@@ -2253,7 +2288,7 @@
      {
       "week": "2026-10-12",
       "fx": 0,
-      "stock": 12
+      "stock": 15
      }
     ]
    },
@@ -2264,11 +2299,11 @@
     "fx_last": null,
     "fx_first_outside_bulk": null,
     "fx_last_outside_bulk": null,
-    "stock_option_posts": 402,
+    "stock_option_posts": 406,
     "stock_first": "2026-07-31",
-    "stock_last": "2026-10-13",
+    "stock_last": "2026-10-14",
     "stock_first_outside_bulk": "2026-07-31",
-    "stock_last_outside_bulk": "2026-10-13",
+    "stock_last_outside_bulk": "2026-10-14",
     "stock_option_posts_in_bulk_groups": 0,
     "bulk_groups": [],
     "bulk_group_count": 0,
@@ -2331,7 +2366,7 @@
      {
       "week": "2026-10-12",
       "fx": 0,
-      "stock": 3
+      "stock": 7
      }
     ]
    },
@@ -2390,11 +2425,11 @@
     "fx_last": null,
     "fx_first_outside_bulk": null,
     "fx_last_outside_bulk": null,
-    "stock_option_posts": 333,
+    "stock_option_posts": 336,
     "stock_first": "2026-08-13",
-    "stock_last": "2026-10-13",
+    "stock_last": "2026-10-14",
     "stock_first_outside_bulk": "2026-08-13",
-    "stock_last_outside_bulk": "2026-10-13",
+    "stock_last_outside_bulk": "2026-10-14",
     "stock_option_posts_in_bulk_groups": 0,
     "bulk_groups": [],
     "bulk_group_count": 0,
@@ -2447,7 +2482,7 @@
      {
       "week": "2026-10-12",
       "fx": 0,
-      "stock": 5
+      "stock": 8
      }
     ]
    },
@@ -2458,11 +2493,11 @@
     "fx_last": null,
     "fx_first_outside_bulk": null,
     "fx_last_outside_bulk": null,
-    "stock_option_posts": 323,
+    "stock_option_posts": 326,
     "stock_first": "2026-08-21",
-    "stock_last": "2026-10-13",
+    "stock_last": "2026-10-14",
     "stock_first_outside_bulk": "2026-08-21",
-    "stock_last_outside_bulk": "2026-10-13",
+    "stock_last_outside_bulk": "2026-10-14",
     "stock_option_posts_in_bulk_groups": 8,
     "bulk_groups": [
      {
@@ -2517,7 +2552,7 @@
      {
       "week": "2026-10-12",
       "fx": 0,
-      "stock": 20
+      "stock": 23
      }
     ]
    },
@@ -2528,7 +2563,7 @@
     "fx_last": null,
     "fx_first_outside_bulk": null,
     "fx_last_outside_bulk": null,
-    "stock_option_posts": 321,
+    "stock_option_posts": 326,
     "stock_first": "2026-09-04",
     "stock_last": "2026-10-14",
     "stock_first_outside_bulk": "2026-09-04",
@@ -2583,7 +2618,7 @@
      {
       "week": "2026-10-12",
       "fx": 0,
-      "stock": 26
+      "stock": 31
      }
     ]
    },
@@ -2742,11 +2777,11 @@
     "fx_last": null,
     "fx_first_outside_bulk": null,
     "fx_last_outside_bulk": null,
-    "stock_option_posts": 244,
+    "stock_option_posts": 245,
     "stock_first": "2026-08-20",
-    "stock_last": "2026-10-13",
+    "stock_last": "2026-10-14",
     "stock_first_outside_bulk": "2026-08-20",
-    "stock_last_outside_bulk": "2026-10-13",
+    "stock_last_outside_bulk": "2026-10-14",
     "stock_option_posts_in_bulk_groups": 0,
     "bulk_groups": [],
     "bulk_group_count": 0,
@@ -2794,7 +2829,7 @@
      {
       "week": "2026-10-12",
       "fx": 0,
-      "stock": 2
+      "stock": 3
      }
     ]
    },
@@ -2805,11 +2840,11 @@
     "fx_last": null,
     "fx_first_outside_bulk": null,
     "fx_last_outside_bulk": null,
-    "stock_option_posts": 194,
+    "stock_option_posts": 200,
     "stock_first": "2026-08-12",
-    "stock_last": "2026-10-13",
+    "stock_last": "2026-10-14",
     "stock_first_outside_bulk": "2026-08-12",
-    "stock_last_outside_bulk": "2026-10-13",
+    "stock_last_outside_bulk": "2026-10-14",
     "stock_option_posts_in_bulk_groups": 0,
     "bulk_groups": [],
     "bulk_group_count": 0,
@@ -2862,7 +2897,7 @@
      {
       "week": "2026-10-12",
       "fx": 0,
-      "stock": 12
+      "stock": 18
      }
     ]
    },
@@ -2949,11 +2984,11 @@
     "fx_last": null,
     "fx_first_outside_bulk": null,
     "fx_last_outside_bulk": null,
-    "stock_option_posts": 148,
+    "stock_option_posts": 151,
     "stock_first": "2026-09-29",
-    "stock_last": "2026-10-13",
+    "stock_last": "2026-10-14",
     "stock_first_outside_bulk": "2026-09-29",
-    "stock_last_outside_bulk": "2026-10-13",
+    "stock_last_outside_bulk": "2026-10-14",
     "stock_option_posts_in_bulk_groups": 0,
     "bulk_groups": [],
     "bulk_group_count": 0,
@@ -2971,7 +3006,7 @@
      {
       "week": "2026-10-12",
       "fx": 0,
-      "stock": 10
+      "stock": 13
      }
     ]
    },
@@ -3040,11 +3075,11 @@
     "fx_last": "2026-09-14",
     "fx_first_outside_bulk": "2026-06-29",
     "fx_last_outside_bulk": "2026-09-14",
-    "stock_option_posts": 118,
+    "stock_option_posts": 119,
     "stock_first": "2026-06-11",
-    "stock_last": "2026-10-07",
+    "stock_last": "2026-10-14",
     "stock_first_outside_bulk": "2026-06-11",
-    "stock_last_outside_bulk": "2026-10-07",
+    "stock_last_outside_bulk": "2026-10-14",
     "stock_option_posts_in_bulk_groups": 0,
     "bulk_groups": [],
     "bulk_group_count": 0,
@@ -3128,6 +3163,11 @@
       "week": "2026-10-05",
       "fx": 0,
       "stock": 2
+     },
+     {
+      "week": "2026-10-12",
+      "fx": 0,
+      "stock": 1
      }
     ]
    },
@@ -3359,6 +3399,39 @@
     ]
    },
    {
+    "channel": "t.me/dannycwaynetradingroom",
+    "fx_posts": 0,
+    "fx_first": null,
+    "fx_last": null,
+    "fx_first_outside_bulk": null,
+    "fx_last_outside_bulk": null,
+    "stock_option_posts": 50,
+    "stock_first": "2026-10-01",
+    "stock_last": "2026-10-14",
+    "stock_first_outside_bulk": "2026-10-01",
+    "stock_last_outside_bulk": "2026-10-14",
+    "stock_option_posts_in_bulk_groups": 0,
+    "bulk_groups": [],
+    "bulk_group_count": 0,
+    "weeks": [
+     {
+      "week": "2026-09-28",
+      "fx": 0,
+      "stock": 10
+     },
+     {
+      "week": "2026-10-05",
+      "fx": 0,
+      "stock": 17
+     },
+     {
+      "week": "2026-10-12",
+      "fx": 0,
+      "stock": 23
+     }
+    ]
+   },
+   {
     "channel": "t.me/blue_falcon_capital",
     "fx_posts": 0,
     "fx_first": null,
@@ -3383,39 +3456,6 @@
       "week": "2026-06-29",
       "fx": 0,
       "stock": 27
-     }
-    ]
-   },
-   {
-    "channel": "t.me/dannycwaynetradingroom",
-    "fx_posts": 0,
-    "fx_first": null,
-    "fx_last": null,
-    "fx_first_outside_bulk": null,
-    "fx_last_outside_bulk": null,
-    "stock_option_posts": 40,
-    "stock_first": "2026-10-01",
-    "stock_last": "2026-10-13",
-    "stock_first_outside_bulk": "2026-10-01",
-    "stock_last_outside_bulk": "2026-10-13",
-    "stock_option_posts_in_bulk_groups": 0,
-    "bulk_groups": [],
-    "bulk_group_count": 0,
-    "weeks": [
-     {
-      "week": "2026-09-28",
-      "fx": 0,
-      "stock": 10
-     },
-     {
-      "week": "2026-10-05",
-      "fx": 0,
-      "stock": 17
-     },
-     {
-      "week": "2026-10-12",
-      "fx": 0,
-      "stock": 13
      }
     ]
    },
@@ -3503,6 +3543,6 @@
     "n": 2
    }
   ],
-  "follow_up_claims_not_scored": 93
+  "follow_up_claims_not_scored": 94
  }
 }

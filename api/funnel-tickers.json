@@ -1,52 +1,59 @@
 {
  "source": "AfterMath analysis of flagged AfterHour accounts and public Telegram channels",
- "generated_at": "2026-10-14T10:51:49Z",
+ "generated_at": "2026-10-14T20:23:24Z",
  "credit": "https://telegramscammers.com",
  "disclaimer": "Channels and accounts here are flagged for investigation, not a finding of fraud. Flag list curated by https://telegramscammers.com.",
  "small_sample_warning": "Based on 1146 scored option callouts posted 2026-06-08 to 2026-10-13 from public channels. Scores are hold-to-expiry intrinsic value against the entry price the channel quoted, with no slippage or fees; most are same-day index and large-cap options. Channels usually quote early exits, which are not what is scored here. A limited sample, not a settled rate, and not advice.",
- "count": 541,
+ "count": 544,
  "tickers": [
   {
    "ticker": "SPY",
-   "ah_accounts": 39,
-   "ah_posts": 180,
+   "ah_accounts": 44,
+   "ah_posts": 186,
    "tg_channels": 23,
-   "tg_posts": 925
+   "tg_posts": 942
   },
   {
    "ticker": "SPX",
-   "ah_accounts": 18,
-   "ah_posts": 90,
+   "ah_accounts": 19,
+   "ah_posts": 91,
    "tg_channels": 19,
-   "tg_posts": 695
+   "tg_posts": 703
   },
   {
    "ticker": "QQQ",
-   "ah_accounts": 20,
-   "ah_posts": 147,
+   "ah_accounts": 21,
+   "ah_posts": 148,
    "tg_channels": 22,
    "tg_posts": 564
   },
   {
    "ticker": "TSLA",
-   "ah_accounts": 18,
-   "ah_posts": 39,
+   "ah_accounts": 19,
+   "ah_posts": 40,
    "tg_channels": 20,
-   "tg_posts": 306
+   "tg_posts": 312
   },
   {
    "ticker": "MU",
-   "ah_accounts": 12,
-   "ah_posts": 26,
+   "ah_accounts": 13,
+   "ah_posts": 27,
    "tg_channels": 18,
    "tg_posts": 244
   },
   {
    "ticker": "AMZN",
-   "ah_accounts": 13,
-   "ah_posts": 46,
+   "ah_accounts": 14,
+   "ah_posts": 47,
    "tg_channels": 19,
-   "tg_posts": 169
+   "tg_posts": 171
+  },
+  {
+   "ticker": "NVDA",
+   "ah_accounts": 20,
+   "ah_posts": 34,
+   "tg_channels": 21,
+   "tg_posts": 162
   },
   {
    "ticker": "META",
@@ -56,18 +63,11 @@
    "tg_posts": 173
   },
   {
-   "ticker": "NVDA",
-   "ah_accounts": 20,
-   "ah_posts": 34,
-   "tg_channels": 21,
-   "tg_posts": 154
-  },
-  {
    "ticker": "AAPL",
-   "ah_accounts": 17,
-   "ah_posts": 43,
+   "ah_accounts": 18,
+   "ah_posts": 44,
    "tg_channels": 21,
-   "tg_posts": 145
+   "tg_posts": 147
   },
   {
    "ticker": "SPCX",
@@ -78,8 +78,8 @@
   },
   {
    "ticker": "IWM",
-   "ah_accounts": 10,
-   "ah_posts": 20,
+   "ah_accounts": 11,
+   "ah_posts": 21,
    "tg_channels": 13,
    "tg_posts": 137
   },
@@ -106,8 +106,8 @@
   },
   {
    "ticker": "SNDK",
-   "ah_accounts": 7,
-   "ah_posts": 10,
+   "ah_accounts": 8,
+   "ah_posts": 11,
    "tg_channels": 13,
    "tg_posts": 75
   },
@@ -197,8 +197,8 @@
   },
   {
    "ticker": "COST",
-   "ah_accounts": 4,
-   "ah_posts": 16,
+   "ah_accounts": 5,
+   "ah_posts": 17,
    "tg_channels": 6,
    "tg_posts": 15
   },
@@ -287,18 +287,18 @@
    "tg_posts": 13
   },
   {
-   "ticker": "CVS",
-   "ah_accounts": 3,
-   "ah_posts": 10,
-   "tg_channels": 2,
-   "tg_posts": 10
-  },
-  {
    "ticker": "V",
    "ah_accounts": 4,
    "ah_posts": 18,
    "tg_channels": 1,
    "tg_posts": 2
+  },
+  {
+   "ticker": "CVS",
+   "ah_accounts": 3,
+   "ah_posts": 10,
+   "tg_channels": 2,
+   "tg_posts": 10
   },
   {
    "ticker": "GRMN",
@@ -399,13 +399,6 @@
    "tg_posts": 14
   },
   {
-   "ticker": "BFAM",
-   "ah_accounts": 1,
-   "ah_posts": 3,
-   "tg_channels": 2,
-   "tg_posts": 12
-  },
-  {
    "ticker": "CLH",
    "ah_accounts": 1,
    "ah_posts": 5,
@@ -420,11 +413,11 @@
    "tg_posts": 11
   },
   {
-   "ticker": "SOL",
+   "ticker": "BFAM",
    "ah_accounts": 1,
-   "ah_posts": 6,
-   "tg_channels": 1,
-   "tg_posts": 9
+   "ah_posts": 3,
+   "tg_channels": 2,
+   "tg_posts": 12
   },
   {
    "ticker": "AMPH",
@@ -434,11 +427,11 @@
    "tg_posts": 15
   },
   {
-   "ticker": "CRWV",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 5,
-   "tg_posts": 14
+   "ticker": "SOL",
+   "ah_accounts": 1,
+   "ah_posts": 6,
+   "tg_channels": 1,
+   "tg_posts": 9
   },
   {
    "ticker": "USO",
@@ -448,18 +441,11 @@
    "tg_posts": 7
   },
   {
-   "ticker": "DKNG",
-   "ah_accounts": 2,
-   "ah_posts": 6,
-   "tg_channels": 2,
-   "tg_posts": 8
-  },
-  {
-   "ticker": "SCHL",
-   "ah_accounts": 3,
-   "ah_posts": 10,
-   "tg_channels": 1,
-   "tg_posts": 4
+   "ticker": "CRWV",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 5,
+   "tg_posts": 14
   },
   {
    "ticker": "CRCL",
@@ -469,11 +455,18 @@
    "tg_posts": 14
   },
   {
-   "ticker": "ETH",
-   "ah_accounts": 2,
-   "ah_posts": 3,
+   "ticker": "SCHL",
+   "ah_accounts": 3,
+   "ah_posts": 10,
    "tg_channels": 1,
-   "tg_posts": 11
+   "tg_posts": 4
+  },
+  {
+   "ticker": "DKNG",
+   "ah_accounts": 2,
+   "ah_posts": 6,
+   "tg_channels": 2,
+   "tg_posts": 8
   },
   {
    "ticker": "UMBF",
@@ -481,6 +474,13 @@
    "ah_posts": 4,
    "tg_channels": 2,
    "tg_posts": 10
+  },
+  {
+   "ticker": "ETH",
+   "ah_accounts": 2,
+   "ah_posts": 3,
+   "tg_channels": 1,
+   "tg_posts": 11
   },
   {
    "ticker": "BE",
@@ -511,18 +511,18 @@
    "tg_posts": 12
   },
   {
-   "ticker": "WDC",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 1,
-   "tg_posts": 12
-  },
-  {
    "ticker": "CBT",
    "ah_accounts": 1,
    "ah_posts": 8,
    "tg_channels": 1,
    "tg_posts": 5
+  },
+  {
+   "ticker": "WDC",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 1,
+   "tg_posts": 12
   },
   {
    "ticker": "DE",
@@ -539,6 +539,13 @@
    "tg_posts": 12
   },
   {
+   "ticker": "RGR",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 2,
+   "tg_posts": 11
+  },
+  {
    "ticker": "NWE",
    "ah_accounts": 1,
    "ah_posts": 4,
@@ -551,13 +558,6 @@
    "ah_posts": 4,
    "tg_channels": 2,
    "tg_posts": 8
-  },
-  {
-   "ticker": "RGR",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 2,
-   "tg_posts": 11
   },
   {
    "ticker": "FERG",
@@ -581,6 +581,13 @@
    "tg_posts": 5
   },
   {
+   "ticker": "GME",
+   "ah_accounts": 3,
+   "ah_posts": 3,
+   "tg_channels": 3,
+   "tg_posts": 8
+  },
+  {
    "ticker": "IREN",
    "ah_accounts": 0,
    "ah_posts": 0,
@@ -588,11 +595,11 @@
    "tg_posts": 11
   },
   {
-   "ticker": "GME",
-   "ah_accounts": 3,
-   "ah_posts": 3,
-   "tg_channels": 3,
-   "tg_posts": 8
+   "ticker": "ALSN",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 2,
+   "tg_posts": 10
   },
   {
    "ticker": "BKH",
@@ -602,18 +609,18 @@
    "tg_posts": 8
   },
   {
+   "ticker": "PENG",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 3,
+   "tg_posts": 11
+  },
+  {
    "ticker": "HIPO",
    "ah_accounts": 2,
    "ah_posts": 6,
    "tg_channels": 1,
    "tg_posts": 5
-  },
-  {
-   "ticker": "ALSN",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 2,
-   "tg_posts": 10
   },
   {
    "ticker": "INSP",
@@ -637,13 +644,6 @@
    "tg_posts": 8
   },
   {
-   "ticker": "STLD",
-   "ah_accounts": 2,
-   "ah_posts": 4,
-   "tg_channels": 2,
-   "tg_posts": 6
-  },
-  {
    "ticker": "ASTS",
    "ah_accounts": 1,
    "ah_posts": 1,
@@ -651,14 +651,21 @@
    "tg_posts": 9
   },
   {
-   "ticker": "PENG",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 3,
-   "tg_posts": 10
+   "ticker": "STLD",
+   "ah_accounts": 2,
+   "ah_posts": 4,
+   "tg_channels": 2,
+   "tg_posts": 6
   },
   {
-   "ticker": "AMRX",
+   "ticker": "NSC",
+   "ah_accounts": 1,
+   "ah_posts": 5,
+   "tg_channels": 1,
+   "tg_posts": 5
+  },
+  {
+   "ticker": "ERIE",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 2,
@@ -672,13 +679,6 @@
    "tg_posts": 6
   },
   {
-   "ticker": "NSC",
-   "ah_accounts": 1,
-   "ah_posts": 5,
-   "tg_channels": 1,
-   "tg_posts": 5
-  },
-  {
    "ticker": "WEC",
    "ah_accounts": 0,
    "ah_posts": 0,
@@ -686,7 +686,7 @@
    "tg_posts": 10
   },
   {
-   "ticker": "ERIE",
+   "ticker": "AMRX",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 2,
@@ -728,6 +728,13 @@
    "tg_posts": 8
   },
   {
+   "ticker": "AVNT",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 2,
+   "tg_posts": 8
+  },
+  {
    "ticker": "MORN",
    "ah_accounts": 1,
    "ah_posts": 3,
@@ -740,13 +747,6 @@
    "ah_posts": 4,
    "tg_channels": 2,
    "tg_posts": 5
-  },
-  {
-   "ticker": "AVNT",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 2,
-   "tg_posts": 8
   },
   {
    "ticker": "XLE",
@@ -770,13 +770,6 @@
    "tg_posts": 5
   },
   {
-   "ticker": "RIVN",
-   "ah_accounts": 2,
-   "ah_posts": 3,
-   "tg_channels": 3,
-   "tg_posts": 5
-  },
-  {
    "ticker": "TTD",
    "ah_accounts": 3,
    "ah_posts": 3,
@@ -784,18 +777,11 @@
    "tg_posts": 5
   },
   {
-   "ticker": "DASH",
+   "ticker": "RIVN",
    "ah_accounts": 2,
-   "ah_posts": 4,
-   "tg_channels": 2,
-   "tg_posts": 4
-  },
-  {
-   "ticker": "NVO",
-   "ah_accounts": 1,
-   "ah_posts": 1,
+   "ah_posts": 3,
    "tg_channels": 3,
-   "tg_posts": 7
+   "tg_posts": 5
   },
   {
    "ticker": "PFE",
@@ -812,6 +798,20 @@
    "tg_posts": 4
   },
   {
+   "ticker": "NVO",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 3,
+   "tg_posts": 7
+  },
+  {
+   "ticker": "DASH",
+   "ah_accounts": 2,
+   "ah_posts": 4,
+   "tg_channels": 2,
+   "tg_posts": 4
+  },
+  {
    "ticker": "ANET",
    "ah_accounts": 1,
    "ah_posts": 2,
@@ -820,6 +820,13 @@
   },
   {
    "ticker": "MSA",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 8
+  },
+  {
+   "ticker": "SFM",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 2,
@@ -847,13 +854,6 @@
    "tg_posts": 8
   },
   {
-   "ticker": "SFM",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 8
-  },
-  {
    "ticker": "PINS",
    "ah_accounts": 0,
    "ah_posts": 0,
@@ -861,7 +861,7 @@
    "tg_posts": 8
   },
   {
-   "ticker": "TRMD",
+   "ticker": "GDX",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -875,18 +875,11 @@
    "tg_posts": 0
   },
   {
-   "ticker": "GDX",
+   "ticker": "TRMD",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
    "tg_posts": 8
-  },
-  {
-   "ticker": "JPM",
-   "ah_accounts": 2,
-   "ah_posts": 3,
-   "tg_channels": 3,
-   "tg_posts": 4
   },
   {
    "ticker": "BRZE",
@@ -894,6 +887,13 @@
    "ah_posts": 6,
    "tg_channels": 1,
    "tg_posts": 1
+  },
+  {
+   "ticker": "JPM",
+   "ah_accounts": 2,
+   "ah_posts": 3,
+   "tg_channels": 3,
+   "tg_posts": 4
   },
   {
    "ticker": "MIDD",
@@ -910,18 +910,18 @@
    "tg_posts": 5
   },
   {
+   "ticker": "CNXN",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 2,
+   "tg_posts": 5
+  },
+  {
    "ticker": "GLD",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 3,
    "tg_posts": 7
-  },
-  {
-   "ticker": "H",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 2,
-   "tg_posts": 5
   },
   {
    "ticker": "TRNS",
@@ -931,11 +931,11 @@
    "tg_posts": 6
   },
   {
-   "ticker": "DDOG",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 3,
-   "tg_posts": 7
+   "ticker": "H",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 2,
+   "tg_posts": 5
   },
   {
    "ticker": "SNOW",
@@ -945,11 +945,18 @@
    "tg_posts": 7
   },
   {
-   "ticker": "CNXN",
-   "ah_accounts": 1,
-   "ah_posts": 2,
+   "ticker": "DDOG",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 3,
+   "tg_posts": 7
+  },
+  {
+   "ticker": "NDXP",
+   "ah_accounts": 0,
+   "ah_posts": 0,
    "tg_channels": 2,
-   "tg_posts": 5
+   "tg_posts": 7
   },
   {
    "ticker": "SAH",
@@ -973,39 +980,11 @@
    "tg_posts": 7
   },
   {
-   "ticker": "NDXP",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 7
-  },
-  {
    "ticker": "AAVE",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
    "tg_posts": 7
-  },
-  {
-   "ticker": "RXRX",
-   "ah_accounts": 4,
-   "ah_posts": 4,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "NIO",
-   "ah_accounts": 2,
-   "ah_posts": 2,
-   "tg_channels": 3,
-   "tg_posts": 4
-  },
-  {
-   "ticker": "RKLB",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 4,
-   "tg_posts": 5
   },
   {
    "ticker": "GS",
@@ -1015,10 +994,24 @@
    "tg_posts": 3
   },
   {
-   "ticker": "P",
+   "ticker": "RKLB",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 4,
+   "tg_posts": 5
+  },
+  {
+   "ticker": "NIO",
    "ah_accounts": 2,
+   "ah_posts": 2,
+   "tg_channels": 3,
+   "tg_posts": 4
+  },
+  {
+   "ticker": "RXRX",
+   "ah_accounts": 4,
    "ah_posts": 4,
-   "tg_channels": 2,
+   "tg_channels": 1,
    "tg_posts": 2
   },
   {
@@ -1029,11 +1022,11 @@
    "tg_posts": 4
   },
   {
-   "ticker": "TX",
-   "ah_accounts": 1,
-   "ah_posts": 2,
+   "ticker": "P",
+   "ah_accounts": 2,
+   "ah_posts": 4,
    "tg_channels": 2,
-   "tg_posts": 4
+   "tg_posts": 2
   },
   {
    "ticker": "EHC",
@@ -1057,39 +1050,11 @@
    "tg_posts": 6
   },
   {
-   "ticker": "GNRC",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 6
-  },
-  {
-   "ticker": "L",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 6
-  },
-  {
-   "ticker": "MA",
-   "ah_accounts": 2,
-   "ah_posts": 6,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "DBD",
+   "ticker": "TX",
    "ah_accounts": 1,
    "ah_posts": 2,
-   "tg_channels": 1,
+   "tg_channels": 2,
    "tg_posts": 4
-  },
-  {
-   "ticker": "MATX",
-   "ah_accounts": 1,
-   "ah_posts": 3,
-   "tg_channels": 1,
-   "tg_posts": 3
   },
   {
    "ticker": "SXT",
@@ -1106,11 +1071,18 @@
    "tg_posts": 6
   },
   {
-   "ticker": "AFL",
+   "ticker": "MATX",
    "ah_accounts": 1,
    "ah_posts": 3,
    "tg_channels": 1,
    "tg_posts": 3
+  },
+  {
+   "ticker": "GNRC",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 6
   },
   {
    "ticker": "CAAP",
@@ -1120,14 +1092,35 @@
    "tg_posts": 6
   },
   {
-   "ticker": "SYNA",
+   "ticker": "DBD",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 1,
+   "tg_posts": 4
+  },
+  {
+   "ticker": "AFL",
+   "ah_accounts": 1,
+   "ah_posts": 3,
+   "tg_channels": 1,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "MA",
+   "ah_accounts": 2,
+   "ah_posts": 6,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "L",
    "ah_accounts": 0,
    "ah_posts": 0,
-   "tg_channels": 1,
+   "tg_channels": 2,
    "tg_posts": 6
   },
   {
-   "ticker": "TDS",
+   "ticker": "LINK",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -1148,14 +1141,14 @@
    "tg_posts": 6
   },
   {
-   "ticker": "RYZ",
+   "ticker": "XRP",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
    "tg_posts": 6
   },
   {
-   "ticker": "XRP",
+   "ticker": "RYZ",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -1176,18 +1169,18 @@
    "tg_posts": 6
   },
   {
-   "ticker": "LINK",
+   "ticker": "TDS",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
    "tg_posts": 6
   },
   {
-   "ticker": "BABA",
-   "ah_accounts": 2,
-   "ah_posts": 2,
-   "tg_channels": 2,
-   "tg_posts": 3
+   "ticker": "SYNA",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 6
   },
   {
    "ticker": "LRCX",
@@ -1197,11 +1190,11 @@
    "tg_posts": 3
   },
   {
-   "ticker": "RGCO",
+   "ticker": "BABA",
    "ah_accounts": 2,
-   "ah_posts": 3,
-   "tg_channels": 1,
-   "tg_posts": 2
+   "ah_posts": 2,
+   "tg_channels": 2,
+   "tg_posts": 3
   },
   {
    "ticker": "AEVA",
@@ -1211,11 +1204,11 @@
    "tg_posts": 4
   },
   {
-   "ticker": "CELH",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 5
+   "ticker": "RGCO",
+   "ah_accounts": 2,
+   "ah_posts": 3,
+   "tg_channels": 1,
+   "tg_posts": 2
   },
   {
    "ticker": "MO",
@@ -1225,14 +1218,7 @@
    "tg_posts": 5
   },
   {
-   "ticker": "SWKS",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 5
-  },
-  {
-   "ticker": "TGT",
+   "ticker": "CELH",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 2,
@@ -1246,56 +1232,28 @@
    "tg_posts": 5
   },
   {
-   "ticker": "OMDA",
+   "ticker": "TGT",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 5
+  },
+  {
+   "ticker": "SWKS",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 5
+  },
+  {
+   "ticker": "BTI",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
    "tg_posts": 5
   },
   {
-   "ticker": "CTRE",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 5
-  },
-  {
-   "ticker": "SUI",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 5
-  },
-  {
-   "ticker": "JBL",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 5
-  },
-  {
-   "ticker": "XPL",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 5
-  },
-  {
-   "ticker": "CRESY",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 5
-  },
-  {
-   "ticker": "RCEL",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 5
-  },
-  {
-   "ticker": "BHVN",
+   "ticker": "GEF",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -1316,7 +1274,49 @@
    "tg_posts": 5
   },
   {
-   "ticker": "BTI",
+   "ticker": "SUI",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 5
+  },
+  {
+   "ticker": "CTRE",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 5
+  },
+  {
+   "ticker": "OMDA",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 5
+  },
+  {
+   "ticker": "JBL",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 5
+  },
+  {
+   "ticker": "CRESY",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 5
+  },
+  {
+   "ticker": "XPL",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 5
+  },
+  {
+   "ticker": "BHVN",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -1330,7 +1330,7 @@
    "tg_posts": 5
   },
   {
-   "ticker": "GEF",
+   "ticker": "RCEL",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -1351,13 +1351,6 @@
    "tg_posts": 1
   },
   {
-   "ticker": "SLV",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 3,
-   "tg_posts": 4
-  },
-  {
    "ticker": "PSN",
    "ah_accounts": 3,
    "ah_posts": 4,
@@ -1372,6 +1365,13 @@
    "tg_posts": 1
   },
   {
+   "ticker": "SLV",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 3,
+   "tg_posts": 4
+  },
+  {
    "ticker": "CINF",
    "ah_accounts": 2,
    "ah_posts": 3,
@@ -1379,35 +1379,7 @@
    "tg_posts": 1
   },
   {
-   "ticker": "KEX",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "AMRC",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "HPE",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 4
-  },
-  {
-   "ticker": "ALAB",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "CAT",
+   "ticker": "MMSI",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 2,
@@ -1421,35 +1393,7 @@
    "tg_posts": 4
   },
   {
-   "ticker": "ACGL",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 4
-  },
-  {
-   "ticker": "STRA",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "SHOP",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "MMSI",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 4
-  },
-  {
-   "ticker": "POET",
+   "ticker": "CMCSA",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 2,
@@ -1463,18 +1407,25 @@
    "tg_posts": 0
   },
   {
-   "ticker": "CMCSA",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 4
+   "ticker": "AMRC",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 1,
+   "tg_posts": 3
   },
   {
-   "ticker": "WCN",
+   "ticker": "KEX",
    "ah_accounts": 1,
    "ah_posts": 2,
    "tg_channels": 1,
    "tg_posts": 2
+  },
+  {
+   "ticker": "HPE",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 4
   },
   {
    "ticker": "FSLR",
@@ -1484,28 +1435,63 @@
    "tg_posts": 2
   },
   {
-   "ticker": "BIO",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 4
-  },
-  {
-   "ticker": "RHP",
+   "ticker": "STRA",
    "ah_accounts": 1,
-   "ah_posts": 4,
-   "tg_channels": 0,
-   "tg_posts": 0
+   "ah_posts": 2,
+   "tg_channels": 1,
+   "tg_posts": 2
   },
   {
-   "ticker": "PCVX",
+   "ticker": "ALAB",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 1,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "WCN",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "CAT",
    "ah_accounts": 0,
    "ah_posts": 0,
-   "tg_channels": 1,
+   "tg_channels": 2,
    "tg_posts": 4
   },
   {
-   "ticker": "NTNX",
+   "ticker": "RPRX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 4
+  },
+  {
+   "ticker": "POET",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 4
+  },
+  {
+   "ticker": "ACGL",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 4
+  },
+  {
+   "ticker": "SHOP",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 1,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "HYPE",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -1519,6 +1505,41 @@
    "tg_posts": 4
   },
   {
+   "ticker": "RILY",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 4
+  },
+  {
+   "ticker": "RHP",
+   "ah_accounts": 1,
+   "ah_posts": 4,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "BIO",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 4
+  },
+  {
+   "ticker": "NTNX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 4
+  },
+  {
+   "ticker": "JD",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 4
+  },
+  {
    "ticker": "BKV",
    "ah_accounts": 0,
    "ah_posts": 0,
@@ -1526,7 +1547,28 @@
    "tg_posts": 4
   },
   {
-   "ticker": "HYPE",
+   "ticker": "IEX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 4
+  },
+  {
+   "ticker": "PCVX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 4
+  },
+  {
+   "ticker": "NGVC",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 4
+  },
+  {
+   "ticker": "OCG",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -1547,46 +1589,11 @@
    "tg_posts": 4
   },
   {
-   "ticker": "JD",
+   "ticker": "NTAP",
    "ah_accounts": 0,
    "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 4
-  },
-  {
-   "ticker": "IEX",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 4
-  },
-  {
-   "ticker": "OCG",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 4
-  },
-  {
-   "ticker": "RILY",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 4
-  },
-  {
-   "ticker": "NGVC",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 4
-  },
-  {
-   "ticker": "SKHY",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 2,
-   "tg_posts": 2
+   "tg_channels": 3,
+   "tg_posts": 3
   },
   {
    "ticker": "GLW",
@@ -1596,34 +1603,6 @@
    "tg_posts": 1
   },
   {
-   "ticker": "APLD",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 2,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "RMD",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 2,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "SOUN",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 2,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "NTAP",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 3,
-   "tg_posts": 3
-  },
-  {
    "ticker": "TSM",
    "ah_accounts": 1,
    "ah_posts": 1,
@@ -1631,7 +1610,7 @@
    "tg_posts": 2
   },
   {
-   "ticker": "PGNY",
+   "ticker": "APLD",
    "ah_accounts": 1,
    "ah_posts": 1,
    "tg_channels": 2,
@@ -1645,59 +1624,38 @@
    "tg_posts": 1
   },
   {
-   "ticker": "KEEL",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "ACHR",
-   "ah_accounts": 2,
-   "ah_posts": 3,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "VMC",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "CRDO",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "STX",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "BAND",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "EFOR",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "DAC",
+   "ticker": "RMD",
    "ah_accounts": 1,
    "ah_posts": 1,
+   "tg_channels": 2,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "MCD",
+   "ah_accounts": 2,
+   "ah_posts": 2,
    "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "PGNY",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 2,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "SOUN",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 2,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "SKHY",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 2,
    "tg_posts": 2
   },
   {
@@ -1715,6 +1673,69 @@
    "tg_posts": 3
   },
   {
+   "ticker": "BAND",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "EFOR",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "ACHR",
+   "ah_accounts": 2,
+   "ah_posts": 3,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "QRVO",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "WIF",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "FTDR",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "CRDO",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "VMC",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "GAP",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
    "ticker": "VIX",
    "ah_accounts": 1,
    "ah_posts": 1,
@@ -1722,7 +1743,35 @@
    "tg_posts": 2
   },
   {
-   "ticker": "GAP",
+   "ticker": "STX",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "DAC",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "KEEL",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "EPD",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "SBUX",
    "ah_accounts": 1,
    "ah_posts": 2,
    "tg_channels": 1,
@@ -1736,28 +1785,7 @@
    "tg_posts": 2
   },
   {
-   "ticker": "EPD",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "FTDR",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "SBUX",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "GNK",
+   "ticker": "TDIC",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -1771,28 +1799,7 @@
    "tg_posts": 3
   },
   {
-   "ticker": "CHPT",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "BA",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
    "ticker": "BEAT",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "WOK",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -1806,84 +1813,14 @@
    "tg_posts": 3
   },
   {
-   "ticker": "PIXEL",
+   "ticker": "BA",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
    "tg_posts": 3
   },
   {
-   "ticker": "NIL",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "SEIC",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "TDIC",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "MG",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "WOLF",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "ASST",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "AGCO",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "PCG",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "W",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "PVH",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 3
-  },
-  {
-   "ticker": "FRMI",
+   "ticker": "CHPT",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -1897,49 +1834,98 @@
    "tg_posts": 3
   },
   {
-   "ticker": "AMC",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "FLNC",
+   "ticker": "PVH",
    "ah_accounts": 0,
    "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "SUNB",
-   "ah_accounts": 2,
-   "ah_posts": 2,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "SQQQ",
-   "ah_accounts": 2,
-   "ah_posts": 2,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "SMR",
-   "ah_accounts": 1,
-   "ah_posts": 1,
    "tg_channels": 1,
-   "tg_posts": 1
+   "tg_posts": 3
   },
   {
-   "ticker": "TE",
+   "ticker": "WOLF",
    "ah_accounts": 0,
    "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 2
+   "tg_channels": 1,
+   "tg_posts": 3
   },
   {
-   "ticker": "ANDE",
+   "ticker": "AGCO",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "WOK",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "NIL",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "W",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "MG",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "ASST",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "PCG",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "GNK",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "FRMI",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "SEIC",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "PIXEL",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 3
+  },
+  {
+   "ticker": "SERV",
    "ah_accounts": 1,
    "ah_posts": 1,
    "tg_channels": 1,
@@ -1953,46 +1939,11 @@
    "tg_posts": 1
   },
   {
-   "ticker": "RBLX",
+   "ticker": "INTU",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 2,
    "tg_posts": 2
-  },
-  {
-   "ticker": "ARMX",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "COHR",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "VRT",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "BAC",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "MP",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 1,
-   "tg_posts": 1
   },
   {
    "ticker": "CRM",
@@ -2002,14 +1953,7 @@
    "tg_posts": 1
   },
   {
-   "ticker": "MCD",
-   "ah_accounts": 2,
-   "ah_posts": 2,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "J",
+   "ticker": "XSP",
    "ah_accounts": 1,
    "ah_posts": 1,
    "tg_channels": 1,
@@ -2023,6 +1967,20 @@
    "tg_posts": 1
   },
   {
+   "ticker": "MP",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "ARMX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 2
+  },
+  {
    "ticker": "KHC",
    "ah_accounts": 0,
    "ah_posts": 0,
@@ -2030,25 +1988,39 @@
    "tg_posts": 2
   },
   {
-   "ticker": "ASTE",
+   "ticker": "SMR",
    "ah_accounts": 1,
    "ah_posts": 1,
    "tg_channels": 1,
    "tg_posts": 1
   },
   {
-   "ticker": "MS",
+   "ticker": "FLNC",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "RBLX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "IDT",
    "ah_accounts": 2,
    "ah_posts": 2,
    "tg_channels": 0,
    "tg_posts": 0
   },
   {
-   "ticker": "AVTR",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 2
+   "ticker": "ZS",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 1,
+   "tg_posts": 1
   },
   {
    "ticker": "ICUI",
@@ -2058,18 +2030,39 @@
    "tg_posts": 1
   },
   {
-   "ticker": "INTU",
+   "ticker": "VRT",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "SUNB",
+   "ah_accounts": 2,
+   "ah_posts": 2,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "TE",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 2,
    "tg_posts": 2
   },
   {
-   "ticker": "RR",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 2
+   "ticker": "BAC",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "AMC",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 1,
+   "tg_posts": 1
   },
   {
    "ticker": "AAL",
@@ -2079,14 +2072,14 @@
    "tg_posts": 2
   },
   {
-   "ticker": "VLN",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 2,
-   "tg_posts": 2
+   "ticker": "J",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 1,
+   "tg_posts": 1
   },
   {
-   "ticker": "OSCR",
+   "ticker": "SQQQ",
    "ah_accounts": 2,
    "ah_posts": 2,
    "tg_channels": 0,
@@ -2100,7 +2093,35 @@
    "tg_posts": 2
   },
   {
-   "ticker": "ZS",
+   "ticker": "MS",
+   "ah_accounts": 2,
+   "ah_posts": 2,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "OSCR",
+   "ah_accounts": 2,
+   "ah_posts": 2,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "RR",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "COHR",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "ANDE",
    "ah_accounts": 1,
    "ah_posts": 1,
    "tg_channels": 1,
@@ -2114,63 +2135,63 @@
    "tg_posts": 1
   },
   {
-   "ticker": "SERV",
+   "ticker": "ASTE",
    "ah_accounts": 1,
    "ah_posts": 1,
    "tg_channels": 1,
    "tg_posts": 1
   },
   {
-   "ticker": "IDT",
-   "ah_accounts": 2,
-   "ah_posts": 2,
-   "tg_channels": 0,
-   "tg_posts": 0
+   "ticker": "VLN",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 2
   },
   {
-   "ticker": "RIF",
+   "ticker": "AVTR",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 2,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "PYPL",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
    "tg_posts": 2
   },
   {
-   "ticker": "MNDY",
+   "ticker": "RIOT",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
    "tg_posts": 2
   },
   {
-   "ticker": "SCSC",
+   "ticker": "INTA",
    "ah_accounts": 1,
    "ah_posts": 2,
    "tg_channels": 0,
    "tg_posts": 0
   },
   {
-   "ticker": "MANH",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "CBRS",
+   "ticker": "BSPCX",
    "ah_accounts": 1,
    "ah_posts": 2,
    "tg_channels": 0,
    "tg_posts": 0
   },
   {
-   "ticker": "CSIQ",
+   "ticker": "TRUP",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
    "tg_posts": 2
   },
   {
-   "ticker": "NEE",
+   "ticker": "PBY",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -2184,14 +2205,63 @@
    "tg_posts": 2
   },
   {
-   "ticker": "CHWY",
+   "ticker": "MNDY",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
    "tg_posts": 2
   },
   {
-   "ticker": "OUST",
+   "ticker": "MOBX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "HOME",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "DIS",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "NCPL",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "MANH",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "RIF",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "MDB",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "GRASS",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -2212,259 +2282,7 @@
    "tg_posts": 2
   },
   {
-   "ticker": "PG",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "HY",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "QRVO",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "NET",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "INTA",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "KMI",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "SNXX",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "BMY",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "NCPL",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "WIF",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "ZBT",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "PBY",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "MOBX",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "LOAR",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "DOCS",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "ARMK",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "PRDO",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "BIDU",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "TGTX",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "BANK",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "QLYS",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "BSPCX",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "ARKK",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "PYPL",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "RIOT",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "PSIX",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "MDB",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "XNDU",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "HOME",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "GRASS",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "KEY",
-   "ah_accounts": 1,
-   "ah_posts": 2,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "ADBE",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "LZB",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "TRUP",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "SPCE",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "WOR",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 2
-  },
-  {
-   "ticker": "DIS",
+   "ticker": "ZEC",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -2478,6 +2296,118 @@
    "tg_posts": 2
   },
   {
+   "ticker": "CHWY",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "KEY",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "LZB",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "LOAR",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "BMY",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "CSIQ",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "OUST",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "SNXX",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "KMI",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "PRDO",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "ARMK",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "SCSC",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "BIDU",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "ZBT",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 2
+  },
+  {
+   "ticker": "PG",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "CBRS",
+   "ah_accounts": 1,
+   "ah_posts": 2,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
    "ticker": "EVCM",
    "ah_accounts": 0,
    "ah_posts": 0,
@@ -2485,903 +2415,98 @@
    "tg_posts": 2
   },
   {
-   "ticker": "ZEC",
+   "ticker": "NEE",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
    "tg_posts": 2
   },
   {
-   "ticker": "MMM",
+   "ticker": "ARKK",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
-   "tg_posts": 1
+   "tg_posts": 2
   },
   {
-   "ticker": "DOGE",
+   "ticker": "PSIX",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
-   "tg_posts": 1
+   "tg_posts": 2
   },
   {
-   "ticker": "LWLG",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "SFD",
+   "ticker": "DOCS",
    "ah_accounts": 1,
-   "ah_posts": 1,
+   "ah_posts": 2,
    "tg_channels": 0,
    "tg_posts": 0
   },
   {
-   "ticker": "MATE",
+   "ticker": "TGTX",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
-   "tg_posts": 1
+   "tg_posts": 2
   },
   {
-   "ticker": "LSCC",
+   "ticker": "SPCE",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
-   "tg_posts": 1
+   "tg_posts": 2
   },
   {
-   "ticker": "SPXU",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "VICR",
+   "ticker": "XNDU",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
-   "tg_posts": 1
+   "tg_posts": 2
   },
   {
-   "ticker": "GFS",
+   "ticker": "BANK",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
-   "tg_posts": 1
+   "tg_posts": 2
   },
   {
-   "ticker": "ALP",
+   "ticker": "HY",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
-   "tg_posts": 1
+   "tg_posts": 2
   },
   {
-   "ticker": "BBY",
+   "ticker": "ADBE",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
-   "tg_posts": 1
+   "tg_posts": 2
   },
   {
-   "ticker": "GSIT",
+   "ticker": "WOR",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
-   "tg_posts": 1
+   "tg_posts": 2
   },
   {
-   "ticker": "GL",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "FLS",
+   "ticker": "NET",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
-   "tg_posts": 1
+   "tg_posts": 2
   },
   {
-   "ticker": "YMAT",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "RPRX",
+   "ticker": "QLYS",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "COKE",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "BRUN",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "GH",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "BCO",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "AVEX",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "SOC",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "MEIP",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "SLS",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "ADEA",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "LAES",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "MRK",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "AMAT",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "BYDDY",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "HYFT",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "VNET",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "PTON",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "SMH",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "DLB",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "ATOM",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "NVD",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "ENVX",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "DERM",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "BYDDF",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "LITS",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "TITN",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "SABS",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "CMBM",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "QNT",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "MLBY",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "SNAP",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "VELO",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "ABR",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "AUR",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "QUIK",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "SATL",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "DOCN",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "BULL",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "LNKS",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "GGG",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "AEHR",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "MBG",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "DXF",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "FIG",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "SKLZ",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "IQE",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "GNLX",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "IPA",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "MIAX",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
+   "tg_posts": 2
   },
   {
    "ticker": "GBX",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "INFU",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "XAU",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "CAV",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "VSXY",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "RGTI",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "HNGE",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "WBUY",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "ARXS",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "LMAT",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "ENPH",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "LCID",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "FNGR",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "CREG",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "AWI",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "ABDE",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "SPRB",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "SPIR",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "YETI",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "APM",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "POST",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "LPK",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "LUNR",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "XSP",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "FLUT",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "INHD",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "BW",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "EIX",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "KULR",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "WFC",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "MEC",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "DGXX",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "TMQ",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "TXN",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "US",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "SE",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "TON",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "CSV",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "AEHL",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "APEI",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "ANF",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "SHLS",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "AXTI",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "UB",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "XOM",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "APP",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "TEM",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "DG",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "RH",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "UIS",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "VPG",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "JOBY",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "PRSU",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "KSP",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "LRN",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "AREC",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "FDX",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "HPQ",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "SYM",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "TTWO",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "TWLO",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "METC",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "LASR",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "MX",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -3395,207 +2520,18 @@
    "tg_posts": 0
   },
   {
-   "ticker": "APUS",
+   "ticker": "TEM",
    "ah_accounts": 1,
    "ah_posts": 1,
    "tg_channels": 0,
    "tg_posts": 0
   },
   {
-   "ticker": "LI",
+   "ticker": "BYDDF",
    "ah_accounts": 1,
    "ah_posts": 1,
    "tg_channels": 0,
    "tg_posts": 0
-  },
-  {
-   "ticker": "XPEV",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "NNOX",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "SLNH",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "NLY",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "FET",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "GOLD",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "BYND",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "YUM",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "PATH",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "CCSI",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "CAPL",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "PRM",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "IBIS",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "CORZ",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "AGL",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "PONY",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "SEI",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "IOVA",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "CDNA",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "ABNB",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "BNKK",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "ONON",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "PSNL",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "VIVO",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "KSS",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "PBYI",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "SCAR",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
   },
   {
    "ticker": "WULF",
@@ -3605,35 +2541,105 @@
    "tg_posts": 1
   },
   {
-   "ticker": "KDK",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "BKSY",
+   "ticker": "INHD",
    "ah_accounts": 1,
    "ah_posts": 1,
    "tg_channels": 0,
    "tg_posts": 0
   },
   {
-   "ticker": "ER",
+   "ticker": "SABS",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
    "tg_posts": 1
   },
   {
-   "ticker": "TGEN",
+   "ticker": "BYDDY",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "SYM",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
    "tg_posts": 1
   },
   {
-   "ticker": "TDC",
+   "ticker": "METC",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "NLY",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "XOM",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "POST",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "ADEA",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "PATH",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "INFU",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "GH",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "ARCUS",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "MATE",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "ALP",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -3647,126 +2653,28 @@
    "tg_posts": 1
   },
   {
-   "ticker": "AAOL",
+   "ticker": "CSV",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "GOLD",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "US",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
    "tg_posts": 1
   },
   {
-   "ticker": "YUMC",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "GLXY",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "BMNR",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "FCHL",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "ARCUS",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "TIA",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "USAR",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "DFLI",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "BLESS",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "GILT",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "T",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "TDOC",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "YAAS",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "INDI",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "SSM",
-   "ah_accounts": 1,
-   "ah_posts": 1,
-   "tg_channels": 0,
-   "tg_posts": 0
-  },
-  {
-   "ticker": "BEAM",
-   "ah_accounts": 0,
-   "ah_posts": 0,
-   "tg_channels": 1,
-   "tg_posts": 1
-  },
-  {
-   "ticker": "XYZ",
+   "ticker": "IQE",
    "ah_accounts": 0,
    "ah_posts": 0,
    "tg_channels": 1,
@@ -3780,6 +2688,426 @@
    "tg_posts": 1
   },
   {
+   "ticker": "TTWO",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "SMH",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "ATOM",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "ENVX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "PEP",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "LPK",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "FLS",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "FCHL",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "YAAS",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "VSXY",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "LAES",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "BMNR",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "DGXX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "SLNH",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "MEC",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "BYND",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "ONON",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "AEHL",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "NVD",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "MX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "GSIT",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "BLESS",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "YUMC",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "KULR",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "BBY",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "VIVO",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "MEIP",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "JOBY",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "SLS",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "AREC",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "AMAT",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "SFD",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "BULL",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "GGG",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "INDI",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "RGTI",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "TIA",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "KDK",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "YUM",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "XYZ",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "TDC",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "SPRB",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "DG",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "SATL",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "MBG",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "AAOL",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "TDOC",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "CREG",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "DERM",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "MIAX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "LWLG",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "BCO",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "ARXS",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "SPIR",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "BKSY",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "PENGU",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "CMBM",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "AVEX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "AUR",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "NNOX",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
    "ticker": "CLOV",
    "ah_accounts": 1,
    "ah_posts": 1,
@@ -3787,7 +3115,700 @@
    "tg_posts": 0
   },
   {
+   "ticker": "USAR",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "TMQ",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "YETI",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "TXN",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "WFC",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "LI",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "PBYI",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "GNLX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "BW",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
    "ticker": "BBAI",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "APEI",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "APM",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "TGEN",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "T",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "LCID",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "PONY",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "ENPH",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "COKE",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "RH",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "DOGE",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "PRSU",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "AXTI",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "LITS",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "VICR",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "HPQ",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "TWLO",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "ANF",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "CCSI",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "XPEV",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "CAV",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "LUNR",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "MLBY",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "SE",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "FIG",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "FLUT",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "CDNA",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "KSS",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "GILT",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "GLXY",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "MMM",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "ABDE",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "LSCC",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "BRUN",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "SPXU",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "IBIS",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "CAPL",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "SEI",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "ABR",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "APP",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "CORZ",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "AEHR",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "PRM",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "AWI",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "TON",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "VELO",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "HNGE",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "DFLI",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "BNKK",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "QUIK",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "PSNL",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "GL",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "EIX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "SCAR",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "DLB",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "APUS",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "LRN",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "VPG",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "XAU",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "LMAT",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "DOCN",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "SOC",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "DXF",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "MRK",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "BEAM",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "PTON",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "FNGR",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "IPA",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "FET",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "IOVA",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "KSP",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "SHLS",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "GFS",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "BONK",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "ER",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "YMAT",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "LNKS",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "UB",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "VNET",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "UIS",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "SNAP",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "LASR",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "AGL",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "TITN",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "SSM",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "SKLZ",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "HYFT",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "QNT",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "WBUY",
+   "ah_accounts": 1,
+   "ah_posts": 1,
+   "tg_channels": 0,
+   "tg_posts": 0
+  },
+  {
+   "ticker": "FDX",
+   "ah_accounts": 0,
+   "ah_posts": 0,
+   "tg_channels": 1,
+   "tg_posts": 1
+  },
+  {
+   "ticker": "ABNB",
    "ah_accounts": 1,
    "ah_posts": 1,
    "tg_channels": 0,

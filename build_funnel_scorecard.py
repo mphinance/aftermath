@@ -43,7 +43,7 @@ OPTION_ASSUMPTIONS = [
     "Channels usually post an early exit, not a hold to expiry. Held-to-expiry is a different trade from the one a channel may have closed, so it is a stress test of the callouts, not a record of anyone's P&L.",
     "Entry premiums are the channels' own quoted fills and cannot be verified. Slippage, spreads and fees are ignored, which flatters the callouts.",
     "A missing expiry is treated as unknown, not as same-day, unless the parser saw an explicit 0DTE tag. Records without an expiry or an entry price are not scored.",
-    "Reposts of the same trade are collapsed (one row per channel, ticker, side, strike, expiry and post day); 'distinct contracts' also collapses the same contract posted by several channels.",
+    "Reposts of the same trade are collapsed (one row per channel, ticker, side, strike, expiry and post day); 'distinct contracts' is keyed on ticker, side, strike and expiry alone, so it also collapses the same contract posted on different days or by several channels; 'contract-days' keeps one row per contract per post day.",
     "Posts whose timestamp is shared by 6 or more posts in one channel (bulk history dumps), implausible entries and far-dated expiries are excluded rather than scored.",
     "Impossible quotes are excluded: if even the best print of the post day (day low for calls, day high for puts) leaves the contract's intrinsic value more than 1.5 times the quoted premium plus 0.5 above that premium, the quote cannot be a real fill for that strike (a mis-parsed strike, a wrong ticker or a replayed old post), so it is not scored. The count is in the coverage funnel.",
     "The mean return is dominated by a few multi-baggers, so the median and the share expired worthless describe the typical call better; the file also gives the mean without the 5 largest returns.",
@@ -189,14 +189,18 @@ def build_options(calls, outcomes):
                 "by_dte_bucket": [], "by_ticker": [], "by_channel": [], "paired": {"n_pairs": 0}}
     scored = [o for o in outs if o.get("status") in ("scored", "scored_no_entry") and fnum(o.get("return_pct")) is not None]
     scored.sort(key=lambda o: o.get("posted") or "")
-    dc = collections.OrderedDict()
+    dc = collections.OrderedDict()    # one row per contract (ticker, side, strike, expiry), earliest post
+    dcd = collections.OrderedDict()   # one row per contract per post day
     for g in scored:
-        k = (g.get("ticker"), g.get("side"), g.get("strike"), g.get("expiry_effective"), (g.get("posted") or "")[:10])
+        k = (g.get("ticker"), g.get("side"), g.get("strike"), g.get("expiry_effective"))
         dc.setdefault(k, g)
+        dcd.setdefault(k + ((g.get("posted") or "")[:10],), g)
     pooled = opt_stats(scored)
     dates = [(g.get("posted") or "")[:10] for g in scored if g.get("posted")]
     pooled.update({
         "n_distinct_contracts": len(dc),
+        "n_contract_days": len(dcd),
+        "contract_days": {k: v for k, v in opt_stats(list(dcd.values())).items() if k != "n_scored"},
         "distinct_contracts": {k: v for k, v in opt_stats(list(dc.values())).items() if k != "n_scored"},
         "window_start": min(dates) if dates else None, "window_end": max(dates) if dates else None,
         "return_unit": "percent of quoted entry premium, held to expiry; -100 = expired worthless",
@@ -457,6 +461,40 @@ def build_content_timeline(calls, fx_rows):
     return out
 
 
+def fx_concentration(mk):
+    """How concentrated the pooled market-fill sample is, and how many of its signals are plausibly the same setup.
+    Reposts inside 60 minutes are already collapsed upstream; this counts same channel + instrument + side + day groups
+    as a proxy for independent observations, and gives the standard error of the mean R so its sign can be judged."""
+    n = len(mk)
+    if not n:
+        return None
+    ch = collections.Counter(r.get("channel") for r in mk)
+    ins = collections.Counter(r.get("instrument") for r in mk)
+    groups = {(r.get("channel"), r.get("instrument"), r.get("side"), (r.get("date") or "")[:10]) for r in mk}
+    rs = [r["r_tp1"] for r in mk if fnum(r.get("r_tp1")) is not None]
+    m = sum(rs) / len(rs) if rs else None
+    se = None
+    if len(rs) > 2:
+        var = sum((x - m) ** 2 for x in rs) / (len(rs) - 1)
+        se = (var / len(rs)) ** 0.5
+    dates = sorted((r.get("date") or "")[:10] for r in mk if r.get("date"))
+    wd = None
+    d0, d1 = parse_date(dates[0]) if dates else None, parse_date(dates[-1]) if dates else None
+    if d0 and d1:
+        wd = (d1 - d0).days + 1
+    top_ch, top_ch_n = ch.most_common(1)[0]
+    top_in, top_in_n = ins.most_common(1)[0]
+    return {"n": n, "n_channels": len(ch), "top_channel": top_ch, "top_channel_n": top_ch_n,
+            "top_instrument": top_in, "top_instrument_n": top_in_n,
+            "n_same_day_setup_groups": len(groups), "window_days": wd,
+            "mean_r_tp1_se": round(se, 3) if se is not None else None,
+            "mean_r_tp1_range95": [round(m - 1.96 * se, 3), round(m + 1.96 * se, 3)] if se is not None else None,
+            "mean_r_sign_established": bool(se is not None and (m - 1.96 * se > 0 or m + 1.96 * se < 0)),
+            "caveat": (f"{top_ch_n} of {n} market-fill signals come from one channel ({top_ch}) and {top_in_n} are {top_in}; "
+                       f"they fall in {len(groups)} same-day channel/instrument/side groups, so they are not {n} independent observations "
+                       f"and the ranges understate the uncertainty. The window is {wd} days." if wd else "")}
+
+
 def build_fx(fx_rows, claims, md, calls=()):
     rows = [r for r in fx_rows if is_public(r.get("channel"))]
     scored = [r for r in rows if r.get("status") == "scored" and r.get("variant") in ("market", "touch")]
@@ -480,6 +518,7 @@ def build_fx(fx_rows, claims, md, calls=()):
     pooled.update(ms)
     pooled.pop("n", None)
     pooled["variant"] = "market-fill"
+    pooled["concentration"] = fx_concentration(mk)
 
     ids_by = collections.defaultdict(list)
     for r in mk:

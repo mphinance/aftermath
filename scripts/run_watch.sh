@@ -1,12 +1,15 @@
 #!/bin/bash
 # Daily Telegram-funnel run (Coolify host cron, 13:15 UTC). Passive: public t.me previews, public AfterHour
 # profile API and Yahoo public price bars only. Called by /home/mph/apps/aftermath-watch/run_watch.sh after it
-# fast-forwards the checkout. Publishes four JSON files to the live webroot, validated and swapped atomically.
+# fast-forwards the checkout. Publishes four JSON files to the live webroot, gated (fresh, populated, never shrinks) and swapped atomically.
 # Every step after tg_watch is failure-tolerant: a failed step keeps the previous data and never aborts the publish.
 set -u
 cd "$(dirname "$0")/.." || exit 1
 PUBLISH_DIR="${PUBLISH_DIR:-/home/mph/apps/ah-portal/api}"
 mkdir -p data/telegram_funnel reports/analysis api
+# Freshness stamp: a file counts as built by THIS run only if it is newer than this marker. After the git reset the
+# checkout holds committed copies of api/*.json; without this check a failed build would publish them over the live files.
+STAMP="$(mktemp)"; trap 'rm -f "$STAMP"' EXIT
 timeout 3000 python3 tg_watch.py        # snapshot, diff vs previous, archive new public posts, parse callouts
 timeout 2400 python3 tg_outcomes.py >/dev/null || echo "tg_outcomes failed or timed out (keeping previous outcomes)"
 python3 funnel_tickers.py >/dev/null || echo "funnel_tickers failed"
@@ -14,24 +17,46 @@ python3 build_funnel_calls.py || echo "build_funnel_calls failed"
 timeout 1500 python3 tg_fx_signals.py >/dev/null || echo "tg_fx_signals failed or timed out (keeping previous fx signals)"
 python3 build_funnel_scorecard.py || echo "build_funnel_scorecard failed"
 if [ -d "$PUBLISH_DIR" ]; then
-  # file:key that must be a non-empty list for the file to be published
-  for spec in funnel-calls.json:count funnel-tickers.json:count funnel-scorecard.json:scorecard funnel-fx-signals.json:count; do
+  # Publish gate, per file (FORCE_PUBLISH=1 skips the shrink check only, never the freshness check):
+  #   1. fresh: built by this run (newer than $STAMP), so a failed build cannot republish the committed copy
+  #   2. populated: count > 0 (scorecard: both options and FX halves)
+  #   3. never shrinks: against the file already live, options n_scored and callout totals must stay >= 80% and FX
+  #      scored signals >= 50% (FX ages out of Yahoo's 60-day 5m window, options only accumulate). A run on a thin
+  #      archive (e.g. the server's, which is smaller than the local one) therefore cannot replace a richer live file.
+  for spec in funnel-calls.json:count funnel-tickers.json:count funnel-scorecard.json:scorecard funnel-fx-signals.json:fx; do
     f="${spec%%:*}"; key="${spec##*:}"
-    if python3 - "api/$f" "$key" <<'PY'
+    if [ ! "api/$f" -nt "$STAMP" ]; then echo "skip publish $f (not rebuilt by this run)"; continue; fi
+    if python3 - "api/$f" "$PUBLISH_DIR/$f" "$key" "${FORCE_PUBLISH:-0}" <<'PY'
 import json, sys
-d = json.load(open(sys.argv[1]))
-if sys.argv[2] == "scorecard":
-    # both halves must be populated, so a failed tg_fx_signals run cannot replace a good live scorecard with an FX-less one
-    ok = (bool(d.get("generated_at")) and (d.get("options", {}).get("pooled") or {}).get("n_scored", 0) > 0
-          and (d.get("fx", {}).get("pooled") or {}).get("n_signals_scored", 0) > 0)
-else:
-    ok = d.get("count", 0) > 0
-sys.exit(0 if ok else 1)
+new_p, live_p, key, force = sys.argv[1:5]
+def load(p):
+    try:
+        return json.load(open(p))
+    except Exception:
+        return None
+def metrics(d, key):
+    if key == "scorecard":
+        return {"options n_scored": ((d.get("options") or {}).get("pooled") or {}).get("n_scored", 0),
+                "fx n_signals_scored": ((d.get("fx") or {}).get("pooled") or {}).get("n_signals_scored", 0)}
+    return {"total": d.get("total_parsed") or d.get("count", 0)}
+MIN_KEEP = {"options n_scored": 0.8, "fx n_signals_scored": 0.5, "total": 0.5 if key == "fx" else 0.8}
+new, live = load(new_p), load(live_p)
+if not isinstance(new, dict):
+    print("  invalid json"); sys.exit(1)
+nm = metrics(new, key)
+if not all(v > 0 for v in nm.values()) or (key == "scorecard" and not new.get("generated_at")):
+    print("  empty or half-populated:", nm); sys.exit(1)
+if isinstance(live, dict) and force != "1":
+    lm = metrics(live, key)
+    for k, v in nm.items():
+        if v < MIN_KEEP[k] * lm.get(k, 0):
+            print(f"  would shrink {k}: live {lm.get(k)} -> new {v}"); sys.exit(1)
+sys.exit(0)
 PY
     then
       cp "api/$f" "$PUBLISH_DIR/.$f.tmp" && mv "$PUBLISH_DIR/.$f.tmp" "$PUBLISH_DIR/$f" && echo "published $f"
     else
-      echo "skip publish $f (empty or invalid)"
+      echo "skip publish $f (empty, invalid or smaller than the live file)"
     fi
   done
 fi

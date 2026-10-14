@@ -1,14 +1,1072 @@
 {
  "source": "AfterMath parser over public Telegram channel posts (passive, read-only)",
- "generated_at": "2026-10-14T10:51:49Z",
+ "generated_at": "2026-10-14T20:23:24Z",
  "credit": "https://telegramscammers.com",
  "disclaimer": "Channels and accounts here are flagged for investigation, not a finding of fraud. Flag list curated by https://telegramscammers.com.",
  "small_sample_warning": "Based on 1146 scored option callouts posted 2026-06-08 to 2026-10-13 from public channels. Scores are hold-to-expiry intrinsic value against the entry price the channel quoted, with no slippage or fees; most are same-day index and large-cap options. Channels usually quote early exits, which are not what is scored here. A limited sample, not a settled rate, and not advice.",
  "quoted_results_are_channel_claims": "quoted_results_are_channel_claims: result_pct is what the channel itself posted, not verified, and winners dominate quoted closes (survivorship). Use 'outcome' (scored against the real tape) where present.",
- "total_parsed": 8571,
+ "total_parsed": 8630,
  "count": 1000,
- "calls_with_scored_outcome": 78,
+ "calls_with_scored_outcome": 67,
  "calls": [
+  {
+   "channel": "t.me/de_gainers_free_circle",
+   "posted": "2026-10-14T16:52:44+00:00",
+   "ticker": "QQQ",
+   "kind": "option",
+   "side": "put",
+   "strike": 728.0,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": 577.0,
+   "text": "QQQ 728P 0.18-1.22 $104/CON! done +577%",
+   "parse_flags": [
+    "exit_price_only",
+    "no_expiry",
+    "result_claim"
+   ]
+  },
+  {
+   "channel": "t.me/bzjzhzhzuzzu",
+   "posted": "2026-10-14T16:40:07+00:00",
+   "ticker": "MCD",
+   "kind": "option",
+   "side": "call",
+   "strike": 250.0,
+   "expiry": "2026-11-20",
+   "entry_price": 2.88,
+   "action": "open",
+   "result_pct": null,
+   "text": "🚨 MCD TRADE CALL 🚨 🚀 $MCD 11/20 250C @ $2.88",
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-11-20 not yet passed",
+    "expiry_effective": "2026-11-20",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T15:54:27+00:00",
+   "ticker": "SPY",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": 350.0,
+   "text": "$SPY Options | 350% Return! ✅ Contracts scaling up to 4.7. That is what happens when you let a high-conviction directional move run clean off the opening print...",
+   "parse_flags": [
+    "contract_unknown",
+    "result_claim"
+   ]
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T15:54:27+00:00",
+   "ticker": "SPX",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "$SPY Options | 350% Return! ✅ Contracts scaling up to 4.7. That is what happens when you let a high-conviction directional move run clean off the opening print...",
+   "parse_flags": [
+    "index_option"
+   ]
+  },
+  {
+   "channel": "t.me/trexfreecircle",
+   "posted": "2026-10-14T15:53:13+00:00",
+   "ticker": "RPRX",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "$RPRX going parabolic with the Market dumping"
+  },
+  {
+   "channel": "t.me/trexfreecircle",
+   "posted": "2026-10-14T15:52:30+00:00",
+   "ticker": "RPRX",
+   "kind": "option",
+   "side": "call",
+   "strike": 60.0,
+   "expiry": "2026-10-16",
+   "entry_price": 0.25,
+   "action": "open",
+   "result_pct": null,
+   "text": "THIS CAN GO 500%🦅 $RPRX 60 Call 10/16.25🚨",
+   "parse_flags": [
+    "duplicate_echo",
+    "entry_from_tail"
+   ],
+   "outcome": {
+    "status": "excluded",
+    "reason": "parse_flag: duplicate_echo",
+    "expiry_effective": "2026-10-16",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/trexfreecircle",
+   "posted": "2026-10-14T15:52:08+00:00",
+   "ticker": "RPRX",
+   "kind": "option",
+   "side": "call",
+   "strike": 60.0,
+   "expiry": "2026-10-16",
+   "entry_price": 0.25,
+   "action": "open",
+   "result_pct": null,
+   "text": "HIGH CONFIDENCE☢️ $RPRX 60 Call 10/16.25🚨",
+   "parse_flags": [
+    "entry_from_tail"
+   ],
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-10-16 not yet passed",
+    "expiry_effective": "2026-10-16",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/bzjzhzhzuzzu",
+   "posted": "2026-10-14T15:30:03+00:00",
+   "ticker": "SPX",
+   "kind": "stock",
+   "side": "put",
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": -25.0,
+   "text": "🚨🔥 ANOTHER DAY, ANOTHER SET OF OPPORTUNITIES! 🔥🚨 📈 LOOK AT THESE RESULTS! 👀💰 🔴 SPX PUTS → -25% Loss 🟢 QQQ PUTS → +20% GAINS 🟢 SPX CALLS → +38% GAINS 🟢 QQQ CALL...",
+   "parse_flags": [
+    "contract_unknown",
+    "index_option",
+    "no_strike",
+    "result_claim"
+   ]
+  },
+  {
+   "channel": "t.me/bzjzhzhzuzzu",
+   "posted": "2026-10-14T15:30:03+00:00",
+   "ticker": "QQQ",
+   "kind": "stock",
+   "side": "put",
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": 20.0,
+   "text": "🚨🔥 ANOTHER DAY, ANOTHER SET OF OPPORTUNITIES! 🔥🚨 📈 LOOK AT THESE RESULTS! 👀💰 🔴 SPX PUTS → -25% Loss 🟢 QQQ PUTS → +20% GAINS 🟢 SPX CALLS → +38% GAINS 🟢 QQQ CALL...",
+   "parse_flags": [
+    "contract_unknown",
+    "no_strike",
+    "result_claim"
+   ]
+  },
+  {
+   "channel": "t.me/tradevisionst",
+   "posted": "2026-10-14T15:08:40+00:00",
+   "ticker": "SPY",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "$SPY | 20%",
+   "parse_flags": [
+    "pct_unlabelled"
+   ]
+  },
+  {
+   "channel": "t.me/bzjzhzhzuzzu",
+   "posted": "2026-10-14T14:59:01+00:00",
+   "ticker": "AAPL",
+   "kind": "option",
+   "side": "call",
+   "strike": 350.0,
+   "expiry": "2026-10-16",
+   "entry_price": 0.84,
+   "action": "open",
+   "result_pct": null,
+   "text": "🚨 AAPL TRADE CALL 🚨 🚀 $AAPL 10/16 350C @ $0.84",
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-10-16 not yet passed",
+    "expiry_effective": "2026-10-16",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/bzjzhzhzuzzu",
+   "posted": "2026-10-14T14:55:14+00:00",
+   "ticker": "NVDA",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": 0.42,
+   "action": "mention",
+   "result_pct": null,
+   "text": "🚨 NVDA TRADE UPDATE 🚨 🚀 $NVDA 0.61 FROM $0.42",
+   "parse_flags": [
+    "price_update"
+   ]
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T14:51:23+00:00",
+   "ticker": "SPY",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Smart risk management. Locking in the vast majority of the profits right at the structural target of 773 while leaving a few runners to test any deeper exhaust..."
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T14:51:23+00:00",
+   "ticker": "SPX",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Smart risk management. Locking in the vast majority of the profits right at the structural target of 773 while leaving a few runners to test any deeper exhaust...",
+   "parse_flags": [
+    "index_option"
+   ]
+  },
+  {
+   "channel": "t.me/queen_free_entries",
+   "posted": "2026-10-14T14:48:48+00:00",
+   "ticker": "SPY",
+   "kind": "option",
+   "side": "call",
+   "strike": 773.0,
+   "expiry": "2026-10-15",
+   "entry_price": 2.33,
+   "action": "open",
+   "result_pct": null,
+   "text": "$SPY calls 1 dte $773 @ 2.33",
+   "parse_flags": [
+    "expiry_dte_tag"
+   ],
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-10-15 not yet passed",
+    "expiry_effective": "2026-10-15",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/mrquickerfreealert",
+   "posted": "2026-10-14T14:43:15+00:00",
+   "ticker": "NVDA",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": 0.42,
+   "action": "close",
+   "result_pct": 45.0,
+   "text": "$NVDA @0.61 from 0.42 | + 45% ❤️🔥",
+   "parse_flags": [
+    "contract_unknown",
+    "result_claim"
+   ]
+  },
+  {
+   "channel": "t.me/bzjzhzhzuzzu",
+   "posted": "2026-10-14T14:40:55+00:00",
+   "ticker": "NVDA",
+   "kind": "option",
+   "side": "put",
+   "strike": 222.5,
+   "expiry": "2026-10-14",
+   "entry_price": 0.42,
+   "action": "open",
+   "result_pct": null,
+   "text": "🚨 NVDA TRADE CALL 🚨 🚀 $NVDA 10/14 222.5P @ $0.42",
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-10-14 not yet passed",
+    "expiry_effective": "2026-10-14",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T14:40:27+00:00",
+   "ticker": "SPY",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Target locked and loaded. 773 hit with absolute surgical precision. 🎯 \"Short the highs, cover the lows.\" Keep that rhythm dialed. That's how consistency is bui..."
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T14:40:27+00:00",
+   "ticker": "SPX",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Target locked and loaded. 773 hit with absolute surgical precision. 🎯 \"Short the highs, cover the lows.\" Keep that rhythm dialed. That's how consistency is bui...",
+   "parse_flags": [
+    "index_option"
+   ]
+  },
+  {
+   "channel": "t.me/bzjzhzhzuzzu",
+   "posted": "2026-10-14T14:38:16+00:00",
+   "ticker": "NVDA",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": 0.42,
+   "action": "mention",
+   "result_pct": null,
+   "text": "🚨 NVDA TRADE UPDATE 🚨 🚀 $NVDA 0.53 FROM $0.42",
+   "parse_flags": [
+    "price_update"
+   ]
+  },
+  {
+   "channel": "t.me/mrquickerfreealert",
+   "posted": "2026-10-14T14:34:25+00:00",
+   "ticker": "NVDA",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": 26.0,
+   "text": "$NVDA @0.53 from @0.42 | + 26% ❤️🔥",
+   "parse_flags": [
+    "contract_unknown",
+    "exit_price_only",
+    "result_claim"
+   ]
+  },
+  {
+   "channel": "t.me/mrquickerfreealert",
+   "posted": "2026-10-14T14:29:28+00:00",
+   "ticker": "NVDA",
+   "kind": "stock",
+   "side": "put",
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "$NVDA PUT on watch 👀",
+   "parse_flags": [
+    "no_strike"
+   ]
+  },
+  {
+   "channel": "t.me/de_gainers_free_circle",
+   "posted": "2026-10-14T14:27:06+00:00",
+   "ticker": "NVDA",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "$NVDA p on watch"
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T14:24:46+00:00",
+   "ticker": "SPY",
+   "kind": "stock",
+   "side": "put",
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": 150.0,
+   "text": "$SPY Puts | 150% Profit Hit! ✅ Absolute masterclass on execution today. We’re not done yet! $SPY $SPX",
+   "parse_flags": [
+    "no_strike",
+    "result_claim"
+   ]
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T14:24:46+00:00",
+   "ticker": "SPX",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "$SPY Puts | 150% Profit Hit! ✅ Absolute masterclass on execution today. We’re not done yet! $SPY $SPX",
+   "parse_flags": [
+    "index_option"
+   ]
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T14:22:38+00:00",
+   "ticker": "SPY",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Trade Plan Update | Oct 14 CPI drop caused an overnight gap down. Respecting the structural rejection around the 776 level and playing the downward momentum to..."
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T14:22:38+00:00",
+   "ticker": "SPX",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Trade Plan Update | Oct 14 CPI drop caused an overnight gap down. Respecting the structural rejection around the 776 level and playing the downward momentum to...",
+   "parse_flags": [
+    "index_option"
+   ]
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T14:20:21+00:00",
+   "ticker": "SPY",
+   "kind": "option",
+   "side": "put",
+   "strike": 775.0,
+   "expiry": null,
+   "entry_price": 1.04,
+   "action": "open",
+   "result_pct": null,
+   "text": "$SPY 775 Put @ 1.04 Entering short territory. Playing the momentum down as we target that lower structural boundary. Managing risk tightly.",
+   "parse_flags": [
+    "duplicate_echo",
+    "no_expiry",
+    "tp_sl_present"
+   ],
+   "outcome": {
+    "status": "excluded",
+    "reason": "parse_flag: duplicate_echo",
+    "expiry_effective": null,
+    "expiry_note": "no expiry (unknown, not assumed 0DTE)"
+   }
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T14:19:30+00:00",
+   "ticker": "SPY",
+   "kind": "option",
+   "side": "put",
+   "strike": 775.0,
+   "expiry": null,
+   "entry_price": 1.04,
+   "action": "open",
+   "result_pct": null,
+   "text": "$SPY 775 Put @ 1.04 Entering short territory. Playing the momentum down as we target that lower structural boundary. Managing risk tightly.",
+   "parse_flags": [
+    "duplicate_echo",
+    "no_expiry",
+    "tp_sl_present"
+   ],
+   "outcome": {
+    "status": "excluded",
+    "reason": "parse_flag: duplicate_echo",
+    "expiry_effective": null,
+    "expiry_note": "no expiry (unknown, not assumed 0DTE)"
+   }
+  },
+  {
+   "channel": "t.me/bzjzhzhzuzzu",
+   "posted": "2026-10-14T14:18:53+00:00",
+   "ticker": "PENG",
+   "kind": "option",
+   "side": "call",
+   "strike": 80.0,
+   "expiry": "2026-11-20",
+   "entry_price": 5.6,
+   "action": "open",
+   "result_pct": null,
+   "text": "🚨 PENG TRADE CALL 🚨 🚀 $PENG 11/20 80C @ $5.60",
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-11-20 not yet passed",
+    "expiry_effective": "2026-11-20",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T14:18:35+00:00",
+   "ticker": "SPY",
+   "kind": "option",
+   "side": "put",
+   "strike": 775.0,
+   "expiry": null,
+   "entry_price": 1.04,
+   "action": "open",
+   "result_pct": null,
+   "text": "$SPY 775 Put @ 1.04 Entering short territory. Playing the momentum down as we target that lower structural boundary. Managing risk tightly.",
+   "parse_flags": [
+    "no_expiry",
+    "tp_sl_present"
+   ],
+   "outcome": {
+    "status": "unscorable",
+    "reason": "no expiry (unknown, not assumed 0DTE)",
+    "expiry_effective": null,
+    "expiry_note": "no expiry (unknown, not assumed 0DTE)"
+   }
+  },
+  {
+   "channel": "t.me/tradevisionst",
+   "posted": "2026-10-14T14:16:43+00:00",
+   "ticker": "SPY",
+   "kind": "option",
+   "side": "put",
+   "strike": 771.0,
+   "expiry": "2026-10-14",
+   "entry_price": 0.51,
+   "action": "open",
+   "result_pct": null,
+   "text": "$SPY 771 PUT @.51 0DTE",
+   "parse_flags": [
+    "duplicate_echo",
+    "expiry_0dte_tag"
+   ],
+   "outcome": {
+    "status": "excluded",
+    "reason": "parse_flag: duplicate_echo",
+    "expiry_effective": "2026-10-14",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/mrquickerfreealert",
+   "posted": "2026-10-14T14:12:09+00:00",
+   "ticker": "SPY",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "$SPY | 30% Pay yourself. ❤️💰",
+   "parse_flags": [
+    "pct_unlabelled"
+   ]
+  },
+  {
+   "channel": "t.me/moonwalkertrades2",
+   "posted": "2026-10-14T14:11:17+00:00",
+   "ticker": "TSLA",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "$TSLA A+ setup beautiful move there, lets see how much it can push though good win so far"
+  },
+  {
+   "channel": "t.me/tradevisionst",
+   "posted": "2026-10-14T14:07:18+00:00",
+   "ticker": "SPY",
+   "kind": "option",
+   "side": "put",
+   "strike": 771.0,
+   "expiry": "2026-10-14",
+   "entry_price": 0.51,
+   "action": "open",
+   "result_pct": null,
+   "text": "$SPY 771 PUT @.51 0DTE",
+   "parse_flags": [
+    "duplicate_echo",
+    "expiry_0dte_tag"
+   ],
+   "outcome": {
+    "status": "excluded",
+    "reason": "parse_flag: duplicate_echo",
+    "expiry_effective": "2026-10-14",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/mrquickerfreealert",
+   "posted": "2026-10-14T14:06:38+00:00",
+   "ticker": "SPY",
+   "kind": "option",
+   "side": "put",
+   "strike": 771.0,
+   "expiry": "2026-10-14",
+   "entry_price": 0.51,
+   "action": "open",
+   "result_pct": null,
+   "text": "$SPY OCT/14 771PUT e.51 ODTE",
+   "parse_flags": [
+    "cross_channel_echo"
+   ],
+   "outcome": {
+    "status": "excluded",
+    "reason": "parse_flag: cross_channel_echo",
+    "expiry_effective": "2026-10-14",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/tradevisionst",
+   "posted": "2026-10-14T14:05:50+00:00",
+   "ticker": "SPY",
+   "kind": "option",
+   "side": "put",
+   "strike": 771.0,
+   "expiry": "2026-10-14",
+   "entry_price": 0.51,
+   "action": "open",
+   "result_pct": null,
+   "text": "$SPY 771 PUT @.51 0DTE",
+   "parse_flags": [
+    "expiry_0dte_tag"
+   ],
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-10-14 not yet passed",
+    "expiry_effective": "2026-10-14",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/moonwalkertrades2",
+   "posted": "2026-10-14T14:03:30+00:00",
+   "ticker": "TSLA",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": null,
+   "text": "Closed rest of $TSLA very nice w"
+  },
+  {
+   "channel": "t.me/moonwalkertrades2",
+   "posted": "2026-10-14T14:00:17+00:00",
+   "ticker": "TSLA",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Took out half here on $TSLA, SL to b/e",
+   "parse_flags": [
+    "tp_sl_present"
+   ]
+  },
+  {
+   "channel": "t.me/moonwalkertrades2",
+   "posted": "2026-10-14T13:59:56+00:00",
+   "ticker": "TSLA",
+   "kind": "option",
+   "side": "put",
+   "strike": 365.0,
+   "expiry": null,
+   "entry_price": 1.78,
+   "action": "open",
+   "result_pct": null,
+   "text": "$TSLA $365p $1.78",
+   "parse_flags": [
+    "cross_channel_echo",
+    "entry_from_tail",
+    "no_expiry"
+   ],
+   "outcome": {
+    "status": "excluded",
+    "reason": "parse_flag: cross_channel_echo",
+    "expiry_effective": null,
+    "expiry_note": "no expiry (unknown, not assumed 0DTE)"
+   }
+  },
+  {
+   "channel": "t.me/de_gainers_free_circle",
+   "posted": "2026-10-14T13:59:01+00:00",
+   "ticker": "SPY",
+   "kind": "stock",
+   "side": "call",
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "close",
+   "result_pct": 55.0,
+   "text": "spy calls @ X-55% flipped to puts",
+   "parse_flags": [
+    "contract_unknown",
+    "no_strike",
+    "result_claim"
+   ]
+  },
+  {
+   "channel": "t.me/ajfreealart32",
+   "posted": "2026-10-14T13:58:25+00:00",
+   "ticker": "TSLA",
+   "kind": "option",
+   "side": "put",
+   "strike": 365.0,
+   "expiry": null,
+   "entry_price": 1.78,
+   "action": "open",
+   "result_pct": null,
+   "text": "TSLA $365p $1.78",
+   "parse_flags": [
+    "entry_from_tail",
+    "no_expiry"
+   ],
+   "outcome": {
+    "status": "unscorable",
+    "reason": "no expiry (unknown, not assumed 0DTE)",
+    "expiry_effective": null,
+    "expiry_note": "no expiry (unknown, not assumed 0DTE)"
+   }
+  },
+  {
+   "channel": "t.me/tradevisionst",
+   "posted": "2026-10-14T13:56:01+00:00",
+   "ticker": "TSLA",
+   "kind": "option",
+   "side": "call",
+   "strike": 372.5,
+   "expiry": "2026-10-14",
+   "entry_price": 0.68,
+   "action": "open",
+   "result_pct": null,
+   "text": "$TSLA 372.5 CALL @.68 0DTE",
+   "parse_flags": [
+    "duplicate_echo",
+    "expiry_0dte_tag"
+   ],
+   "outcome": {
+    "status": "excluded",
+    "reason": "parse_flag: duplicate_echo",
+    "expiry_effective": "2026-10-14",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T13:52:33+00:00",
+   "ticker": "SPY",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Market Plan Short targeting 773. $SPY $SPX"
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T13:52:33+00:00",
+   "ticker": "SPX",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Market Plan Short targeting 773. $SPY $SPX",
+   "parse_flags": [
+    "index_option"
+   ]
+  },
+  {
+   "channel": "t.me/crestedgeroom",
+   "posted": "2026-10-14T13:46:47+00:00",
+   "ticker": "AAPL",
+   "kind": "option",
+   "side": "call",
+   "strike": 350.0,
+   "expiry": "2026-10-16",
+   "entry_price": 1.25,
+   "action": "open",
+   "result_pct": null,
+   "text": "$AAPL 350C 10/16 @ $1.25",
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-10-16 not yet passed",
+    "expiry_effective": "2026-10-16",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/tradevisionst",
+   "posted": "2026-10-14T13:42:41+00:00",
+   "ticker": "TSLA",
+   "kind": "option",
+   "side": "call",
+   "strike": 372.5,
+   "expiry": "2026-10-14",
+   "entry_price": 0.68,
+   "action": "open",
+   "result_pct": null,
+   "text": "$TSLA 372.5 CALL @.68 0DTE",
+   "parse_flags": [
+    "expiry_0dte_tag"
+   ],
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-10-14 not yet passed",
+    "expiry_effective": "2026-10-14",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/bob_signalsfreealert",
+   "posted": "2026-10-14T13:37:04+00:00",
+   "ticker": "QQQ",
+   "kind": "option",
+   "side": "put",
+   "strike": 735.0,
+   "expiry": "2026-10-14",
+   "entry_price": null,
+   "action": "close",
+   "result_pct": null,
+   "text": "Contract: QQQ 10/14 735P I'm trimming here for 17%🔥🔥 Notes: right at lows!",
+   "parse_flags": [
+    "pct_unlabelled"
+   ]
+  },
+  {
+   "channel": "t.me/crestedgeroom",
+   "posted": "2026-10-14T13:36:13+00:00",
+   "ticker": "AMZN",
+   "kind": "option",
+   "side": "call",
+   "strike": 257.5,
+   "expiry": "2026-10-14",
+   "entry_price": 1.59,
+   "action": "close",
+   "result_pct": 38.4,
+   "text": "$AMZN 257.5C 10/14, CLOSED Entry Price: $1.59 Exit Price: $2.20 Gain: +38.4% 🏆",
+   "parse_flags": [
+    "result_claim"
+   ]
+  },
+  {
+   "channel": "t.me/queen_free_entries",
+   "posted": "2026-10-14T13:34:48+00:00",
+   "ticker": "NVDA",
+   "kind": "option",
+   "side": "put",
+   "strike": 225.0,
+   "expiry": null,
+   "entry_price": 1.3,
+   "action": "open",
+   "result_pct": null,
+   "text": "$NVDA 225P 1.3",
+   "parse_flags": [
+    "entry_from_tail",
+    "no_expiry"
+   ],
+   "outcome": {
+    "status": "unscorable",
+    "reason": "no expiry (unknown, not assumed 0DTE)",
+    "expiry_effective": null,
+    "expiry_note": "no expiry (unknown, not assumed 0DTE)"
+   }
+  },
+  {
+   "channel": "t.me/bob_signalsfreealert",
+   "posted": "2026-10-14T13:33:33+00:00",
+   "ticker": "QQQ",
+   "kind": "option",
+   "side": "put",
+   "strike": 735.0,
+   "expiry": "2026-10-14",
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Contract: QQQ 10/14 735P Up 11%🔥🔥 Notes: ****",
+   "parse_flags": [
+    "unrealized_pct"
+   ]
+  },
+  {
+   "channel": "t.me/bzjzhzhzuzzu",
+   "posted": "2026-10-14T13:33:31+00:00",
+   "ticker": "SPX",
+   "kind": "option",
+   "side": "put",
+   "strike": 7735.0,
+   "expiry": "2026-10-14",
+   "entry_price": 2.9,
+   "action": "open",
+   "result_pct": null,
+   "text": "🚨 SPX TRADE CALL 🚨 🚀 $SPX 10/14 7735P @ $2.90",
+   "parse_flags": [
+    "index_option"
+   ],
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-10-14 not yet passed",
+    "expiry_effective": "2026-10-14",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/bob_signalsfreealert",
+   "posted": "2026-10-14T13:32:38+00:00",
+   "ticker": "QQQ",
+   "kind": "option",
+   "side": "put",
+   "strike": 735.0,
+   "expiry": "2026-10-14",
+   "entry_price": 1.18,
+   "action": "open",
+   "result_pct": null,
+   "text": "Contract: QQQ 10/14 735P Entry: 1.18 Notes: looking for continuation",
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-10-14 not yet passed",
+    "expiry_effective": "2026-10-14",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/crestedgeroom",
+   "posted": "2026-10-14T13:32:17+00:00",
+   "ticker": "AMZN",
+   "kind": "option",
+   "side": "call",
+   "strike": 257.5,
+   "expiry": "2026-10-14",
+   "entry_price": 1.59,
+   "action": "open",
+   "result_pct": null,
+   "text": "$AMZN 257.5C 10/14 Entry Price: $1.59",
+   "outcome": {
+    "status": "pending",
+    "reason": "expiry 2026-10-14 not yet passed",
+    "expiry_effective": "2026-10-14",
+    "expiry_note": null
+   }
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T13:30:25+00:00",
+   "ticker": "SPY",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Long to 781 ✅ Short to 779 ✅ Precision execution on the range swings! $SPY $SPX"
+  },
+  {
+   "channel": "t.me/dannycwaynetradingroom",
+   "posted": "2026-10-14T13:30:25+00:00",
+   "ticker": "SPX",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Long to 781 ✅ Short to 779 ✅ Precision execution on the range swings! $SPY $SPX",
+   "parse_flags": [
+    "index_option"
+   ]
+  },
+  {
+   "channel": "t.me/dennis1btc1",
+   "posted": "2026-10-14T11:29:51+00:00",
+   "ticker": "BONK",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Another memecoin infographic. Yet another reminder that memes are the most dangerous «financial instrument» in crypto. Maybe in any market... Still, I’m surpri...",
+   "parse_flags": [
+    "crypto"
+   ]
+  },
+  {
+   "channel": "t.me/dennis1btc1",
+   "posted": "2026-10-14T11:29:51+00:00",
+   "ticker": "WIF",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Another memecoin infographic. Yet another reminder that memes are the most dangerous «financial instrument» in crypto. Maybe in any market... Still, I’m surpri...",
+   "parse_flags": [
+    "crypto"
+   ]
+  },
+  {
+   "channel": "t.me/dennis1btc1",
+   "posted": "2026-10-14T11:29:51+00:00",
+   "ticker": "PENGU",
+   "kind": "stock",
+   "side": null,
+   "strike": null,
+   "expiry": null,
+   "entry_price": null,
+   "action": "mention",
+   "result_pct": null,
+   "text": "Another memecoin infographic. Yet another reminder that memes are the most dangerous «financial instrument» in crypto. Maybe in any market... Still, I’m surpri..."
+  },
   {
    "channel": "t.me/mrquickerfreealert",
    "posted": "2026-10-14T04:03:07+00:00",
@@ -18117,1273 +19175,6 @@
     "expiry_effective": null,
     "expiry_note": "no expiry (unknown, not assumed 0DTE)"
    }
-  },
-  {
-   "channel": "t.me/mrfortunefreeflow",
-   "posted": "2026-10-07T14:57:27+00:00",
-   "ticker": "QQQ",
-   "kind": "option",
-   "side": "call",
-   "strike": 755.0,
-   "expiry": "2026-10-07",
-   "entry_price": 0.88,
-   "action": "open",
-   "result_pct": null,
-   "text": "BTO $QQQ 755c 10/07 @0.88 Lighter size, not a fan of the chop today.",
-   "outcome": {
-    "status": "scored",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null,
-    "price_source": "yahoo",
-    "underlying_close_at_expiry": 757.73,
-    "intrinsic": 2.73,
-    "worthless": false,
-    "breakeven_level": 755.88,
-    "pnl_per_contract": 185.0,
-    "return_multiple": 3.1023,
-    "return_pct": 210.23,
-    "win": true,
-    "touched_breakeven_optimistic": true,
-    "touch_window": "5m"
-   }
-  },
-  {
-   "channel": "t.me/mrfortunefreeflow",
-   "posted": "2026-10-07T14:53:19+00:00",
-   "ticker": "SPY",
-   "kind": "stock",
-   "side": "put",
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 11.0,
-   "text": "spy puts @ 11%",
-   "parse_flags": [
-    "contract_unknown",
-    "no_strike",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/trexfreecircle",
-   "posted": "2026-10-07T14:50:48+00:00",
-   "ticker": "NWE",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "mention",
-   "result_pct": null,
-   "text": "$NWE $80 up next"
-  },
-  {
-   "channel": "t.me/trexfreecircle",
-   "posted": "2026-10-07T14:50:16+00:00",
-   "ticker": "NWE",
-   "kind": "option",
-   "side": "call",
-   "strike": 80.0,
-   "expiry": "2026-10-16",
-   "entry_price": null,
-   "action": "open",
-   "result_pct": null,
-   "text": "$NWE 80 Call 10/16 HERE🚨🚨🚨",
-   "parse_flags": [
-    "duplicate_echo",
-    "entry_unknown"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: duplicate_echo",
-    "expiry_effective": "2026-10-16",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/trexfreecircle",
-   "posted": "2026-10-07T14:49:57+00:00",
-   "ticker": "NWE",
-   "kind": "option",
-   "side": "call",
-   "strike": 80.0,
-   "expiry": "2026-10-16",
-   "entry_price": null,
-   "action": "open",
-   "result_pct": null,
-   "text": "THIS CAN GO 500%🦅 $NWE 80 Call 10/16🚨",
-   "parse_flags": [
-    "entry_unknown"
-   ],
-   "outcome": {
-    "status": "unscorable",
-    "reason": "missing entry_price",
-    "expiry_effective": "2026-10-16",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/trexfreecircle",
-   "posted": "2026-10-07T14:49:35+00:00",
-   "ticker": "NWE",
-   "kind": "option",
-   "side": "call",
-   "strike": 80.0,
-   "expiry": "2026-10-16",
-   "entry_price": 0.45,
-   "action": "open",
-   "result_pct": null,
-   "text": "HIGH CONFIDENCE☢️ $NWE 80 Call 10/16.45🚨",
-   "parse_flags": [
-    "entry_from_tail"
-   ],
-   "outcome": {
-    "status": "pending",
-    "reason": "expiry 2026-10-16 not yet passed",
-    "expiry_effective": "2026-10-16",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/trexfreecircle",
-   "posted": "2026-10-07T14:49:12+00:00",
-   "ticker": "PGNY",
-   "kind": "option",
-   "side": "call",
-   "strike": 30.0,
-   "expiry": "2026-10-16",
-   "entry_price": 0.15,
-   "action": "open",
-   "result_pct": null,
-   "text": "HIGH CONFIDENCE☢️ $PGNY 30 Call 10/16.15🚨",
-   "parse_flags": [
-    "entry_from_tail"
-   ],
-   "outcome": {
-    "status": "pending",
-    "reason": "expiry 2026-10-16 not yet passed",
-    "expiry_effective": "2026-10-16",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/queen_free_entries",
-   "posted": "2026-10-07T14:46:28+00:00",
-   "ticker": "SPY",
-   "kind": "option",
-   "side": "put",
-   "strike": 774.0,
-   "expiry": "2026-10-07",
-   "entry_price": 1.01,
-   "action": "open",
-   "result_pct": null,
-   "text": "BTO $SPY 774P 0dte @1.01",
-   "parse_flags": [
-    "duplicate_echo",
-    "expiry_0dte_tag"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: duplicate_echo",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/de_gainers_free_circle",
-   "posted": "2026-10-07T14:46:14+00:00",
-   "ticker": "SPY",
-   "kind": "option",
-   "side": "put",
-   "strike": 773.0,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 26.0,
-   "text": "$SPY 773p +26%",
-   "parse_flags": [
-    "no_expiry",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T14:42:01+00:00",
-   "ticker": "QQQ",
-   "kind": "option",
-   "side": "put",
-   "strike": 752.0,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 20.0,
-   "text": "Ohh and that QQQ 752P +20%🔥",
-   "parse_flags": [
-    "no_expiry",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/moonwalkertrades2",
-   "posted": "2026-10-07T14:41:51+00:00",
-   "ticker": "QQQ",
-   "kind": "option",
-   "side": "call",
-   "strike": 756.0,
-   "expiry": "2026-10-07",
-   "entry_price": 0.86,
-   "action": "open",
-   "result_pct": null,
-   "text": "$QQQ 756C 0.86 Odte",
-   "parse_flags": [
-    "cross_channel_echo",
-    "entry_from_tail",
-    "expiry_0dte_tag"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: cross_channel_echo",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/apextraderkoryphae",
-   "posted": "2026-10-07T14:41:44+00:00",
-   "ticker": "AMZN",
-   "kind": "option",
-   "side": "call",
-   "strike": 257.5,
-   "expiry": null,
-   "entry_price": 0.12,
-   "action": "open",
-   "result_pct": null,
-   "text": "$AMZN 257.5C @.12",
-   "parse_flags": [
-    "no_expiry"
-   ],
-   "outcome": {
-    "status": "unscorable",
-    "reason": "no expiry (unknown, not assumed 0DTE)",
-    "expiry_effective": null,
-    "expiry_note": "no expiry (unknown, not assumed 0DTE)"
-   }
-  },
-  {
-   "channel": "t.me/ajfreealart32",
-   "posted": "2026-10-07T14:41:34+00:00",
-   "ticker": "QQQ",
-   "kind": "option",
-   "side": "call",
-   "strike": 756.0,
-   "expiry": "2026-10-07",
-   "entry_price": 0.86,
-   "action": "open",
-   "result_pct": null,
-   "text": "QQQ 756C 0.86 Odte",
-   "parse_flags": [
-    "entry_from_tail",
-    "expiry_0dte_tag"
-   ],
-   "outcome": {
-    "status": "scored",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null,
-    "price_source": "yahoo",
-    "underlying_close_at_expiry": 757.73,
-    "intrinsic": 1.73,
-    "worthless": false,
-    "breakeven_level": 756.86,
-    "pnl_per_contract": 87.0,
-    "return_multiple": 2.0116,
-    "return_pct": 101.16,
-    "win": true,
-    "touched_breakeven_optimistic": true,
-    "touch_window": "5m"
-   }
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T14:39:59+00:00",
-   "ticker": "IWM",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": -10.0,
-   "text": "Morning Recap 🔴$IWM -> -10% loss 🔴 QQQ calls -> -21% Loss 🟢 QQQ puts -> +57% Gains 🟢 SPX puts -> +14% Gains 🟢 SPX calls -> +22% Gains (ran a lot higher) 🟢 QQQ...",
-   "parse_flags": [
-    "contract_unknown",
-    "recap_item",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T14:39:59+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": "call",
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": -21.0,
-   "text": "Morning Recap 🔴$IWM -> -10% loss 🔴 QQQ calls -> -21% Loss 🟢 QQQ puts -> +57% Gains 🟢 SPX puts -> +14% Gains 🟢 SPX calls -> +22% Gains (ran a lot higher) 🟢 QQQ...",
-   "parse_flags": [
-    "contract_unknown",
-    "no_strike",
-    "recap_item",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T14:39:59+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": "put",
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 57.0,
-   "text": "Morning Recap 🔴$IWM -> -10% loss 🔴 QQQ calls -> -21% Loss 🟢 QQQ puts -> +57% Gains 🟢 SPX puts -> +14% Gains 🟢 SPX calls -> +22% Gains (ran a lot higher) 🟢 QQQ...",
-   "parse_flags": [
-    "contract_unknown",
-    "no_strike",
-    "recap_item",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T14:39:59+00:00",
-   "ticker": "SPX",
-   "kind": "stock",
-   "side": "put",
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 14.0,
-   "text": "Morning Recap 🔴$IWM -> -10% loss 🔴 QQQ calls -> -21% Loss 🟢 QQQ puts -> +57% Gains 🟢 SPX puts -> +14% Gains 🟢 SPX calls -> +22% Gains (ran a lot higher) 🟢 QQQ...",
-   "parse_flags": [
-    "contract_unknown",
-    "index_option",
-    "no_strike",
-    "recap_item",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T14:39:59+00:00",
-   "ticker": "SPX",
-   "kind": "stock",
-   "side": "call",
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 22.0,
-   "text": "Morning Recap 🔴$IWM -> -10% loss 🔴 QQQ calls -> -21% Loss 🟢 QQQ puts -> +57% Gains 🟢 SPX puts -> +14% Gains 🟢 SPX calls -> +22% Gains (ran a lot higher) 🟢 QQQ...",
-   "parse_flags": [
-    "contract_unknown",
-    "index_option",
-    "no_strike",
-    "recap_item",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T14:39:59+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": "call",
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 12.0,
-   "text": "Morning Recap 🔴$IWM -> -10% loss 🔴 QQQ calls -> -21% Loss 🟢 QQQ puts -> +57% Gains 🟢 SPX puts -> +14% Gains 🟢 SPX calls -> +22% Gains (ran a lot higher) 🟢 QQQ...",
-   "parse_flags": [
-    "contract_unknown",
-    "no_strike",
-    "recap_item",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T14:39:59+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": "call",
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": -36.0,
-   "text": "Morning Recap 🔴$IWM -> -10% loss 🔴 QQQ calls -> -21% Loss 🟢 QQQ puts -> +57% Gains 🟢 SPX puts -> +14% Gains 🟢 SPX calls -> +22% Gains (ran a lot higher) 🟢 QQQ...",
-   "parse_flags": [
-    "contract_unknown",
-    "no_strike",
-    "recap_item",
-    "result_claim",
-    "tp_sl_present"
-   ]
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T14:39:59+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": "call",
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 34.0,
-   "text": "Morning Recap 🔴$IWM -> -10% loss 🔴 QQQ calls -> -21% Loss 🟢 QQQ puts -> +57% Gains 🟢 SPX puts -> +14% Gains 🟢 SPX calls -> +22% Gains (ran a lot higher) 🟢 QQQ...",
-   "parse_flags": [
-    "contract_unknown",
-    "no_strike",
-    "recap_item",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/mrfortunefreeflow",
-   "posted": "2026-10-07T14:37:58+00:00",
-   "ticker": "TSLA",
-   "kind": "option",
-   "side": "call",
-   "strike": 377.5,
-   "expiry": "2026-10-07",
-   "entry_price": 1.03,
-   "action": "open",
-   "result_pct": null,
-   "text": "TSLA 377.5C ODTE @1.03",
-   "parse_flags": [
-    "expiry_0dte_tag"
-   ],
-   "outcome": {
-    "status": "scored",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null,
-    "price_source": "yahoo",
-    "underlying_close_at_expiry": 377.81,
-    "intrinsic": 0.31,
-    "worthless": false,
-    "breakeven_level": 378.53,
-    "pnl_per_contract": -72.0,
-    "return_multiple": 0.301,
-    "return_pct": -69.9,
-    "win": false,
-    "touched_breakeven_optimistic": false,
-    "touch_window": "5m"
-   }
-  },
-  {
-   "channel": "t.me/mrquickerfreealert",
-   "posted": "2026-10-07T14:34:16+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 34.0,
-   "text": "$QQQ | 34%🔥🔥RETURN!! 1.05 @PT",
-   "parse_flags": [
-    "contract_unknown",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/de_gainers_free_circle",
-   "posted": "2026-10-07T14:29:56+00:00",
-   "ticker": "SPY",
-   "kind": "option",
-   "side": "put",
-   "strike": 774.0,
-   "expiry": "2026-10-07",
-   "entry_price": 1.01,
-   "action": "open",
-   "result_pct": null,
-   "text": "BTO SPY 774P Odte @1.01",
-   "parse_flags": [
-    "cross_channel_echo",
-    "expiry_0dte_tag"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: cross_channel_echo",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/queen_free_entries",
-   "posted": "2026-10-07T14:29:34+00:00",
-   "ticker": "SPY",
-   "kind": "option",
-   "side": "put",
-   "strike": 774.0,
-   "expiry": "2026-10-07",
-   "entry_price": 1.01,
-   "action": "open",
-   "result_pct": null,
-   "text": "BTO $SPY 774P 0dte @1.01",
-   "parse_flags": [
-    "expiry_0dte_tag"
-   ],
-   "outcome": {
-    "status": "scored",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null,
-    "price_source": "yahoo",
-    "underlying_close_at_expiry": 777.22,
-    "intrinsic": 0.0,
-    "worthless": true,
-    "breakeven_level": 772.99,
-    "pnl_per_contract": -101.0,
-    "return_multiple": 0.0,
-    "return_pct": -100.0,
-    "win": false,
-    "touched_breakeven_optimistic": false,
-    "touch_window": "5m"
-   }
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T14:28:45+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": "call",
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 34.0,
-   "text": "$QQQ calls got 1.05 @ PT for +34% Gains 🔥 Was full size in that too so I'm finishing today @ HOD P&L-wise. Beautiful Perfect sell it looks like! 🎯",
-   "parse_flags": [
-    "exit_price_only",
-    "no_strike",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/de_gainers_free_circle",
-   "posted": "2026-10-07T14:28:12+00:00",
-   "ticker": "QQQ",
-   "kind": "option",
-   "side": "call",
-   "strike": 755.0,
-   "expiry": null,
-   "entry_price": null,
-   "action": "open",
-   "result_pct": null,
-   "text": "QQQ 755c back to 2.87 10%+ and QQQ 752c 3.40+ now 70%+😎😘🍿🩷",
-   "parse_flags": [
-    "entry_unknown",
-    "no_expiry",
-    "pct_unlabelled"
-   ],
-   "outcome": {
-    "status": "unscorable",
-    "reason": "no expiry (unknown, not assumed 0DTE)",
-    "expiry_effective": null,
-    "expiry_note": "no expiry (unknown, not assumed 0DTE)"
-   }
-  },
-  {
-   "channel": "t.me/de_gainers_free_circle",
-   "posted": "2026-10-07T14:28:12+00:00",
-   "ticker": "QQQ",
-   "kind": "option",
-   "side": "call",
-   "strike": 752.0,
-   "expiry": null,
-   "entry_price": null,
-   "action": "mention",
-   "result_pct": null,
-   "text": "QQQ 755c back to 2.87 10%+ and QQQ 752c 3.40+ now 70%+😎😘🍿🩷",
-   "parse_flags": [
-    "no_expiry",
-    "unrealized_pct"
-   ],
-   "outcome": {
-    "status": "unscorable",
-    "reason": "no expiry (unknown, not assumed 0DTE)",
-    "expiry_effective": null,
-    "expiry_note": "no expiry (unknown, not assumed 0DTE)"
-   }
-  },
-  {
-   "channel": "t.me/ajfreealart32",
-   "posted": "2026-10-07T14:27:56+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": -37.0,
-   "text": "EXIT QQQ -37%",
-   "parse_flags": [
-    "contract_unknown",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/queen_free_entries",
-   "posted": "2026-10-07T14:27:19+00:00",
-   "ticker": "AAPL",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": null,
-   "text": "Close $AAPL 🔥🔥"
-  },
-  {
-   "channel": "t.me/moonwalkertrades2",
-   "posted": "2026-10-07T14:26:43+00:00",
-   "ticker": "META",
-   "kind": "option",
-   "side": "call",
-   "strike": 735.0,
-   "expiry": "2026-10-07",
-   "entry_price": 0.4,
-   "action": "open",
-   "result_pct": null,
-   "text": "$META 735C 10/07 @0.40",
-   "outcome": {
-    "status": "scored",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null,
-    "price_source": "yahoo",
-    "underlying_close_at_expiry": 721.31,
-    "intrinsic": 0.0,
-    "worthless": true,
-    "breakeven_level": 735.4,
-    "pnl_per_contract": -40.0,
-    "return_multiple": 0.0,
-    "return_pct": -100.0,
-    "win": false,
-    "touched_breakeven_optimistic": false,
-    "touch_window": "5m"
-   }
-  },
-  {
-   "channel": "t.me/de_gainers_free_circle",
-   "posted": "2026-10-07T14:23:20+00:00",
-   "ticker": "SPY",
-   "kind": "option",
-   "side": "put",
-   "strike": 773.0,
-   "expiry": null,
-   "entry_price": 0.66,
-   "action": "open",
-   "result_pct": null,
-   "text": "$SPY 773 PUT averaging down @0.50 new avg 0.66",
-   "parse_flags": [
-    "no_expiry"
-   ],
-   "outcome": {
-    "status": "unscorable",
-    "reason": "no expiry (unknown, not assumed 0DTE)",
-    "expiry_effective": null,
-    "expiry_note": "no expiry (unknown, not assumed 0DTE)"
-   }
-  },
-  {
-   "channel": "t.me/queen_free_entries",
-   "posted": "2026-10-07T14:23:03+00:00",
-   "ticker": "AAPL",
-   "kind": "option",
-   "side": "call",
-   "strike": 340.0,
-   "expiry": "2026-10-09",
-   "entry_price": 0.95,
-   "action": "open",
-   "result_pct": null,
-   "text": "$AAPL 10/9 340c @ 0.95",
-   "parse_flags": [
-    "duplicate_echo"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: duplicate_echo",
-    "expiry_effective": "2026-10-09",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T14:21:27+00:00",
-   "ticker": "QQQ",
-   "kind": "option",
-   "side": "call",
-   "strike": 756.0,
-   "expiry": "2026-10-07",
-   "entry_price": 0.78,
-   "action": "open",
-   "result_pct": null,
-   "text": "BTO $QQQ 10/07 756c @ .78",
-   "outcome": {
-    "status": "scored",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null,
-    "price_source": "yahoo",
-    "underlying_close_at_expiry": 757.73,
-    "intrinsic": 1.73,
-    "worthless": false,
-    "breakeven_level": 756.78,
-    "pnl_per_contract": 95.0,
-    "return_multiple": 2.2179,
-    "return_pct": 121.79,
-    "win": true,
-    "touched_breakeven_optimistic": true,
-    "touch_window": "5m"
-   }
-  },
-  {
-   "channel": "t.me/queen_free_entries",
-   "posted": "2026-10-07T14:20:18+00:00",
-   "ticker": "AAPL",
-   "kind": "option",
-   "side": "call",
-   "strike": 340.0,
-   "expiry": "2026-10-09",
-   "entry_price": null,
-   "action": "close",
-   "result_pct": null,
-   "text": "Trim $AAPL 10/9 340c @ 1.25 🔥",
-   "parse_flags": [
-    "exit_price_only"
-   ]
-  },
-  {
-   "channel": "t.me/mrfortunefreeflow",
-   "posted": "2026-10-07T14:19:33+00:00",
-   "ticker": "QQQ",
-   "kind": "option",
-   "side": "put",
-   "strike": 752.0,
-   "expiry": "2026-10-07",
-   "entry_price": 0.9,
-   "action": "open",
-   "result_pct": null,
-   "text": "QQQ 10/07 752P @.90 Out",
-   "outcome": {
-    "status": "scored",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null,
-    "price_source": "yahoo",
-    "underlying_close_at_expiry": 757.73,
-    "intrinsic": 0.0,
-    "worthless": true,
-    "breakeven_level": 751.1,
-    "pnl_per_contract": -90.0,
-    "return_multiple": 0.0,
-    "return_pct": -100.0,
-    "win": false,
-    "touched_breakeven_optimistic": false,
-    "touch_window": "5m"
-   }
-  },
-  {
-   "channel": "t.me/queen_free_entries",
-   "posted": "2026-10-07T14:15:58+00:00",
-   "ticker": "AAPL",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "mention",
-   "result_pct": null,
-   "text": "Looking for 1.20-1.30~ on $AAPL for trim which would be 336~ area"
-  },
-  {
-   "channel": "t.me/mrquickerfreealert",
-   "posted": "2026-10-07T14:14:44+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "mention",
-   "result_pct": null,
-   "text": "Keeping $QQQ runner in just incase"
-  },
-  {
-   "channel": "t.me/mrquickerfreealert",
-   "posted": "2026-10-07T14:14:04+00:00",
-   "ticker": "CCL",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 28.0,
-   "text": "$CCL | 28%🔥🔥RETURN!!",
-   "parse_flags": [
-    "contract_unknown",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/queen_free_entries",
-   "posted": "2026-10-07T14:13:41+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": "call",
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "mention",
-   "result_pct": null,
-   "text": "Watching $QQQ calls",
-   "parse_flags": [
-    "no_strike"
-   ]
-  },
-  {
-   "channel": "t.me/mrfortunefreeflow",
-   "posted": "2026-10-07T14:10:20+00:00",
-   "ticker": "QQQ",
-   "kind": "option",
-   "side": "put",
-   "strike": 752.0,
-   "expiry": "2026-10-07",
-   "entry_price": 1.01,
-   "action": "open",
-   "result_pct": null,
-   "text": "QQQ 10/07 752P @1.01",
-   "parse_flags": [
-    "cross_channel_echo"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: cross_channel_echo",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/bzjzhzhzuzzu",
-   "posted": "2026-10-07T14:09:44+00:00",
-   "ticker": "AAPL",
-   "kind": "option",
-   "side": "call",
-   "strike": 340.0,
-   "expiry": "2026-10-09",
-   "entry_price": 0.95,
-   "action": "open",
-   "result_pct": null,
-   "text": "🚨 AAPL TRADE CALL 🚨 🚀 $AAPL 10/09 340C @ $0.95",
-   "parse_flags": [
-    "cross_channel_echo"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: cross_channel_echo",
-    "expiry_effective": "2026-10-09",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/moonwalkertrades2",
-   "posted": "2026-10-07T14:08:23+00:00",
-   "ticker": "QQQ",
-   "kind": "option",
-   "side": "put",
-   "strike": 753.0,
-   "expiry": "2026-10-07",
-   "entry_price": 1.61,
-   "action": "open",
-   "result_pct": null,
-   "text": "$QQQ 753P 1.61 Odte",
-   "parse_flags": [
-    "cross_channel_echo",
-    "entry_from_tail",
-    "expiry_0dte_tag"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: cross_channel_echo",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/ajfreealart32",
-   "posted": "2026-10-07T14:08:13+00:00",
-   "ticker": "QQQ",
-   "kind": "option",
-   "side": "put",
-   "strike": 753.0,
-   "expiry": "2026-10-07",
-   "entry_price": 1.61,
-   "action": "open",
-   "result_pct": null,
-   "text": "QQQ 753P 1.61 Odte",
-   "parse_flags": [
-    "entry_from_tail",
-    "expiry_0dte_tag"
-   ],
-   "outcome": {
-    "status": "scored",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null,
-    "price_source": "yahoo",
-    "underlying_close_at_expiry": 757.73,
-    "intrinsic": 0.0,
-    "worthless": true,
-    "breakeven_level": 751.39,
-    "pnl_per_contract": -161.0,
-    "return_multiple": 0.0,
-    "return_pct": -100.0,
-    "win": false,
-    "touched_breakeven_optimistic": false,
-    "touch_window": "5m"
-   }
-  },
-  {
-   "channel": "t.me/queen_free_entries",
-   "posted": "2026-10-07T14:07:19+00:00",
-   "ticker": "AAPL",
-   "kind": "option",
-   "side": "call",
-   "strike": 340.0,
-   "expiry": "2026-10-09",
-   "entry_price": 0.95,
-   "action": "open",
-   "result_pct": null,
-   "text": "$AAPL 10/9 340c @ 0.95",
-   "outcome": {
-    "status": "scored",
-    "expiry_effective": "2026-10-09",
-    "expiry_note": null,
-    "price_source": "yahoo",
-    "underlying_close_at_expiry": 336.64,
-    "intrinsic": 0.0,
-    "worthless": true,
-    "breakeven_level": 340.95,
-    "pnl_per_contract": -95.0,
-    "return_multiple": 0.0,
-    "return_pct": -100.0,
-    "win": false,
-    "touched_breakeven_optimistic": true,
-    "touch_window": "5m"
-   }
-  },
-  {
-   "channel": "t.me/mrquickerfreealert",
-   "posted": "2026-10-07T14:05:26+00:00",
-   "ticker": "CVS",
-   "kind": "option",
-   "side": "call",
-   "strike": 88.0,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 12.0,
-   "text": "$CVS ❤️ 88C | 12% ☢️🔥 RETURN",
-   "parse_flags": [
-    "no_expiry",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/gpt2136",
-   "posted": "2026-10-07T14:04:45+00:00",
-   "ticker": "BKH",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 200.0,
-   "text": "$0.60 on $BKH here. 🥷 200% GAIN. ☢️☢️☢️ TURN ON POST NOTIFICATIONS 🔔",
-   "parse_flags": [
-    "contract_unknown",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/gpt2136",
-   "posted": "2026-10-07T14:04:37+00:00",
-   "ticker": "BKH",
-   "kind": "option",
-   "side": "call",
-   "strike": 80.0,
-   "expiry": "2026-10-16",
-   "entry_price": 0.2,
-   "action": "open",
-   "result_pct": null,
-   "text": "HIGH CONFIDENCE ☢️ $BKH 80 Call 10/16 .20🚨",
-   "parse_flags": [
-    "entry_from_tail"
-   ],
-   "outcome": {
-    "status": "pending",
-    "reason": "expiry 2026-10-16 not yet passed",
-    "expiry_effective": "2026-10-16",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/mrquickerfreealert",
-   "posted": "2026-10-07T14:04:10+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 22.0,
-   "text": "$QQQ | 22%🔥🔥RETURN!!",
-   "parse_flags": [
-    "contract_unknown",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T14:03:11+00:00",
-   "ticker": "QQQ",
-   "kind": "option",
-   "side": "put",
-   "strike": 752.0,
-   "expiry": "2026-10-07",
-   "entry_price": 1.01,
-   "action": "open",
-   "result_pct": null,
-   "text": "$QQQ 10/07 752P @1.01",
-   "parse_flags": [
-    "duplicate_echo"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: duplicate_echo",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T14:01:41+00:00",
-   "ticker": "QQQ",
-   "kind": "option",
-   "side": "put",
-   "strike": 752.0,
-   "expiry": "2026-10-07",
-   "entry_price": 1.01,
-   "action": "open",
-   "result_pct": null,
-   "text": "$QQQ 10/07 752P @1.01",
-   "parse_flags": [
-    "duplicate_echo"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: duplicate_echo",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T14:01:13+00:00",
-   "ticker": "QQQ",
-   "kind": "option",
-   "side": "put",
-   "strike": 752.0,
-   "expiry": "2026-10-07",
-   "entry_price": 1.01,
-   "action": "open",
-   "result_pct": null,
-   "text": "$QQQ 10/07 752P @1.01",
-   "outcome": {
-    "status": "scored",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null,
-    "price_source": "yahoo",
-    "underlying_close_at_expiry": 757.73,
-    "intrinsic": 0.0,
-    "worthless": true,
-    "breakeven_level": 750.99,
-    "pnl_per_contract": -101.0,
-    "return_multiple": 0.0,
-    "return_pct": -100.0,
-    "win": false,
-    "touched_breakeven_optimistic": false,
-    "touch_window": "5m"
-   }
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T13:58:45+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": "call",
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 22.0,
-   "text": "$QQQ calls got .75 for +22% Gains 🔥 (Just flipped strong, looks good to possibly run) $SPX calls got 2.75 for +12% Gains 🔥 Keeping $QQQ runner in just incase",
-   "parse_flags": [
-    "exit_price_only",
-    "no_strike",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T13:58:45+00:00",
-   "ticker": "SPX",
-   "kind": "stock",
-   "side": "call",
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 12.0,
-   "text": "$QQQ calls got .75 for +22% Gains 🔥 (Just flipped strong, looks good to possibly run) $SPX calls got 2.75 for +12% Gains 🔥 Keeping $QQQ runner in just incase",
-   "parse_flags": [
-    "exit_price_only",
-    "index_option",
-    "no_strike",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/axisalgorithmictrade",
-   "posted": "2026-10-07T13:57:32+00:00",
-   "ticker": "AAPL",
-   "kind": "option",
-   "side": "call",
-   "strike": 337.5,
-   "expiry": "2026-10-07",
-   "entry_price": 0.45,
-   "action": "open",
-   "result_pct": null,
-   "text": "Opened 500 $AAPL 337.5C 10/07 @ $0.45 (Actual Cost: $0.45)",
-   "parse_flags": [
-    "cross_channel_echo"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: cross_channel_echo",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/crestedgeroom",
-   "posted": "2026-10-07T13:56:17+00:00",
-   "ticker": "SMCI",
-   "kind": "option",
-   "side": "call",
-   "strike": 45.0,
-   "expiry": "2026-10-09",
-   "entry_price": 0.75,
-   "action": "open",
-   "result_pct": null,
-   "text": "Opened 1 $SMCI 45C 10/09 @ $0.75 (Actual Cost: $0.75)",
-   "outcome": {
-    "status": "scored",
-    "expiry_effective": "2026-10-09",
-    "expiry_note": null,
-    "price_source": "yahoo",
-    "underlying_close_at_expiry": 41.86,
-    "intrinsic": 0.0,
-    "worthless": true,
-    "breakeven_level": 45.75,
-    "pnl_per_contract": -75.0,
-    "return_multiple": 0.0,
-    "return_pct": -100.0,
-    "win": false,
-    "touched_breakeven_optimistic": true,
-    "touch_window": "5m"
-   }
-  },
-  {
-   "channel": "t.me/axisalgorithmictrade",
-   "posted": "2026-10-07T13:55:01+00:00",
-   "ticker": "SPX",
-   "kind": "option",
-   "side": "put",
-   "strike": 7770.0,
-   "expiry": "2026-10-07",
-   "entry_price": 9.7,
-   "action": "open",
-   "result_pct": null,
-   "text": "Opened 10 $SPX 7770P 10/07 @ $9.70",
-   "parse_flags": [
-    "duplicate_echo",
-    "index_option"
-   ],
-   "outcome": {
-    "status": "excluded",
-    "reason": "parse_flag: duplicate_echo",
-    "expiry_effective": "2026-10-07",
-    "expiry_note": null
-   }
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T13:51:11+00:00",
-   "ticker": "SPX",
-   "kind": "stock",
-   "side": null,
-   "strike": null,
-   "expiry": null,
-   "entry_price": null,
-   "action": "close",
-   "result_pct": 14.0,
-   "text": "My $SPX DCA was 2.55, got 2.9 for +14% Gains 🔥 $QQQ puts got 1.18 from my .75 original entry for +57% Gains 🚀",
-   "parse_flags": [
-    "contract_unknown",
-    "exit_price_only",
-    "index_option",
-    "result_claim"
-   ]
-  },
-  {
-   "channel": "t.me/bincofreealert",
-   "posted": "2026-10-07T13:51:11+00:00",
-   "ticker": "QQQ",
-   "kind": "stock",
-   "side": "put",
-   "strike": null,
-   "expiry": null,
-   "entry_price": 0.75,
-   "action": "close",
-   "result_pct": 57.0,
-   "text": "My $SPX DCA was 2.55, got 2.9 for +14% Gains 🔥 $QQQ puts got 1.18 from my .75 original entry for +57% Gains 🚀",
-   "parse_flags": [
-    "no_strike",
-    "result_claim"
-   ]
   }
  ]
 }

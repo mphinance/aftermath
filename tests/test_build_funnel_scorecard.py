@@ -87,3 +87,19 @@ def test_sensitivity_parse():
     s = bs.parse_sensitivity(md)
     assert len(s["rows"]) == 3 and s["range"]["tp1_hit_rate"] == [0.45, 0.52] and s["range"]["mean_r_tp1_same_sign"]
     assert bs.parse_sensitivity("") is None
+
+
+def test_distinct_contracts_ignores_post_day():
+    a = _opt(1, "ch", True, 50.0)
+    b = dict(_opt(1, "ch", False, -100.0), posted="2026-09-09T14:00:00+00:00", ids=["ch/2"])
+    c = dict(_opt(2, "ch", False, -100.0), ids=["ch/3"])
+    p = bs.build_options([], [a, b, c])["pooled"]
+    assert p["n_distinct_contracts"] == 2 and p["n_contract_days"] == 3
+
+
+def test_fx_concentration_flags_single_channel_and_sign():
+    rows = [{"channel": "t.me/x", "instrument": "XAUUSD", "side": "buy", "date": f"2026-09-{10 + i % 3}T10:00:00+00:00",
+             "r_tp1": -0.2 if i % 2 else 0.4} for i in range(10)]
+    c = bs.fx_concentration(rows)
+    assert c["top_channel_n"] == 10 and c["n_same_day_setup_groups"] == 3
+    assert c["mean_r_sign_established"] is False and "not 10 independent" in c["caveat"]
