@@ -278,3 +278,34 @@ def test_funnel_scorecard_robust_inputs_and_missing(monkeypatch):
     assert out["channel_filter"] is None
     _patch_fetch(monkeypatch, {})
     assert "error" in mcp_server.tool_get_funnel_scorecard({})
+
+
+_PATHS = {
+    "credit": "https://telegramscammers.com", "disclaimer": "flagged for investigation, not a finding of fraud",
+    "generated_at": "2026-10-14T00:00:00Z",
+    "pooled": {"intraday": {"n": 30}, "daily": {"n": 2}},
+    "by_channel": [{"channel": "t.me/alpha", "n": 20}, {"channel": "t.me/beta", "n": 10}],
+}
+
+
+def test_funnel_scorecard_paths_section_and_all(monkeypatch):
+    _patch_fetch(monkeypatch, {"funnel-option-paths.json": _PATHS, "funnel-scorecard.json": _SCORE})
+    p = mcp_server.tool_get_funnel_scorecard({"section": "PATHS", "channel": "@Beta"})
+    assert p["section"] == "paths" and "options" not in p and "fx" not in p
+    assert [r["channel"] for r in p["paths"]["by_channel"]] == ["t.me/beta"] and p["paths"]["pooled"]["intraday"]["n"] == 30
+    assert "not a finding of fraud" in p["disclaimer"]
+    both = mcp_server.tool_get_funnel_scorecard({})
+    assert {"paths", "options", "fx"} <= set(both)
+
+
+def test_funnel_scorecard_paths_missing_and_odd_inputs(monkeypatch):
+    _patch_fetch(monkeypatch, {"funnel-scorecard.json": _SCORE})
+    assert "error" in mcp_server.tool_get_funnel_scorecard({"section": "paths"})
+    both = mcp_server.tool_get_funnel_scorecard({})                       # paths file missing: other sections still served
+    assert "error" in both["paths"] and "options" in both
+    _patch_fetch(monkeypatch, {"funnel-option-paths.json": _PATHS})
+    out = mcp_server.tool_get_funnel_scorecard({"section": "paths", "channel": ["x"]})
+    assert out["section"] == "paths" and "paths" in out
+    assert "error" in mcp_server.tool_get_funnel_scorecard({"section": ["paths"], "channel": 7})            # odd type falls back to all
+    assert "error" in mcp_server.tool_get_funnel_scorecard({"section": "all"})                              # scorecard file missing
+    assert "error" in mcp_server.tool_get_funnel_scorecard(None)

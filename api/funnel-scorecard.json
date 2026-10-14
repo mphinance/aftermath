@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-14T20:23:28Z",
+ "generated_at": "2026-10-14T21:06:13Z",
  "credit": "https://telegramscammers.com",
  "disclaimer": "Analysis of public posts. Channels and accounts here are flagged for investigation, not a finding of fraud. Flag list curated by https://telegramscammers.com. Statistical description of what the tape shows under stated assumptions, with sample sizes and 95% ranges; not advice.",
  "source": "AfterMath analysis of public Telegram channel posts against the real tape (Yahoo public bars); passive and read-only",
@@ -81,7 +81,7 @@
   "coverage_funnel": [
    {
     "stage": "option open callouts parsed",
-    "n": 4093,
+    "n": 4214,
     "kind": "start"
    },
    {
@@ -951,9 +951,9 @@
     "touched_breakeven_optimistic_share": 0.8333,
     "max_return": -23.53,
     "mean_return_excl_top5": null,
-    "quoted_closes": 129,
-    "quoted_mean_result": 76.065,
-    "quoted_median_result": 45.0,
+    "quoted_closes": 132,
+    "quoted_mean_result": 79.5438,
+    "quoted_median_result": 46.5,
     "small": false
    },
    {
@@ -1895,7 +1895,7 @@
     "fx_last": null,
     "fx_first_outside_bulk": null,
     "fx_last_outside_bulk": null,
-    "stock_option_posts": 724,
+    "stock_option_posts": 727,
     "stock_first": "2026-08-03",
     "stock_last": "2026-10-14",
     "stock_first_outside_bulk": "2026-08-03",
@@ -1957,7 +1957,7 @@
      {
       "week": "2026-10-12",
       "fx": 0,
-      "stock": 19
+      "stock": 22
      }
     ]
    },
@@ -2487,6 +2487,72 @@
     ]
    },
    {
+    "channel": "t.me/mrquickerfreealert",
+    "fx_posts": 0,
+    "fx_first": null,
+    "fx_last": null,
+    "fx_first_outside_bulk": null,
+    "fx_last_outside_bulk": null,
+    "stock_option_posts": 327,
+    "stock_first": "2026-09-04",
+    "stock_last": "2026-10-14",
+    "stock_first_outside_bulk": "2026-09-04",
+    "stock_last_outside_bulk": "2026-10-14",
+    "stock_option_posts_in_bulk_groups": 12,
+    "bulk_groups": [
+     {
+      "timestamp": "2026-09-14T14:11:25+00:00",
+      "posts": 6,
+      "fx_signal_posts": 0,
+      "stock_option_posts": 6
+     },
+     {
+      "timestamp": "2026-10-05T14:26:28+00:00",
+      "posts": 6,
+      "fx_signal_posts": 0,
+      "stock_option_posts": 6
+     }
+    ],
+    "bulk_group_count": 2,
+    "weeks": [
+     {
+      "week": "2026-08-31",
+      "fx": 0,
+      "stock": 10
+     },
+     {
+      "week": "2026-09-07",
+      "fx": 0,
+      "stock": 37
+     },
+     {
+      "week": "2026-09-14",
+      "fx": 0,
+      "stock": 36
+     },
+     {
+      "week": "2026-09-21",
+      "fx": 0,
+      "stock": 76
+     },
+     {
+      "week": "2026-09-28",
+      "fx": 0,
+      "stock": 61
+     },
+     {
+      "week": "2026-10-05",
+      "fx": 0,
+      "stock": 75
+     },
+     {
+      "week": "2026-10-12",
+      "fx": 0,
+      "stock": 32
+     }
+    ]
+   },
+   {
     "channel": "t.me/trexfreecircle",
     "fx_posts": 0,
     "fx_first": null,
@@ -2553,72 +2619,6 @@
       "week": "2026-10-12",
       "fx": 0,
       "stock": 23
-     }
-    ]
-   },
-   {
-    "channel": "t.me/mrquickerfreealert",
-    "fx_posts": 0,
-    "fx_first": null,
-    "fx_last": null,
-    "fx_first_outside_bulk": null,
-    "fx_last_outside_bulk": null,
-    "stock_option_posts": 326,
-    "stock_first": "2026-09-04",
-    "stock_last": "2026-10-14",
-    "stock_first_outside_bulk": "2026-09-04",
-    "stock_last_outside_bulk": "2026-10-14",
-    "stock_option_posts_in_bulk_groups": 12,
-    "bulk_groups": [
-     {
-      "timestamp": "2026-09-14T14:11:25+00:00",
-      "posts": 6,
-      "fx_signal_posts": 0,
-      "stock_option_posts": 6
-     },
-     {
-      "timestamp": "2026-10-05T14:26:28+00:00",
-      "posts": 6,
-      "fx_signal_posts": 0,
-      "stock_option_posts": 6
-     }
-    ],
-    "bulk_group_count": 2,
-    "weeks": [
-     {
-      "week": "2026-08-31",
-      "fx": 0,
-      "stock": 10
-     },
-     {
-      "week": "2026-09-07",
-      "fx": 0,
-      "stock": 37
-     },
-     {
-      "week": "2026-09-14",
-      "fx": 0,
-      "stock": 36
-     },
-     {
-      "week": "2026-09-21",
-      "fx": 0,
-      "stock": 76
-     },
-     {
-      "week": "2026-09-28",
-      "fx": 0,
-      "stock": 61
-     },
-     {
-      "week": "2026-10-05",
-      "fx": 0,
-      "stock": 75
-     },
-     {
-      "week": "2026-10-12",
-      "fx": 0,
-      "stock": 31
      }
     ]
    },
@@ -2984,7 +2984,7 @@
     "fx_last": null,
     "fx_first_outside_bulk": null,
     "fx_last_outside_bulk": null,
-    "stock_option_posts": 151,
+    "stock_option_posts": 153,
     "stock_first": "2026-09-29",
     "stock_last": "2026-10-14",
     "stock_first_outside_bulk": "2026-09-29",
@@ -3006,7 +3006,7 @@
      {
       "week": "2026-10-12",
       "fx": 0,
-      "stock": 13
+      "stock": 15
      }
     ]
    },
@@ -3361,6 +3361,67 @@
     ]
    },
    {
+    "channel": "t.me/spymaster8",
+    "fx_posts": 0,
+    "fx_first": null,
+    "fx_last": null,
+    "fx_first_outside_bulk": null,
+    "fx_last_outside_bulk": null,
+    "stock_option_posts": 78,
+    "stock_first": "2026-08-19",
+    "stock_last": "2026-08-27",
+    "stock_first_outside_bulk": "2026-08-19",
+    "stock_last_outside_bulk": "2026-08-27",
+    "stock_option_posts_in_bulk_groups": 0,
+    "bulk_groups": [],
+    "bulk_group_count": 0,
+    "weeks": [
+     {
+      "week": "2026-08-17",
+      "fx": 0,
+      "stock": 77
+     },
+     {
+      "week": "2026-08-24",
+      "fx": 0,
+      "stock": 1
+     }
+    ]
+   },
+   {
+    "channel": "t.me/novatrade02",
+    "fx_posts": 0,
+    "fx_first": null,
+    "fx_last": null,
+    "fx_first_outside_bulk": null,
+    "fx_last_outside_bulk": null,
+    "stock_option_posts": 77,
+    "stock_first": "2026-08-21",
+    "stock_last": "2026-09-03",
+    "stock_first_outside_bulk": "2026-08-21",
+    "stock_last_outside_bulk": "2026-09-03",
+    "stock_option_posts_in_bulk_groups": 0,
+    "bulk_groups": [],
+    "bulk_group_count": 0,
+    "weeks": [
+     {
+      "week": "2026-08-17",
+      "fx": 0,
+      "stock": 29
+     },
+     {
+      "week": "2026-08-24",
+      "fx": 0,
+      "stock": 35
+     },
+     {
+      "week": "2026-08-31",
+      "fx": 0,
+      "stock": 13
+     }
+    ]
+   },
+   {
     "channel": "t.me/stockwise01",
     "fx_posts": 0,
     "fx_first": null,
@@ -3456,6 +3517,75 @@
       "week": "2026-06-29",
       "fx": 0,
       "stock": 27
+     }
+    ]
+   },
+   {
+    "channel": "t.me/mavericksroom",
+    "fx_posts": 0,
+    "fx_first": null,
+    "fx_last": null,
+    "fx_first_outside_bulk": null,
+    "fx_last_outside_bulk": null,
+    "stock_option_posts": 42,
+    "stock_first": "2026-08-11",
+    "stock_last": "2026-08-14",
+    "stock_first_outside_bulk": "2026-08-11",
+    "stock_last_outside_bulk": "2026-08-14",
+    "stock_option_posts_in_bulk_groups": 19,
+    "bulk_groups": [
+     {
+      "timestamp": "2026-08-11T17:06:37+00:00",
+      "posts": 7,
+      "fx_signal_posts": 0,
+      "stock_option_posts": 7
+     },
+     {
+      "timestamp": "2026-08-13T15:32:27+00:00",
+      "posts": 12,
+      "fx_signal_posts": 0,
+      "stock_option_posts": 12
+     }
+    ],
+    "bulk_group_count": 2,
+    "weeks": [
+     {
+      "week": "2026-08-10",
+      "fx": 0,
+      "stock": 42
+     }
+    ]
+   },
+   {
+    "channel": "t.me/mrquickerfreealert/2915",
+    "fx_posts": 0,
+    "fx_first": null,
+    "fx_last": null,
+    "fx_first_outside_bulk": null,
+    "fx_last_outside_bulk": null,
+    "stock_option_posts": 35,
+    "stock_first": "2026-08-21",
+    "stock_last": "2026-08-31",
+    "stock_first_outside_bulk": "2026-08-21",
+    "stock_last_outside_bulk": "2026-08-31",
+    "stock_option_posts_in_bulk_groups": 0,
+    "bulk_groups": [],
+    "bulk_group_count": 0,
+    "weeks": [
+     {
+      "week": "2026-08-17",
+      "fx": 0,
+      "stock": 2
+     },
+     {
+      "week": "2026-08-24",
+      "fx": 0,
+      "stock": 27
+     },
+     {
+      "week": "2026-08-31",
+      "fx": 0,
+      "stock": 6
      }
     ]
    },

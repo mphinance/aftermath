@@ -179,13 +179,27 @@
         }
       }
     },
+    "/api/funnel-option-paths.json": {
+      "get": {
+        "tags": [
+          "MCP & AI Agents"
+        ],
+        "summary": "Telegram Funnel Option Price Paths (what the called contracts did after the call)",
+        "description": "Main scoring view: each option contract called out in public Telegram channels judged by its own 5-minute trade bars after the post (in-session calls: next 30 minutes; daily callouts: the whole next regular session; fill = open of the first bar at or after the post). Share that ended above the fill, median peak and drawdown, +50%/-50% TP-first vs SL-first, fill-delay sensitivity, unfillable-quote share, per channel, ticker and hour of day, with Wilson 95% ranges, methodology and limitations (trade prints, no spread or slippage). Built locally from Alpaca historical bars. Analysis of public posts, not advice. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
+        "responses": {
+          "200": {
+            "description": "Option price-path scorecard"
+          }
+        }
+      }
+    },
     "/api/funnel-scorecard.json": {
       "get": {
         "tags": [
           "MCP & AI Agents"
         ],
         "summary": "Telegram Funnel Scorecard (options and forex/gold/index scoring)",
-        "description": "Public scoring of trade callouts from public Telegram channels against the real tape: option callouts held to expiry, and forex/gold/index signals (TP1 first vs SL first). Pooled and per channel, with sample sizes, Wilson 95% ranges and assumptions. Analysis of public posts, not advice. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
+        "description": "Public scoring of trade callouts from public Telegram channels against the real tape: option callouts held to expiry (the secondary view; the main option view is /api/funnel-option-paths.json), and forex/gold/index signals (TP1 first vs SL first). Pooled and per channel, with sample sizes, Wilson 95% ranges and assumptions. Analysis of public posts, not advice. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
         "responses": {
           "200": {
             "description": "Scorecard with options and fx sections"

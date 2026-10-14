@@ -27,10 +27,11 @@ if [ -d "$PUBLISH_DIR" ]; then
   # Publish gate, per file (FORCE_PUBLISH=1 skips the shrink check only, never the freshness check):
   #   1. fresh: built by this run (newer than $STAMP), so a failed build cannot republish the committed copy
   #   2. populated: count > 0 (scorecard: both options and FX halves)
-  #   3. never shrinks: against the file already live, options n_scored and callout totals must stay >= 80% and FX
+  #   3. never shrinks (the path-enriched funnel-calls-full.json also must not lose its path_count: price paths are built
+  #      locally only, so a server rebuild cannot replace the local file; funnel-option-paths.json is never published from here): against the file already live, options n_scored and callout totals must stay >= 80% and FX
   #      scored signals >= 50% (FX ages out of Yahoo's 60-day 5m window, options only accumulate). A run on a thin
   #      archive (e.g. the server's, which is smaller than the local one) therefore cannot replace a richer live file.
-  for spec in funnel.json:count funnel-calls-full.json:count funnel-calls.json:count funnel-tickers.json:count funnel-scorecard.json:scorecard funnel-fx-signals.json:fx; do
+  for spec in funnel.json:count funnel-calls-full.json:callsfull funnel-calls.json:count funnel-tickers.json:count funnel-scorecard.json:scorecard funnel-fx-signals.json:fx; do
     f="${spec%%:*}"; key="${spec##*:}"
     if [ ! "api/$f" -nt "$STAMP" ]; then echo "skip publish $f (not rebuilt by this run)"; continue; fi
     if python3 - "api/$f" "$PUBLISH_DIR/$f" "$key" "${FORCE_PUBLISH:-0}" <<'PY'
@@ -45,13 +46,16 @@ def metrics(d, key):
     if key == "scorecard":
         return {"options n_scored": ((d.get("options") or {}).get("pooled") or {}).get("n_scored", 0),
                 "fx n_signals_scored": ((d.get("fx") or {}).get("pooled") or {}).get("n_signals_scored", 0)}
+    if key == "callsfull":      # path_count is only non-zero when built where the local bar archive exists (never on the server)
+        return {"total": d.get("count", 0), "path_count": d.get("path_count", 0)}
     return {"total": d.get("total_parsed") or d.get("count", 0)}
-MIN_KEEP = {"options n_scored": 0.8, "fx n_signals_scored": 0.5, "total": 0.5 if key == "fx" else 0.8}
+OPTIONAL = {"path_count"}       # may be zero in a new file, but must never drop below what is already live
+MIN_KEEP = {"options n_scored": 0.8, "fx n_signals_scored": 0.5, "total": 0.5 if key == "fx" else 0.8, "path_count": 1.0}
 new, live = load(new_p), load(live_p)
 if not isinstance(new, dict):
     print("  invalid json"); sys.exit(1)
 nm = metrics(new, key)
-if not all(v > 0 for v in nm.values()) or (key == "scorecard" and not new.get("generated_at")):
+if not all(v > 0 for k, v in nm.items() if k not in OPTIONAL) or (key == "scorecard" and not new.get("generated_at")):
     print("  empty or half-populated:", nm); sys.exit(1)
 if isinstance(live, dict) and force != "1":
     lm = metrics(live, key)

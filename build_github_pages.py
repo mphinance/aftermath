@@ -377,6 +377,7 @@ import subprocess, sys as _sys
 subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel.py")], check=True)
 subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel_calls.py")], check=True)
 subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel_scorecard.py")], check=True)
+subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel_paths.py")], check=True)
 
 openapi_spec = {
     "openapi": "3.1.0",
@@ -511,11 +512,19 @@ openapi_spec = {
                 "responses": {"200": {"description": "Parsed callouts"}}
             }
         },
+        "/api/funnel-option-paths.json": {
+            "get": {
+                "tags": ["MCP & AI Agents"],
+                "summary": "Telegram Funnel Option Price Paths (what the called contracts did after the call)",
+                "description": "Main scoring view: each option contract called out in public Telegram channels judged by its own 5-minute trade bars after the post (in-session calls: next 30 minutes; daily callouts: the whole next regular session; fill = open of the first bar at or after the post). Share that ended above the fill, median peak and drawdown, +50%/-50% TP-first vs SL-first, fill-delay sensitivity, unfillable-quote share, per channel, ticker and hour of day, with Wilson 95% ranges, methodology and limitations (trade prints, no spread or slippage). Built locally from Alpaca historical bars. Analysis of public posts, not advice. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
+                "responses": {"200": {"description": "Option price-path scorecard"}}
+            }
+        },
         "/api/funnel-scorecard.json": {
             "get": {
                 "tags": ["MCP & AI Agents"],
                 "summary": "Telegram Funnel Scorecard (options and forex/gold/index scoring)",
-                "description": "Public scoring of trade callouts from public Telegram channels against the real tape: option callouts held to expiry, and forex/gold/index signals (TP1 first vs SL first). Pooled and per channel, with sample sizes, Wilson 95% ranges and assumptions. Analysis of public posts, not advice. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
+                "description": "Public scoring of trade callouts from public Telegram channels against the real tape: option callouts held to expiry (the secondary view; the main option view is /api/funnel-option-paths.json), and forex/gold/index signals (TP1 first vs SL first). Pooled and per channel, with sample sizes, Wilson 95% ranges and assumptions. Analysis of public posts, not advice. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
                 "responses": {"200": {"description": "Scorecard with options and fx sections"}}
             }
         },
@@ -581,6 +590,7 @@ sitemap_urls = [
     ("https://ah.mphinance.com/api/funnel-calls.json", "0.6", "daily"),
     ("https://ah.mphinance.com/scorecard", "0.8", "daily"),
     ("https://ah.mphinance.com/api/funnel-scorecard.json", "0.6", "daily"),
+    ("https://ah.mphinance.com/api/funnel-option-paths.json", "0.6", "daily"),
     ("https://ah.mphinance.com/api/funnel-fx-signals.json", "0.6", "daily"),
     ("https://ah.mphinance.com/sitemap", "0.8", "daily"),
     ("https://ah.mphinance.com/docs", "0.9", "daily"),

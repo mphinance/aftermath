@@ -38,3 +38,13 @@ def test_calls_total_shrink_blocked_force_overrides(tmp_path):
     new = {"count": 1000, "total_parsed": 2019}
     assert run(tmp_path, new, live, "count") == 1
     assert run(tmp_path, new, live, "count", force="1") == 0
+
+
+def test_server_rebuild_cannot_strip_price_paths_from_full_export(tmp_path):
+    live = {"count": 8958, "path_count": 1544}
+    stripped = {"count": 9000, "path_count": 0}
+    assert run(tmp_path, stripped, live, "callsfull") == 1
+    assert run(tmp_path, {"count": 9000, "path_count": 1544}, live, "callsfull") == 0
+    assert run(tmp_path, stripped, {"count": 8958}, "callsfull") == 0        # live has no paths yet: allowed
+    assert run(tmp_path, stripped, None, "callsfull") == 0
+    assert run(tmp_path, {"count": 0, "path_count": 0}, None, "callsfull") == 1

@@ -635,14 +635,19 @@ def tool_get_funnel_tickers(args: dict) -> dict:
 
 
 def tool_get_funnel_scorecard(args: dict) -> dict:
-    """Scored results for option callouts (held to expiry) and forex/gold/index signals (TP1 first vs SL first) from public Telegram channels."""
-    data = fetch_json("funnel-scorecard.json")
-    if not data:
-        return {"error": "funnel-scorecard.json currently synchronizing"}
+    """Public scoring of trade callouts from public Telegram channels: how option contracts traded after the call ('paths', the main view), options held to expiry, and forex/gold/index signals (TP1 first vs SL first)."""
+    args = args if isinstance(args, dict) else {}
     section = str(args.get("section") or "all").strip().lower()
-    if section not in ("options", "fx", "all"):
+    if section not in ("paths", "options", "fx", "all"):
         section = "all"
     channel = str(args.get("channel") or "").strip().lower().replace("https://", "").replace("http://", "").lstrip("@/")
+    data = fetch_json("funnel-scorecard.json") if section != "paths" else None
+    paths = fetch_json("funnel-option-paths.json") if section in ("paths", "all") else None
+    if section == "paths" and not isinstance(paths, dict):
+        return {"error": "funnel-option-paths.json currently synchronizing"}
+    if section != "paths" and not isinstance(data, dict):
+        return {"error": "funnel-scorecard.json currently synchronizing"}
+    base = paths if section == "paths" else data
 
     def keep(rows):
         rows = rows if isinstance(rows, list) else []
@@ -651,12 +656,20 @@ def tool_get_funnel_scorecard(args: dict) -> dict:
         return [r for r in rows if isinstance(r, dict) and channel in (r.get("channel") or "").lower()]
 
     out = {
-        "source": data.get("credit") or FUNNEL_CREDIT, "disclaimer": data.get("disclaimer") or FUNNEL_DISCLAIMER,
-        "generated_at": data.get("generated_at"), "conventions": data.get("conventions"),
-        "methodology": data.get("methodology") or "https://ah.mphinance.com/scorecard",
-        "methodology_doc": data.get("methodology_doc"),
+        "source": base.get("credit") or FUNNEL_CREDIT, "disclaimer": base.get("disclaimer") or FUNNEL_DISCLAIMER,
+        "generated_at": base.get("generated_at"), "conventions": data.get("conventions") if data else None,
+        "methodology": (data or {}).get("methodology") or "https://ah.mphinance.com/scorecard",
+        "methodology_doc": (data or {}).get("methodology_doc"),
         "section": section, "channel_filter": channel or None,
     }
+    if section in ("paths", "all"):
+        if isinstance(paths, dict):
+            pp = {k: v for k, v in paths.items() if k not in ("credit", "disclaimer", "generated_at")}
+            if channel:
+                pp["by_channel"] = keep(pp.get("by_channel"))
+            out["paths"] = pp
+        else:
+            out["paths"] = {"error": "funnel-option-paths.json currently synchronizing"}
     if section in ("options", "all"):
         o = dict(data.get("options") or {})
         if channel:
@@ -1056,11 +1069,11 @@ MCP_TOOLS_DEFINITIONS = [
     },
     {
         "name": "get_funnel_scorecard",
-        "description": "Public scoring results for trade callouts posted by Telegram channels linked to flagged AfterHour accounts: option callouts held to expiry (win rate, median and mean return, share expired worthless, by days to expiry, ticker and channel, plus quoted closes versus the same contracts held) and forex/gold/index signals scored against the real tape (TP1 first versus SL first, mean R, by instrument, channel and week). Every rate carries its sample size and a Wilson 95% range; assumptions and the basis-sensitivity range are included. Analysis of public posts, not advice. Flagged for investigation, not a finding of fraud. Credit https://telegramscammers.com. Method: https://ah.mphinance.com/scorecard",
+        "description": "Public scoring results for trade callouts posted by Telegram channels linked to flagged AfterHour accounts. Section 'paths' (the main view): what each called-out option contract did after the post, from its own 5-minute trade bars (calls posted in the session get the next 30 minutes, daily callouts the whole next session; fill = open of the first bar at or after the post): share that ended above the fill, median peak and drawdown, +50%/-50% TP-first versus SL-first, fill-delay sensitivity, unfillable-quote share, per channel, ticker and hour. Section 'options': the same callouts held to expiry (secondary view). Section 'fx': forex/gold/index signals (TP1 first versus SL first, mean R). Every rate carries its sample size and a Wilson 95% range; assumptions and limitations are included (trade prints, no spread or slippage). Analysis of public posts, not advice. Flagged for investigation, not a finding of fraud. Credit https://telegramscammers.com. Method: https://ah.mphinance.com/scorecard",
         "inputSchema": {
             "type": "object",
             "properties": {
-                "section": {"type": "string", "enum": ["options", "fx", "all"], "description": "Which part to return (default all)", "default": "all"},
+                "section": {"type": "string", "enum": ["paths", "options", "fx", "all"], "description": "Which part to return: paths (price paths after the call), options (held to expiry), fx, or all (default all)", "default": "all"},
                 "channel": {"type": "string", "description": "Channel handle or t.me link (substring match); filters the per-channel tables"}
             },
             "additionalProperties": False

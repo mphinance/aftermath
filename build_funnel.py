@@ -99,11 +99,43 @@ outcomes = {
     "sample_warning": ("Sample too small to publish rates; need 100 scored callouts." if n < 100
                        else "Callouts from public channels only, scored at expiry vs underlying close; survivorship and parser limits apply."),
 }
+
+
+def path_summary():
+    """Pooled in-session price-path numbers for the scamcheck page: from api/funnel-option-paths.json, else computed from
+    option_paths.jsonl, else None (the page then falls back to the hold-to-expiry block)."""
+    d = jload(BASE / "api" / "funnel-option-paths.json", None)
+    i = ((d or {}).get("pooled") or {}).get("intraday") if isinstance(d, dict) else None
+    window = (d or {}).get("window_start"), (d or {}).get("window_end")
+    if not i or not i.get("n"):
+        try:
+            import build_funnel_paths as bp
+            rows = [r for r in jsonl(TF / "option_paths.jsonl") if r.get("status") == "scored" and r.get("category") == "intraday"
+                    and bp.is_public(r.get("channel"))]
+            i = bp.block(rows, full=False) if rows else None
+            ps = sorted((r.get("posted") or "")[:10] for r in rows if r.get("posted"))
+            window = (ps[0], ps[-1]) if ps else (None, None)
+        except Exception:
+            i = None
+    if not i or not i.get("n"):
+        return None
+    hr = i.get("headline_rule") or {}
+    return {"n_scored": i["n"], "window_start": window[0], "window_end": window[1],
+            "ended_green_rate": i["ended_green"]["rate"], "ended_green_ci": i["ended_green"]["ci"],
+            "median_peak_pct": i["peak_pct"]["median"], "median_drawdown_pct": i["drawdown_pct"]["median"],
+            "tp_first_rate": hr.get("tp_first_rate"), "sl_first_rate": hr.get("sl_first_rate"),
+            "tp_first_ci": hr.get("tp_first_ci"), "sl_first_ci": hr.get("sl_first_ci"),
+            "rule": "+50% target / -50% stop within 30 minutes of the fill", "rule_mean_return_pct": hr.get("mean_return_pct"),
+            "method": ("Contract's own 5-minute trade bars for the 30 minutes after an in-session post; fill = open of the first bar at or "
+                       "after the post; ended above fill = last close above the fill. Trade prints, no spread or slippage. Details: /scorecard")}
+
+
 callouts = {
     "option_opens": sum(1 for c in calls if c.get("kind") == "option" and c.get("action") == "open"),
     "option_closes": sum(1 for c in calls if c.get("kind") == "option" and c.get("action") == "close"),
     "channels_covered": len({c.get("channel") for c in calls if c.get("channel")}),
     "outcomes": outcomes,
+    "paths": path_summary(),
 }
 
 out = {

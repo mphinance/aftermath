@@ -373,18 +373,19 @@
     },
     {
       "name": "get_funnel_scorecard",
-      "description": "Public scoring results for trade callouts posted by Telegram channels linked to flagged AfterHour accounts: option callouts held to expiry (win rate, median and mean return, share expired worthless, by days to expiry, ticker and channel, plus quoted closes versus the same contracts held) and forex/gold/index signals scored against the real tape (TP1 first versus SL first, mean R, by instrument, channel and week). Every rate carries its sample size and a Wilson 95% range; assumptions and the basis-sensitivity range are included. Analysis of public posts, not advice. Flagged for investigation, not a finding of fraud. Credit https://telegramscammers.com. Method: https://ah.mphinance.com/scorecard",
+      "description": "Public scoring results for trade callouts posted by Telegram channels linked to flagged AfterHour accounts. Section 'paths' (the main view): what each called-out option contract did after the post, from its own 5-minute trade bars (calls posted in the session get the next 30 minutes, daily callouts the whole next session; fill = open of the first bar at or after the post): share that ended above the fill, median peak and drawdown, +50%/-50% TP-first versus SL-first, fill-delay sensitivity, unfillable-quote share, per channel, ticker and hour. Section 'options': the same callouts held to expiry (secondary view). Section 'fx': forex/gold/index signals (TP1 first versus SL first, mean R). Every rate carries its sample size and a Wilson 95% range; assumptions and limitations are included (trade prints, no spread or slippage). Analysis of public posts, not advice. Flagged for investigation, not a finding of fraud. Credit https://telegramscammers.com. Method: https://ah.mphinance.com/scorecard",
       "inputSchema": {
         "type": "object",
         "properties": {
           "section": {
             "type": "string",
             "enum": [
+              "paths",
               "options",
               "fx",
               "all"
             ],
-            "description": "Which part to return (default all)",
+            "description": "Which part to return: paths (price paths after the call), options (held to expiry), fx, or all (default all)",
             "default": "all"
           },
           "channel": {

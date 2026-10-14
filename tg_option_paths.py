@@ -9,6 +9,8 @@ recovered later; this job must run every trading day AFTER THE CLOSE (cron 20:30
 
   python3 tg_option_paths.py capture            # fetch bars for every called-out contract still on Yahoo, merge into the archive
   python3 tg_option_paths.py capture --symbol SPXW261014C07735000
+  python3 tg_option_paths.py backfill           # Alpaca historical bars for every call's evaluation session (needs .env_alpaca; local only)
+  python3 tg_option_paths.py score
 Archive: data/telegram_funnel/option_bars/<SYMBOL>.json  {symbol, b5:{epoch:[o,h,l,c,v]}, b1d:{epoch:[o,h,l,c,v]}, first_seen, last_fetched}
 Public Yahoo chart endpoint only, serial with a delay, read-only.
 """
@@ -96,6 +98,112 @@ def capture(only=None, delay=0.4):
     print(f"captured {len(syms)} contracts: {fresh} gained new bars ({n5} 5m, {n1} daily bars seen); archive holds {len(list(ARCH.glob('*.json')))}")
 
 
+# ----------------------------------------------------------------------------- Alpaca historical backfill
+import os
+
+
+def alpaca_headers():
+    """Credentials from env vars or ./.env_alpaca (KEY=value lines). Never printed, never committed (.env* is gitignored)."""
+    kid, sec = os.environ.get("ALPACA_API_KEY_ID"), os.environ.get("ALPACA_API_SECRET_KEY")
+    p = BASE / ".env_alpaca"
+    if (not kid or not sec) and p.exists():
+        kv = dict(l.strip().split("=", 1) for l in p.open() if "=" in l and not l.lstrip().startswith("#"))
+        kid, sec = kv.get("ALPACA_API_KEY_ID"), kv.get("ALPACA_API_SECRET_KEY")
+    return {"APCA-API-KEY-ID": kid, "APCA-API-SECRET-KEY": sec, "User-Agent": "tg_option_paths (read-only market data)"} if kid and sec else None
+
+
+def alpaca_bars(headers, symbols, start_iso, end_iso, timeframe="5Min"):
+    """{symbol: [bar,...]} for a list of OCC symbols (read-only historical option bars, paginated)."""
+    out, token = {}, None
+    while True:
+        q = f"symbols={','.join(symbols)}&timeframe={timeframe}&start={start_iso}&end={end_iso}&limit=10000" + (f"&page_token={token}" if token else "")
+        res = None
+        for attempt in range(4):
+            try:
+                with urllib.request.urlopen(urllib.request.Request("https://data.alpaca.markets/v1beta1/options/bars?" + q, headers=headers), timeout=60) as r:
+                    res = json.load(r); break
+            except urllib.error.HTTPError as e:
+                if e.code == 429:
+                    time.sleep(8 * (attempt + 1)); continue
+                print(f"alpaca HTTP {e.code} for {len(symbols)} symbols", file=sys.stderr); return out
+            except Exception:
+                time.sleep(2 + attempt)
+        if res is None:
+            return out
+        for sym, bars in (res.get("bars") or {}).items():
+            out.setdefault(sym, []).extend(bars)
+        token = res.get("next_page_token")
+        if not token:
+            return out
+
+
+def needed_day(c):
+    """Which session a callout is judged on (same rule as scoring)."""
+    t = datetime.fromisoformat(c["posted"].replace("Z", "+00:00")).astimezone(ET)
+    s0 = sess(t.date())
+    return t.date() if (s0 and s0[0] <= t.timestamp() < s0[1]) else next_session_date(t)
+
+
+def capture_alpaca(delay=0.35, batch=60):
+    hd = alpaca_headers()
+    if not hd:
+        print("no Alpaca credentials (.env_alpaca or ALPACA_API_* env vars)", file=sys.stderr); return
+    ARCH.mkdir(parents=True, exist_ok=True)
+    need = {}                                   # session date -> {symbol: [alt symbols]}
+    for line in (TF / "calls.jsonl").open():
+        if not line.strip():
+            continue
+        c = json.loads(line)
+        if c["kind"] != "option" or c["action"] != "open" or (ECHO & set(c.get("parse_flags") or [])):
+            continue
+        s = occ(c)
+        if not s:
+            continue
+        d = needed_day(c)
+        if c["expiry"] < d.isoformat():
+            continue
+        f = ARCH / f"{s}.json"
+        have = set()
+        if f.exists():
+            for t in json.load(open(f))["b5"]:
+                have.add(datetime.fromtimestamp(int(t), timezone.utc).astimezone(ET).date().isoformat())
+        if d.isoformat() in have:
+            continue
+        alt = s.replace("SPXW", "SPX", 1) if s.startswith("SPXW") else None
+        need.setdefault(d.isoformat(), {})[s] = alt
+    total = sum(len(v) for v in need.values())
+    print(f"alpaca backfill: {total} contract-sessions over {len(need)} days", file=sys.stderr)
+    got = miss = 0
+    for di, (day, syms) in enumerate(sorted(need.items()), 1):
+        d = date.fromisoformat(day); o, cl = sess(d)
+        start = datetime.fromtimestamp(o, timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        end = datetime.fromtimestamp(cl, timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        keys = list(syms)
+        for i in range(0, len(keys), batch):
+            chunk = keys[i:i + batch]
+            res = alpaca_bars(hd, chunk, start, end); time.sleep(delay)
+            missing = [k for k in chunk if k not in res and syms[k]]
+            if missing:                           # SPX monthlies use the SPX root, not SPXW
+                alt = alpaca_bars(hd, [syms[k] for k in missing], start, end); time.sleep(delay)
+                for k in missing:
+                    if syms[k] in alt:
+                        res[k] = alt[syms[k]]
+            for k in chunk:
+                bars = res.get(k)
+                if not bars:
+                    miss += 1; continue
+                f = ARCH / f"{k}.json"
+                cur = json.load(open(f)) if f.exists() else {"symbol": k, "b5": {}, "b1d": {}, "first_seen": day}
+                for b in bars:
+                    ts = int(datetime.fromisoformat(b["t"].replace("Z", "+00:00")).timestamp())
+                    cur["b5"][str(ts)] = [b["o"], b["h"], b["l"], b["c"], b.get("v")]
+                cur["source"] = "alpaca+yahoo"; cur["last_fetched"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                f.write_text(json.dumps(cur, separators=(",", ":"))); got += 1
+        if di % 10 == 0:
+            print(f"[{di}/{len(need)} days] {got} contract-sessions stored, {miss} without bars", file=sys.stderr, flush=True)
+    print(f"alpaca backfill done: {got} stored, {miss} had no bars (not traded that session or not listed)")
+
+
 # ----------------------------------------------------------------------------- scoring
 from zoneinfo import ZoneInfo
 import math, statistics, collections
@@ -156,7 +264,7 @@ def path_metrics(bars, fill, quoted):
     return out
 
 
-def score():
+def score(delay_bars=0, write=True):
     calls = []
     for line in (TF / "calls.jsonl").open():
         if line.strip():
@@ -207,11 +315,17 @@ def score():
         gap = (win[0][0] - start) / 60 if intraday else (win[0][0] - start) / 60
         if gap > MAX_FILL_GAP_MIN:
             r.update(status="unscorable", reason=f"illiquid: first print {gap:.0f} min after {'the post' if intraday else 'the open'}"); rows.append(r); continue
+        if delay_bars:                    # a follower acts a few minutes after the post: fill on a later bar
+            win = win[delay_bars:]
+            if not win:
+                r.update(status="unscorable", reason="no bars after the fill delay"); rows.append(r); continue
         fill = win[0][1]
         if not fill:
             r.update(status="unscorable", reason="no fill price"); rows.append(r); continue
         r.update(status="scored", session=day.isoformat(), truncated=(win[-1][0] + 300 < end - 300), **path_metrics(win, fill, c.get("entry_price")))
         rows.append(r)
+    if not write:
+        return rows
     with (TF / "option_paths.jsonl").open("w") as f:
         for r in rows:
             f.write(json.dumps(r) + "\n")
@@ -257,7 +371,8 @@ def score():
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["capture", "score"])
+    ap.add_argument("cmd", choices=["capture", "backfill", "score"])
     ap.add_argument("--symbol", default="")
+    ap.add_argument("--delay-bars", type=int, default=0, help="score with the fill N five-minute bars after the post")
     a = ap.parse_args()
-    capture(a.symbol or None) if a.cmd == "capture" else score()
+    capture(a.symbol or None) if a.cmd == "capture" else capture_alpaca() if a.cmd == "backfill" else score(a.delay_bars)

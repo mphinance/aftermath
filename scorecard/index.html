@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Callout Scorecard | AfterMath</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="How trade callouts and forex/gold signals from Telegram channels linked to flagged AfterHour accounts finished against the real tape, with sample sizes, 95% ranges and every assumption shown.">
+<meta name="description" content="How the option contracts and forex/gold signals called out by Telegram channels linked to flagged AfterHour accounts traded after the call, with sample sizes, 95% ranges and every assumption shown.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
@@ -82,12 +82,40 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--surface);padding:
 </nav>
 <main>
   <h1>Callout <span>scorecard</span></h1>
-  <p class="sub">How the trade callouts posted by public Telegram channels linked to accounts flagged for funneling traders into Telegram finished against the real market tape. Two parts: stock option callouts held to expiry, and forex, gold and index signals scored on whether the first target or the stop traded first. Every figure shows its sample size and a 95% range, and every assumption is written out below.</p>
+  <p class="sub">How the trade callouts posted by public Telegram channels linked to accounts flagged for funneling traders into Telegram finished against the real market tape. Three parts: what each called-out option contract did in the minutes and hours after the post (the main view), the same option callouts held to expiry (a secondary view), and forex, gold and index signals scored on whether the first target or the stop traded first. Every figure shows its sample size and a 95% range, and every assumption is written out below.</p>
   <div class="note">Analysis of public posts. The accounts and channels are flagged for investigation, not a finding of fraud. This page describes what the tape shows under stated assumptions; it is not advice.</div>
   <p class="hint" id="stamp">Loading scorecard...</p>
   <div id="err" class="note" hidden></div>
 
-  <h2>Headline numbers</h2>
+  <h2>How the calls traded after they were posted</h2>
+  <p class="lede">These channels call quick scalps, so the useful question is what the option contract itself did after the call, not where it finished at expiry. Each called-out contract is scored from real 5-minute trade bars of that contract. <b>Calls posted during the regular session</b> (9:30 to 16:00 ET) get the <b>30 minutes</b> of bars after the post. <b>Daily callouts</b> (posted before the open, after the close or on a weekend) get the <b>whole next regular session</b>. The fill price is the open of the first 5-minute bar at or after the post (or the session open for daily callouts), not the price the channel quoted.</p>
+  <div class="cards" id="pathCards"></div>
+  <p class="hint" id="pathDaily"></p>
+  <h3>Exit rules: target first or stop first</h3>
+  <p class="lede" id="pathRulesLede"></p>
+  <div id="pathRules"></div>
+  <h3>Does a slower fill change it?</h3>
+  <p class="lede" id="pathDelayLede"></p>
+  <div id="pathDelay"></div>
+  <h3>Could the quoted entry be filled?</h3>
+  <p class="lede" id="pathReal"></p>
+  <h3>Coverage: from posts to scored</h3>
+  <div id="pathFunnel"></div>
+  <p class="hint" id="pathReasons"></p>
+  <h3>By channel (30-minute window, in-session calls)</h3>
+  <div class="ctl"><label><input type="checkbox" id="pathSmallToggle"> Show small channels (n under 25)</label></div>
+  <div id="pathChannel"></div>
+  <h3>By ticker (15 most scored)</h3>
+  <div id="pathTicker"></div>
+  <h3>By hour of the post (ET)</h3>
+  <p class="lede">Hour of the post in New York time, in-session calls only. The 9 o'clock row starts at the 9:30 open.</p>
+  <div id="pathHour"></div>
+  <h3>Method and limitations</h3>
+  <ul class="bul" id="pathMethod"></ul>
+  <h3>Limitations</h3>
+  <ul class="bul" id="pathLimits"></ul>
+
+  <h2>Other headline numbers</h2>
   <p class="lede">Read each card with its sample size and range. A short window and a few active channels mean these are descriptions of this sample, not settled rates.</p>
   <div class="cards" id="cards"></div>
 
@@ -96,8 +124,8 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--surface);padding:
   <div class="kpis" id="pairedKpis"></div>
   <p class="hint" id="pairedCaveat"></p>
 
-  <h2>Options: held to expiry</h2>
-  <p class="lede">Each option callout is scored as if held until expiry: intrinsic value at the expiry close of the underlying minus the entry premium the channel quoted. A win means intrinsic value finished above the quoted entry. Channels usually post an early exit instead, so this is a stress test of the callouts, not anyone's account record.</p>
+  <h2>If you had bought and just held to expiry</h2>
+  <p class="lede"><b>A secondary view and a poor guide for scalps:</b> these channels call quick trades, so holding every contract to expiry is not what their followers are told to do. Each option callout is scored as if held until expiry: intrinsic value at the expiry close of the underlying minus the entry premium the channel quoted. A win means intrinsic value finished above the quoted entry. Channels usually post an early exit instead, so this is a stress test of the callouts, not anyone's account record.</p>
   <h3>Coverage: from posts to scored</h3>
   <div id="optFunnel"></div>
   <h3>By days to expiry</h3>
@@ -145,9 +173,11 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--surface);padding:
 
   <h2>Data</h2>
   <div class="links">
+    <a href="/api/funnel-option-paths.json">/api/funnel-option-paths.json</a>
     <a href="/api/funnel-scorecard.json">/api/funnel-scorecard.json</a>
     <a href="/api/funnel-fx-signals.json">/api/funnel-fx-signals.json</a>
     <a href="/api/funnel-calls.json">/api/funnel-calls.json (callouts)</a>
+    <a href="/api/funnel-calls-full.csv">/api/funnel-calls-full.csv (every callout)</a>
     <a href="/mcp">MCP tool: get_funnel_scorecard</a>
   </div>
 
@@ -233,7 +263,7 @@ function headline(S){
   var h=$('cards');clear(h);
   var o=S.options&&S.options.pooled,f=S.fx&&S.fx.pooled;
   if(o&&o.n_scored){
-    h.appendChild(card('opt','Options, held to expiry',pct(o.win_rate),true,
+    h.appendChild(card('opt','Options, held to expiry (secondary view)',pct(o.win_rate),true,
       'of '+o.n_scored+' scored option callouts finished above the quoted entry price when held to expiry',[
       ['n = '+o.n_scored,'scored ('+o.n_distinct_contracts+' distinct contracts, '+(o.n_contract_days||o.n_distinct_contracts)+' contract-days); posted '+o.window_start+' to '+o.window_end],
       ['95% range '+ci(o.win_ci),'(Wilson interval on the share that finished above entry)'],
@@ -442,13 +472,94 @@ function sigs(){
   more.textContent='Show more signals ('+Math.max(0,rows.length-shown)+' remaining of '+rows.length+')';
 }
 
+
+/* ---------- option price paths (main view) ---------- */
+function pcs(x){return x==null?'n/a':(x>0?'+':'')+Number(x).toFixed(1)+'%'}
+function pcm(x){return x==null?'n/a':(x>0?'+':'')+Number(x).toFixed(0)+'%'}
+var PSMALL=false;
+function paths(P){
+  var h=$('pathCards');clear(h);
+  if(!P||!P.pooled){h.appendChild(el('p','empty','Option price-path data is not available right now.'));return}
+  var I=P.pooled.intraday,Dd=P.pooled.daily;
+  if(!I||!I.n){h.appendChild(el('p','empty','No scored in-session calls yet.'));return}
+  var g=I.ended_green,hr=I.headline_rule,lq=I.liquidity,qr=I.quoted_entry_realism;
+  h.appendChild(card('opt','Called during the session, first 30 minutes',pct(g.rate),true,
+    'of '+I.n+' in-session calls ended the 30 minutes above their fill price',[
+    ['n = '+I.n,'scored in-session calls, posted '+P.window_start+' to '+P.window_end+', '+P.n_channels+' public channels'],
+    ['95% range '+ci(g.ci),'(Wilson interval on the share whose last bar closed above the fill)'],
+    ['Median peak '+pcm(I.peak_pct.median),'above the fill at some point in the window (mean '+pcm(I.peak_pct.mean)+')'],
+    ['Median drawdown '+pcm(I.drawdown_pct.median),'below the fill at some point in the window (mean '+pcm(I.drawdown_pct.mean)+')'],
+    ['Median end of window '+pcm(I.end_return_pct.median),'(mean '+pcs(I.end_return_pct.mean)+')'],
+    ['Counts','a call as "ended above the fill" only if the last 5-minute close in the window beat the fill price; it is not a trading win rate']]));
+  if(hr)h.appendChild(card('fx','Rule: +50% target, -50% stop',pct(hr.tp_first_rate),false,
+    'of '+I.n+' in-session calls traded the +50% level before the -50% level; '+pct(hr.sl_first_rate)+' traded the stop first',[
+    ['TP first '+hr.tp_first+' of '+I.n+' (95% range '+ci(hr.tp_first_ci)+')','measured from the fill within the 30-minute window'],
+    ['SL first '+hr.sl_first+' of '+I.n+' (95% range '+ci(hr.sl_first_ci)+')','a bar touching both levels counts as the stop'],
+    ['Neither '+hr.neither+' of '+I.n,'valued at the last close in the window'],
+    ['Mean return under this rule '+pcs(hr.mean_return_pct),'percent of the fill, before spread and slippage, which are not modelled and would make it worse']]));
+  var dn=$('pathDaily');
+  if(Dd&&Dd.n){var dg=Dd.ended_green;dn.textContent='Daily callouts (posted before the open, after the close or on a weekend, judged over the whole next session): n = '+Dd.n+', ended above the fill '+pct(dg.rate)+' (95% range '+ci(dg.ci)+'), median peak '+pcm(Dd.peak_pct.median)+', median drawdown '+pcm(Dd.drawdown_pct.median)+', median end of session '+pcm(Dd.end_return_pct.median)+'. A very small sample, shown for completeness.'}
+  else dn.textContent='No scored daily callouts yet.';
+  var rows=(I.rules||[]).map(function(r){return r});
+  $('pathRulesLede').textContent='Three simple exit rules applied to every in-session call, each measured from the fill inside the 30-minute window. TP first means the target traded before the stop, SL first the reverse, neither means neither traded and the position is valued at the last close. n = '+I.n+' for every row.';
+  mkTable($('pathRules'),[
+    {h:'Rule',v:function(r){return r.take_profit_pct},f:function(r){return '+'+r.take_profit_pct+'% target / -'+r.stop_loss_pct+'% stop'}},
+    {h:'TP first',num:1,v:function(r){return r.tp_first_rate},f:function(r){return r.tp_first+' ('+pct(r.tp_first_rate)+', range '+ci(r.tp_first_ci)+')'}},
+    {h:'SL first',num:1,v:function(r){return r.sl_first_rate},f:function(r){return r.sl_first+' ('+pct(r.sl_first_rate)+', range '+ci(r.sl_first_ci)+')'}},
+    {h:'Neither',num:1,v:function(r){return r.neither},f:function(r){return String(r.neither)}},
+    {h:'Mean return',num:1,v:function(r){return r.mean_return_pct},f:function(r){return pcs(r.mean_return_pct)},cls:function(r){return retCls(r.mean_return_pct)}}],rows,{nosort:true});
+  var ds=P.delay_sensitivity||{};
+  $('pathDelayLede').textContent='A follower cannot act at the second of the post. Here the fill is moved later by '+(ds.rows||[]).map(function(r){return r.delay_minutes}).join(', ')+' minutes (whole 5-minute bars) and everything is re-scored; n falls a little because some contracts stop printing. '+(ds.reused_from_previous?'These rows come from the previous build. ':'')+'The +50% / -50% rule is used.';
+  if((ds.rows||[]).length)mkTable($('pathDelay'),[
+    {h:'Fill delay',v:function(r){return r.delay_minutes},f:function(r){return r.delay_minutes+' min'}},
+    {h:'n',num:1,v:function(r){return r.n},f:function(r){return String(r.n)}},
+    {h:'Ended above fill',num:1,v:function(r){return r.green_rate},f:function(r){return pct(r.green_rate)+' ('+ci(r.green_ci)+')'}},
+    {h:'Mean end return',num:1,v:function(r){return r.mean_end_return_pct},f:function(r){return pcs(r.mean_end_return_pct)},cls:function(r){return retCls(r.mean_end_return_pct)}},
+    {h:'TP first',num:1,v:function(r){return r.tp_first_rate},f:function(r){return pct(r.tp_first_rate)}},
+    {h:'SL first',num:1,v:function(r){return r.sl_first_rate},f:function(r){return pct(r.sl_first_rate)}},
+    {h:'Mean return, rule',num:1,v:function(r){return r.rule_mean_return_pct},f:function(r){return pcs(r.rule_mean_return_pct)},cls:function(r){return retCls(r.rule_mean_return_pct)}}],ds.rows,{nosort:true});
+  else $('pathDelay').appendChild(el('p','empty','Not available.'));
+  if(qr&&qr.n){var un=qr.unfillable_quote_more_than_25pct_below_fill,wi=qr.within_25pct,ab=qr.quoted_more_than_25pct_above_fill;
+    $('pathReal').textContent='Of '+qr.n+' in-session calls that quoted an entry price, the median quoted entry was '+pcs(qr.median_quoted_vs_fill_pct)+' away from the contract\'s actual traded price at the post. '+pct(un.rate)+' ('+un.k+' of '+un.n+', range '+ci(un.ci)+') quoted an entry more than 25% BELOW the price the contract was trading at, so that entry could not have been filled; '+pct(wi.rate)+' were within 25% either way and '+pct(ab.rate)+' quoted more than 25% above. Median traded volume in the window was '+(lq&&lq.median_window_volume!=null?Number(lq.median_window_volume).toLocaleString('en-US'):'n/a')+' contracts, and '+(lq?pct(lq.thin_under_20_contracts.rate):'n/a')+' of calls traded under 20 contracts in the window.'}
+  else $('pathReal').textContent='No quoted entries to compare.';
+  var cv=(P.coverage&&P.coverage.stages)||[];
+  mkTable($('pathFunnel'),[{h:'Stage',v:function(r){return r.stage.trim()}},{h:'Records',num:1,v:function(r){return r.n},f:function(r){return String(r.n)}}],cv,{nosort:true});
+  var rs=(P.coverage&&P.coverage.unscorable_by_reason)||[];
+  $('pathReasons').textContent=rs.length?'Unscorable: '+rs.map(function(x){return x.n+' x '+x.reason}).join('; ')+'.':'';
+  function stat(first){return first.concat([
+    {h:'n',num:1,v:function(r){return r.n},f:function(r){return String(r.n)}},
+    {h:'Ended above fill',num:1,v:function(r){return r.green_rate},f:function(r){return r.n?pct(r.green_rate)+' ('+ci(r.green_ci)+')':'n/a'}},
+    {h:'Median peak',num:1,v:function(r){return r.median_peak_pct},f:function(r){return pcm(r.median_peak_pct)}},
+    {h:'Median drawdown',num:1,v:function(r){return r.median_drawdown_pct},f:function(r){return pcm(r.median_drawdown_pct)}},
+    {h:'Median end',num:1,v:function(r){return r.median_end_return_pct},f:function(r){return pcm(r.median_end_return_pct)},cls:function(r){return retCls(r.median_end_return_pct)}},
+    {h:'+50% first',num:1,v:function(r){return r.tp_first_rate},f:function(r){return r.n?pct(r.tp_first_rate)+' ('+ci(r.tp_first_ci)+')':'n/a'}},
+    {h:'-50% first',num:1,v:function(r){return r.sl_first_rate},f:function(r){return r.n?pct(r.sl_first_rate):'n/a'}},
+    {h:'Mean return, +50/-50',num:1,v:function(r){return r.rule_mean_return_pct},f:function(r){return pcs(r.rule_mean_return_pct)},cls:function(r){return retCls(r.rule_mean_return_pct)}},
+    {h:'Median volume',num:1,v:function(r){return r.median_window_volume},f:function(r){return r.median_window_volume==null?'n/a':Number(r.median_window_volume).toLocaleString('en-US')}},
+    {h:'Quote unfillable',num:1,v:function(r){return r.unfillable_quote_rate},f:function(r){return pct(r.unfillable_quote_rate)}}])}
+  function drawPC(){
+    var all=P.by_channel||[];
+    var rows=all.filter(function(r){return PSMALL||!r.small});
+    mkTable($('pathChannel'),stat([{h:'Channel',cls:function(){return 'ch'},v:function(r){return ch(r.channel)}}]),rows,{sort:1,dir:-1,rowCls:function(r){return r.small?'small':''},empty:'No channels with n of 25 or more.'});
+    var hid=all.length-rows.length;
+    if(hid>0&&!PSMALL)$('pathChannel').appendChild(el('p','hint',hid+' channels with n under 25 are hidden; they remain in the data file. Daily callouts are not in this table.'));
+  }
+  renderers.push(drawPC);drawPC();
+  $('pathSmallToggle').addEventListener('change',function(){PSMALL=this.checked;drawPC()});
+  mkTable($('pathTicker'),stat([{h:'Ticker',v:function(r){return r.ticker}}]),P.by_ticker||[],{sort:1,dir:-1,rowCls:function(r){return r.small?'small':''}});
+  mkTable($('pathHour'),stat([{h:'Hour (ET)',v:function(r){return r.hour_et},f:function(r){return r.hour}}]),P.by_session_hour||[],{sort:0,dir:1,rowCls:function(r){return r.small?'small':''}});
+  var M=P.methodology||{};
+  bullets('pathMethod',[(M.windows&&M.windows.intraday)||'',(M.windows&&M.windows.daily)||'',M.fill_rule||'',M.ended_green_definition||'',(M.rules&&M.rules.definition)||''].concat(M.assumptions||[]).filter(Boolean));
+  bullets('pathLimits',M.limitations||[]);
+}
+
 /* ---------- boot ---------- */
 function fetchJson(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(u+' '+r.status);return r.json()})}
-Promise.all([fetchJson('/api/funnel-scorecard.json'),fetchJson('/api/funnel-fx-signals.json').catch(function(){return {signals:[]}})]).then(function(res){
+Promise.all([fetchJson('/api/funnel-scorecard.json'),fetchJson('/api/funnel-fx-signals.json').catch(function(){return {signals:[]}}),fetchJson('/api/funnel-option-paths.json').catch(function(){return null})]).then(function(res){
   var S=res[0];SIGS=res[1].signals||[];
   $('stamp').textContent='Data generated '+(S.generated_at||'unknown')+'. Rates are shares of the sample shown beside them.';
   $('gen').textContent='Generated '+(S.generated_at||'')+'. Method notes: docs/FUNNEL.md in the repository. Data credit: '+(S.credit||'https://telegramscammers.com')+'.';
-  headline(S);paired(S);options(S);fx(S);timeline(S);sigs();
+  paths(res[2]);headline(S);paired(S);options(S);fx(S);timeline(S);sigs();
   $('sigTouch').addEventListener('change',function(){shown=40;sigs()});
   $('sigMore').addEventListener('click',function(){shown+=60;sigs()});
   Array.prototype.forEach.call(D.querySelectorAll('.smallToggle'),function(cb){cb.addEventListener('change',function(){

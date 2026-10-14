@@ -88,14 +88,21 @@ function extras(){
     T.forEach(t=>{const b=el('div','bar');const i=el('i');i.style.width=Math.round(100*(t.ah_accounts||0)/mx)+'%';
       b.append(i,el('span','t',t.ticker),el('span','n',(t.ah_accounts||0)+' accounts, '+(t.tg_channels||0)+' channels'));$('bars').append(b)});
     $('push').hidden=false}
-  const o=DB.callouts&&DB.callouts.outcomes,n=o?o.n_scored||0:0;
-  if(o&&n>=100){
-    const pct=v=>v==null?'n/a':Math.round(v*100)+'%';
-    const w=o.window_start&&o.window_end?' posted '+o.window_start+' to '+o.window_end:'';
-    $('tapesub').textContent='Option callouts from linked public Telegram channels'+w+', '+n+' scored. Each is held to expiry and valued at the underlying close that day, against the entry price the channel quoted. No slippage or fees. Most are same-day index and large-cap options, which expire worthless often by design. Channels usually quote early exits, which are not what is scored here, so a trader who exited early could do better or worse. A limited sample, not a settled rate, and not advice.';
-    [[pct(o.win_rate),'held to expiry: finished in profit'],[o.median_return==null?'n/a':Math.round(o.median_return)+'%','median return if held'],[pct(o.share_worth_zero),'expired worthless']].forEach(([v,l])=>{const k=el('div','kpi');k.append(el('b',null,v),el('span',null,l));$('kpis').append(k)});
+  const C=DB.callouts||{},P=C.paths,o=C.outcomes,pn=P?P.n_scored||0:0,n=o?o.n_scored||0:0;
+  const pct=v=>v==null?'n/a':Math.round(v*100)+'%';
+  const rng=c=>c&&c[0]!=null?' (95% range '+pct(c[0])+' to '+pct(c[1])+')':'';
+  if(P&&pn>=100){
+    const w=P.window_start&&P.window_end?' posted '+P.window_start+' to '+P.window_end:'';
+    $('tapesub').textContent='Option callouts from linked public Telegram channels'+w+'. '+pn+' were posted during the trading session and scored on the called contract\'s own 5-minute trade bars for the 30 minutes after the post (fill = the open of the first bar at or after the post). "Ended above fill" means the last close in that window was higher than the fill. TP first versus SL first applies a +50% target and a -50% stop from the fill; a bar touching both counts as the stop. Trade prints only: spread and slippage are not modelled, so real results would be worse. A limited sample, not a settled rate, and not advice. Details on /scorecard.';
+    [[pct(P.ended_green_rate),'ended the 30 minutes above the fill (n='+pn+')'+rng(P.ended_green_ci)],[pct(P.tp_first_rate)+' vs '+pct(P.sl_first_rate),'+50% target first vs -50% stop first (n='+pn+')'],[P.median_peak_pct==null?'n/a':Math.round(P.median_peak_pct)+'% / '+Math.round(P.median_drawdown_pct)+'%','median peak / median drawdown after the fill']].forEach(([v,l])=>{const k=el('div','kpi');k.append(el('b',null,v),el('span',null,l));$('kpis').append(k)});
+    const a=el('a',null,'Full method and per-channel numbers on /scorecard');a.href='/scorecard';$('tapesub').append(' ',a);
     $('tape').hidden=false}
-  else{$('collect').textContent='Collecting data: '+n+' scored callouts so far, need 100 before we publish rates';$('collect').hidden=false}
+  else if(o&&n>=100){
+    const w=o.window_start&&o.window_end?' posted '+o.window_start+' to '+o.window_end:'';
+    $('tapesub').textContent='Option callouts from linked public Telegram channels'+w+', '+n+' scored. Each is held to expiry and valued at the underlying close that day, against the entry price the channel quoted. No slippage or fees. Channels usually quote early exits, which are not what is scored here. A limited sample, not a settled rate, and not advice. Details on /scorecard.';
+    [[pct(o.win_rate),'held to expiry: finished in profit (n='+n+')'],[o.median_return==null?'n/a':Math.round(o.median_return)+'%','median return if held'],[pct(o.share_worth_zero),'expired worthless']].forEach(([v,l])=>{const k=el('div','kpi');k.append(el('b',null,v),el('span',null,l));$('kpis').append(k)});
+    $('tape').hidden=false}
+  else{$('collect').textContent='Collecting data: '+Math.max(pn,n)+' scored callouts so far, need 100 before we publish rates';$('collect').hidden=false}
 }
 function card(a){
   const c=el('div','res hit');const h=el('h2',null,'@'+a.username);h.append(el('span','badge '+a.tier,a.tier));c.append(h);

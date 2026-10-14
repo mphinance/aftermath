@@ -6,13 +6,46 @@
  "submit_intel": "https://telegramscammers.com/submit",
  "upstream_json": "https://telegramscammers.com/accounts.json",
  "disclaimer": "Flagged for investigation, not a finding of fraud. Tiers: reported (single observation), corroborated (shared Telegram link across accounts), verified (proof captured and admin-checked).",
- "count": 85,
+ "count": 150,
  "tiers": {
-  "reported": 52,
-  "corroborated": 17,
-  "verified": 16
+  "reported": 44,
+  "corroborated": 80,
+  "verified": 26
  },
  "shared_link_clusters": [
+  {
+   "link": "t.me/f_trad_free_channel",
+   "accounts": [
+    "DGainers",
+    "MISTER_GAIN",
+    "DE_GAINERS",
+    "DE_GAINERS101",
+    "EARNERS",
+    "GAINERS1",
+    "Mr_Gains"
+   ]
+  },
+  {
+   "link": "t.me/gammasphere47",
+   "accounts": [
+    "gamma_sphere0",
+    "gammalart",
+    "gammaspere",
+    "G_alert",
+    "gammash",
+    "gammasphere47"
+   ]
+  },
+  {
+   "link": "t.me/mrquickerfreealert",
+   "accounts": [
+    "ExitTitan000",
+    "MarginConqueror948",
+    "Mr_Q1",
+    "mQC",
+    "mrkq"
+   ]
+  },
   {
    "link": "t.me/+l5ymfjlfwzq4mde8",
    "accounts": [
@@ -24,19 +57,112 @@
    ]
   },
   {
-   "link": "t.me/mrquickerfreealert",
+   "link": "t.me/+g2bhdv1gnklyzdmx",
    "accounts": [
-    "ExitTitan000",
-    "MarginConqueror948",
-    "Mr_Q1"
+    "FinanceParagon611",
+    "FiscalPlayer50",
+    "MarginDreamer243",
+    "ShortJuggler37",
+    "SpreadStrategist951"
    ]
   },
   {
-   "link": "t.me/gammasphere47",
+   "link": "t.me/+khxj76ebbx1hmtyo",
    "accounts": [
-    "gamma_sphere0",
-    "gammalart",
-    "gammaspere"
+    "cooper_",
+    "William_Stocks",
+    "BeartrapThrasher36",
+    "OptionCatalyst396"
+   ]
+  },
+  {
+   "link": "t.me/bob_signalsfreealert",
+   "accounts": [
+    "mr_bob32",
+    "Mrbobsignals",
+    "TargetThrasher796",
+    "bobsignals21"
+   ]
+  },
+  {
+   "link": "t.me/novatrade02",
+   "accounts": [
+    "CapitalNavigator415",
+    "ResistanceSplicer912",
+    "RiskGuru204",
+    "WallstreetChaser305"
+   ]
+  },
+  {
+   "link": "t.me/shumdyfreealerts1",
+   "accounts": [
+    "SHUMDY09",
+    "SHUMDY26",
+    "SHUMDY40",
+    "SHUMDY99"
+   ]
+  },
+  {
+   "link": "t.me/clintonstock1",
+   "accounts": [
+    "clintonstocks2",
+    "hamiltonstock",
+    "Alexbell"
+   ]
+  },
+  {
+   "link": "t.me/bzjzhzhzuzzu",
+   "accounts": [
+    "Jackson87",
+    "KapGain",
+    "Libertytrader"
+   ]
+  },
+  {
+   "link": "t.me/moonwalkertrades2",
+   "accounts": [
+    "moonwalker7",
+    "MOONWALKER02",
+    "moonwalker17"
+   ]
+  },
+  {
+   "link": "t.me/bincofreealert",
+   "accounts": [
+    "SignalPlanner95",
+    "EntrySpy862",
+    "MR_BINCO52"
+   ]
+  },
+  {
+   "link": "t.me/vanguardstockupdates68",
+   "accounts": [
+    "stockprof",
+    "stock7",
+    "vanstock6"
+   ]
+  },
+  {
+   "link": "t.me/+erjl9hnmo2kzyzfk",
+   "accounts": [
+    "stockproft",
+    "vanguard8",
+    "stock6"
+   ]
+  },
+  {
+   "link": "t.me/+wlbv13toclmwztbk",
+   "accounts": [
+    "alexright",
+    "jerryright",
+    "willeright"
+   ]
+  },
+  {
+   "link": "t.me/+844hh2q2ffs4y2nk",
+   "accounts": [
+    "BondMaster355",
+    "StrategyWhisperer205"
    ]
   },
   {
@@ -47,38 +173,10 @@
    ]
   },
   {
-   "link": "t.me/clintonstock1",
-   "accounts": [
-    "clintonstocks2",
-    "hamiltonstock"
-   ]
-  },
-  {
-   "link": "t.me/+khxj76ebbx1hmtyo",
-   "accounts": [
-    "cooper_",
-    "William_Stocks"
-   ]
-  },
-  {
    "link": "t.me/crestedgeroom",
    "accounts": [
     "CRESTOPTIONS",
     "crestoverload"
-   ]
-  },
-  {
-   "link": "t.me/f_trad_free_channel",
-   "accounts": [
-    "DGainers",
-    "MISTER_GAIN"
-   ]
-  },
-  {
-   "link": "t.me/bzjzhzhzuzzu",
-   "accounts": [
-    "Jackson87",
-    "KapGain"
    ]
   },
   {
@@ -89,25 +187,116 @@
    ]
   },
   {
-   "link": "t.me/+erjl9hnmo2kzyzfk",
+   "link": "t.me/apextraderkoryphae",
    "accounts": [
-    "stockproft",
-    "vanguard8"
+    "Kor_yphe23",
+    "Apextrader67"
+   ]
+  },
+  {
+   "link": "t.me/legacypublicroom",
+   "accounts": [
+    "remy1",
+    "EntryScholar477"
+   ]
+  },
+  {
+   "link": "t.me/ajfreealart32",
+   "accounts": [
+    "ReversalPlayer615",
+    "AJ9"
+   ]
+  },
+  {
+   "link": "t.me/driftkingalerts",
+   "accounts": [
+    "seven33",
+    "seven778"
+   ]
+  },
+  {
+   "link": "t.me/smartmoneyorderfreeflow",
+   "accounts": [
+    "smartmoneyorder02",
+    "smartmoneyorder01"
+   ]
+  },
+  {
+   "link": "t.me/xyrofxfreegains19",
+   "accounts": [
+    "MARS_LEE",
+    "MOLLY_"
+   ]
+  },
+  {
+   "link": "t.me/mavericksroom",
+   "accounts": [
+    "Maverick_chambl",
+    "Maverick_chamble"
+   ]
+  },
+  {
+   "link": "t.me/mrcashflowfreealerts",
+   "accounts": [
+    "MrCashFlow1",
+    "MrGonzo01"
+   ]
+  },
+  {
+   "link": "t.me/cartersteele21",
+   "accounts": [
+    "Mrsteele",
+    "PhtSamuel"
+   ]
+  },
+  {
+   "link": "t.me/spymaster8",
+   "accounts": [
+    "SpreadFox501",
+    "primex2"
+   ]
+  },
+  {
+   "link": "t.me/whalecryptotradingsignals",
+   "accounts": [
+    "SpreadSpy808",
+    "masais"
+   ]
+  },
+  {
+   "link": "t.me/+mshhmn6ksb8ynwuo",
+   "accounts": [
+    "Stockacist002",
+    "Stockacist3"
+   ]
+  },
+  {
+   "link": "t.me/+nngqzm3bv_oxmgvk",
+   "accounts": [
+    "stockalgo",
+    "stockkyy"
+   ]
+  },
+  {
+   "link": "t.me/+erji9hnmo2kzyzfk",
+   "accounts": [
+    "vanguard9",
+    "vanstock67"
    ]
   }
  ],
  "tickers": [
   {
    "ticker": "SPY",
-   "ah_accounts": 39,
-   "ah_posts": 180,
+   "ah_accounts": 44,
+   "ah_posts": 186,
    "tg_channels": 23,
-   "tg_posts": 925
+   "tg_posts": 942
   },
   {
    "ticker": "QQQ",
-   "ah_accounts": 20,
-   "ah_posts": 147,
+   "ah_accounts": 21,
+   "ah_posts": 148,
    "tg_channels": 22,
    "tg_posts": 564
   },
@@ -116,40 +305,40 @@
    "ah_accounts": 20,
    "ah_posts": 34,
    "tg_channels": 21,
-   "tg_posts": 154
+   "tg_posts": 162
   },
   {
    "ticker": "TSLA",
-   "ah_accounts": 18,
-   "ah_posts": 39,
+   "ah_accounts": 19,
+   "ah_posts": 40,
    "tg_channels": 20,
-   "tg_posts": 306
+   "tg_posts": 312
   },
   {
    "ticker": "AAPL",
-   "ah_accounts": 17,
-   "ah_posts": 43,
+   "ah_accounts": 18,
+   "ah_posts": 44,
    "tg_channels": 21,
-   "tg_posts": 145
+   "tg_posts": 147
   },
   {
    "ticker": "SPX",
-   "ah_accounts": 18,
-   "ah_posts": 90,
+   "ah_accounts": 19,
+   "ah_posts": 91,
    "tg_channels": 19,
-   "tg_posts": 695
+   "tg_posts": 703
   },
   {
    "ticker": "AMZN",
-   "ah_accounts": 13,
-   "ah_posts": 46,
+   "ah_accounts": 14,
+   "ah_posts": 47,
    "tg_channels": 19,
-   "tg_posts": 169
+   "tg_posts": 171
   },
   {
    "ticker": "MU",
-   "ah_accounts": 12,
-   "ah_posts": 26,
+   "ah_accounts": 13,
+   "ah_posts": 27,
    "tg_channels": 18,
    "tg_posts": 244
   },
@@ -183,10 +372,17 @@
   },
   {
    "ticker": "IWM",
-   "ah_accounts": 10,
-   "ah_posts": 20,
+   "ah_accounts": 11,
+   "ah_posts": 21,
    "tg_channels": 13,
    "tg_posts": 137
+  },
+  {
+   "ticker": "SNDK",
+   "ah_accounts": 8,
+   "ah_posts": 11,
+   "tg_channels": 13,
+   "tg_posts": 75
   },
   {
    "ticker": "AMD",
@@ -194,27 +390,45 @@
    "ah_posts": 9,
    "tg_channels": 14,
    "tg_posts": 96
-  },
-  {
-   "ticker": "SNDK",
-   "ah_accounts": 7,
-   "ah_posts": 10,
-   "tg_channels": 13,
-   "tg_posts": 75
   }
  ],
  "callouts": {
-  "option_opens": 4070,
-  "option_closes": 1697,
-  "channels_covered": 26,
+  "option_opens": 4214,
+  "option_closes": 1773,
+  "channels_covered": 30,
   "outcomes": {
-   "n_scored": 1163,
+   "n_scored": 1146,
    "window_start": "2026-06-08",
    "window_end": "2026-10-13",
-   "win_rate": 0.2055,
+   "win_rate": 0.1946,
    "median_return": -100.0,
-   "share_worth_zero": 0.7214,
+   "share_worth_zero": 0.7312,
    "sample_warning": "Callouts from public channels only, scored at expiry vs underlying close; survivorship and parser limits apply."
+  },
+  "paths": {
+   "n_scored": 1527,
+   "window_start": "2026-03-26",
+   "window_end": "2026-10-14",
+   "ended_green_rate": 0.3563,
+   "ended_green_ci": [
+    0.3326,
+    0.3806
+   ],
+   "median_peak_pct": 17.5,
+   "median_drawdown_pct": -23.1,
+   "tp_first_rate": 0.1991,
+   "sl_first_rate": 0.1952,
+   "tp_first_ci": [
+    0.1798,
+    0.2199
+   ],
+   "sl_first_ci": [
+    0.1761,
+    0.2158
+   ],
+   "rule": "+50% target / -50% stop within 30 minutes of the fill",
+   "rule_mean_return_pct": -3.2,
+   "method": "Contract's own 5-minute trade bars for the 30 minutes after an in-session post; fill = open of the first bar at or after the post; ended above fill = last close above the fill. Trade prints, no spread or slippage. Details: /scorecard"
   }
  },
  "accounts": [
@@ -248,6 +462,11 @@
    "max_duplicate_post": 2,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 20,
+   "risk_factors": [
+    "single funnel observation"
+   ],
+   "age_days": 128,
    "afterhour_url": "https://afterhour.com/alpha6",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -289,6 +508,12 @@
     "NVDA",
     "SNDK"
    ],
+   "risk_score": 30,
+   "risk_factors": [
+    "single funnel observation",
+    "private invite link"
+   ],
+   "age_days": 133,
    "afterhour_url": "https://afterhour.com/alphasyndicatetrd",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -330,6 +555,11 @@
     "META",
     "OSCR"
    ],
+   "risk_score": 20,
+   "risk_factors": [
+    "single funnel observation"
+   ],
+   "age_days": 73,
    "afterhour_url": "https://afterhour.com/APEXSTOCKHUB",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -363,6 +593,13 @@
    "max_duplicate_post": 1,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 20,
    "afterhour_url": "https://afterhour.com/Apextrade3",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -404,6 +641,11 @@
     "AMZN",
     "SOFI"
    ],
+   "risk_score": 20,
+   "risk_factors": [
+    "single funnel observation"
+   ],
+   "age_days": 16,
    "afterhour_url": "https://afterhour.com/axisalgorithmictrade",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -437,6 +679,12 @@
    "max_duplicate_post": 0,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 30,
+   "risk_factors": [
+    "single funnel observation",
+    "private invite link"
+   ],
+   "age_days": 106,
    "afterhour_url": "https://afterhour.com/beatdaodds",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -476,6 +724,13 @@
     "AAPL",
     "MU"
    ],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "0 followers"
+   ],
+   "age_days": 14,
    "afterhour_url": "https://afterhour.com/black_card07",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -517,13 +772,20 @@
     "TSLA",
     "SPX"
    ],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "0 followers"
+   ],
+   "age_days": 19,
    "afterhour_url": "https://afterhour.com/blockwave01",
    "listing_url": "https://telegramscammers.com/database"
   },
   {
    "listing_id": "TS-009",
    "username": "BondMaster355",
-   "tier": "reported",
+   "tier": "corroborated",
    "telegram_link": "t.me/+844hh2q2ffs4y2nk",
    "telegram_links": [
     "t.me/+844hh2q2ffs4y2nk"
@@ -541,7 +803,7 @@
      "public_posts_seen": 0
     }
    ],
-   "cluster_key": null,
+   "cluster_key": "t.me/+844hh2q2ffs4y2nk",
    "bio": "STOCK RELATED ONLY",
    "created_at": "2026-09-25",
    "num_followers": null,
@@ -554,6 +816,14 @@
    "tickers_pushed": [
     "SPCX"
    ],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 19,
    "afterhour_url": "https://afterhour.com/BondMaster355",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -587,6 +857,13 @@
    "max_duplicate_post": 1,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 127,
    "afterhour_url": "https://afterhour.com/Capitalguru",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -620,6 +897,13 @@
    "max_duplicate_post": 1,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 12,
    "afterhour_url": "https://afterhour.com/ChartX",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -653,6 +937,13 @@
    "max_duplicate_post": 0,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 36,
    "afterhour_url": "https://afterhour.com/ClintAwana",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -694,6 +985,13 @@
     "PRDO",
     "RXRX"
    ],
+   "risk_score": 60,
+   "risk_factors": [
+    "evidence captured & checked",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 132,
    "afterhour_url": "https://afterhour.com/clintonstocks2",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -735,6 +1033,12 @@
     "MU",
     "MS"
    ],
+   "risk_score": 30,
+   "risk_factors": [
+    "single funnel observation",
+    "private invite link"
+   ],
+   "age_days": 65,
    "afterhour_url": "https://afterhour.com/clone1",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -776,6 +1080,15 @@
     "QQQ",
     "META"
    ],
+   "risk_score": 75,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 37,
    "afterhour_url": "https://afterhour.com/cooper_",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -817,6 +1130,15 @@
     "TSLA",
     "AMZN"
    ],
+   "risk_score": 85,
+   "risk_factors": [
+    "evidence captured & checked",
+    "burner pattern: new + low posts",
+    "0 followers",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 23,
    "afterhour_url": "https://afterhour.com/CRESTOPTIONS",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -858,6 +1180,13 @@
     "SPX",
     "MU"
    ],
+   "risk_score": 60,
+   "risk_factors": [
+    "evidence captured & checked",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 14,
    "afterhour_url": "https://afterhour.com/crestoverload",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -895,6 +1224,13 @@
    "tickers_pushed": [
     "SPY"
    ],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "0 followers"
+   ],
+   "age_days": 11,
    "afterhour_url": "https://afterhour.com/DannyCWayne",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -928,6 +1264,11 @@
    "max_duplicate_post": 1,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 20,
+   "risk_factors": [
+    "single funnel observation"
+   ],
+   "age_days": 91,
    "afterhour_url": "https://afterhour.com/dennisbtc",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -965,6 +1306,13 @@
    "tickers_pushed": [
     "SPY"
    ],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 13,
    "afterhour_url": "https://afterhour.com/DGainers",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1006,6 +1354,11 @@
     "DOCS",
     "UPS"
    ],
+   "risk_score": 20,
+   "risk_factors": [
+    "single funnel observation"
+   ],
+   "age_days": 648,
    "afterhour_url": "https://afterhour.com/DocICU",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1047,6 +1400,12 @@
     "MSFT",
     "SPX"
    ],
+   "risk_score": 35,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts"
+   ],
+   "age_days": 6,
    "afterhour_url": "https://afterhour.com/Einsteinofwallstreet",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1080,6 +1439,12 @@
    "max_duplicate_post": 0,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 30,
+   "risk_factors": [
+    "single funnel observation",
+    "0 followers"
+   ],
+   "age_days": 110,
    "afterhour_url": "https://afterhour.com/ExitSurfer308",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1121,6 +1486,13 @@
     "CVS",
     "QCOM"
    ],
+   "risk_score": 60,
+   "risk_factors": [
+    "evidence captured & checked",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 20,
    "afterhour_url": "https://afterhour.com/ExitTitan000",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1154,6 +1526,12 @@
    "max_duplicate_post": 0,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 30,
+   "risk_factors": [
+    "single funnel observation",
+    "0 followers"
+   ],
+   "age_days": 103,
    "afterhour_url": "https://afterhour.com/falcon01",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1191,6 +1569,15 @@
    "tickers_pushed": [
     "SPY"
    ],
+   "risk_score": 85,
+   "risk_factors": [
+    "evidence captured & checked",
+    "burner pattern: new + low posts",
+    "0 followers",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 8,
    "afterhour_url": "https://afterhour.com/gamma_sphere0",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1228,6 +1615,15 @@
    "tickers_pushed": [
     "SPY"
    ],
+   "risk_score": 85,
+   "risk_factors": [
+    "evidence captured & checked",
+    "burner pattern: new + low posts",
+    "0 followers",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 2,
    "afterhour_url": "https://afterhour.com/gammalart",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1265,6 +1661,14 @@
    "tickers_pushed": [
     "SPY"
    ],
+   "risk_score": 70,
+   "risk_factors": [
+    "evidence captured & checked",
+    "0 followers",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 92,
    "afterhour_url": "https://afterhour.com/gammaspere",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1302,6 +1706,13 @@
    "tickers_pushed": [
     "RXRX"
    ],
+   "risk_score": 60,
+   "risk_factors": [
+    "evidence captured & checked",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 132,
    "afterhour_url": "https://afterhour.com/hamiltonstock",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1339,6 +1750,13 @@
    "tickers_pushed": [
     "AAPL"
    ],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 47,
    "afterhour_url": "https://afterhour.com/helpinghand",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1372,6 +1790,11 @@
    "max_duplicate_post": 0,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 20,
+   "risk_factors": [
+    "single funnel observation"
+   ],
+   "age_days": 78,
    "afterhour_url": "https://afterhour.com/hiddenzon",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1413,6 +1836,15 @@
     "QQQ",
     "NCPL"
    ],
+   "risk_score": 75,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 12,
    "afterhour_url": "https://afterhour.com/jackieshaw",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1454,6 +1886,14 @@
     "NVDA",
     "SPX"
    ],
+   "risk_score": 60,
+   "risk_factors": [
+    "shared link across accounts",
+    "0 followers",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 175,
    "afterhour_url": "https://afterhour.com/Jackson87",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1491,6 +1931,14 @@
    "tickers_pushed": [
     "NESR"
    ],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 17,
    "afterhour_url": "https://afterhour.com/justprime",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1532,13 +1980,22 @@
     "TER",
     "QQQ"
    ],
+   "risk_score": 70,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "0 followers",
+    "shared Telegram link",
+    "pseudonymous operator"
+   ],
+   "age_days": 13,
    "afterhour_url": "https://afterhour.com/KapGain",
    "listing_url": "https://telegramscammers.com/database"
   },
   {
    "listing_id": "TS-036",
    "username": "Kor_yphe23",
-   "tier": "reported",
+   "tier": "corroborated",
    "telegram_link": "t.me/apextraderkoryphae",
    "telegram_links": [
     "t.me/apextraderkoryphae"
@@ -1556,7 +2013,7 @@
      "public_posts_seen": 19
     }
    ],
-   "cluster_key": null,
+   "cluster_key": "t.me/apextraderkoryphae",
    "bio": "A disciplined and results-driven options trader, skilled in market analysis, risk management, strategic execution,and consistent performance.",
    "created_at": "2026-06-26",
    "num_followers": 0,
@@ -1573,6 +2030,13 @@
     "META",
     "NFLX"
    ],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 110,
    "afterhour_url": "https://afterhour.com/Kor_yphe23",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1614,6 +2078,15 @@
     "COIN",
     "RXRX"
    ],
+   "risk_score": 85,
+   "risk_factors": [
+    "evidence captured & checked",
+    "burner pattern: new + low posts",
+    "0 followers",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 26,
    "afterhour_url": "https://afterhour.com/MarginConqueror948",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1647,6 +2120,13 @@
    "max_duplicate_post": 0,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "0 followers"
+   ],
+   "age_days": 51,
    "afterhour_url": "https://afterhour.com/MAYA_BLAKE",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1688,6 +2168,11 @@
     "SPY",
     "TSLA"
    ],
+   "risk_score": 40,
+   "risk_factors": [
+    "evidence captured & checked"
+   ],
+   "age_days": 15,
    "afterhour_url": "https://afterhour.com/Michealanderson",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1727,6 +2212,13 @@
     "SPY",
     "USO"
    ],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 16,
    "afterhour_url": "https://afterhour.com/MISTER_GAIN",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1768,6 +2260,13 @@
     "AAPL",
     "MSFT"
    ],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "0 followers"
+   ],
+   "age_days": 5,
    "afterhour_url": "https://afterhour.com/MomentumWhisper145",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1801,13 +2300,20 @@
    "max_duplicate_post": 0,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 4,
    "afterhour_url": "https://afterhour.com/money_maker",
    "listing_url": "https://telegramscammers.com/database"
   },
   {
    "listing_id": "TS-043",
    "username": "moonwalker7",
-   "tier": "reported",
+   "tier": "corroborated",
    "telegram_link": "t.me/moonwalkertrades2",
    "telegram_links": [
     "t.me/moonwalkertrades2"
@@ -1825,7 +2331,7 @@
      "public_posts_seen": 20
     }
    ],
-   "cluster_key": null,
+   "cluster_key": "t.me/moonwalkertrades2",
    "bio": "⏳ Stay patient. Stay disciplined. Let the results speak. 📈🔥",
    "created_at": "2026-09-28",
    "num_followers": null,
@@ -1842,13 +2348,21 @@
     "SPY",
     "AMZN"
    ],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 16,
    "afterhour_url": "https://afterhour.com/moonwalker7",
    "listing_url": "https://telegramscammers.com/database"
   },
   {
    "listing_id": "TS-044",
    "username": "mr_bob32",
-   "tier": "reported",
+   "tier": "corroborated",
    "telegram_link": "t.me/bob_signalsfreealert",
    "telegram_links": [
     "t.me/bob_signalsfreealert"
@@ -1866,7 +2380,7 @@
      "public_posts_seen": 20
     }
    ],
-   "cluster_key": null,
+   "cluster_key": "t.me/bob_signalsfreealert",
    "bio": "",
    "created_at": "2026-05-29",
    "num_followers": 1,
@@ -1879,6 +2393,12 @@
    "tickers_pushed": [
     "SPY"
    ],
+   "risk_score": 40,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link"
+   ],
+   "age_days": 138,
    "afterhour_url": "https://afterhour.com/mr_bob32",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1920,6 +2440,11 @@
     "NVDA",
     "TSLA"
    ],
+   "risk_score": 20,
+   "risk_factors": [
+    "single funnel observation"
+   ],
+   "age_days": 7,
    "afterhour_url": "https://afterhour.com/MR_FORTUNE",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1938,11 +2463,25 @@
    "bio": "For traders who rely on skill, not luck. Access exclusive setups, tested strategies, and guided insights desig...",
    "created_at": null,
    "num_followers": null,
-   "post_count": 0,
+   "post_count": 4,
    "posts_mentioning_telegram": 0,
    "max_duplicate_post": 0,
-   "top_tickers": [],
-   "tickers_pushed": [],
+   "top_tickers": [
+    "SPY",
+    "PEP",
+    "AAPL"
+   ],
+   "tickers_pushed": [
+    "SPY",
+    "PEP",
+    "AAPL"
+   ],
+   "risk_score": 15,
+   "risk_factors": [
+    "single funnel observation",
+    "no link found"
+   ],
+   "age_days": null,
    "afterhour_url": "https://afterhour.com/Mr_pri",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -1980,6 +2519,14 @@
    "tickers_pushed": [
     "KEY"
    ],
+   "risk_score": 70,
+   "risk_factors": [
+    "evidence captured & checked",
+    "0 followers",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 89,
    "afterhour_url": "https://afterhour.com/Mr_Q1",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2021,6 +2568,13 @@
     "BTC",
     "IWM"
    ],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 57,
    "afterhour_url": "https://afterhour.com/NexD",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2062,6 +2616,13 @@
     "QQQ",
     "TSLA"
    ],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 6,
    "afterhour_url": "https://afterhour.com/noguesswork3",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2103,6 +2664,13 @@
     "QQQ",
     "USO"
    ],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 34,
    "afterhour_url": "https://afterhour.com/nostress_profits",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2142,6 +2710,12 @@
     "YAAS",
     "NVDA"
    ],
+   "risk_score": 35,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts"
+   ],
+   "age_days": 49,
    "afterhour_url": "https://afterhour.com/Owenmoshey",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2181,6 +2755,13 @@
     "IWM",
     "BTC"
    ],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 23,
    "afterhour_url": "https://afterhour.com/pecolastocks",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2222,6 +2803,12 @@
     "SOFI",
     "MU"
    ],
+   "risk_score": 30,
+   "risk_factors": [
+    "single funnel observation",
+    "private invite link"
+   ],
+   "age_days": 129,
    "afterhour_url": "https://afterhour.com/Pentagon",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2255,6 +2842,13 @@
    "max_duplicate_post": 0,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 134,
    "afterhour_url": "https://afterhour.com/PivotalFX",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2288,6 +2882,13 @@
    "max_duplicate_post": 1,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 26,
    "afterhour_url": "https://afterhour.com/PortfolioAnalyst18",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2329,6 +2930,12 @@
     "P",
     "AMD"
    ],
+   "risk_score": 30,
+   "risk_factors": [
+    "single funnel observation",
+    "private invite link"
+   ],
+   "age_days": 64,
    "afterhour_url": "https://afterhour.com/Pratt_stock",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2362,6 +2969,13 @@
    "max_duplicate_post": 0,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 101,
    "afterhour_url": "https://afterhour.com/Primestocks",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2403,13 +3017,20 @@
     "INTC",
     "TSLA"
    ],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 15,
    "afterhour_url": "https://afterhour.com/profitpathfinder03",
    "listing_url": "https://telegramscammers.com/database"
   },
   {
    "listing_id": "TS-059",
    "username": "remy1",
-   "tier": "reported",
+   "tier": "corroborated",
    "telegram_link": "t.me/legacypublicroom",
    "telegram_links": [
     "t.me/legacypublicroom"
@@ -2427,7 +3048,7 @@
      "public_posts_seen": 12
     }
    ],
-   "cluster_key": null,
+   "cluster_key": "t.me/legacypublicroom",
    "bio": "👑 Building a legacy through trading 📈 One setup at a time",
    "created_at": "2026-06-17",
    "num_followers": 0,
@@ -2444,13 +3065,20 @@
     "IBM",
     "META"
    ],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 119,
    "afterhour_url": "https://afterhour.com/remy1",
    "listing_url": "https://telegramscammers.com/database"
   },
   {
    "listing_id": "TS-060",
    "username": "ReversalPlayer615",
-   "tier": "reported",
+   "tier": "corroborated",
    "telegram_link": "t.me/ajfreealart32",
    "telegram_links": [
     "t.me/ajfreealart32"
@@ -2468,7 +3096,7 @@
      "public_posts_seen": 20
     }
    ],
-   "cluster_key": null,
+   "cluster_key": "t.me/ajfreealart32",
    "bio": "Independent Trader 📈\nForex • Crypto • Indices\nStrategy over emotion.\nDiscipline • Patience • Consistency\n📊 Markets | Lifestyle | Growth",
    "created_at": "2026-09-29",
    "num_followers": 16,
@@ -2485,6 +3113,12 @@
     "LOW",
     "IBM"
    ],
+   "risk_score": 40,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link"
+   ],
+   "age_days": 15,
    "afterhour_url": "https://afterhour.com/ReversalPlayer615",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2526,6 +3160,15 @@
     "SPX",
     "QQQ"
    ],
+   "risk_score": 75,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 13,
    "afterhour_url": "https://afterhour.com/Rixk",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2565,6 +3208,15 @@
     "SPY",
     "BABA"
    ],
+   "risk_score": 75,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 28,
    "afterhour_url": "https://afterhour.com/Ronk",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2606,13 +3258,18 @@
     "SPY",
     "GOOGL"
    ],
+   "risk_score": 40,
+   "risk_factors": [
+    "evidence captured & checked"
+   ],
+   "age_days": 19,
    "afterhour_url": "https://afterhour.com/Seneri",
    "listing_url": "https://telegramscammers.com/database"
   },
   {
    "listing_id": "TS-064",
    "username": "seven33",
-   "tier": "reported",
+   "tier": "corroborated",
    "telegram_link": "t.me/driftkingalerts",
    "telegram_links": [
     "t.me/driftkingalerts"
@@ -2630,7 +3287,7 @@
      "public_posts_seen": 0
     }
    ],
-   "cluster_key": null,
+   "cluster_key": "t.me/driftkingalerts",
    "bio": "no noise, no guesswork. Only high-quality setups, private strategies, and clear guidance for traders ready to level up.",
    "created_at": "2026-10-04",
    "num_followers": null,
@@ -2647,6 +3304,13 @@
     "QQQ",
     "SPX"
    ],
+   "risk_score": 55,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 10,
    "afterhour_url": "https://afterhour.com/seven33",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2686,6 +3350,13 @@
     "FET",
     "SPY"
    ],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 28,
    "afterhour_url": "https://afterhour.com/shaw12",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2710,7 +3381,7 @@
      "public_posts_seen": 20
     }
    ],
-   "cluster_key": null,
+   "cluster_key": "t.me/bincofreealert",
    "bio": "",
    "created_at": "2026-09-30",
    "num_followers": 16,
@@ -2727,6 +3398,13 @@
     "SPX",
     "SPY"
    ],
+   "risk_score": 60,
+   "risk_factors": [
+    "evidence captured & checked",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 14,
    "afterhour_url": "https://afterhour.com/SignalPlanner95",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2760,6 +3438,14 @@
    "max_duplicate_post": 0,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 60,
+   "risk_factors": [
+    "shared link across accounts",
+    "private invite link",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": null,
    "afterhour_url": "https://afterhour.com/skynet11",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2809,6 +3495,15 @@
     "RGR",
     "AMRC"
    ],
+   "risk_score": 75,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 27,
    "afterhour_url": "https://afterhour.com/skytec",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2850,13 +3545,18 @@
     "SPCX",
     "BTC"
    ],
+   "risk_score": 40,
+   "risk_factors": [
+    "evidence captured & checked"
+   ],
+   "age_days": null,
    "afterhour_url": "https://afterhour.com/sliqstar",
    "listing_url": "https://telegramscammers.com/database"
   },
   {
    "listing_id": "TS-070",
    "username": "smartmoneyorder02",
-   "tier": "reported",
+   "tier": "corroborated",
    "telegram_link": "t.me/smartmoneyorderfreeflow",
    "telegram_links": [
     "t.me/smartmoneyorderfreeflow"
@@ -2874,7 +3574,7 @@
      "public_posts_seen": 0
     }
    ],
-   "cluster_key": null,
+   "cluster_key": "t.me/smartmoneyorderfreeflow",
    "bio": "Entries that hit\nExit that pay\nReal time alerts / coaching / Accountability",
    "created_at": "2026-08-04",
    "num_followers": 1,
@@ -2891,6 +3591,12 @@
     "AAPL",
     "PLTR"
    ],
+   "risk_score": 40,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link"
+   ],
+   "age_days": 71,
    "afterhour_url": "https://afterhour.com/smartmoneyorder02",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2924,6 +3630,13 @@
    "max_duplicate_post": 1,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 34,
    "afterhour_url": "https://afterhour.com/stockacisst",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2965,6 +3678,13 @@
     "SNDK",
     "NBIS"
    ],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 17,
    "afterhour_url": "https://afterhour.com/Stockacist008",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -2998,6 +3718,12 @@
    "max_duplicate_post": 1,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 30,
+   "risk_factors": [
+    "single funnel observation",
+    "private invite link"
+   ],
+   "age_days": 83,
    "afterhour_url": "https://afterhour.com/stockdragon1",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -3035,13 +3761,19 @@
    "tickers_pushed": [
     "MAA"
    ],
+   "risk_score": 30,
+   "risk_factors": [
+    "single funnel observation",
+    "private invite link"
+   ],
+   "age_days": 132,
    "afterhour_url": "https://afterhour.com/stockmap",
    "listing_url": "https://telegramscammers.com/database"
   },
   {
    "listing_id": "TS-075",
    "username": "stockprof",
-   "tier": "reported",
+   "tier": "corroborated",
    "telegram_link": "t.me/vanguardstockupdates68",
    "telegram_links": [
     "t.me/vanguardstockupdates68"
@@ -3059,7 +3791,7 @@
      "public_posts_seen": 20
     }
    ],
-   "cluster_key": null,
+   "cluster_key": "t.me/vanguardstockupdates68",
    "bio": "Stock related only",
    "created_at": "2026-08-24",
    "num_followers": 0,
@@ -3072,6 +3804,14 @@
    "tickers_pushed": [
     "NVDA"
    ],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 51,
    "afterhour_url": "https://afterhour.com/stockprof",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -3109,6 +3849,14 @@
    "tickers_pushed": [
     "GOLD"
    ],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 43,
    "afterhour_url": "https://afterhour.com/stockproft",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -3150,6 +3898,13 @@
     "MSFT",
     "MRVL"
    ],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 13,
    "afterhour_url": "https://afterhour.com/stockpros",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -3191,6 +3946,11 @@
     "COST",
     "STRA"
    ],
+   "risk_score": 40,
+   "risk_factors": [
+    "evidence captured & checked"
+   ],
+   "age_days": 186,
    "afterhour_url": "https://afterhour.com/STOCKWISE",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -3228,6 +3988,11 @@
    "tickers_pushed": [
     "SPY"
    ],
+   "risk_score": 40,
+   "risk_factors": [
+    "evidence captured & checked"
+   ],
+   "age_days": 63,
    "afterhour_url": "https://afterhour.com/t_rex_trade",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -3261,6 +4026,13 @@
    "max_duplicate_post": 1,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "0 followers"
+   ],
+   "age_days": 23,
    "afterhour_url": "https://afterhour.com/the_mentalist",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -3302,6 +4074,11 @@
     "SDRL",
     "RGA"
    ],
+   "risk_score": 20,
+   "risk_factors": [
+    "single funnel observation"
+   ],
+   "age_days": 13,
    "afterhour_url": "https://afterhour.com/TrendCollector618",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -3335,6 +4112,14 @@
    "max_duplicate_post": 1,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 30,
    "afterhour_url": "https://afterhour.com/vanguard8",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -3376,6 +4161,13 @@
     "QQQ",
     "MRNA"
    ],
+   "risk_score": 45,
+   "risk_factors": [
+    "single funnel observation",
+    "burner pattern: new + low posts",
+    "private invite link"
+   ],
+   "age_days": 10,
    "afterhour_url": "https://afterhour.com/verified",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -3417,6 +4209,11 @@
     "QQQ",
     "SOFI"
    ],
+   "risk_score": 20,
+   "risk_factors": [
+    "single funnel observation"
+   ],
+   "age_days": 11,
    "afterhour_url": "https://afterhour.com/WICKED_GAINER",
    "listing_url": "https://telegramscammers.com/database"
   },
@@ -3450,7 +4247,2386 @@
    "max_duplicate_post": 1,
    "top_tickers": [],
    "tickers_pushed": [],
+   "risk_score": 75,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 60,
    "afterhour_url": "https://afterhour.com/William_Stocks",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-086",
+   "username": "AJ9",
+   "tier": "corroborated",
+   "telegram_link": "t.me/ajfreealart32",
+   "telegram_links": [
+    "t.me/ajfreealart32"
+   ],
+   "channel_title": "AJ FREE ALART",
+   "channel_members": 617,
+   "channel_alive": true,
+   "public_posts_seen": 20,
+   "channels": [
+    {
+     "link": "t.me/ajfreealart32",
+     "channel_title": "AJ FREE ALART",
+     "channel_members": 617,
+     "channel_alive": true,
+     "public_posts_seen": 20
+    }
+   ],
+   "cluster_key": "t.me/ajfreealart32",
+   "bio": "Trusted market updates, clear analysis & smart trade insights ",
+   "created_at": "2026-08-20",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 55,
+   "afterhour_url": "https://afterhour.com/AJ9",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-087",
+   "username": "Alexbell",
+   "tier": "verified",
+   "telegram_link": "t.me/clintonstock1",
+   "telegram_links": [
+    "t.me/clintonstock1"
+   ],
+   "channel_title": "Telegram: Contact @clintonstock1",
+   "channel_members": null,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/clintonstock1",
+     "channel_title": "Telegram: Contact @clintonstock1",
+     "channel_members": null,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/clintonstock1",
+   "bio": "Trading stocks & crypto with structure\nEvery move planned, every risk defined 🎯\nNo guessing — just execution\nProcess always comes first\n",
+   "created_at": "2026-06-06",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 60,
+   "risk_factors": [
+    "evidence captured & checked",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 130,
+   "afterhour_url": "https://afterhour.com/Alexbell",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-088",
+   "username": "Apextrader67",
+   "tier": "corroborated",
+   "telegram_link": "t.me/apextraderkoryphae",
+   "telegram_links": [
+    "t.me/apextraderkoryphae"
+   ],
+   "channel_title": "Apex Trader free hits🤑",
+   "channel_members": 1320,
+   "channel_alive": true,
+   "public_posts_seen": 19,
+   "channels": [
+    {
+     "link": "t.me/apextraderkoryphae",
+     "channel_title": "Apex Trader free hits🤑",
+     "channel_members": 1320,
+     "channel_alive": true,
+     "public_posts_seen": 19
+    }
+   ],
+   "cluster_key": "t.me/apextraderkoryphae",
+   "bio": "👑 APEX\n💰 Building wealth one trade at a time\n📊 Options Trader | Market Strategist\n🏛️ Join the Telegram👇",
+   "created_at": "2026-06-30",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 40,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link"
+   ],
+   "age_days": 106,
+   "afterhour_url": "https://afterhour.com/Apextrader67",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-089",
+   "username": "BeartrapThrasher36",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+khxj76ebbx1hmtyo",
+   "telegram_links": [
+    "t.me/+khxj76ebbx1hmtyo"
+   ],
+   "channel_title": "Apex Option Alerts",
+   "channel_members": 4955,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/+khxj76ebbx1hmtyo",
+     "channel_title": "Apex Option Alerts",
+     "channel_members": 4955,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/+khxj76ebbx1hmtyo",
+   "bio": "Options Trader, Scalper, Market Strategist • Turning Market Volatility into Daily Income ➡️ ",
+   "created_at": "2026-08-19",
+   "num_followers": 7,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 56,
+   "afterhour_url": "https://afterhour.com/BeartrapThrasher36",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-090",
+   "username": "CapitalNavigator415",
+   "tier": "corroborated",
+   "telegram_link": "t.me/novatrade02",
+   "telegram_links": [
+    "t.me/novatrade02"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/novatrade02",
+   "bio": null,
+   "created_at": "2026-08-20",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 55,
+   "afterhour_url": "https://afterhour.com/CapitalNavigator415",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-091",
+   "username": "DE_GAINERS",
+   "tier": "corroborated",
+   "telegram_link": "t.me/f_trad_free_channel",
+   "telegram_links": [
+    "t.me/f_trad_free_channel"
+   ],
+   "channel_title": "Telegram: Contact @f_trad_free_channel",
+   "channel_members": null,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/f_trad_free_channel",
+     "channel_title": "Telegram: Contact @f_trad_free_channel",
+     "channel_members": null,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/f_trad_free_channel",
+   "bio": "Building De Gainers one trade at a time.\nSharing market analysis, disciplined execution, and risk-focused trading",
+   "created_at": "2026-07-29",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 77,
+   "afterhour_url": "https://afterhour.com/DE_GAINERS",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-092",
+   "username": "DE_GAINERS101",
+   "tier": "corroborated",
+   "telegram_link": "t.me/f_trad_free_channel",
+   "telegram_links": [
+    "t.me/f_trad_free_channel"
+   ],
+   "channel_title": "Telegram: Contact @f_trad_free_channel",
+   "channel_members": null,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/f_trad_free_channel",
+     "channel_title": "Telegram: Contact @f_trad_free_channel",
+     "channel_members": null,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/f_trad_free_channel",
+   "bio": "\nNavigating global markets with discipline and precision.\nTechnical analysis • Risk management • Price action • Every trade documented.",
+   "created_at": "2026-07-29",
+   "num_followers": 2,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 77,
+   "afterhour_url": "https://afterhour.com/DE_GAINERS101",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-093",
+   "username": "EARNERS",
+   "tier": "corroborated",
+   "telegram_link": "t.me/f_trad_free_channel",
+   "telegram_links": [
+    "t.me/f_trad_free_channel"
+   ],
+   "channel_title": "Telegram: Contact @f_trad_free_channel",
+   "channel_members": null,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/f_trad_free_channel",
+     "channel_title": "Telegram: Contact @f_trad_free_channel",
+     "channel_members": null,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/f_trad_free_channel",
+   "bio": "God’s Timing. 🕊️",
+   "created_at": "2026-08-31",
+   "num_followers": 6,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 44,
+   "afterhour_url": "https://afterhour.com/EARNERS",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-094",
+   "username": "EntryScholar477",
+   "tier": "corroborated",
+   "telegram_link": "t.me/legacypublicroom",
+   "telegram_links": [
+    "t.me/legacypublicroom"
+   ],
+   "channel_title": "LEGACY PUBLIC ROOM",
+   "channel_members": 5386,
+   "channel_alive": true,
+   "public_posts_seen": 12,
+   "channels": [
+    {
+     "link": "t.me/legacypublicroom",
+     "channel_title": "LEGACY PUBLIC ROOM",
+     "channel_members": 5386,
+     "channel_alive": true,
+     "public_posts_seen": 12
+    }
+   ],
+   "cluster_key": "t.me/legacypublicroom",
+   "bio": "👑 Building a legacy through trading 📈 One setup at a time",
+   "created_at": "2026-06-27",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 40,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link"
+   ],
+   "age_days": 109,
+   "afterhour_url": "https://afterhour.com/EntryScholar477",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-095",
+   "username": "EntrySpy862",
+   "tier": "verified",
+   "telegram_link": "t.me/bincofreealert",
+   "telegram_links": [
+    "t.me/bincofreealert"
+   ],
+   "channel_title": "BINCO FREE ALERTS⭕️",
+   "channel_members": 2350,
+   "channel_alive": true,
+   "public_posts_seen": 20,
+   "channels": [
+    {
+     "link": "t.me/bincofreealert",
+     "channel_title": "BINCO FREE ALERTS⭕️",
+     "channel_members": 2350,
+     "channel_alive": true,
+     "public_posts_seen": 20
+    }
+   ],
+   "cluster_key": "t.me/bincofreealert",
+   "bio": null,
+   "created_at": "2026-09-29",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "evidence captured & checked",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 15,
+   "afterhour_url": "https://afterhour.com/EntrySpy862",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-096",
+   "username": "FinanceParagon611",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+g2bhdv1gnklyzdmx",
+   "telegram_links": [
+    "t.me/+g2bhdv1gnklyzdmx"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/+g2bhdv1gnklyzdmx",
+   "bio": "Wealth Builders Club Learn • Invest • Grow Insights • Ideas • Wealth",
+   "created_at": "2026-07-28",
+   "num_followers": 8,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 60,
+   "risk_factors": [
+    "shared link across accounts",
+    "private invite link",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 78,
+   "afterhour_url": "https://afterhour.com/FinanceParagon611",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-097",
+   "username": "FiscalPlayer50",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+g2bhdv1gnklyzdmx",
+   "telegram_links": [
+    "t.me/+g2bhdv1gnklyzdmx"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/+g2bhdv1gnklyzdmx",
+   "bio": "    Building wealth one move at a time.",
+   "created_at": "2026-06-19",
+   "num_followers": 4,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 60,
+   "risk_factors": [
+    "shared link across accounts",
+    "private invite link",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 117,
+   "afterhour_url": "https://afterhour.com/FiscalPlayer50",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-098",
+   "username": "GAINERS1",
+   "tier": "corroborated",
+   "telegram_link": "t.me/f_trad_free_channel",
+   "telegram_links": [
+    "t.me/f_trad_free_channel"
+   ],
+   "channel_title": "Telegram: Contact @f_trad_free_channel",
+   "channel_members": null,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/f_trad_free_channel",
+     "channel_title": "Telegram: Contact @f_trad_free_channel",
+     "channel_members": null,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/f_trad_free_channel",
+   "bio": "\n\nOptions flow. Clean setups. Disciplined execution.\nTrading with purpose, not emotions. ✨",
+   "created_at": "2026-08-25",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 50,
+   "afterhour_url": "https://afterhour.com/GAINERS1",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-099",
+   "username": "G_alert",
+   "tier": "verified",
+   "telegram_link": "t.me/gammasphere47",
+   "telegram_links": [
+    "t.me/gammasphere47"
+   ],
+   "channel_title": "Gamma Sphere - Trade Alert📈",
+   "channel_members": 2034,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/gammasphere47",
+     "channel_title": "Gamma Sphere - Trade Alert📈",
+     "channel_members": 2034,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/gammasphere47",
+   "bio": "🚨Options Signals & Smart Stock Entries \n🏆Day Trader💸🔥\n🚀 Join My trading community⬇️\n",
+   "created_at": "2026-08-28",
+   "num_followers": 4,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 75,
+   "risk_factors": [
+    "evidence captured & checked",
+    "burner pattern: new + low posts",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 47,
+   "afterhour_url": "https://afterhour.com/G_alert",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-100",
+   "username": "Libertytrader",
+   "tier": "corroborated",
+   "telegram_link": "t.me/bzjzhzhzuzzu",
+   "telegram_links": [
+    "t.me/bzjzhzhzuzzu"
+   ],
+   "channel_title": "DE GENERAL FREE CIRCLE",
+   "channel_members": 984,
+   "channel_alive": true,
+   "public_posts_seen": 20,
+   "channels": [
+    {
+     "link": "t.me/bzjzhzhzuzzu",
+     "channel_title": "DE GENERAL FREE CIRCLE",
+     "channel_members": 984,
+     "channel_alive": true,
+     "public_posts_seen": 20
+    }
+   ],
+   "cluster_key": "t.me/bzjzhzhzuzzu",
+   "bio": "📈 Professional Trader\nHelping you trade smarter with quality setups and consistent market insights.\nVIP Signals | Risk Management |",
+   "created_at": "2026-09-22",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 55,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 22,
+   "afterhour_url": "https://afterhour.com/Libertytrader",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-101",
+   "username": "MARS_LEE",
+   "tier": "verified",
+   "telegram_link": "t.me/xyrofxfreegains19",
+   "telegram_links": [
+    "t.me/xyrofxfreegains19"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/xyrofxfreegains19",
+   "bio": "I study the charts, follow the trend and respect risk. Trading is not luck — it’s discipline, timing, and consistency over time.",
+   "created_at": "2026-08-18",
+   "num_followers": 3,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "evidence captured & checked",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 57,
+   "afterhour_url": "https://afterhour.com/MARS_LEE",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-102",
+   "username": "MOLLY_",
+   "tier": "verified",
+   "telegram_link": "t.me/xyrofxfreegains19",
+   "telegram_links": [
+    "t.me/xyrofxfreegains19"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/xyrofxfreegains19",
+   "bio": "I study the charts, follow the trend and respect risk. Trading is not luck — it’s discipline, timing, and consistency over time.",
+   "created_at": "2026-08-12",
+   "num_followers": 2,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "evidence captured & checked",
+    "shared Telegram link"
+   ],
+   "age_days": 63,
+   "afterhour_url": "https://afterhour.com/MOLLY_",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-103",
+   "username": "MOONWALKER02",
+   "tier": "corroborated",
+   "telegram_link": "t.me/moonwalkertrades2",
+   "telegram_links": [
+    "t.me/moonwalkertrades2"
+   ],
+   "channel_title": "Moonwalker Free Alart",
+   "channel_members": 1004,
+   "channel_alive": true,
+   "public_posts_seen": 20,
+   "channels": [
+    {
+     "link": "t.me/moonwalkertrades2",
+     "channel_title": "Moonwalker Free Alart",
+     "channel_members": 1004,
+     "channel_alive": true,
+     "public_posts_seen": 20
+    }
+   ],
+   "cluster_key": "t.me/moonwalkertrades2",
+   "bio": "Stop relying on hype and uncertainty. Access clear trade setups, premium strategies, and practical guidance built for traders who want consist",
+   "created_at": "2026-06-29",
+   "num_followers": 7,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 40,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link"
+   ],
+   "age_days": 107,
+   "afterhour_url": "https://afterhour.com/MOONWALKER02",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-104",
+   "username": "MR_BINCO52",
+   "tier": "verified",
+   "telegram_link": "t.me/bincofreealert",
+   "telegram_links": [
+    "t.me/bincofreealert"
+   ],
+   "channel_title": "BINCO FREE ALERTS⭕️",
+   "channel_members": 2350,
+   "channel_alive": true,
+   "public_posts_seen": 20,
+   "channels": [
+    {
+     "link": "t.me/bincofreealert",
+     "channel_title": "BINCO FREE ALERTS⭕️",
+     "channel_members": 2350,
+     "channel_alive": true,
+     "public_posts_seen": 20
+    }
+   ],
+   "cluster_key": "t.me/bincofreealert",
+   "bio": null,
+   "created_at": "2026-08-19",
+   "num_followers": 10,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "evidence captured & checked",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 56,
+   "afterhour_url": "https://afterhour.com/MR_BINCO52",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-105",
+   "username": "MarginDreamer243",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+g2bhdv1gnklyzdmx",
+   "telegram_links": [
+    "t.me/+g2bhdv1gnklyzdmx"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/+g2bhdv1gnklyzdmx",
+   "bio": "Wealth Builders Club Learn • Invest • Grow Insights • Ideas • Wealth",
+   "created_at": "2026-07-06",
+   "num_followers": 3,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 60,
+   "risk_factors": [
+    "shared link across accounts",
+    "private invite link",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 100,
+   "afterhour_url": "https://afterhour.com/MarginDreamer243",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-106",
+   "username": "Maverick_chambl",
+   "tier": "corroborated",
+   "telegram_link": "t.me/mavericksroom",
+   "telegram_links": [
+    "t.me/mavericksroom"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/mavericksroom",
+   "bio": "Option trading, Daily analytics and News Sharing my knowledge, investment ideas, and analysis.",
+   "created_at": "2026-08-12",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 63,
+   "afterhour_url": "https://afterhour.com/Maverick_chambl",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-107",
+   "username": "Maverick_chamble",
+   "tier": "corroborated",
+   "telegram_link": "t.me/mavericksroom",
+   "telegram_links": [
+    "t.me/mavericksroom"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/mavericksroom",
+   "bio": "Let's make it rain gains\n",
+   "created_at": "2026-08-10",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 65,
+   "afterhour_url": "https://afterhour.com/Maverick_chamble",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-108",
+   "username": "MrCashFlow1",
+   "tier": "corroborated",
+   "telegram_link": "t.me/mrcashflowfreealerts",
+   "telegram_links": [
+    "t.me/mrcashflowfreealerts"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/mrcashflowfreealerts",
+   "bio": "Crypto & stock analyst. Teaching traders how to win. Daily setups, real entries, free signals. Discipline over luck join the community. Link below 🚀",
+   "created_at": "2026-08-25",
+   "num_followers": 2,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 55,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 50,
+   "afterhour_url": "https://afterhour.com/MrCashFlow1",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-109",
+   "username": "MrGonzo01",
+   "tier": "corroborated",
+   "telegram_link": "t.me/mrcashflowfreealerts",
+   "telegram_links": [
+    "t.me/mrcashflowfreealerts"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/mrcashflowfreealerts",
+   "bio": "Crypto & Stock Analyst. Stay patient. Stay paid.",
+   "created_at": "2026-08-18",
+   "num_followers": 7,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 55,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 57,
+   "afterhour_url": "https://afterhour.com/MrGonzo01",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-110",
+   "username": "Mr_Gains",
+   "tier": "corroborated",
+   "telegram_link": "t.me/f_trad_free_channel",
+   "telegram_links": [
+    "t.me/f_trad_free_channel"
+   ],
+   "channel_title": "Telegram: Contact @f_trad_free_channel",
+   "channel_members": null,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/f_trad_free_channel",
+     "channel_title": "Telegram: Contact @f_trad_free_channel",
+     "channel_members": null,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/f_trad_free_channel",
+   "bio": "Quiet moves. Clean setups. Loud results. 📈",
+   "created_at": "2026-08-10",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 65,
+   "afterhour_url": "https://afterhour.com/Mr_Gains",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-111",
+   "username": "Mrbobsignals",
+   "tier": "corroborated",
+   "telegram_link": "t.me/bob_signalsfreealert",
+   "telegram_links": [
+    "t.me/bob_signalsfreealert"
+   ],
+   "channel_title": "BOB FREE CIRCLE",
+   "channel_members": 787,
+   "channel_alive": true,
+   "public_posts_seen": 20,
+   "channels": [
+    {
+     "link": "t.me/bob_signalsfreealert",
+     "channel_title": "BOB FREE CIRCLE",
+     "channel_members": 787,
+     "channel_alive": true,
+     "public_posts_seen": 20
+    }
+   ],
+   "cluster_key": "t.me/bob_signalsfreealert",
+   "bio": null,
+   "created_at": "2026-07-19",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 87,
+   "afterhour_url": "https://afterhour.com/Mrbobsignals",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-112",
+   "username": "Mrsteele",
+   "tier": "corroborated",
+   "telegram_link": "t.me/cartersteele21",
+   "telegram_links": [
+    "t.me/cartersteele21"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/cartersteele21",
+   "bio": "Where Trading Meets Technology🔱\nhttps://t.me/cartersteele21",
+   "created_at": "2026-08-21",
+   "num_followers": 12,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 55,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 54,
+   "afterhour_url": "https://afterhour.com/Mrsteele",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-113",
+   "username": "OptionCatalyst396",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+khxj76ebbx1hmtyo",
+   "telegram_links": [
+    "t.me/+khxj76ebbx1hmtyo"
+   ],
+   "channel_title": "Apex Option Alerts",
+   "channel_members": 4955,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/+khxj76ebbx1hmtyo",
+     "channel_title": "Apex Option Alerts",
+     "channel_members": 4955,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/+khxj76ebbx1hmtyo",
+   "bio": "Options Trader, Scalper, Market Strategist • Turning Market Volatility into Daily Income ➡️ ",
+   "created_at": "2026-08-12",
+   "num_followers": 6,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 63,
+   "afterhour_url": "https://afterhour.com/OptionCatalyst396",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-114",
+   "username": "PhtSamuel",
+   "tier": "corroborated",
+   "telegram_link": "t.me/cartersteele21",
+   "telegram_links": [
+    "t.me/cartersteele21"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/cartersteele21",
+   "bio": "📈 FxTrader. 👁️Turning market structure into opportunity. Say less, Control yourself,  Strategy over Emotions🦊 Say Less🤫",
+   "created_at": "2026-08-20",
+   "num_followers": 5,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 55,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 55,
+   "afterhour_url": "https://afterhour.com/PhtSamuel",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-115",
+   "username": "ResistanceSplicer912",
+   "tier": "corroborated",
+   "telegram_link": "t.me/novatrade02",
+   "telegram_links": [
+    "t.me/novatrade02"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/novatrade02",
+   "bio": null,
+   "created_at": "2026-08-22",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 53,
+   "afterhour_url": "https://afterhour.com/ResistanceSplicer912",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-116",
+   "username": "RiskGuru204",
+   "tier": "corroborated",
+   "telegram_link": "t.me/novatrade02",
+   "telegram_links": [
+    "t.me/novatrade02"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/novatrade02",
+   "bio": null,
+   "created_at": "2026-08-28",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 47,
+   "afterhour_url": "https://afterhour.com/RiskGuru204",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-117",
+   "username": "SHUMDY09",
+   "tier": "corroborated",
+   "telegram_link": "t.me/shumdyfreealerts1",
+   "telegram_links": [
+    "t.me/shumdyfreealerts1"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/shumdyfreealerts1",
+   "bio": "Cut the noise and guesswork. Get precise trade setups, exclusive strategies, and straightforward guidance designed for serious traders.",
+   "created_at": "2026-06-25",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 111,
+   "afterhour_url": "https://afterhour.com/SHUMDY09",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-118",
+   "username": "SHUMDY26",
+   "tier": "corroborated",
+   "telegram_link": "t.me/shumdyfreealerts1",
+   "telegram_links": [
+    "t.me/shumdyfreealerts1"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/shumdyfreealerts1",
+   "bio": "Cut the noise and guesswork. Get precise trade setups, exclusive strategies, and straightforward guidance designed for serious traders.",
+   "created_at": "2026-06-09",
+   "num_followers": 8,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 40,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link"
+   ],
+   "age_days": 127,
+   "afterhour_url": "https://afterhour.com/SHUMDY26",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-119",
+   "username": "SHUMDY40",
+   "tier": "corroborated",
+   "telegram_link": "t.me/shumdyfreealerts1",
+   "telegram_links": [
+    "t.me/shumdyfreealerts1"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/shumdyfreealerts1",
+   "bio": "Cut the noise and guesswork. Get precise trade setups, exclusive strategies, and straightforward guidance designed for serious traders.",
+   "created_at": "2026-06-16",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 120,
+   "afterhour_url": "https://afterhour.com/SHUMDY40",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-120",
+   "username": "SHUMDY99",
+   "tier": "corroborated",
+   "telegram_link": "t.me/shumdyfreealerts1",
+   "telegram_links": [
+    "t.me/shumdyfreealerts1"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/shumdyfreealerts1",
+   "bio": "Cut the noise and guesswork. Get precise trade setups, exclusive strategies, and straightforward guidance designed for serious traders.",
+   "created_at": "2026-06-03",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 40,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link"
+   ],
+   "age_days": 133,
+   "afterhour_url": "https://afterhour.com/SHUMDY99",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-121",
+   "username": "ShortJuggler37",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+g2bhdv1gnklyzdmx",
+   "telegram_links": [
+    "t.me/+g2bhdv1gnklyzdmx"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/+g2bhdv1gnklyzdmx",
+   "bio": "Wealth Builders Club Learn • Invest • Grow Insights • Ideas • Wealth",
+   "created_at": "2026-06-25",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 60,
+   "risk_factors": [
+    "shared link across accounts",
+    "private invite link",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 111,
+   "afterhour_url": "https://afterhour.com/ShortJuggler37",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-122",
+   "username": "SpreadFox501",
+   "tier": "corroborated",
+   "telegram_link": "t.me/spymaster8",
+   "telegram_links": [
+    "t.me/spymaster8"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/spymaster8",
+   "bio": null,
+   "created_at": "2026-08-14",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 61,
+   "afterhour_url": "https://afterhour.com/SpreadFox501",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-123",
+   "username": "SpreadSpy808",
+   "tier": "corroborated",
+   "telegram_link": "t.me/whalecryptotradingsignals",
+   "telegram_links": [
+    "t.me/whalecryptotradingsignals"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/whalecryptotradingsignals",
+   "bio": "10+ years experience | Price Action Only |\nTrade smart | Trade like whales.\n\n📩VIP ACCESS: Contact Admin\nTelegram channel link ",
+   "created_at": "2026-08-30",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 55,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 45,
+   "afterhour_url": "https://afterhour.com/SpreadSpy808",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-124",
+   "username": "SpreadStrategist951",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+g2bhdv1gnklyzdmx",
+   "telegram_links": [
+    "t.me/+g2bhdv1gnklyzdmx"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/+g2bhdv1gnklyzdmx",
+   "bio": "Wealth Builders Club Learn • Invest • Grow Insights • Ideas • Wealth",
+   "created_at": "2026-06-27",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 60,
+   "risk_factors": [
+    "shared link across accounts",
+    "private invite link",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 109,
+   "afterhour_url": "https://afterhour.com/SpreadStrategist951",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-125",
+   "username": "Stockacist002",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+mshhmn6ksb8ynwuo",
+   "telegram_links": [
+    "t.me/+mshhmn6ksb8ynwuo"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/+mshhmn6ksb8ynwuo",
+   "bio": "TG link has been posted, search below ",
+   "created_at": "2026-09-15",
+   "num_followers": 9,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 29,
+   "afterhour_url": "https://afterhour.com/Stockacist002",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-126",
+   "username": "Stockacist3",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+mshhmn6ksb8ynwuo",
+   "telegram_links": [
+    "t.me/+mshhmn6ksb8ynwuo"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/+mshhmn6ksb8ynwuo",
+   "bio": "Link has been posted, search below ",
+   "created_at": "2026-09-13",
+   "num_followers": 7,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 31,
+   "afterhour_url": "https://afterhour.com/Stockacist3",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-127",
+   "username": "StrategyWhisperer205",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+844hh2q2ffs4y2nk",
+   "telegram_links": [
+    "t.me/+844hh2q2ffs4y2nk"
+   ],
+   "channel_title": "MARKET FOCUS",
+   "channel_members": 4363,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/+844hh2q2ffs4y2nk",
+     "channel_title": "MARKET FOCUS",
+     "channel_members": 4363,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/+844hh2q2ffs4y2nk",
+   "bio": "Stock related only ",
+   "created_at": "2026-08-25",
+   "num_followers": 7,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 50,
+   "afterhour_url": "https://afterhour.com/StrategyWhisperer205",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-128",
+   "username": "TargetThrasher796",
+   "tier": "corroborated",
+   "telegram_link": "t.me/bob_signalsfreealert",
+   "telegram_links": [
+    "t.me/bob_signalsfreealert"
+   ],
+   "channel_title": "BOB FREE CIRCLE",
+   "channel_members": 787,
+   "channel_alive": true,
+   "public_posts_seen": 20,
+   "channels": [
+    {
+     "link": "t.me/bob_signalsfreealert",
+     "channel_title": "BOB FREE CIRCLE",
+     "channel_members": 787,
+     "channel_alive": true,
+     "public_posts_seen": 20
+    }
+   ],
+   "cluster_key": "t.me/bob_signalsfreealert",
+   "bio": "no noise, no guessing.\nJust elite setups, private strategies, and real guidance for traders ready to level up®...",
+   "created_at": "2026-06-19",
+   "num_followers": 6,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 40,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link"
+   ],
+   "age_days": 117,
+   "afterhour_url": "https://afterhour.com/TargetThrasher796",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-129",
+   "username": "WallstreetChaser305",
+   "tier": "corroborated",
+   "telegram_link": "t.me/novatrade02",
+   "telegram_links": [
+    "t.me/novatrade02"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/novatrade02",
+   "bio": null,
+   "created_at": "2026-08-06",
+   "num_followers": 3,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 40,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link"
+   ],
+   "age_days": 69,
+   "afterhour_url": "https://afterhour.com/WallstreetChaser305",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-130",
+   "username": "alexright",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+wlbv13toclmwztbk",
+   "telegram_links": [
+    "t.me/+wlbv13toclmwztbk"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/+wlbv13toclmwztbk",
+   "bio": null,
+   "created_at": "2026-06-26",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 60,
+   "risk_factors": [
+    "shared link across accounts",
+    "0 followers",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 110,
+   "afterhour_url": "https://afterhour.com/alexright",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-131",
+   "username": "bobsignals21",
+   "tier": "corroborated",
+   "telegram_link": "t.me/bob_signalsfreealert",
+   "telegram_links": [
+    "t.me/bob_signalsfreealert"
+   ],
+   "channel_title": "BOB FREE CIRCLE",
+   "channel_members": 787,
+   "channel_alive": true,
+   "public_posts_seen": 20,
+   "channels": [
+    {
+     "link": "t.me/bob_signalsfreealert",
+     "channel_title": "BOB FREE CIRCLE",
+     "channel_members": 787,
+     "channel_alive": true,
+     "public_posts_seen": 20
+    }
+   ],
+   "cluster_key": "t.me/bob_signalsfreealert",
+   "bio": "no noise, no guessing.\nJust elite setups, private strategies, and real guidance for traders ready to level up®...",
+   "created_at": "2026-08-19",
+   "num_followers": 7,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 55,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 56,
+   "afterhour_url": "https://afterhour.com/bobsignals21",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-132",
+   "username": "gammash",
+   "tier": "verified",
+   "telegram_link": "t.me/gammasphere47",
+   "telegram_links": [
+    "t.me/gammasphere47"
+   ],
+   "channel_title": "Gamma Sphere - Trade Alert📈",
+   "channel_members": 2034,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/gammasphere47",
+     "channel_title": "Gamma Sphere - Trade Alert📈",
+     "channel_members": 2034,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/gammasphere47",
+   "bio": "🚨Options Signals & Smart Stock Entries \n🏆Day Trader💸🔥\n🚀 Join My trading community⬇️",
+   "created_at": "2026-07-31",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 70,
+   "risk_factors": [
+    "evidence captured & checked",
+    "0 followers",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 75,
+   "afterhour_url": "https://afterhour.com/gammash",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-133",
+   "username": "gammasphere47",
+   "tier": "verified",
+   "telegram_link": "t.me/gammasphere47",
+   "telegram_links": [
+    "t.me/gammasphere47"
+   ],
+   "channel_title": "Gamma Sphere - Trade Alert📈",
+   "channel_members": 2034,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/gammasphere47",
+     "channel_title": "Gamma Sphere - Trade Alert📈",
+     "channel_members": 2034,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/gammasphere47",
+   "bio": "🚨Options Signals & Smart Stock Entries \n🏆Day Trader💸🔥\n🚀 Join My trading community⬇️",
+   "created_at": "2026-08-13",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 55,
+   "risk_factors": [
+    "evidence captured & checked",
+    "shared Telegram link",
+    "pseudonymous operator"
+   ],
+   "age_days": 62,
+   "afterhour_url": "https://afterhour.com/gammasphere47",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-134",
+   "username": "jerryright",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+wlbv13toclmwztbk",
+   "telegram_links": [
+    "t.me/+wlbv13toclmwztbk"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/+wlbv13toclmwztbk",
+   "bio": null,
+   "created_at": "2026-06-29",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 107,
+   "afterhour_url": "https://afterhour.com/jerryright",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-135",
+   "username": "mQC",
+   "tier": "verified",
+   "telegram_link": "t.me/mrquickerfreealert",
+   "telegram_links": [
+    "t.me/mrquickerfreealert"
+   ],
+   "channel_title": "MR QUICKER FREE CIRCLE",
+   "channel_members": 1353,
+   "channel_alive": true,
+   "public_posts_seen": 20,
+   "channels": [
+    {
+     "link": "t.me/mrquickerfreealert",
+     "channel_title": "MR QUICKER FREE CIRCLE",
+     "channel_members": 1353,
+     "channel_alive": true,
+     "public_posts_seen": 20
+    }
+   ],
+   "cluster_key": "t.me/mrquickerfreealert",
+   "bio": "A professional trader. Improving. One trade at a time expectations includes: market analysis. key levels. trade ideas. educational content. 🧑🏻‍💻",
+   "created_at": "2026-09-13",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 85,
+   "risk_factors": [
+    "evidence captured & checked",
+    "burner pattern: new + low posts",
+    "0 followers",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 31,
+   "afterhour_url": "https://afterhour.com/mQC",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-136",
+   "username": "masais",
+   "tier": "corroborated",
+   "telegram_link": "t.me/whalecryptotradingsignals",
+   "telegram_links": [
+    "t.me/whalecryptotradingsignals"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/whalecryptotradingsignals",
+   "bio": "Want to stay updated with crypto trading opportunities? Join my crypto signals channel for market analysis, trading ideas, and potential entry \n",
+   "created_at": "2026-08-29",
+   "num_followers": 2,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 55,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 46,
+   "afterhour_url": "https://afterhour.com/masais",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-137",
+   "username": "moonwalker17",
+   "tier": "corroborated",
+   "telegram_link": "t.me/moonwalkertrades2",
+   "telegram_links": [
+    "t.me/moonwalkertrades2"
+   ],
+   "channel_title": "Moonwalker Free Alart",
+   "channel_members": 1004,
+   "channel_alive": true,
+   "public_posts_seen": 20,
+   "channels": [
+    {
+     "link": "t.me/moonwalkertrades2",
+     "channel_title": "Moonwalker Free Alart",
+     "channel_members": 1004,
+     "channel_alive": true,
+     "public_posts_seen": 20
+    }
+   ],
+   "cluster_key": "t.me/moonwalkertrades2",
+   "bio": "Stop relying on hype and uncertainty.Access clear trade setups, premium strategies,and practical guidance built for traders who want consistent results.",
+   "created_at": "2026-06-25",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "0 followers",
+    "shared Telegram link"
+   ],
+   "age_days": 111,
+   "afterhour_url": "https://afterhour.com/moonwalker17",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-138",
+   "username": "mrkq",
+   "tier": "verified",
+   "telegram_link": "t.me/mrquickerfreealert",
+   "telegram_links": [
+    "t.me/mrquickerfreealert",
+    "t.me/mrquickerfreealert/2915"
+   ],
+   "channel_title": "MR QUICKER FREE CIRCLE",
+   "channel_members": 1353,
+   "channel_alive": true,
+   "public_posts_seen": 20,
+   "channels": [
+    {
+     "link": "t.me/mrquickerfreealert",
+     "channel_title": "MR QUICKER FREE CIRCLE",
+     "channel_members": 1353,
+     "channel_alive": true,
+     "public_posts_seen": 20
+    }
+   ],
+   "cluster_key": "t.me/mrquickerfreealert",
+   "bio": "A Trader. Executing. Improving. \nOne trade at a time.",
+   "created_at": "2026-08-12",
+   "num_followers": 1,
+   "post_count": 5,
+   "posts_mentioning_telegram": 1,
+   "max_duplicate_post": 1,
+   "top_tickers": [
+    "AMZN",
+    "IWM",
+    "SPY"
+   ],
+   "tickers_pushed": [
+    "AMZN",
+    "IWM",
+    "SPY"
+   ],
+   "risk_score": 60,
+   "risk_factors": [
+    "evidence captured & checked",
+    "shared Telegram link",
+    "no public footprint"
+   ],
+   "age_days": 63,
+   "afterhour_url": "https://afterhour.com/mrkq",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-139",
+   "username": "primex2",
+   "tier": "corroborated",
+   "telegram_link": "t.me/spymaster8",
+   "telegram_links": [
+    "t.me/spymaster8"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/spymaster8",
+   "bio": null,
+   "created_at": "2026-08-08",
+   "num_followers": 2,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 40,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link"
+   ],
+   "age_days": 67,
+   "afterhour_url": "https://afterhour.com/primex2",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-140",
+   "username": "seven778",
+   "tier": "corroborated",
+   "telegram_link": "t.me/driftkingalerts",
+   "telegram_links": [
+    "t.me/driftkingalerts"
+   ],
+   "channel_title": "MR DRIFT FREE ALERT",
+   "channel_members": 1012,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/driftkingalerts",
+     "channel_title": "MR DRIFT FREE ALERT",
+     "channel_members": 1012,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/driftkingalerts",
+   "bio": "📈 DRIFTKING | TRADER\n🎯 Setups • Entries • Exits\n⚡ Real-Time Trade Alerts\n💎 Exclusive Plays\n🧠 Trade Smart. Stay Disciplined.\n📊 Results Speak Lo",
+   "created_at": "2026-09-16",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 55,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 28,
+   "afterhour_url": "https://afterhour.com/seven778",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-141",
+   "username": "smartmoneyorder01",
+   "tier": "corroborated",
+   "telegram_link": "t.me/smartmoneyorderfreeflow",
+   "telegram_links": [
+    "t.me/smartmoneyorderfreeflow"
+   ],
+   "channel_title": "Smart Money Order | FreeFlow Signals",
+   "channel_members": 225,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/smartmoneyorderfreeflow",
+     "channel_title": "Smart Money Order | FreeFlow Signals",
+     "channel_members": 225,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/smartmoneyorderfreeflow",
+   "bio": "Entries that hit\nExit that pay\nReal time alerts / coaching / Accountability",
+   "created_at": "2026-08-03",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 40,
+   "risk_factors": [
+    "shared link across accounts",
+    "shared Telegram link"
+   ],
+   "age_days": 72,
+   "afterhour_url": "https://afterhour.com/smartmoneyorder01",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-142",
+   "username": "stock6",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+erjl9hnmo2kzyzfk",
+   "telegram_links": [
+    "t.me/+erjl9hnmo2kzyzfk"
+   ],
+   "channel_title": "Vanguard stock",
+   "channel_members": 433,
+   "channel_alive": true,
+   "public_posts_seen": 0,
+   "channels": [
+    {
+     "link": "t.me/+erjl9hnmo2kzyzfk",
+     "channel_title": "Vanguard stock",
+     "channel_members": 433,
+     "channel_alive": true,
+     "public_posts_seen": 0
+    }
+   ],
+   "cluster_key": "t.me/+erjl9hnmo2kzyzfk",
+   "bio": "Stock related only ",
+   "created_at": "2026-08-25",
+   "num_followers": 1,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 65,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 50,
+   "afterhour_url": "https://afterhour.com/stock6",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-143",
+   "username": "stock7",
+   "tier": "corroborated",
+   "telegram_link": "t.me/vanguardstockupdates68",
+   "telegram_links": [
+    "t.me/vanguardstockupdates68"
+   ],
+   "channel_title": "Vanguard stock",
+   "channel_members": 433,
+   "channel_alive": true,
+   "public_posts_seen": 20,
+   "channels": [
+    {
+     "link": "t.me/vanguardstockupdates68",
+     "channel_title": "Vanguard stock",
+     "channel_members": 433,
+     "channel_alive": true,
+     "public_posts_seen": 20
+    }
+   ],
+   "cluster_key": "t.me/vanguardstockupdates68",
+   "bio": "Stock related only ",
+   "created_at": "2026-08-20",
+   "num_followers": 2,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 55,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 55,
+   "afterhour_url": "https://afterhour.com/stock7",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-144",
+   "username": "stockalgo",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+nngqzm3bv_oxmgvk",
+   "telegram_links": [
+    "t.me/+nngqzm3bv_oxmgvk"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/+nngqzm3bv_oxmgvk",
+   "bio": null,
+   "created_at": "2026-06-23",
+   "num_followers": 4,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 50,
+   "risk_factors": [
+    "shared link across accounts",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 113,
+   "afterhour_url": "https://afterhour.com/stockalgo",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-145",
+   "username": "stockkyy",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+nngqzm3bv_oxmgvk",
+   "telegram_links": [
+    "t.me/+nngqzm3bv_oxmgvk"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/+nngqzm3bv_oxmgvk",
+   "bio": "Stock godfather.",
+   "created_at": "2026-08-18",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 75,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "0 followers",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 57,
+   "afterhour_url": "https://afterhour.com/stockkyy",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-146",
+   "username": "vanguard9",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+erji9hnmo2kzyzfk",
+   "telegram_links": [
+    "t.me/+erji9hnmo2kzyzfk"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/+erji9hnmo2kzyzfk",
+   "bio": "",
+   "created_at": "2026-09-14",
+   "num_followers": 0,
+   "post_count": 4,
+   "posts_mentioning_telegram": 3,
+   "max_duplicate_post": 1,
+   "top_tickers": [
+    "SPX",
+    "SPY",
+    "QRVO"
+   ],
+   "tickers_pushed": [
+    "SPX",
+    "SPY",
+    "QRVO"
+   ],
+   "risk_score": 75,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "0 followers",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 30,
+   "afterhour_url": "https://afterhour.com/vanguard9",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-147",
+   "username": "vanstock6",
+   "tier": "corroborated",
+   "telegram_link": "t.me/vanguardstockupdates68",
+   "telegram_links": [
+    "t.me/vanguardstockupdates68"
+   ],
+   "channel_title": "Vanguard stock",
+   "channel_members": 433,
+   "channel_alive": true,
+   "public_posts_seen": 20,
+   "channels": [
+    {
+     "link": "t.me/vanguardstockupdates68",
+     "channel_title": "Vanguard stock",
+     "channel_members": 433,
+     "channel_alive": true,
+     "public_posts_seen": 20
+    }
+   ],
+   "cluster_key": "t.me/vanguardstockupdates68",
+   "bio": "Stock related only ",
+   "created_at": "2026-08-21",
+   "num_followers": 10,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 55,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "shared Telegram link"
+   ],
+   "age_days": 54,
+   "afterhour_url": "https://afterhour.com/vanstock6",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-148",
+   "username": "vanstock67",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+erji9hnmo2kzyzfk",
+   "telegram_links": [
+    "t.me/+erji9hnmo2kzyzfk"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/+erji9hnmo2kzyzfk",
+   "bio": "",
+   "created_at": "2026-09-14",
+   "num_followers": 0,
+   "post_count": 8,
+   "posts_mentioning_telegram": 1,
+   "max_duplicate_post": 1,
+   "top_tickers": [
+    "SPY",
+    "MU",
+    "SNDK"
+   ],
+   "tickers_pushed": [
+    "SPY",
+    "MU",
+    "SNDK"
+   ],
+   "risk_score": 75,
+   "risk_factors": [
+    "shared link across accounts",
+    "burner pattern: new + low posts",
+    "0 followers",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 30,
+   "afterhour_url": "https://afterhour.com/vanstock67",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-149",
+   "username": "willeright",
+   "tier": "corroborated",
+   "telegram_link": "t.me/+wlbv13toclmwztbk",
+   "telegram_links": [
+    "t.me/+wlbv13toclmwztbk"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": "t.me/+wlbv13toclmwztbk",
+   "bio": null,
+   "created_at": "2026-06-24",
+   "num_followers": 0,
+   "post_count": 0,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 0,
+   "top_tickers": [],
+   "tickers_pushed": [],
+   "risk_score": 60,
+   "risk_factors": [
+    "shared link across accounts",
+    "0 followers",
+    "private invite link",
+    "shared Telegram link"
+   ],
+   "age_days": 112,
+   "afterhour_url": "https://afterhour.com/willeright",
+   "listing_url": "https://telegramscammers.com/database"
+  },
+  {
+   "listing_id": "TS-150",
+   "username": "cont",
+   "tier": "reported",
+   "telegram_link": "t.me/+dufkjdei7v1kzgq0",
+   "telegram_links": [
+    "t.me/+dufkjdei7v1kzgq0"
+   ],
+   "channel_title": null,
+   "channel_members": null,
+   "channel_alive": null,
+   "public_posts_seen": null,
+   "channels": [],
+   "cluster_key": null,
+   "bio": "Independent trader Forex •crypto •indices Discipline •patience •consistency",
+   "created_at": null,
+   "num_followers": 0,
+   "post_count": 11,
+   "posts_mentioning_telegram": 0,
+   "max_duplicate_post": 1,
+   "top_tickers": [
+    "COST",
+    "XSP",
+    "SPY"
+   ],
+   "tickers_pushed": [
+    "COST",
+    "XSP",
+    "SPY"
+   ],
+   "risk_score": 30,
+   "risk_factors": [
+    "single funnel observation",
+    "private invite link"
+   ],
+   "age_days": null,
+   "afterhour_url": "https://afterhour.com/cont",
    "listing_url": "https://telegramscammers.com/database"
   }
  ]
