@@ -36,6 +36,9 @@ Fetches only the public web previews Telegram serves to anyone: `t.me/<handle>` 
 ### `tg_watch.py` (change tracking)
 Runs `tg_recon.py` plus a re-check of every flagged AfterHour profile, saves a timestamped snapshot under `data/telegram_funnel/snapshots/` (gitignored), diffs against the previous one, and archives new public posts (deduped) to `posts_archive.jsonl`. Flags: bio link rotated, account gone, channel dead or revived, member jump (100 or 10%), description rewritten, renamed, new wallets/prices/admins, new cross-promoted channels. `--no-fetch` re-diffs the two newest snapshots offline. Public channel history beyond the newest ~20 posts is not paged yet (`t.me/s/<handle>?before=<id>` would do it).
 
+#### Scheduled run (Coolify host)
+`tg_watch.py` runs daily at **13:15 UTC (9:15 ET)** from `mph`'s crontab on the Coolify box (`ssh coolify`). Checkout: `/home/mph/apps/aftermath-watch` (sparse, partial clone of this repo, deliberately **outside** the nginx webroot so snapshots are never served). `run_watch.sh` does `git fetch` + `reset --hard origin/main`, then `python3 tg_watch.py`. Output: `watch.log` and `reports/analysis/funnel_watch.md` in that directory; snapshots live in its `data/telegram_funnel/snapshots/` and the post archive in `data/telegram_funnel/posts_archive.jsonl`. The server keeps its own history, separate from the local one. Because of the hard reset, never edit files in that checkout by hand. Read the latest report with `ssh coolify cat /home/mph/apps/aftermath-watch/reports/analysis/funnel_watch.md`.
+
 ### Handoff for the list owner
 `handoff/crawl.py` (zero-dependency feed sweeper) and `handoff/AGENT_BRIEF.md` (instructions for his agent). The feed sweep is low-yield: ~1 new Telegram-linked account per 1,200 authors scanned. Mining existing scam-list posts and shared-link pivots finds far more.
 

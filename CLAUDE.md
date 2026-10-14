@@ -198,4 +198,5 @@ Flag list `accounts.json` is curated by **https://telegramscammers.com** (the ow
 - `tg_recon.py` is passive (public t.me previews only). Invite hashes are **case-sensitive**: use `telegram_links`, not the lowercased `telegram_links_norm`.
 - `afterhour.com/<user>` 301s to www and the page scrape is dead; use `api.afterhour.com/public/profile?username=`.
 - `data/telegram_funnel/candidates_*.json` and `recon_candidates.json` are unreviewed third-party accounts and are gitignored on purpose. Do not commit them.
+- **Scheduled watcher:** `tg_watch.py` runs daily 13:15 UTC from `mph`'s crontab on the Coolify box, in `/home/mph/apps/aftermath-watch` (sparse clone, outside the webroot; `run_watch.sh` hard-resets to `origin/main` each run, so don't hand-edit there). Report: `ssh coolify cat /home/mph/apps/aftermath-watch/reports/analysis/funnel_watch.md`. Changes to `tg_recon.py`/`tg_watch.py`/`accounts.json` go live on the next run after a push.
 - Deploy only the touched files (the tree has many regenerated files); restart **both** `ah-mcp` and `ah-mphinance`.
