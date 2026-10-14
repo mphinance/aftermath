@@ -39,6 +39,24 @@ input:focus,select:focus{outline:2px solid var(--cyan);outline-offset:1px}
 .chip.win{color:var(--green);border-color:var(--green)}.chip.loss{color:var(--red);border-color:var(--red)}.chip.pend{color:var(--gold);border-color:var(--gold)}.chip.claim{color:var(--cyan);border-color:var(--cyan)}
 details{margin-top:8px;color:var(--muted);font-size:12.5px}summary{cursor:pointer;min-height:28px;display:flex;align-items:center}
 details p{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:4px;font-family:var(--mono);font-size:12px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.tabs button{min-height:44px;padding:0 16px;background:var(--card);color:var(--muted);border:1px solid var(--border);border-radius:10px;font:600 13px var(--sans);cursor:pointer}
+.tabs button.on{color:var(--cyan);border-color:var(--cyan)}
+.tabs .sp{flex:1}
+.tabs button.ex{color:var(--text)}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;align-items:center}
+.opts label{color:var(--muted);font-size:12px;display:flex;flex-direction:column;gap:3px;min-width:140px;flex:1 1 140px}
+.opts select{min-height:40px}
+.tw{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:8px 10px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--border)}
+th{position:sticky;top:0;background:var(--surface);color:var(--muted);font:600 11px var(--mono);text-transform:uppercase;cursor:pointer;user-select:none}
+th.on{color:var(--cyan)}th.num,td.num{text-align:right;font-family:var(--mono)}
+tr:last-child td{border-bottom:0}
+td.ch{font-family:var(--mono);font-size:12px}
+td.win{color:var(--green)}td.loss{color:var(--red)}td.pend{color:var(--gold)}
+td.cell{text-align:center;font-family:var(--mono);font-size:12px}
+.hint{color:var(--muted);font-size:12.5px;margin:0 0 10px}
 .empty{color:var(--muted);padding:24px 0;text-align:center}
 .more{margin-top:14px;min-height:48px;width:100%;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:10px;font:600 14px var(--sans);cursor:pointer}
 .fine{margin-top:34px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px}
@@ -56,6 +74,8 @@ details p{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:4px;font-family
   <div class="ctl">
     <input id="fq" type="text" placeholder="Ticker, e.g. SPX" aria-label="Filter by ticker" autocapitalize="characters">
     <select id="fch" aria-label="Filter by channel"><option value="">All channels</option></select>
+    <select id="fside" aria-label="Call or put"><option value="">Calls and puts</option><option value="call">Calls only</option><option value="put">Puts only</option></select>
+    <select id="fst" aria-label="Outcome status"><option value="">Any outcome status</option><option value="scored">Scored at expiry</option><option value="pending">Pending expiry</option><option value="none">Not scored</option></select>
     <select id="fact" aria-label="Callout type">
       <option value="open">Opens (new entries)</option><option value="close">Closes (exits)</option><option value="all">Everything, incl. mentions</option>
     </select>
@@ -64,7 +84,21 @@ details p{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:4px;font-family
     <label><input type="checkbox" id="fsc"> Scored at expiry only</label>
     <label><input type="checkbox" id="fec"> Show repeat posts</label>
   </div>
+  <div class="tabs" id="tabs">
+    <button data-m="feed" class="on">Feed</button><button data-m="table">Table</button><button data-m="group">Group</button><button data-m="pivot">Pivot</button><span class="sp"></span><button class="ex" id="csv">Export CSV</button>
+  </div>
+  <div class="opts" id="gopts" hidden>
+    <label>Group by<select id="g1"></select></label>
+    <label>Then by<select id="g2"></select></label>
+  </div>
+  <div class="opts" id="popts" hidden>
+    <label>Rows<select id="pr"></select></label>
+    <label>Columns<select id="pc"></select></label>
+    <label>Cell shows<select id="pm"></select></label>
+  </div>
+  <p class="hint" id="hint"></p>
   <div id="feed" aria-live="polite"></div>
+  <div id="tbl" hidden></div>
   <button class="more" id="more" hidden>Show more</button>
   <div class="fine">
     <p>Source: public Telegram channel posts, parsed by AfterMath. Channels and accounts here are flagged for investigation, not a finding of fraud. Flag list curated by <a href="https://telegramscammers.com" target="_blank" rel="noopener">TelegramScammers.com</a>.</p>
@@ -75,11 +109,27 @@ details p{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:4px;font-family
 <script>
 const $=id=>document.getElementById(id);
 const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
-let ALL=[],SHOWN=0;const STEP=40;
+let ALL=[],SHOWN=0,MODE='feed',SORT={k:'posted',d:-1};const STEP=40;
 const et=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+const etDay=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'});
+const etHour=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',hour12:false});
+const etWd=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',weekday:'short'});
 const dfmt=iso=>{if(!iso)return null;const d=new Date(iso+'T12:00:00Z');return d.toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'})};
 const ago=ms=>{const m=Math.round(ms/60000);if(m<60)return Math.max(m,1)+'m ago';const h=Math.round(m/60);if(h<48)return h+'h ago';return Math.round(h/24)+'d ago'};
 const echo=r=>(r.parse_flags||[]).some(f=>f==='duplicate_echo'||f==='cross_channel_echo');
+const med=a=>{if(!a.length)return null;const s=[...a].sort((x,y)=>x-y),m=s.length>>1;return s.length%2?s[m]:(s[m-1]+s[m])/2};
+const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
+function enrich(r){
+  const t=new Date(r.posted),o=r.outcome||{};
+  r._t=t.getTime();r.day=etDay.format(t);r.wd=etWd.format(t);r.hr=(+etHour.format(t)%24)+':00';
+  r.status=r.action==='open'&&r.kind==='option'?(o.status||'none'):'none';
+  r.ret=r.status==='scored'?(o.worthless?-100:(o.return_pct==null?null:o.return_pct)):null;
+  r.win=r.status==='scored'&&r.ret!=null?(r.ret>0?1:0):null;
+  r.dte=(r.expiry&&r.kind==='option')?Math.round((new Date(r.expiry+'T12:00:00Z')-new Date(r.day+'T12:00:00Z'))/86400000):null;
+  r.dteb=r.dte==null?'no expiry':r.dte<=0?'0DTE':r.dte<=2?'1-2 days':r.dte<=7?'3-7 days':'8+ days';
+  r.sideL=r.side||(r.kind==='stock'?'stock':'n/a');
+  return r;
+}
 function outcomeChip(r){
   const o=r.outcome;if(!o||r.action!=='open'||r.kind!=='option')return null;
   if(o.status==='pending')return['pend','pending, expires '+(dfmt(o.expiry_effective)||'soon')];
@@ -90,63 +140,131 @@ function outcomeChip(r){
   }
   return['','not scored'];
 }
-function row(r){
-  const c=el('div','sig '+r.action);
-  const top=el('div','top');
-  top.append(el('span',null,et.format(new Date(r.posted))+' ET'),el('span','ch',(r.channel||'').replace(/^t\.me\//,'t.me/')));
-  c.append(top);
-  const k=el('div','k');
-  const t=el('span','t','$'+r.ticker);k.append(t);
-  let s='';
-  if(r.kind==='option'){
-    s=' '+(r.strike!=null?r.strike:'?')+(r.side?r.side[0].toUpperCase():'')
-      +(r.expiry?'  exp '+dfmt(r.expiry):'')
-      +(r.entry_price!=null?'  @ '+r.entry_price:'');
-  }
-  k.append(document.createTextNode(s));c.append(k);
-  const ch=el('div','chips');
-  ch.append(el('span','chip',r.action));
+const contract=r=>r.kind==='option'?(' '+(r.strike!=null?r.strike:'?')+(r.side?r.side[0].toUpperCase():'')+(r.expiry?'  exp '+dfmt(r.expiry):'')+(r.entry_price!=null?'  @ '+r.entry_price:'')):'';
+function card(r){
+  const c=el('div','sig '+r.action);const top=el('div','top');
+  top.append(el('span',null,et.format(new Date(r.posted))+' ET'),el('span','ch',r.channel||''));c.append(top);
+  const k=el('div','k');k.append(el('span','t','$'+r.ticker),document.createTextNode(contract(r)));c.append(k);
+  const ch=el('div','chips');ch.append(el('span','chip',r.action));
   const oc=outcomeChip(r);if(oc)ch.append(el('span','chip '+oc[0],oc[1]));
   if(r.action==='close'&&r.result_pct!=null)ch.append(el('span','chip claim','claimed '+(r.result_pct>=0?'+':'')+r.result_pct+'%'));
-  if(echo(r))ch.append(el('span','chip','repeat post'));
-  c.append(ch);
+  if(echo(r))ch.append(el('span','chip','repeat post'));c.append(ch);
   if(r.text){const d=el('details');d.append(el('summary',null,'Original post'),el('p',null,r.text));c.append(d)}
   return c;
 }
 function filtered(){
-  const q=$('fq').value.trim().replace(/^\$/,'').toUpperCase(),ch=$('fch').value,act=$('fact').value;
+  const q=$('fq').value.trim().replace(/^\$/,'').toUpperCase(),ch=$('fch').value,act=$('fact').value,sd=$('fside').value,st=$('fst').value;
   return ALL.filter(r=>{
     if(q&&!(r.ticker||'').toUpperCase().includes(q))return false;
     if(ch&&r.channel!==ch)return false;
     if(act==='open'&&!(r.action==='open'&&r.kind==='option'))return false;
     if(act==='close'&&r.action!=='close')return false;
-    if($('fsc').checked&&!(r.outcome&&r.outcome.status==='scored'))return false;
+    if(sd&&r.side!==sd)return false;
+    if(st==='scored'&&r.status!=='scored')return false;
+    if(st==='pending'&&r.status!=='pending')return false;
+    if(st==='none'&&(r.status==='scored'||r.status==='pending'))return false;
+    if($('fsc').checked&&r.status!=='scored')return false;
     if(!$('fec').checked&&echo(r))return false;
     return true;
   });
 }
+/* ---------- dimensions and metrics ---------- */
+const DIMS={ticker:'Ticker',channel:'Channel',day:'Day (ET)',wd:'Weekday (ET)',hr:'Hour (ET)',sideL:'Call / put',action:'Action',status:'Outcome status',dteb:'Days to expiry'};
+const METRICS={count:['Callouts',g=>g.length,v=>String(v)],
+  chans:['Channels',g=>new Set(g.map(r=>r.channel)).size,v=>String(v)],
+  tickers:['Tickers',g=>new Set(g.map(r=>r.ticker)).size,v=>String(v)],
+  scored:['Scored',g=>g.filter(r=>r.status==='scored').length,v=>String(v)],
+  win:['Win rate',g=>{const s=g.filter(r=>r.win!=null);return s.length?s.reduce((a,r)=>a+r.win,0)/s.length:null},v=>v==null?'-':Math.round(v*100)+'%'],
+  med:['Median return',g=>med(g.map(r=>r.ret).filter(x=>x!=null)),v=>v==null?'-':Math.round(v)+'%'],
+  avg:['Mean return',g=>mean(g.map(r=>r.ret).filter(x=>x!=null)),v=>v==null?'-':Math.round(v)+'%'],
+  zero:['Worthless',g=>{const s=g.filter(r=>r.status==='scored');return s.length?s.filter(r=>r.ret===-100).length/s.length:null},v=>v==null?'-':Math.round(v*100)+'%'],
+  entry:['Avg entry',g=>mean(g.map(r=>r.entry_price).filter(x=>x!=null)),v=>v==null?'-':v.toFixed(2)],
+  claim:['Avg claimed',g=>mean(g.filter(r=>r.action==='close').map(r=>r.result_pct).filter(x=>x!=null)),v=>v==null?'-':'+'+Math.round(v)+'%']};
+const GCOLS=['count','chans','tickers','scored','win','med','avg','zero','entry','claim'];
+const PM=['count','scored','win','med','avg','zero','entry'];
+function groupBy(rows,keys){const m=new Map();rows.forEach(r=>{const k=keys.map(x=>r[x]==null?'-':String(r[x])).join('  |  ');if(!m.has(k))m.set(k,[]);m.get(k).push(r)});return m}
+function sortRows(arr,get){const d=SORT.d;return arr.sort((a,b)=>{const x=get(a),y=get(b);if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return (x<y?-1:x>y?1:0)*d})}
+function th(label,key,num){const t=el('th',(num?'num ':'')+(SORT.k===key?'on':''),label+(SORT.k===key?(SORT.d>0?' ▲':' ▼'):''));t.addEventListener('click',()=>{SORT=SORT.k===key?{k:key,d:-SORT.d}:{k:key,d:-1};render(true)});return t}
+function wrap(tbl){const w=el('div','tw');w.append(tbl);return w}
+/* ---------- views ---------- */
+const TCOLS=[['posted','Time (ET)',r=>r._t],['channel','Channel',r=>r.channel],['ticker','Ticker',r=>r.ticker],['sideL','Type',r=>r.sideL],['strike','Strike',r=>r.strike,1],['expiry','Expiry',r=>r.expiry],['dte','DTE',r=>r.dte,1],['entry_price','Entry',r=>r.entry_price,1],['action','Action',r=>r.action],['status','Outcome',r=>r.status],['ret','Return %',r=>r.ret,1],['result_pct','Claimed %',r=>r.result_pct,1]];
+function viewTable(rows){
+  const col=TCOLS.find(c=>c[0]===SORT.k)||TCOLS[0];sortRows(rows,col[2]);
+  const t=el('table'),hr=el('tr');TCOLS.forEach(c=>hr.append(th(c[1],c[0],c[3])));(function(){const hd=el('thead');hd.append(hr);t.append(hd)})();
+  const tb=el('tbody');rows.slice(0,SHOWN+STEP*3).forEach(r=>{
+    const tr=el('tr');
+    TCOLS.forEach(c=>{let v=c[0]==='posted'?et.format(new Date(r.posted)):r[c[0]]==null?'-':r[c[0]];if(c[0]==='ret')v=r.ret==null?'-':Math.round(r.ret);const td=el('td',(c[3]?'num ':'')+(c[0]==='channel'?'ch ':'')+(c[0]==='ret'&&r.ret!=null?(r.ret>0?'win':'loss'):''),c[0]==='ticker'?'$'+v:v);tr.append(td)});tb.append(tr)});
+  t.append(tb);return[wrap(t),rows.length>SHOWN+STEP*3];
+}
+function viewGroup(rows){
+  const keys=[$('g1').value,$('g2').value].filter(Boolean);
+  const m=groupBy(rows,keys),arr=[...m.entries()].map(([k,g])=>({k,g}));
+  const sk=SORT.k in METRICS?SORT.k:'count';if(!(SORT.k in METRICS)&&SORT.k!=='key')SORT={k:'count',d:-1};
+  sortRows(arr,x=>SORT.k==='key'?x.k:METRICS[sk][1](x.g));
+  const t=el('table'),hr=el('tr');hr.append(th(keys.map(k=>DIMS[k]).join(' / '),'key'));GCOLS.forEach(c=>hr.append(th(METRICS[c][0],c,1)));(function(){const hd=el('thead');hd.append(hr);t.append(hd)})();
+  const tb=el('tbody');arr.slice(0,200).forEach(x=>{const tr=el('tr');tr.append(el('td','ch',x.k));GCOLS.forEach(c=>tr.append(el('td','num',METRICS[c][2](METRICS[c][1](x.g)))));tb.append(tr)});t.append(tb);
+  return[wrap(t),false,'Rates on a handful of scored callouts are noise: check the Scored column before reading anything into a win rate.'+(arr.length>200?' Showing the top 200 groups.':'')];
+}
+function viewPivot(rows){
+  const rk=$('pr').value,ck=$('pc').value,mk=$('pm').value,M=METRICS[mk];
+  const cc=[...groupBy(rows,[ck]).entries()].map(([k,g])=>[k,g.length]).sort((a,b)=>b[1]-a[1]);
+  const cols=cc.slice(0,8).map(x=>x[0]);const hasOther=cc.length>8;
+  const rg=groupBy(rows,[rk]);let rowsArr=[...rg.entries()].map(([k,g])=>({k,g,tot:M[1](g)}));
+  sortRows(rowsArr,x=>SORT.k==='key'?x.k:x.tot);
+  const vals=[];const cell=(g,c)=>{const sub=g.filter(r=>{const v=r[ck]==null?'-':String(r[ck]);return c==='__o'?!cols.includes(v):v===c});return sub.length?M[1](sub):null};
+  rowsArr.forEach(x=>{x.c=cols.map(c=>cell(x.g,c));if(hasOther)x.c.push(cell(x.g,'__o'));x.c.forEach(v=>v!=null&&vals.push(v))});
+  const lo=Math.min(...vals,0),hi=Math.max(...vals,1);
+  const t=el('table'),hr=el('tr');hr.append(th(DIMS[rk]+' \\ '+DIMS[ck],'key'));cols.forEach(c=>hr.append(el('th','num',c)));if(hasOther)hr.append(el('th','num','other'));hr.append(th('All','tot',1));(function(){const hd=el('thead');hd.append(hr);t.append(hd)})();
+  const tb=el('tbody');rowsArr.slice(0,200).forEach(x=>{const tr=el('tr');tr.append(el('td','ch',x.k));
+    x.c.forEach(v=>{const td=el('td','cell',v==null?'':M[2](v));if(v!=null&&hi>lo){const a=(v-lo)/(hi-lo);td.style.background='rgba(0,210,255,'+(0.06+0.34*a).toFixed(2)+')'}tr.append(td)});
+    tr.append(el('td','num',M[2](x.tot)));tb.append(tr)});t.append(tb);
+  return[wrap(t),false,'Cells show: '+M[0]+(mk==='win'||mk==='med'||mk==='avg'||mk==='zero'?' (scored callouts only; empty means none scored)':'')+(cc.length>8?'. Smaller columns are combined under "other".':'.')];
+}
 function render(reset){
   const rows=filtered();if(reset)SHOWN=0;
-  const f=$('feed');if(reset)f.innerHTML='';
-  const next=rows.slice(SHOWN,SHOWN+STEP);next.forEach(r=>f.append(row(r)));SHOWN+=next.length;
-  if(!rows.length){f.innerHTML='';f.append(el('div','empty','No callouts match these filters.'))}
-  $('more').hidden=SHOWN>=rows.length;$('more').textContent='Show more ('+(rows.length-SHOWN)+' left)';
+  const f=$('feed'),tb=$('tbl');
+  f.hidden=MODE!=='feed';tb.hidden=MODE==='feed';$('gopts').hidden=MODE!=='group';$('popts').hidden=MODE!=='pivot';
+  $('hint').textContent=rows.length+' callouts match'+(MODE==='feed'?'.':'. Click a column header to sort.');
+  if(!rows.length){f.hidden=false;tb.hidden=true;f.innerHTML='';f.append(el('div','empty','No callouts match these filters.'));$('more').hidden=true;return}
+  if(MODE==='feed'){
+    rows.sort((a,b)=>b._t-a._t);
+    if(reset)f.innerHTML='';const next=rows.slice(SHOWN,SHOWN+STEP);next.forEach(r=>f.append(card(r)));SHOWN+=next.length;
+    $('more').hidden=SHOWN>=rows.length;$('more').textContent='Show more ('+(rows.length-SHOWN)+' left)';return;
+  }
+  let v;if(MODE==='table')v=viewTable(rows);else if(MODE==='group')v=viewGroup(rows);else v=viewPivot(rows);
+  tb.innerHTML='';tb.append(v[0]);if(v[2]){const p=el('p','hint',v[2]);p.style.marginTop='8px';tb.append(p)}
+  $('more').hidden=!v[1];$('more').textContent='Show more rows';
 }
+function csv(){
+  const rows=filtered().sort((a,b)=>b._t-a._t);
+  const cols=['posted','channel','ticker','kind','side','strike','expiry','entry_price','action','status','ret','result_pct'];
+  const q=v=>{v=v==null?'':String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
+  const out=[cols.join(',')].concat(rows.map(r=>cols.map(c=>q(c==='ret'?(r.ret==null?'':Math.round(r.ret*10)/10):r[c])).join(',')));
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([out.join('\n')],{type:'text/csv'}));a.download='funnel-callouts.csv';document.body.append(a);a.click();a.remove();
+}
+function fillSel(id,obj,sel,blank){const s=$(id);if(blank){const o=el('option',null,'(none)');o.value='';s.append(o)}Object.entries(obj).forEach(([k,v])=>{const o=el('option',null,typeof v==='string'?v:v[0]);o.value=k;s.append(o)});s.value=sel}
 async function load(){
   try{
-    const d=await (await fetch('/api/funnel-calls.json')).json();ALL=d.calls||[];
+    const d=await (await fetch('/api/funnel-calls.json')).json();ALL=(d.calls||[]).map(enrich);
     const opens=ALL.filter(r=>r.action==='open'&&r.kind==='option');
     const chans=[...new Set(ALL.map(r=>r.channel).filter(Boolean))].sort();
     chans.forEach(c=>{const o=el('option',null,c);o.value=c;$('fch').append(o)});
-    const last=ALL.length?new Date(ALL[0].posted):null;
+    const last=ALL.length?Math.max(...ALL.map(r=>r._t)):null;
     [[opens.length,'option opens in feed'],[chans.length,'channels'],[last?ago(Date.now()-last):'n/a','latest callout'],[d.calls_with_scored_outcome||0,'scored at expiry']].forEach(([v,l])=>{const k=el('div','kpi');k.append(el('b',null,v),el('span',null,l));$('kpis').append(k)});
     $('method').textContent=d.small_sample_warning||'';
     if(d.generated_at){const u=el('p',null,'Feed updated '+et.format(new Date(d.generated_at))+' ET.');$('method').after(u)}
+    fillSel('g1',DIMS,'ticker',false);fillSel('g2',DIMS,'',true);
+    fillSel('pr',DIMS,'ticker',false);fillSel('pc',DIMS,'day',false);
+    const pm={};PM.forEach(k=>pm[k]=METRICS[k][0]);fillSel('pm',pm,'count',false);
     render(true);
   }catch(e){$('feed').append(el('div','empty',"Couldn't load the callout feed. Try again in a minute."))}
 }
-['fq','fch','fact','fsc','fec'].forEach(i=>$(i).addEventListener(i==='fq'?'input':'change',()=>render(true)));
-$('more').addEventListener('click',()=>render(false));
+['fq','fch','fact','fside','fst','fsc','fec','g1','g2','pr','pc','pm'].forEach(i=>$(i).addEventListener(i==='fq'?'input':'change',()=>{if(i.startsWith('g')||i.startsWith('p'))SORT={k:'count',d:-1};render(true)}));
+document.querySelectorAll('#tabs button[data-m]').forEach(b=>b.addEventListener('click',()=>{
+  MODE=b.dataset.m;document.querySelectorAll('#tabs button[data-m]').forEach(x=>x.classList.toggle('on',x===b));
+  SORT=MODE==='table'?{k:'posted',d:-1}:{k:'count',d:-1};render(true)}));
+$('csv').addEventListener('click',csv);
+$('more').addEventListener('click',()=>{if(MODE==='feed')render(false);else{SHOWN+=STEP*3;render(false)}});
 load();
 </script>
 </body>
