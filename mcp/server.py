@@ -1365,6 +1365,137 @@ SENTIMENT_TOOL_DEFINITIONS = [
 ]
 
 
+
+# ==============================================================================
+# WHALE POSITION TOOLS (live portfolio proxy + changes archived by ah_whales.py)
+# ==============================================================================
+
+_WHALE_NOTE = ("Positions are the last broker sync marked to live prices. Most whales' last_synced_at is weeks or months "
+               "old, so quantities rarely change. These are reported position changes, not trades. Public portfolios only. Not advice.")
+
+
+def _whale_pid(username):
+    for w in (fetch_json("whales.json") or {}).get("whales", []):
+        if (w.get("username") or "").lower() == username.lower():
+            return w.get("profile_id"), w.get("username")
+    return None, None
+
+
+def tool_get_live_portfolio(args: dict) -> dict:
+    u = (args.get("username") or "").strip().lstrip("@")
+    if not _USER_RE.match(u):
+        return _bad("username is required")
+    pid, name = _whale_pid(u)
+    if not pid:
+        try:
+            prof, _, _ = ah_get("/public/profile", {"username": u}, ttl=300.0)
+        except UpstreamError as e:
+            return {"error": f"AfterHour upstream unavailable ({e})", "retryable": True}
+        if prof.get("financialDataPrivacyMode") != "PUBLIC" or not prof.get("hasConnectedItems"):
+            return _bad("no public portfolio for that user")
+        pid, name = prof.get("id"), prof.get("username")
+    min_value = float(args.get("min_value", 0))
+    inc_opt = bool(args.get("include_options", True))
+
+    def shape(d):
+        rows = []
+        tv = d.get("totalValue") or 0
+        for p in d.get("positionSnapshots") or []:
+            opt = p.get("optionsContractType")
+            if opt and not inc_opt:
+                continue
+            if (p.get("value") or 0) < min_value:
+                continue
+            spc = p.get("optionsSharesPerContract") or 100
+            r = {"symbol": p.get("tickerSymbol"), "root": p.get("rootTickerSymbol"), "type": p.get("type"),
+                 "quantity": p.get("quantity"), "price": p.get("price"), "value": p.get("value"),
+                 "pct_of_portfolio": round((p.get("value") or 0) / tv * 100, 2) if tv else None,
+                 "cost_basis": p.get("costBasis"), "profit_pct": p.get("profitPercent"),
+                 "profit_today_pct": p.get("profitPercentToday"), "is_merged": bool(p.get("isMerged"))}
+            if opt:
+                r.update(option=opt, strike=p.get("optionsStrikePrice"), expiry=(p.get("optionsExpirationDate") or "")[:10],
+                         contracts=round((p.get("quantity") or 0) / spc, 4))
+            rows.append(r)
+        rows.sort(key=lambda r: r["value"] or 0, reverse=True)
+        return {"username": name, "total_value": d.get("totalValue"), "cash": d.get("cashBalance"),
+                "profit_today": d.get("profitToday"), "profit_today_pct": d.get("profitTodayPercent"),
+                "prices_as_of": d.get("verifiedAsOf"), "last_synced_at": d.get("lastSyncedAt"),
+                "positions": rows, "note": _WHALE_NOTE}
+
+    return _live(f"/stonks/public/portfolio/{pid}/summary/live", ttl=60.0, shape=shape)
+
+
+def _whale_changes(since_days):
+    d = fetch_json("whale-changes.json")
+    if not d:
+        return None, None
+    cut = (_dt.datetime.now(_dt.timezone.utc) - _dt.timedelta(days=since_days)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    return d, [c for c in d.get("changes", []) if c["ts"] >= cut]
+
+
+def tool_get_position_changes(args: dict) -> dict:
+    d, rows = _whale_changes(max(1, min(int(args.get("since_days", 7)), 30)))
+    if d is None:
+        return {"error": "whale change feed not yet published", "retryable": True}
+    u = (args.get("username") or "").strip().lstrip("@").lower()
+    tk = (args.get("ticker") or "").strip().upper().lstrip("$")
+    min_n = float(args.get("min_notional", 0))
+    min_p = float(args.get("min_pct_of_portfolio", 0))
+    act = (args.get("action") or "").upper()
+    lim = max(1, min(int(args.get("limit", 50)), 200))
+    rows = [c for c in rows
+            if (not u or c["username"].lower() == u) and (not tk or c["root"] == tk or c["symbol"] == tk)
+            and abs(c["notional_delta"]) >= min_n and (c["pct_of_portfolio"] or 0) >= min_p and (not act or c["action"] == act)]
+    keep = ("ts", "username", "action", "symbol", "root", "qty_before", "qty_after", "notional_delta", "pct_of_portfolio",
+            "option", "strike", "expiry", "contracts_delta", "lot_ambiguous", "possible_roll", "last_synced_at")
+    return {"as_of": d.get("generated_at"), "matched": len(rows), "note": _WHALE_NOTE,
+            "changes": [{k: c[k] for k in keep if k in c} for c in rows[:lim]]}
+
+
+def tool_get_ticker_whale_flow(args: dict) -> dict:
+    tk = (args.get("symbol") or "").strip().upper().lstrip("$")
+    if not tk:
+        return _bad("symbol is required")
+    d, rows = _whale_changes(max(1, min(int(args.get("since_days", 7)), 30)))
+    if d is None:
+        return {"error": "whale change feed not yet published", "retryable": True}
+    rows = [c for c in rows if c["root"] == tk]
+    net = sum(c["notional_delta"] for c in rows)
+    return {"symbol": tk, "as_of": d.get("generated_at"), "net_notional_delta": round(net, 2), "changes": len(rows),
+            "adds_opens": sum(1 for c in rows if c["action"] in ("ADD", "OPEN")),
+            "trims_closes": sum(1 for c in rows if c["action"] in ("TRIM", "CLOSE", "EXPIRED")),
+            "whales": sorted({c["username"] for c in rows}), "note": _WHALE_NOTE}
+
+
+def tool_get_whale_sync_health(args: dict) -> dict:
+    d = fetch_json("whale-sync.json")
+    if not d:
+        return {"error": "whale sync health not yet published", "retryable": True}
+    return {k: d[k] for k in d if k != "whales"}
+
+
+WHALE_TOOLS_MAP = {
+    "get_live_portfolio": tool_get_live_portfolio,
+    "get_position_changes": tool_get_position_changes,
+    "get_ticker_whale_flow": tool_get_ticker_whale_flow,
+    "get_whale_sync_health": tool_get_whale_sync_health,
+}
+WHALE_TOOL_DEFINITIONS = [
+    {"name": "get_live_portfolio",
+     "description": "LIVE (60s cache). Current positions of a PUBLIC AfterHour portfolio marked to live prices: value, share of portfolio, P&L today, options with strike, expiry and contracts. Includes last_synced_at: quantities are only as fresh as the broker sync, often months old. Use get_whale_portfolio for the cached census view.",
+     "inputSchema": {"type": "object", "properties": {"username": {"type": "string"}, "min_value": {"type": "number", "default": 0}, "include_options": {"type": "boolean", "default": True}}, "required": ["username"], "additionalProperties": False}},
+    {"name": "get_position_changes",
+     "description": "SNAPSHOT (polled every few minutes for top whales, twice a day for the rest). Reported quantity changes in public whale portfolios: OPEN, ADD, TRIM, CLOSE, EXPIRED, FLIP, with notional and percent of portfolio. Filter by user, ticker, action or size. Changes are rare because broker syncs are infrequent. Reported changes, not trades.",
+     "inputSchema": {"type": "object", "properties": {"username": {"type": "string"}, "ticker": {"type": "string"}, "action": {"type": "string", "enum": ["OPEN", "ADD", "TRIM", "CLOSE", "EXPIRED", "FLIP"]}, "since_days": {"type": "integer", "default": 7}, "min_notional": {"type": "number", "default": 0}, "min_pct_of_portfolio": {"type": "number", "default": 0}, "limit": {"type": "integer", "default": 50}}, "additionalProperties": False}},
+    {"name": "get_ticker_whale_flow",
+     "description": "SNAPSHOT. Net reported whale position change in one ticker over recent days: net notional, adds/opens versus trims/closes, which whales. Options roll up to the underlying.",
+     "inputSchema": {"type": "object", "properties": {"symbol": {"type": "string"}, "since_days": {"type": "integer", "default": 7}}, "required": ["symbol"], "additionalProperties": False}},
+    {"name": "get_whale_sync_health",
+     "description": "SNAPSHOT. How trustworthy the whale position data is right now: whales tracked, polled in the last hour, newest and oldest broker sync, count synced within 30 days. Check before reading get_position_changes.",
+     "inputSchema": {"type": "object", "properties": {}, "additionalProperties": False}},
+]
+
+
 # Registry mapping tool name -> handler function
 TOOLS_MAP = {
     "get_market_tape": tool_get_market_tape,
@@ -1697,6 +1828,8 @@ TOOLS_MAP.update(LIVE_TOOLS_MAP)
 MCP_TOOLS_DEFINITIONS.extend(LIVE_TOOL_DEFINITIONS)
 TOOLS_MAP.update(SENTIMENT_TOOLS_MAP)
 MCP_TOOLS_DEFINITIONS.extend(SENTIMENT_TOOL_DEFINITIONS)
+TOOLS_MAP.update(WHALE_TOOLS_MAP)
+MCP_TOOLS_DEFINITIONS.extend(WHALE_TOOL_DEFINITIONS)
 
 # MCP Resources (MCP 2024-11-05 standard)
 MCP_RESOURCES_DEFINITIONS = [
@@ -2091,7 +2224,7 @@ def run_self_test():
     t10 = tool_get_social_feed({"limit": 3})
     print(f"   Feed posts returned: {len(t10.get('posts', []))}")
 
-    print("\n[+] All 10 MCP tools validated successfully.")
+    print(f"\n[+] All {len(TOOLS_MAP)} MCP tools registered.")
 
 # ==============================================================================
 # HTTP & SSE SERVER (FOR REMOTE MCP CLIENTS & MCP-REMOTE)

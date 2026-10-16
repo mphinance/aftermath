@@ -356,203 +356,12 @@ with open(API_DIR / "market.json", "w", encoding="utf-8") as f:
 with open(API_DIR / "market-summary.json", "w", encoding="utf-8") as f:
     json.dump(market_payload, f, indent=2)
 
-mcp_schema_payload = {
-    "version": "1.0.0",
-    "protocolVersion": "2024-11-05",
-    "server": {
-        "name": "aftermath-altdata",
-        "description": "AfterMath Model Context Protocol (MCP) Server for real-time verified whale tape and conviction flows.",
-        "documentation": "https://ah.mphinance.com/mcp",
-        "serverScript": "https://ah.mphinance.com/mcp/server.py"
-    },
-    "tools": MCP_TOOLS_DEFINITIONS,
-    "resources": MCP_RESOURCES_DEFINITIONS
-}
-
-with open(API_DIR / "mcp-schema.json", "w", encoding="utf-8") as f:
-    json.dump(mcp_schema_payload, f, indent=2)
-
 # Telegram-funnel flag list (data courtesy of telegramscammers.com)
 import subprocess, sys as _sys
 subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel.py")], check=True)
 subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel_calls.py")], check=True)
 subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel_scorecard.py")], check=True)
 subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel_paths.py")], check=True)
-
-openapi_spec = {
-    "openapi": "3.1.0",
-    "info": {
-        "title": "AfterMath Quant Alt-Data API",
-        "version": "1.0.0",
-        "description": "Edge-cached alternative financial intelligence API tracking verified retail & whale equity, conviction intensity ($/holder), whale dry powder cash, and macro tape liquidity from AfterHour social terminal.",
-        "contact": {
-            "name": "Momentum Phinance",
-            "url": "https://ah.mphinance.com"
-        }
-    },
-    "servers": [
-        {
-            "url": "https://ah.mphinance.com",
-            "description": "Production Edge Terminal"
-        }
-    ],
-    "tags": [
-        {"name": "Market & Tape", "description": "Macro tape overview, whale cash reserves (dry powder), daily P&L, and asset allocation"},
-        {"name": "Equities & ETFs", "description": "Leaderboard of 500 securities and 64 ETFs enriched with verified owner counts and conviction intensity"},
-        {"name": "Whales & Portfolios", "description": "395 verified high-roller and millionaire portfolios with verified positions and shadow ratio"},
-        {"name": "Tickers & History", "description": "Individual security profiles with verified whale holders breakdown and 90-day daily OHLCV bars"},
-        {"name": "MCP & AI Agents", "description": "Model Context Protocol tools and schemas for AI agents"}
-    ],
-    "paths": {
-        "/api/market.json": {
-            "get": {
-                "tags": ["Market & Tape"],
-                "summary": "Real-Time Alt-Data Market Radar & Liquidity",
-                "description": "Returns verified whale dry powder cash reserves ($8.98M), intraday net P&L, equity/ETF allocation split, and top leaders across capital inflows, retail breadth, and conviction intensity.",
-                "responses": {
-                    "200": {
-                        "description": "Live macro market tape snapshot"
-                    }
-                }
-            }
-        },
-        "/api/stonks.json": {
-            "get": {
-                "tags": ["Equities & ETFs"],
-                "summary": "All 500 Verified Equities & ETFs",
-                "description": "Returns full catalog of 500 securities with owner counts, total value on app, whale capital backing, conviction intensity ($/sub), session price changes, and chatroom activity.",
-                "responses": {
-                    "200": {
-                        "description": "Complete enriched securities catalog"
-                    }
-                }
-            }
-        },
-        "/api/etfs.json": {
-            "get": {
-                "tags": ["Equities & ETFs"],
-                "summary": "All 64 Verified ETFs & Index Funds",
-                "description": "Returns 64 ETFs segregated by asset class, expense ratio, whale capital backing, and retail adoption breadth.",
-                "responses": {
-                    "200": {
-                        "description": "All 64 verified ETFs"
-                    }
-                }
-            }
-        },
-        "/api/whales.json": {
-            "get": {
-                "tags": ["Whales & Portfolios"],
-                "summary": "395 Verified Whales & Millionaires",
-                "description": "Returns 395 verified portfolios ($169M+ AUM) with username, total verified balance, cash balance, intraday P&L, unrealized gains, and full positions breakdown.",
-                "responses": {
-                    "200": {
-                        "description": "Directory of verified whales"
-                    }
-                }
-            }
-        },
-        "/api/shadow.json": {
-            "get": {
-                "tags": ["Whales & Portfolios"],
-                "summary": "Shadow Ratio & Stealth Whales",
-                "description": "Returns whales sorted by the Clout Inversion metric: verified portfolio value divided by social follower count.",
-                "responses": {
-                    "200": {
-                        "description": "Whales ranked by shadow ratio"
-                    }
-                }
-            }
-        },
-        "/api/ticker/{symbol}.json": {
-            "get": {
-                "tags": ["Tickers & History"],
-                "summary": "Granular Security Intelligence & 90-Day Bars",
-                "description": "Deep-dive on any specific ticker symbol with verified holders breakdown, conviction intensity, and 90-day daily OHLCV candlestick bars.",
-                "parameters": [
-                    {
-                        "name": "symbol",
-                        "in": "path",
-                        "required": True,
-                        "description": "Ticker symbol (e.g. NVDA, ASTS, AAPL, QQQ)",
-                        "schema": {"type": "string", "example": "ASTS"}
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Granular security intel with daily bars"
-                    },
-                    "404": {
-                        "description": "Ticker not found in tracked 500 securities"
-                    }
-                }
-            }
-        },
-        "/api/funnel.json": {
-            "get": {
-                "tags": ["MCP & AI Agents"],
-                "summary": "Telegram Funnel Accounts (via TelegramScammers.com)",
-                "description": "AfterHour accounts flagged for funneling traders into Telegram channels, with evidence tier and shared-link clusters. Data curated by https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
-                "responses": {"200": {"description": "Flagged account list"}}
-            }
-        },
-        "/api/funnel-tickers.json": {
-            "get": {
-                "tags": ["MCP & AI Agents"],
-                "summary": "Telegram Funnel Ticker Rankings",
-                "description": "Tickers most called out by flagged AfterHour accounts and their public Telegram channels. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
-                "responses": {"200": {"description": "Ranked tickers with ah_accounts, ah_posts, tg_channels, tg_posts"}}
-            }
-        },
-        "/api/funnel-calls.json": {
-            "get": {
-                "tags": ["MCP & AI Agents"],
-                "summary": "Telegram Funnel Parsed Callouts",
-                "description": "Most recent 300 parsed trade callouts from public Telegram channels, with scored outcomes where available. Quoted results are channel claims; small sample. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
-                "responses": {"200": {"description": "Parsed callouts"}}
-            }
-        },
-        "/api/funnel-option-paths.json": {
-            "get": {
-                "tags": ["MCP & AI Agents"],
-                "summary": "Telegram Funnel Option Price Paths (what the called contracts did after the call)",
-                "description": "Main scoring view: each option contract called out in public Telegram channels judged by its own 5-minute trade bars after the post (in-session calls: next 30 minutes; daily callouts: the whole next regular session; fill = open of the first bar at or after the post). Share that ended above the fill, median peak and drawdown, +50%/-50% TP-first vs SL-first, fill-delay sensitivity, unfillable-quote share, per channel, ticker and hour of day, with Wilson 95% ranges, methodology and limitations (trade prints, no spread or slippage). Built locally from Alpaca historical bars. Analysis of public posts, not advice. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
-                "responses": {"200": {"description": "Option price-path scorecard"}}
-            }
-        },
-        "/api/funnel-scorecard.json": {
-            "get": {
-                "tags": ["MCP & AI Agents"],
-                "summary": "Telegram Funnel Scorecard (options and forex/gold/index scoring)",
-                "description": "Public scoring of trade callouts from public Telegram channels against the real tape: option callouts held to expiry (the secondary view; the main option view is /api/funnel-option-paths.json), and forex/gold/index signals (TP1 first vs SL first). Pooled and per channel, with sample sizes, Wilson 95% ranges and assumptions. Analysis of public posts, not advice. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
-                "responses": {"200": {"description": "Scorecard with options and fx sections"}}
-            }
-        },
-        "/api/funnel-fx-signals.json": {
-            "get": {
-                "tags": ["MCP & AI Agents"],
-                "summary": "Scored Forex/Gold/Index Signals",
-                "description": "Every scored forex, gold or index signal from public Telegram channels: levels, outcome (TP1 first, SL first), R multiples and the original post text. Credit: https://telegramscammers.com. Flagged for investigation, not a finding of fraud.",
-                "responses": {"200": {"description": "Scored signals"}}
-            }
-        },
-        "/api/mcp-schema.json": {
-            "get": {
-                "tags": ["MCP & AI Agents"],
-                "summary": "Model Context Protocol (MCP) Tool Schemas",
-                "description": "Returns the official JSON Schema catalog for all 14 MCP tools exposed for autonomous AI agents and IDEs.",
-                "responses": {
-                    "200": {
-                        "description": "Model Context Protocol tool catalog"
-                    }
-                }
-            }
-        }
-    }
-}
-
-with open(API_DIR / "openapi.json", "w", encoding="utf-8") as f:
-    json.dump(openapi_spec, f, indent=2)
 
 with open(API_DIR / "stonks.json", "w", encoding="utf-8") as f:
     json.dump({"total": len(stocks), "securities": stocks}, f, indent=2)
@@ -576,6 +385,12 @@ for s in stocks:
     }
     with open(TICKER_API_DIR / f"{ticker}.json", "w", encoding="utf-8") as f:
         json.dump(ticker_payload, f)
+
+# OpenAPI spec, MCP schema and the generated sections of docs/API.md + docs/MCP.md.
+# Runs after every api/*.json is written because response schemas are inferred from them.
+_sys.path.insert(0, str(Path(__file__).resolve().parent / "scripts"))
+import gen_openapi
+gen_openapi.write_all()
 
 # Generate standard XML Sitemap (sitemap.xml)
 sitemap_urls = [

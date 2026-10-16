@@ -55,3 +55,5 @@ reverse-engineering/jadx_out/
 data/ah_archive/
 api/sentiment.json
 api/ah-posts.json
+api/whale-changes.json
+api/whale-sync.json

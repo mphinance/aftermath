@@ -3,10 +3,12 @@
   "protocolVersion": "2024-11-05",
   "server": {
     "name": "aftermath-altdata",
-    "description": "AfterMath Model Context Protocol (MCP) Server for real-time verified whale tape and conviction flows.",
+    "description": "AfterMath Model Context Protocol (MCP) Server for verified whale tape, conviction flows and Telegram-funnel scoring.",
     "documentation": "https://ah.mphinance.com/mcp",
-    "serverScript": "https://ah.mphinance.com/mcp/server.py"
+    "serverScript": "https://ah.mphinance.com/mcp/server.py",
+    "endpoint": "https://ah.mphinance.com/api/mcp"
   },
+  "toolCount": 34,
   "tools": [
     {
       "name": "get_market_tape",
@@ -393,6 +395,465 @@
             "description": "Channel handle or t.me link (substring match); filters the per-channel tables"
           }
         },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_market_session",
+      "description": "LIVE (60s cache). Use for 'is the market open / what session is it / when does it close'. Returns current phase (pre, regular, after, overnight, closed), early-close flag, next transition and seconds until it, computed server-side in UTC.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "YYYY-MM-DD (default: today, US Eastern)"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_live_quotes",
+      "description": "LIVE (30s cache). Use for current price. Up to 25 symbols: last price, session change, pre-market and after-hours change, OHLC, volume. Percent fields are percent units (1.1 = 1.1%). Do NOT use for whale or conviction data (use get_ticker_intel).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "symbols": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Ticker symbols, max 25"
+          }
+        },
+        "required": [
+          "symbols"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_leaderboard",
+      "description": "LIVE (2 min cache). Use for 'what is trending / most watched / top gainers / top losers' across the whole platform (~33k securities, crowd-ranked). Do NOT use for whale-capital ranking of the verified 500 (use get_top_equities). GAINERS only supports DAY. Percent fields are percent units.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sort": {
+            "type": "string",
+            "enum": [
+              "TRENDING",
+              "WATCHERS",
+              "OWNERS",
+              "GAINERS",
+              "LOSERS"
+            ],
+            "default": "TRENDING"
+          },
+          "time_range": {
+            "type": "string",
+            "enum": [
+              "DAY",
+              "WEEK",
+              "MONTH",
+              "THREE_MONTH",
+              "YEAR_TO_DATE"
+            ],
+            "default": "DAY"
+          },
+          "take": {
+            "type": "integer",
+            "description": "Max 50",
+            "default": 20
+          },
+          "cursor": {
+            "type": "integer",
+            "description": "Offset from a previous next_cursor",
+            "default": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_ticker_live",
+      "description": "LIVE (2 min cache). Any ticker on the platform: price, owner count, total value held, market cap, chatroom activity, sample owners. Use when get_ticker_intel says the ticker is not in the verified 500. No whale breakdown or OHLCV.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "e.g. 'NVDA'"
+          }
+        },
+        "required": [
+          "symbol"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_profile_live",
+      "description": "LIVE (5 min cache). Public profile for any AfterHour handle, including non-whales: bio, followers, join date, whether a brokerage is linked, privacy mode. No portfolio data (use get_whale_portfolio for the 395 verified).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "AfterHour username, with or without @"
+          }
+        },
+        "required": [
+          "username"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_post_permalink",
+      "description": "LIVE (10 min cache). Use when you already have a post link or hash: returns the body, author, attached position snapshots and the first comments. Do NOT use to browse (use get_social_feed).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string",
+            "description": "Post hash (e.g. 'bx5Y') or full afterhour.com share URL"
+          },
+          "comments": {
+            "type": "integer",
+            "description": "Comments to include, max 10",
+            "default": 5
+          }
+        },
+        "required": [
+          "hash"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_security_chart",
+      "description": "LIVE (5 min cache). OHLCV bars for any platform ticker at minute, hour, day, week or month resolution, up to 365 days back, last 500 bars. Superset of get_price_history, which is limited to 18 tickers of daily bars.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string"
+          },
+          "timespan": {
+            "type": "string",
+            "enum": [
+              "minute",
+              "hour",
+              "day",
+              "week",
+              "month"
+            ],
+            "default": "day"
+          },
+          "multiplier": {
+            "type": "integer",
+            "description": "Bar size multiplier, max 60",
+            "default": 1
+          },
+          "days": {
+            "type": "integer",
+            "description": "Lookback in days, max 365",
+            "default": 30
+          }
+        },
+        "required": [
+          "symbol"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_app_status",
+      "description": "LIVE (5 min cache). AfterHour app remote config: feature flags and forced/recommended-update gate for the tracked Android build. Use to detect that the app shipped a change.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "compare_tickers",
+      "description": "SNAPSHOT (verified 500, rebuilt on deploy). Side-by-side table for 2 to 5 tickers: price, 24h and 30d move, whale capital and holders, verified owners, conviction per holder. For tickers outside the 500 use get_ticker_live.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "symbols": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "2 to 5 tickers"
+          }
+        },
+        "required": [
+          "symbols"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_retail_sentiment",
+      "description": "SNAPSHOT (refreshed every 5 min). Retail stance on one ticker from public AfterHour posts: bull/bear votes, net score (-1..1), distinct voting authors, confidence tier, topic mix, top posts and quality flags. Direction comes only from explicit CALL/PUT plus an open verb, so most posts are neutral. Always read n_voting_authors and flags.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": {
+            "type": "string"
+          },
+          "window": {
+            "type": "string",
+            "enum": [
+              "24h",
+              "72h",
+              "7d"
+            ],
+            "default": "24h"
+          }
+        },
+        "required": [
+          "ticker"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_retail_options_bias",
+      "description": "SNAPSHOT. Calls versus puts opened in public AfterHour posts: for one ticker, or the most active tickers when none given. The highest-precision sentiment signal because contract side is explicit. Sample is small.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": {
+            "type": "string"
+          },
+          "window": {
+            "type": "string",
+            "enum": [
+              "24h",
+              "72h",
+              "7d"
+            ],
+            "default": "24h"
+          },
+          "limit": {
+            "type": "integer",
+            "default": 15
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_retail_buzz",
+      "description": "SNAPSHOT. Which tickers retail is suddenly posting about: mentions versus trailing baseline (z-score once 3+ days of archive exist, else ranked by mentions). Use for 'what is the crowd talking about'. Not a direction signal.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "window": {
+            "type": "string",
+            "enum": [
+              "24h",
+              "72h"
+            ],
+            "default": "24h"
+          },
+          "limit": {
+            "type": "integer",
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_retail_vs_whale",
+      "description": "SNAPSHOT. Tickers where retail stance and verified whale capital pull apart (retail bullish where little whale money sits, or bearish where a lot does). A prompt to investigate, not a signal: whale capital is size, not direction. Needs at least min_voting_authors voters.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "window": {
+            "type": "string",
+            "enum": [
+              "24h",
+              "72h",
+              "7d"
+            ],
+            "default": "72h"
+          },
+          "min_voting_authors": {
+            "type": "integer",
+            "default": 2
+          },
+          "limit": {
+            "type": "integer",
+            "default": 15
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_sentiment_flags",
+      "description": "SNAPSHOT. Quality flags for a ticker's retail sentiment: copy-paste duplicate posts, low-follower author share, authors with a Telegram link in bio, authors on the funnel list. Call before trusting get_retail_sentiment. Flagged for investigation, not a finding of fraud.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": {
+            "type": "string"
+          },
+          "window": {
+            "type": "string",
+            "enum": [
+              "24h",
+              "72h",
+              "7d"
+            ],
+            "default": "24h"
+          }
+        },
+        "required": [
+          "ticker"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_ticker_posts",
+      "description": "SNAPSHOT of the most recent ~400 archived public posts, parsed (stance, action, tickers). Filter by ticker or username. Use to read the posts behind a sentiment score. For one post by link use get_post_permalink.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "integer",
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_sentiment_trend",
+      "description": "SNAPSHOT. Daily post count and net retail score for a ticker over up to 14 days of archive. Depth is limited by how long the archive has been running.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticker": {
+            "type": "string"
+          },
+          "days": {
+            "type": "integer",
+            "default": 7
+          }
+        },
+        "required": [
+          "ticker"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_live_portfolio",
+      "description": "LIVE (60s cache). Current positions of a PUBLIC AfterHour portfolio marked to live prices: value, share of portfolio, P&L today, options with strike, expiry and contracts. Includes last_synced_at: quantities are only as fresh as the broker sync, often months old. Use get_whale_portfolio for the cached census view.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "min_value": {
+            "type": "number",
+            "default": 0
+          },
+          "include_options": {
+            "type": "boolean",
+            "default": true
+          }
+        },
+        "required": [
+          "username"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_position_changes",
+      "description": "SNAPSHOT (polled every few minutes for top whales, twice a day for the rest). Reported quantity changes in public whale portfolios: OPEN, ADD, TRIM, CLOSE, EXPIRED, FLIP, with notional and percent of portfolio. Filter by user, ticker, action or size. Changes are rare because broker syncs are infrequent. Reported changes, not trades.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "OPEN",
+              "ADD",
+              "TRIM",
+              "CLOSE",
+              "EXPIRED",
+              "FLIP"
+            ]
+          },
+          "since_days": {
+            "type": "integer",
+            "default": 7
+          },
+          "min_notional": {
+            "type": "number",
+            "default": 0
+          },
+          "min_pct_of_portfolio": {
+            "type": "number",
+            "default": 0
+          },
+          "limit": {
+            "type": "integer",
+            "default": 50
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_ticker_whale_flow",
+      "description": "SNAPSHOT. Net reported whale position change in one ticker over recent days: net notional, adds/opens versus trims/closes, which whales. Options roll up to the underlying.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string"
+          },
+          "since_days": {
+            "type": "integer",
+            "default": 7
+          }
+        },
+        "required": [
+          "symbol"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_whale_sync_health",
+      "description": "SNAPSHOT. How trustworthy the whale position data is right now: whales tracked, polled in the last hour, newest and oldest broker sync, count synced within 30 days. Check before reading get_position_changes.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
         "additionalProperties": false
       }
     }

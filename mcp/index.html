@@ -414,7 +414,7 @@
     /* Tools Grid */
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
       gap: 20px;
     }
 
@@ -692,6 +692,16 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    /* Schema-rendered tool cards + sandbox form */
+    .param-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 14px; }
+    .param-table th, .param-table td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--text-muted); }
+    .param-table th { color: var(--text-primary); font-weight: 700; }
+    .mono { font-family: var(--font-mono); color: var(--neon-cyan) !important; white-space: nowrap; }
+    .tool-curl { background: var(--bg-code); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; font-family: var(--font-mono); font-size: 11px; color: #9ca3af; white-space: pre-wrap; word-break: break-all; margin: 0 0 14px; }
+    .tool-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .param-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .param-field { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--text-muted); }
   </style>
 </head>
 <body>
@@ -707,7 +717,7 @@
     </div>
     <nav class="nav-links">
       <a href="/" class="nav-btn">&#x1F4CA; Live Terminal</a>
-      <a href="/whales" class="nav-btn">&#x1F40B; Whales ($169M)</a>
+      <a href="/whales" class="nav-btn">&#x1F40B; Whales</a>
       <a href="/stonks" class="nav-btn">&#x1F4C8; 500 Equities</a>
       <a href="/etfs" class="nav-btn">&#x1F3DB;&#xFE0F; 64 ETFs</a>
       <a href="/docs" class="nav-btn">&#x1F4D6; Swagger API</a>
@@ -729,13 +739,13 @@
       </div>
       <h1>Connect Your AI Agents to Real-Time Whale Tape</h1>
       <p>
-        Give Claude Desktop, Cursor IDE, Antigravity CLI, Windsurf, and custom autonomous agent loops direct sub-millisecond access to $169M+ in verified retail equity, whale dry powder cash, and asymmetric conviction flows. Zero API key required.
+        Give Claude Desktop, Cursor IDE, Antigravity CLI, Windsurf, and custom autonomous agent loops direct edge-latency access to verified retail and whale positioning, whale dry powder cash, and asymmetric conviction flows. Zero API key required.
       </p>
 
       <div class="feature-pills">
         <div class="pill"><span>&#x26A1;</span> Sub-Millisecond Edge Latency</div>
         <div class="pill"><span>&#x1F513;</span> Zero API Keys or Auth Tokens</div>
-        <div class="pill"><span>&#x1F6E0;&#xFE0F;</span> 14 Production Tools</div>
+        <div class="pill"><span>&#x1F6E0;&#xFE0F;</span> <span data-tool-count>&#x2026;</span> Production Tools</div>
         <div class="pill"><span>&#x1F40D;</span> Pure Python 3 (Zero External Dependencies)</div>
       </div>
 
@@ -968,247 +978,43 @@ python3 aftermath_mcp.py</code></pre>
       </div>
     </section>
 
-    <!-- TOOLS CATALOG -->
-    <section>
+    <!-- TOOLS CATALOG (rendered from /api/mcp-schema.json) -->
+    <section id="tools">
       <div class="section-header">
         <div>
-          <h2 class="section-title"><span>&#x1F6E0;&#xFE0F;</span> The 14 Production MCP Tools</h2>
-          <div class="section-sub">Standard JSON-RPC tools exposed to your language model</div>
+          <h2 class="section-title"><span>&#x1F6E0;&#xFE0F;</span> <span id="tools-title">MCP Tools</span></h2>
+          <div class="section-sub">Rendered live from the server's own tool definitions</div>
         </div>
         <div>
           <a href="/api/mcp-schema.json" target="_blank" class="nav-btn" style="font-size: 11px; padding: 4px 10px;">mcp-schema.json &nearr;</a>
+          <a href="/docs" class="nav-btn" style="font-size: 11px; padding: 4px 10px;">Swagger UI &nearr;</a>
         </div>
       </div>
-
-      <div class="tools-grid">
-        <!-- TOOL 1 -->
-        <div class="tool-card">
-          <div>
-            <span class="tool-badge">MACRO TAPE</span>
-            <div class="tool-name">get_market_tape</div>
-            <div class="tool-desc">
-              Retrieves real-time macro tape overview: whale cash reserves ($8.98M dry powder), intraday net P&L, equity/ETF allocation ratio, and top capital inflow leaders.
-            </div>
-            <div class="tool-schema">
-              <strong>Inputs:</strong> None (global market state)
-            </div>
-          </div>
-          <button class="tool-test-btn" onclick="runSandbox('get_market_tape')">Test in Sandbox &rarr;</button>
-        </div>
-
-        <!-- TOOL 2 -->
-        <div class="tool-card">
-          <div>
-            <span class="tool-badge">SECURITY SCREENER</span>
-            <div class="tool-name">get_top_equities</div>
-            <div class="tool-desc">
-              Filters and ranks 500 verified stocks with customizable thresholds for whale capital, owner count, conviction intensity, and asset segregation.
-            </div>
-            <div class="tool-schema">
-              <strong>Inputs:</strong> limit, min_whale_capital, min_conviction, min_owners, asset_type, sort_by
-            </div>
-          </div>
-          <button class="tool-test-btn" onclick="runSandbox('get_top_equities')">Test in Sandbox &rarr;</button>
-        </div>
-
-        <!-- TOOL 3 -->
-        <div class="tool-card">
-          <div>
-            <span class="tool-badge">ETF RADAR</span>
-            <div class="tool-name">get_etf_flows</div>
-            <div class="tool-desc">
-              Inspects 64 ETFs & index funds ranked by whale capital backing, expense ratios, asset classes (equity, broad market, thematic, crypto), and retail crowd breadth.
-            </div>
-            <div class="tool-schema">
-              <strong>Inputs:</strong> limit, sort_by
-            </div>
-          </div>
-          <button class="tool-test-btn" onclick="runSandbox('get_etf_flows')">Test in Sandbox &rarr;</button>
-        </div>
-
-        <!-- TOOL 4 -->
-        <div class="tool-card">
-          <div>
-            <span class="tool-badge">FORENSIC AUDIT</span>
-            <div class="tool-name">get_whale_portfolio</div>
-            <div class="tool-desc">
-              Audits any verified whale account by username (e.g. SIRJACK, thealexperez) to inspect verified positions, cost basis, profit, cash balance, and shadow ratio.
-            </div>
-            <div class="tool-schema">
-              <strong>Inputs:</strong> username (required)
-            </div>
-          </div>
-          <button class="tool-test-btn" onclick="runSandbox('get_whale_portfolio')">Test in Sandbox &rarr;</button>
-        </div>
-
-        <!-- TOOL 5 -->
-        <div class="tool-card">
-          <div>
-            <span class="tool-badge">SECURITY DEEP-DIVE</span>
-            <div class="tool-name">get_ticker_intel</div>
-            <div class="tool-desc">
-              Forensic intelligence on any ticker ($NVDA, $ASTS, $AAPL, etc.) with verified holders, conviction intensity ($/sub), top whale holders, and optional 90-day daily OHLCV bars.
-            </div>
-            <div class="tool-schema">
-              <strong>Inputs:</strong> ticker (required), include_bars (boolean)
-            </div>
-          </div>
-          <button class="tool-test-btn" onclick="runSandbox('get_ticker_intel')">Test in Sandbox &rarr;</button>
-        </div>
-
-        <!-- TOOL 6 -->
-        <div class="tool-card">
-          <div>
-            <span class="tool-badge">ASYMMETRIC CONVICTION</span>
-            <div class="tool-name">get_conviction_screener</div>
-            <div class="tool-desc">
-              Scans for asymmetric high conviction where average position per holder exceeds a given threshold (e.g. $50k or $100k), revealing quiet institutional accumulation.
-            </div>
-            <div class="tool-schema">
-              <strong>Inputs:</strong> min_intensity, min_owners, limit
-            </div>
-          </div>
-          <button class="tool-test-btn" onclick="runSandbox('get_conviction_screener')">Test in Sandbox &rarr;</button>
-        </div>
-
-        <div class="tool-card">
-          <div>
-            <span class="tool-badge">WHALE SCREENER</span>
-            <div class="tool-name">screen_whales</div>
-            <div class="tool-desc">
-              Screens the 395 verified portfolios by account value, holdings and ticker exposure.
-            </div>
-            <div class="tool-schema">
-              <strong>Inputs:</strong> see mcp-schema.json
-            </div>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div>
-            <span class="tool-badge">CLOUT INVERSION</span>
-            <div class="tool-name">get_shadow_whales</div>
-            <div class="tool-desc">
-              Ranks accounts by capital-per-follower asymmetry: big money, no audience.
-            </div>
-            <div class="tool-schema">
-              <strong>Inputs:</strong> see mcp-schema.json
-            </div>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div>
-            <span class="tool-badge">PRICE HISTORY</span>
-            <div class="tool-name">get_price_history</div>
-            <div class="tool-desc">
-              Daily OHLCV bars for a ticker, for trend and range context.
-            </div>
-            <div class="tool-schema">
-              <strong>Inputs:</strong> ticker, limit
-            </div>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div>
-            <span class="tool-badge">SOCIAL TAPE</span>
-            <div class="tool-name">get_social_feed</div>
-            <div class="tool-desc">
-              Live community posts and broker-verified trade snapshots, filterable by ticker or trader.
-            </div>
-            <div class="tool-schema">
-              <strong>Inputs:</strong> ticker, username, limit
-            </div>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div>
-            <span class="tool-badge">SCAM CHECK &bull; NEW</span>
-            <div class="tool-name">get_funnel_accounts</div>
-            <div class="tool-desc">
-              Check an AfterHour username or t.me link against 85 accounts flagged for funneling traders into Telegram, with evidence tier and shared-link clusters. Data curated by <a href="https://telegramscammers.com" target="_blank" rel="noopener">TelegramScammers.com</a> (<a href="https://telegramscammers.com/database" target="_blank" rel="noopener">database</a> &bull; <a href="https://telegramscammers.com/submit" target="_blank" rel="noopener">submit intel</a>). Flagged for investigation, not a finding of fraud.
-            </div>
-            <div class="tool-schema">
-              <strong>Inputs:</strong> username, telegram_link, tier, limit
-            </div>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div>
-            <span class="tool-badge">SCAM CHECK &bull; NEW</span>
-            <div class="tool-name">get_funnel_callouts</div>
-            <div class="tool-desc">
-              Trade callouts parsed from public Telegram channels tied to flagged accounts: ticker, side, strike, expiry, entry, and a scored outcome where one exists. Quoted results are the channels' own claims, and the sample is small. Data curated by <a href="https://telegramscammers.com" target="_blank" rel="noopener">TelegramScammers.com</a> (<a href="https://telegramscammers.com/database" target="_blank" rel="noopener">database</a> &bull; <a href="https://telegramscammers.com/submit" target="_blank" rel="noopener">submit intel</a>). Flagged for investigation, not a finding of fraud.
-            </div>
-            <div class="tool-schema">
-              <strong>Inputs:</strong> ticker, channel, action, limit
-            </div>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div>
-            <span class="tool-badge">SCAM CHECK &bull; NEW</span>
-            <div class="tool-name">get_funnel_tickers</div>
-            <div class="tool-desc">
-              Ranked tickers pushed by flagged AfterHour accounts and their Telegram channels, with account, post and channel counts. Data curated by <a href="https://telegramscammers.com" target="_blank" rel="noopener">TelegramScammers.com</a> (<a href="https://telegramscammers.com/database" target="_blank" rel="noopener">database</a> &bull; <a href="https://telegramscammers.com/submit" target="_blank" rel="noopener">submit intel</a>). Flagged for investigation, not a finding of fraud.
-            </div>
-            <div class="tool-schema">
-              <strong>Inputs:</strong> limit
-            </div>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div>
-            <span class="tool-badge">SCAM CHECK &bull; NEW</span>
-            <div class="tool-name">get_funnel_scorecard</div>
-            <div class="tool-desc">
-              Public scoring of trade callouts from Telegram channels linked to flagged AfterHour accounts: what each called option contract did after the post (its own 5-minute trade bars, 30 minutes for in-session calls, the next session for daily callouts), the same callouts held to expiry, and forex, gold and index signals scored TP1 first versus SL first. Pooled and per channel, with sample sizes, Wilson 95% ranges and every assumption. Analysis of public posts, not advice. Page: <a href="/scorecard">/scorecard</a>. Data curated by <a href="https://telegramscammers.com" target="_blank" rel="noopener">TelegramScammers.com</a>. Flagged for investigation, not a finding of fraud.
-            </div>
-            <div class="tool-schema">
-              <strong>Inputs:</strong> section (paths, options, fx, all), channel
-            </div>
-          </div>
-        </div>
+      <div class="tools-grid" id="tools-grid"><div class="tool-desc">Loading /api/mcp-schema.json ...</div></div>
+      <div id="resources-block" style="margin-top: 28px; display: none;">
+        <h3 class="section-title" style="font-size: 16px;">Resources</h3>
+        <div class="tools-grid" id="resources-grid"></div>
       </div>
     </section>
 
-    <!-- LIVE IN-BROWSER SANDBOX -->
+    <!-- LIVE SANDBOX: real tools/call against POST /api/mcp -->
     <section id="sandbox">
       <div class="section-header">
         <div>
-          <h2 class="section-title"><span>&#x26A1;</span> Live MCP Tool Sandbox</h2>
-          <div class="section-sub">Simulate an agent MCP tool call against live edge JSON</div>
+          <h2 class="section-title"><span>&#x26A1;</span> Live MCP Sandbox</h2>
+          <div class="section-sub">Sends a real JSON-RPC <code>tools/call</code> to <code>POST /api/mcp</code> and shows the raw response</div>
         </div>
-        <div id="sandbox-latency" style="font-family: var(--font-mono); font-size: 12px; color: var(--neon-green);">
-          Ready
-        </div>
+        <div id="sandbox-latency" style="font-family: var(--font-mono); font-size: 12px; color: var(--neon-green);">Ready</div>
       </div>
-
       <div class="sandbox-card">
         <div class="sandbox-controls">
-          <select id="sandbox-tool" class="sandbox-select" onchange="onSandboxToolChange()">
-            <option value="get_market_tape">get_market_tape (Macro tape &amp; liquidity)</option>
-            <option value="get_top_equities">get_top_equities (500 Equities)</option>
-            <option value="get_etf_flows">get_etf_flows (64 ETFs)</option>
-            <option value="get_whale_portfolio">get_whale_portfolio (Whale portfolio audit)</option>
-            <option value="get_ticker_intel" selected>get_ticker_intel (Ticker deep-dive)</option>
-            <option value="get_conviction_screener">get_conviction_screener (High conviction scan)</option>
-          </select>
-          <input type="text" id="sandbox-arg" class="sandbox-input" placeholder="Argument (e.g. ASTS for ticker, SIRJACK for username)" value="ASTS">
-          <button class="sandbox-run-btn" onclick="executeSandboxCall()">
-            <span>&#x25B6;</span> Execute Tool Call
-          </button>
+          <select id="sandbox-tool" class="sandbox-select" aria-label="Tool"></select>
+          <button class="sandbox-run-btn" id="sandbox-run"><span>&#x25B6;</span> Execute tools/call</button>
         </div>
-
-        <div class="sandbox-output" id="sandbox-result">
-// Select a tool and click "Execute Tool Call" to query the live AfterMath API.
-// Responses are returned in sub-millisecond edge JSON format.
-        </div>
+        <div id="sandbox-desc" class="tool-desc"></div>
+        <div id="sandbox-form" class="param-form"></div>
+        <div class="tool-schema" id="sandbox-request" style="white-space: pre-wrap; margin-top: 12px;"></div>
+        <div class="sandbox-output" id="sandbox-result">// Pick a tool and run it. The response below is exactly what the server returned.</div>
       </div>
     </section>
 
@@ -1277,128 +1083,224 @@ python3 aftermath_mcp.py</code></pre>
       });
     }
 
-    function onSandboxToolChange() {
-      const tool = document.getElementById('sandbox-tool').value;
-      const argInput = document.getElementById('sandbox-arg');
-      if (tool === 'get_ticker_intel') {
-        argInput.style.display = 'block';
-        argInput.placeholder = 'Ticker symbol (e.g. ASTS, NVDA, AAPL)';
-        argInput.value = 'ASTS';
-      } else if (tool === 'get_whale_portfolio') {
-        argInput.style.display = 'block';
-        argInput.placeholder = 'Whale username (e.g. SIRJACK, thealexperez)';
-        argInput.value = 'SIRJACK';
-      } else if (tool === 'get_conviction_screener') {
-        argInput.style.display = 'block';
-        argInput.placeholder = 'Min intensity (e.g. 50000)';
-        argInput.value = '50000';
-      } else if (tool === 'get_top_equities') {
-        argInput.style.display = 'block';
-        argInput.placeholder = 'Limit (e.g. 10)';
-        argInput.value = '10';
-      } else {
-        argInput.style.display = 'none';
-      }
+    // ---- schema-driven tool catalog + real sandbox ----
+    const MCP_URL = '/api/mcp';
+    let MCP_TOOLS = [];
+
+    function el(tag, cls, text) {
+      const e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text !== undefined) e.textContent = text;
+      return e;
     }
 
-    function runSandbox(toolName) {
-      document.getElementById('sandbox-tool').value = toolName;
-      onSandboxToolChange();
-      const el = document.getElementById('sandbox');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-      executeSandboxCall();
+    function typeOf(p) {
+      const t = p.type || (p.enum ? 'enum' : 'any');
+      return Array.isArray(t) ? t.join('|') : t;
+    }
+
+    function exampleArgs(tool) {
+      const out = {};
+      const sch = tool.inputSchema || {};
+      const req = sch.required || [];
+      Object.entries(sch.properties || {}).forEach(([k, p]) => {
+        let v;
+        if ('default' in p) v = p.default;
+        else if (p.enum) v = p.enum[0];
+        else if (p.type === 'integer' || p.type === 'number') v = p.minimum !== undefined ? p.minimum : 10;
+        else if (p.type === 'boolean') v = false;
+        else if (p.type === 'array') v = [];
+        else if (p.type === 'object') v = {};
+        else v = ({ticker: 'NVDA', symbol: 'NVDA', username: 'skrt'})[k] || 'example';
+        if (req.includes(k) || 'default' in p) out[k] = v;
+      });
+      return out;
+    }
+
+    function rpcBody(name, args) {
+      return {jsonrpc: '2.0', id: 1, method: 'tools/call', params: {name: name, arguments: args}};
+    }
+
+    function curlFor(name, args) {
+      return "curl -s -X POST " + location.origin + MCP_URL + " \\\n  -H 'Content-Type: application/json' \\\n  -d '" + JSON.stringify(rpcBody(name, args)) + "'";
+    }
+
+    function paramTable(tool) {
+      const props = (tool.inputSchema && tool.inputSchema.properties) || {};
+      const req = (tool.inputSchema && tool.inputSchema.required) || [];
+      const keys = Object.keys(props);
+      if (!keys.length) return el('div', 'tool-schema', 'No parameters');
+      const table = el('table', 'param-table');
+      const head = el('tr');
+      ['Parameter', 'Type', 'Description'].forEach(h => head.appendChild(el('th', null, h)));
+      table.appendChild(head);
+      keys.forEach(k => {
+        const p = props[k];
+        const tr = el('tr');
+        tr.appendChild(el('td', 'mono', k + (req.includes(k) ? ' *' : '')));
+        tr.appendChild(el('td', 'mono', typeOf(p)));
+        let d = p.description || '';
+        if (p.enum) d += ' One of: ' + p.enum.join(', ') + '.';
+        if ('default' in p) d += ' Default: ' + JSON.stringify(p.default) + '.';
+        tr.appendChild(el('td', null, d.trim()));
+        table.appendChild(tr);
+      });
+      return table;
+    }
+
+    function renderTools(tools) {
+      const grid = document.getElementById('tools-grid');
+      grid.textContent = '';
+      tools.forEach(tool => {
+        const card = el('div', 'tool-card');
+        const top = el('div');
+        top.appendChild(el('div', 'tool-name', tool.name));
+        top.appendChild(el('div', 'tool-desc', tool.description || ''));
+        top.appendChild(paramTable(tool));
+        const pre = el('pre', 'tool-curl', curlFor(tool.name, exampleArgs(tool)));
+        top.appendChild(pre);
+        card.appendChild(top);
+        const row = el('div', 'tool-actions');
+        const copy = el('button', 'tool-test-btn', 'Copy curl');
+        copy.onclick = () => navigator.clipboard.writeText(pre.textContent).then(() => {
+          copy.textContent = 'Copied!'; setTimeout(() => { copy.textContent = 'Copy curl'; }, 1500);
+        });
+        const test = el('button', 'tool-test-btn', 'Try in sandbox');
+        test.onclick = () => {
+          document.getElementById('sandbox-tool').value = tool.name;
+          onSandboxToolChange();
+          document.getElementById('sandbox').scrollIntoView({behavior: 'smooth'});
+        };
+        row.appendChild(copy); row.appendChild(test);
+        card.appendChild(row);
+        grid.appendChild(card);
+      });
+      document.getElementById('tools-title').textContent = 'The ' + tools.length + ' MCP Tools';
+      document.querySelectorAll('[data-tool-count]').forEach(n => { n.textContent = tools.length; });
+    }
+
+    function renderResources(resources) {
+      if (!resources || !resources.length) return;
+      const grid = document.getElementById('resources-grid');
+      resources.forEach(r => {
+        const card = el('div', 'tool-card');
+        const top = el('div');
+        top.appendChild(el('div', 'tool-name', r.uri));
+        top.appendChild(el('div', 'tool-desc', (r.name || '') + (r.description ? ': ' + r.description : '')));
+        top.appendChild(el('div', 'tool-schema', r.mimeType || ''));
+        card.appendChild(top);
+        grid.appendChild(card);
+      });
+      document.getElementById('resources-block').style.display = 'block';
+    }
+
+    function toolByName(n) { return MCP_TOOLS.find(t => t.name === n); }
+
+    function buildForm(tool) {
+      const form = document.getElementById('sandbox-form');
+      form.textContent = '';
+      const props = (tool.inputSchema && tool.inputSchema.properties) || {};
+      const req = (tool.inputSchema && tool.inputSchema.required) || [];
+      const ex = exampleArgs(tool);
+      Object.entries(props).forEach(([k, p]) => {
+        const wrap = el('label', 'param-field');
+        wrap.appendChild(el('span', 'mono', k + (req.includes(k) ? ' *' : '') + '  (' + typeOf(p) + ')'));
+        let input;
+        if (p.enum) {
+          input = el('select', 'sandbox-input');
+          if (!req.includes(k)) input.appendChild(new Option('(unset)', ''));
+          p.enum.forEach(v => input.appendChild(new Option(String(v), String(v))));
+          if (k in ex) input.value = String(ex[k]);
+        } else if (p.type === 'boolean') {
+          input = el('select', 'sandbox-input');
+          ['', 'true', 'false'].forEach(v => input.appendChild(new Option(v || '(unset)', v)));
+          if (k in ex) input.value = String(ex[k]);
+        } else {
+          input = el('input', 'sandbox-input');
+          input.type = 'text';
+          input.placeholder = p.description ? p.description.slice(0, 80) : typeOf(p);
+          if (k in ex && typeof ex[k] !== 'object') input.value = String(ex[k]);
+        }
+        input.dataset.key = k;
+        input.dataset.type = typeOf(p);
+        input.addEventListener('input', updateRequestPreview);
+        input.addEventListener('change', updateRequestPreview);
+        wrap.appendChild(input);
+        form.appendChild(wrap);
+      });
+    }
+
+    function collectArgs() {
+      const args = {};
+      document.querySelectorAll('#sandbox-form [data-key]').forEach(i => {
+        const v = i.value.trim();
+        if (v === '') return;
+        const t = i.dataset.type;
+        if (t === 'integer') args[i.dataset.key] = parseInt(v, 10);
+        else if (t === 'number') args[i.dataset.key] = parseFloat(v);
+        else if (t === 'boolean') args[i.dataset.key] = (v === 'true');
+        else if (t === 'array' || t === 'object') { try { args[i.dataset.key] = JSON.parse(v); } catch (e) { args[i.dataset.key] = v; } }
+        else args[i.dataset.key] = v;
+      });
+      return args;
+    }
+
+    function updateRequestPreview() {
+      const name = document.getElementById('sandbox-tool').value;
+      document.getElementById('sandbox-request').textContent = 'POST ' + MCP_URL + '\n' + JSON.stringify(rpcBody(name, collectArgs()), null, 2);
+    }
+
+    function onSandboxToolChange() {
+      const tool = toolByName(document.getElementById('sandbox-tool').value);
+      if (!tool) return;
+      document.getElementById('sandbox-desc').textContent = tool.description || '';
+      buildForm(tool);
+      updateRequestPreview();
     }
 
     async function executeSandboxCall() {
-      const tool = document.getElementById('sandbox-tool').value;
-      const arg = document.getElementById('sandbox-arg').value.trim();
+      const name = document.getElementById('sandbox-tool').value;
       const output = document.getElementById('sandbox-result');
-      const latencyBadge = document.getElementById('sandbox-latency');
-
-      output.innerText = '// Fetching from edge JSON API...';
-      latencyBadge.innerText = 'Querying...';
-
-      const startTime = performance.now();
+      const badge = document.getElementById('sandbox-latency');
+      output.textContent = '// POST ' + MCP_URL + ' ...';
+      badge.textContent = 'Querying...';
+      const t0 = performance.now();
       try {
-        let endpoint = '';
-        if (tool === 'get_market_tape') {
-          endpoint = '/api/market.json';
-        } else if (tool === 'get_top_equities') {
-          endpoint = '/api/stonks.json';
-        } else if (tool === 'get_etf_flows') {
-          endpoint = '/api/etfs.json';
-        } else if (tool === 'get_whale_portfolio') {
-          endpoint = '/api/whales.json';
-        } else if (tool === 'get_ticker_intel') {
-          const sym = (arg || 'ASTS').toUpperCase();
-          endpoint = `/api/ticker/${sym}.json`;
-        } else if (tool === 'get_conviction_screener') {
-          endpoint = '/api/stonks.json';
-        }
-
-        const resp = await fetch(endpoint);
-        const data = await resp.json();
-        const duration = Math.round(performance.now() - startTime);
-
-        latencyBadge.innerText = `● 200 OK (${duration}ms)`;
-
-        let formattedResult = data;
-        if (tool === 'get_top_equities') {
-          const lim = parseInt(arg) || 10;
-          formattedResult = {
-            total: data.total,
-            limit: lim,
-            securities: (data.securities || []).slice(0, lim).map(s => ({
-              ticker: s.ticker,
-              name: s.name,
-              price: s.price,
-              whaleCapital: s.whalesValue,
-              owners: s.owners,
-              convictionPerHolder: Math.round(s.intensity)
-            }))
-          };
-        } else if (tool === 'get_whale_portfolio') {
-          const target = (arg || 'SIRJACK').toLowerCase();
-          const found = (data.whales || []).find(w => w.username.toLowerCase() === target);
-          formattedResult = found || { error: `Whale @${arg} not found in tracked 395 portfolios` };
-        } else if (tool === 'get_conviction_screener') {
-          const minI = parseFloat(arg) || 50000;
-          const filtered = (data.securities || [])
-            .filter(s => s.intensity >= minI && s.owners >= 15)
-            .sort((a,b) => b.intensity - a.intensity)
-            .slice(0, 10)
-            .map(s => ({
-              ticker: s.ticker,
-              name: s.name,
-              convictionPerHolder: Math.round(s.intensity),
-              owners: s.owners,
-              whaleCapital: s.whalesValue
-            }));
-          formattedResult = {
-            min_conviction_filter: minI,
-            matched_count: filtered.length,
-            results: filtered
-          };
-        } else if (tool === 'get_ticker_intel') {
-          // Compact the bars if present
-          if (formattedResult.history) {
-            formattedResult.history_bars_available = formattedResult.history.length;
-            formattedResult.history = formattedResult.history.slice(-5);
-          }
-        }
-
-        output.innerText = JSON.stringify(formattedResult, null, 2);
+        const resp = await fetch(MCP_URL, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(rpcBody(name, collectArgs()))
+        });
+        const raw = await resp.text();
+        const ms = Math.round(performance.now() - t0);
+        badge.textContent = (resp.ok ? '\u25CF ' : '\u25CF ') + resp.status + ' (' + ms + 'ms)';
+        let shown = raw;
+        try { shown = JSON.stringify(JSON.parse(raw), null, 2); } catch (e) { /* keep raw */ }
+        output.textContent = shown;
       } catch (err) {
-        latencyBadge.innerText = '● Error';
-        output.innerText = JSON.stringify({ error: err.message, tool: tool }, null, 2);
+        badge.textContent = '\u25CF Error';
+        output.textContent = 'Request failed: ' + err.message;
       }
     }
 
-    // Auto-run sandbox once on load
-    window.addEventListener('DOMContentLoaded', () => {
-      onSandboxToolChange();
-      executeSandboxCall();
-    });
+    async function loadSchema() {
+      try {
+        const resp = await fetch('/api/mcp-schema.json');
+        const schema = await resp.json();
+        MCP_TOOLS = schema.tools || [];
+        renderTools(MCP_TOOLS);
+        renderResources(schema.resources);
+        const sel = document.getElementById('sandbox-tool');
+        MCP_TOOLS.forEach(t => sel.appendChild(new Option(t.name, t.name)));
+        sel.addEventListener('change', onSandboxToolChange);
+        document.getElementById('sandbox-run').addEventListener('click', executeSandboxCall);
+        onSandboxToolChange();
+      } catch (err) {
+        document.getElementById('tools-grid').textContent = 'Could not load /api/mcp-schema.json: ' + err.message;
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadSchema);
   </script>
 </body>
 </html>

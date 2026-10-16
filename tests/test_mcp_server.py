@@ -409,3 +409,22 @@ def test_sentiment_tools(monkeypatch):
 def test_sentiment_tools_not_published_yet(monkeypatch):
     _patch_fetch(monkeypatch, {})
     assert mcp_server.tool_get_retail_sentiment({"ticker": "SPY"})["retryable"] is True
+
+
+def test_position_changes_filters(monkeypatch):
+    import datetime as dt
+    ts = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    feed = {"generated_at": ts, "changes": [
+        {"ts": ts, "username": "Whale1", "action": "ADD", "symbol": "NVDA", "root": "NVDA", "qty_before": 1, "qty_after": 2,
+         "notional_delta": 1000.0, "pct_of_portfolio": 1.0, "lot_ambiguous": False},
+        {"ts": ts, "username": "Whale2", "action": "CLOSE", "symbol": "SPY", "root": "SPY", "qty_before": 5, "qty_after": 0,
+         "notional_delta": -50000.0, "pct_of_portfolio": 9.0, "lot_ambiguous": False},
+        {"ts": "2020-01-01T00:00:00Z", "username": "Whale1", "action": "OPEN", "symbol": "OLD", "root": "OLD",
+         "qty_before": 0, "qty_after": 1, "notional_delta": 1.0, "pct_of_portfolio": 0.0, "lot_ambiguous": False}]}
+    _patch_fetch(monkeypatch, {"whale-changes.json": feed})
+    assert mcp_server.tool_get_position_changes({})["matched"] == 2
+    assert mcp_server.tool_get_position_changes({"min_pct_of_portfolio": 5})["changes"][0]["symbol"] == "SPY"
+    flow = mcp_server.tool_get_ticker_whale_flow({"symbol": "spy"})
+    assert flow["net_notional_delta"] == -50000.0 and flow["trims_closes"] == 1
+    _patch_fetch(monkeypatch, {})
+    assert mcp_server.tool_get_position_changes({})["retryable"] is True
