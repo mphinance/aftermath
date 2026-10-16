@@ -24,7 +24,7 @@ import queue
 import threading
 from pathlib import Path
 
-VERSION = "1.2.0"
+VERSION = "1.3.0"
 SERVER_NAME = "aftermath-altdata"
 BASE_URL = "https://ah.mphinance.com/api"
 
@@ -753,6 +753,431 @@ def tool_get_social_feed(args: dict) -> dict:
         "posts": filtered[:limit]
     }
 
+# ==============================================================================
+# LIVE TOOLS (direct, unauthenticated GETs against the public AfterHour API)
+# ==============================================================================
+# Freshness is the value here, so every result is wrapped as
+# {"source": "live"|"cache"|"stale", "as_of": iso, "data": ...}. Upstream 504s
+# (~1 in 7) are retried with backoff; if all retries fail we serve a stale copy
+# (source "stale") or a retryable error object, never a raw gateway error.
+
+import re
+import datetime as _dt
+
+AH_API = "https://api.afterhour.com"
+_AH_CACHE = {}
+_AH_LOCK = threading.Lock()
+_AH_SLOTS = threading.BoundedSemaphore(3)  # max 3 concurrent upstream calls
+_AH_STALE_MAX = 3600.0
+
+_SYM_RE = re.compile(r"^[A-Za-z0-9.\-^=]{1,12}$")
+_USER_RE = re.compile(r"^[A-Za-z0-9_.\-]{1,40}$")
+_HASH_RE = re.compile(r"^[A-Za-z0-9]{3,12}$")
+
+
+class UpstreamError(Exception):
+    pass
+
+
+def _iso(ts: float) -> str:
+    return _dt.datetime.fromtimestamp(ts, _dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def ah_get(path: str, params: dict = None, ttl: float = 60.0, retries: int = 3):
+    """GET api.afterhour.com. Returns (data, source, as_of_ts). Raises UpstreamError."""
+    qs = urllib.parse.urlencode({k: v for k, v in (params or {}).items() if v is not None})
+    url = f"{AH_API}{path}" + (f"?{qs}" if qs else "")
+    now = time.time()
+    with _AH_LOCK:
+        hit = _AH_CACHE.get(url)
+    if hit and now - hit[1] < ttl:
+        return hit[0], "cache", hit[1]
+
+    last = None
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(url, headers={
+                "User-Agent": f"AfterMath-MCP/{VERSION} (+https://ah.mphinance.com/mcp)",
+                "Accept": "application/json",
+            })
+            with _AH_SLOTS:
+                with urllib.request.urlopen(req, timeout=20.0) as resp:
+                    data = json.loads(resp.read().decode("utf-8"))
+            ts = time.time()
+            with _AH_LOCK:
+                _AH_CACHE[url] = (data, ts)
+                if len(_AH_CACHE) > 400:  # crude bound
+                    for k in sorted(_AH_CACHE, key=lambda k: _AH_CACHE[k][1])[:100]:
+                        _AH_CACHE.pop(k, None)
+            return data, "live", ts
+        except urllib.error.HTTPError as e:
+            last = f"HTTP {e.code}"
+            if e.code in (400, 401, 403, 404):  # not retryable
+                break
+        except Exception as e:  # timeouts, resets, bad JSON
+            last = str(e)[:120]
+        time.sleep(1.0 * (2 ** attempt))
+
+    if hit and now - hit[1] < _AH_STALE_MAX:
+        return hit[0], "stale", hit[1]
+    raise UpstreamError(last or "upstream unavailable")
+
+
+def _live(path, params=None, ttl=60.0, shape=None):
+    """Run ah_get and wrap in the standard freshness envelope."""
+    try:
+        data, source, ts = ah_get(path, params, ttl)
+    except UpstreamError as e:
+        return {"error": f"AfterHour upstream unavailable ({e})", "retryable": True}
+    return {"source": source, "as_of": _iso(ts), "data": shape(data) if shape else data}
+
+
+def _bad(msg):
+    return {"error": msg, "retryable": False}
+
+
+def _pick(d, keys):
+    return {k: d.get(k) for k in keys if d.get(k) is not None}
+
+
+def _price_view(p):
+    """Trim a SecurityPrice to the fields agents need. Percent fields are percent units."""
+    if not p:
+        return None
+    s = p.get("session") or {}
+    return {
+        "price": p.get("price"),
+        "as_of": p.get("asOf"),
+        "change_pct": s.get("changePercent"),
+        "premarket_change_pct": s.get("earlyTradingChangePercent"),
+        "afterhours_change_pct": s.get("lateTradingChangePercent"),
+        "open": s.get("open"), "high": s.get("high"), "low": s.get("low"),
+        "previous_close": s.get("previousClose"), "volume": s.get("volume"),
+    }
+
+
+def _overview_view(o):
+    sec = o.get("security") or {}
+    chat = sec.get("chatroom") or {}
+    return {
+        "ticker": sec.get("tickerSymbol"),
+        "name": sec.get("friendlyName") or sec.get("name"),
+        "type": sec.get("type"),
+        "price": _price_view(o.get("price")),
+        "owner_count": o.get("ownerCount"),
+        "total_value_held": o.get("totalValue"),
+        "market_cap": o.get("marketCap"),
+        "chatroom_members": chat.get("memberCount"),
+        "chatroom_online": chat.get("onlineCount"),
+        "sample_owners": [
+            _pick(p, ["username", "numFollowers", "financialDataPrivacyMode"])
+            for p in (o.get("ownersSample") or [])[:5]
+        ],
+    }
+
+
+def tool_get_market_session(args: dict) -> dict:
+    date = (args.get("date") or "").strip()
+    if not date:
+        try:
+            from zoneinfo import ZoneInfo
+            date = _dt.datetime.now(ZoneInfo("America/New_York")).strftime("%Y-%m-%d")
+        except Exception:
+            date = _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%d")
+    if not re.match(r"^\d{4}-\d{2}-\d{2}$", date):
+        return _bad("date must be YYYY-MM-DD")
+
+    def shape(h):
+        now = _dt.datetime.now(_dt.timezone.utc)
+
+        def parse(s):
+            return _dt.datetime.strptime(s[:19], "%Y-%m-%dT%H:%M:%S").replace(tzinfo=_dt.timezone.utc)
+
+        phase, edges = "closed", []
+        for name in ("overnight", "preMarket", "regular", "afterHours"):
+            w = h.get(name)
+            if not w:
+                continue
+            a, b = parse(w["start"]), parse(w["end"])
+            edges += [(a, f"{name}_open"), (b, f"{name}_close")]
+            if a <= now <= b:
+                phase = {"preMarket": "pre", "regular": "regular", "afterHours": "after", "overnight": "overnight"}[name]
+        nxt = min((e for e in edges if e[0] > now), default=None, key=lambda e: e[0])
+        return {
+            "date": date, "status": h.get("status"), "phase_now": phase,
+            "early_close": h.get("status") == "early-close",
+            "next_transition": nxt[1] if nxt else None,
+            "next_transition_at": nxt[0].strftime("%Y-%m-%dT%H:%M:%SZ") if nxt else None,
+            "seconds_to_next": int((nxt[0] - now).total_seconds()) if nxt else None,
+            "windows": {k: h.get(k) for k in ("preMarket", "regular", "afterHours", "overnight") if h.get(k)},
+        }
+
+    return _live(f"/stonks/market/hours/{date}", ttl=60.0, shape=shape)
+
+
+def tool_get_live_quotes(args: dict) -> dict:
+    syms = args.get("symbols") or []
+    if isinstance(syms, str):
+        syms = [s for s in re.split(r"[,\s]+", syms) if s]
+    syms = [s.strip().upper() for s in syms][:25]
+    if not syms:
+        return _bad("symbols is required, e.g. ['NVDA','SPY'] (max 25)")
+    if not all(_SYM_RE.match(s) for s in syms):
+        return _bad("symbols must be plain ticker symbols")
+
+    def shape(d):
+        rows = {p["symbol"]: _price_view(p) for p in (d.get("prices") or []) if p}
+        return {"quotes": {s: rows.get(s) for s in syms},
+                "unknown": [s for s in syms if s not in rows]}
+
+    return _live("/stonks/tickers/prices", {"symbols": ",".join(syms)}, ttl=30.0, shape=shape)
+
+
+_LB_SORTS = ("TRENDING", "WATCHERS", "OWNERS", "GAINERS", "LOSERS")
+_LB_RANGES = ("DAY", "WEEK", "MONTH", "THREE_MONTH", "YEAR_TO_DATE")
+
+
+def tool_get_leaderboard(args: dict) -> dict:
+    sort = (args.get("sort") or "TRENDING").upper()
+    rng = (args.get("time_range") or "DAY").upper()
+    if sort not in _LB_SORTS:
+        return _bad(f"sort must be one of {list(_LB_SORTS)}")
+    if rng not in _LB_RANGES:
+        return _bad(f"time_range must be one of {list(_LB_RANGES)}")
+    take = max(1, min(int(args.get("take", 20)), 50))
+    cursor = max(0, int(args.get("cursor", 0)))
+    note = None
+    if sort == "GAINERS" and rng != "DAY":
+        rng, note = "DAY", "GAINERS only works with DAY upstream (504 otherwise); used DAY"
+    if sort == "LOSERS" and rng in ("THREE_MONTH", "YEAR_TO_DATE"):
+        rng, note = "DAY", "LOSERS is empty for that range upstream; used DAY"
+
+    def shape(d):
+        rows = []
+        for i, e in enumerate(d.get("securities") or []):
+            v = _overview_view(e.get("security") or e)
+            v["rank"] = cursor + i + 1
+            for k in ("followCount", "changePricePercentage"):
+                if e.get(k) is not None:
+                    v[{"followCount": "watchers", "changePricePercentage": "range_change_pct"}[k]] = e[k]
+            rows.append(v)
+        out = {"sort": sort, "time_range": rng, "total_universe": d.get("totalCount"),
+               "next_cursor": d.get("cursor"), "results": rows}
+        if note:
+            out["note"] = note
+        return out
+
+    return _live("/stonks/security/leaderboard", {"sortOrder": sort, "timeRange": rng, "take": take, "cursor": cursor},
+                 ttl=120.0, shape=shape)
+
+
+def tool_get_ticker_live(args: dict) -> dict:
+    sym = (args.get("symbol") or "").strip().upper()
+    if not _SYM_RE.match(sym):
+        return _bad("symbol is required, e.g. 'NVDA'")
+    return _live(f"/stonks/security/ticker/{urllib.parse.quote(sym)}", ttl=120.0, shape=_overview_view)
+
+
+def tool_get_profile_live(args: dict) -> dict:
+    u = (args.get("username") or "").strip().lstrip("@")
+    if not _USER_RE.match(u):
+        return _bad("username is required")
+
+    def shape(p):
+        return {
+            **_pick(p, ["username", "bio", "createdAt", "numFollowers", "numFollowing", "numTotalLikes",
+                        "hasConnectedItems", "financialDataPrivacyMode", "appReleaseChannel", "badgeKeys",
+                        "linkInBio", "socialHandleX", "socialHandleDiscord", "socialHandleReddit"]),
+            "profile_number": p.get("profileNumber"),
+        }
+
+    return _live("/public/profile", {"username": u}, ttl=300.0, shape=shape)
+
+
+def tool_get_post_permalink(args: dict) -> dict:
+    raw = (args.get("hash") or args.get("url") or "").strip()
+    h = raw
+    if "afterhour.com" in raw:  # https://afterhour.com/<user>/<hash>/<slug>
+        parts = [p for p in urllib.parse.urlparse(raw).path.split("/") if p]
+        h = parts[1] if len(parts) >= 2 else ""
+    if not _HASH_RE.match(h):
+        return _bad("pass the post hash (e.g. 'bx5Y') or its afterhour.com share URL")
+    ct = max(0, min(int(args.get("comments", 5)), 10))
+
+    def shape(p):
+        post = p.get("post") or p
+        author = post.get("author") or p.get("author") or {}
+        snaps = []
+        for s in (post.get("positionSnapshots") or p.get("positionSnapshots") or [])[:15]:
+            snaps.append(_pick(s, ["tickerSymbol", "type", "quantity", "value", "profitPercent",
+                                   "optionsContractType", "optionsStrikePrice", "optionsExpirationDate"]))
+        comments = []
+        for c in (p.get("comments") or post.get("comments") or [])[:ct]:
+            comments.append({"author": (c.get("author") or {}).get("username"), "body": (c.get("body") or "")[:500],
+                             "created_at": c.get("createdAt")})
+        return {
+            **_pick(post, ["id", "title", "createdAt", "shareUrl", "viewCount"]),
+            "comment_count": post.get("commentCount"), "reaction_counts": post.get("reactionCounts"),
+            "author": _pick(author, ["username", "numFollowers"]),
+            "position_snapshots": snaps, "comments": comments,
+        }
+
+    return _live(f"/public/post/{h}", {"commentsTake": ct}, ttl=600.0, shape=shape)
+
+
+def tool_get_security_chart(args: dict) -> dict:
+    sym = (args.get("symbol") or "").strip().upper()
+    if not _SYM_RE.match(sym):
+        return _bad("symbol is required, e.g. 'NVDA'")
+    timespan = (args.get("timespan") or "day").lower()
+    if timespan not in ("minute", "hour", "day", "week", "month"):
+        return _bad("timespan must be minute|hour|day|week|month")
+    mult = max(1, min(int(args.get("multiplier", 1)), 60))
+    days = max(1, min(int(args.get("days", 30)), 365))
+    try:
+        ov, _, _ = ah_get(f"/stonks/security/ticker/{urllib.parse.quote(sym)}", ttl=3600.0)
+        sid = (ov.get("security") or {}).get("id")
+    except UpstreamError as e:
+        return {"error": f"AfterHour upstream unavailable ({e})", "retryable": True}
+    if not sid:
+        return _bad(f"ticker '{sym}' not found")
+    end = _dt.datetime.now(_dt.timezone.utc)
+    start = end - _dt.timedelta(days=days)
+    fmt = "%Y-%m-%dT%H:%M:%SZ"
+
+    def shape(d):
+        bars = [{"t": b.get("timestamp"), "o": b.get("open"), "h": b.get("high"), "l": b.get("low"),
+                 "c": b.get("close"), "v": b.get("volume"), "vwap": b.get("volumeWeightedAveragePrice")}
+                for b in (d.get("prices") or [])]
+        return {"symbol": sym, "timespan": timespan, "multiplier": mult, "bar_count": len(bars),
+                "previous_close": d.get("previousClose"), "bars": bars[-500:]}
+
+    return _live(f"/stonks/security/{sid}/historic_prices",
+                 {"multiplier": mult, "timespan": timespan, "start": start.strftime(fmt), "end": end.strftime(fmt)},
+                 ttl=300.0, shape=shape)
+
+
+def tool_get_app_status(args: dict) -> dict:
+    return _live("/app-info", {"appId": "com.afterhour", "version": "4.6.4", "platform": "android", "buildNumber": 88},
+                 ttl=300.0)
+
+
+def tool_compare_tickers(args: dict) -> dict:
+    syms = args.get("symbols") or []
+    if isinstance(syms, str):
+        syms = [s for s in re.split(r"[,\s]+", syms) if s]
+    syms = [s.strip().upper() for s in syms][:5]
+    if len(syms) < 2:
+        return _bad("pass 2 to 5 symbols")
+    stonks = {s.get("ticker"): s for s in (fetch_json("stonks.json") or {}).get("securities", [])}
+    rows, missing = [], []
+    for sym in syms:
+        s = stonks.get(sym)
+        if not s:
+            missing.append(sym)
+            continue
+        ret30 = None
+        t = fetch_json(f"ticker/{sym}.json") or {}
+        h = t.get("history") or []
+        if len(h) >= 2 and h[0].get("close") and h[-1].get("close"):
+            win = h[-31:]
+            ret30 = round((win[-1]["close"] / win[0]["close"] - 1) * 100, 2)
+        rows.append({
+            "ticker": sym, "name": s.get("name"), "price": s.get("price"), "change_pct_24h": s.get("changePercent"),
+            "return_pct_30d": ret30, "whale_capital": s.get("whalesValue"), "whale_holders": s.get("whalesCount"),
+            "verified_owners": s.get("owners"), "platform_value": s.get("totalValue"),
+            "conviction_per_holder": round(s.get("intensity", 0), 2),
+            "top_whale": s.get("topWhale"), "is_etf": s.get("isETF"),
+        })
+    return {"source": "snapshot", "universe": "verified 500", "compared": rows,
+            "not_tracked": missing or None,
+            "note": "Snapshot of the verified 500 (rebuilt on deploy). For tickers outside it use get_ticker_live."}
+
+
+LIVE_TOOLS_MAP = {
+    "get_market_session": tool_get_market_session,
+    "get_live_quotes": tool_get_live_quotes,
+    "get_leaderboard": tool_get_leaderboard,
+    "get_ticker_live": tool_get_ticker_live,
+    "get_profile_live": tool_get_profile_live,
+    "get_post_permalink": tool_get_post_permalink,
+    "get_security_chart": tool_get_security_chart,
+    "get_app_status": tool_get_app_status,
+    "compare_tickers": tool_compare_tickers,
+}
+
+LIVE_TOOL_DEFINITIONS = [
+    {
+        "name": "get_market_session",
+        "description": "LIVE (60s cache). Use for 'is the market open / what session is it / when does it close'. Returns current phase (pre, regular, after, overnight, closed), early-close flag, next transition and seconds until it, computed server-side in UTC.",
+        "inputSchema": {"type": "object", "properties": {
+            "date": {"type": "string", "description": "YYYY-MM-DD (default: today, US Eastern)"}},
+            "additionalProperties": False},
+    },
+    {
+        "name": "get_live_quotes",
+        "description": "LIVE (30s cache). Use for current price. Up to 25 symbols: last price, session change, pre-market and after-hours change, OHLC, volume. Percent fields are percent units (1.1 = 1.1%). Do NOT use for whale or conviction data (use get_ticker_intel).",
+        "inputSchema": {"type": "object", "properties": {
+            "symbols": {"type": "array", "items": {"type": "string"}, "description": "Ticker symbols, max 25"}},
+            "required": ["symbols"], "additionalProperties": False},
+    },
+    {
+        "name": "get_leaderboard",
+        "description": "LIVE (2 min cache). Use for 'what is trending / most watched / top gainers / top losers' across the whole platform (~33k securities, crowd-ranked). Do NOT use for whale-capital ranking of the verified 500 (use get_top_equities). GAINERS only supports DAY. Percent fields are percent units.",
+        "inputSchema": {"type": "object", "properties": {
+            "sort": {"type": "string", "enum": list(_LB_SORTS), "default": "TRENDING"},
+            "time_range": {"type": "string", "enum": list(_LB_RANGES), "default": "DAY"},
+            "take": {"type": "integer", "description": "Max 50", "default": 20},
+            "cursor": {"type": "integer", "description": "Offset from a previous next_cursor", "default": 0}},
+            "additionalProperties": False},
+    },
+    {
+        "name": "get_ticker_live",
+        "description": "LIVE (2 min cache). Any ticker on the platform: price, owner count, total value held, market cap, chatroom activity, sample owners. Use when get_ticker_intel says the ticker is not in the verified 500. No whale breakdown or OHLCV.",
+        "inputSchema": {"type": "object", "properties": {
+            "symbol": {"type": "string", "description": "e.g. 'NVDA'"}},
+            "required": ["symbol"], "additionalProperties": False},
+    },
+    {
+        "name": "get_profile_live",
+        "description": "LIVE (5 min cache). Public profile for any AfterHour handle, including non-whales: bio, followers, join date, whether a brokerage is linked, privacy mode. No portfolio data (use get_whale_portfolio for the 395 verified).",
+        "inputSchema": {"type": "object", "properties": {
+            "username": {"type": "string", "description": "AfterHour username, with or without @"}},
+            "required": ["username"], "additionalProperties": False},
+    },
+    {
+        "name": "get_post_permalink",
+        "description": "LIVE (10 min cache). Use when you already have a post link or hash: returns the body, author, attached position snapshots and the first comments. Do NOT use to browse (use get_social_feed).",
+        "inputSchema": {"type": "object", "properties": {
+            "hash": {"type": "string", "description": "Post hash (e.g. 'bx5Y') or full afterhour.com share URL"},
+            "comments": {"type": "integer", "description": "Comments to include, max 10", "default": 5}},
+            "required": ["hash"], "additionalProperties": False},
+    },
+    {
+        "name": "get_security_chart",
+        "description": "LIVE (5 min cache). OHLCV bars for any platform ticker at minute, hour, day, week or month resolution, up to 365 days back, last 500 bars. Superset of get_price_history, which is limited to 18 tickers of daily bars.",
+        "inputSchema": {"type": "object", "properties": {
+            "symbol": {"type": "string"},
+            "timespan": {"type": "string", "enum": ["minute", "hour", "day", "week", "month"], "default": "day"},
+            "multiplier": {"type": "integer", "description": "Bar size multiplier, max 60", "default": 1},
+            "days": {"type": "integer", "description": "Lookback in days, max 365", "default": 30}},
+            "required": ["symbol"], "additionalProperties": False},
+    },
+    {
+        "name": "get_app_status",
+        "description": "LIVE (5 min cache). AfterHour app remote config: feature flags and forced/recommended-update gate for the tracked Android build. Use to detect that the app shipped a change.",
+        "inputSchema": {"type": "object", "properties": {}, "additionalProperties": False},
+    },
+    {
+        "name": "compare_tickers",
+        "description": "SNAPSHOT (verified 500, rebuilt on deploy). Side-by-side table for 2 to 5 tickers: price, 24h and 30d move, whale capital and holders, verified owners, conviction per holder. For tickers outside the 500 use get_ticker_live.",
+        "inputSchema": {"type": "object", "properties": {
+            "symbols": {"type": "array", "items": {"type": "string"}, "description": "2 to 5 tickers"}},
+            "required": ["symbols"], "additionalProperties": False},
+    },
+]
+
+
 # Registry mapping tool name -> handler function
 TOOLS_MAP = {
     "get_market_tape": tool_get_market_tape,
@@ -1080,6 +1505,9 @@ MCP_TOOLS_DEFINITIONS = [
         }
     }
 ]
+
+TOOLS_MAP.update(LIVE_TOOLS_MAP)
+MCP_TOOLS_DEFINITIONS.extend(LIVE_TOOL_DEFINITIONS)
 
 # MCP Resources (MCP 2024-11-05 standard)
 MCP_RESOURCES_DEFINITIONS = [
@@ -1426,7 +1854,7 @@ def handle_jsonrpc_payload(req):
 # ==============================================================================
 
 def run_self_test():
-    """Execute local diagnostic test verifying all 10 tools."""
+    """Execute local diagnostic test verifying the tool registry."""
     print(f"=== {SERVER_NAME} v{VERSION} Diagnostic Test ===")
     
     print("\n1. Testing get_market_tape...")

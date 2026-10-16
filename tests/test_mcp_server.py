@@ -207,7 +207,8 @@ def _patch_fetch(monkeypatch, files):
 def test_funnel_tools_registered_and_defined():
     names = {t["name"] for t in mcp_server.MCP_TOOLS_DEFINITIONS}
     assert {"get_funnel_callouts", "get_funnel_tickers", "get_funnel_scorecard"} <= names
-    assert len(mcp_server.TOOLS_MAP) == len(mcp_server.MCP_TOOLS_DEFINITIONS) == 14
+    assert set(mcp_server.TOOLS_MAP) == names
+    assert len(mcp_server.TOOLS_MAP) == len(mcp_server.MCP_TOOLS_DEFINITIONS)
 
 
 def test_funnel_callouts_happy_path(monkeypatch):
@@ -309,3 +310,75 @@ def test_funnel_scorecard_paths_missing_and_odd_inputs(monkeypatch):
     assert "error" in mcp_server.tool_get_funnel_scorecard({"section": ["paths"], "channel": 7})            # odd type falls back to all
     assert "error" in mcp_server.tool_get_funnel_scorecard({"section": "all"})                              # scorecard file missing
     assert "error" in mcp_server.tool_get_funnel_scorecard(None)
+
+
+# ---- live tools (upstream mocked; no network) --------------------------------
+
+def _mock_ah(monkeypatch, payload, source="live"):
+    calls = []
+
+    def fake(path, params=None, ttl=60.0, retries=3):
+        calls.append((path, params))
+        return payload, source, 1_700_000_000.0
+
+    monkeypatch.setattr(mcp_server, "ah_get", fake)
+    return calls
+
+
+def test_live_tools_registered():
+    names = {t["name"] for t in mcp_server.MCP_TOOLS_DEFINITIONS}
+    assert set(mcp_server.LIVE_TOOLS_MAP) <= names
+
+
+def test_live_quotes_validates_and_shapes(monkeypatch):
+    calls = _mock_ah(monkeypatch, {"prices": [{"symbol": "NVDA", "price": 1.0, "asOf": "x",
+                                              "session": {"changePercent": 1.1}}, None]})
+    out = mcp_server.tool_get_live_quotes({"symbols": ["nvda", "zzzz"]})
+    assert out["source"] == "live" and out["data"]["quotes"]["NVDA"]["change_pct"] == 1.1
+    assert out["data"]["unknown"] == ["ZZZZ"]
+    assert calls[0][1] == {"symbols": "NVDA,ZZZZ"}
+    assert mcp_server.tool_get_live_quotes({"symbols": ["../x"]})["retryable"] is False
+    assert "error" in mcp_server.tool_get_live_quotes({})
+
+
+def test_leaderboard_enum_rejected_and_clamped(monkeypatch):
+    calls = _mock_ah(monkeypatch, {"securities": [], "totalCount": 0})
+    assert "error" in mcp_server.tool_get_leaderboard({"sort": "bogus"})
+    out = mcp_server.tool_get_leaderboard({"sort": "gainers", "time_range": "WEEK", "take": 999})
+    assert out["data"]["time_range"] == "DAY" and "note" in out["data"]
+    assert calls[-1][1]["take"] == 50
+
+
+def test_upstream_failure_is_retryable_error_not_exception(monkeypatch):
+    def boom(*a, **k):
+        raise mcp_server.UpstreamError("HTTP 504")
+
+    monkeypatch.setattr(mcp_server, "ah_get", boom)
+    out = mcp_server.tool_get_ticker_live({"symbol": "NVDA"})
+    assert out["retryable"] is True
+
+
+def test_market_session_phase(monkeypatch):
+    import datetime as dt
+    now = dt.datetime.now(dt.timezone.utc)
+    f = "%Y-%m-%dT%H:%M:%S.000Z"
+    h = {"status": "open", "regular": {"start": (now - dt.timedelta(hours=1)).strftime(f),
+                                        "end": (now + dt.timedelta(hours=2)).strftime(f)}}
+    _mock_ah(monkeypatch, h)
+    d = mcp_server.tool_get_market_session({"date": "2026-10-16"})["data"]
+    assert d["phase_now"] == "regular" and 7000 < d["seconds_to_next"] < 7300
+    assert "error" in mcp_server.tool_get_market_session({"date": "bad"})
+
+
+def test_post_permalink_parses_share_url(monkeypatch):
+    calls = _mock_ah(monkeypatch, {"id": "pst_1", "title": "t", "author": {"username": "u"}, "comments": []})
+    mcp_server.tool_get_post_permalink({"hash": "https://afterhour.com/user/bx5Y/some-slug"})
+    assert calls[0][0] == "/public/post/bx5Y"
+    assert "error" in mcp_server.tool_get_post_permalink({"hash": "../../etc"})
+
+
+def test_compare_tickers_local(monkeypatch):
+    _patch_fetch(monkeypatch, {"stonks.json": {"securities": [
+        {"ticker": "A", "owners": 1, "intensity": 2.0}, {"ticker": "B", "owners": 3, "intensity": 4.0}]}})
+    out = mcp_server.tool_compare_tickers({"symbols": ["a", "b", "c"]})
+    assert [r["ticker"] for r in out["compared"]] == ["A", "B"] and out["not_tracked"] == ["C"]
