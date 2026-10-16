@@ -44,3 +44,4 @@ data/telegram_funnel/option_paths.jsonl
 # local credentials: never commit
 .env*
 !.env.example
+api/funnel-live.json
