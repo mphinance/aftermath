@@ -189,7 +189,7 @@ The list below is generated from the built `api/*.json` files by `scripts/gen_op
 #### 23. MCP JSON-RPC 2.0 (live)
 
 - **Path**: `POST /api/mcp`
-- **Description**: Stateless Streamable-HTTP MCP endpoint. Send JSON-RPC 2.0 `tools/list` or `tools/call`. 34 tools: `get_market_tape`, `get_top_equities`, `get_etf_flows`, `get_whale_portfolio`, `get_ticker_intel`, `get_conviction_screener`, `screen_whales`, `get_shadow_whales`, `get_price_history`, `get_social_feed`, `get_funnel_accounts`, `get_funnel_callouts`, `get_funnel_tickers`, `get_funnel_scorecard`, `get_market_session`, `get_live_quotes`, `get_leaderboard`, `get_ticker_live`, `get_profile_live`, `get_post_permalink`, `get_security_chart`, `get_app_status`, `compare_tickers`, `get_retail_sentiment`, `get_retail_options_bias`, `get_retail_buzz`, `get_retail_vs_whale`, `get_sentiment_flags`, `get_ticker_posts`, `get_sentiment_trend`, `get_live_portfolio`, `get_position_changes`, `get_ticker_whale_flow`, `get_whale_sync_health`. Not a static file: this one runs the live server code.
+- **Description**: Stateless Streamable-HTTP MCP endpoint. Send JSON-RPC 2.0 `tools/list` or `tools/call`. 16 tools: `get_market_tape`, `get_top_equities`, `get_etf_flows`, `get_whale_portfolio`, `get_ticker_intel`, `screen_whales`, `get_shadow_whales`, `get_social_feed`, `get_funnel_accounts`, `get_funnel_callouts`, `get_funnel_scorecard`, `get_market_session`, `get_live_quotes`, `get_leaderboard`, `get_security_chart`, `get_retail_sentiment`. Not a static file: this one runs the live server code.
 - **Request**:
   ```bash
   curl -s -X POST https://ah.mphinance.com/api/mcp \

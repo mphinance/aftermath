@@ -244,6 +244,8 @@ def tool_get_whale_portfolio(args: dict) -> dict:
     target_username = (args.get("username") or "").strip().lstrip("@").lower()
     if not target_username:
         return {"error": "Username argument is required (e.g. 'thealexperez' or 'SirJackALot')"}
+    if args.get("live"):
+        return tool_get_live_portfolio(args)
 
     min_pos_val = float(args.get("min_position_value", 0))
 
@@ -314,7 +316,9 @@ def tool_get_ticker_intel(args: dict) -> dict:
         stonks_data = fetch_json("stonks.json") or {}
         sec = next((s for s in stonks_data.get("securities", []) if s.get("ticker") == ticker), None)
         if not sec:
-            return {"error": f"Ticker '{ticker}' not found in tracked 500 securities"}
+            live = tool_get_ticker_live({"symbol": ticker})
+            live["note"] = "Not in the verified 500 (no whale breakdown); live platform data instead."
+            return live
         return {
             "ticker": ticker,
             "security": sec,
@@ -349,45 +353,6 @@ def tool_get_ticker_intel(args: dict) -> dict:
         result["barsNote"] = "Set 'include_bars': true to receive full 90-day OHLCV candlestick series."
 
     return result
-
-def tool_get_conviction_screener(args: dict) -> dict:
-    """Scan for asymmetric high conviction where average position per holder exceeds a given threshold."""
-    min_intensity = float(args.get("min_intensity", 50000))
-    min_owners = int(args.get("min_owners", 15))
-    limit = int(args.get("limit", 20))
-
-    data = fetch_json("stonks.json")
-    if not data or "securities" not in data:
-        return {"error": "Failed to load securities from edge API"}
-
-    results = []
-    for s in data["securities"]:
-        intensity = s.get("intensity", 0)
-        owners = s.get("owners", 0)
-        if intensity >= min_intensity and owners >= min_owners:
-            results.append({
-                "ticker": s.get("ticker"),
-                "name": s.get("name"),
-                "convictionPerHolder": round(intensity, 2),
-                "owners": owners,
-                "whaleCapital": s.get("whalesValue"),
-                "totalValue": s.get("totalValue"),
-                "price": s.get("price"),
-                "changePercent": s.get("changePercent"),
-                "isETF": s.get("isETF")
-            })
-
-    results.sort(key=lambda x: x["convictionPerHolder"], reverse=True)
-
-    return {
-        "filter": {
-            "min_intensity": min_intensity,
-            "min_owners": min_owners
-        },
-        "total_matched": len(results),
-        "limit": limit,
-        "results": results[:limit]
-    }
 
 def tool_screen_whales(args: dict) -> dict:
     """Filter and rank all 424 verified whales by net worth, cash reserves, profit %, or social clout."""
@@ -502,60 +467,6 @@ def tool_get_shadow_whales(args: dict) -> dict:
         "whales": matched[:limit]
     }
 
-def tool_get_price_history(args: dict) -> dict:
-    """Retrieve 60-day daily OHLCV candlestick price bars and returns for core market benchmarks and equities."""
-    ticker = (args.get("ticker") or "").strip().upper()
-    if not ticker:
-        return {"error": "Ticker symbol is required (e.g. 'NVDA', 'TSLA', 'SPY')"}
-    limit = int(args.get("limit", 60))
-
-    # 1. Try granular ticker file
-    data = fetch_json(f"ticker/{ticker}.json")
-    bars = []
-    if data and "history" in data:
-        bars = data.get("history", [])
-
-    # 2. Try historic_prices_sample.json locally
-    if not bars:
-        hist_sample = LOCAL_API_DIR.parent / "data" / "leaderboard" / "historic_prices_sample.json"
-        if hist_sample.exists():
-            try:
-                with open(hist_sample, encoding="utf-8") as f:
-                    hdata = json.load(f)
-                    bars = hdata.get("history", {}).get(ticker, {}).get("bars", [])
-            except Exception:
-                pass
-
-    if not bars:
-        return {
-            "error": f"Daily OHLCV bars not found for '{ticker}'. Available core tickers: AAPL, ASTS, NVDA, SPY, TSLA, MSTR, AMZN, MSFT, QQQ, PLTR, AMD, META, GOOGL, HOOD, COIN, SOFI, VOO, IBIT."
-        }
-
-    # Calculate summary metrics
-    closes = [b.get("close") for b in bars if b.get("close") is not None]
-    highs = [b.get("high") for b in bars if b.get("high") is not None]
-    lows = [b.get("low") for b in bars if b.get("low") is not None]
-    volumes = [b.get("volume") for b in bars if b.get("volume") is not None]
-
-    latest_close = closes[-1] if closes else 0
-    first_close = closes[0] if closes else 0
-    pct_return = round(((latest_close - first_close) / first_close) * 100, 2) if first_close else 0
-
-    return {
-        "ticker": ticker,
-        "timeframe": "1D",
-        "total_bars_available": len(bars),
-        "bars_returned": min(limit, len(bars)),
-        "summary": {
-            "latest_close": latest_close,
-            "high_period": max(highs) if highs else 0,
-            "low_period": min(lows) if lows else 0,
-            "period_return_percent": pct_return,
-            "average_volume": int(sum(volumes) / len(volumes)) if volumes else 0
-        },
-        "bars": bars[-limit:]
-    }
-
 def tool_get_funnel_accounts(args: dict) -> dict:
     """AfterHour accounts flagged for funneling traders into Telegram channels (data: telegramscammers.com)."""
     data = fetch_json("funnel.json")
@@ -615,22 +526,7 @@ def tool_get_funnel_callouts(args: dict) -> dict:
         "total_parsed": data.get("total_parsed"), "matched": len(rows),
         "ticker_counts": dict(sorted(counts.items(), key=lambda kv: -kv[1])),
         "callouts": rows[:limit],
-    }
-
-
-def tool_get_funnel_tickers(args: dict) -> dict:
-    """Tickers most called out by flagged AfterHour accounts and their Telegram channels (data: telegramscammers.com)."""
-    data = fetch_json("funnel-tickers.json")
-    if not data:
-        return {"error": "funnel-tickers.json currently synchronizing"}
-    try:
-        limit = max(1, min(int(args.get("limit", 25)), 100))
-    except (TypeError, ValueError):
-        limit = 25
-    rows = data.get("tickers", [])
-    return {
-        "source": data.get("credit") or FUNNEL_CREDIT, "disclaimer": data.get("disclaimer") or FUNNEL_DISCLAIMER,
-        "total_tickers": len(rows), "tickers": rows[:limit],
+        **({"top_tickers_overall": (fetch_json("funnel-tickers.json") or {}).get("tickers", [])[:10]} if not (ticker or channel or action) else {}),
     }
 
 
@@ -828,6 +724,8 @@ def _live(path, params=None, ttl=60.0, shape=None):
     try:
         data, source, ts = ah_get(path, params, ttl)
     except UpstreamError as e:
+        if "404" in str(e):
+            return _bad("not found on AfterHour")
         return {"error": f"AfterHour upstream unavailable ({e})", "retryable": True}
     return {"source": source, "as_of": _iso(ts), "data": shape(data) if shape else data}
 
@@ -978,53 +876,6 @@ def tool_get_ticker_live(args: dict) -> dict:
     return _live(f"/stonks/security/ticker/{urllib.parse.quote(sym)}", ttl=120.0, shape=_overview_view)
 
 
-def tool_get_profile_live(args: dict) -> dict:
-    u = (args.get("username") or "").strip().lstrip("@")
-    if not _USER_RE.match(u):
-        return _bad("username is required")
-
-    def shape(p):
-        return {
-            **_pick(p, ["username", "bio", "createdAt", "numFollowers", "numFollowing", "numTotalLikes",
-                        "hasConnectedItems", "financialDataPrivacyMode", "appReleaseChannel", "badgeKeys",
-                        "linkInBio", "socialHandleX", "socialHandleDiscord", "socialHandleReddit"]),
-            "profile_number": p.get("profileNumber"),
-        }
-
-    return _live("/public/profile", {"username": u}, ttl=300.0, shape=shape)
-
-
-def tool_get_post_permalink(args: dict) -> dict:
-    raw = (args.get("hash") or args.get("url") or "").strip()
-    h = raw
-    if "afterhour.com" in raw:  # https://afterhour.com/<user>/<hash>/<slug>
-        parts = [p for p in urllib.parse.urlparse(raw).path.split("/") if p]
-        h = parts[1] if len(parts) >= 2 else ""
-    if not _HASH_RE.match(h):
-        return _bad("pass the post hash (e.g. 'bx5Y') or its afterhour.com share URL")
-    ct = max(0, min(int(args.get("comments", 5)), 10))
-
-    def shape(p):
-        post = p.get("post") or p
-        author = post.get("author") or p.get("author") or {}
-        snaps = []
-        for s in (post.get("positionSnapshots") or p.get("positionSnapshots") or [])[:15]:
-            snaps.append(_pick(s, ["tickerSymbol", "type", "quantity", "value", "profitPercent",
-                                   "optionsContractType", "optionsStrikePrice", "optionsExpirationDate"]))
-        comments = []
-        for c in (p.get("comments") or post.get("comments") or [])[:ct]:
-            comments.append({"author": (c.get("author") or {}).get("username"), "body": (c.get("body") or "")[:500],
-                             "created_at": c.get("createdAt")})
-        return {
-            **_pick(post, ["id", "title", "createdAt", "shareUrl", "viewCount"]),
-            "comment_count": post.get("commentCount"), "reaction_counts": post.get("reactionCounts"),
-            "author": _pick(author, ["username", "numFollowers"]),
-            "position_snapshots": snaps, "comments": comments,
-        }
-
-    return _live(f"/public/post/{h}", {"commentsTake": ct}, ttl=600.0, shape=shape)
-
-
 def tool_get_security_chart(args: dict) -> dict:
     sym = (args.get("symbol") or "").strip().upper()
     if not _SYM_RE.match(sym):
@@ -1057,53 +908,11 @@ def tool_get_security_chart(args: dict) -> dict:
                  ttl=300.0, shape=shape)
 
 
-def tool_get_app_status(args: dict) -> dict:
-    return _live("/app-info", {"appId": "com.afterhour", "version": "4.6.4", "platform": "android", "buildNumber": 88},
-                 ttl=300.0)
-
-
-def tool_compare_tickers(args: dict) -> dict:
-    syms = args.get("symbols") or []
-    if isinstance(syms, str):
-        syms = [s for s in re.split(r"[,\s]+", syms) if s]
-    syms = [s.strip().upper() for s in syms][:5]
-    if len(syms) < 2:
-        return _bad("pass 2 to 5 symbols")
-    stonks = {s.get("ticker"): s for s in (fetch_json("stonks.json") or {}).get("securities", [])}
-    rows, missing = [], []
-    for sym in syms:
-        s = stonks.get(sym)
-        if not s:
-            missing.append(sym)
-            continue
-        ret30 = None
-        t = fetch_json(f"ticker/{sym}.json") or {}
-        h = t.get("history") or []
-        if len(h) >= 2 and h[0].get("close") and h[-1].get("close"):
-            win = h[-31:]
-            ret30 = round((win[-1]["close"] / win[0]["close"] - 1) * 100, 2)
-        rows.append({
-            "ticker": sym, "name": s.get("name"), "price": s.get("price"), "change_pct_24h": s.get("changePercent"),
-            "return_pct_30d": ret30, "whale_capital": s.get("whalesValue"), "whale_holders": s.get("whalesCount"),
-            "verified_owners": s.get("owners"), "platform_value": s.get("totalValue"),
-            "conviction_per_holder": round(s.get("intensity", 0), 2),
-            "top_whale": s.get("topWhale"), "is_etf": s.get("isETF"),
-        })
-    return {"source": "snapshot", "universe": "verified 500", "compared": rows,
-            "not_tracked": missing or None,
-            "note": "Snapshot of the verified 500 (rebuilt on deploy). For tickers outside it use get_ticker_live."}
-
-
 LIVE_TOOLS_MAP = {
     "get_market_session": tool_get_market_session,
     "get_live_quotes": tool_get_live_quotes,
     "get_leaderboard": tool_get_leaderboard,
-    "get_ticker_live": tool_get_ticker_live,
-    "get_profile_live": tool_get_profile_live,
-    "get_post_permalink": tool_get_post_permalink,
     "get_security_chart": tool_get_security_chart,
-    "get_app_status": tool_get_app_status,
-    "compare_tickers": tool_compare_tickers,
 }
 
 LIVE_TOOL_DEFINITIONS = [
@@ -1132,48 +941,14 @@ LIVE_TOOL_DEFINITIONS = [
             "additionalProperties": False},
     },
     {
-        "name": "get_ticker_live",
-        "description": "LIVE (2 min cache). Any ticker on the platform: price, owner count, total value held, market cap, chatroom activity, sample owners. Use when get_ticker_intel says the ticker is not in the verified 500. No whale breakdown or OHLCV.",
-        "inputSchema": {"type": "object", "properties": {
-            "symbol": {"type": "string", "description": "e.g. 'NVDA'"}},
-            "required": ["symbol"], "additionalProperties": False},
-    },
-    {
-        "name": "get_profile_live",
-        "description": "LIVE (5 min cache). Public profile for any AfterHour handle, including non-whales: bio, followers, join date, whether a brokerage is linked, privacy mode. No portfolio data (use get_whale_portfolio for the 395 verified).",
-        "inputSchema": {"type": "object", "properties": {
-            "username": {"type": "string", "description": "AfterHour username, with or without @"}},
-            "required": ["username"], "additionalProperties": False},
-    },
-    {
-        "name": "get_post_permalink",
-        "description": "LIVE (10 min cache). Use when you already have a post link or hash: returns the body, author, attached position snapshots and the first comments. Do NOT use to browse (use get_social_feed).",
-        "inputSchema": {"type": "object", "properties": {
-            "hash": {"type": "string", "description": "Post hash (e.g. 'bx5Y') or full afterhour.com share URL"},
-            "comments": {"type": "integer", "description": "Comments to include, max 10", "default": 5}},
-            "required": ["hash"], "additionalProperties": False},
-    },
-    {
         "name": "get_security_chart",
-        "description": "LIVE (5 min cache). OHLCV bars for any platform ticker at minute, hour, day, week or month resolution, up to 365 days back, last 500 bars. Superset of get_price_history, which is limited to 18 tickers of daily bars.",
+        "description": "LIVE (5 min cache). OHLCV bars for any platform ticker at minute, hour, day, week or month resolution, up to 365 days back, last 500 bars. Use for any ticker's price history.",
         "inputSchema": {"type": "object", "properties": {
             "symbol": {"type": "string"},
             "timespan": {"type": "string", "enum": ["minute", "hour", "day", "week", "month"], "default": "day"},
             "multiplier": {"type": "integer", "description": "Bar size multiplier, max 60", "default": 1},
             "days": {"type": "integer", "description": "Lookback in days, max 365", "default": 30}},
             "required": ["symbol"], "additionalProperties": False},
-    },
-    {
-        "name": "get_app_status",
-        "description": "LIVE (5 min cache). AfterHour app remote config: feature flags and forced/recommended-update gate for the tracked Android build. Use to detect that the app shipped a change.",
-        "inputSchema": {"type": "object", "properties": {}, "additionalProperties": False},
-    },
-    {
-        "name": "compare_tickers",
-        "description": "SNAPSHOT (verified 500, rebuilt on deploy). Side-by-side table for 2 to 5 tickers: price, 24h and 30d move, whale capital and holders, verified owners, conviction per holder. For tickers outside the 500 use get_ticker_live.",
-        "inputSchema": {"type": "object", "properties": {
-            "symbols": {"type": "array", "items": {"type": "string"}, "description": "2 to 5 tickers"}},
-            "required": ["symbols"], "additionalProperties": False},
     },
 ]
 
@@ -1211,6 +986,13 @@ def _sent_env(d, window, body):
 
 
 def tool_get_retail_sentiment(args: dict) -> dict:
+    view = (args.get("view") or ("ticker" if args.get("ticker") else "buzz")).lower()
+    if view == "buzz":
+        return tool_get_retail_buzz(args)
+    if view == "divergence":
+        return tool_get_retail_vs_whale(args)
+    if view == "options_bias":
+        return tool_get_retail_options_bias(args)
     d, window, err = _sent_load(args.get("window"))
     if err:
         return err
@@ -1305,63 +1087,18 @@ def tool_get_sentiment_flags(args: dict) -> dict:
                                  "note": "Authors on the funnel list are flagged for investigation, not a finding of fraud (list curated by https://telegramscammers.com). Check these before trusting a score."})
 
 
-def tool_get_ticker_posts(args: dict) -> dict:
-    d = fetch_json("ah-posts.json")
-    if not d:
-        return {"error": "post archive not yet published", "retryable": True}
-    tk = (args.get("ticker") or "").strip().upper().lstrip("$")
-    user = (args.get("username") or "").strip().lstrip("@").lower()
-    lim = max(1, min(int(args.get("limit", 20)), 50))
-    rows = [p for p in d.get("posts", []) if (not tk or tk in p["tickers"]) and (not user or (p["author"] or "").lower() == user)]
-    return {"as_of": d.get("generated_at"), "matched": len(rows), "posts": [
-        {k: p[k] for k in ("id", "hash", "ts", "author", "followers", "title", "topic", "tickers", "stance", "action", "views", "comments")}
-        for p in rows[:lim]]}
-
-
-def tool_get_sentiment_trend(args: dict) -> dict:
-    d = fetch_json("sentiment.json")
-    if not d:
-        return {"error": "sentiment data not yet published", "retryable": True}
-    tk = (args.get("ticker") or "").strip().upper().lstrip("$")
-    days = max(1, min(int(args.get("days", 7)), 14))
-    series = (d.get("daily") or {}).get(tk, [])[-days:]
-    return _sent_env(d, f"{days}d", {"ticker": tk, "series": series,
-                                     "note": "Daily post counts and net score; days with no directional votes have net null. Archive depth limits how far back this goes."})
-
-
 SENTIMENT_TOOLS_MAP = {
     "get_retail_sentiment": tool_get_retail_sentiment,
-    "get_retail_options_bias": tool_get_retail_options_bias,
-    "get_retail_buzz": tool_get_retail_buzz,
-    "get_retail_vs_whale": tool_get_retail_vs_whale,
-    "get_sentiment_flags": tool_get_sentiment_flags,
-    "get_ticker_posts": tool_get_ticker_posts,
-    "get_sentiment_trend": tool_get_sentiment_trend,
 }
 
 _W = {"type": "string", "enum": list(_SENT_WINDOWS), "default": "24h"}
 SENTIMENT_TOOL_DEFINITIONS = [
     {"name": "get_retail_sentiment",
-     "description": "SNAPSHOT (refreshed every 5 min). Retail stance on one ticker from public AfterHour posts: bull/bear votes, net score (-1..1), distinct voting authors, confidence tier, topic mix, top posts and quality flags. Direction comes only from explicit CALL/PUT plus an open verb, so most posts are neutral. Always read n_voting_authors and flags.",
-     "inputSchema": {"type": "object", "properties": {"ticker": {"type": "string"}, "window": _W}, "required": ["ticker"], "additionalProperties": False}},
-    {"name": "get_retail_options_bias",
-     "description": "SNAPSHOT. Calls versus puts opened in public AfterHour posts: for one ticker, or the most active tickers when none given. The highest-precision sentiment signal because contract side is explicit. Sample is small.",
-     "inputSchema": {"type": "object", "properties": {"ticker": {"type": "string"}, "window": _W, "limit": {"type": "integer", "default": 15}}, "additionalProperties": False}},
-    {"name": "get_retail_buzz",
-     "description": "SNAPSHOT. Which tickers retail is suddenly posting about: mentions versus trailing baseline (z-score once 3+ days of archive exist, else ranked by mentions). Use for 'what is the crowd talking about'. Not a direction signal.",
-     "inputSchema": {"type": "object", "properties": {"window": {"type": "string", "enum": ["24h", "72h"], "default": "24h"}, "limit": {"type": "integer", "default": 20}}, "additionalProperties": False}},
-    {"name": "get_retail_vs_whale",
-     "description": "SNAPSHOT. Tickers where retail stance and verified whale capital pull apart (retail bullish where little whale money sits, or bearish where a lot does). A prompt to investigate, not a signal: whale capital is size, not direction. Needs at least min_voting_authors voters.",
-     "inputSchema": {"type": "object", "properties": {"window": {"type": "string", "enum": list(_SENT_WINDOWS), "default": "72h"}, "min_voting_authors": {"type": "integer", "default": 2}, "limit": {"type": "integer", "default": 15}}, "additionalProperties": False}},
-    {"name": "get_sentiment_flags",
-     "description": "SNAPSHOT. Quality flags for a ticker's retail sentiment: copy-paste duplicate posts, low-follower author share, authors with a Telegram link in bio, authors on the funnel list. Call before trusting get_retail_sentiment. Flagged for investigation, not a finding of fraud.",
-     "inputSchema": {"type": "object", "properties": {"ticker": {"type": "string"}, "window": _W}, "required": ["ticker"], "additionalProperties": False}},
-    {"name": "get_ticker_posts",
-     "description": "SNAPSHOT of the most recent ~400 archived public posts, parsed (stance, action, tickers). Filter by ticker or username. Use to read the posts behind a sentiment score. For one post by link use get_post_permalink.",
-     "inputSchema": {"type": "object", "properties": {"ticker": {"type": "string"}, "username": {"type": "string"}, "limit": {"type": "integer", "default": 20}}, "additionalProperties": False}},
-    {"name": "get_sentiment_trend",
-     "description": "SNAPSHOT. Daily post count and net retail score for a ticker over up to 14 days of archive. Depth is limited by how long the archive has been running.",
-     "inputSchema": {"type": "object", "properties": {"ticker": {"type": "string"}, "days": {"type": "integer", "default": 7}}, "required": ["ticker"], "additionalProperties": False}},
+     "description": "SNAPSHOT (refreshed every 5 min, public AfterHour posts). Retail stance. With a ticker: bull/bear votes, net score (-1..1), voting authors, confidence, calls vs puts opened, quality flags (duplicate text, low-follower share, Telegram-in-bio authors) and top posts. Without one, view=buzz ranks tickers by mention surge, view=divergence compares retail stance to verified whale capital, view=options_bias lists call/put activity. Direction comes only from explicit CALL/PUT plus an open verb, so most posts are neutral: always read n_voting_authors and confidence.",
+     "inputSchema": {"type": "object", "properties": {"ticker": {"type": "string"},
+                                                       "view": {"type": "string", "enum": ["ticker", "buzz", "divergence", "options_bias"]},
+                                                       "window": _W, "limit": {"type": "integer", "default": 15}},
+                     "additionalProperties": False}},
 ]
 
 
@@ -1425,75 +1162,6 @@ def tool_get_live_portfolio(args: dict) -> dict:
     return _live(f"/stonks/public/portfolio/{pid}/summary/live", ttl=60.0, shape=shape)
 
 
-def _whale_changes(since_days):
-    d = fetch_json("whale-changes.json")
-    if not d:
-        return None, None
-    cut = (_dt.datetime.now(_dt.timezone.utc) - _dt.timedelta(days=since_days)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    return d, [c for c in d.get("changes", []) if c["ts"] >= cut]
-
-
-def tool_get_position_changes(args: dict) -> dict:
-    d, rows = _whale_changes(max(1, min(int(args.get("since_days", 7)), 30)))
-    if d is None:
-        return {"error": "whale change feed not yet published", "retryable": True}
-    u = (args.get("username") or "").strip().lstrip("@").lower()
-    tk = (args.get("ticker") or "").strip().upper().lstrip("$")
-    min_n = float(args.get("min_notional", 0))
-    min_p = float(args.get("min_pct_of_portfolio", 0))
-    act = (args.get("action") or "").upper()
-    lim = max(1, min(int(args.get("limit", 50)), 200))
-    rows = [c for c in rows
-            if (not u or c["username"].lower() == u) and (not tk or c["root"] == tk or c["symbol"] == tk)
-            and abs(c["notional_delta"]) >= min_n and (c["pct_of_portfolio"] or 0) >= min_p and (not act or c["action"] == act)]
-    keep = ("ts", "username", "action", "symbol", "root", "qty_before", "qty_after", "notional_delta", "pct_of_portfolio",
-            "option", "strike", "expiry", "contracts_delta", "lot_ambiguous", "possible_roll", "last_synced_at")
-    return {"as_of": d.get("generated_at"), "matched": len(rows), "note": _WHALE_NOTE,
-            "changes": [{k: c[k] for k in keep if k in c} for c in rows[:lim]]}
-
-
-def tool_get_ticker_whale_flow(args: dict) -> dict:
-    tk = (args.get("symbol") or "").strip().upper().lstrip("$")
-    if not tk:
-        return _bad("symbol is required")
-    d, rows = _whale_changes(max(1, min(int(args.get("since_days", 7)), 30)))
-    if d is None:
-        return {"error": "whale change feed not yet published", "retryable": True}
-    rows = [c for c in rows if c["root"] == tk]
-    net = sum(c["notional_delta"] for c in rows)
-    return {"symbol": tk, "as_of": d.get("generated_at"), "net_notional_delta": round(net, 2), "changes": len(rows),
-            "adds_opens": sum(1 for c in rows if c["action"] in ("ADD", "OPEN")),
-            "trims_closes": sum(1 for c in rows if c["action"] in ("TRIM", "CLOSE", "EXPIRED")),
-            "whales": sorted({c["username"] for c in rows}), "note": _WHALE_NOTE}
-
-
-def tool_get_whale_sync_health(args: dict) -> dict:
-    d = fetch_json("whale-sync.json")
-    if not d:
-        return {"error": "whale sync health not yet published", "retryable": True}
-    return {k: d[k] for k in d if k != "whales"}
-
-
-WHALE_TOOLS_MAP = {
-    "get_live_portfolio": tool_get_live_portfolio,
-    "get_position_changes": tool_get_position_changes,
-    "get_ticker_whale_flow": tool_get_ticker_whale_flow,
-    "get_whale_sync_health": tool_get_whale_sync_health,
-}
-WHALE_TOOL_DEFINITIONS = [
-    {"name": "get_live_portfolio",
-     "description": "LIVE (60s cache). Current positions of a PUBLIC AfterHour portfolio marked to live prices: value, share of portfolio, P&L today, options with strike, expiry and contracts. Includes last_synced_at: quantities are only as fresh as the broker sync, often months old. Use get_whale_portfolio for the cached census view.",
-     "inputSchema": {"type": "object", "properties": {"username": {"type": "string"}, "min_value": {"type": "number", "default": 0}, "include_options": {"type": "boolean", "default": True}}, "required": ["username"], "additionalProperties": False}},
-    {"name": "get_position_changes",
-     "description": "SNAPSHOT (polled every few minutes for top whales, twice a day for the rest). Reported quantity changes in public whale portfolios: OPEN, ADD, TRIM, CLOSE, EXPIRED, FLIP, with notional and percent of portfolio. Filter by user, ticker, action or size. Changes are rare because broker syncs are infrequent. Reported changes, not trades.",
-     "inputSchema": {"type": "object", "properties": {"username": {"type": "string"}, "ticker": {"type": "string"}, "action": {"type": "string", "enum": ["OPEN", "ADD", "TRIM", "CLOSE", "EXPIRED", "FLIP"]}, "since_days": {"type": "integer", "default": 7}, "min_notional": {"type": "number", "default": 0}, "min_pct_of_portfolio": {"type": "number", "default": 0}, "limit": {"type": "integer", "default": 50}}, "additionalProperties": False}},
-    {"name": "get_ticker_whale_flow",
-     "description": "SNAPSHOT. Net reported whale position change in one ticker over recent days: net notional, adds/opens versus trims/closes, which whales. Options roll up to the underlying.",
-     "inputSchema": {"type": "object", "properties": {"symbol": {"type": "string"}, "since_days": {"type": "integer", "default": 7}}, "required": ["symbol"], "additionalProperties": False}},
-    {"name": "get_whale_sync_health",
-     "description": "SNAPSHOT. How trustworthy the whale position data is right now: whales tracked, polled in the last hour, newest and oldest broker sync, count synced within 30 days. Check before reading get_position_changes.",
-     "inputSchema": {"type": "object", "properties": {}, "additionalProperties": False}},
-]
 
 
 # Registry mapping tool name -> handler function
@@ -1503,14 +1171,11 @@ TOOLS_MAP = {
     "get_etf_flows": tool_get_etf_flows,
     "get_whale_portfolio": tool_get_whale_portfolio,
     "get_ticker_intel": tool_get_ticker_intel,
-    "get_conviction_screener": tool_get_conviction_screener,
     "screen_whales": tool_screen_whales,
     "get_shadow_whales": tool_get_shadow_whales,
-    "get_price_history": tool_get_price_history,
     "get_social_feed": tool_get_social_feed,
     "get_funnel_accounts": tool_get_funnel_accounts,
     "get_funnel_callouts": tool_get_funnel_callouts,
-    "get_funnel_tickers": tool_get_funnel_tickers,
     "get_funnel_scorecard": tool_get_funnel_scorecard,
 }
 
@@ -1590,14 +1255,15 @@ MCP_TOOLS_DEFINITIONS = [
     },
     {
         "name": "get_whale_portfolio",
-        "description": "Look up any verified whale account by username (e.g. 'thealexperez', 'SirJackALot', 'MisterMonster') to inspect verified positions, cost basis, unrealized profit, cash balance, and shadow ratio.",
+        "description": "Look up any verified whale account by username (e.g. 'thealexperez', 'SirJackALot', 'MisterMonster') to inspect verified positions, cost basis, unrealized profit, cash balance, and shadow ratio. Set live=true for positions marked to current prices (60s cache, any PUBLIC portfolio); it includes last_synced_at, because quantities are only as fresh as the broker sync, often months old.",
         "inputSchema": {
             "type": "object",
             "properties": {
                 "username": {
                     "type": "string",
                     "description": "AfterHour username of the whale to audit (with or without '@')"
-                }
+                },
+                "live": {"type": "boolean", "description": "Fetch current marked positions from AfterHour instead of the cached census", "default": False}
             },
             "required": ["username"],
             "additionalProperties": False
@@ -1620,31 +1286,6 @@ MCP_TOOLS_DEFINITIONS = [
                 }
             },
             "required": ["ticker"],
-            "additionalProperties": False
-        }
-    },
-    {
-        "name": "get_conviction_screener",
-        "description": "Scan for asymmetric high conviction where average equity per holder exceeds a given threshold (e.g. $50,000+ or $100,000+), unmasking institutional accumulation before retail headlines.",
-        "inputSchema": {
-            "type": "object",
-            "properties": {
-                "min_intensity": {
-                    "type": "number",
-                    "description": "Minimum average position size per holder in USD (default: 50000)",
-                    "default": 50000
-                },
-                "min_owners": {
-                    "type": "integer",
-                    "description": "Minimum verified owners to eliminate illiquid micro-caps (default: 15)",
-                    "default": 15
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "Maximum number of tickers to return (default: 20)",
-                    "default": 20
-                }
-            },
             "additionalProperties": False
         }
     },
@@ -1729,26 +1370,6 @@ MCP_TOOLS_DEFINITIONS = [
         }
     },
     {
-        "name": "get_price_history",
-        "description": "Retrieve daily OHLCV candlestick price bars and returns for core market benchmarks and equities (NVDA, TSLA, SPY, AAPL, QQQ, MSTR, ASTS, etc.).",
-        "inputSchema": {
-            "type": "object",
-            "properties": {
-                "ticker": {
-                    "type": "string",
-                    "description": "Stock or ETF ticker symbol (e.g. 'NVDA', 'ASTS', 'SPY')"
-                },
-                "limit": {
-                    "type": "integer",
-                    "description": "Number of daily bars to return (default: 60, max: 120)",
-                    "default": 60
-                }
-            },
-            "required": ["ticker"],
-            "additionalProperties": False
-        }
-    },
-    {
         "name": "get_social_feed",
         "description": "Retrieve real-time community posts, commentary, sentiment, and broker-verified trade snapshots from AfterHour traders.",
         "inputSchema": {
@@ -1787,7 +1408,7 @@ MCP_TOOLS_DEFINITIONS = [
     },
     {
         "name": "get_funnel_callouts",
-        "description": "Parsed trade callouts (ticker, side, strike, expiry, entry, action, quoted result) from public Telegram channels linked to flagged AfterHour accounts, with an independent scored 'outcome' where available. Quoted results are the channel's own claims, and the sample is small. Flagged for investigation, not a finding of fraud. Curated by https://telegramscammers.com.",
+        "description": "Parsed trade callouts, plus the most called-out tickers overall when unfiltered (ticker, side, strike, expiry, entry, action, quoted result) from public Telegram channels linked to flagged AfterHour accounts, with an independent scored 'outcome' where available. Quoted results are the channel's own claims, and the sample is small. Flagged for investigation, not a finding of fraud. Curated by https://telegramscammers.com.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -1795,17 +1416,6 @@ MCP_TOOLS_DEFINITIONS = [
                 "channel": {"type": "string", "description": "Channel handle or t.me link (substring match)"},
                 "action": {"type": "string", "enum": ["open", "close", "mention"], "description": "Filter by callout action"},
                 "limit": {"type": "integer", "description": "Max callouts to return (default 25, max 100)", "default": 25}
-            },
-            "additionalProperties": False
-        }
-    },
-    {
-        "name": "get_funnel_tickers",
-        "description": "Tickers most called out by flagged AfterHour accounts and the Telegram channels they link to, ranked, with account, channel and post counts. Flagged for investigation, not a finding of fraud. Curated by https://telegramscammers.com.",
-        "inputSchema": {
-            "type": "object",
-            "properties": {
-                "limit": {"type": "integer", "description": "Max tickers to return (default 25, max 100)", "default": 25}
             },
             "additionalProperties": False
         }
@@ -1828,8 +1438,6 @@ TOOLS_MAP.update(LIVE_TOOLS_MAP)
 MCP_TOOLS_DEFINITIONS.extend(LIVE_TOOL_DEFINITIONS)
 TOOLS_MAP.update(SENTIMENT_TOOLS_MAP)
 MCP_TOOLS_DEFINITIONS.extend(SENTIMENT_TOOL_DEFINITIONS)
-TOOLS_MAP.update(WHALE_TOOLS_MAP)
-MCP_TOOLS_DEFINITIONS.extend(WHALE_TOOL_DEFINITIONS)
 
 # MCP Resources (MCP 2024-11-05 standard)
 MCP_RESOURCES_DEFINITIONS = [
@@ -2012,7 +1620,7 @@ def handle_jsonrpc(req: dict) -> dict:
                             "role": "user",
                             "content": {
                                 "type": "text",
-                                "text": f"Scan the AfterHour verified universe for high-conviction accumulation (min_conviction={min_c}, asset_type='{asset_t}'). Call `get_conviction_screener` and `get_top_equities` sorted by conviction. Identify tickers where small cohorts of verified whales have deployed massive capital per seat."
+                                "text": f"Scan the AfterHour verified universe for high-conviction accumulation (min_conviction={min_c}, asset_type='{asset_t}'). Call `get_top_equities` with min_conviction set, sorted by conviction. Identify tickers where small cohorts of verified whales have deployed massive capital per seat."
                             }
                         }
                     ]
@@ -2123,7 +1731,7 @@ def handle_jsonrpc(req: dict) -> dict:
         elif uri == "aftermath://shadow-whales":
             payload = tool_get_shadow_whales({"limit": 50})
         elif uri == "aftermath://conviction":
-            payload = tool_get_conviction_screener({"min_intensity": 50000, "limit": 50})
+            payload = tool_get_top_equities({"min_conviction": 50000, "limit": 50})
         elif uri == "aftermath://social-feed":
             payload = tool_get_social_feed({"limit": 50})
         else:
@@ -2201,11 +1809,6 @@ def run_self_test():
     t5 = tool_get_ticker_intel({"ticker": "ASTS"})
     print(f"   $ASTS Owners: {t5.get('verifiedOwnersCount')}, Conviction: ${t5.get('convictionIntensityPerHolder', 0):,.0f}/sub")
 
-    print("\n6. Testing get_conviction_screener ($100k+)...")
-    t6 = tool_get_conviction_screener({"min_intensity": 100000, "limit": 3})
-    for r in t6.get("results", []):
-        print(f"   ${r['ticker']} - ${r['convictionPerHolder']:,.0f}/sub ({r['owners']} owners)")
-
     print("\n7. Testing screen_whales (min_net_worth=5M)...")
     t7 = tool_screen_whales({"min_net_worth": 5000000, "limit": 3})
     for w in t7.get("whales", []):
@@ -2215,10 +1818,6 @@ def run_self_test():
     t8 = tool_get_shadow_whales({"min_capital": 1000000, "max_followers": 300, "limit": 3})
     for s in t8.get("whales", []):
         print(f"   @{s['username']} - Capital: ${s['total_value']:,.2f} / {s['followers']} flw (Ratio: ${s['shadow_ratio']:,.0f}/flw)")
-
-    print("\n9. Testing get_price_history (NVDA)...")
-    t9 = tool_get_price_history({"ticker": "NVDA", "limit": 5})
-    print(f"   $NVDA Bars: {t9.get('bars_returned')} returned, Latest Close: ${t9.get('summary', {}).get('latest_close')}")
 
     print("\n10. Testing get_social_feed (limit=3)...")
     t10 = tool_get_social_feed({"limit": 3})

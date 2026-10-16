@@ -206,7 +206,7 @@ def _patch_fetch(monkeypatch, files):
 
 def test_funnel_tools_registered_and_defined():
     names = {t["name"] for t in mcp_server.MCP_TOOLS_DEFINITIONS}
-    assert {"get_funnel_callouts", "get_funnel_tickers", "get_funnel_scorecard"} <= names
+    assert {"get_funnel_callouts", "get_funnel_scorecard"} <= names
     assert set(mcp_server.TOOLS_MAP) == names
     assert len(mcp_server.TOOLS_MAP) == len(mcp_server.MCP_TOOLS_DEFINITIONS)
 
@@ -232,21 +232,6 @@ def test_funnel_callouts_empty_match(monkeypatch):
 def test_funnel_callouts_missing_file(monkeypatch):
     _patch_fetch(monkeypatch, {})
     assert "error" in mcp_server.tool_get_funnel_callouts({})
-
-
-def test_funnel_tickers_happy_path_and_limit(monkeypatch):
-    _patch_fetch(monkeypatch, {"funnel-tickers.json": _TICKERS})
-    out = mcp_server.tool_get_funnel_tickers({"limit": 1})
-    assert out["total_tickers"] == 2 and [t["ticker"] for t in out["tickers"]] == ["SPY"]
-    assert out["source"] == "https://telegramscammers.com"
-
-
-def test_funnel_tickers_empty_and_missing(monkeypatch):
-    _patch_fetch(monkeypatch, {"funnel-tickers.json": {"tickers": []}})
-    out = mcp_server.tool_get_funnel_tickers({})
-    assert out["tickers"] == [] and out["source"] == "https://telegramscammers.com"
-    _patch_fetch(monkeypatch, {})
-    assert "error" in mcp_server.tool_get_funnel_tickers({})
 
 
 _SCORE = {
@@ -370,20 +355,6 @@ def test_market_session_phase(monkeypatch):
     assert "error" in mcp_server.tool_get_market_session({"date": "bad"})
 
 
-def test_post_permalink_parses_share_url(monkeypatch):
-    calls = _mock_ah(monkeypatch, {"id": "pst_1", "title": "t", "author": {"username": "u"}, "comments": []})
-    mcp_server.tool_get_post_permalink({"hash": "https://afterhour.com/user/bx5Y/some-slug"})
-    assert calls[0][0] == "/public/post/bx5Y"
-    assert "error" in mcp_server.tool_get_post_permalink({"hash": "../../etc"})
-
-
-def test_compare_tickers_local(monkeypatch):
-    _patch_fetch(monkeypatch, {"stonks.json": {"securities": [
-        {"ticker": "A", "owners": 1, "intensity": 2.0}, {"ticker": "B", "owners": 3, "intensity": 4.0}]}})
-    out = mcp_server.tool_compare_tickers({"symbols": ["a", "b", "c"]})
-    assert [r["ticker"] for r in out["compared"]] == ["A", "B"] and out["not_tracked"] == ["C"]
-
-
 # ---- sentiment tools (static JSON mocked) ------------------------------------
 
 _SENT = {"generated_at": "2026-10-16T17:00:00Z", "archive": {"posts": 3},
@@ -401,30 +372,11 @@ def test_sentiment_tools(monkeypatch):
     assert r["net_score"] == 0.333 and r["window"] == "24h" and "method" in r
     assert mcp_server.tool_get_retail_sentiment({"ticker": "ZZZ"})["n_posts"] == 0
     assert "error" in mcp_server.tool_get_retail_sentiment({"ticker": "SPY", "window": "1y"})
-    assert mcp_server.tool_get_retail_buzz({})["tickers"][0]["ticker"] == "SPY"
-    assert mcp_server.tool_get_retail_options_bias({})["tickers"][0]["calls_opened"] == 2
-    assert mcp_server.tool_get_sentiment_trend({"ticker": "SPY"})["series"][0]["posts"] == 4
+    assert mcp_server.tool_get_retail_sentiment({"view": "buzz"})["tickers"][0]["ticker"] == "SPY"
+    assert mcp_server.tool_get_retail_sentiment({"view": "options_bias"})["tickers"][0]["calls_opened"] == 2
 
 
 def test_sentiment_tools_not_published_yet(monkeypatch):
     _patch_fetch(monkeypatch, {})
     assert mcp_server.tool_get_retail_sentiment({"ticker": "SPY"})["retryable"] is True
 
-
-def test_position_changes_filters(monkeypatch):
-    import datetime as dt
-    ts = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    feed = {"generated_at": ts, "changes": [
-        {"ts": ts, "username": "Whale1", "action": "ADD", "symbol": "NVDA", "root": "NVDA", "qty_before": 1, "qty_after": 2,
-         "notional_delta": 1000.0, "pct_of_portfolio": 1.0, "lot_ambiguous": False},
-        {"ts": ts, "username": "Whale2", "action": "CLOSE", "symbol": "SPY", "root": "SPY", "qty_before": 5, "qty_after": 0,
-         "notional_delta": -50000.0, "pct_of_portfolio": 9.0, "lot_ambiguous": False},
-        {"ts": "2020-01-01T00:00:00Z", "username": "Whale1", "action": "OPEN", "symbol": "OLD", "root": "OLD",
-         "qty_before": 0, "qty_after": 1, "notional_delta": 1.0, "pct_of_portfolio": 0.0, "lot_ambiguous": False}]}
-    _patch_fetch(monkeypatch, {"whale-changes.json": feed})
-    assert mcp_server.tool_get_position_changes({})["matched"] == 2
-    assert mcp_server.tool_get_position_changes({"min_pct_of_portfolio": 5})["changes"][0]["symbol"] == "SPY"
-    flow = mcp_server.tool_get_ticker_whale_flow({"symbol": "spy"})
-    assert flow["net_notional_delta"] == -50000.0 and flow["trims_closes"] == 1
-    _patch_fetch(monkeypatch, {})
-    assert mcp_server.tool_get_position_changes({})["retryable"] is True

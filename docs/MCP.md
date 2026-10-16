@@ -252,7 +252,7 @@ curl -s -X POST https://ah.mphinance.com/api/mcp \
 Generated from `mcp_server.py` by `scripts/gen_openapi.py`; never edit between the markers.
 
 <!-- BEGIN GENERATED -->
-**34 tools**, generated from `mcp_server.py` (`api/mcp-schema.json`).
+**16 tools**, generated from `mcp_server.py` (`api/mcp-schema.json`).
 
 ### 1. `get_market_tape`
 
@@ -299,15 +299,16 @@ curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/j
 
 ### 4. `get_whale_portfolio`
 
-Look up any verified whale account by username (e.g. 'thealexperez', 'SirJackALot', 'MisterMonster') to inspect verified positions, cost basis, unrealized profit, cash balance, and shadow ratio.
+Look up any verified whale account by username (e.g. 'thealexperez', 'SirJackALot', 'MisterMonster') to inspect verified positions, cost basis, unrealized profit, cash balance, and shadow ratio. Set live=true for positions marked to current prices (60s cache, any PUBLIC portfolio); it includes last_synced_at, because quantities are only as fresh as the broker sync, often months old.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `username` | string | yes | AfterHour username of the whale to audit (with or without '@') |
+| `live` | boolean | no | Fetch current marked positions from AfterHour instead of the cached census Default `false`. |
 
 ```bash
 curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_whale_portfolio", "arguments": {"username": "skrt"}}}'
+  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_whale_portfolio", "arguments": {"username": "skrt", "live": false}}}'
 ```
 
 ### 5. `get_ticker_intel`
@@ -324,22 +325,7 @@ curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/j
   -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_ticker_intel", "arguments": {"ticker": "NVDA", "include_bars": false}}}'
 ```
 
-### 6. `get_conviction_screener`
-
-Scan for asymmetric high conviction where average equity per holder exceeds a given threshold (e.g. $50,000+ or $100,000+), unmasking institutional accumulation before retail headlines.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `min_intensity` | number | no | Minimum average position size per holder in USD (default: 50000) Default `50000`. |
-| `min_owners` | integer | no | Minimum verified owners to eliminate illiquid micro-caps (default: 15) Default `15`. |
-| `limit` | integer | no | Maximum number of tickers to return (default: 20) Default `20`. |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_conviction_screener", "arguments": {"min_intensity": 50000, "min_owners": 15, "limit": 20}}}'
-```
-
-### 7. `screen_whales`
+### 6. `screen_whales`
 
 Filter and rank 424 broker-verified whales and millionaires by net worth, cash reserves, unrealized profit, daily return, follower counts, and shadow ratio.
 
@@ -359,7 +345,7 @@ curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/j
   -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "screen_whales", "arguments": {"min_net_worth": 0, "min_cash": 0, "min_profit": 0, "min_profit_pct": 0, "min_followers": 0, "sort_by": "net_worth", "limit": 20}}}'
 ```
 
-### 8. `get_shadow_whales`
+### 7. `get_shadow_whales`
 
 Scan for Clout Inversions and stealth accounts: verified traders holding high capital ($500k+ to $15M+) with negligible retail followings (<500 followers).
 
@@ -375,21 +361,7 @@ curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/j
   -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_shadow_whales", "arguments": {"min_capital": 500000, "max_followers": 500, "min_shadow_ratio": 2000, "limit": 20}}}'
 ```
 
-### 9. `get_price_history`
-
-Retrieve daily OHLCV candlestick price bars and returns for core market benchmarks and equities (NVDA, TSLA, SPY, AAPL, QQQ, MSTR, ASTS, etc.).
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `ticker` | string | yes | Stock or ETF ticker symbol (e.g. 'NVDA', 'ASTS', 'SPY') |
-| `limit` | integer | no | Number of daily bars to return (default: 60, max: 120) Default `60`. |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_price_history", "arguments": {"ticker": "NVDA", "limit": 60}}}'
-```
-
-### 10. `get_social_feed`
+### 8. `get_social_feed`
 
 Retrieve real-time community posts, commentary, sentiment, and broker-verified trade snapshots from AfterHour traders.
 
@@ -404,7 +376,7 @@ curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/j
   -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_social_feed", "arguments": {"ticker": "NVDA", "username": "skrt", "limit": 20}}}'
 ```
 
-### 11. `get_funnel_accounts`
+### 9. `get_funnel_accounts`
 
 Look up AfterHour accounts flagged for funneling traders into Telegram channels, with evidence tier (reported/corroborated/verified), shared invite-link clusters, and posting stats. Check a username or t.me link before you join. Flagged for investigation, not a finding of fraud. Curated by https://telegramscammers.com (database: /database, submit intel: /submit).
 
@@ -420,9 +392,9 @@ curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/j
   -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_funnel_accounts", "arguments": {"username": "skrt", "limit": 25}}}'
 ```
 
-### 12. `get_funnel_callouts`
+### 10. `get_funnel_callouts`
 
-Parsed trade callouts (ticker, side, strike, expiry, entry, action, quoted result) from public Telegram channels linked to flagged AfterHour accounts, with an independent scored 'outcome' where available. Quoted results are the channel's own claims, and the sample is small. Flagged for investigation, not a finding of fraud. Curated by https://telegramscammers.com.
+Parsed trade callouts, plus the most called-out tickers overall when unfiltered (ticker, side, strike, expiry, entry, action, quoted result) from public Telegram channels linked to flagged AfterHour accounts, with an independent scored 'outcome' where available. Quoted results are the channel's own claims, and the sample is small. Flagged for investigation, not a finding of fraud. Curated by https://telegramscammers.com.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
@@ -436,20 +408,7 @@ curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/j
   -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_funnel_callouts", "arguments": {"ticker": "NVDA", "limit": 25}}}'
 ```
 
-### 13. `get_funnel_tickers`
-
-Tickers most called out by flagged AfterHour accounts and the Telegram channels they link to, ranked, with account, channel and post counts. Flagged for investigation, not a finding of fraud. Curated by https://telegramscammers.com.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `limit` | integer | no | Max tickers to return (default 25, max 100) Default `25`. |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_funnel_tickers", "arguments": {"limit": 25}}}'
-```
-
-### 14. `get_funnel_scorecard`
+### 11. `get_funnel_scorecard`
 
 Public scoring results for trade callouts posted by Telegram channels linked to flagged AfterHour accounts. Section 'paths' (the main view): what each called-out option contract did after the post, from its own 5-minute trade bars (calls posted in the session get the next 30 minutes, daily callouts the whole next session; fill = open of the first bar at or after the post): share that ended above the fill, median peak and drawdown, +50%/-50% TP-first versus SL-first, fill-delay sensitivity, unfillable-quote share, per channel, ticker and hour. Section 'options': the same callouts held to expiry (secondary view). Section 'fx': forex/gold/index signals (TP1 first versus SL first, mean R). Every rate carries its sample size and a Wilson 95% range; assumptions and limitations are included (trade prints, no spread or slippage). Analysis of public posts, not advice. Flagged for investigation, not a finding of fraud. Credit https://telegramscammers.com. Method: https://ah.mphinance.com/scorecard
 
@@ -463,7 +422,7 @@ curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/j
   -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_funnel_scorecard", "arguments": {"section": "all"}}}'
 ```
 
-### 15. `get_market_session`
+### 12. `get_market_session`
 
 LIVE (60s cache). Use for 'is the market open / what session is it / when does it close'. Returns current phase (pre, regular, after, overnight, closed), early-close flag, next transition and seconds until it, computed server-side in UTC.
 
@@ -476,7 +435,7 @@ curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/j
   -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_market_session", "arguments": {}}}'
 ```
 
-### 16. `get_live_quotes`
+### 13. `get_live_quotes`
 
 LIVE (30s cache). Use for current price. Up to 25 symbols: last price, session change, pre-market and after-hours change, OHLC, volume. Percent fields are percent units (1.1 = 1.1%). Do NOT use for whale or conviction data (use get_ticker_intel).
 
@@ -489,7 +448,7 @@ curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/j
   -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_live_quotes", "arguments": {"symbols": []}}}'
 ```
 
-### 17. `get_leaderboard`
+### 14. `get_leaderboard`
 
 LIVE (2 min cache). Use for 'what is trending / most watched / top gainers / top losers' across the whole platform (~33k securities, crowd-ranked). Do NOT use for whale-capital ranking of the verified 500 (use get_top_equities). GAINERS only supports DAY. Percent fields are percent units.
 
@@ -505,49 +464,9 @@ curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/j
   -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_leaderboard", "arguments": {"sort": "TRENDING", "time_range": "DAY", "take": 20, "cursor": 0}}}'
 ```
 
-### 18. `get_ticker_live`
+### 15. `get_security_chart`
 
-LIVE (2 min cache). Any ticker on the platform: price, owner count, total value held, market cap, chatroom activity, sample owners. Use when get_ticker_intel says the ticker is not in the verified 500. No whale breakdown or OHLCV.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `symbol` | string | yes | e.g. 'NVDA' |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_ticker_live", "arguments": {"symbol": "NVDA"}}}'
-```
-
-### 19. `get_profile_live`
-
-LIVE (5 min cache). Public profile for any AfterHour handle, including non-whales: bio, followers, join date, whether a brokerage is linked, privacy mode. No portfolio data (use get_whale_portfolio for the 395 verified).
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `username` | string | yes | AfterHour username, with or without @ |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_profile_live", "arguments": {"username": "skrt"}}}'
-```
-
-### 20. `get_post_permalink`
-
-LIVE (10 min cache). Use when you already have a post link or hash: returns the body, author, attached position snapshots and the first comments. Do NOT use to browse (use get_social_feed).
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `hash` | string | yes | Post hash (e.g. 'bx5Y') or full afterhour.com share URL |
-| `comments` | integer | no | Comments to include, max 10 Default `5`. |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_post_permalink", "arguments": {"hash": "example", "comments": 5}}}'
-```
-
-### 21. `get_security_chart`
-
-LIVE (5 min cache). OHLCV bars for any platform ticker at minute, hour, day, week or month resolution, up to 365 days back, last 500 bars. Superset of get_price_history, which is limited to 18 tickers of daily bars.
+LIVE (5 min cache). OHLCV bars for any platform ticker at minute, hour, day, week or month resolution, up to 365 days back, last 500 bars. Use for any ticker's price history.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
@@ -561,188 +480,20 @@ curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/j
   -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_security_chart", "arguments": {"symbol": "NVDA", "timespan": "day", "multiplier": 1, "days": 30}}}'
 ```
 
-### 22. `get_app_status`
+### 16. `get_retail_sentiment`
 
-LIVE (5 min cache). AfterHour app remote config: feature flags and forced/recommended-update gate for the tracked Android build. Use to detect that the app shipped a change.
-
-_No parameters._
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_app_status", "arguments": {}}}'
-```
-
-### 23. `compare_tickers`
-
-SNAPSHOT (verified 500, rebuilt on deploy). Side-by-side table for 2 to 5 tickers: price, 24h and 30d move, whale capital and holders, verified owners, conviction per holder. For tickers outside the 500 use get_ticker_live.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `symbols` | array | yes | 2 to 5 tickers |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "compare_tickers", "arguments": {"symbols": []}}}'
-```
-
-### 24. `get_retail_sentiment`
-
-SNAPSHOT (refreshed every 5 min). Retail stance on one ticker from public AfterHour posts: bull/bear votes, net score (-1..1), distinct voting authors, confidence tier, topic mix, top posts and quality flags. Direction comes only from explicit CALL/PUT plus an open verb, so most posts are neutral. Always read n_voting_authors and flags.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `ticker` | string | yes |  |
-| `window` | string | no | One of: `24h`, `72h`, `7d`. Default `"24h"`. |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_retail_sentiment", "arguments": {"ticker": "NVDA", "window": "24h"}}}'
-```
-
-### 25. `get_retail_options_bias`
-
-SNAPSHOT. Calls versus puts opened in public AfterHour posts: for one ticker, or the most active tickers when none given. The highest-precision sentiment signal because contract side is explicit. Sample is small.
+SNAPSHOT (refreshed every 5 min, public AfterHour posts). Retail stance. With a ticker: bull/bear votes, net score (-1..1), voting authors, confidence, calls vs puts opened, quality flags (duplicate text, low-follower share, Telegram-in-bio authors) and top posts. Without one, view=buzz ranks tickers by mention surge, view=divergence compares retail stance to verified whale capital, view=options_bias lists call/put activity. Direction comes only from explicit CALL/PUT plus an open verb, so most posts are neutral: always read n_voting_authors and confidence.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `ticker` | string | no |  |
+| `view` | string | no | One of: `ticker`, `buzz`, `divergence`, `options_bias`. |
 | `window` | string | no | One of: `24h`, `72h`, `7d`. Default `"24h"`. |
 | `limit` | integer | no | Default `15`. |
 
 ```bash
 curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_retail_options_bias", "arguments": {"ticker": "NVDA", "window": "24h", "limit": 15}}}'
-```
-
-### 26. `get_retail_buzz`
-
-SNAPSHOT. Which tickers retail is suddenly posting about: mentions versus trailing baseline (z-score once 3+ days of archive exist, else ranked by mentions). Use for 'what is the crowd talking about'. Not a direction signal.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `window` | string | no | One of: `24h`, `72h`. Default `"24h"`. |
-| `limit` | integer | no | Default `20`. |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_retail_buzz", "arguments": {"window": "24h", "limit": 20}}}'
-```
-
-### 27. `get_retail_vs_whale`
-
-SNAPSHOT. Tickers where retail stance and verified whale capital pull apart (retail bullish where little whale money sits, or bearish where a lot does). A prompt to investigate, not a signal: whale capital is size, not direction. Needs at least min_voting_authors voters.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `window` | string | no | One of: `24h`, `72h`, `7d`. Default `"72h"`. |
-| `min_voting_authors` | integer | no | Default `2`. |
-| `limit` | integer | no | Default `15`. |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_retail_vs_whale", "arguments": {"window": "72h", "min_voting_authors": 2, "limit": 15}}}'
-```
-
-### 28. `get_sentiment_flags`
-
-SNAPSHOT. Quality flags for a ticker's retail sentiment: copy-paste duplicate posts, low-follower author share, authors with a Telegram link in bio, authors on the funnel list. Call before trusting get_retail_sentiment. Flagged for investigation, not a finding of fraud.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `ticker` | string | yes |  |
-| `window` | string | no | One of: `24h`, `72h`, `7d`. Default `"24h"`. |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_sentiment_flags", "arguments": {"ticker": "NVDA", "window": "24h"}}}'
-```
-
-### 29. `get_ticker_posts`
-
-SNAPSHOT of the most recent ~400 archived public posts, parsed (stance, action, tickers). Filter by ticker or username. Use to read the posts behind a sentiment score. For one post by link use get_post_permalink.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `ticker` | string | no |  |
-| `username` | string | no |  |
-| `limit` | integer | no | Default `20`. |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_ticker_posts", "arguments": {"ticker": "NVDA", "username": "skrt", "limit": 20}}}'
-```
-
-### 30. `get_sentiment_trend`
-
-SNAPSHOT. Daily post count and net retail score for a ticker over up to 14 days of archive. Depth is limited by how long the archive has been running.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `ticker` | string | yes |  |
-| `days` | integer | no | Default `7`. |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_sentiment_trend", "arguments": {"ticker": "NVDA", "days": 7}}}'
-```
-
-### 31. `get_live_portfolio`
-
-LIVE (60s cache). Current positions of a PUBLIC AfterHour portfolio marked to live prices: value, share of portfolio, P&L today, options with strike, expiry and contracts. Includes last_synced_at: quantities are only as fresh as the broker sync, often months old. Use get_whale_portfolio for the cached census view.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `username` | string | yes |  |
-| `min_value` | number | no | Default `0`. |
-| `include_options` | boolean | no | Default `true`. |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_live_portfolio", "arguments": {"username": "skrt", "min_value": 0, "include_options": true}}}'
-```
-
-### 32. `get_position_changes`
-
-SNAPSHOT (polled every few minutes for top whales, twice a day for the rest). Reported quantity changes in public whale portfolios: OPEN, ADD, TRIM, CLOSE, EXPIRED, FLIP, with notional and percent of portfolio. Filter by user, ticker, action or size. Changes are rare because broker syncs are infrequent. Reported changes, not trades.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `username` | string | no |  |
-| `ticker` | string | no |  |
-| `action` | string | no | One of: `OPEN`, `ADD`, `TRIM`, `CLOSE`, `EXPIRED`, `FLIP`. |
-| `since_days` | integer | no | Default `7`. |
-| `min_notional` | number | no | Default `0`. |
-| `min_pct_of_portfolio` | number | no | Default `0`. |
-| `limit` | integer | no | Default `50`. |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_position_changes", "arguments": {"username": "skrt", "ticker": "NVDA", "since_days": 7, "min_notional": 0, "min_pct_of_portfolio": 0, "limit": 50}}}'
-```
-
-### 33. `get_ticker_whale_flow`
-
-SNAPSHOT. Net reported whale position change in one ticker over recent days: net notional, adds/opens versus trims/closes, which whales. Options roll up to the underlying.
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `symbol` | string | yes |  |
-| `since_days` | integer | no | Default `7`. |
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_ticker_whale_flow", "arguments": {"symbol": "NVDA", "since_days": 7}}}'
-```
-
-### 34. `get_whale_sync_health`
-
-SNAPSHOT. How trustworthy the whale position data is right now: whales tracked, polled in the last hour, newest and oldest broker sync, count synced within 30 days. Check before reading get_position_changes.
-
-_No parameters._
-
-```bash
-curl -s -X POST https://ah.mphinance.com/api/mcp -H 'Content-Type: application/json' \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_whale_sync_health", "arguments": {}}}'
+  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "get_retail_sentiment", "arguments": {"ticker": "NVDA", "window": "24h", "limit": 15}}}'
 ```
 
 ### Resources
