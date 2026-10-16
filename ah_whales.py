@@ -223,6 +223,8 @@ def main():
                 changes, status = poll_one(w, st, now, today)
                 fails = 0
                 n_done += 1
+                if n_done % 20 == 0:
+                    atomic_write(STATE, st)  # survive a timeout mid-sweep
                 if changes:
                     ARCH_DIR.mkdir(parents=True, exist_ok=True)
                     with open(CHANGES, "a", encoding="utf-8") as f:
