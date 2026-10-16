@@ -29,7 +29,7 @@ ARCH = TF / "posts_archive.jsonl"
 OUT = BASE / "api" / "funnel-live.json"
 ET = ZoneInfo("America/New_York")
 WINDOW_H = 72
-MAX_OPT = 150
+MAX_OPT = 100
 MAX_UND = 80
 ECHO = {"duplicate_echo", "cross_channel_echo"}
 YSYM = {"SPX": "^SPX", "NDX": "^NDX", "VIX": "^VIX", "RUT": "^RUT", "DJX": "^DJI", "XSP": "^XSP"}
@@ -72,7 +72,7 @@ def pull_new():
     if ARCH.exists():
         seen = {json.loads(l)["id"] for l in ARCH.open() if l.strip()}
     hs = handles()
-    with ThreadPoolExecutor(6) as ex:
+    with ThreadPoolExecutor(12) as ex:
         res = list(ex.map(lambda h: (h, tg_recon.posts(h, 1)), hs))
     new = ok = 0
     with ARCH.open("a") as f:
