@@ -382,3 +382,30 @@ def test_compare_tickers_local(monkeypatch):
         {"ticker": "A", "owners": 1, "intensity": 2.0}, {"ticker": "B", "owners": 3, "intensity": 4.0}]}})
     out = mcp_server.tool_compare_tickers({"symbols": ["a", "b", "c"]})
     assert [r["ticker"] for r in out["compared"]] == ["A", "B"] and out["not_tracked"] == ["C"]
+
+
+# ---- sentiment tools (static JSON mocked) ------------------------------------
+
+_SENT = {"generated_at": "2026-10-16T17:00:00Z", "archive": {"posts": 3},
+         "windows": {"24h": {"SPY": {"n_posts": 4, "n_authors": 3, "n_directional_votes": 3, "n_voting_authors": 3,
+                                      "bull": 2, "bear": 1, "net_score": 0.333, "confidence": "low",
+                                      "calls_opened": 2, "puts_opened": 1, "call_put_ratio": 2.0, "flags": {}}},
+                     "72h": {}, "7d": {}},
+         "buzz": {"24h": {"archive_depth_days": 0.1, "tickers": {"SPY": {"mentions": 4, "baseline_mean": 0, "z": None}}}},
+         "daily": {"SPY": [{"date": "2026-10-16", "posts": 4, "bull": 2, "bear": 1, "net": 0.33}]}}
+
+
+def test_sentiment_tools(monkeypatch):
+    _patch_fetch(monkeypatch, {"sentiment.json": _SENT})
+    r = mcp_server.tool_get_retail_sentiment({"ticker": "$spy"})
+    assert r["net_score"] == 0.333 and r["window"] == "24h" and "method" in r
+    assert mcp_server.tool_get_retail_sentiment({"ticker": "ZZZ"})["n_posts"] == 0
+    assert "error" in mcp_server.tool_get_retail_sentiment({"ticker": "SPY", "window": "1y"})
+    assert mcp_server.tool_get_retail_buzz({})["tickers"][0]["ticker"] == "SPY"
+    assert mcp_server.tool_get_retail_options_bias({})["tickers"][0]["calls_opened"] == 2
+    assert mcp_server.tool_get_sentiment_trend({"ticker": "SPY"})["series"][0]["posts"] == 4
+
+
+def test_sentiment_tools_not_published_yet(monkeypatch):
+    _patch_fetch(monkeypatch, {})
+    assert mcp_server.tool_get_retail_sentiment({"ticker": "SPY"})["retryable"] is True

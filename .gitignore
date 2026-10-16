@@ -45,3 +45,13 @@ data/telegram_funnel/option_paths.jsonl
 .env*
 !.env.example
 api/funnel-live.json
+
+# App reverse engineering: local-only artifacts
+reverse-engineering/samples/
+reverse-engineering/client-ts/node_modules/
+reverse-engineering/*.apk
+reverse-engineering/ah_decomp.js
+reverse-engineering/jadx_out/
+data/ah_archive/
+api/sentiment.json
+api/ah-posts.json

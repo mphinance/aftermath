@@ -1178,6 +1178,193 @@ LIVE_TOOL_DEFINITIONS = [
 ]
 
 
+
+# ==============================================================================
+# RETAIL SENTIMENT TOOLS (read api/sentiment.json built by ah_collect.py)
+# ==============================================================================
+
+_SENT_WINDOWS = ("24h", "72h", "7d")
+_SENT_NOTE = ("Deterministic and conservative: direction only from explicit contract side (CALL/PUT, 765C) plus an "
+              "open verb; closes, hindsight and modal language are neutral. One vote per author per ticker per day; "
+              "identical titles count once. About a quarter of public posts carry parseable direction. Not advice.")
+
+
+def _sent_load(window):
+    window = (window or "24h").lower()
+    if window not in _SENT_WINDOWS:
+        return None, None, _bad(f"window must be one of {list(_SENT_WINDOWS)}")
+    d = fetch_json("sentiment.json")
+    if not d:
+        return None, None, {"error": "sentiment data not yet published", "retryable": True}
+    return d, window, None
+
+
+def _sent_env(d, window, body):
+    gen = d.get("generated_at")
+    age = None
+    try:
+        age = int(time.time() - _dt.datetime.strptime(gen, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=_dt.timezone.utc).timestamp())
+    except Exception:
+        pass
+    return {"as_of": gen, "age_s": age, "stale": (age is not None and age > 1800), "window": window,
+            "archive": d.get("archive"), "method": _SENT_NOTE, **body}
+
+
+def tool_get_retail_sentiment(args: dict) -> dict:
+    d, window, err = _sent_load(args.get("window"))
+    if err:
+        return err
+    tk = (args.get("ticker") or "").strip().upper().lstrip("$")
+    if not tk:
+        return _bad("ticker is required")
+    row = d["windows"][window].get(tk)
+    if not row:
+        return _sent_env(d, window, {"ticker": tk, "n_posts": 0, "note": "No public posts mention this ticker in the window."})
+    return _sent_env(d, window, {"ticker": tk, **row})
+
+
+def tool_get_retail_options_bias(args: dict) -> dict:
+    d, window, err = _sent_load(args.get("window"))
+    if err:
+        return err
+    tk = (args.get("ticker") or "").strip().upper().lstrip("$")
+    rows = d["windows"][window]
+    if tk:
+        r = rows.get(tk) or {}
+        return _sent_env(d, window, {"ticker": tk, "calls_opened": r.get("calls_opened", 0),
+                                     "puts_opened": r.get("puts_opened", 0), "call_put_ratio": r.get("call_put_ratio")})
+    lim = max(1, min(int(args.get("limit", 15)), 50))
+    lst = [{"ticker": t, "calls_opened": r["calls_opened"], "puts_opened": r["puts_opened"],
+            "call_put_ratio": r["call_put_ratio"], "n_voting_authors": r["n_voting_authors"]}
+           for t, r in rows.items() if r["calls_opened"] + r["puts_opened"] > 0]
+    lst.sort(key=lambda x: x["calls_opened"] + x["puts_opened"], reverse=True)
+    return _sent_env(d, window, {"tickers": lst[:lim]})
+
+
+def tool_get_retail_buzz(args: dict) -> dict:
+    d, window, err = _sent_load(args.get("window"))
+    if err:
+        return err
+    if window == "7d":
+        return _bad("buzz supports window 24h or 72h")
+    lim = max(1, min(int(args.get("limit", 20)), 50))
+    b = (d.get("buzz") or {}).get(window) or {}
+    rows = d["windows"][window]
+    lst = []
+    for t, v in (b.get("tickers") or {}).items():
+        r = rows.get(t, {})
+        lst.append({"ticker": t, "mentions": v["mentions"], "baseline_mean": v["baseline_mean"], "z": v["z"],
+                    "n_authors": r.get("n_authors"), "net_score": r.get("net_score"), "confidence": r.get("confidence")})
+    lst.sort(key=lambda x: (x["z"] if x["z"] is not None else -9e9, x["mentions"]), reverse=True)
+    if all(x["z"] is None for x in lst):
+        lst.sort(key=lambda x: x["mentions"], reverse=True)
+    return _sent_env(d, window, {"archive_depth_days": b.get("archive_depth_days"),
+                                 "z_note": "z is null until the archive holds 3+ days of posts; ranked by mentions until then.",
+                                 "tickers": lst[:lim]})
+
+
+def tool_get_retail_vs_whale(args: dict) -> dict:
+    d, window, err = _sent_load(args.get("window") or "72h")
+    if err:
+        return err
+    min_voters = max(1, int(args.get("min_voting_authors", 2)))
+    lim = max(1, min(int(args.get("limit", 15)), 50))
+    stonks = {s["ticker"]: s for s in (fetch_json("stonks.json") or {}).get("securities", [])}
+    ranked = sorted((s for s in stonks.values() if s.get("whalesValue")), key=lambda s: s["whalesValue"], reverse=True)
+    n = max(1, len(ranked))
+    wrank = {s["ticker"]: i for i, s in enumerate(ranked)}
+    out = []
+    for t, r in d["windows"][window].items():
+        if r["n_voting_authors"] < min_voters or r["net_score"] is None or t not in stonks:
+            continue
+        s = stonks[t]
+        whale_pct = 1 - wrank[t] / n if t in wrank else 0.0  # 1 = most whale capital
+        retail = r["net_score"]  # -1..1
+        label = ("retail bullish, little whale capital" if retail > 0.3 and whale_pct < 0.5 else
+                 "retail bearish, heavy whale capital" if retail < -0.3 and whale_pct > 0.7 else
+                 "retail bullish, whales heavy (aligned)" if retail > 0.3 else "mixed")
+        out.append({"ticker": t, "retail_net_score": retail, "retail_voting_authors": r["n_voting_authors"],
+                    "confidence": r["confidence"], "whale_capital": s.get("whalesValue"),
+                    "whale_holders": s.get("whalesCount"), "whale_capital_percentile": round(whale_pct, 2),
+                    "label": label})
+    out.sort(key=lambda x: abs(x["retail_net_score"]) * (1 - x["whale_capital_percentile"] if x["retail_net_score"] > 0 else x["whale_capital_percentile"]), reverse=True)
+    return _sent_env(d, window, {
+        "tickers": out[:lim],
+        "caveat": "Whale capital is a size ranking from the verified 500, not a whale direction. The label compares retail stance with how much verified capital sits in the name; it is a prompt to look closer, not a signal."})
+
+
+def tool_get_sentiment_flags(args: dict) -> dict:
+    d, window, err = _sent_load(args.get("window"))
+    if err:
+        return err
+    tk = (args.get("ticker") or "").strip().upper().lstrip("$")
+    r = d["windows"][window].get(tk)
+    if not r:
+        return _sent_env(d, window, {"ticker": tk, "n_posts": 0})
+    return _sent_env(d, window, {"ticker": tk, "n_posts": r["n_posts"], "n_authors": r["n_authors"], "flags": r["flags"],
+                                 "note": "Authors on the funnel list are flagged for investigation, not a finding of fraud (list curated by https://telegramscammers.com). Check these before trusting a score."})
+
+
+def tool_get_ticker_posts(args: dict) -> dict:
+    d = fetch_json("ah-posts.json")
+    if not d:
+        return {"error": "post archive not yet published", "retryable": True}
+    tk = (args.get("ticker") or "").strip().upper().lstrip("$")
+    user = (args.get("username") or "").strip().lstrip("@").lower()
+    lim = max(1, min(int(args.get("limit", 20)), 50))
+    rows = [p for p in d.get("posts", []) if (not tk or tk in p["tickers"]) and (not user or (p["author"] or "").lower() == user)]
+    return {"as_of": d.get("generated_at"), "matched": len(rows), "posts": [
+        {k: p[k] for k in ("id", "hash", "ts", "author", "followers", "title", "topic", "tickers", "stance", "action", "views", "comments")}
+        for p in rows[:lim]]}
+
+
+def tool_get_sentiment_trend(args: dict) -> dict:
+    d = fetch_json("sentiment.json")
+    if not d:
+        return {"error": "sentiment data not yet published", "retryable": True}
+    tk = (args.get("ticker") or "").strip().upper().lstrip("$")
+    days = max(1, min(int(args.get("days", 7)), 14))
+    series = (d.get("daily") or {}).get(tk, [])[-days:]
+    return _sent_env(d, f"{days}d", {"ticker": tk, "series": series,
+                                     "note": "Daily post counts and net score; days with no directional votes have net null. Archive depth limits how far back this goes."})
+
+
+SENTIMENT_TOOLS_MAP = {
+    "get_retail_sentiment": tool_get_retail_sentiment,
+    "get_retail_options_bias": tool_get_retail_options_bias,
+    "get_retail_buzz": tool_get_retail_buzz,
+    "get_retail_vs_whale": tool_get_retail_vs_whale,
+    "get_sentiment_flags": tool_get_sentiment_flags,
+    "get_ticker_posts": tool_get_ticker_posts,
+    "get_sentiment_trend": tool_get_sentiment_trend,
+}
+
+_W = {"type": "string", "enum": list(_SENT_WINDOWS), "default": "24h"}
+SENTIMENT_TOOL_DEFINITIONS = [
+    {"name": "get_retail_sentiment",
+     "description": "SNAPSHOT (refreshed every 5 min). Retail stance on one ticker from public AfterHour posts: bull/bear votes, net score (-1..1), distinct voting authors, confidence tier, topic mix, top posts and quality flags. Direction comes only from explicit CALL/PUT plus an open verb, so most posts are neutral. Always read n_voting_authors and flags.",
+     "inputSchema": {"type": "object", "properties": {"ticker": {"type": "string"}, "window": _W}, "required": ["ticker"], "additionalProperties": False}},
+    {"name": "get_retail_options_bias",
+     "description": "SNAPSHOT. Calls versus puts opened in public AfterHour posts: for one ticker, or the most active tickers when none given. The highest-precision sentiment signal because contract side is explicit. Sample is small.",
+     "inputSchema": {"type": "object", "properties": {"ticker": {"type": "string"}, "window": _W, "limit": {"type": "integer", "default": 15}}, "additionalProperties": False}},
+    {"name": "get_retail_buzz",
+     "description": "SNAPSHOT. Which tickers retail is suddenly posting about: mentions versus trailing baseline (z-score once 3+ days of archive exist, else ranked by mentions). Use for 'what is the crowd talking about'. Not a direction signal.",
+     "inputSchema": {"type": "object", "properties": {"window": {"type": "string", "enum": ["24h", "72h"], "default": "24h"}, "limit": {"type": "integer", "default": 20}}, "additionalProperties": False}},
+    {"name": "get_retail_vs_whale",
+     "description": "SNAPSHOT. Tickers where retail stance and verified whale capital pull apart (retail bullish where little whale money sits, or bearish where a lot does). A prompt to investigate, not a signal: whale capital is size, not direction. Needs at least min_voting_authors voters.",
+     "inputSchema": {"type": "object", "properties": {"window": {"type": "string", "enum": list(_SENT_WINDOWS), "default": "72h"}, "min_voting_authors": {"type": "integer", "default": 2}, "limit": {"type": "integer", "default": 15}}, "additionalProperties": False}},
+    {"name": "get_sentiment_flags",
+     "description": "SNAPSHOT. Quality flags for a ticker's retail sentiment: copy-paste duplicate posts, low-follower author share, authors with a Telegram link in bio, authors on the funnel list. Call before trusting get_retail_sentiment. Flagged for investigation, not a finding of fraud.",
+     "inputSchema": {"type": "object", "properties": {"ticker": {"type": "string"}, "window": _W}, "required": ["ticker"], "additionalProperties": False}},
+    {"name": "get_ticker_posts",
+     "description": "SNAPSHOT of the most recent ~400 archived public posts, parsed (stance, action, tickers). Filter by ticker or username. Use to read the posts behind a sentiment score. For one post by link use get_post_permalink.",
+     "inputSchema": {"type": "object", "properties": {"ticker": {"type": "string"}, "username": {"type": "string"}, "limit": {"type": "integer", "default": 20}}, "additionalProperties": False}},
+    {"name": "get_sentiment_trend",
+     "description": "SNAPSHOT. Daily post count and net retail score for a ticker over up to 14 days of archive. Depth is limited by how long the archive has been running.",
+     "inputSchema": {"type": "object", "properties": {"ticker": {"type": "string"}, "days": {"type": "integer", "default": 7}}, "required": ["ticker"], "additionalProperties": False}},
+]
+
+
 # Registry mapping tool name -> handler function
 TOOLS_MAP = {
     "get_market_tape": tool_get_market_tape,
@@ -1508,6 +1695,8 @@ MCP_TOOLS_DEFINITIONS = [
 
 TOOLS_MAP.update(LIVE_TOOLS_MAP)
 MCP_TOOLS_DEFINITIONS.extend(LIVE_TOOL_DEFINITIONS)
+TOOLS_MAP.update(SENTIMENT_TOOLS_MAP)
+MCP_TOOLS_DEFINITIONS.extend(SENTIMENT_TOOL_DEFINITIONS)
 
 # MCP Resources (MCP 2024-11-05 standard)
 MCP_RESOURCES_DEFINITIONS = [
