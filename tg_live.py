@@ -20,7 +20,8 @@ from zoneinfo import ZoneInfo
 
 import tg_recon
 from build_funnel_calls import DISCLAIMER, OUTCOME_KEYS, is_public, read_jsonl, trunc
-from tg_option_paths import chart, occ
+from tg_option_paths import occ
+import urllib.request
 
 BASE = Path(__file__).resolve().parent
 TF = BASE / "data" / "telegram_funnel"
@@ -32,6 +33,20 @@ MAX_OPT = 150
 MAX_UND = 80
 ECHO = {"duplicate_echo", "cross_channel_echo"}
 YSYM = {"SPX": "^SPX", "NDX": "^NDX", "VIX": "^VIX", "RUT": "^RUT", "DJX": "^DJI", "XSP": "^XSP"}
+
+
+def chart(sym, rng, interval, timeout=8):
+    """One-shot Yahoo chart fetch with a short timeout: dead option contracts can hang for a minute, and a 3-minute cron cannot wait."""
+    url = f"https://query1.finance.yahoo.com/v8/finance/chart/{sym}?range={rng}&interval={interval}"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (tg_live; public read-only)"})
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            res = json.load(r)["chart"]["result"]
+        q = res[0]["indicators"]["quote"][0]
+        return {str(t): [q[k][i] if k in q and i < len(q[k]) else None for k in ("open", "high", "low", "close", "volume")]
+                for i, t in enumerate(res[0].get("timestamp") or []) if q.get("close") and i < len(q["close"]) and q["close"][i] is not None}
+    except Exception:
+        return {}
 
 
 def market_state(now=None):
@@ -132,10 +147,10 @@ def build(fetch_stats):
             tickers.append(c["ticker"])
     jobs = [("o", occ(c)) for c in opt_targets] + [("u", t) for t in tickers[:MAX_UND]]
     jobs = list(dict.fromkeys(jobs))
-    with ThreadPoolExecutor(8) as ex:
+    with ThreadPoolExecutor(12) as ex:
         got = dict(zip(jobs, ex.map(lambda j: chart(YSYM.get(j[1], j[1]) if j[0] == "u" else j[1], "5d", "5m"), jobs)))
     need = [j for j in jobs if j[0] == "o" and not got[j]]
-    with ThreadPoolExecutor(8) as ex:
+    with ThreadPoolExecutor(12) as ex:
         daily = dict(zip(need, ex.map(lambda j: chart(j[1], "1mo", "1d"), need)))
 
     rows, heat = [], {}
