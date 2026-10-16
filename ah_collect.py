@@ -84,6 +84,7 @@ def atomic_write(path: Path, obj):
     fd, tmp = tempfile.mkstemp(dir=path.parent, suffix=".tmp")
     with os.fdopen(fd, "w", encoding="utf-8") as f:
         json.dump(obj, f, separators=(",", ":"))
+    os.chmod(tmp, 0o644)  # mkstemp makes 0600; the nginx container must be able to read it
     os.replace(tmp, path)
 
 
