@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
-tg_live.py: near-real-time callout feed. Passive: public t.me previews and Yahoo public chart bars only.
+tg_live.py: near-real-time callout feed. Passive: public t.me previews only. No scoring, no price data.
 
 Each run (cron every 3 minutes during extended market hours, see scripts/run_live.sh):
   1. pull page 1 (newest ~20 posts) of every public channel behind the flagged accounts, append new ones to the archive
   2. re-parse callouts (tg_calls.py)
-  3. for the last WINDOW_H hours of callouts, attach live tape: option mark and path since the call, underlying move
-  4. write api/funnel-live.json (and publish it atomically to $PUBLISH_DIR when that directory exists)
+  3. write api/funnel-live.json (and publish it atomically to $PUBLISH_DIR when that directory exists)
 
   python3 tg_live.py                 # one run
   python3 tg_live.py --market-hours  # no-op outside 08:00-17:00 ET Mon-Fri (what cron uses)
@@ -19,9 +18,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import tg_recon
-from build_funnel_calls import DISCLAIMER, OUTCOME_KEYS, is_public, read_jsonl, trunc
-from tg_option_paths import occ
-import urllib.request
+from build_funnel_calls import DISCLAIMER, is_public, read_jsonl, trunc
 
 BASE = Path(__file__).resolve().parent
 TF = BASE / "data" / "telegram_funnel"
@@ -29,24 +26,7 @@ ARCH = TF / "posts_archive.jsonl"
 OUT = BASE / "api" / "funnel-live.json"
 ET = ZoneInfo("America/New_York")
 WINDOW_H = 72
-MAX_OPT = 100
-MAX_UND = 80
 ECHO = {"duplicate_echo", "cross_channel_echo"}
-YSYM = {"SPX": "^SPX", "NDX": "^NDX", "VIX": "^VIX", "RUT": "^RUT", "DJX": "^DJI", "XSP": "^XSP"}
-
-
-def chart(sym, rng, interval, timeout=8):
-    """One-shot Yahoo chart fetch with a short timeout: dead option contracts can hang for a minute, and a 3-minute cron cannot wait."""
-    url = f"https://query1.finance.yahoo.com/v8/finance/chart/{sym}?range={rng}&interval={interval}"
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (tg_live; public read-only)"})
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            res = json.load(r)["chart"]["result"]
-        q = res[0]["indicators"]["quote"][0]
-        return {str(t): [q[k][i] if k in q and i < len(q[k]) else None for k in ("open", "high", "low", "close", "volume")]
-                for i, t in enumerate(res[0].get("timestamp") or []) if q.get("close") and i < len(q["close"]) and q["close"][i] is not None}
-    except Exception:
-        return {}
 
 
 def market_state(now=None):
@@ -57,12 +37,21 @@ def market_state(now=None):
     return "open" if 570 <= m < 960 else "pre" if 240 <= m < 570 else "after" if 960 <= m < 1200 else "closed"
 
 
+def alive():
+    """Lowercased handles the last recon snapshot found alive; None when there is no snapshot."""
+    try:
+        return {c["link"].rstrip("/").split("/")[-1].lower() for c in json.load(open(TF / "recon.json"))["channels"] if c.get("alive")}
+    except Exception:
+        return None
+
+
 def handles():
+    live = alive()
     hs = {}
     for acc in json.load(open(BASE / "accounts.json")):
         for raw in acc.get("telegram_links", []):
             h = raw.rstrip("/").split("/")[-1]
-            if h and not h.startswith("+"):
+            if h and not h.startswith("+") and (live is None or h.lower() in live):
                 hs[h.lower()] = h
     return sorted(hs.values())
 
@@ -85,94 +74,17 @@ def pull_new():
     return new, ok, len(hs)
 
 
-def bars_since(bars, t0):
-    """Sorted [(epoch, close, high, low)] for bars at/after t0 (a bar covers the 5 minutes after its stamp)."""
-    rows = sorted((int(k), v) for k, v in bars.items())
-    return [(t, v[3], v[1] if v[1] is not None else v[3], v[2] if v[2] is not None else v[3]) for t, v in rows if t + 300 > t0]
-
-
-def pct(a, b):
-    return None if not a or not b else round((b / a - 1) * 100, 1)
-
-
-def sample(xs, n=48):
-    if len(xs) <= n:
-        return xs
-    step = (len(xs) - 1) / (n - 1)
-    return [xs[round(i * step)] for i in range(n)]
-
-
-def opt_live(c, bars, daily=None):
-    t0 = datetime.fromisoformat(c["posted"]).timestamp()
-    seg = bars_since(bars, t0)
-    if not seg:     # no intraday bars (pre-open, or Yahoo only serves them on the live session): last daily close vs the quote
-        last = sorted((int(k), v) for k, v in (daily or {}).items())
-        if not last or not c.get("entry_price"):
-            return None
-        return {"now": round(last[-1][1][3], 2), "last_t": last[-1][0], "vs_quote_pct": pct(c["entry_price"], last[-1][1][3]), "daily_only": True}
-    first, last = seg[0][1], seg[-1][1]
-    hi, lo = max(s[2] for s in seg), min(s[3] for s in seg)
-    out = {"now": round(last, 2), "at_call": round(first, 2), "chg_pct": pct(first, last),
-           "peak_pct": pct(first, hi), "low_pct": pct(first, lo), "last_t": seg[-1][0],
-           "path": [round(s[1], 2) for s in sample(seg)]}
-    if c.get("entry_price"):
-        out["vs_quote_pct"] = pct(c["entry_price"], last)
-    return out
-
-
-def und_live(c, bars):
-    t0 = datetime.fromisoformat(c["posted"]).timestamp()
-    seg = bars_since(bars, t0)
-    if not seg:
-        return None
-    return {"now": round(seg[-1][1], 2), "at_call": round(seg[0][1], 2), "chg_pct": pct(seg[0][1], seg[-1][1]), "last_t": seg[-1][0]}
-
-
 def build(fetch_stats):
     now = datetime.now(timezone.utc)
     cutoff = (now - timedelta(hours=WINDOW_H)).isoformat()
-    today = now.astimezone(ET).date().isoformat()
     calls = [c for c in read_jsonl(TF / "calls.jsonl") if is_public(c.get("channel")) and (c.get("posted") or "") >= cutoff]
     calls.sort(key=lambda c: c.get("posted") or "", reverse=True)
-    outcomes = {}
-    for o in read_jsonl(TF / "outcomes.jsonl"):
-        for i in o.get("ids") or []:
-            outcomes[i] = o
-
-    opt_targets = [c for c in calls if c["kind"] == "option" and c["action"] == "open" and not (ECHO & set(c.get("parse_flags") or []))
-                   and occ(c) and c["expiry"] >= today][:MAX_OPT]
-    tickers = []
-    for c in calls:
-        if c.get("ticker") and c["ticker"] not in tickers:
-            tickers.append(c["ticker"])
-    jobs = [("o", occ(c)) for c in opt_targets] + [("u", t) for t in tickers[:MAX_UND]]
-    jobs = list(dict.fromkeys(jobs))
-    with ThreadPoolExecutor(12) as ex:
-        got = dict(zip(jobs, ex.map(lambda j: chart(YSYM.get(j[1], j[1]) if j[0] == "u" else j[1], "5d", "5m"), jobs)))
-    need = [j for j in jobs if j[0] == "o" and not got[j]]
-    with ThreadPoolExecutor(12) as ex:
-        daily = dict(zip(need, ex.map(lambda j: chart(j[1], "1mo", "1d"), need)))
-
     rows, heat = [], {}
     for c in calls:
         r = {k: c.get(k) for k in ("channel", "posted", "ticker", "kind", "side", "strike", "expiry", "entry_price", "action", "result_pct")}
         r["text"] = trunc(c.get("text"))
         if c.get("parse_flags"):
             r["parse_flags"] = c["parse_flags"]
-        o = outcomes.get(c.get("id"))
-        if o:
-            r["outcome"] = {k: o[k] for k in OUTCOME_KEYS if k in o}
-        live = {}
-        if c["kind"] == "option" and c["action"] == "open" and occ(c) and ("o", occ(c)) in got:
-            ol = opt_live(c, got[("o", occ(c))], daily.get(("o", occ(c))))
-            if ol:
-                live["opt"] = ol
-        if ("u", c.get("ticker")) in got:
-            ul = und_live(c, got[("u", c["ticker"])])
-            if ul:
-                live["und"] = ul
-        if live:
-            r["live"] = live
         rows.append(r)
         if not (ECHO & set(c.get("parse_flags") or [])) and c["action"] == "open":
             h = heat.setdefault(c["ticker"], {"ticker": c["ticker"], "n_60m": 0, "n_24h": 0, "chans": set(), "calls": 0, "puts": 0})
@@ -182,16 +94,12 @@ def build(fetch_stats):
                 h["n_24h"] += 1; h["chans"].add(c["channel"])
                 h["calls"] += c.get("side") == "call"; h["puts"] += c.get("side") == "put"
     hot = sorted(({**h, "chans": len(h["chans"])} for h in heat.values() if h["n_24h"]), key=lambda h: (-h["n_60m"], -h["n_24h"]))[:14]
-    for h in hot:
-        u = next((r["live"]["und"] for r in rows if r["ticker"] == h["ticker"] and (r.get("live") or {}).get("und")), None)
-        if u:
-            h["und_now"] = u["now"]
     new, ok, total = fetch_stats
-    return {"source": "AfterMath live feed over public Telegram channel posts and Yahoo public 5-minute bars (passive, read-only)",
+    return {"source": "AfterMath live feed over public Telegram channel posts (passive, read-only, unscored)",
             "generated_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "disclaimer": DISCLAIMER,
             "market": market_state(now), "window_hours": WINDOW_H, "refresh_hint_sec": 60,
             "channels_polled": ok, "channels_total": total, "new_posts_this_run": new,
-            "live_note": "Option 'now' and 'at_call' are the last and first traded 5-minute closes on Yahoo at or after the post, not the channel's quoted entry. Thin contracts can be stale; last_t is the last bar time. Not advice.",
+            "live_note": "Raw parsed callouts, newest first. Not scored here; outcomes live in funnel-calls.json and /scorecard. Not advice.",
             "count": len(rows), "hot_tickers": hot, "calls": rows}
 
 
@@ -223,7 +131,7 @@ def main():
         print("empty feed; not writing"); sys.exit(1)
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(out, separators=(",", ":"), ensure_ascii=False))
-    print(f"live feed: {out['count']} callouts, {sum(1 for r in out['calls'] if (r.get('live') or {}).get('opt'))} with option tape, {stats[0]} new posts, market {out['market']}")
+    print(f"live feed: {out['count']} callouts, {stats[0]} new posts, market {out['market']}")
     if not a.no_publish:
         publish(OUT)
 
