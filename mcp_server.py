@@ -1075,18 +1075,6 @@ def tool_get_retail_vs_whale(args: dict) -> dict:
         "caveat": "Whale capital is a size ranking from the verified 500, not a whale direction. The label compares retail stance with how much verified capital sits in the name; it is a prompt to look closer, not a signal."})
 
 
-def tool_get_sentiment_flags(args: dict) -> dict:
-    d, window, err = _sent_load(args.get("window"))
-    if err:
-        return err
-    tk = (args.get("ticker") or "").strip().upper().lstrip("$")
-    r = d["windows"][window].get(tk)
-    if not r:
-        return _sent_env(d, window, {"ticker": tk, "n_posts": 0})
-    return _sent_env(d, window, {"ticker": tk, "n_posts": r["n_posts"], "n_authors": r["n_authors"], "flags": r["flags"],
-                                 "note": "Authors on the funnel list are flagged for investigation, not a finding of fraud (list curated by https://telegramscammers.com). Check these before trusting a score."})
-
-
 SENTIMENT_TOOLS_MAP = {
     "get_retail_sentiment": tool_get_retail_sentiment,
 }

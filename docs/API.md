@@ -78,28 +78,14 @@ The list below is generated from the built `api/*.json` files by `scripts/gen_op
 
 ### Whales
 
-#### 8. Reported whale position changes
-
-- **Path**: `GET /api/whale-changes.json`
-- **Description**: Quantity changes (OPEN, ADD, TRIM, CLOSE, EXPIRED, FLIP) detected between polls of public whale portfolios, with notional and percent of portfolio. Positions are the last broker sync marked to live prices, so changes are rare. Currently 0 records.
-- **Request**: `curl -sL https://ah.mphinance.com/api/whale-changes.json`
-- **Top-level fields**: `generated_at` (string), `count` (integer), `changes` (array)
-
-#### 9. Whale data freshness
-
-- **Path**: `GET /api/whale-sync.json`
-- **Description**: How fresh the whale position data is: whales tracked, recently polled, newest and oldest broker sync.
-- **Request**: `curl -sL https://ah.mphinance.com/api/whale-sync.json`
-- **Top-level fields**: `generated_at` (string), `whales_tracked` (integer), `polled_last_hour` (integer), `never_polled` (integer), `newest_broker_sync` (string), `oldest_broker_sync` (string), `synced_within_30d` (integer), `note` (string), `whales` (object)
-
-#### 10. Verified whale portfolios
+#### 8. Verified whale portfolios
 
 - **Path**: `GET /api/whales.json`
 - **Description**: High-capital portfolios with broker-verified positions, cash, P&L and shadow ratio. Large file (several MB uncompressed). Currently 395 whales.
 - **Request**: `curl -sL https://ah.mphinance.com/api/whales.json`
 - **Top-level fields**: `total` (integer), `whales` (array)
 
-#### 11. Shadow whales (clout inversion)
+#### 9. Shadow whales (clout inversion)
 
 - **Path**: `GET /api/shadow.json`
 - **Description**: The same whales sorted by verified dollars per follower: big capital, tiny following. Large file. Currently 395 whales.
@@ -108,62 +94,62 @@ The list below is generated from the built `api/*.json` files by `scripts/gen_op
 
 ### Telegram Funnel
 
-#### 12. Flagged accounts
+#### 10. Flagged accounts
 
 - **Path**: `GET /api/funnel.json`
 - **Description**: Accounts on the telegramscammers.com flag list, enriched with public Telegram recon. Wording: flagged for investigation, not a finding of fraud. Currently 150 accounts.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel.json`
 - **Top-level fields**: `source` (string), `credit` (string), `database` (string), `network` (string), `submit_intel` (string), `upstream_json` (string), `disclaimer` (string), `count` (integer), `tiers` (object), `shared_link_clusters` (array), `tickers` (array), `callouts` (object), `accounts` (array)
 
-#### 13. Funnel ticker rankings
+#### 11. Funnel ticker rankings
 
 - **Path**: `GET /api/funnel-tickers.json`
 - **Description**: Tickers most mentioned across funnel channels. Currently 676 records.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-tickers.json`
 - **Top-level fields**: `source` (string), `generated_at` (string), `credit` (string), `disclaimer` (string), `small_sample_warning` (string), `count` (integer), `tickers` (array)
 
-#### 14. Parsed callouts (recent)
+#### 12. Parsed callouts (recent)
 
 - **Path**: `GET /api/funnel-calls.json`
 - **Description**: Parsed trade callouts from funnel channels. Quoted results are channel claims, unverified. Currently 1000 calls.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-calls.json`
 - **Top-level fields**: `source` (string), `generated_at` (string), `credit` (string), `disclaimer` (string), `small_sample_warning` (string), `quoted_results_are_channel_claims` (string), `total_parsed` (integer), `count` (integer), `calls_with_scored_outcome` (integer), `calls` (array)
 
-#### 15. Parsed callouts (full archive, JSON)
+#### 13. Parsed callouts (full archive, JSON)
 
 - **Path**: `GET /api/funnel-calls-full.json`
 - **Description**: Full callout archive including scoring fields. Large file. Currently 14706 calls.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-calls-full.json`
 - **Top-level fields**: `generated_at` (string), `credit` (string), `disclaimer` (string), `quoted_results_are_channel_claims` (string), `path_note` (string), `note` (string), `count` (integer), `scored_count` (integer), `path_count` (integer), `window_start` (string), `window_end` (string), `calls` (array)
 
-#### 16. Parsed callouts (full archive, CSV)
+#### 14. Parsed callouts (full archive, CSV)
 
 - **Path**: `GET /api/funnel-calls-full.csv`
 - **Description**: The full callout archive as CSV, one row per callout. Large file. Currently 14706 rows.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-calls-full.csv`
 
-#### 17. Option price paths
+#### 15. Option price paths
 
 - **Path**: `GET /api/funnel-option-paths.json`
 - **Description**: What each called option contract did after the post (5-minute trade bars), with sample sizes and coverage.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-option-paths.json`
 - **Top-level fields**: `generated_at` (string), `credit` (string), `disclaimer` (string), `methodology` (object), `window_start` (string), `window_end` (string), `small_n_threshold` (integer), `coverage` (object), `pooled` (object), `delay_sensitivity` (object), `fill_gap` (object), `robustness` (object), `by_channel` (array), `by_ticker` (array), `by_session_hour` (array), `n_channels` (integer)
 
-#### 18. Scorecard
+#### 16. Scorecard
 
 - **Path**: `GET /api/funnel-scorecard.json`
 - **Description**: Pooled and per-channel scoring: option paths, hold-to-expiry, and forex/gold/index TP1-first vs SL-first, with Wilson 95% ranges beside every rate.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-scorecard.json`
 - **Top-level fields**: `generated_at` (string), `credit` (string), `disclaimer` (string), `source` (string), `methodology` (string), `methodology_doc` (string), `conventions` (string), `small_sample_rule` (string), `options` (object), `fx` (object)
 
-#### 19. Forex / gold / index signals
+#### 17. Forex / gold / index signals
 
 - **Path**: `GET /api/funnel-fx-signals.json`
 - **Description**: Parsed and scored forex, gold and index signals from funnel channels. Currently 63 signals.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-fx-signals.json`
 - **Top-level fields**: `generated_at` (string), `credit` (string), `disclaimer` (string), `methodology` (string), `count` (integer), `signals` (array)
 
-#### 20. Live feed
+#### 18. Live feed
 
 - **Path**: `GET /api/funnel-live.json`
 - **Description**: Last 72 hours of parsed, unscored callouts and hot tickers. Refreshed every few minutes on market days. Currently 310 calls.
@@ -172,21 +158,21 @@ The list below is generated from the built `api/*.json` files by `scripts/gen_op
 
 ### MCP
 
-#### 21. MCP tool and resource catalog
+#### 19. MCP tool and resource catalog
 
 - **Path**: `GET /api/mcp-schema.json`
 - **Description**: Tool definitions (name, description, inputSchema) and resources, generated from the server code.
 - **Request**: `curl -sL https://ah.mphinance.com/api/mcp-schema.json`
 - **Top-level fields**: `version` (string), `protocolVersion` (string), `server` (object), `toolCount` (integer), `tools` (array), `resources` (array)
 
-#### 22. This OpenAPI document
+#### 20. This OpenAPI document
 
 - **Path**: `GET /api/openapi.json`
 - **Description**: The OpenAPI 3.1 specification, generated by `scripts/gen_openapi.py` from the built files.
 - **Request**: `curl -sL https://ah.mphinance.com/api/openapi.json`
 - **Top-level fields**: `openapi` (string), `info` (object), `paths` (object), `components` (object)
 
-#### 23. MCP JSON-RPC 2.0 (live)
+#### 21. MCP JSON-RPC 2.0 (live)
 
 - **Path**: `POST /api/mcp`
 - **Description**: Stateless Streamable-HTTP MCP endpoint. Send JSON-RPC 2.0 `tools/list` or `tools/call`. 16 tools: `get_market_tape`, `get_top_equities`, `get_etf_flows`, `get_whale_portfolio`, `get_ticker_intel`, `screen_whales`, `get_shadow_whales`, `get_social_feed`, `get_funnel_accounts`, `get_funnel_callouts`, `get_funnel_scorecard`, `get_market_session`, `get_live_quotes`, `get_leaderboard`, `get_security_chart`, `get_retail_sentiment`. Not a static file: this one runs the live server code.

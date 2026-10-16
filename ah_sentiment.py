@@ -19,7 +19,7 @@ import hashlib
 import math
 import re
 from collections import defaultdict
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 
 ALIASES = {"SPXW": "SPX"}
 

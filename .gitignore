@@ -57,3 +57,5 @@ api/sentiment.json
 api/ah-posts.json
 
 api/whale-sync.json
+api/whale-changes.json
+api/whale-sync.json
