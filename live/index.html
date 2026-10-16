@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AfterMath Live</title>
+<meta name="description" content="Live, read-only web view of the public AfterHour feed, leaderboards, tickers and whale portfolios.">
+<meta name="theme-color" content="#0b0f14">
+<style>
+:root{
+  color-scheme:dark light;
+  --bg:#0b0f14;--panel:#121820;--panel2:#18212b;--line:#243040;--text:#e6edf3;--mute:#8b98a8;
+  --up:#2fd27f;--down:#ff5c6c;--accent:#4cc9f0;--warn:#f5b942;
+  --pad:clamp(12px,3vw,20px);--gap:clamp(8px,2vw,14px);--nav-h:56px;
+}
+@media (prefers-color-scheme:light){:root{
+  --bg:#f4f6f9;--panel:#fff;--panel2:#eef2f6;--line:#d9e0e8;--text:#14202b;--mute:#5d6b7a;
+  --up:#0d9b57;--down:#d62f43;--accent:#0b7fb0;--warn:#b57a00;}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  min-height:100dvh;padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom))}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+button,input{font:inherit;color:inherit}
+input{font-size:max(16px,1rem)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.up{color:var(--up)}.down{color:var(--down)}.mute{color:var(--mute)}
+
+/* header */
+header.top{position:sticky;top:0;z-index:20;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:calc(8px + env(safe-area-inset-top)) var(--pad) 8px}
+.bar{display:flex;align-items:center;gap:var(--gap);flex-wrap:wrap;max-width:1100px;margin:0 auto}
+.brand{font-weight:700;letter-spacing:.2px}.brand b{color:var(--accent)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--mute);white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--mute)}.dot.ok{background:var(--up)}.dot.bad{background:var(--down)}.dot.stale{background:var(--warn)}
+.spacer{flex:1 1 0;min-width:0}
+.strip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;max-width:1100px;margin:8px auto 0;padding-bottom:2px}
+.strip::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;display:flex;flex-direction:column;gap:0;min-width:92px;padding:6px 10px;background:var(--panel);border:1px solid var(--line);border-radius:10px;cursor:pointer;position:relative}
+.chip .s{font-weight:700;font-size:13px}.chip .p{font-size:14px}.chip .c{font-size:12px}
+.chip .x{position:absolute;top:2px;right:6px;font-size:12px;color:var(--mute);display:none}
+.chip:hover .x{display:block}
+.flash-up{animation:fu .9s}.flash-down{animation:fd .9s}
+@keyframes fu{from{background:color-mix(in srgb,var(--up) 35%,var(--panel))}to{background:var(--panel)}}
+@keyframes fd{from{background:color-mix(in srgb,var(--down) 35%,var(--panel))}to{background:var(--panel)}}
+.addq{flex:0 0 auto;width:110px;padding:6px 10px;background:var(--panel);border:1px dashed var(--line);border-radius:10px}
+
+/* nav: bottom bar on phones, top tabs on wide screens */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;background:var(--panel);border-top:1px solid var(--line);
+  height:calc(var(--nav-h) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom)}
+nav.tabs a{flex:1;display:flex;align-items:center;justify-content:center;color:var(--mute);font-weight:600;font-size:13px;text-decoration:none}
+nav.tabs a[aria-current=page]{color:var(--accent);box-shadow:inset 0 2px 0 var(--accent)}
+@media (min-width:760px){
+  body{padding-bottom:0}
+  nav.tabs{position:static;height:auto;padding:0;border:0;background:none;gap:4px}
+  nav.tabs a{flex:0 0 auto;padding:6px 14px;border-radius:8px;box-shadow:none!important}
+  nav.tabs a[aria-current=page]{background:var(--panel2)}
+}
+
+main{max-width:1100px;margin:0 auto;padding:var(--pad)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:var(--pad);min-width:0}
+.row{display:flex;gap:var(--gap);align-items:center;flex-wrap:wrap}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:var(--gap)}
+.pills button{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer;color:var(--mute)}
+.pills button[aria-pressed=true]{color:var(--text);border-color:var(--accent);background:var(--panel2)}
+h1,h2{margin:0 0 8px;font-size:clamp(18px,3.2vw,24px)}h2{font-size:16px}
+.note{font-size:12.5px;color:var(--mute)}
+.warn{border:1px solid color-mix(in srgb,var(--warn) 50%,var(--line));background:color-mix(in srgb,var(--warn) 10%,var(--panel));border-radius:10px;padding:8px 12px;font-size:13px;margin-bottom:var(--gap)}
+.err{color:var(--down)}
+
+/* feed */
+.post{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);min-width:0}
+.post:last-child{border-bottom:0}
+.post.new{animation:fu 2.2s}
+.av{flex:0 0 40px;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:20px;overflow:hidden;background:var(--panel2)}
+.av img{width:100%;height:100%;object-fit:cover}
+.pb{flex:1 1 0;min-width:0}
+.ph{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;font-size:13px}
+.ph .u{font-weight:700}
+.tx{white-space:pre-wrap;overflow-wrap:anywhere;margin:4px 0}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.tag{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 9px;background:var(--panel2);color:var(--text)}
+.tag.topic{color:var(--mute)}
+.media{max-width:100%;max-height:340px;border-radius:10px;border:1px solid var(--line);display:block;margin-top:6px}
+.meta{display:flex;gap:14px;font-size:12.5px;color:var(--mute);flex-wrap:wrap}
+
+/* tables as cards on phones */
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:12px;color:var(--mute);text-align:right;font-weight:600;padding:6px 8px;border-bottom:1px solid var(--line)}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+.tbl tr[data-go]{cursor:pointer}.tbl tr[data-go]:hover{background:var(--panel2)}
+.tbl td .sub{display:block;font-size:12px;color:var(--mute);overflow:hidden;text-overflow:ellipsis;max-width:200px}
+@media (max-width:640px){
+  .tbl .hide-sm{display:none}
+  .tbl td{padding:9px 6px}
+}
+
+/* ticker + whale detail */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:var(--gap);margin:var(--gap) 0}
+.kpi{background:var(--panel2);border-radius:10px;padding:8px 12px;min-width:0}
+.kpi .l{font-size:12px;color:var(--mute)}.kpi .v{font-size:17px;font-weight:650;overflow-wrap:anywhere}
+.big{font-size:clamp(28px,6vw,40px);font-weight:700;line-height:1.1}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:var(--gap);align-items:start}
+svg.chart{width:100%;height:clamp(160px,32vw,260px);display:block;touch-action:none}
+.cursor-tip{position:absolute;pointer-events:none;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:2px 8px;font-size:12px}
+.sbar{height:6px;border-radius:3px;background:var(--panel2);overflow:hidden;margin-top:3px}
+.sbar i{display:block;height:100%;background:var(--accent)}
+.empty{padding:24px;text-align:center;color:var(--mute)}
+.skeleton{height:14px;border-radius:6px;background:linear-gradient(90deg,var(--panel2),var(--line),var(--panel2));background-size:200% 100%;animation:sh 1.2s infinite;margin:10px 0}
+@keyframes sh{to{background-position:-200% 0}}
+button.more{width:100%;margin-top:var(--gap);padding:10px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;cursor:pointer}
+footer{max-width:1100px;margin:0 auto;padding:0 var(--pad) var(--pad);font-size:12px;color:var(--mute)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="bar">
+    <span class="brand">After<b>Math</b> Live</span>
+    <span class="pill" id="session"><span class="dot"></span><span>market</span></span>
+    <span class="spacer"></span>
+    <nav class="tabs" id="tabs" aria-label="Sections">
+      <a href="#/feed" data-tab="feed">Feed</a>
+      <a href="#/board" data-tab="board">Leaderboard</a>
+      <a href="#/whales" data-tab="whales">Whales</a>
+    </nav>
+    <span class="pill" id="status" title="Time since the last successful update"><span class="dot"></span><span>connecting</span></span>
+  </div>
+  <div class="strip" id="strip" aria-label="Watchlist"></div>
+</header>
+<main id="view" aria-live="polite"></main>
+<footer>
+  Read-only view of public AfterHour data. Not affiliated with AfterHour. Not investment advice.
+  Prices and posts refresh automatically while this tab is visible.
+  <a href="/docs">API</a> · <a href="/mcp">MCP</a> · <a href="/">Terminal</a>
+</footer>
+
+<script>
+"use strict";
+/* ---------- helpers ---------- */
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const sym = s => String(s || "").toUpperCase().replace(/[^A-Z0-9.^=-]/g, "").slice(0, 12);
+const safeUrl = u => (typeof u === "string" && /^https:\/\//.test(u)) ? u : "";
+const fmt = (n, d = 2) => n == null || isNaN(n) ? "n/a" : Number(n).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+const money = n => { if (n == null || isNaN(n)) return "n/a"; const a = Math.abs(n), sg = n < 0 ? "-" : "", b = a >= 1e12 ? fmt(a / 1e12) + "T" : a >= 1e9 ? fmt(a / 1e9) + "B" : a >= 1e6 ? fmt(a / 1e6) + "M" : a >= 1e4 ? fmt(a / 1e3, 1) + "K" : fmt(a); return sg + "$" + b; };
+const pct = n => n == null || isNaN(n) ? "n/a" : (n > 0 ? "+" : "") + fmt(n) + "%";
+const cls = n => n > 0 ? "up" : n < 0 ? "down" : "mute";
+const ago = iso => { const s = Math.max(0, (Date.now() - new Date(iso)) / 1000); return s < 60 ? Math.floor(s) + "s" : s < 3600 ? Math.floor(s / 60) + "m" : s < 86400 ? Math.floor(s / 3600) + "h" : Math.floor(s / 86400) + "d"; };
+const store = { get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
+
+async function api(path, params = {}) {
+  const qs = new URLSearchParams(Object.entries(params).filter(([, v]) => v != null && v !== "")).toString();
+  let last;
+  for (let i = 0; i < 3; i++) {
+    try {
+      const r = await fetch("/ah/" + path + (qs ? "?" + qs : ""), { headers: { Accept: "application/json" } });
+      if (r.ok) { markOk(); return await r.json(); }
+      last = new Error("HTTP " + r.status);
+      if (r.status < 500) break;
+    } catch (e) { last = e; }
+    await new Promise(r => setTimeout(r, 400 * (i + 1)));
+  }
+  markBad();
+  throw last;
+}
+async function staticJson(p) { const r = await fetch(p); if (!r.ok) throw new Error(p); return r.json(); }
+
+/* status pill */
+let lastOk = 0;
+function markOk() { lastOk = Date.now(); }
+function markBad() {}
+setInterval(() => {
+  const age = (Date.now() - lastOk) / 1000, el = $("#status");
+  const d = el.firstElementChild, t = el.lastElementChild;
+  if (!lastOk) { d.className = "dot"; t.textContent = "connecting"; return; }
+  d.className = "dot " + (age < 20 ? "ok" : age < 90 ? "stale" : "bad");
+  t.textContent = age < 5 ? "live" : Math.floor(age) + "s ago";
+}, 1000);
+
+/* pollers pause when the tab is hidden and back off after errors */
+let pollers = [];
+function poll(fn, ms) {
+  let stop = false, timer, fails = 0;
+  const run = async () => {
+    if (stop) return;
+    if (document.hidden) { timer = setTimeout(run, 1000); return; }
+    try { await fn(); fails = 0; } catch { fails++; }
+    if (!stop) timer = setTimeout(run, Math.min(ms * Math.pow(2, fails), 60000));
+  };
+  run();
+  const h = { stop() { stop = true; clearTimeout(timer); } };
+  pollers.push(h);
+  return h;
+}
+function stopAll() { pollers.forEach(p => p.stop()); pollers = []; }
+
+/* ---------- market session pill ---------- */
+async function sessionPill() {
+  const d = new Date(), pad = n => String(n).padStart(2, "0");
+  const et = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(d);
+  const h = await api("stonks/market/hours/" + et);
+  const now = Date.now();
+  let phase = "closed", next = null;
+  for (const [k, label] of [["overnight", "overnight"], ["preMarket", "pre-market"], ["regular", "open"], ["afterHours", "after-hours"]]) {
+    const w = h[k]; if (!w) continue;
+    const a = +new Date(w.start), b = +new Date(w.end);
+    if (now >= a && now <= b) { phase = label; next = b; }
+  }
+  const el = $("#session"), dot = el.firstElementChild, t = el.lastElementChild;
+  dot.className = "dot " + (phase === "open" ? "ok" : phase === "closed" ? "" : "stale");
+  const left = next ? Math.max(0, Math.round((next - now) / 60000)) : null;
+  t.textContent = phase + (h.status === "early-close" ? " (early close)" : "") + (left != null ? " · " + Math.floor(left / 60) + "h " + pad(left % 60) + "m left" : "");
+}
+
+/* ---------- watchlist strip ---------- */
+let watch = store.get("watch", ["SPY", "QQQ", "NVDA", "TSLA", "AAPL"]);
+const lastPx = {};
+function renderStrip(quotes = {}) {
+  const strip = $("#strip");
+  strip.innerHTML = watch.map(s => {
+    const q = quotes[s];
+    return `<div class="chip" data-sym="${esc(s)}" tabindex="0" role="link" aria-label="${esc(s)}">
+      <span class="x" data-rm="${esc(s)}" title="remove">✕</span>
+      <span class="s">${esc(s)}</span>
+      <span class="p mono">${q ? fmt(q.price) : "…"}</span>
+      <span class="c mono ${cls(q?.session?.changePercent)}">${q ? pct(q.session?.changePercent) : ""}</span></div>`;
+  }).join("") + `<input class="addq" id="addq" placeholder="+ ticker" maxlength="8" autocapitalize="characters" aria-label="Add ticker">`;
+  for (const s of watch) {
+    const q = quotes[s]; if (!q) continue;
+    const el = strip.querySelector(`[data-sym="${CSS.escape(s)}"]`);
+    if (lastPx[s] != null && q.price !== lastPx[s] && el) el.classList.add(q.price > lastPx[s] ? "flash-up" : "flash-down");
+    lastPx[s] = q.price;
+  }
+}
+$("#strip").addEventListener("click", e => {
+  const rm = e.target.closest("[data-rm]");
+  if (rm) { watch = watch.filter(s => s !== rm.dataset.rm); store.set("watch", watch); quotesTick(); e.stopPropagation(); return; }
+  const c = e.target.closest("[data-sym]"); if (c) location.hash = "#/t/" + c.dataset.sym;
+});
+$("#strip").addEventListener("keydown", e => {
+  if (e.target.id === "addq" && e.key === "Enter") {
+    const s = sym(e.target.value); if (s && !watch.includes(s) && watch.length < 20) { watch.push(s); store.set("watch", watch); quotesTick(); }
+  } else if (e.key === "Enter" && e.target.dataset.sym) location.hash = "#/t/" + e.target.dataset.sym;
+});
+async function quotesTick() {
+  if (!watch.length) return renderStrip();
+  const d = await api("stonks/tickers/prices", { symbols: watch.join(",") });
+  const m = {}; (d.prices || []).forEach(p => p && (m[p.symbol] = p));
+  const typing = document.activeElement && document.activeElement.id === "addq" ? $("#addq").value : null;
+  renderStrip(m);
+  if (typing != null) { const i = $("#addq"); i.value = typing; i.focus(); }
+}
+
+/* ---------- views ---------- */
+const view = $("#view");
+const skeleton = () => view.innerHTML = '<div class="panel"><div class="skeleton"></div><div class="skeleton" style="width:80%"></div><div class="skeleton" style="width:65%"></div></div>';
+const fail = (e, retry) => { view.innerHTML = `<div class="panel empty"><div class="err">Could not load (${esc(e.message)}).</div><p><button class="more" id="retry">Retry</button></p></div>`; $("#retry").onclick = retry; };
+
+/* FEED */
+function avatar(a) {
+  const img = safeUrl(a?.profilePhotoUrl);
+  return `<div class="av" style="background:#${esc(a?.defaultProfilePhotoBackgroundColor || "243040")}">${img ? `<img src="${esc(img)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : esc(a?.defaultProfilePhotoEmoji || "🙂")}</div>`;
+}
+function postHtml(it, isNew) {
+  const p = it.post || {}, a = it.author || p.author || {};
+  const tickers = (it.securities || []).map(s => s.tickerSymbol).filter(Boolean);
+  const media = (it.mediaAttachments || []).find(m => m.type === "IMAGE" && safeUrl(m.url));
+  const link = safeUrl(p.shareUrl);
+  return `<article class="post${isNew ? " new" : ""}" data-id="${esc(it.id)}" data-ts="${esc(it.createdAt)}">
+    <a href="#/w/${encodeURIComponent(a.username || "")}" class="av-link" aria-label="${esc(a.username)}">${avatar(a)}</a>
+    <div class="pb">
+      <div class="ph"><a class="u" href="#/w/${encodeURIComponent(a.username || "")}">@${esc(a.username)}</a>
+        <span class="mute">${esc(fmt(a.numFollowers ?? 0, 0))} follower${a.numFollowers === 1 ? "" : "s"}</span>
+        ${a.financialDataPrivacyMode === "PUBLIC" ? '<span class="tag">public portfolio</span>' : ""}
+        <span class="mute age">${ago(it.createdAt)}</span></div>
+      <div class="tx">${esc(p.title || "")}</div>
+      ${media ? `<img class="media" src="${esc(media.url)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : ""}
+      <div class="tags">${it.primaryTopicKey ? `<span class="tag topic">${esc(it.primaryTopicKey)}</span>` : ""}${tickers.map(t => `<a class="tag" href="#/t/${encodeURIComponent(t)}">$${esc(t)}</a>`).join("")}</div>
+      <div class="meta"><span>👁 ${esc(fmt(p.viewCount ?? 0, 0))}</span><span>💬 ${esc(it.commentCount ?? 0)}</span><span>👍 ${esc(it.reactionCounts?.thumbsUp ?? 0)}</span>${link ? `<a href="${esc(link)}" target="_blank" rel="noopener noreferrer">open ↗</a>` : ""}</div>
+    </div></article>`;
+}
+function feedView(opts = {}) {
+  const filter = opts.filter || store.get("feedFilter", "everyone");
+  const secId = opts.securityId;
+  const holder = opts.into || view;
+  const seen = new Set();
+  holder.innerHTML = `${opts.into ? "" : `<div class="pills" id="fpills"><button data-f="everyone">Everyone</button><button data-f="verified">Verified</button></div>`}<div class="panel" id="feedbox"><div class="skeleton"></div></div>`;
+  const box = $("#feedbox", holder);
+  let cursor = null;
+  const params = () => ({ contentTypes: "post", sortMethod: "newest", take: opts.take || 20, filterMethod: filter === "verified" ? "verified" : null, securityId: secId, authorId: opts.authorId });
+  const sync = () => $("#fpills")?.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.f === filter));
+  sync();
+  $("#fpills")?.addEventListener("click", e => { const b = e.target.closest("button"); if (b) { store.set("feedFilter", b.dataset.f); route(); } });
+  let first = true;
+  poll(async () => {
+    const d = await api("social/feed", params());
+    const items = d.items || [];
+    if (first) {
+      box.innerHTML = items.length ? items.map(i => (seen.add(i.id), postHtml(i))).join("") + (opts.take ? "" : '<button class="more" id="more">Load older</button>') : '<div class="empty">No posts yet.</div>';
+      cursor = d.cursor; first = false;
+      $("#more", box)?.addEventListener("click", async e => {
+        e.target.disabled = true;
+        try { const o = await api("social/feed", { ...params(), cursor }); cursor = o.cursor; const html = (o.items || []).filter(i => !seen.has(i.id)).map(i => (seen.add(i.id), postHtml(i))).join(""); e.target.insertAdjacentHTML("beforebegin", html); } catch {} e.target.disabled = false;
+      });
+      return;
+    }
+    const fresh = items.filter(i => !seen.has(i.id));
+    if (fresh.length) {
+      const html = fresh.map(i => (seen.add(i.id), postHtml(i, true))).join("");
+      box.insertAdjacentHTML("afterbegin", html);
+    }
+  }, opts.every || 5000);
+  const t = setInterval(() => holder.querySelectorAll(".post").forEach(p => { const a = p.querySelector(".age"); if (a) a.textContent = ago(p.dataset.ts); }), 15000);
+  pollers.push({ stop() { clearInterval(t); } });
+}
+
+/* LEADERBOARD */
+function boardView() {
+  const st = store.get("board", { sort: "TRENDING", range: "DAY" });
+  const sorts = ["TRENDING", "WATCHERS", "OWNERS", "GAINERS", "LOSERS"], ranges = ["DAY", "WEEK", "MONTH", "THREE_MONTH", "YEAR_TO_DATE"];
+  const lab = { THREE_MONTH: "3M", YEAR_TO_DATE: "YTD" };
+  if (st.sort === "GAINERS") st.range = "DAY";
+  view.innerHTML = `<div class="pills" id="sp">${sorts.map(s => `<button data-s="${s}" aria-pressed="${s === st.sort}">${s[0] + s.slice(1).toLowerCase()}</button>`).join("")}</div>
+    <div class="pills" id="rp">${ranges.map(r => `<button data-r="${r}" aria-pressed="${r === st.range}" ${st.sort === "GAINERS" && r !== "DAY" ? "disabled" : ""}>${lab[r] || r[0] + r.slice(1).toLowerCase()}</button>`).join("")}</div>
+    <div class="panel" id="bx"><div class="skeleton"></div></div><p class="note">Whole platform (about 33k securities), crowd-ranked. Gainers only supports the day range upstream.</p>`;
+  $("#sp").onclick = e => { const b = e.target.closest("button"); if (b) { store.set("board", { ...st, sort: b.dataset.s }); route(); } };
+  $("#rp").onclick = e => { const b = e.target.closest("button"); if (b && !b.disabled) { store.set("board", { ...st, range: b.dataset.r }); route(); } };
+  poll(async () => {
+    const d = await api("stonks/security/leaderboard", { sortOrder: st.sort, timeRange: st.range, take: 40 });
+    const rows = (d.securities || []).map((e, i) => {
+      const o = e.security || e, s = o.security || {}, pr = o.price || {}, ses = pr.session || {};
+      const ch = st.sort === "GAINERS" || st.sort === "LOSERS" ? (e.changePricePercentage ?? ses.changePercent) : ses.changePercent;
+      return `<tr data-go="#/t/${encodeURIComponent(s.tickerSymbol || "")}"><td><b>${i + 1}. ${esc(s.tickerSymbol)}</b><span class="sub">${esc(s.friendlyName || s.name)}</span></td>
+        <td class="mono">${fmt(pr.price)}</td><td class="mono ${cls(ch)}">${pct(ch)}</td><td class="hide-sm">${esc(fmt(o.ownerCount ?? 0, 0))}</td><td class="hide-sm">${money(o.totalValue)}</td></tr>`;
+    }).join("");
+    $("#bx").innerHTML = rows ? `<table class="tbl"><thead><tr><th>Ticker</th><th>Price</th><th>Change</th><th class="hide-sm">Owners</th><th class="hide-sm">Held</th></tr></thead><tbody>${rows}</tbody></table>` : '<div class="empty">Nothing ranked for that range.</div>';
+  }, 30000);
+}
+
+/* TICKER */
+function lineChart(el, pts, up) {
+  if (pts.length < 2) { el.innerHTML = '<div class="empty">Not enough bars.</div>'; return; }
+  const W = 600, H = 200, xs = pts.map(p => p.t), ys = pts.map(p => p.c);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), lo = Math.min(...ys), hi = Math.max(...ys), pad = (hi - lo) * 0.08 || 1;
+  const X = t => (t - x0) / ((x1 - x0) || 1) * W, Y = v => H - (v - (lo - pad)) / ((hi - lo) + 2 * pad) * H;
+  const d = pts.map((p, i) => (i ? "L" : "M") + X(p.t).toFixed(1) + " " + Y(p.c).toFixed(1)).join("");
+  const col = up ? "var(--up)" : "var(--down)";
+  el.style.position = "relative";
+  el.innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Price chart">
+    <path d="${d}L${W} ${H}L0 ${H}Z" fill="${col}" opacity=".12"/><path d="${d}" fill="none" stroke="${col}" stroke-width="2" vector-effect="non-scaling-stroke"/>
+    <line id="cx" y1="0" y2="${H}" stroke="var(--mute)" stroke-width="1" vector-effect="non-scaling-stroke" opacity="0"/></svg><div class="cursor-tip" id="tip" hidden></div>
+    <div class="row mute" style="justify-content:space-between;font-size:12px"><span>${fmt(lo)}</span><span>${fmt(hi)}</span></div>`;
+  const svg = $("svg", el), line = $("#cx", el), tip = $("#tip", el);
+  const move = e => {
+    const r = svg.getBoundingClientRect(), f = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), t = x0 + f * (x1 - x0);
+    let best = pts[0]; for (const p of pts) if (Math.abs(p.t - t) < Math.abs(best.t - t)) best = p;
+    line.setAttribute("x1", X(best.t)); line.setAttribute("x2", X(best.t)); line.setAttribute("opacity", 1);
+    tip.hidden = false; tip.textContent = fmt(best.c) + " · " + new Date(best.t).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+    tip.style.left = Math.min(r.width - 150, Math.max(0, f * r.width - 60)) + "px"; tip.style.top = "0px";
+  };
+  svg.addEventListener("pointermove", move); svg.addEventListener("pointerleave", () => { line.setAttribute("opacity", 0); tip.hidden = true; });
+}
+async function tickerView(S) {
+  S = sym(S);
+  view.innerHTML = `<div class="panel" id="th"><div class="skeleton"></div></div><div class="grid2" style="margin-top:var(--gap)"><div class="panel"><h2>Chart</h2><div class="pills" id="cr"></div><div id="ch"></div></div><div class="panel" id="sent"><h2>Retail chatter</h2><div class="skeleton"></div></div></div><h2 style="margin:16px 0 8px">Posts about $${esc(S)}</h2><div id="tposts"></div>`;
+  let ov;
+  try { ov = await api("stonks/security/ticker/" + encodeURIComponent(S)); } catch (e) { return fail(e, () => tickerView(S)); }
+  const sec = ov.security || {}, id = sec.id;
+  const head = o => {
+    const pr = o.price || {}, ses = pr.session || {}, ch = sec.chatroom || {};
+    $("#th").innerHTML = `<div class="row"><div><div class="mute">${esc(sec.friendlyName || sec.name)} · ${esc(sec.type)}</div><div class="big mono">${fmt(pr.price)}</div>
+      <div class="mono ${cls(ses.changePercent)}">${pct(ses.changePercent)} <span class="mute">${ses.change != null ? "(" + fmt(ses.change) + ")" : ""}</span></div></div><span class="spacer"></span>
+      <button class="pill" id="addw">${watch.includes(S) ? "✓ in watchlist" : "+ watchlist"}</button></div>
+      <div class="kpis"><div class="kpi"><div class="l">Owners</div><div class="v">${esc(fmt(o.ownerCount ?? 0, 0))}</div></div><div class="kpi"><div class="l">Held on AfterHour</div><div class="v">${money(o.totalValue)}</div></div>
+      <div class="kpi"><div class="l">Market cap</div><div class="v">${money(o.marketCap)}</div></div><div class="kpi"><div class="l">Day range</div><div class="v mono" style="font-size:14px">${fmt(ses.low)} – ${fmt(ses.high)}</div></div>
+      <div class="kpi"><div class="l">Pre / after-hours</div><div class="v mono" style="font-size:14px"><span class="${cls(ses.earlyTradingChangePercent)}">${pct(ses.earlyTradingChangePercent)}</span> / <span class="${cls(ses.lateTradingChangePercent)}">${pct(ses.lateTradingChangePercent)}</span></div></div>
+      <div class="kpi"><div class="l">Volume</div><div class="v">${esc(fmt(ses.volume ?? 0, 0))}</div></div><div class="kpi"><div class="l">Chat online</div><div class="v">${esc(ch.onlineCount ?? 0)} / ${esc(fmt(ch.memberCount ?? 0, 0))}</div></div></div>`;
+    $("#addw").onclick = () => { if (!watch.includes(S)) { watch.push(S); store.set("watch", watch); quotesTick(); } head(o); };
+  };
+  head(ov);
+  poll(async () => head(await api("stonks/security/ticker/" + encodeURIComponent(S))), 5000);
+
+  const ranges = [["1D", "5m"], ["1M", "d30"], ["3M", "d90"], ["1Y", "d365"]];
+  let rng = store.get("range", "1D");
+  const drawChart = async () => {
+    $("#cr").innerHTML = ranges.map(([r]) => `<button data-r="${r}" aria-pressed="${r === rng}">${r}</button>`).join("");
+    $("#ch").innerHTML = '<div class="skeleton" style="height:160px"></div>';
+    const end = new Date(), days = rng === "1D" ? 5 : rng === "1M" ? 30 : rng === "3M" ? 90 : 365;
+    const q = { multiplier: rng === "1D" ? 5 : 1, timespan: rng === "1D" ? "minute" : "day", start: new Date(+end - days * 864e5).toISOString().slice(0, 19) + "Z", end: end.toISOString().slice(0, 19) + "Z" };
+    try {
+      const d = await api(`stonks/security/${id}/historic_prices`, q);
+      let bars = (d.prices || []).map(b => ({ t: +new Date(b.timestamp), c: b.close }));
+      if (rng === "1D" && bars.length) { const last = new Date(bars[bars.length - 1].t).toDateString(); bars = bars.filter(b => new Date(b.t).toDateString() === last); }
+      lineChart($("#ch"), bars, bars.length < 2 || bars[bars.length - 1].c >= bars[0].c);
+    } catch (e) { $("#ch").innerHTML = '<div class="empty err">Chart unavailable.</div>'; }
+  };
+  $("#cr").onclick = e => { const b = e.target.closest("button"); if (b) { rng = b.dataset.r; store.set("range", rng); drawChart(); } };
+  drawChart();
+
+  staticJson("/api/sentiment.json").then(s => {
+    const r = s.windows?.["24h"]?.[S];
+    $("#sent").innerHTML = `<h2>Retail chatter</h2>` + (r ? `<div class="kpis"><div class="kpi"><div class="l">Posts (24h)</div><div class="v">${r.n_posts}</div></div><div class="kpi"><div class="l">Authors</div><div class="v">${r.n_authors}</div></div>
+      <div class="kpi"><div class="l">Bull / bear votes</div><div class="v"><span class="up">${r.bull}</span> / <span class="down">${r.bear}</span></div></div><div class="kpi"><div class="l">Calls / puts opened</div><div class="v">${r.calls_opened} / ${r.puts_opened}</div></div></div>
+      <p class="note">Confidence: ${esc(r.confidence)} (${r.n_voting_authors} voting authors). Direction only counts explicit CALL/PUT opens; most posts are neutral. Not a signal on its own.</p>` : `<p class="note">No public posts mention $${esc(S)} in the last 24h.</p>`);
+  }).catch(() => { $("#sent").innerHTML = `<h2>Retail chatter</h2><p class="note">Sentiment data unavailable.</p>`; });
+
+  feedView({ securityId: id, into: $("#tposts"), take: 15, every: 8000 });
+}
+
+/* WHALES list + detail */
+async function whalesView() {
+  view.innerHTML = '<div class="panel"><div class="skeleton"></div></div>';
+  try {
+    const d = await staticJson("/api/whales.json");
+    const w = (d.whales || []).slice(0, 100);
+    view.innerHTML = `<div class="panel"><h1>Verified whales</h1><p class="note">Broker-verified public portfolios, ranked by total value. Click one for the live-priced portfolio.</p>
+      <table class="tbl"><thead><tr><th>Whale</th><th>Value</th><th class="hide-sm">Followers</th><th class="hide-sm">$/follower</th></tr></thead><tbody>${w.map((x, i) => `<tr data-go="#/w/${encodeURIComponent(x.username)}"><td><b>${i + 1}. @${esc(x.username)}</b><span class="sub">${esc(x.positions_count)} positions</span></td><td class="mono">${money(x.total_value)}</td><td class="hide-sm">${esc(fmt(x.followers ?? 0, 0))}</td><td class="hide-sm">${esc(money(x.shadow_ratio))}</td></tr>`).join("")}</tbody></table></div>`;
+  } catch (e) { fail(e, whalesView); }
+}
+async function whaleView(U) {
+  view.innerHTML = '<div class="panel"><div class="skeleton"></div></div>';
+  let prof;
+  try { prof = await api("public/profile", { username: U }); } catch (e) { return fail(new Error("profile not found"), () => whaleView(U)); }
+  const head = `<div class="panel"><div class="row">${avatar(prof)}<div style="min-width:0"><h1 style="margin:0">@${esc(prof.username)}</h1><div class="mute">${esc(fmt(prof.numFollowers ?? 0, 0))} followers · joined ${esc((prof.createdAt || "").slice(0, 10))}</div></div></div>${prof.bio ? `<p class="tx">${esc(prof.bio)}</p>` : ""}</div>`;
+  if (prof.financialDataPrivacyMode !== "PUBLIC" || !prof.hasConnectedItems) {
+    view.innerHTML = head + '<div class="panel empty" style="margin-top:var(--gap)">This portfolio is private or not linked to a broker.</div><h2 style="margin:16px 0 8px">Recent posts</h2><div id="uposts"></div>';
+  } else {
+    view.innerHTML = head + '<div id="pf" style="margin-top:var(--gap)"><div class="panel"><div class="skeleton"></div></div></div><h2 style="margin:16px 0 8px">Recent posts</h2><div id="uposts"></div>';
+    poll(async () => {
+      const d = await api(`stonks/public/portfolio/${prof.id}/summary/live`);
+      const tv = d.totalValue || 0, synced = d.lastSyncedAt ? new Date(d.lastSyncedAt) : null, stale = synced && (Date.now() - synced) / 864e5 > 14;
+      const pos = (d.positionSnapshots || []).slice().sort((a, b) => (b.value || 0) - (a.value || 0));
+      $("#pf").innerHTML = `${stale ? `<div class="warn">Positions were last synced from the broker on ${esc(synced.toISOString().slice(0, 10))}. Quantities may be out of date; prices are live.</div>` : ""}
+        <div class="panel"><div class="kpis"><div class="kpi"><div class="l">Total value</div><div class="v">${money(tv)}</div></div><div class="kpi"><div class="l">Today</div><div class="v ${cls(d.profitToday)}">${money(d.profitToday)} (${pct(d.profitTodayPercent)})</div></div>
+        <div class="kpi"><div class="l">All-time</div><div class="v ${cls(d.profit)}">${pct(d.profitPercent)}</div></div><div class="kpi"><div class="l">Cash</div><div class="v">${money(d.cashBalance)}</div></div></div>
+        <table class="tbl"><thead><tr><th>Position</th><th>Value</th><th>Today</th><th class="hide-sm">Share</th><th class="hide-sm">P&amp;L</th></tr></thead><tbody>${pos.map(p => {
+          const opt = p.optionsContractType, name = opt ? `${p.rootTickerSymbol} ${p.optionsStrikePrice}${opt[0]} ${(p.optionsExpirationDate || "").slice(5, 10)}` : p.tickerSymbol, share = tv ? (p.value || 0) / tv * 100 : 0;
+          return `<tr ${opt ? "" : `data-go="#/t/${encodeURIComponent(p.tickerSymbol)}"`}><td><b>${esc(name)}</b><span class="sub">${opt ? Math.round((p.quantity || 0) / (p.optionsSharesPerContract || 100)) + " contracts" : fmt(p.quantity, p.quantity % 1 ? 2 : 0) + " sh"}</span></td><td class="mono">${money(p.value)}</td><td class="mono ${cls(p.profitPercentToday)}">${pct(p.profitPercentToday)}</td><td class="hide-sm">${fmt(share, 1)}%<div class="sbar"><i style="width:${Math.min(100, share)}%"></i></div></td><td class="mono hide-sm ${cls(p.profitPercent)}">${pct(p.profitPercent)}</td></tr>`;
+        }).join("")}</tbody></table></div>`;
+    }, 60000);
+  }
+  feedView({ into: $("#uposts"), take: 10, every: 15000, filter: "everyone", authorId: prof.id });
+}
+
+/* ---------- router ---------- */
+document.addEventListener("click", e => { const r = e.target.closest("tr[data-go]"); if (r && !e.target.closest("a")) location.hash = r.dataset.go; });
+function route() {
+  stopAll();
+  const [, a, b] = (location.hash || "#/feed").split("/").map(decodeURIComponent);
+  const tab = a === "t" ? "" : a === "w" ? "whales" : a || "feed";
+  document.querySelectorAll("#tabs a").forEach(l => l.dataset.tab === tab ? l.setAttribute("aria-current", "page") : l.removeAttribute("aria-current"));
+  window.scrollTo(0, 0);
+  poll(quotesTick, 3000);
+  poll(sessionPill, 60000);
+  if (a === "board") boardView();
+  else if (a === "whales") whalesView();
+  else if (a === "t" && b) tickerView(b);
+  else if (a === "w" && b) whaleView(b);
+  else feedView();
+  document.title = (a === "t" && b ? sym(b) + " · " : a === "w" && b ? "@" + b + " · " : "") + "AfterMath Live";
+}
+window.addEventListener("hashchange", route);
+renderStrip();
+route();
+</script>
+</body>
+</html>
