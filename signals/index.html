@@ -59,6 +59,30 @@ td.cell{text-align:center;font-family:var(--mono);font-size:12px}
 .hint{color:var(--muted);font-size:12.5px;margin:0 0 10px}
 .empty{color:var(--muted);padding:24px 0;text-align:center}
 .more{margin-top:14px;min-height:48px;width:100%;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:10px;font:600 14px var(--sans);cursor:pointer}
+.livebar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 12px;font-size:13px;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:7px;min-height:30px;padding:0 12px;border-radius:99px;border:1px solid var(--border);background:var(--card);font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.5px}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.pill.open{color:var(--green);border-color:var(--green)}.pill.open i{background:var(--green);animation:pulse 1.4s infinite}
+.pill.pre,.pill.after{color:var(--gold);border-color:var(--gold)}.pill.pre i,.pill.after i{background:var(--gold);animation:pulse 2.4s infinite}
+.pill.off{color:var(--muted)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 currentColor}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.heat{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px;margin-bottom:8px;scrollbar-width:thin}
+.hot{flex:0 0 auto;min-height:44px;display:flex;flex-direction:column;justify-content:center;padding:4px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card);cursor:pointer;color:var(--text);font:600 13px var(--mono);text-align:left}
+.hot small{font:400 11px var(--sans);color:var(--muted)}
+.hot.bull{border-color:rgba(0,245,155,.45);background:linear-gradient(180deg,rgba(0,245,155,.10),var(--card))}
+.hot.bear{border-color:rgba(255,92,122,.45);background:linear-gradient(180deg,rgba(255,92,122,.10),var(--card))}
+.hot.on{outline:2px solid var(--cyan)}
+.sig.up{border-left-color:var(--green)}.sig.down{border-left-color:var(--red)}
+.sig.up.big{box-shadow:0 0 0 1px rgba(0,245,155,.35),0 0 22px rgba(0,245,155,.14)}
+.sig.fresh .top .age{color:var(--gold);font-weight:600}
+.sig.flash{animation:flash 2.6s ease-out}
+@keyframes flash{0%{background:rgba(0,210,255,.28);transform:translateY(-6px);opacity:.3}12%{transform:none;opacity:1}100%{background:var(--card)}}
+@media (prefers-reduced-motion:reduce){.sig.flash,.pill i{animation:none!important}}
+.pnl{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px;padding:8px 10px;border-radius:8px;background:var(--surface)}
+.pnl b{font:800 22px var(--mono)}.pnl b.up{color:var(--green)}.pnl b.down{color:var(--red)}.pnl b.flat{color:var(--muted)}
+.pnl small{display:block;color:var(--muted);font-size:11.5px}
+.pnl svg{flex:0 0 auto;width:110px;height:34px}
+.chip.up{color:var(--green);border-color:var(--green)}.chip.down{color:var(--red);border-color:var(--red)}.chip.stale{color:var(--muted);border-style:dashed}
 .fine{margin-top:34px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px}
 .fine p+p{margin-top:8px}
 </style>
@@ -70,6 +94,8 @@ td.cell{text-align:center;font-family:var(--mono);font-size:12px}
 <main>
   <h1>Callout <span>signals</span></h1>
   <p class="sub">Trades called out by public Telegram channels linked to accounts flagged for funneling traders into Telegram. Each row shows when it was posted, what was called, and, once the contract expires, how it finished against the real tape.</p>
+  <div class="livebar"><span class="pill off" id="mkt"><i></i><span id="mkttxt">connecting</span></span><span id="liveinfo"></span></div>
+  <div class="heat" id="heat" aria-label="Hottest tickers right now"></div>
   <div class="kpis" id="kpis"></div>
   <div class="ctl">
     <input id="fq" type="text" placeholder="Ticker, e.g. SPX" aria-label="Filter by ticker" autocapitalize="characters">
@@ -109,7 +135,7 @@ td.cell{text-align:center;font-family:var(--mono);font-size:12px}
 <script>
 const $=id=>document.getElementById(id);
 const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
-let ALL=[],SHOWN=0,MODE='feed',SORT={k:'posted',d:-1};const STEP=40;
+let ALL=[],SHOWN=0,LIM=0,MKT="closed",LASTLIVE=0,MODE='feed',SORT={k:'posted',d:-1};const STEP=40;
 const et=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
 const etDay=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'});
 const etHour=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',hour12:false});
@@ -141,14 +167,35 @@ function outcomeChip(r){
   return['','not scored'];
 }
 const contract=r=>r.kind==='option'?(' '+(r.strike!=null?r.strike:'?')+(r.side?r.side[0].toUpperCase():'')+(r.expiry?'  exp '+dfmt(r.expiry):'')+(r.entry_price!=null?'  @ '+r.entry_price:'')):'';
+const sgn=v=>(v>=0?'+':'')+(Math.abs(v)>=100?Math.round(v):v.toFixed(1))+'%';
+function spark(path,up){
+  const NS='http://www.w3.org/2000/svg',w=110,h=34,lo=Math.min(...path),hi=Math.max(...path),rg=(hi-lo)||1;
+  const s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','0 0 '+w+' '+h);s.setAttribute('aria-hidden','true');
+  const pts=path.map((v,i)=>(i/(path.length-1)*(w-4)+2).toFixed(1)+','+(h-3-(v-lo)/rg*(h-6)).toFixed(1)).join(' ');
+  const pl=document.createElementNS(NS,'polyline');pl.setAttribute('points',pts);pl.setAttribute('fill','none');pl.setAttribute('stroke-width','2');pl.setAttribute('stroke-linejoin','round');
+  pl.setAttribute('stroke',up?'#00f59b':'#ff5c7a');s.append(pl);return s;
+}
 function card(r){
-  const c=el('div','sig '+r.action);const top=el('div','top');
-  top.append(el('span',null,et.format(new Date(r.posted))+' ET'),el('span','ch',r.channel||''));c.append(top);
+  const lo=r.live&&r.live.opt,lu=r.live&&r.live.und,chg=lo&&lo.chg_pct!=null?lo.chg_pct:null;
+  const fresh=Date.now()-r._t<15*60000;
+  const c=el('div','sig '+r.action+(chg!=null?(chg>=0?' up':' down'):'')+(lo&&lo.peak_pct>=100?' big':'')+(fresh?' fresh':'')+(r._new?' flash':''));
+  const top=el('div','top');
+  top.append(el('span',null,et.format(new Date(r.posted))+' ET'),el('span','age',ago(Date.now()-r._t)),el('span','ch',r.channel||''));c.append(top);
   const k=el('div','k');k.append(el('span','t','$'+r.ticker),document.createTextNode(contract(r)));c.append(k);
   const ch=el('div','chips');ch.append(el('span','chip',r.action));
   const oc=outcomeChip(r);if(oc)ch.append(el('span','chip '+oc[0],oc[1]));
   if(r.action==='close'&&r.result_pct!=null)ch.append(el('span','chip claim','claimed '+(r.result_pct>=0?'+':'')+r.result_pct+'%'));
+  if(lu&&lu.chg_pct!=null)ch.append(el('span','chip '+(lu.chg_pct>=0?'up':'down'),r.ticker+' '+sgn(lu.chg_pct)+' since call'));
+  if(lo&&lo.vs_quote_pct!=null&&!lo.daily_only)ch.append(el('span','chip claim','vs quoted entry '+sgn(lo.vs_quote_pct)));
+  if(lo&&lo.daily_only)ch.append(el('span','chip claim','last close '+lo.now+(lo.vs_quote_pct!=null?' ('+sgn(lo.vs_quote_pct)+' vs quote)':'')));
+  if(lo&&!lo.daily_only&&MKT==='open'&&Date.now()/1000-lo.last_t>900)ch.append(el('span','chip stale','thin, last print '+ago(Date.now()-lo.last_t*1000)));
   if(echo(r))ch.append(el('span','chip','repeat post'));c.append(ch);
+  if(lo&&!lo.daily_only&&chg!=null){
+    const p=el('div','pnl'),l=el('div');
+    l.append(el('b',chg>=0?'up':'down',sgn(chg)));
+    l.append(el('small',null,'tape '+lo.at_call+' → '+lo.now+' since the post'+(lo.peak_pct!=null?' · peak '+sgn(lo.peak_pct)+' · low '+sgn(lo.low_pct):'')));
+    p.append(l);if(lo.path&&lo.path.length>2)p.append(spark(lo.path,chg>=0));c.append(p);
+  }
   if(r.text){c.append(el('p','orig',r.text))}
   return c;
 }
@@ -228,7 +275,7 @@ function render(reset){
   if(!rows.length){f.hidden=false;tb.hidden=true;f.innerHTML='';f.append(el('div','empty','No callouts match these filters.'));$('more').hidden=true;return}
   if(MODE==='feed'){
     rows.sort((a,b)=>b._t-a._t);
-    if(reset)f.innerHTML='';const next=rows.slice(SHOWN,SHOWN+STEP);next.forEach(r=>f.append(card(r)));SHOWN+=next.length;
+    if(reset)f.innerHTML='';const next=rows.slice(SHOWN,SHOWN+(LIM||STEP));LIM=0;next.forEach(r=>f.append(card(r)));SHOWN+=next.length;
     $('more').hidden=SHOWN>=rows.length;$('more').textContent='Show more ('+(rows.length-SHOWN)+' left)';return;
   }
   let v;if(MODE==='table')v=viewTable(rows);else if(MODE==='group')v=viewGroup(rows);else v=viewPivot(rows);
@@ -265,7 +312,43 @@ document.querySelectorAll('#tabs button[data-m]').forEach(b=>b.addEventListener(
   SORT=MODE==='table'?{k:'posted',d:-1}:{k:'count',d:-1};render(true)}));
 $('csv').addEventListener('click',csv);
 $('more').addEventListener('click',()=>{if(MODE==='feed')render(false);else{SHOWN+=STEP*3;render(false)}});
-load();
+/* ---------- live feed ---------- */
+const key=r=>[r.channel,r.posted,r.ticker,r.strike,r.action].join('|');
+function renderHeat(hot){
+  const h=$('heat');h.innerHTML='';
+  (hot||[]).forEach(t=>{
+    const b=el('button','hot'+(t.calls>t.puts*1.5?' bull':t.puts>t.calls*1.5?' bear':'')+($('fq').value.toUpperCase()===t.ticker?' on':''));b.type='button';
+    b.append(document.createTextNode('$'+t.ticker+(t.und_now?'  '+t.und_now:'')));
+    b.append(el('small',null,(t.n_60m?t.n_60m+' in 1h · ':'')+t.n_24h+' in 24h · '+t.chans+' ch · '+t.calls+'C/'+t.puts+'P'));
+    b.addEventListener('click',()=>{$('fq').value=$('fq').value.toUpperCase()===t.ticker?'':t.ticker;MODE='feed';document.querySelectorAll('#tabs button[data-m]').forEach(x=>x.classList.toggle('on',x.dataset.m==='feed'));renderHeat(hot);render(true)});
+    h.append(b);
+  });
+}
+let FIRST=true;
+async function pollLive(){
+  try{
+    const d=await (await fetch('/api/funnel-live.json',{cache:'no-store'})).json();
+    const idx=new Map(ALL.map(r=>[key(r),r]));let added=0;
+    (d.calls||[]).forEach(c=>{
+      const r=idx.get(key(c));
+      if(r){r.live=c.live;if(c.outcome)r.outcome=c.outcome}
+      else{const n=enrich(c);n._new=!FIRST;ALL.push(n);idx.set(key(n),n);added++}
+    });
+    MKT=d.market;LASTLIVE=Date.now();
+    const m=$('mkt');m.className='pill '+(d.market==='open'?'open':d.market==='pre'||d.market==='after'?d.market:'off');
+    $('mkttxt').textContent=d.market==='open'?'Live':d.market==='pre'?'Pre-market':d.market==='after'?'After hours':'Market closed';
+    const gen=new Date(d.generated_at);
+    $('liveinfo').textContent='Feed refreshed '+et.format(gen)+' ET · polls '+d.channels_polled+'/'+d.channels_total+' channels · auto-updates every minute'+(added?' · '+added+' new':'');
+    renderHeat(d.hot_tickers);
+    const last=ALL.length?Math.max(...ALL.map(r=>r._t)):null;const kb=document.querySelector('#kpis .kpi:nth-child(3) b');if(kb&&last)kb.textContent=ago(Date.now()-last);
+    if(MODE==='feed'){LIM=Math.max(SHOWN,STEP);SHOWN=0;$('feed').innerHTML='';render(false)}
+    ALL.forEach(r=>{r._new=false});FIRST=false;
+  }catch(e){$('liveinfo').textContent='Live feed unavailable, showing the last daily build.'}
+}
+setInterval(()=>{if(!document.hidden)pollLive()},60000);
+setInterval(()=>{if(!document.hidden&&MODE==='feed'&&!ALL.some(r=>r._new)){LIM=Math.max(SHOWN,STEP);SHOWN=0;$('feed').innerHTML='';render(false)}},30000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-LASTLIVE>45000)pollLive()});
+load().then(pollLive);
 </script>
 </body>
 </html>
