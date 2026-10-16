@@ -2539,7 +2539,7 @@
                   "tools": [
                     {
                       "name": "get_market_tape",
-                      "description": "Retrieve real-time macro tape overview: whale cash reserves ($8.98M dry powder), intraday net P&L, equity/ETF allocation split, and top capital inflow & reta...",
+                      "description": "Retrieve real-time macro tape overview: whale cash reserves (dry powder), intraday net P&L, equity/ETF allocation split, and top capital inflow & retail brea...",
                       "inputSchema": {
                         "type": "object",
                         "properties": {},

@@ -256,7 +256,7 @@ Generated from `mcp_server.py` by `scripts/gen_openapi.py`; never edit between t
 
 ### 1. `get_market_tape`
 
-Retrieve real-time macro tape overview: whale cash reserves ($8.98M dry powder), intraday net P&L, equity/ETF allocation split, and top capital inflow & retail breadth leaders from AfterHour terminal.
+Retrieve real-time macro tape overview: whale cash reserves (dry powder), intraday net P&L, equity/ETF allocation split, and top capital inflow & retail breadth leaders from AfterHour terminal.
 
 _No parameters._
 

@@ -1085,6 +1085,7 @@ python3 aftermath_mcp.py</code></pre>
 
     // ---- schema-driven tool catalog + real sandbox ----
     const MCP_URL = '/api/mcp';
+    const MCP_PUBLIC = 'https://ah.mphinance.com' + MCP_URL;
     let MCP_TOOLS = [];
 
     function el(tag, cls, text) {
@@ -1122,7 +1123,7 @@ python3 aftermath_mcp.py</code></pre>
     }
 
     function curlFor(name, args) {
-      return "curl -s -X POST " + location.origin + MCP_URL + " \\\n  -H 'Content-Type: application/json' \\\n  -d '" + JSON.stringify(rpcBody(name, args)) + "'";
+      return "curl -s -X POST " + MCP_PUBLIC + " \\\n  -H 'Content-Type: application/json' \\\n  -d '" + JSON.stringify(rpcBody(name, args)) + "'";
     }
 
     function paramTable(tool) {

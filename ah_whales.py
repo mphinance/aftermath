@@ -121,7 +121,10 @@ def atomic_write(path, obj):
 
 
 def roster():
-    ws = json.load(open(API / "whales.json"))["whales"]
+    src = API / "whales.json"
+    if not src.exists() and os.environ.get("PUBLISH_DIR"):  # server checkout is sparse; the census lives in the webroot
+        src = Path(os.environ["PUBLISH_DIR"]) / "whales.json"
+    ws = json.load(open(src))["whales"]
     ws = sorted(ws, key=lambda w: w.get("total_value") or 0, reverse=True)
     return [{"username": w["username"], "pid": w["profile_id"], "rank": i} for i, w in enumerate(ws) if w.get("profile_id")]
 
