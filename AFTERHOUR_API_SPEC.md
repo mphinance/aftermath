@@ -45,6 +45,8 @@ Fetches the ranked list of securities displayed on the mobile app's **Top Stocks
 - **Query Parameters**:
   - `take` *(integer, optional)*: Number of items to return. Min `1`, Max `50`. Defaults to `15`.
   - `cursor` *(integer, optional)*: Offset pagination cursor (`0`, `50`, `100`, ...).
+  - `sortOrder` *(enum, optional)*: `TRENDING`, `WATCHERS`, `OWNERS`, `GAINERS`, `LOSERS`. Anything else is a 400 "Invalid sort order".
+  - `timeRange` *(enum, optional)*: `DAY`, `WEEK`, `MONTH`, `THREE_MONTH` (`THREEMONTH` also accepted), `YEAR_TO_DATE`. Unknown values silently fall back to `DAY`. `GAINERS` with a non-`DAY` range returns 504; `LOSERS` with `THREEMONTH`/`YEAR_TO_DATE` returns empty.
 - **Total Universe**: **16,378** securities tracked.
 
 #### Response Structure
@@ -157,22 +159,25 @@ Fetches aggregate community exposure and metadata for a specific ticker (e.g. `N
 Fetches real-time price snapshots for up to 50 tickers in a single HTTP call.
 
 - **Query Parameters**:
-  - `tickers` *(string, required)*: Comma-separated list of symbols (e.g. `NVDA,TSLA,SPY,AAPL`).
-- **Response**:
+  - `symbols` *(string, required)*: Comma-separated list of symbols (e.g. `NVDA,TSLA,SPY,AAPL`). **Not `tickers`**: `?tickers=NVDA` silently returns `{"prices":[]}`.
+- **Response**: `prices` is an **array** keyed by `symbol` (not a dict). Unknown symbols come back `null`. Percent fields are in percent units.
   ```json
   {
-    "prices": {
-      "NVDA": {
-        "price": 233.95,
-        "asOf": "2026-10-02T21:23:59.980Z",
-        "session": { "changePercent": 1.338, "volume": 48210390 }
-      },
-      "TSLA": {
-        "price": 370.53,
-        "asOf": "2026-10-02T21:23:58.120Z",
-        "session": { "changePercent": 4.641, "volume": 61289100 }
+    "prices": [
+      {
+        "symbol": "NVDA",
+        "price": 216.505,
+        "asOf": "2026-10-16T15:27:49.494Z",
+        "version": 1,
+        "session": {
+          "open": 216.56, "high": 218.631, "low": 215.159, "close": 216.559,
+          "previousClose": 217.23, "volume": 42097988,
+          "change": -0.598, "changePercent": -0.275,
+          "earlyTradingChange": -0.95, "earlyTradingChangePercent": -0.437,
+          "lateTradingChange": 0.871, "lateTradingChangePercent": 0.402
+        }
       }
-    }
+    ]
   }
   ```
 
@@ -363,7 +368,7 @@ class AfterHourClient:
         return self._get(f"/stonks/security/ticker/{symbol}")
 
     def get_prices(self, symbols: list[str]) -> dict:
-        return self._get(f"/stonks/tickers/prices?tickers={','.join(symbols)}")
+        return self._get(f"/stonks/tickers/prices?symbols={','.join(symbols)}")
 
     def get_historic_bars(self, security_id: str, start_iso: str, end_iso: str, timespan: str = "day") -> list[dict]:
         endpoint = f"/stonks/security/{security_id}/historic_prices?multiplier=1&timespan={timespan}&start={start_iso}&end={end_iso}"
@@ -376,3 +381,26 @@ class AfterHourClient:
     def get_post_details(self, post_hash: str) -> dict:
         return self._get(f"/public/post/{post_hash}")
 ```
+
+
+---
+
+## 10. Additional public endpoints and corrections (from the app RE)
+
+Found by decompiling the Android app (`reverse-engineering/`). All verified unauthenticated GETs.
+
+| Endpoint | Notes |
+| :--- | :--- |
+| `GET /stonks/security/trending?take=N` | Trending securities, leaderboard shape. (`/stonks/security/trendingSecurities` is a 404; ignore it.) |
+| `GET /stonks/security/follow-suggestions` | Securities with `ownersSample`, ~48KB |
+| `GET /stonks/market/hours/{date}` | `closed[]` windows; `status` is `open`, `early-close` or `closed` |
+| `GET /app-info?appId=com.afterhour&version=4.6.4&platform=android&buildNumber=88` | Remote flags (`DEFAULT_FEED`) and `requireUpdate` / `recommendUpdate`. Cheap monitor for app changes |
+| `GET /public/profile?username=` | Resolves `prf_` id; replaces the dead `afterhour.com/<user>` scrape |
+| `GET /sitemap/profiles`, `GET /sitemap/posts?take&cursor` | Enumerate profiles / posts |
+| `GET /stonks/security/{sec_id}`, `/stonks/securities/prices`, `/stonks/securities/historic_prices` | Also open without a token |
+
+`/social/feed` enums: `sortMethod` = `newest | for_you | trending` (`trending` returns 400 "deprecated"); `filterMethod` = `following | everyone | verified | positions_only` (`everyone` is identical to omitting it); `contentTypes` = `post | trade | trade_collection` and only `post` returns data without auth; `take` 1..100.
+
+Auth-only (401): `/search`, `/stonks/search`, `/profiles/leaderboard/suggested-follows`, `/stonks/security/suggested-follows`, `/stonks/security/{sec_id}/owners`, `/onboarding-info`, `/profile-settings`, `/currency/*`, `/orders/*`.
+
+Further detail lives in the local-only `reverse-engineering/` directory.
