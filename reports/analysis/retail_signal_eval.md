@@ -43,6 +43,6 @@ By year (attention, pre-window): 2023 −1.9% (n=93), 2024 +1.2%, 2025 −6.8% (
 - Real independence is about 18 two-month blocks, not 21k events.
 
 ## What would settle it
-1. **Daily archive of `stonks.json` (owners / whale capital per ticker).** Only 2 snapshots exist today, so the positioning question (as opposed to posting) cannot be tested at all yet.
+1. **Positioning history.** Started 2026-10-19: `ah_positioning.py` snapshots the verified-owner leaderboard every weekday (owners and $ held per ticker, top 1,200). The positioning question needs about 3 months of it before a first read (~2027-01).
 2. Re-run on the broad AfterHour population (`/social/feed` + `ah_archive`) rather than 42 followed accounts.
 3. Out of sample: freeze this method and read it on posts from 2026-10-19 onward. Re-run monthly; the first meaningful read is about 2027-01. Do not tune the crowding threshold on the in-sample numbers above.
