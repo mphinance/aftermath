@@ -107,6 +107,15 @@ svg.chart{width:100%;height:clamp(160px,32vw,260px);display:block;touch-action:n
 .sbar{height:6px;border-radius:3px;background:var(--panel2);overflow:hidden;margin-top:3px}
 .sbar i{display:block;height:100%;background:var(--accent)}
 .empty{padding:24px;text-align:center;color:var(--mute)}
+.bstrip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 0 var(--gap);align-items:stretch}
+.bstrip::-webkit-scrollbar{display:none}
+.bchip{flex:0 0 auto;display:flex;flex-direction:column;min-width:84px;padding:6px 10px;background:var(--panel);border:1px solid var(--line);border-radius:10px;color:var(--text);text-decoration:none!important}
+.bchip.hot{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}
+.bchip b{font-size:13px}.bchip span{font-size:12px;color:var(--mute)}
+.bchip.more{justify-content:center;color:var(--accent);min-width:auto}
+.fresh{display:inline-flex;align-items:center;gap:6px;font-size:12.5px}
+.flagrow{font-size:12.5px;color:var(--mute);margin:6px 0 0}
+.flagrow b{color:var(--warn);font-weight:600}
 .skeleton{height:14px;border-radius:6px;background:linear-gradient(90deg,var(--panel2),var(--line),var(--panel2));background-size:200% 100%;animation:sh 1.2s infinite;margin:10px 0}
 @keyframes sh{to{background-position:-200% 0}}
 button.more{width:100%;margin-top:var(--gap);padding:10px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;cursor:pointer}
@@ -122,6 +131,7 @@ footer{max-width:1100px;margin:0 auto;padding:0 var(--pad) var(--pad);font-size:
     <span class="spacer"></span>
     <nav class="tabs" id="tabs" aria-label="Sections">
       <a href="#/feed" data-tab="feed">Feed</a>
+      <a href="#/buzz" data-tab="buzz">Buzz</a>
       <a href="#/board" data-tab="board">Leaderboard</a>
       <a href="#/whales" data-tab="whales">Whales</a>
     </nav>
@@ -166,6 +176,19 @@ async function api(path, params = {}) {
   throw last;
 }
 async function staticJson(p) { const r = await fetch(p); if (!r.ok) throw new Error(p); return r.json(); }
+/* static JSON shared across views; refetched once older than ttl (ms) */
+const _once = {};
+function once(p, ttl = 300000) {
+  const h = _once[p];
+  if (h && Date.now() - h.t < ttl) return h.p;
+  const e = { t: Date.now(), p: staticJson(p) };
+  e.p.catch(() => { if (_once[p] === e) delete _once[p]; });
+  _once[p] = e;
+  return e.p;
+}
+const dayAge = iso => iso ? (Date.now() - new Date(iso)) / 864e5 : null;
+const dayLabel = iso => { const d = dayAge(iso); return d == null ? "unknown" : d < 1 ? "today" : Math.floor(d) + "d ago"; };
+const flagWord = "flagged for investigation, not a finding of fraud";
 
 /* status pill */
 let lastOk = 0;
@@ -286,8 +309,9 @@ function feedView(opts = {}) {
   const secId = opts.securityId;
   const holder = opts.into || view;
   const seen = new Set();
-  holder.innerHTML = `${opts.into ? "" : `<div class="pills" id="fpills"><button data-f="everyone">Everyone</button><button data-f="verified">Verified</button></div>`}<div class="panel" id="feedbox"><div class="skeleton"></div></div>`;
+  holder.innerHTML = `${opts.into ? "" : `<div class="bstrip" id="bstrip" aria-label="Most talked about right now"></div><div class="pills" id="fpills"><button data-f="everyone">Everyone</button><button data-f="verified">Verified</button></div>`}<div class="panel" id="feedbox"><div class="skeleton"></div></div>`;
   const box = $("#feedbox", holder);
+  if (!opts.into) buzzStrip();
   let cursor = null;
   const params = () => ({ contentTypes: "post", sortMethod: "newest", take: opts.take || 20, filterMethod: filter === "verified" ? "verified" : null, securityId: secId, authorId: opts.authorId });
   const sync = () => $("#fpills")?.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.f === filter));
@@ -314,6 +338,51 @@ function feedView(opts = {}) {
   }, opts.every || 5000);
   const t = setInterval(() => holder.querySelectorAll(".post").forEach(p => { const a = p.querySelector(".age"); if (a) a.textContent = ago(p.dataset.ts); }), 15000);
   pollers.push({ stop() { clearInterval(t); } });
+}
+
+/* BUZZ: what AH is talking about (api/sentiment.json, rebuilt every 5 min server-side) */
+function buzzRows(s, win) {
+  const b = s.buzz?.[win] || {}, W = s.windows?.[win] || {}, depth = b.archive_depth_days ?? 0;
+  const zOk = depth >= 3;  // a z-score against under 3 days of archive is noise
+  const tick = b.tickers || Object.fromEntries(Object.entries(W).map(([t, w]) => [t, { mentions: w.n_posts }]));
+  return { depth, zOk, rows: Object.entries(tick).map(([t, x]) => {
+    const w = W[t] || {}, z = zOk && x.z != null ? x.z : null;
+    return { t, n: x.mentions ?? w.n_posts ?? 0, base: x.baseline_mean, z, hot: z != null && z >= 3 && (x.mentions ?? 0) >= 3, w,
+      flagged: (w.flags?.funnel_list_authors || []).length };
+  }) };
+}
+async function buzzStrip() {
+  const el = $("#bstrip"); if (!el) return;
+  try {
+    const { rows, zOk } = buzzRows(await once("/api/sentiment.json"), "24h");
+    const top = rows.filter(r => r.n >= 3).sort((a, b) => (b.hot - a.hot) || ((b.z ?? -9) - (a.z ?? -9)) || b.n - a.n).slice(0, 10);
+    if (!top.length || !$("#bstrip")) { el.remove(); return; }
+    el.innerHTML = top.map(r => `<a class="bchip${r.hot ? " hot" : ""}" href="#/t/${encodeURIComponent(r.t)}" title="${r.n} posts in 24h${r.z != null ? ", z " + fmt(r.z, 1) + " vs baseline" : ""}">
+      <b>${r.hot ? "🔥 " : ""}$${esc(r.t)}</b><span class="mono">${r.n} posts${r.z != null ? " · z " + fmt(r.z, 1) : ""}</span></a>`).join("") + '<a class="bchip more" href="#/buzz">All buzz →</a>';
+  } catch { el.remove(); }
+}
+function buzzView() {
+  const st = store.get("buzz", { win: "24h", sort: "z" });
+  view.innerHTML = `<div class="pills" id="bw">${["24h", "72h", "7d"].map(w => `<button data-w="${w}" aria-pressed="${w === st.win}">${w}</button>`).join("")}</div>
+    <div class="pills" id="bs"><button data-s="z" aria-pressed="${st.sort === "z"}">Hottest (vs baseline)</button><button data-s="n" aria-pressed="${st.sort === "n"}">Most posts</button><button data-s="calls" aria-pressed="${st.sort === "calls"}">Calls opened</button></div>
+    <div class="panel" id="bx"><div class="skeleton"></div></div><p class="note" id="bn"></p>`;
+  $("#bw").onclick = e => { const b = e.target.closest("button"); if (b) { store.set("buzz", { ...st, win: b.dataset.w }); route(); } };
+  $("#bs").onclick = e => { const b = e.target.closest("button"); if (b) { store.set("buzz", { ...st, sort: b.dataset.s }); route(); } };
+  poll(async () => {
+    const s = await once("/api/sentiment.json", 60000);
+    const { rows, depth, zOk } = buzzRows(s, st.win);
+    const key = { z: r => r.z ?? -99, n: r => r.n, calls: r => r.w.calls_opened ?? 0 }[st.sort];
+    const list = rows.filter(r => r.n >= 2).sort((a, b) => key(b) - key(a) || b.n - a.n).slice(0, 60);
+    $("#bx").innerHTML = list.length ? `<table class="tbl"><thead><tr><th>Ticker</th><th>Posts</th><th class="hide-sm">vs baseline</th><th class="hide-sm">Authors</th><th>Bull / bear</th><th class="hide-sm">Calls / puts</th><th class="hide-sm">Confidence</th></tr></thead><tbody>${list.map(r => {
+      const w = r.w;
+      return `<tr data-go="#/t/${encodeURIComponent(r.t)}"><td><b>${r.hot ? "🔥 " : ""}$${esc(r.t)}</b>${r.flagged >= 2 || (r.flagged && r.flagged / (w.n_authors || 1) >= 0.2) ? `<span class="sub" title="${esc(r.flagged + " authors on the telegramscammers.com list, " + flagWord)}">⚑ ${r.flagged} flagged author${r.flagged === 1 ? "" : "s"}</span>` : ""}</td>
+        <td class="mono">${r.n}</td><td class="mono hide-sm ${r.z == null ? "mute" : r.z >= 2 ? "up" : ""}">${r.z == null ? "n/a" : "z " + fmt(r.z, 1)}</td><td class="hide-sm">${esc(w.n_authors ?? "")}</td>
+        <td class="mono">${w.n_directional_votes ? `<span class="up">${w.bull}</span> / <span class="down">${w.bear}</span>` : '<span class="mute">no votes</span>'}</td>
+        <td class="mono hide-sm">${w.calls_opened ?? 0} / ${w.puts_opened ?? 0}</td><td class="hide-sm">${esc(w.confidence || "n/a")}</td></tr>`;
+    }).join("")}</tbody></table>` : '<div class="empty">Nothing is being talked about in that window.</div>';
+    $("#bn").innerHTML = `Public AfterHour posts, ${esc(st.win)} window. Archive depth ${fmt(depth, 1)} days${zOk ? "" : " (baseline needs 3+ days, so no z-scores yet)"}; ${esc(s.archive?.posts ?? "n/a")} posts archived, newest ${esc(dayLabel(s.archive?.newest))}.
+      Direction only counts explicit CALL or PUT opens (about a quarter of posts), one vote per author per day, so read bull/bear next to the confidence column. ⚑ = authors on the <a href="https://telegramscammers.com" target="_blank" rel="noopener noreferrer">telegramscammers.com</a> list, ${esc(flagWord)}. Not advice.`;
+  }, 120000);
 }
 
 /* LEADERBOARD */
@@ -364,7 +433,7 @@ function lineChart(el, pts, up) {
 }
 async function tickerView(S) {
   S = sym(S);
-  view.innerHTML = `<div class="panel" id="th"><div class="skeleton"></div></div><div class="grid2" style="margin-top:var(--gap)"><div class="panel"><h2>Chart</h2><div class="pills" id="cr"></div><div id="ch"></div></div><div class="panel" id="sent"><h2>Retail chatter</h2><div class="skeleton"></div></div></div><h2 style="margin:16px 0 8px">Posts about $${esc(S)}</h2><div id="tposts"></div>`;
+  view.innerHTML = `<div class="panel" id="th"><div class="skeleton"></div></div><div class="grid2" style="margin-top:var(--gap)"><div class="panel"><h2>Chart</h2><div class="pills" id="cr"></div><div id="ch"></div></div><div class="panel" id="sent"><h2>Retail chatter</h2><div class="skeleton"></div></div></div><div class="panel" id="wvc" style="margin-top:var(--gap)"><h2>Whales vs the crowd</h2><div class="skeleton"></div></div><h2 style="margin:16px 0 8px">Posts about $${esc(S)}</h2><div id="tposts"></div>`;
   let ov;
   try { ov = await api("stonks/security/ticker/" + encodeURIComponent(S)); } catch (e) { return fail(e, () => tickerView(S)); }
   const sec = ov.security || {}, id = sec.id;
@@ -399,12 +468,38 @@ async function tickerView(S) {
   $("#cr").onclick = e => { const b = e.target.closest("button"); if (b) { rng = b.dataset.r; store.set("range", rng); drawChart(); } };
   drawChart();
 
-  staticJson("/api/sentiment.json").then(s => {
-    const r = s.windows?.["24h"]?.[S];
-    $("#sent").innerHTML = `<h2>Retail chatter</h2>` + (r ? `<div class="kpis"><div class="kpi"><div class="l">Posts (24h)</div><div class="v">${r.n_posts}</div></div><div class="kpi"><div class="l">Authors</div><div class="v">${r.n_authors}</div></div>
+  const sentP = once("/api/sentiment.json").catch(() => null);
+  sentP.then(s => {
+    if (!s) { $("#sent").innerHTML = `<h2>Retail chatter</h2><p class="note">Sentiment data unavailable.</p>`; return; }
+    const r = s.windows?.["24h"]?.[S], z = buzzRows(s, "24h").rows.find(x => x.t === S)?.z;
+    const fl = r?.flags || {}, nf = (fl.funnel_list_authors || []).length, nb = (fl.bio_telegram_authors || []).length;
+    const flags = r ? [nf ? `<b>${nf} of ${r.n_authors} authors</b> are on the <a href="https://telegramscammers.com" target="_blank" rel="noopener noreferrer">telegramscammers.com</a> list (${flagWord})` : "",
+      nb && nb !== nf ? `${nb} have a Telegram link in their bio` : "", fl.duplicate_text_posts ? `${fl.duplicate_text_posts} duplicate-text posts` : "",
+      fl.low_follower_author_share >= 0.5 ? `${Math.round(fl.low_follower_author_share * 100)}% of authors have very few followers` : ""].filter(Boolean) : [];
+    $("#sent").innerHTML = `<h2>Retail chatter</h2>` + (r ? `<div class="kpis"><div class="kpi"><div class="l">Posts (24h)</div><div class="v">${r.n_posts}${z != null ? ` <span class="${z >= 2 ? "up" : "mute"}" style="font-size:12px">z ${fmt(z, 1)}</span>` : ""}</div></div><div class="kpi"><div class="l">Authors</div><div class="v">${r.n_authors}</div></div>
       <div class="kpi"><div class="l">Bull / bear votes</div><div class="v"><span class="up">${r.bull}</span> / <span class="down">${r.bear}</span></div></div><div class="kpi"><div class="l">Calls / puts opened</div><div class="v">${r.calls_opened} / ${r.puts_opened}</div></div></div>
-      <p class="note">Confidence: ${esc(r.confidence)} (${r.n_voting_authors} voting authors). Direction only counts explicit CALL/PUT opens; most posts are neutral. Not a signal on its own.</p>` : `<p class="note">No public posts mention $${esc(S)} in the last 24h.</p>`);
-  }).catch(() => { $("#sent").innerHTML = `<h2>Retail chatter</h2><p class="note">Sentiment data unavailable.</p>`; });
+      <p class="note">Confidence: ${esc(r.confidence)} (${r.n_voting_authors} voting authors). Direction only counts explicit CALL/PUT opens; most posts are neutral. Not a signal on its own.</p>${flags.length ? `<p class="flagrow">⚑ ${flags.join(" · ")}</p>` : ""}` : `<p class="note">No public posts mention $${esc(S)} in the last 24h.</p>`);
+  });
+
+  /* whale capital vs crowd attention: snapshot of the verified 500, owners count above is live */
+  Promise.all([once("/api/stonks.json", 3600000), once("/api/market.json", 3600000).catch(() => null), sentP]).then(([st, mk, s]) => {
+    const r = (st.securities || []).find(x => x.ticker === S), box = $("#wvc");
+    const asof = mk?.timestamp, age = dayAge(asof);
+    if (!r) { box.innerHTML = `<h2>Whales vs the crowd</h2><p class="note">$${esc(S)} is outside the 500 securities we rank by verified whale capital, so there is no whale data to compare.</p>`; return; }
+    const share = r.totalValue ? r.whalesValue / r.totalValue * 100 : null, top = r.whalesValue ? r.topWhaleValue / r.whalesValue * 100 : null;
+    const gap = (r.rankOwners ?? 0) - (r.rankWhaleCapital ?? 0);
+    const read = !r.whalesCount ? "No verified whale holds it. This is all crowd."
+      : gap >= 50 ? "Whales hold it far harder than the crowd does: it ranks #" + r.rankWhaleCapital + " by whale capital but only #" + r.rankOwners + " by owners."
+      : gap <= -50 ? "Crowd favorite with thin whale money: #" + r.rankOwners + " by owners, #" + r.rankWhaleCapital + " by whale capital."
+      : "Whales and the crowd roughly agree (#" + r.rankWhaleCapital + " by whale capital, #" + r.rankOwners + " by owners).";
+    const posts = s?.windows?.["24h"]?.[S]?.n_posts;
+    box.innerHTML = `<h2>Whales vs the crowd</h2><p style="margin:0 0 8px"><b>${esc(read)}</b></p>
+      <div class="kpis"><div class="kpi"><div class="l">Whales holding</div><div class="v">${esc(r.whalesCount)}</div></div><div class="kpi"><div class="l">Whale capital</div><div class="v">${money(r.whalesValue)}</div></div>
+      <div class="kpi"><div class="l">Whale share of AH-held $</div><div class="v">${share == null ? "n/a" : fmt(share, 0) + "%"}</div></div>
+      <div class="kpi"><div class="l">Biggest whale</div><div class="v">${r.topWhale ? `<a href="#/w/${encodeURIComponent(r.topWhale)}">@${esc(r.topWhale)}</a> <span class="mute" style="font-size:12px">${money(r.topWhaleValue)}${top != null ? " · " + fmt(top, 0) + "% of whale $" : ""}</span>` : "n/a"}</div></div>
+      <div class="kpi"><div class="l">Owners (live / snapshot)</div><div class="v">${esc(fmt(ov.ownerCount ?? 0, 0))} / ${esc(fmt(r.owners ?? 0, 0))}</div></div><div class="kpi"><div class="l">Chatter (24h posts)</div><div class="v">${posts ?? 0}</div></div></div>
+      <p class="note">Whale figures are a snapshot of verified broker portfolios${asof ? " from " + esc(asof.slice(0, 10)) + " (" + dayLabel(asof) + ")" : ""}${age > 7 ? ", so treat them as stale" : ""}. ${top != null && top >= 50 ? `One whale is ${fmt(top, 0)}% of the whale money here, so this is closer to one big bet than a consensus. ` : ""}Holding size is not direction. Not advice.</p>`;
+  }).catch(() => { $("#wvc").innerHTML = `<h2>Whales vs the crowd</h2><p class="note">Whale data unavailable.</p>`; });
 
   feedView({ securityId: id, into: $("#tposts"), take: 15, every: 8000 });
 }
@@ -415,8 +510,9 @@ async function whalesView() {
   try {
     const d = await staticJson("/api/whales.json");
     const w = (d.whales || []).slice(0, 100);
-    view.innerHTML = `<div class="panel"><h1>Verified whales</h1><p class="note">Broker-verified public portfolios, ranked by total value. Click one for the live-priced portfolio.</p>
-      <table class="tbl"><thead><tr><th>Whale</th><th>Value</th><th class="hide-sm">Followers</th><th class="hide-sm">$/follower</th></tr></thead><tbody>${w.map((x, i) => `<tr data-go="#/w/${encodeURIComponent(x.username)}"><td><b>${i + 1}. @${esc(x.username)}</b><span class="sub">${esc(x.positions_count)} positions</span></td><td class="mono">${money(x.total_value)}</td><td class="hide-sm">${esc(fmt(x.followers ?? 0, 0))}</td><td class="hide-sm">${esc(money(x.shadow_ratio))}</td></tr>`).join("")}</tbody></table></div>`;
+    const snap = (d.whales || []).reduce((m, x) => x.verified_as_of && x.verified_as_of > m ? x.verified_as_of : m, ""), sa = dayAge(snap);
+    view.innerHTML = `<div class="panel"><h1>Verified whales</h1>${snap ? `<div class="${sa > 3 ? "warn" : "note"}">List snapshot from ${esc(snap.slice(0, 10))} (${dayLabel(snap)}). Values below are frozen at that moment; open a whale for live prices and the date its broker last synced.</div>` : ""}<p class="note">Broker-verified public portfolios, ranked by total value. Click one for the live-priced portfolio.</p>
+      <table class="tbl"><thead><tr><th>Whale</th><th>Value (snapshot)</th><th class="hide-sm">Followers</th><th class="hide-sm">$/follower</th></tr></thead><tbody>${w.map((x, i) => `<tr data-go="#/w/${encodeURIComponent(x.username)}"><td><b>${i + 1}. @${esc(x.username)}</b><span class="sub">${esc(x.positions_count)} positions</span></td><td class="mono">${money(x.total_value)}</td><td class="hide-sm">${esc(fmt(x.followers ?? 0, 0))}</td><td class="hide-sm">${esc(money(x.shadow_ratio))}</td></tr>`).join("")}</tbody></table></div>`;
   } catch (e) { fail(e, whalesView); }
 }
 async function whaleView(U) {
@@ -430,10 +526,11 @@ async function whaleView(U) {
     view.innerHTML = head + '<div id="pf" style="margin-top:var(--gap)"><div class="panel"><div class="skeleton"></div></div></div><h2 style="margin:16px 0 8px">Recent posts</h2><div id="uposts"></div>';
     poll(async () => {
       const d = await api(`stonks/public/portfolio/${prof.id}/summary/live`);
-      const tv = d.totalValue || 0, synced = d.lastSyncedAt ? new Date(d.lastSyncedAt) : null, stale = synced && (Date.now() - synced) / 864e5 > 14;
+      const tv = d.totalValue || 0, synced = d.lastSyncedAt ? new Date(d.lastSyncedAt) : null, sd = synced ? dayAge(synced) : null, stale = sd != null && sd > 14;
+      const tier = sd == null ? "bad" : sd < 3 ? "ok" : sd <= 14 ? "stale" : "bad";
       const pos = (d.positionSnapshots || []).slice().sort((a, b) => (b.value || 0) - (a.value || 0));
       $("#pf").innerHTML = `${stale ? `<div class="warn">Positions were last synced from the broker on ${esc(synced.toISOString().slice(0, 10))}. Quantities may be out of date; prices are live.</div>` : ""}
-        <div class="panel"><div class="kpis"><div class="kpi"><div class="l">Total value</div><div class="v">${money(tv)}</div></div><div class="kpi"><div class="l">Today</div><div class="v ${cls(d.profitToday)}">${money(d.profitToday)} (${pct(d.profitTodayPercent)})</div></div>
+        <div class="panel"><div class="row" style="margin-bottom:6px"><span class="pill fresh" title="When this whale's broker last sent positions. Prices are live; share counts are as of this sync."><span class="dot ${tier}"></span>${synced ? "broker synced " + dayLabel(synced) + " (" + esc(synced.toISOString().slice(0, 10)) + ")" : "broker sync date unknown"}</span></div><div class="kpis"><div class="kpi"><div class="l">Total value</div><div class="v">${money(tv)}</div></div><div class="kpi"><div class="l">Today</div><div class="v ${cls(d.profitToday)}">${money(d.profitToday)} (${pct(d.profitTodayPercent)})</div></div>
         <div class="kpi"><div class="l">All-time</div><div class="v ${cls(d.profit)}">${pct(d.profitPercent)}</div></div><div class="kpi"><div class="l">Cash</div><div class="v">${money(d.cashBalance)}</div></div></div>
         <table class="tbl"><thead><tr><th>Position</th><th>Value</th><th>Today</th><th class="hide-sm">Share</th><th class="hide-sm">P&amp;L</th></tr></thead><tbody>${pos.map(p => {
           const opt = p.optionsContractType, name = opt ? `${p.rootTickerSymbol} ${p.optionsStrikePrice}${opt[0]} ${(p.optionsExpirationDate || "").slice(5, 10)}` : p.tickerSymbol, share = tv ? (p.value || 0) / tv * 100 : 0;
@@ -449,12 +546,12 @@ document.addEventListener("click", e => { const r = e.target.closest("tr[data-go
 function route() {
   stopAll();
   const [, a, b] = (location.hash || "#/feed").split("/").map(decodeURIComponent);
-  const tab = a === "t" ? "" : a === "w" ? "whales" : a || "feed";
-  document.querySelectorAll("#tabs a").forEach(l => l.dataset.tab === tab ? l.setAttribute("aria-current", "page") : l.removeAttribute("aria-current"));
+  const tab = a === "t" ? "" : a === "w" ? "whales" : a || "feed";  document.querySelectorAll("#tabs a").forEach(l => l.dataset.tab === tab ? l.setAttribute("aria-current", "page") : l.removeAttribute("aria-current"));
   window.scrollTo(0, 0);
   poll(quotesTick, 3000);
   poll(sessionPill, 60000);
   if (a === "board") boardView();
+  else if (a === "buzz") buzzView();
   else if (a === "whales") whalesView();
   else if (a === "t" && b) tickerView(b);
   else if (a === "w" && b) whaleView(b);
