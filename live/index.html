@@ -15,7 +15,7 @@
 }
 @media (prefers-color-scheme:light){:root{
   --bg:#f4f6f9;--panel:#fff;--panel2:#eef2f6;--line:#d9e0e8;--text:#14202b;--mute:#5d6b7a;
-  --up:#0d9b57;--down:#d62f43;--accent:#0b7fb0;--warn:#b57a00;}}
+  --up:#0d9b57;--down:#d62f43;--accent:#0b7fb0;--warn:#8a5a00;}}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
@@ -83,6 +83,36 @@ h1,h2{margin:0 0 8px;font-size:clamp(18px,3.2vw,24px)}h2{font-size:16px}
 .tag.topic{color:var(--mute)}
 .media{max-width:100%;max-height:340px;border-radius:10px;border:1px solid var(--line);display:block;margin-top:6px}
 .meta{display:flex;gap:14px;font-size:12.5px;color:var(--mute);flex-wrap:wrap}
+
+
+.bctl{display:flex;flex-direction:column;gap:8px;margin:var(--gap) 0}
+.bctl .pills{margin-bottom:0}
+.bsearch{width:100%;max-width:240px;padding:7px 12px;background:var(--panel2);border:1px solid var(--line);border-radius:10px}
+.bctl select{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:3px 6px}
+.pills button:disabled{opacity:.4;cursor:not-allowed}
+.tbl th.sortable{cursor:pointer;user-select:none}.tbl th.sortable:hover{color:var(--text)}
+.tbl tr.bt{cursor:pointer}.tbl tr.bt:hover{background:var(--panel2)}.tbl tr.bt[aria-expanded=true]{background:var(--panel2)}
+.tbl tr.bd td{white-space:normal;text-align:left;padding:0;border-bottom:1px solid var(--line)}
+.bdet{padding:10px 12px;background:var(--panel2)}
+.tps{display:grid;gap:8px;margin-top:8px}.tp{font-size:13px;overflow-wrap:anywhere}
+.bfold>summary{cursor:pointer;font-weight:600;font-size:14px;padding:4px 0;list-style:none;display:flex;gap:8px;align-items:center}
+.bfold>summary::-webkit-details-marker{display:none}
+.bfold>summary::before{content:"▸";color:var(--mute)}.bfold[open]>summary::before{content:"▾"}
+.bfold[open]>summary{margin-bottom:8px}
+#bk .kpis{grid-template-columns:repeat(auto-fit,minmax(104px,1fr))}
+@media (max-width:640px){#bk .kpi{padding:6px 10px}#bk .kpi .v{font-size:15px}#bk .kpi .l{font-size:11px}}
+.warn-t{color:var(--warn)}
+.brow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.brow .pills{margin-bottom:0}
+.fb{display:inline-block;font-size:11.5px;font-weight:600;color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 55%,var(--line));border-radius:6px;padding:0 6px;margin-left:6px;vertical-align:1px}
+.zp{display:inline-block;padding:1px 8px;border-radius:999px;font-weight:600}
+.z1{color:var(--warn)}.z2{color:var(--warn);background:color-mix(in srgb,var(--warn) 16%,transparent)}.z3{color:var(--text);background:color-mix(in srgb,var(--warn) 42%,transparent)}
+tr.bt.heavy td:first-child{box-shadow:inset 3px 0 0 var(--warn)}
+.car{display:inline-block;width:1em;color:var(--mute);font-weight:400}.car::before{content:"▸"}tr.bt[aria-expanded=true] .car::before{content:"▾"}
+.dim{color:var(--mute);opacity:.7}
+.bmeth{margin-top:6px}.bmeth>summary{cursor:pointer}
+.spark{display:block}
+.tbl td .sub.only-sm{display:none}
+@media (max-width:640px){.tbl td .sub.only-sm{display:block;max-width:none;white-space:normal}}
 
 /* tables as cards on phones */
 .tbl{width:100%;border-collapse:collapse}
@@ -361,28 +391,97 @@ async function buzzStrip() {
       <b>${r.hot ? "🔥 " : ""}$${esc(r.t)}</b><span class="mono">${r.n} posts${r.z != null ? " · z " + fmt(r.z, 1) : ""}</span></a>`).join("") + '<a class="bchip more" href="#/buzz">All buzz →</a>';
   } catch { el.remove(); }
 }
+function spark(series, hot) {
+  const v = (series || []).slice(-14).map(d => d.posts || 0);
+  if (v.length < 2) return '<span class="mute">n/a</span>';
+  const W = 64, H = 18, mx = Math.max(...v, 1), X = i => (i / (v.length - 1) * (W - 4) + 2).toFixed(1), Y = x => (H - 2 - x / mx * (H - 4)).toFixed(1);
+  const pts = v.map((x, i) => X(i) + "," + Y(x)).join(" ");
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Daily posts, last ${v.length} days"><polyline points="${pts}" fill="none" stroke="var(--mute)" stroke-width="1.5" stroke-linejoin="round"/><circle cx="${X(v.length - 1)}" cy="${Y(v[v.length - 1])}" r="2.4" fill="${hot ? "var(--warn)" : "var(--accent)"}"/></svg>`;
+}
+const BUZZ_DEF = { win: "24h", sort: "z", dir: -1, q: "", min: 3, hot: false, votes: false, bull: false, bear: false, whale: false, mine: false, nofl: false };
+const BUZZ_SORTS = [["z", "Hottest"], ["n", "Most posts"], ["au", "Authors"], ["bull", "Bulls"], ["bear", "Bears"], ["calls", "Calls"], ["whale", "Whale $"]];
+const zTier = z => z == null ? "" : z >= 10 ? "zp z3" : z >= 5 ? "zp z2" : z >= 3 ? "z1" : "";
+const cp = (a, b) => (a || b) ? `<span class="up">${a || 0}</span> / <span class="down">${b || 0}</span>` : '<span class="dim">–</span>';
 function buzzView() {
-  const st = store.get("buzz", { win: "24h", sort: "z" });
-  view.innerHTML = `<div class="pills" id="bw">${["24h", "72h", "7d"].map(w => `<button data-w="${w}" aria-pressed="${w === st.win}">${w}</button>`).join("")}</div>
-    <div class="pills" id="bs"><button data-s="z" aria-pressed="${st.sort === "z"}">Hottest (vs baseline)</button><button data-s="n" aria-pressed="${st.sort === "n"}">Most posts</button><button data-s="calls" aria-pressed="${st.sort === "calls"}">Calls opened</button></div>
+  let f = { ...BUZZ_DEF, ...store.get("buzz2", {}) }, S = null, whales = {}, open = new Set();
+  const save = () => store.set("buzz2", f);
+  const tog = [["hot", "🔥 Hot (z 3+)"], ["votes", "Has votes"], ["bull", "Bulls lead"], ["bear", "Bears lead"], ["whale", "Whale-held"], ["mine", "My watchlist"], ["nofl", "Hide flagged-heavy"]];
+  view.innerHTML = `<div class="panel" id="bk"><div class="skeleton"></div></div>
+    <div class="panel bctl" id="bc">
+      <div class="brow"><div class="pills" id="bw">${["24h", "72h", "7d"].map(w => `<button data-w="${w}">${w}</button>`).join("")}</div>
+      <input class="bsearch" id="bq" placeholder="Search ticker" maxlength="8" autocapitalize="characters" aria-label="Search ticker" value="${esc(f.q)}"></div>
+      <details class="bfold" id="bfold"${matchMedia("(min-width:760px)").matches ? " open" : ""}><summary>Filters &amp; sort <span class="pill" id="bact" hidden></span></summary>
+      <div class="pills" id="bf">${tog.map(([k, l]) => `<button data-k="${k}">${l}</button>`).join("")}</div>
+      <div class="pills" id="bs">${BUZZ_SORTS.map(([k, l]) => `<button data-s="${k}">${l}</button>`).join("")}</div>
+      <div class="row"><label class="note">Min posts <select id="bmin" aria-label="Minimum posts">${[2, 3, 5, 10, 25].map(n => `<option value="${n}">${n}+</option>`).join("")}</select></label></div></details>
+      <div class="row"><span class="note" id="bcount"></span><span class="spacer"></span><button class="pill" id="brst" type="button">Reset</button></div>
+    </div>
     <div class="panel" id="bx"><div class="skeleton"></div></div><p class="note" id="bn"></p>`;
-  $("#bw").onclick = e => { const b = e.target.closest("button"); if (b) { store.set("buzz", { ...st, win: b.dataset.w }); route(); } };
-  $("#bs").onclick = e => { const b = e.target.closest("button"); if (b) { store.set("buzz", { ...st, sort: b.dataset.s }); route(); } };
-  poll(async () => {
-    const s = await once("/api/sentiment.json", 60000);
-    const { rows, depth, zOk } = buzzRows(s, st.win);
-    const key = { z: r => r.z ?? -99, n: r => r.n, calls: r => r.w.calls_opened ?? 0 }[st.sort];
-    const list = rows.filter(r => r.n >= 2).sort((a, b) => key(b) - key(a) || b.n - a.n).slice(0, 60);
-    $("#bx").innerHTML = list.length ? `<table class="tbl"><thead><tr><th>Ticker</th><th>Posts</th><th class="hide-sm">vs baseline</th><th class="hide-sm">Authors</th><th>Bull / bear</th><th class="hide-sm">Calls / puts</th><th class="hide-sm">Confidence</th></tr></thead><tbody>${list.map(r => {
-      const w = r.w;
-      return `<tr data-go="#/t/${encodeURIComponent(r.t)}"><td><b>${r.hot ? "🔥 " : ""}$${esc(r.t)}</b>${r.flagged >= 2 || (r.flagged && r.flagged / (w.n_authors || 1) >= 0.2) ? `<span class="sub" title="${esc(r.flagged + " authors on the telegramscammers.com list, " + flagWord)}">⚑ ${r.flagged} flagged author${r.flagged === 1 ? "" : "s"}</span>` : ""}</td>
-        <td class="mono">${r.n}</td><td class="mono hide-sm ${r.z == null ? "mute" : r.z >= 2 ? "up" : ""}">${r.z == null ? "n/a" : "z " + fmt(r.z, 1)}</td><td class="hide-sm">${esc(w.n_authors ?? "")}</td>
-        <td class="mono">${w.n_directional_votes ? `<span class="up">${w.bull}</span> / <span class="down">${w.bear}</span>` : '<span class="mute">no votes</span>'}</td>
-        <td class="mono hide-sm">${w.calls_opened ?? 0} / ${w.puts_opened ?? 0}</td><td class="hide-sm">${esc(w.confidence || "n/a")}</td></tr>`;
-    }).join("")}</tbody></table>` : '<div class="empty">Nothing is being talked about in that window.</div>';
-    $("#bn").innerHTML = `Public AfterHour posts, ${esc(st.win)} window. Archive depth ${fmt(depth, 1)} days${zOk ? "" : " (baseline needs 3+ days, so no z-scores yet)"}; ${esc(s.archive?.posts ?? "n/a")} posts archived, newest ${esc(dayLabel(s.archive?.newest))}.
-      Direction only counts explicit CALL or PUT opens (about a quarter of posts), one vote per author per day, so read bull/bear next to the confidence column. ⚑ = authors on the <a href="https://telegramscammers.com" target="_blank" rel="noopener noreferrer">telegramscammers.com</a> list, ${esc(flagWord)}. Not advice.`;
-  }, 120000);
+  $("#bmin").value = String(f.min);
+
+  const lean = r => r.w.bull > r.w.bear ? 1 : r.w.bear > r.w.bull ? -1 : 0;
+  const keyOf = { z: r => r.z ?? -99, n: r => r.n, au: r => r.w.n_authors ?? 0, bull: r => r.w.bull ?? 0, bear: r => r.w.bear ?? 0, calls: r => r.w.calls_opened ?? 0, whale: r => r.wv ?? -1 };
+  function render() {
+    if (!S) return;
+    const { rows, depth, zOk } = buzzRows(S, f.win);
+    const noZ = !zOk || f.win === "7d";
+    let all = rows.map(r => ({ ...r, wv: whales[r.t]?.whalesValue ?? null, wc: whales[r.t]?.whalesCount ?? 0,
+      heavy: r.flagged >= 3 || (r.flagged > 0 && r.flagged / (r.w.n_authors || 1) >= 0.3) }));
+    all = all.filter(r => r.n >= 2);
+    const sum = k => all.reduce((a, r) => a + (r.w[k] || 0), 0);
+    $("#bk").innerHTML = `<div class="kpis" style="margin:0"><div class="kpi"><div class="l">Tickers talked about</div><div class="v">${all.length}</div></div>
+      <div class="kpi"><div class="l">🔥 Hot vs baseline</div><div class="v">${noZ ? "n/a" : all.filter(r => r.hot).length}</div></div>
+      <div class="kpi"><div class="l">Calls / puts opened</div><div class="v"><span class="up">${sum("calls_opened")}</span> / <span class="down">${sum("puts_opened")}</span></div></div>
+      <div class="kpi"><div class="l">Bull / bear votes</div><div class="v"><span class="up">${sum("bull")}</span> / <span class="down">${sum("bear")}</span></div></div>
+      <div class="kpi"><div class="l">Flagged-heavy tickers</div><div class="v">${all.filter(r => r.heavy).length}</div></div></div>`;
+    $("#bw").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.w === f.win));
+    $("#bf").querySelectorAll("button").forEach(b => { const k = b.dataset.k; b.setAttribute("aria-pressed", !!f[k]); b.disabled = (k === "hot" && noZ) || (k === "whale" && !Object.keys(whales).length); });
+    $("#bs").querySelectorAll("button").forEach(b => { const k = b.dataset.s, on = k === f.sort; b.setAttribute("aria-pressed", on); b.disabled = (k === "z" && noZ) || (k === "whale" && !Object.keys(whales).length); b.textContent = BUZZ_SORTS.find(x => x[0] === k)[1] + (on ? (f.dir < 0 ? " ↓" : " ↑") : ""); });
+    const q = f.q.trim().toUpperCase(), wl = new Set(watch);
+    let list = all.filter(r => r.n >= f.min && (!q || r.t.includes(q)) && (!f.hot || r.hot) && (!f.votes || r.w.n_directional_votes > 0) && (!f.bull || lean(r) > 0)
+      && (!f.bear || lean(r) < 0) && (!f.whale || r.wc > 0) && (!f.mine || wl.has(r.t)) && (!f.nofl || !r.heavy));
+    const sortKey = noZ && f.sort === "z" ? "n" : (f.sort === "whale" && !Object.keys(whales).length ? "n" : f.sort), key = keyOf[sortKey];
+    list.sort((a, b) => (key(a) - key(b)) * f.dir || b.n - a.n);
+    const nAct = tog.filter(([k]) => f[k]).length + (f.q ? 1 : 0) + (f.min !== 3 ? 1 : 0), ba = $("#bact"); ba.hidden = !nAct; ba.textContent = nAct + " active";
+    $("#bcount").textContent = `${Math.min(list.length, 80)} of ${list.length} shown`;
+    const th = (k, label, cl = "") => `<th class="${cl} sortable" data-s="${k}" ${k === sortKey ? 'aria-sort="' + (f.dir < 0 ? "descending" : "ascending") + '"' : ""}>${label}${k === sortKey ? (f.dir < 0 ? " ↓" : " ↑") : ""}</th>`;
+    const haveW = Object.keys(whales).length > 0, confVaries = new Set(list.map(r => r.w.confidence)).size > 1;
+    $("#bx").innerHTML = list.length ? `<table class="tbl"><thead><tr><th>Ticker</th><th class="hide-sm">14d</th>${th("n", "Posts")}${noZ ? "" : th("z", "vs base", "hide-sm")}${th("au", "Authors", "hide-sm")}${th("bull", "Bull / bear")}${th("calls", "Calls / puts", "hide-sm")}${haveW ? th("whale", "Whale $", "hide-sm") : ""}${confVaries ? '<th class="hide-sm">Conf</th>' : ""}</tr></thead><tbody>${list.slice(0, 80).map(r => {
+      const w = r.w, sm = [r.z != null ? "z " + fmt(r.z, 1) : "", (w.n_authors ?? 0) + " authors", `${w.calls_opened ?? 0}C/${w.puts_opened ?? 0}P`, r.wv ? "whales " + money(r.wv) : ""].filter(Boolean).join(" · ");
+      const flag = r.heavy ? `<span class="fb" title="${esc(r.flagged + " authors on the telegramscammers.com list, " + flagWord)}">⚑ ${r.flagged} flagged</span>` : "";
+      const main = `<tr class="bt${r.heavy ? " heavy" : ""}" data-x="${esc(r.t)}" aria-expanded="${open.has(r.t)}"><td><span class="car"></span><b>${r.hot ? "🔥 " : ""}$${esc(r.t)}</b>${flag}<span class="sub only-sm">${esc(sm)}</span></td><td class="hide-sm">${spark(S.daily?.[r.t], r.hot)}</td>
+        <td class="mono">${r.n}</td>${noZ ? "" : `<td class="mono hide-sm ${r.z == null ? "mute" : ""}">${r.z == null ? "n/a" : `<span class="${zTier(r.z)}">z ${fmt(r.z, 1)}</span>`}</td>`}<td class="hide-sm mono">${esc(w.n_authors ?? "")}</td>
+        <td class="mono">${w.n_directional_votes ? `<span class="up">${w.bull}</span> / <span class="down">${w.bear}</span>` : '<span class="dim">–</span>'}</td><td class="mono hide-sm">${cp(w.calls_opened, w.puts_opened)}</td>
+        ${haveW ? `<td class="mono hide-sm ${r.wv ? "" : "mute"}">${r.wv ? money(r.wv) : "–"}</td>` : ""}${confVaries ? `<td class="hide-sm">${esc(w.confidence || "n/a")}</td>` : ""}</tr>`;
+      if (!open.has(r.t)) return main;
+      const tp = (w.top_posts || []).slice(0, 4).map(p => `<div class="tp"><a href="#/w/${encodeURIComponent(p.author)}">@${esc(p.author)}</a> <span class="mute">${esc(fmt(p.followers ?? 0, 0))} followers · ${esc(ago(p.ts))} ago</span>${p.stance && p.stance !== "neutral" ? ` <span class="tag">${esc(p.stance)}</span>` : ""}<div>${esc(p.title)}</div></div>`).join("");
+      const topics = Object.entries(w.by_topic || {}).sort((a, b) => b[1] - a[1]).map(([k, v]) => `<span class="tag topic">${esc(k)} ${v}</span>`).join("");
+      const fa = (w.flags?.funnel_list_authors || []).map(u => `<a class="tag" href="#/w/${encodeURIComponent(u)}">@${esc(u)}</a>`).join("");
+      return main + `<tr class="bd"><td colspan="9"><div class="bdet"><div class="row" style="gap:8px"><a class="pill" href="#/t/${encodeURIComponent(r.t)}">Open $${esc(r.t)} →</a><button class="pill" type="button" data-wl="${esc(r.t)}">${watch.includes(r.t) ? "✓ in watchlist" : "+ watchlist"}</button><a class="pill" href="https://www.tradingview.com/symbols/${encodeURIComponent(r.t)}/" target="_blank" rel="noopener noreferrer">TradingView ↗</a><a class="pill" href="https://finance.yahoo.com/quote/${encodeURIComponent(r.t)}" target="_blank" rel="noopener noreferrer">Yahoo ↗</a><span class="mute note">${esc(w.views ?? 0)} views · ${esc(w.comments ?? 0)} comments · net score ${w.net_score == null ? "n/a" : fmt(w.net_score, 2)} · ${esc(w.confidence)} confidence (${esc(w.n_voting_authors ?? 0)} voting authors)</span></div>
+        ${topics ? `<div class="tags">${topics}</div>` : ""}${tp ? `<div class="tps">${tp}</div>` : ""}${fa ? `<div class="note" style="margin-top:6px">On the telegramscammers.com list (${esc(flagWord)}):</div><div class="tags">${fa}</div>` : ""}</div></td></tr>`;
+    }).join("")}</tbody></table>` : '<div class="empty">Nothing matches. <button class="more" id="bclr" style="width:auto;padding:6px 14px">Reset filters</button></div>';
+    $("#bclr")?.addEventListener("click", reset);
+    $("#bn").innerHTML = `⚑ = 3+ authors or 30%+ of authors on the <a href="https://telegramscammers.com" target="_blank" rel="noopener noreferrer">telegramscammers.com</a> list, ${esc(flagWord)}. Click a row for its top posts.
+      <details class="bmeth"><summary>Methodology and caveats</summary>Public AfterHour posts, ${esc(f.win)} window. Archive depth ${fmt(depth, 1)} days${zOk ? "" : " (baseline needs 3+ days, so no z-scores yet)"}${f.win === "7d" ? "; the 7d window has no baseline, so no z-scores" : ""}; ${esc(S.archive?.posts ?? "n/a")} posts archived, newest ${esc(dayLabel(S.archive?.newest))}.
+      Direction only counts explicit CALL or PUT opens (about a quarter of posts), one vote per author per day, so read bull/bear next to the sample size${confVaries ? " and confidence" : "; every ticker here is low confidence, so the column is hidden"}. z compares today's posts with that ticker's own daily average. Whale $ is a month-old snapshot. Not advice.</details>`;
+  }
+  function reset() { f = { ...BUZZ_DEF, win: f.win }; save(); $("#bq").value = ""; $("#bmin").value = String(f.min); render(); }
+  $("#bw").onclick = e => { const b = e.target.closest("button"); if (b) { f.win = b.dataset.w; if (f.win === "7d" && f.sort === "z") f.sort = "n"; save(); render(); } };
+  $("#bf").onclick = e => { const b = e.target.closest("button"); if (b && !b.disabled) { f[b.dataset.k] = !f[b.dataset.k]; if (b.dataset.k === "bull" && f.bull) f.bear = false; if (b.dataset.k === "bear" && f.bear) f.bull = false; save(); render(); } };
+  const sortBy = k => { if (f.sort === k) f.dir = -f.dir; else { f.sort = k; f.dir = -1; } save(); render(); };
+  $("#bs").onclick = e => { const b = e.target.closest("button"); if (b && !b.disabled) sortBy(b.dataset.s); };
+  $("#bx").onclick = e => {
+    const th = e.target.closest("th[data-s]"); if (th) return sortBy(th.dataset.s);
+    const wb = e.target.closest("[data-wl]");
+    if (wb) { const s = sym(wb.dataset.wl); if (s && !watch.includes(s) && watch.length < 20) { watch.push(s); store.set("watch", watch); quotesTick(); } return render(); }
+    const tr = e.target.closest("tr.bt"); if (!tr || e.target.closest("a")) return;
+    const t = tr.dataset.x; open.has(t) ? open.delete(t) : open.add(t); render();
+  };
+  $("#bq").oninput = e => { f.q = e.target.value.replace(/[^A-Za-z0-9.^=-]/g, ""); save(); render(); };
+  $("#bmin").onchange = e => { f.min = +e.target.value; save(); render(); };
+  $("#brst").onclick = reset;
+  once("/api/stonks.json", 3600000).then(s => { whales = Object.fromEntries((s.securities || []).map(x => [x.ticker, x])); render(); }).catch(() => {});
+  poll(async () => { S = await once("/api/sentiment.json", 60000); render(); }, 120000);
 }
 
 /* LEADERBOARD */
