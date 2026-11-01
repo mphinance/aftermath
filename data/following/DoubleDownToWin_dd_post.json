@@ -1,0 +1,31 @@
+{
+  "status": "stub_body_not_captured",
+  "note": "Body was NOT fetched: sandbox proxy blocks api.afterhour.com (403) and get_social_feed returned 0 posts for this author. Fill from a local run.",
+  "target": {
+    "author": "DoubleDownToWin",
+    "profile_id": "prf_871fd4aacb704c0e933a18e180eff208",
+    "slug": "how-to-properly-dd-w-example",
+    "short_id": "1fE",
+    "share_url": "https://afterhour.com/DoubleDownToWin/1fE/how-to-properly-dd-w-example",
+    "post_id": null,
+    "title_guess": "How to properly DD w/ example"
+  },
+  "discovered_via": {
+    "author": "mphinance",
+    "post_id": "pst_3d966718b63c4ee5b9e0819a3320c0e1",
+    "share_url": "https://afterhour.com/mphinance/1ge/the-only-due-diligence-lesson-",
+    "created_at": "2025-09-22T12:21:27.479Z",
+    "quote": "This is how company research is done. Cyber security and financial analyst... Here's your modern Da Vinci."
+  },
+  "archived_post_schema": {
+    "source": "data/following/@<user>_all_posts.json records",
+    "fields": ["date", "created_at", "tag", "gain_loss", "amount_k", "tickers", "title", "body", "embedded_tweet_from", "is_hunt_post", "comment_count", "reaction_count", "view_count", "id", "share_url", "link_urls"],
+    "notes": "share_url = afterhour.com/<user>/<short_id>/<title-slug truncated ~30 chars>; amount_k is account value in thousands of dollars."
+  },
+  "captured_post": null,
+  "fetch_plan": [
+    "python3 download_single_trader_lifetime.py DoubleDownToWin  (run locally, not in sandbox)",
+    "find record where share_url contains '/1fE/' in data/following/@DoubleDownToWin_all_posts.json",
+    "copy record into captured_post, then derive structure: section headings, ticker/cashtag usage, chart/image embeds, link_urls, length, DD checklist order"
+  ]
+}
