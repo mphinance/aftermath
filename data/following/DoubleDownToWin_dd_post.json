@@ -1,0 +1,267 @@
+{
+  "status": "captured",
+  "note": "File did not exist in repo; created from the task spec. Source: data/following/@DoubleDownToWin_all_posts.json",
+  "target": {
+    "author": "DoubleDownToWin",
+    "post_id": "pst_06665f7b7a3647b398135af4e6a6fda6",
+    "title": "🧠 How to PROPERLY DD w/ Example",
+    "share_url": "https://afterhour.com/DoubleDownToWin/1fE/how-to-properly-dd-w-example",
+    "date": "2025-09-22",
+    "linked_by": "@mphinance on 2025-09-22 (per task brief, not verifiable from this record)"
+  },
+  "captured_post": {
+    "date": "2025-09-22",
+    "created_at": "2025-09-22T10:14:17.330Z",
+    "tag": "Dd",
+    "gain_loss": "",
+    "amount_k": 37.50329,
+    "tickers": "SBET,MARA,BMNR,COIN,FORD,HOOD,GLXY,CRWV,BTC,MSTR",
+    "title": "🧠 How to PROPERLY DD w/ Example",
+    "body": "🚨 **Warning: Super Long Informative Post Ahead. Lazy People Turn Back Now. No TL;DR here.** 🚨\n\nI've seen a LOT of people show their DD's here. Some of y'all are REALLY good. *Some of y'all are REALLY bad.* I started my journey here on AfterHour as a DD machine. Literally. I created an AI DD bot to help with all of the requests. That was a LOT of fun (I'll spin it up again eventually). While I tend to leverage AI in almost every aspect of my life, I don't expect you all to follow that path (still working on @TerrifiedOfAI). As such, I want to show you how I do a manual DD on a company that I really want to invest in long term. For the purpose of this run through, I'll use $GLXY as an example. I've been speaking with @mphinance a bit on it and it's about time I do my own research. \n\nHere is an overview of the main sections in this **LONG post** that I cover in my own research: \n\n1️⃣ Company Fundamentals \n2️⃣ Recent News Developments\n3️⃣ Growth Drivers\n4️⃣ Risks and Challenges \n5️⃣ Industry/Competition Comparisons\n6️⃣ Sentiment \n7️⃣ Chart Review \n8️⃣ Sector and Macro Knowledge \n9️⃣ Valuation and Investment Thesis\n🔟 Action Plan and Risk Management \n\nAll info is from the last 6 months to keep it relevant. I'll link sources inline where I can. A lot of this information will overlap, but I'll try to limit regurgitating the same facts and go into more detail in sections where it's more relevant. \n\nBefore we even begin diving into the DD, let's do a very quick overview of the company we'll be investigating:\n\nGalaxy Digital Holdings Ltd. ($GLXY) is a beast in crypto and AI infra. If you're long-term bullish on digital assets and compute power, this could be your jam.\n\n# 1️⃣ Company Fundamentals \n*Start with the basics: What does the company do, who's running it, and how's the money situation looking?*\n\n🌌 **What does Galaxy do?** 🌌\n\nGalaxy is a diversified financial services firm focused on digital assets and blockchain. Their business breaks down into a few key segments: \n\nDigital Assets (trading, lending, derivatives)\n\nAsset Management (managing billions in AUM, including ETFs and staking)\n\nInvestment Banking (M&A advisory, capital markets)\n\nInfrastructure Solutions (custody, tokenization via GK8, staking). \n\n🤴 **Who's In Charge?** 🤴\n\nCEO: Mike Novogratz\nLinkedIn: https://www.linkedin.com/in/novogratz\n\nAfter graduating from Princeton in Economics, Mike partnered with Goldman Sachs for 11 years before becoming a CIO at Fortress Investment Group for 13 years. A few years after in 2017, he founded Galaxy Digital. He's a Wall Street vet with a track record in macro trading and crypto evangelism. His leadership has grown AUM to over $5B historically, and he's steering the ship toward institutional adoption.\n\nCIO: Christopher Ferarro\nLinkedIn: https://www.linkedin.com/in/christopher-ferraro-23983165\n\nPrior to joining the firm, he was a Managing Director and Partner at HPS Investments Partners (f.k.a. Highbridge Principal Strategies), where he worked within the Direct Lending & Special Situations Group. Here, he focused on originating, structuring, underwriting and executing on private debt and equity transactions in middle- and large-sized corporations operating primarily in North America and Western Europe. Previously, he began his career at BlackRock Kelso Capital Advisors, an investment manager for a publicly-traded business development company focused on structuring and executing on middlemarket structured debt and equity investments. He holds a B.A. in Applied Mathematics and a B.A. in Economics from Yale University.\n\n🏦 **Company Finances** 🏦\n\nReference Source: https://investor.galaxy.com/financials/quarterly-results/default.aspx\n\nFinancially, as of Q2 2025 (ended June 30), they reported net income of $30.7M ($0.08 EPS), up from prior quarters, with adjusted EBITDA hitting $211M driven by digital asset appreciation and investments.\n\nRevenue TTM is ~$2.34B USD, but net income TTM is -73.65M due to volatility, which is classic crypto exposure. Balance sheet is rock-solid: ~$9B in combined AUM and assets under stake (up 27% QoQ), cash/stablecoins ~$1.2B, debt-to-equity at 149.33% (manageable for growth mode).\n\nThey hold significant BTC/ETH (e.g., 17,102 BTC as of Q2 2025). Governance is strong, with a focus on compliance. Overall, fundamentals tell me they are a \"growth engine\" if crypto/AI tailwinds help carry momentum, which is likely with the current administration's stance on crypto.\n\n# 2️⃣ Recent News Developments\n*News is your pulse check on the company. Look at news in the past 6 months to make sure it's all relevant.*\n\n**Q2 Results - August 5th**\nNet income of $30.7M, adjusted gross profit growth in Digital Assets; adjusted EBITDA strong but operating results remain quarter-sensitive. $299M adjusted gross profit, $211M EBITDA, with Digital Assets up 10% QoQ to $71.4M gross profit. They executed massive trades, like selling ~80K BTC for a client (> $9B notional). Company reported $1.2B cash & stablecoins as part of its balance disclosure.\n\n*Source:* https://investor.galaxy.com/financials/quarterly-results/default.aspx\n\n**Partnerships**\nGalaxy is developing the Helios data-center campus (in West Texas) and has a partnership/commitment from CoreWeave, a strategic revenue pipeline for infrastructure income. Analysts have flagged this as a multi-year growth opportunity. \n\n*Source:* https://www.barrons.com/articles/galaxy-digital-earnings-crypto-stock-price-365700aa\n\n**Transition to U.S. GAAP and Nasdaq listing**\nGalaxy completed re-domestication and Nasdaq listing this year, improving US investor visibility and reporting comparability.\n\n*Source:* https://www.sec.gov/Archives/edgar/data/1859392/000185939225000007/glxy-20250331xpressrelease.htm\n\n**Other Notable Wins**\nOversubscribed $175M crypto venture fund, partnerships in tokenization (e.g., tokenizing $GLXY on Solana), and treasury deals with firms like Ford ($FORD), $BMNR and $SBET for custody/staking. \n\n*Source:* https://investor.galaxy.com/news/default.aspx.\n\nRegulatory nod: Settled with NY AG on March 27 for compliance.\n\n*Source:* https://ag.ny.gov/sites/default/files/settlements-agreements/galaxy-digital-holding-ltd-et-al-assurance-of-discontinuance-2025.pdf\n\n# 3️⃣ Growth Drivers \n*What's going push this company forward?*\n\n🪙 **Crypto Adoption** 🪙\n\nThey're crushing treasury services (15+ deals like $FORD, $BMNR), generating IB fees, execution, staking, and custody revenue, potentially hundreds of millions.\n\nGalaxyOne (retail \"everything app\" for crypto/finance) could rival $HOOD/$COIN. GalaxyOne Institutional offers all the tools institutions need to trade, finance, store, and manage digital assets efficiently.\n\nTokenization via GK8 and AllUnity JV (33% owned, MiCA-compliant EURO stablecoin) positions them for RWA boom.\n\n*Sources:* \nhttps://investor.galaxy.com/news/news-details/2025/Galaxy-Announces-Fourth-Quarter-and-Full-Year-2024-Financial-Results/default.aspx\n\nhttps://www.prnewswire.com/news-releases/galaxy-announces-second-quarter-2025-financial-results-302521785.html\n\nhttps://www.galaxy.com/one\n\n🏗️ **Infrastructure and Data Centers** 🏗️\n\nGalaxy is developing the Helios data-center campus (in West Texas). Helios has 800MW of approved power and a 600MW contract signed with CoreWeave $CRWV that will provide $900M a year in average annual revenue, almost all the costs flow through to $CRWV giving Galaxy EXTREMELY attractive economics (better than basically any other Hyperscaler deal out there) with management estimating 90% EBITDA margins. The reason they got such an attractive deal is because unlike other Bitcoin miners Galaxy has a massive balance sheet that they can use to finance the buildout of Helios.\n\n*Source:* https://www.barrons.com/articles/galaxy-digital-earnings-crypto-stock-price-365700aa\n\n# 4️⃣ Risks and Challenges \n*There isn't a single company out there that doesn't face risks and road bumps. You have to consider the downside factors as a possibility.*\n\n🪙 **Crypto Volatility and Regulation** 🪙\n\nIt's no surprise that the stock price moves with BTC/ETH. Why? Their balance sheet does too. Market cycles and seasonal volumes can cause their QoQ net income to flip sign rapidly. A prolonged bear market could also be devastating for them.\n\nOn top of the wild swings, the company must stay ahead of lawmakers and their policies. Crypto regulation developments can affect trading volume, valuation models and even their product offerings.\n\n*Source:* https://www.sec.gov/Archives/edgar/data/1859392/000185939225000007/glxy-20250331xpressrelease.htm\n\n🚧 **Infrastructure Execution Risks** 🚧\n\nThe  Data-Center and Helios build out requires a lot of captial and precision with operation execution. Additionally, they are still pending some approvals from ERCOT, which is notorious for being slow to move on anything outside of SpaceX... I wish that was a joke.\n\nGalaxy will also need ~$5-6B to complete this buildout which they plan to finance via 20% equity and 80% debt. They have the equity component secured, and are in the final stages of securing financing. They were able to grab $1.5B in August, but that hasn't filled the gap completely.\n\n*Source:* https://www.barrons.com/articles/galaxy-digital-earnings-crypto-stock-price-365700aa\n\n👨‍💻 **Cybersecurity Concerns** 👨‍💻\n\nThis one hits home for me as I own an MDR cybersecurity company. On September 15th, 2025 Galaxy issued a statement regarding an incident that occurred. A node package manager (NPM) account was was compromised for a prominent JavaScript developer through a Phishing attack. While Galaxy maintains it wasn't affected, these news breaks are often major deterrents for new investors. \n\n*Source:* https://www.galaxy.com/insights/research/npm-breach-lessons-for-crypto-users\n\n# 5️⃣ Industry/Competition Comparisons\n*You have to make sure that they are ahead of or level with the competition. You don't want to pick the industry loser.*\n\n🪙 **Coinbase - $COIN** 🪙\n\nCoinbase has a larger retail franchise with a revenue stream focused on fees and volume. They also have a larger market cap. \n\nGalaxy has more volatility, a more diverse business mix (full service industry platform and balance sheet exposure vs. Coinbase's exchange).\n\n*Source:* https://portfolioslab.com/tools/stock-comparison/GLXY.TO/COIN\n\n⛏️ **Marathon - $MARA** ⛏️\n\nGalaxy is more diversified than mining-focused Marathon, but this allows $MARA to take the win for more $BTC stacked up. Marathon is 2nd in the rankings ($MSTR being first, obviously), while Galaxy takes the 9th seat in the top 10 publicly traded companies with the most Bitcoin.\n\n*Source:* https://www.coingecko.com/en/treasuries/bitcoin\n\n🏦 **Other crypto-finance / investment firms (e.g., Bitwise, Grayscale)** 🏦\n\nThere is obviously overlap in asset-management competition. This will never go away.\n\nGalaxy is differentiated by its combination of balance-sheet exposure, trading principal activity, and infrastructure plays (data centers). Most of the competition is heavily focused on a single area. \n\n\n# 6️⃣ Sentiment\n*Analysts and Retail sentiment often dictates how much attention a stock gets in a certain timeframe. A huge shift in sentiment could cause a drop in confidence, or vice versa.*\n\n🕵️‍♂️ **Analysts** 🕵️‍♂️\n\nConsensus strong buy with an average target of $36.67 across 6 analysts with a top target of $40 by Benchmark this last August. \n\n*Source:* https://stockanalysis.com/stocks/GLXY/ratings/ \n\n🤔 **Retail Sentiment** 🤔\n\nOn X, several major influencers are posting bullish comments, with longs calling it \"generational.\" A lot of keywords thrown in these posts that are notable: \"deep value,\" \"AI/Crypto Combo,\" \"$100+ upside target.\"\n\n*Sources:*\nOn X:\n@WalksWallstreet  / @ncbtrades / @solspacecadet / @Barry3252181 / @NicolasFlamelX\n\nOn AH:\n@mphinance\n\n\n# 7️⃣ Chart Review\n*All the research in the world doesn't matter if the charts are telling a different story.*\n\nChart Attached as Reference\n- *YTD:* +89.56%\n- *ATH:* $34.25\n- *RSI:* Moderately bullish/neutral (64.21)\n50/200-day MA: Price above 50 and 200-day MA, both trending up.\n- *Support/Resistance:* Support ~$28, Resistance ~$34.25\n- *Trends:* Stair-stepping HH/HL\n\n\n# 8️⃣ Sector and Macro Knowledge \n*You can't live in a bubble and just focus on the company alone. The world around the company you are researching can have a major affect on price action and operations.*\n\n🪙 **Crypto Sector** 🪙\n\nBull Market continues with HH/HL stair stepping. Major ETF approvals, Tokenization assets, stablecoins growth, regulations improving and AI/Crypto intersection continues to fuel the crypto pump. \n\n*BTC Performance*\n1w: -2.4%\n1m: -3.73%\n3m: +6.76%\n6m: +28.7%\nYTD: +20.57%\n1y: +77.62%\n\n*ETH Performance*\n1w: -9.14%\n1m: -13.36%\n3m: +73.45%\n6m: +102.5%\nYTD: +25.66%\n1y: +60.18%\n\n*Sources:*\nTradingView for metrics\nhttps://explodingtopics.com/blog/cryptocurrency-trends\n\n\n# 9️⃣ Valuation and Investment Thesis\n*Now its time to look at the worth of the company and create a thesis.*\n\n💰 **Valuation** 💰\n\n*Market Cap:* $12.52B\n*Forward P/E:* 204 (Due to High Growth)\n*Debt to Assets:* 71.1%\n*Gross Profit:* $316M\n*Profit Margin:* 3.48%\n*Net Cash Flow:* $229M\n\n*Ownership:*\n40.8% = Institutional\n13.3% = Institutional Fund\n0.5% = Fund Ownership\n2.6% = Insider Ownership\n42.9% = Other\n\n*Source:* \nHttps://digital.fidelity.com/prgw/digital/research/quote/dashboard/key-statistics?symbol=GLXY\n\n\n 🤔 **Investment Thesis** 🤔\n\n$GLXY is an undervalued infra bet on crypto and AI convergence. It has a diversified revenue stream, strong industry-proven leadership, and a slew of catalysts still coming through (ERCOT approvals, treasury ramp ups).\n\nLong Term Hold: $100 in 1-2 years via Helios cash flows, continued tokenization, GalaxyOne. ~60% upside potential if held. \n\n*Source:* @DoubleDownToWin (me), its an opinion. \n\n\n# 🔟 Action Plan and Risk Management\n*The research is done and we have our thesis. If we like the company, sentiment and chart, its time to plan when to buy and when to sell.*\n\n📑 **Action Plan** 📑\n- *Entry:* Current levels, or a slight pullback to $29-30. Or scale in on catalysts.\n- *Allocation:* High Risk - max 5-10% of portfolio\n- *Hold Period:* Long-Term Hold (1-5 Years)\n- *What to Watch:* Quarterly Earnings (they tend to dip), crypto prices, Helios milestones, and regulatory updates.\n\n⚠️ **Risk Management** ⚠️\n*ALWAYS have an exit strategy, for the good and bad.*\n\n- *Stop-Loss:* Set at 15-20% below entry. \n- *Considerations:* Crypto is volatile, so a tight SL is bound to get hit if you aren't paying attention. Diversify and rebalance if crypto crashes. Exit if fundamentals shift (delayed approvals from ERCOT, net loss spikes, etc). \n- *Take Profit:* $75-100 if holding long term.\n\n# 👨‍🎓 We Did It! We Graduated from \"How to DD\" \n\nThanks for sticking through the long post and research. While many investors will have different research styles and data they hone in on, the purpose of this was to show you the highlights of important points to pay close attention to as you work through your own due diligence. Remember that Sections 9 and 10 are up to your own thoughts and predictions. Use the information you gathered to form YOUR OWN CONVICTION.\n\nSpeaking of conviction... What are some of yours? What do you think of $GLXY? Is it the hidden crypto/AI gem that @mphinance believes it is? Drop your takes below.\n\nAlso, let me know what you think I missed (I'm sure there is a LOT), what I should add to my own DD research, or if you have any questions. I love to chat! ",
+    "embedded_tweet_from": "",
+    "is_hunt_post": false,
+    "comment_count": 132,
+    "reaction_count": 73,
+    "view_count": 7,
+    "id": "pst_06665f7b7a3647b398135af4e6a6fda6",
+    "share_url": "https://afterhour.com/DoubleDownToWin/1fE/how-to-properly-dd-w-example",
+    "link_urls": "https://www.linkedin.com/in/novogratz"
+  },
+  "structure": {
+    "sections": [
+      {
+        "n": 0,
+        "heading": "Intro / warning (no heading)",
+        "summary": "Warns post is very long, no TL;DR; author built an AI DD bot earlier on AfterHour; shows a manual DD on $GLXY; lists the 10 sections; all info from last 6 months with inline sources.",
+        "basis": "quoted"
+      },
+      {
+        "n": 0,
+        "heading": "Quick company overview (no heading)",
+        "summary": "One-line pitch: Galaxy Digital is a crypto and AI infra play.",
+        "basis": "quoted"
+      },
+      {
+        "n": 1,
+        "heading": "Company Fundamentals",
+        "summary": "Business segments, CEO Novogratz and CIO Ferraro bios with LinkedIn links, Q2 2025 financials, TTM revenue vs net income, balance sheet, BTC holdings.",
+        "basis": "quoted"
+      },
+      {
+        "n": 2,
+        "heading": "Recent News Developments",
+        "summary": "Q2 results (Aug 5), CoreWeave/Helios partnership, US GAAP + Nasdaq listing, other wins ($175M venture fund, tokenization, treasury deals), NY AG settlement.",
+        "basis": "quoted"
+      },
+      {
+        "n": 3,
+        "heading": "Growth Drivers",
+        "summary": "Crypto adoption (treasury services, GalaxyOne, GK8/AllUnity tokenization) and Helios data centers (800MW approved, 600MW CoreWeave contract, ~$900M/yr, 90% EBITDA margin est.).",
+        "basis": "quoted"
+      },
+      {
+        "n": 4,
+        "heading": "Risks and Challenges",
+        "summary": "Crypto volatility/regulation, infrastructure execution (ERCOT approvals, ~$5-6B funding, 20/80 equity/debt), cybersecurity (NPM breach Sept 15, 2025).",
+        "basis": "quoted"
+      },
+      {
+        "n": 5,
+        "heading": "Industry/Competition Comparisons",
+        "summary": "vs $COIN (bigger retail/market cap), vs $MARA (more BTC; Galaxy 9th, MARA 2nd, $MSTR 1st), vs Bitwise/Grayscale (single-area competitors).",
+        "basis": "quoted"
+      },
+      {
+        "n": 6,
+        "heading": "Sentiment",
+        "summary": "Analyst consensus strong buy, avg target $36.67 across 6 analysts, top $40 (Benchmark); retail X influencers bullish; @mphinance on AH.",
+        "basis": "quoted"
+      },
+      {
+        "n": 7,
+        "heading": "Chart Review",
+        "summary": "Chart attached: YTD +89.56%, ATH $34.25, RSI 64.21, above rising 50/200 MA, support ~$28, resistance ~$34.25, HH/HL.",
+        "basis": "quoted"
+      },
+      {
+        "n": 8,
+        "heading": "Sector and Macro Knowledge",
+        "summary": "Crypto bull market context; BTC and ETH performance table (1w to 1y).",
+        "basis": "quoted"
+      },
+      {
+        "n": 9,
+        "heading": "Valuation and Investment Thesis",
+        "summary": "Market cap $12.52B, fwd P/E 204, debt/assets 71.1%, gross profit $316M, margin 3.48%, ownership split; thesis: undervalued crypto+AI infra bet, $100 in 1-2 yrs (~60% upside).",
+        "basis": "quoted"
+      },
+      {
+        "n": 10,
+        "heading": "Action Plan and Risk Management",
+        "summary": "Entry $29-30 or scale on catalysts, 5-10% max allocation, 1-5y hold, watch list; stop 15-20% below entry, exit triggers, take profit $75-100.",
+        "basis": "quoted"
+      },
+      {
+        "n": 11,
+        "heading": "We Did It! We Graduated from 'How to DD'",
+        "summary": "Sign-off: sections 9 and 10 are your own call; form your own conviction; asks readers for takes on $GLXY and what was missed.",
+        "basis": "quoted"
+      }
+    ],
+    "dd_checklist": {
+      "order": [
+        "Company fundamentals (business, management, financials)",
+        "Recent news (last 6 months)",
+        "Growth drivers",
+        "Risks and challenges",
+        "Industry/competitor comparison",
+        "Sentiment (analysts, retail)",
+        "Chart review",
+        "Sector and macro",
+        "Valuation and thesis",
+        "Action plan and risk management (entry, size, hold, stop, take profit)"
+      ],
+      "basis": "quoted (the author's own numbered list)",
+      "not_present": [
+        "insider transactions as a step (only a one-line insider ownership %)",
+        "options flow",
+        "dark pool",
+        "dedicated SEC filing review step (filings appear only as cited sources)",
+        "catalyst calendar as its own section (catalysts are in thesis and 'What to Watch')"
+      ]
+    },
+    "tickers": {
+      "all": [
+        "BMNR",
+        "BTC",
+        "COIN",
+        "CRWV",
+        "FORD",
+        "GLXY",
+        "HOOD",
+        "MARA",
+        "MSTR",
+        "SBET"
+      ],
+      "cashtags_in_body": [
+        "$BMNR",
+        "$BTC",
+        "$COIN",
+        "$CRWV",
+        "$FORD",
+        "$GLXY",
+        "$HOOD",
+        "$MARA",
+        "$MSTR",
+        "$SBET"
+      ],
+      "roles": {
+        "GLXY": "the worked example",
+        "CRWV": "Helios anchor tenant (600MW contract)",
+        "COIN": "competitor comparison",
+        "MARA": "competitor comparison (BTC holdings rank)",
+        "MSTR": "BTC holdings rank #1 reference",
+        "HOOD": "GalaxyOne comparable",
+        "FORD": "cited as treasury-services client (as written in body)",
+        "BMNR": "treasury-services client",
+        "SBET": "treasury-services client",
+        "BTC": "sector/macro performance table"
+      },
+      "basis": "cashtags quoted; roles inferred from context (BTC role per body; BTC/ETH tables). The 'tickers' field also lists FORD exactly as the record has it."
+    },
+    "data_sources": {
+      "sites_and_datasets": [
+        "Galaxy investor relations (quarterly results, news)",
+        "SEC EDGAR Q1 2025 press release",
+        "PRNewswire Q2 2025 results",
+        "Barron's",
+        "NY AG settlement PDF",
+        "Galaxy research (NPM breach)",
+        "galaxy.com/one",
+        "PortfoliosLab stock comparison",
+        "CoinGecko Bitcoin treasuries",
+        "StockAnalysis analyst ratings",
+        "Fidelity key statistics",
+        "Exploding Topics crypto trends",
+        "TradingView (metrics, chart)",
+        "X posts from 5 named accounts",
+        "AfterHour post by @mphinance",
+        "LinkedIn (exec bios)"
+      ],
+      "filing_types_cited": [
+        "quarterly earnings press release",
+        "regulatory settlement"
+      ],
+      "basis": "quoted (URLs and named sources in body)"
+    },
+    "media": {
+      "images": "Body says 'Chart Attached as Reference' in section 7; no image URL exists in the record, so the image itself is not captured.",
+      "link_urls_field": "https://www.linkedin.com/in/novogratz",
+      "inline_links": 16,
+      "embeds": "none found (embedded_tweet_from is empty)",
+      "basis": "link counts quoted from body; image presence inferred from the sentence only"
+    },
+    "format": {
+      "words": 2231,
+      "characters": 15486,
+      "heading_style": "Markdown '#' H1 per section with keycap-number emoji (1️⃣ to 🔟), italic one-line 'why this matters' under each heading, bold sub-headings wrapped in matching emoji pairs",
+      "emoji_use": "heavy; section numerals, bold sub-heads bracketed by emoji, warning siren in the intro",
+      "tone": "conversational, casual, mildly self-deprecating humor, educational; includes cheeky asides and opinion labelled as opinion",
+      "example_layout": "each section: italic purpose line, then 2-4 bold sub-topics, then a *Source:* line with raw URL",
+      "ending": "Thesis (undervalued infra bet, $100 target in 1-2 yrs, ~60% upside) then action plan (entry, allocation, hold, watch list) then risk note (stop 15-20%, exit triggers, take profit $75-100). Closes with a graduation sign-off and a comment prompt.",
+      "basis": "counts computed; style descriptions inferred"
+    },
+    "engagement": {
+      "comment_count": 132,
+      "reaction_count": 73,
+      "view_count": 7,
+      "caveat": "view_count 7 against 73 reactions and 132 comments is implausible; likely an unreliable or lagging counter in the scrape. Do not cite it."
+    }
+  },
+  "reusable_template": {
+    "title": "[emoji] How to PROPERLY DD w/ Example: ${TICKER}",
+    "intro": [
+      "Warning line about length and whether there is a TL;DR",
+      "Why you are qualified / what you built",
+      "Who this is for and what example you chose",
+      "Numbered list of the 10 sections",
+      "Source window (e.g. last 6 months) and how you cite"
+    ],
+    "one_line_pitch": "${COMPANY} (${TICKER}) is a ${what it is}. If you are bullish on ${theme}, ${why it fits}.",
+    "sections": [
+      "1 Company Fundamentals: what it does | who runs it (names, background, links) | finances (latest quarter, TTM revenue/net income, cash, debt, key holdings) | Source",
+      "2 Recent News: [event, date] + 2-3 line takeaway + Source (repeat for earnings, partnerships, listings, legal/regulatory)",
+      "3 Growth Drivers: driver A (numbers) | driver B (numbers) | Sources",
+      "4 Risks: market risk | execution/financing risk | operational/security risk | Source each",
+      "5 Competition: per competitor, where they win and where ${TICKER} wins | Source",
+      "6 Sentiment: analyst count, consensus, avg and top target | retail chatter quotes and handles | Sources",
+      "7 Chart Review: YTD, ATH, RSI, 50/200 MA position, support, resistance, trend structure | chart image",
+      "8 Sector and Macro: sector trend | benchmark performance table (1w/1m/3m/6m/YTD/1y) | Sources",
+      "9 Valuation and Thesis: market cap, fwd P/E, debt/assets, gross profit, margin, net cash flow, ownership split | thesis in 2-3 sentences | target, timeframe, % upside | label as opinion",
+      "10 Action Plan and Risk: entry level | allocation cap | hold period | what to watch | stop % | exit triggers | take profit"
+    ],
+    "closing": [
+      "Recap that sections 9 and 10 are the reader's own call",
+      "Ask for conviction and what you missed",
+      "Invite questions"
+    ],
+    "adaptation_notes": "Original omits insiders, options flow and filings as steps. Our version should add them (insider buys/sells, options flow/OI, 10-K/10-Q/8-K read) since AfterMath has the data. Per Michael's voice rules: no em or en dashes, sign-off '~ Michael'."
+  },
+  "provenance": {
+    "quoted_from_body": [
+      "section headings and order",
+      "all numbers, tickers, URLs, handles",
+      "thesis, target, stop, take profit",
+      "Chart Attached as Reference"
+    ],
+    "inferred": [
+      "section one-line summaries (condensed)",
+      "ticker roles",
+      "tone, emoji and layout descriptions",
+      "image presence",
+      "engagement caveat",
+      "all of reusable_template wording (generic abstraction)",
+      "adaptation_notes"
+    ]
+  }
+}
