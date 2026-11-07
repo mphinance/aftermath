@@ -41,6 +41,25 @@ The production web interface delivers instant quantitative filtering across four
 
 ## 🤖 Model Context Protocol (MCP) Server
 
+### Quick start: free live market data in any agent (no API key)
+
+Needs only `python3`. Paste this to Claude Code, or run it yourself:
+
+```bash
+claude mcp add aftermath -- python3 -c "import urllib.request; exec(urllib.request.urlopen('https://ah.mphinance.com/mcp/server.py').read().decode('utf-8'))"
+```
+
+Claude Desktop, Cursor, Windsurf: add the same command as an `mcpServers` entry (see [/mcp](https://ah.mphinance.com/mcp)). Restart the client, then ask:
+
+- "Get live quotes for NVDA, AAPL and SPY."
+- "Show me the daily price chart for SPY."
+- "Is the market open right now?"
+- "What is trending on the leaderboard?"
+
+Live tools (quotes, charts, session, leaderboard) call AfterHour directly. Snapshot tools (ticker intel, ETF flows) can be days or weeks old. Full guides: [/mcp](https://ah.mphinance.com/mcp) and [/docs](https://ah.mphinance.com/docs).
+
+### Other connection options
+
 Connect any LLM, agent framework, or IDE directly to live AfterHour alt-data:
 
 ```bash
