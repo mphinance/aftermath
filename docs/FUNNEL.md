@@ -11,7 +11,7 @@ AfterHour accounts that funnel traders into Telegram channels, how we track them
 | `https://ah.mphinance.com/scamcheck` | "Check before you join": paste a `t.me` link or AfterHour username, get a match or no match. Static page, reads `api/funnel.json` in the browser. |
 | `https://ah.mphinance.com/api/funnel.json` | All flagged accounts with tier, shared-link clusters, posting stats. |
 | MCP tool `get_funnel_accounts` | Same lookup for AI agents. Inputs: `username`, `telegram_link`, `tier`, `limit`. |
-| `https://ah.mphinance.com/api/funnel-tickers.json` | Ranked tickers called out by flagged accounts and their channels (`ah_accounts`, `ah_posts`, `tg_channels`, `tg_posts`). MCP tool `get_funnel_tickers` (`limit`). |
+| `https://ah.mphinance.com/api/funnel-tickers.json` | Ranked tickers called out by flagged accounts and their channels (`ah_accounts`, `ah_posts`, `tg_channels`, `tg_posts`). MCP tool `get_funnel_callouts` returns the same ranking when called unfiltered. |
 | `https://ah.mphinance.com/api/funnel-calls.json` | 300 most recent parsed callouts from public channels, with scored `outcome` where available. Quoted results are channel claims; small sample. MCP tool `get_funnel_callouts` (`ticker`, `channel`, `action`, `limit`). |
 
 | `https://ah.mphinance.com/scorecard` | Public scorecard page: what each called option contract did after the post (main view), options held to expiry (secondary) and forex/gold/index signals scored TP1 first versus SL first, pooled and per channel, with sample sizes and 95% ranges. Static page reading the JSON files below. |

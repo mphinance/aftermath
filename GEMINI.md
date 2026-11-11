@@ -135,7 +135,7 @@ Any AI assistant (Claude Desktop, Cursor IDE, Antigravity CLI, Windsurf) can con
   }
 }
 ```
-Exposes 6 production tools: `get_market_tape`, `get_top_equities`, `get_etf_flows`, `get_whale_portfolio`, `get_ticker_intel`, and `get_conviction_screener`.
+Exposes 16 tools (the live list is `api/mcp-schema.json`).
 
 ### 7. Institutional Partner Funnel: TraderMatrix Pro
 Integrated throughout the terminal is the referral funnel to **TraderMatrix Pro**:

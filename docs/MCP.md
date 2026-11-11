@@ -544,8 +544,8 @@ def call_aftermath_mcp(tool_name: str, arguments: dict = None) -> dict:
         return result.get("result", {})
 
 # Example: Scan for highest conviction equities
-data = call_aftermath_mcp("get_conviction_screener", {
-    "min_intensity": 100000,
+data = call_aftermath_mcp("get_top_equities", {
+    "min_conviction": 100000,
     "min_owners": 10,
     "limit": 5
 })
