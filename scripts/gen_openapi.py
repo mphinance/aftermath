@@ -26,6 +26,7 @@ TAGS = [
     ("Market", "Macro tape: whale cash, daily P&L, allocation split and leaders."),
     ("Securities", "Equities and ETFs ranked by verified whale capital, owners and conviction."),
     ("Whales", "Verified high-capital portfolios and the clout-inversion (shadow) index."),
+    ("Traders", "Watchlisted AfterHour traders: deterministic volatility-token signals extracted from their public posts."),
     ("Telegram Funnel", "Telegram channels linked to flagged accounts: callouts, scoring, live feed. Flag list curated by telegramscammers.com; flagged for investigation, not a finding of fraud."),
     ("MCP", "Model Context Protocol: live JSON-RPC endpoint and the tool catalog."),
 ]
@@ -83,6 +84,9 @@ ENDPOINTS = [
     ("/api/funnel-live.json", "Telegram Funnel", "Live feed",
      "Last 72 hours of parsed, unscored callouts and hot tickers. Refreshed every few minutes on market days.",
      "funnel-live.json", None),
+    ("/api/trader-signals.json", "Traders", "Trader volatility signals",
+     "Per watchlisted trader: post counts and the posts that mention VIX/VVIX/VX/VXM/VXX/UVXY/SVIX/UVIX/MOVE/COR1M/SKEW or short/long vol, with adjacent numeric levels, explicit direction words and a verbatim quote. Keyword extraction only, no inference; not advice.",
+     "trader-signals.json", None),
     ("/api/mcp-schema.json", "MCP", "MCP tool and resource catalog",
      "Tool definitions (name, description, inputSchema) and resources, generated from the server code.", "mcp-schema.json", None),
     ("/api/openapi.json", "MCP", "This OpenAPI document",
