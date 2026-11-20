@@ -1,0 +1,188 @@
+{
+ "generated_at": "2026-11-20T22:28:03+00:00",
+ "traders": [
+  {
+   "handle": "Cynce",
+   "profile_id": "prf_226158b74f0b4315a55323c2417284ba",
+   "post_count": 57,
+   "first_post": "2025-02-02",
+   "last_post": "2026-08-18",
+   "vol_post_count": 9,
+   "signals": [
+    {
+     "date": "2025-05-14",
+     "id": "pst_d9e9a4bbb6cc4a50ad8628039a0b307e",
+     "share_url": "https://afterhour.com/Cynce/NJS/odd-day-whats-happening-vix-an",
+     "title": "Odd day... what's happening... VIX and Market parallel and divergent.",
+     "instruments": [
+      "VIX",
+      "UVIX"
+     ],
+     "direction": "none",
+     "levels": [],
+     "quote": "VIX and Market parallel and divergent."
+    },
+    {
+     "date": "2025-06-13",
+     "id": "pst_e3131e46975b420e910dac3edb6d8af1",
+     "share_url": "https://afterhour.com/Cynce/QpZ/friday-5-uvix-aint-got-no-job-",
+     "title": "Friday 5: UVIX ain't got no job, ain't got shit to do, might as well get...",
+     "instruments": [
+      "UVIX",
+      "VIX"
+     ],
+     "direction": "none",
+     "levels": [
+      {
+       "token": "UVIX",
+       "value": 5.0,
+       "context": "5: UVIX"
+      },
+      {
+       "token": "UVIX",
+       "value": 2.0,
+       "context": "UVIX is a 2"
+      },
+      {
+       "token": "UVIX",
+       "value": 5.0,
+       "context": "UVIX 5"
+      }
+     ],
+     "quote": "Friday 5: UVIX ain't got no job, ain't got shit to do, might as well get..."
+    },
+    {
+     "date": "2025-06-16",
+     "id": "pst_e1f2a9c3104c41e6ade15e7cbd42a80a",
+     "share_url": "https://afterhour.com/Cynce/Qz6/carlybme-you-stay-up-later-tha",
+     "title": "@CarlyBme you stay up later than me... take a look... UVIX/SVIX pivot",
+     "instruments": [
+      "UVIX",
+      "SVIX"
+     ],
+     "direction": "none",
+     "levels": [
+      {
+       "token": "SVIX",
+       "value": 13.0,
+       "context": "SVIX 13"
+      }
+     ],
+     "quote": "UVIX/SVIX pivot"
+    },
+    {
+     "date": "2025-06-22",
+     "id": "pst_4986f196098244e89ef79a2670122ee3",
+     "share_url": "https://afterhour.com/Cynce/Q4s/psa-volatility-trades",
+     "title": "PSA volatility trades",
+     "instruments": [
+      "UVIX",
+      "VIX",
+      "SVIX"
+     ],
+     "direction": "none",
+     "levels": [],
+     "quote": "UVIX will pop, by how much and at what volume will be the question."
+    },
+    {
+     "date": "2025-06-23",
+     "id": "pst_6ebe2525a61a4ce2b6451206cb9011ab",
+     "share_url": "https://afterhour.com/Cynce/RaD/volatility",
+     "title": "Volatility",
+     "instruments": [
+      "UVIX"
+     ],
+     "direction": "none",
+     "levels": [
+      {
+       "token": "UVIX",
+       "value": 30.0,
+       "context": "UVIX offramp at 30"
+      }
+     ],
+     "quote": "Hope some of you caught the UVIX offramp at 30 before it flushed almost $2."
+    },
+    {
+     "date": "2025-06-27",
+     "id": "pst_bf3d9563423c4505b0aa6a0fadd462f6",
+     "share_url": "https://afterhour.com/Cynce/RxW/dollarkss-bull-case-for-whatar",
+     "title": "$KSS bull case for @whataremyoptions",
+     "instruments": [
+      "UVIX",
+      "SVIX"
+     ],
+     "direction": "none",
+     "levels": [],
+     "quote": "I currently own 1 share because we all know I put all my money into UVIX, SVIX, and ULTY."
+    },
+    {
+     "date": "2025-07-31",
+     "id": "pst_588c3af97d3a4b18a2b83b2988bb1dfb",
+     "share_url": "https://afterhour.com/Cynce/VtD/new-vix-based-levered-etfs-rou",
+     "title": "New VIX based levered ETFs - Roundhill S&P VIX Futures Points!",
+     "instruments": [
+      "VIX",
+      "UVIX",
+      "VXX"
+     ],
+     "direction": "none",
+     "levels": [
+      {
+       "token": "VIX",
+       "value": 500.0,
+       "context": "500 VIX"
+      },
+      {
+       "token": "VIX",
+       "value": 2.0,
+       "context": "2x Long VIX"
+      },
+      {
+       "token": "VIX",
+       "value": 2.0,
+       "context": "2x Short VIX"
+      }
+     ],
+     "quote": "New VIX based levered ETFs - Roundhill S&P VIX Futures Points!"
+    },
+    {
+     "date": "2025-08-22",
+     "id": "pst_158dbbd24e6f4c67b5929a2b12c9983b",
+     "share_url": "https://afterhour.com/Cynce/XKa/sometimes-you-build-losses-in-",
+     "title": "Sometimes, you build losses in a hedge...",
+     "instruments": [
+      "VIX",
+      "UVIX",
+      "SVIX"
+     ],
+     "direction": "none",
+     "levels": [
+      {
+       "token": "UVIX",
+       "value": 1750.0,
+       "context": "1750 UVIX"
+      },
+      {
+       "token": "SVIX",
+       "value": 19.95,
+       "context": "SVIX is at 19.95"
+      }
+     ],
+     "quote": "I'm just leaving this here because @CarlyBme will talk about VIX today, but I'm going to say I doubled my UVIX tranche and just made a final purchase at 11.99."
+    },
+    {
+     "date": "2025-08-26",
+     "id": "pst_67a73ca903f1495b9c10a9f3e45e1cf0",
+     "share_url": "https://afterhour.com/Cynce/X0e/just-need-a-little-more-bearis",
+     "title": "Just need a little more bearishness... me too $VIXI",
+     "instruments": [
+      "VIX"
+     ],
+     "direction": "none",
+     "levels": [],
+     "quote": "VIXI captures VIX up plus SPY down."
+    }
+   ]
+  }
+ ]
+}
