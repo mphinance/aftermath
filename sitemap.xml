@@ -10,6 +10,8 @@
   <url><loc>https://ah.mphinance.com/signals</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://ah.mphinance.com/scamcheck</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://ah.mphinance.com/scorecard</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ah.mphinance.com/traders</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ah.mphinance.com/api/trader-signals.json</loc><changefreq>daily</changefreq><priority>0.6</priority></url>
   <url><loc>https://ah.mphinance.com/api/funnel-scorecard.json</loc><changefreq>daily</changefreq><priority>0.6</priority></url>
   <url><loc>https://ah.mphinance.com/api/funnel-option-paths.json</loc><changefreq>daily</changefreq><priority>0.6</priority></url>
   <url><loc>https://ah.mphinance.com/api/funnel-fx-signals.json</loc><changefreq>daily</changefreq><priority>0.6</priority></url>
