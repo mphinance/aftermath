@@ -21,7 +21,9 @@ API = ROOT / "api"
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-ALLOWLIST = set()   # api/*.json files intentionally not in the spec
+# api/*.json files intentionally not in the spec: the parked whale tracker, named in the generator.
+import gen_openapi as _gen  # noqa: E402
+ALLOWLIST = set(_gen.DORMANT)
 FORBIDDEN = ["/_ah/admin", "/mjolnir", "ah-user-id", "afterhour-openapi"]
 FORBIDDEN_DIRS = ["api", "docs", "mcp"]
 COUNT_FILES = ["README.md", "CLAUDE.md", "mcp_server.py", "mcp/index.html"]  # plus docs/*.md
@@ -96,6 +98,8 @@ def check_schemas(spec):
             continue
         rel = next((e[4] for e in gen_openapi.ENDPOINTS if e[0] == path), None)
         src = gen_openapi.resolve_source(rel) if rel else None
+        if src is None and rel in gen_openapi.RUNTIME_ARTIFACTS:
+            continue  # named runtime artifact (gitignored cron output): stub schema, nothing to validate
         if src is None:
             out.append(f"{path}: spec path has no local source file")
             continue

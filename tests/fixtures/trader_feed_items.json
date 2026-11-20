@@ -1,0 +1,6 @@
+[
+ {"post": {"id": "p2", "createdAt": "2026-03-10T14:00:00Z", "title": "Vol check", "body": "Watching 20-25VIX, 130 VVIX today. I would short vol here.", "shareUrl": "https://afterhour.com/Cynce/p2/vol-check"},
+  "securities": [{"tickerSymbol": "SVIX"}], "commentCount": 2, "reactionCounts": {"like": 3}, "viewCount": 10},
+ {"post": {"id": "p1", "createdAt": "2025-02-02T22:07:00Z", "title": "This week", "body": "Holding RIOT 2000 shares, 50/50 CC.", "shareUrl": "https://afterhour.com/Cynce/p1/this-week"},
+  "securities": [{"tickerSymbol": "RIOT"}], "commentCount": 0, "reactionCounts": {}, "viewCount": 5}
+]

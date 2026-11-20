@@ -42,16 +42,14 @@ The list below is generated from the built `api/*.json` files by `scripts/gen_op
 #### 3. Sentiment
 
 - **Path**: `GET /api/sentiment.json`
-- **Description**: Social sentiment from the AfterHour post archive: per-window summaries, buzz leaders and daily mention series.
+- **Description**: Social sentiment from the AfterHour post archive: per-window summaries, buzz leaders and daily mention series. Runtime artifact: produced by a cron job or a local build and not stored in the repository, so no response shape is inferred here.
 - **Request**: `curl -sL https://ah.mphinance.com/api/sentiment.json`
-- **Top-level fields**: `generated_at` (string), `source` (string), `archive` (object), `method` (string), `caveat` (string), `windows` (object), `buzz` (object), `daily` (object)
 
 #### 4. Recent AfterHour posts
 
 - **Path**: `GET /api/ah-posts.json`
-- **Description**: Recent public community posts collected from the AfterHour app. Published when the collector has produced it.
+- **Description**: Recent public community posts collected from the AfterHour app. Published when the collector has produced it. Runtime artifact: produced by a cron job or a local build and not stored in the repository, so no response shape is inferred here.
 - **Request**: `curl -sL https://ah.mphinance.com/api/ah-posts.json`
-- **Top-level fields**: `generated_at` (string), `posts` (array)
 
 ### Securities
 
@@ -92,87 +90,94 @@ The list below is generated from the built `api/*.json` files by `scripts/gen_op
 - **Request**: `curl -sL https://ah.mphinance.com/api/shadow.json`
 - **Top-level fields**: `total` (integer), `whales` (array)
 
+### Traders
+
+#### 10. Trader volatility signals
+
+- **Path**: `GET /api/trader-signals.json`
+- **Description**: Per watchlisted trader: post counts and the posts that mention VIX/VVIX/VX/VXM/VXX/UVXY/SVIX/UVIX/MOVE/COR1M/SKEW or short/long vol, with adjacent numeric levels, explicit direction words and a verbatim quote. Keyword extraction only, no inference; not advice.
+- **Request**: `curl -sL https://ah.mphinance.com/api/trader-signals.json`
+- **Top-level fields**: `generated_at` (string), `traders` (array)
+
 ### Telegram Funnel
 
-#### 10. Flagged accounts
+#### 11. Flagged accounts
 
 - **Path**: `GET /api/funnel.json`
 - **Description**: Accounts on the telegramscammers.com flag list, enriched with public Telegram recon. Wording: flagged for investigation, not a finding of fraud. Currently 150 accounts.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel.json`
 - **Top-level fields**: `source` (string), `credit` (string), `database` (string), `network` (string), `submit_intel` (string), `upstream_json` (string), `disclaimer` (string), `count` (integer), `tiers` (object), `shared_link_clusters` (array), `tickers` (array), `callouts` (object), `accounts` (array)
 
-#### 11. Funnel ticker rankings
+#### 12. Funnel ticker rankings
 
 - **Path**: `GET /api/funnel-tickers.json`
 - **Description**: Tickers most mentioned across funnel channels. Currently 676 records.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-tickers.json`
 - **Top-level fields**: `source` (string), `generated_at` (string), `credit` (string), `disclaimer` (string), `small_sample_warning` (string), `count` (integer), `tickers` (array)
 
-#### 12. Parsed callouts (recent)
+#### 13. Parsed callouts (recent)
 
 - **Path**: `GET /api/funnel-calls.json`
 - **Description**: Parsed trade callouts from funnel channels. Quoted results are channel claims, unverified. Currently 1000 calls.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-calls.json`
 - **Top-level fields**: `source` (string), `generated_at` (string), `credit` (string), `disclaimer` (string), `small_sample_warning` (string), `quoted_results_are_channel_claims` (string), `total_parsed` (integer), `count` (integer), `calls_with_scored_outcome` (integer), `calls` (array)
 
-#### 13. Parsed callouts (full archive, JSON)
+#### 14. Parsed callouts (full archive, JSON)
 
 - **Path**: `GET /api/funnel-calls-full.json`
-- **Description**: Full callout archive including scoring fields. Large file. Currently 14706 calls.
+- **Description**: Full callout archive including scoring fields. Large file. Runtime artifact: produced by a cron job or a local build and not stored in the repository, so no response shape is inferred here.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-calls-full.json`
-- **Top-level fields**: `generated_at` (string), `credit` (string), `disclaimer` (string), `quoted_results_are_channel_claims` (string), `path_note` (string), `note` (string), `count` (integer), `scored_count` (integer), `path_count` (integer), `window_start` (string), `window_end` (string), `calls` (array)
 
-#### 14. Parsed callouts (full archive, CSV)
+#### 15. Parsed callouts (full archive, CSV)
 
 - **Path**: `GET /api/funnel-calls-full.csv`
-- **Description**: The full callout archive as CSV, one row per callout. Large file. Currently 14706 rows.
+- **Description**: The full callout archive as CSV, one row per callout. Large file. Runtime artifact: produced by a cron job or a local build and not stored in the repository, so no response shape is inferred here.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-calls-full.csv`
 
-#### 15. Option price paths
+#### 16. Option price paths
 
 - **Path**: `GET /api/funnel-option-paths.json`
 - **Description**: What each called option contract did after the post (5-minute trade bars), with sample sizes and coverage.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-option-paths.json`
 - **Top-level fields**: `generated_at` (string), `credit` (string), `disclaimer` (string), `methodology` (object), `window_start` (string), `window_end` (string), `small_n_threshold` (integer), `coverage` (object), `pooled` (object), `delay_sensitivity` (object), `fill_gap` (object), `robustness` (object), `by_channel` (array), `by_ticker` (array), `by_session_hour` (array), `n_channels` (integer)
 
-#### 16. Scorecard
+#### 17. Scorecard
 
 - **Path**: `GET /api/funnel-scorecard.json`
 - **Description**: Pooled and per-channel scoring: option paths, hold-to-expiry, and forex/gold/index TP1-first vs SL-first, with Wilson 95% ranges beside every rate.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-scorecard.json`
 - **Top-level fields**: `generated_at` (string), `credit` (string), `disclaimer` (string), `source` (string), `methodology` (string), `methodology_doc` (string), `conventions` (string), `small_sample_rule` (string), `options` (object), `fx` (object)
 
-#### 17. Forex / gold / index signals
+#### 18. Forex / gold / index signals
 
 - **Path**: `GET /api/funnel-fx-signals.json`
 - **Description**: Parsed and scored forex, gold and index signals from funnel channels. Currently 63 signals.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-fx-signals.json`
 - **Top-level fields**: `generated_at` (string), `credit` (string), `disclaimer` (string), `methodology` (string), `count` (integer), `signals` (array)
 
-#### 18. Live feed
+#### 19. Live feed
 
 - **Path**: `GET /api/funnel-live.json`
-- **Description**: Last 72 hours of parsed, unscored callouts and hot tickers. Refreshed every few minutes on market days. Currently 310 calls.
+- **Description**: Last 72 hours of parsed, unscored callouts and hot tickers. Refreshed every few minutes on market days. Runtime artifact: produced by a cron job or a local build and not stored in the repository, so no response shape is inferred here.
 - **Request**: `curl -sL https://ah.mphinance.com/api/funnel-live.json`
-- **Top-level fields**: `source` (string), `generated_at` (string), `disclaimer` (string), `market` (string), `window_hours` (integer), `refresh_hint_sec` (integer), `channels_polled` (integer), `channels_total` (integer), `new_posts_this_run` (integer), `live_note` (string), `count` (integer), `hot_tickers` (array), `calls` (array)
 
 ### MCP
 
-#### 19. MCP tool and resource catalog
+#### 20. MCP tool and resource catalog
 
 - **Path**: `GET /api/mcp-schema.json`
 - **Description**: Tool definitions (name, description, inputSchema) and resources, generated from the server code.
 - **Request**: `curl -sL https://ah.mphinance.com/api/mcp-schema.json`
 - **Top-level fields**: `version` (string), `protocolVersion` (string), `server` (object), `toolCount` (integer), `tools` (array), `resources` (array)
 
-#### 20. This OpenAPI document
+#### 21. This OpenAPI document
 
 - **Path**: `GET /api/openapi.json`
 - **Description**: The OpenAPI 3.1 specification, generated by `scripts/gen_openapi.py` from the built files.
 - **Request**: `curl -sL https://ah.mphinance.com/api/openapi.json`
 - **Top-level fields**: `openapi` (string), `info` (object), `paths` (object), `components` (object)
 
-#### 21. MCP JSON-RPC 2.0 (live)
+#### 22. MCP JSON-RPC 2.0 (live)
 
 - **Path**: `POST /api/mcp`
 - **Description**: Stateless Streamable-HTTP MCP endpoint. Send JSON-RPC 2.0 `tools/list` or `tools/call`. 16 tools: `get_market_tape`, `get_top_equities`, `get_etf_flows`, `get_whale_portfolio`, `get_ticker_intel`, `screen_whales`, `get_shadow_whales`, `get_social_feed`, `get_funnel_accounts`, `get_funnel_callouts`, `get_funnel_scorecard`, `get_market_session`, `get_live_quotes`, `get_leaderboard`, `get_security_chart`, `get_retail_sentiment`. Not a static file: this one runs the live server code.

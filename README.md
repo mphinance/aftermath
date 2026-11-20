@@ -189,7 +189,7 @@ python3 build_github_pages.py
 # 2. Sync to Coolify production webroot
 rsync -avz --delete \
   --exclude '.git' --exclude '__pycache__' --exclude 'afterhour.zip' --exclude 'data/following' \
-  index.html default.conf sitemap.xml mcp_server.py api all stonks etfs whales shadow sitemap docs mcp \
+  index.html default.conf sitemap.xml mcp_server.py api all stonks etfs whales shadow sitemap docs mcp scamcheck scorecard signals live traders \
   coolify:/home/mph/apps/ah-portal/
 
 # 3. Reload Nginx container

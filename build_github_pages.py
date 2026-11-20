@@ -362,6 +362,8 @@ subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_fu
 subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel_calls.py")], check=True)
 subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel_scorecard.py")], check=True)
 subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_funnel_paths.py")], check=True)
+# Trader-post source (trader_watchlist.json -> data/traders/*/posts.json -> api/trader-signals.json)
+subprocess.run([_sys.executable, str(Path(__file__).resolve().parent / "build_trader_signals.py")], check=True)
 
 with open(API_DIR / "stonks.json", "w", encoding="utf-8") as f:
     json.dump({"total": len(stocks), "securities": stocks}, f, indent=2)
@@ -404,6 +406,8 @@ sitemap_urls = [
     ("https://ah.mphinance.com/api/funnel-tickers.json", "0.6", "daily"),
     ("https://ah.mphinance.com/api/funnel-calls.json", "0.6", "daily"),
     ("https://ah.mphinance.com/scorecard", "0.8", "daily"),
+    ("https://ah.mphinance.com/traders", "0.7", "daily"),
+    ("https://ah.mphinance.com/api/trader-signals.json", "0.6", "daily"),
     ("https://ah.mphinance.com/api/funnel-scorecard.json", "0.6", "daily"),
     ("https://ah.mphinance.com/api/funnel-option-paths.json", "0.6", "daily"),
     ("https://ah.mphinance.com/api/funnel-fx-signals.json", "0.6", "daily"),

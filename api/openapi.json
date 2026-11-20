@@ -29,6 +29,10 @@
       "description": "Verified high-capital portfolios and the clout-inversion (shadow) index."
     },
     {
+      "name": "Traders",
+      "description": "Watchlisted AfterHour traders: deterministic volatility-token signals extracted from their public posts."
+    },
+    {
       "name": "Telegram Funnel",
       "description": "Telegram channels linked to flagged accounts: callouts, scoring, live feed. Flag list curated by telegramscammers.com; flagged for investigation, not a finding of fraud."
     },
@@ -227,7 +231,7 @@
         ],
         "summary": "Sentiment",
         "operationId": "get_api_sentiment_json",
-        "description": "Social sentiment from the AfterHour post archive: per-window summaries, buzz leaders and daily mention series.",
+        "description": "Social sentiment from the AfterHour post archive: per-window summaries, buzz leaders and daily mention series. Runtime artifact: produced by a cron job or a local build and not stored in the repository, so no response shape is inferred here.",
         "responses": {
           "200": {
             "description": "OK",
@@ -235,305 +239,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Sentiment"
-                },
-                "example": {
-                  "generated_at": "2026-10-16T17:24:42Z",
-                  "source": "https://api.afterhour.com/social/feed (public posts)",
-                  "archive": {
-                    "posts": 119,
-                    "oldest": "2026-10-16T14:03:48.907000+00:00",
-                    "newest": "2026-10-16T17:23:53.433000+00:00"
-                  },
-                  "method": "Direction only from explicit contract side (CALL/PUT, 765C) plus an open verb; closes, hindsight and modal language are neutral. One vote per author per tick...",
-                  "caveat": "Small, noisy sample of public posts. Not advice. Check flags before trusting a score.",
-                  "windows": {
-                    "24h": {
-                      "COIN": {
-                        "n_posts": 1,
-                        "n_authors": 1,
-                        "n_directional_votes": 0,
-                        "n_voting_authors": 0,
-                        "bull": 0,
-                        "bear": 0,
-                        "neutral_posts": 1,
-                        "net_score": null,
-                        "confidence": "low",
-                        "calls_opened": 0,
-                        "puts_opened": 0,
-                        "call_put_ratio": null,
-                        "by_topic": {},
-                        "views": 3,
-                        "comments": 0,
-                        "flags": {
-                          "duplicate_text_posts": 0,
-                          "low_follower_author_share": 0.0,
-                          "bio_telegram_authors": [],
-                          "funnel_list_authors": []
-                        },
-                        "top_posts": [
-                          {
-                            "id": "pst_6705b25b5dbd4f74b7db0a1e00e70c69",
-                            "hash": "bx6J",
-                            "author": "RoyaltyTradez",
-                            "followers": 86057,
-                            "title": "Caught Another One At The Top \ud83e\ude78 $COIN Cmon Down \ud83d\ude02\ud83d\ude02\ud83d\ude02",
-                            "stance": "neutral",
-                            "topic": null,
-                            "ts": "2026-10-16T17:23:53.433Z"
-                          }
-                        ]
-                      },
-                      "QQQ": {
-                        "n_posts": 4,
-                        "n_authors": 2,
-                        "n_directional_votes": 1,
-                        "n_voting_authors": 1,
-                        "bull": 0,
-                        "bear": 1,
-                        "neutral_posts": 3,
-                        "net_score": -1.0,
-                        "confidence": "low",
-                        "calls_opened": 1,
-                        "puts_opened": 2,
-                        "call_put_ratio": 0.5,
-                        "by_topic": {
-                          "contest": 3
-                        },
-                        "views": 396,
-                        "comments": 1,
-                        "flags": {
-                          "duplicate_text_posts": 0,
-                          "low_follower_author_share": 1.5,
-                          "bio_telegram_authors": [
-                            "Jackson87"
-                          ],
-                          "funnel_list_authors": [
-                            "Jackson87"
-                          ]
-                        },
-                        "top_posts": [
-                          {
-                            "id": "pst_5a8edb4da1b64d80b3f594cccd2fd522",
-                            "hash": "bx43",
-                            "author": "Radaroptions",
-                            "followers": 23,
-                            "title": "Closed out $QQQ puts for +80% profit",
-                            "stance": "neutral",
-                            "topic": null,
-                            "ts": "2026-10-16T14:31:29.044Z"
-                          }
-                        ]
-                      }
-                    },
-                    "72h": {
-                      "COIN": {
-                        "n_posts": 1,
-                        "n_authors": 1,
-                        "n_directional_votes": 0,
-                        "n_voting_authors": 0,
-                        "bull": 0,
-                        "bear": 0,
-                        "neutral_posts": 1,
-                        "net_score": null,
-                        "confidence": "low",
-                        "calls_opened": 0,
-                        "puts_opened": 0,
-                        "call_put_ratio": null,
-                        "by_topic": {},
-                        "views": 3,
-                        "comments": 0,
-                        "flags": {
-                          "duplicate_text_posts": 0,
-                          "low_follower_author_share": 0.0,
-                          "bio_telegram_authors": [],
-                          "funnel_list_authors": []
-                        },
-                        "top_posts": [
-                          {
-                            "id": "pst_6705b25b5dbd4f74b7db0a1e00e70c69",
-                            "hash": "bx6J",
-                            "author": "RoyaltyTradez",
-                            "followers": 86057,
-                            "title": "Caught Another One At The Top \ud83e\ude78 $COIN Cmon Down \ud83d\ude02\ud83d\ude02\ud83d\ude02",
-                            "stance": "neutral",
-                            "topic": null,
-                            "ts": "2026-10-16T17:23:53.433Z"
-                          }
-                        ]
-                      },
-                      "QQQ": {
-                        "n_posts": 4,
-                        "n_authors": 2,
-                        "n_directional_votes": 1,
-                        "n_voting_authors": 1,
-                        "bull": 0,
-                        "bear": 1,
-                        "neutral_posts": 3,
-                        "net_score": -1.0,
-                        "confidence": "low",
-                        "calls_opened": 1,
-                        "puts_opened": 2,
-                        "call_put_ratio": 0.5,
-                        "by_topic": {
-                          "contest": 3
-                        },
-                        "views": 396,
-                        "comments": 1,
-                        "flags": {
-                          "duplicate_text_posts": 0,
-                          "low_follower_author_share": 1.5,
-                          "bio_telegram_authors": [
-                            "Jackson87"
-                          ],
-                          "funnel_list_authors": [
-                            "Jackson87"
-                          ]
-                        },
-                        "top_posts": [
-                          {
-                            "id": "pst_5a8edb4da1b64d80b3f594cccd2fd522",
-                            "hash": "bx43",
-                            "author": "Radaroptions",
-                            "followers": 23,
-                            "title": "Closed out $QQQ puts for +80% profit",
-                            "stance": "neutral",
-                            "topic": null,
-                            "ts": "2026-10-16T14:31:29.044Z"
-                          }
-                        ]
-                      }
-                    },
-                    "7d": {
-                      "COIN": {
-                        "n_posts": 1,
-                        "n_authors": 1,
-                        "n_directional_votes": 0,
-                        "n_voting_authors": 0,
-                        "bull": 0,
-                        "bear": 0,
-                        "neutral_posts": 1,
-                        "net_score": null,
-                        "confidence": "low",
-                        "calls_opened": 0,
-                        "puts_opened": 0,
-                        "call_put_ratio": null,
-                        "by_topic": {},
-                        "views": 3,
-                        "comments": 0,
-                        "flags": {
-                          "duplicate_text_posts": 0,
-                          "low_follower_author_share": 0.0,
-                          "bio_telegram_authors": [],
-                          "funnel_list_authors": []
-                        },
-                        "top_posts": [
-                          {
-                            "id": "pst_6705b25b5dbd4f74b7db0a1e00e70c69",
-                            "hash": "bx6J",
-                            "author": "RoyaltyTradez",
-                            "followers": 86057,
-                            "title": "Caught Another One At The Top \ud83e\ude78 $COIN Cmon Down \ud83d\ude02\ud83d\ude02\ud83d\ude02",
-                            "stance": "neutral",
-                            "topic": null,
-                            "ts": "2026-10-16T17:23:53.433Z"
-                          }
-                        ]
-                      },
-                      "QQQ": {
-                        "n_posts": 4,
-                        "n_authors": 2,
-                        "n_directional_votes": 1,
-                        "n_voting_authors": 1,
-                        "bull": 0,
-                        "bear": 1,
-                        "neutral_posts": 3,
-                        "net_score": -1.0,
-                        "confidence": "low",
-                        "calls_opened": 1,
-                        "puts_opened": 2,
-                        "call_put_ratio": 0.5,
-                        "by_topic": {
-                          "contest": 3
-                        },
-                        "views": 396,
-                        "comments": 1,
-                        "flags": {
-                          "duplicate_text_posts": 0,
-                          "low_follower_author_share": 1.5,
-                          "bio_telegram_authors": [
-                            "Jackson87"
-                          ],
-                          "funnel_list_authors": [
-                            "Jackson87"
-                          ]
-                        },
-                        "top_posts": [
-                          {
-                            "id": "pst_5a8edb4da1b64d80b3f594cccd2fd522",
-                            "hash": "bx43",
-                            "author": "Radaroptions",
-                            "followers": 23,
-                            "title": "Closed out $QQQ puts for +80% profit",
-                            "stance": "neutral",
-                            "topic": null,
-                            "ts": "2026-10-16T14:31:29.044Z"
-                          }
-                        ]
-                      }
-                    }
-                  },
-                  "buzz": {
-                    "24h": {
-                      "archive_depth_days": 0.1,
-                      "tickers": {
-                        "COIN": {
-                          "mentions": 1,
-                          "baseline_mean": 0.0,
-                          "z": null
-                        },
-                        "QQQ": {
-                          "mentions": 4,
-                          "baseline_mean": 0.0,
-                          "z": null
-                        }
-                      }
-                    },
-                    "72h": {
-                      "archive_depth_days": 0.1,
-                      "tickers": {
-                        "COIN": {
-                          "mentions": 1,
-                          "baseline_mean": 0.0,
-                          "z": null
-                        },
-                        "QQQ": {
-                          "mentions": 4,
-                          "baseline_mean": 0.0,
-                          "z": null
-                        }
-                      }
-                    }
-                  },
-                  "daily": {
-                    "UPS": [
-                      {
-                        "date": "2026-10-16",
-                        "posts": 1,
-                        "bull": 0,
-                        "bear": 0,
-                        "net": null
-                      }
-                    ],
-                    "NVDA": [
-                      {
-                        "date": "2026-10-16",
-                        "posts": 13,
-                        "bull": 3,
-                        "bear": 0,
-                        "net": 1.0
-                      }
-                    ]
-                  }
                 }
               }
             }
@@ -548,7 +253,7 @@
         ],
         "summary": "Recent AfterHour posts",
         "operationId": "get_api_ah_posts_json",
-        "description": "Recent public community posts collected from the AfterHour app. Published when the collector has produced it.",
+        "description": "Recent public community posts collected from the AfterHour app. Published when the collector has produced it. Runtime artifact: produced by a cron job or a local build and not stored in the repository, so no response shape is inferred here.",
         "responses": {
           "200": {
             "description": "OK",
@@ -556,34 +261,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AhPosts"
-                },
-                "example": {
-                  "generated_at": "2026-10-16T17:24:42Z",
-                  "posts": [
-                    {
-                      "id": "pst_6705b25b5dbd4f74b7db0a1e00e70c69",
-                      "hash": "bx6J",
-                      "ts": "2026-10-16T17:23:53.433Z",
-                      "author": "RoyaltyTradez",
-                      "followers": 86057,
-                      "privacy": "PRIVATE",
-                      "bio_link": "https://www.patreon.com/RoyaltyTradez?utm_campaign=creatorshare_creator",
-                      "title": "Caught Another One At The Top \ud83e\ude78 $COIN Cmon Down \ud83d\ude02\ud83d\ude02\ud83d\ude02",
-                      "topic": null,
-                      "tickers": [
-                        "COIN"
-                      ],
-                      "views": 3,
-                      "comments": 0,
-                      "likes": 0,
-                      "has_positions": false,
-                      "sig": "c7c807c1c6f3",
-                      "side": null,
-                      "action": null,
-                      "stance": "neutral",
-                      "basis": "no_contract"
-                    }
-                  ]
                 }
               }
             }
@@ -1256,7 +933,7 @@
         ],
         "summary": "Parsed callouts (full archive, JSON)",
         "operationId": "get_api_funnel_calls_full_json",
-        "description": "Full callout archive including scoring fields. Large file. Currently 14706 calls.",
+        "description": "Full callout archive including scoring fields. Large file. Runtime artifact: produced by a cron job or a local build and not stored in the repository, so no response shape is inferred here.",
         "responses": {
           "200": {
             "description": "OK",
@@ -1264,39 +941,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/FunnelCallsFull"
-                },
-                "example": {
-                  "generated_at": "2026-10-14T21:23:59Z",
-                  "credit": "https://telegramscammers.com",
-                  "disclaimer": "Channels and accounts here are flagged for investigation, not a finding of fraud. Flag list curated by https://telegramscammers.com.",
-                  "quoted_results_are_channel_claims": "quoted_results_are_channel_claims: result_pct is what the channel itself posted, not verified, and winners dominate quoted closes (survivorship). Use 'outcom...",
-                  "path_note": "'path' is present on scored option opens when the export is built where the local 5-minute bar archive exists: the contract's own traded price after the post...",
-                  "note": "Every parsed callout from public Telegram channels (repeat posts included, flagged echo=true). 'outcome' is present when the callout is a scored option open:...",
-                  "count": 14706,
-                  "scored_count": 2297,
-                  "path_count": 2727,
-                  "window_start": "2026-03-23",
-                  "window_end": "2026-10-14",
-                  "calls": [
-                    {
-                      "id": "alphasyndicate11/9",
-                      "channel": "t.me/alphasyndicate11",
-                      "posted": "2026-03-23T05:42:11+00:00",
-                      "ticker": "SPY",
-                      "kind": "stock",
-                      "side": null,
-                      "strike": null,
-                      "expiry": null,
-                      "entry_price": null,
-                      "exit_price": null,
-                      "action": "mention",
-                      "result_pct": null,
-                      "open_id": null,
-                      "echo": false,
-                      "parse_flags": [],
-                      "text": "This is the part of the Market where people get trapped every time.\n\nThe market drops.\nIt bounces.\nEveryone thinks the bottom is in.\n\nThen the real correctio..."
-                    }
-                  ]
                 }
               }
             }
@@ -1311,7 +955,7 @@
         ],
         "summary": "Parsed callouts (full archive, CSV)",
         "operationId": "get_api_funnel_calls_full_csv",
-        "description": "The full callout archive as CSV, one row per callout. Large file. Currently 14706 rows.",
+        "description": "The full callout archive as CSV, one row per callout. Large file. Runtime artifact: produced by a cron job or a local build and not stored in the repository, so no response shape is inferred here.",
         "responses": {
           "200": {
             "description": "CSV file",
@@ -2347,7 +1991,7 @@
         ],
         "summary": "Live feed",
         "operationId": "get_api_funnel_live_json",
-        "description": "Last 72 hours of parsed, unscored callouts and hot tickers. Refreshed every few minutes on market days. Currently 310 calls.",
+        "description": "Last 72 hours of parsed, unscored callouts and hot tickers. Refreshed every few minutes on market days. Runtime artifact: produced by a cron job or a local build and not stored in the repository, so no response shape is inferred here.",
         "responses": {
           "200": {
             "description": "OK",
@@ -2355,42 +1999,53 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/FunnelLive"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trader-signals.json": {
+      "get": {
+        "tags": [
+          "Traders"
+        ],
+        "summary": "Trader volatility signals",
+        "operationId": "get_api_trader_signals_json",
+        "description": "Per watchlisted trader: post counts and the posts that mention VIX/VVIX/VX/VXM/VXX/UVXY/SVIX/UVIX/MOVE/COR1M/SKEW or short/long vol, with adjacent numeric levels, explicit direction words and a verbatim quote. Keyword extraction only, no inference; not advice.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TraderSignals"
                 },
                 "example": {
-                  "source": "AfterMath live feed over public Telegram channel posts (passive, read-only, unscored)",
-                  "generated_at": "2026-10-16T13:33:37Z",
-                  "disclaimer": "Channels and accounts here are flagged for investigation, not a finding of fraud. Flag list curated by https://telegramscammers.com.",
-                  "market": "open",
-                  "window_hours": 72,
-                  "refresh_hint_sec": 60,
-                  "channels_polled": 0,
-                  "channels_total": 0,
-                  "new_posts_this_run": 0,
-                  "live_note": "Raw parsed callouts, newest first. Not scored here; outcomes live in funnel-calls.json and /scorecard. Not advice.",
-                  "count": 310,
-                  "hot_tickers": [
+                  "generated_at": "2026-11-20T22:28:03+00:00",
+                  "traders": [
                     {
-                      "ticker": "QQQ",
-                      "n_60m": 1,
-                      "n_24h": 8,
-                      "chans": 3,
-                      "calls": 6,
-                      "puts": 2
-                    }
-                  ],
-                  "calls": [
-                    {
-                      "channel": "t.me/moonwalkertrades2",
-                      "posted": "2026-10-16T13:33:03+00:00",
-                      "ticker": "QQQ",
-                      "kind": "option",
-                      "side": "put",
-                      "strike": 720.0,
-                      "expiry": "2026-10-16",
-                      "entry_price": 0.68,
-                      "action": "open",
-                      "result_pct": null,
-                      "text": "BTO QQQ 10/16 720p @ .68 half"
+                      "handle": "Cynce",
+                      "profile_id": "prf_226158b74f0b4315a55323c2417284ba",
+                      "post_count": 57,
+                      "first_post": "2025-02-02",
+                      "last_post": "2026-08-18",
+                      "vol_post_count": 9,
+                      "signals": [
+                        {
+                          "date": "2025-05-14",
+                          "id": "pst_d9e9a4bbb6cc4a50ad8628039a0b307e",
+                          "share_url": "https://afterhour.com/Cynce/NJS/odd-day-whats-happening-vix-an",
+                          "title": "Odd day... what's happening... VIX and Market parallel and divergent.",
+                          "instruments": [
+                            "VIX"
+                          ],
+                          "direction": "none",
+                          "levels": [],
+                          "quote": "VIX and Market parallel and divergent."
+                        }
+                      ]
                     }
                   ]
                 }
@@ -3067,801 +2722,10 @@
         "description": "Inferred from the built file api/market-summary.json."
       },
       "Sentiment": {
-        "type": "object",
-        "properties": {
-          "generated_at": {
-            "type": "string"
-          },
-          "source": {
-            "type": "string"
-          },
-          "archive": {
-            "type": "object",
-            "properties": {
-              "posts": {
-                "type": "integer"
-              },
-              "oldest": {
-                "type": "string"
-              },
-              "newest": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "posts",
-              "oldest",
-              "newest"
-            ]
-          },
-          "method": {
-            "type": "string"
-          },
-          "caveat": {
-            "type": "string"
-          },
-          "windows": {
-            "type": "object",
-            "properties": {
-              "24h": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": "object",
-                  "properties": {
-                    "n_posts": {
-                      "type": "integer"
-                    },
-                    "n_authors": {
-                      "type": "integer"
-                    },
-                    "n_directional_votes": {
-                      "type": "integer"
-                    },
-                    "n_voting_authors": {
-                      "type": "integer"
-                    },
-                    "bull": {
-                      "type": "integer"
-                    },
-                    "bear": {
-                      "type": "integer"
-                    },
-                    "neutral_posts": {
-                      "type": "integer"
-                    },
-                    "net_score": {
-                      "type": [
-                        "null",
-                        "number"
-                      ]
-                    },
-                    "confidence": {
-                      "type": "string"
-                    },
-                    "calls_opened": {
-                      "type": "integer"
-                    },
-                    "puts_opened": {
-                      "type": "integer"
-                    },
-                    "call_put_ratio": {
-                      "type": [
-                        "null",
-                        "number"
-                      ]
-                    },
-                    "by_topic": {
-                      "type": "object",
-                      "properties": {
-                        "contest": {
-                          "type": "integer"
-                        },
-                        "gain": {
-                          "type": "integer"
-                        },
-                        "yolo": {
-                          "type": "integer"
-                        },
-                        "chart": {
-                          "type": "integer"
-                        },
-                        "news": {
-                          "type": "integer"
-                        },
-                        "discuss": {
-                          "type": "integer"
-                        }
-                      }
-                    },
-                    "views": {
-                      "type": "integer"
-                    },
-                    "comments": {
-                      "type": "integer"
-                    },
-                    "flags": {
-                      "type": "object",
-                      "properties": {
-                        "duplicate_text_posts": {
-                          "type": "integer"
-                        },
-                        "low_follower_author_share": {
-                          "type": "number"
-                        },
-                        "bio_telegram_authors": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        },
-                        "funnel_list_authors": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        }
-                      },
-                      "required": [
-                        "duplicate_text_posts",
-                        "low_follower_author_share",
-                        "bio_telegram_authors",
-                        "funnel_list_authors"
-                      ]
-                    },
-                    "top_posts": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "hash": {
-                            "type": "string"
-                          },
-                          "author": {
-                            "type": "string"
-                          },
-                          "followers": {
-                            "type": "integer"
-                          },
-                          "title": {
-                            "type": "string"
-                          },
-                          "stance": {
-                            "type": "string"
-                          },
-                          "topic": {
-                            "type": [
-                              "null",
-                              "string"
-                            ]
-                          },
-                          "ts": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "hash",
-                          "author",
-                          "followers",
-                          "title",
-                          "stance",
-                          "topic",
-                          "ts"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "n_posts",
-                    "n_authors",
-                    "n_directional_votes",
-                    "n_voting_authors",
-                    "bull",
-                    "bear",
-                    "neutral_posts",
-                    "net_score",
-                    "confidence",
-                    "calls_opened",
-                    "puts_opened",
-                    "call_put_ratio",
-                    "by_topic",
-                    "views",
-                    "comments",
-                    "flags",
-                    "top_posts"
-                  ]
-                }
-              },
-              "72h": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": "object",
-                  "properties": {
-                    "n_posts": {
-                      "type": "integer"
-                    },
-                    "n_authors": {
-                      "type": "integer"
-                    },
-                    "n_directional_votes": {
-                      "type": "integer"
-                    },
-                    "n_voting_authors": {
-                      "type": "integer"
-                    },
-                    "bull": {
-                      "type": "integer"
-                    },
-                    "bear": {
-                      "type": "integer"
-                    },
-                    "neutral_posts": {
-                      "type": "integer"
-                    },
-                    "net_score": {
-                      "type": [
-                        "null",
-                        "number"
-                      ]
-                    },
-                    "confidence": {
-                      "type": "string"
-                    },
-                    "calls_opened": {
-                      "type": "integer"
-                    },
-                    "puts_opened": {
-                      "type": "integer"
-                    },
-                    "call_put_ratio": {
-                      "type": [
-                        "null",
-                        "number"
-                      ]
-                    },
-                    "by_topic": {
-                      "type": "object",
-                      "properties": {
-                        "contest": {
-                          "type": "integer"
-                        },
-                        "gain": {
-                          "type": "integer"
-                        },
-                        "yolo": {
-                          "type": "integer"
-                        },
-                        "chart": {
-                          "type": "integer"
-                        },
-                        "news": {
-                          "type": "integer"
-                        },
-                        "discuss": {
-                          "type": "integer"
-                        }
-                      }
-                    },
-                    "views": {
-                      "type": "integer"
-                    },
-                    "comments": {
-                      "type": "integer"
-                    },
-                    "flags": {
-                      "type": "object",
-                      "properties": {
-                        "duplicate_text_posts": {
-                          "type": "integer"
-                        },
-                        "low_follower_author_share": {
-                          "type": "number"
-                        },
-                        "bio_telegram_authors": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        },
-                        "funnel_list_authors": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        }
-                      },
-                      "required": [
-                        "duplicate_text_posts",
-                        "low_follower_author_share",
-                        "bio_telegram_authors",
-                        "funnel_list_authors"
-                      ]
-                    },
-                    "top_posts": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "hash": {
-                            "type": "string"
-                          },
-                          "author": {
-                            "type": "string"
-                          },
-                          "followers": {
-                            "type": "integer"
-                          },
-                          "title": {
-                            "type": "string"
-                          },
-                          "stance": {
-                            "type": "string"
-                          },
-                          "topic": {
-                            "type": [
-                              "null",
-                              "string"
-                            ]
-                          },
-                          "ts": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "hash",
-                          "author",
-                          "followers",
-                          "title",
-                          "stance",
-                          "topic",
-                          "ts"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "n_posts",
-                    "n_authors",
-                    "n_directional_votes",
-                    "n_voting_authors",
-                    "bull",
-                    "bear",
-                    "neutral_posts",
-                    "net_score",
-                    "confidence",
-                    "calls_opened",
-                    "puts_opened",
-                    "call_put_ratio",
-                    "by_topic",
-                    "views",
-                    "comments",
-                    "flags",
-                    "top_posts"
-                  ]
-                }
-              },
-              "7d": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": "object",
-                  "properties": {
-                    "n_posts": {
-                      "type": "integer"
-                    },
-                    "n_authors": {
-                      "type": "integer"
-                    },
-                    "n_directional_votes": {
-                      "type": "integer"
-                    },
-                    "n_voting_authors": {
-                      "type": "integer"
-                    },
-                    "bull": {
-                      "type": "integer"
-                    },
-                    "bear": {
-                      "type": "integer"
-                    },
-                    "neutral_posts": {
-                      "type": "integer"
-                    },
-                    "net_score": {
-                      "type": [
-                        "null",
-                        "number"
-                      ]
-                    },
-                    "confidence": {
-                      "type": "string"
-                    },
-                    "calls_opened": {
-                      "type": "integer"
-                    },
-                    "puts_opened": {
-                      "type": "integer"
-                    },
-                    "call_put_ratio": {
-                      "type": [
-                        "null",
-                        "number"
-                      ]
-                    },
-                    "by_topic": {
-                      "type": "object",
-                      "properties": {
-                        "contest": {
-                          "type": "integer"
-                        },
-                        "gain": {
-                          "type": "integer"
-                        },
-                        "yolo": {
-                          "type": "integer"
-                        },
-                        "chart": {
-                          "type": "integer"
-                        },
-                        "news": {
-                          "type": "integer"
-                        },
-                        "discuss": {
-                          "type": "integer"
-                        }
-                      }
-                    },
-                    "views": {
-                      "type": "integer"
-                    },
-                    "comments": {
-                      "type": "integer"
-                    },
-                    "flags": {
-                      "type": "object",
-                      "properties": {
-                        "duplicate_text_posts": {
-                          "type": "integer"
-                        },
-                        "low_follower_author_share": {
-                          "type": "number"
-                        },
-                        "bio_telegram_authors": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        },
-                        "funnel_list_authors": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        }
-                      },
-                      "required": [
-                        "duplicate_text_posts",
-                        "low_follower_author_share",
-                        "bio_telegram_authors",
-                        "funnel_list_authors"
-                      ]
-                    },
-                    "top_posts": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "hash": {
-                            "type": "string"
-                          },
-                          "author": {
-                            "type": "string"
-                          },
-                          "followers": {
-                            "type": "integer"
-                          },
-                          "title": {
-                            "type": "string"
-                          },
-                          "stance": {
-                            "type": "string"
-                          },
-                          "topic": {
-                            "type": [
-                              "null",
-                              "string"
-                            ]
-                          },
-                          "ts": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "hash",
-                          "author",
-                          "followers",
-                          "title",
-                          "stance",
-                          "topic",
-                          "ts"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "n_posts",
-                    "n_authors",
-                    "n_directional_votes",
-                    "n_voting_authors",
-                    "bull",
-                    "bear",
-                    "neutral_posts",
-                    "net_score",
-                    "confidence",
-                    "calls_opened",
-                    "puts_opened",
-                    "call_put_ratio",
-                    "by_topic",
-                    "views",
-                    "comments",
-                    "flags",
-                    "top_posts"
-                  ]
-                }
-              }
-            },
-            "required": [
-              "24h",
-              "72h",
-              "7d"
-            ]
-          },
-          "buzz": {
-            "type": "object",
-            "properties": {
-              "24h": {
-                "type": "object",
-                "properties": {
-                  "archive_depth_days": {
-                    "type": "number"
-                  },
-                  "tickers": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": "object",
-                      "properties": {
-                        "mentions": {
-                          "type": "integer"
-                        },
-                        "baseline_mean": {
-                          "type": "number"
-                        },
-                        "z": {
-                          "type": "null"
-                        }
-                      },
-                      "required": [
-                        "mentions",
-                        "baseline_mean",
-                        "z"
-                      ]
-                    }
-                  }
-                },
-                "required": [
-                  "archive_depth_days",
-                  "tickers"
-                ]
-              },
-              "72h": {
-                "type": "object",
-                "properties": {
-                  "archive_depth_days": {
-                    "type": "number"
-                  },
-                  "tickers": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": "object",
-                      "properties": {
-                        "mentions": {
-                          "type": "integer"
-                        },
-                        "baseline_mean": {
-                          "type": "number"
-                        },
-                        "z": {
-                          "type": "null"
-                        }
-                      },
-                      "required": [
-                        "mentions",
-                        "baseline_mean",
-                        "z"
-                      ]
-                    }
-                  }
-                },
-                "required": [
-                  "archive_depth_days",
-                  "tickers"
-                ]
-              }
-            },
-            "required": [
-              "24h",
-              "72h"
-            ]
-          },
-          "daily": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "date": {
-                    "type": "string"
-                  },
-                  "posts": {
-                    "type": "integer"
-                  },
-                  "bull": {
-                    "type": "integer"
-                  },
-                  "bear": {
-                    "type": "integer"
-                  },
-                  "net": {
-                    "type": [
-                      "null",
-                      "number"
-                    ]
-                  }
-                },
-                "required": [
-                  "date",
-                  "posts",
-                  "bull",
-                  "bear",
-                  "net"
-                ]
-              }
-            }
-          }
-        },
-        "required": [
-          "generated_at",
-          "source",
-          "archive",
-          "method",
-          "caveat",
-          "windows",
-          "buzz",
-          "daily"
-        ],
-        "description": "Inferred from the built file api/sentiment.json."
+        "description": "Runtime artifact: produced by a cron job or a local build and not stored in the repository, so no response shape is inferred here."
       },
       "AhPosts": {
-        "type": "object",
-        "properties": {
-          "generated_at": {
-            "type": "string"
-          },
-          "posts": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "hash": {
-                  "type": "string"
-                },
-                "ts": {
-                  "type": "string"
-                },
-                "author": {
-                  "type": "string"
-                },
-                "followers": {
-                  "type": "integer"
-                },
-                "privacy": {
-                  "type": "string"
-                },
-                "bio_link": {
-                  "type": "string"
-                },
-                "title": {
-                  "type": "string"
-                },
-                "topic": {
-                  "type": [
-                    "null",
-                    "string"
-                  ]
-                },
-                "tickers": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "views": {
-                  "type": "integer"
-                },
-                "comments": {
-                  "type": "integer"
-                },
-                "likes": {
-                  "type": "integer"
-                },
-                "has_positions": {
-                  "type": "boolean"
-                },
-                "sig": {
-                  "type": "string"
-                },
-                "side": {
-                  "type": [
-                    "null",
-                    "string"
-                  ]
-                },
-                "action": {
-                  "type": [
-                    "null",
-                    "string"
-                  ]
-                },
-                "stance": {
-                  "type": "string"
-                },
-                "basis": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "id",
-                "hash",
-                "ts",
-                "author",
-                "followers",
-                "privacy",
-                "bio_link",
-                "title",
-                "topic",
-                "tickers",
-                "views",
-                "comments",
-                "likes",
-                "has_positions",
-                "sig",
-                "side",
-                "action",
-                "stance",
-                "basis"
-              ]
-            }
-          }
-        },
-        "required": [
-          "generated_at",
-          "posts"
-        ],
-        "description": "Inferred from the built file api/ah-posts.json."
+        "description": "Runtime artifact: produced by a cron job or a local build and not stored in the repository, so no response shape is inferred here."
       },
       "Stonks": {
         "type": "object",
@@ -5756,264 +4620,7 @@
         "description": "Inferred from the built file api/funnel-calls.json."
       },
       "FunnelCallsFull": {
-        "type": "object",
-        "properties": {
-          "generated_at": {
-            "type": "string"
-          },
-          "credit": {
-            "type": "string"
-          },
-          "disclaimer": {
-            "type": "string"
-          },
-          "quoted_results_are_channel_claims": {
-            "type": "string"
-          },
-          "path_note": {
-            "type": "string"
-          },
-          "note": {
-            "type": "string"
-          },
-          "count": {
-            "type": "integer"
-          },
-          "scored_count": {
-            "type": "integer"
-          },
-          "path_count": {
-            "type": "integer"
-          },
-          "window_start": {
-            "type": "string"
-          },
-          "window_end": {
-            "type": "string"
-          },
-          "calls": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "channel": {
-                  "type": "string"
-                },
-                "posted": {
-                  "type": "string"
-                },
-                "ticker": {
-                  "type": "string"
-                },
-                "kind": {
-                  "type": "string"
-                },
-                "side": {
-                  "type": [
-                    "null",
-                    "string"
-                  ]
-                },
-                "strike": {
-                  "type": [
-                    "null",
-                    "number"
-                  ]
-                },
-                "expiry": {
-                  "type": [
-                    "null",
-                    "string"
-                  ]
-                },
-                "entry_price": {
-                  "type": [
-                    "null",
-                    "number"
-                  ]
-                },
-                "exit_price": {
-                  "type": [
-                    "null",
-                    "number"
-                  ]
-                },
-                "action": {
-                  "type": "string"
-                },
-                "result_pct": {
-                  "type": [
-                    "null",
-                    "number"
-                  ]
-                },
-                "open_id": {
-                  "type": [
-                    "null",
-                    "string"
-                  ]
-                },
-                "echo": {
-                  "type": "boolean"
-                },
-                "parse_flags": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "text": {
-                  "type": "string"
-                },
-                "outcome": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "reason": {
-                      "type": "string"
-                    },
-                    "expiry_effective": {
-                      "type": [
-                        "null",
-                        "string"
-                      ]
-                    },
-                    "expiry_note": {
-                      "type": [
-                        "null",
-                        "string"
-                      ]
-                    },
-                    "price_source": {
-                      "type": "string"
-                    },
-                    "underlying_close_at_expiry": {
-                      "type": "number"
-                    },
-                    "intrinsic": {
-                      "type": "number"
-                    },
-                    "worthless": {
-                      "type": "boolean"
-                    },
-                    "breakeven_level": {
-                      "type": "number"
-                    },
-                    "pnl_per_contract": {
-                      "type": "number"
-                    },
-                    "return_multiple": {
-                      "type": [
-                        "null",
-                        "number"
-                      ]
-                    },
-                    "return_pct": {
-                      "type": [
-                        "null",
-                        "number"
-                      ]
-                    },
-                    "win": {
-                      "type": "boolean"
-                    },
-                    "touched_breakeven_optimistic": {
-                      "type": "boolean"
-                    },
-                    "touch_window": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "status",
-                    "expiry_effective",
-                    "expiry_note"
-                  ]
-                },
-                "path": {
-                  "type": "object",
-                  "properties": {
-                    "category": {
-                      "type": "string"
-                    },
-                    "fill": {
-                      "type": "number"
-                    },
-                    "mfe_pct": {
-                      "type": "number"
-                    },
-                    "mae_pct": {
-                      "type": "number"
-                    },
-                    "end_ret_pct": {
-                      "type": "number"
-                    },
-                    "volume": {
-                      "type": "integer"
-                    },
-                    "tp50_sl50": {
-                      "type": "string"
-                    },
-                    "tp50_sl50_ret": {
-                      "type": "number"
-                    },
-                    "quoted_vs_fill_pct": {
-                      "type": "number"
-                    }
-                  },
-                  "required": [
-                    "category",
-                    "fill",
-                    "mfe_pct",
-                    "mae_pct",
-                    "end_ret_pct",
-                    "volume",
-                    "tp50_sl50",
-                    "tp50_sl50_ret"
-                  ]
-                }
-              },
-              "required": [
-                "id",
-                "channel",
-                "posted",
-                "ticker",
-                "kind",
-                "side",
-                "strike",
-                "expiry",
-                "entry_price",
-                "exit_price",
-                "action",
-                "result_pct",
-                "open_id",
-                "echo",
-                "parse_flags",
-                "text"
-              ]
-            }
-          }
-        },
-        "required": [
-          "generated_at",
-          "credit",
-          "disclaimer",
-          "quoted_results_are_channel_claims",
-          "path_note",
-          "note",
-          "count",
-          "scored_count",
-          "path_count",
-          "window_start",
-          "window_end",
-          "calls"
-        ],
-        "description": "Inferred from the built file api/funnel-calls-full.json."
+        "description": "Runtime artifact: produced by a cron job or a local build and not stored in the repository, so no response shape is inferred here."
       },
       "FunnelOptionPaths": {
         "type": "object",
@@ -9440,167 +8047,119 @@
         "description": "Inferred from the built file api/funnel-fx-signals.json."
       },
       "FunnelLive": {
+        "description": "Runtime artifact: produced by a cron job or a local build and not stored in the repository, so no response shape is inferred here."
+      },
+      "TraderSignals": {
         "type": "object",
         "properties": {
-          "source": {
-            "type": "string"
-          },
           "generated_at": {
             "type": "string"
           },
-          "disclaimer": {
-            "type": "string"
-          },
-          "market": {
-            "type": "string"
-          },
-          "window_hours": {
-            "type": "integer"
-          },
-          "refresh_hint_sec": {
-            "type": "integer"
-          },
-          "channels_polled": {
-            "type": "integer"
-          },
-          "channels_total": {
-            "type": "integer"
-          },
-          "new_posts_this_run": {
-            "type": "integer"
-          },
-          "live_note": {
-            "type": "string"
-          },
-          "count": {
-            "type": "integer"
-          },
-          "hot_tickers": {
+          "traders": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "ticker": {
+                "handle": {
                   "type": "string"
                 },
-                "n_60m": {
+                "profile_id": {
+                  "type": "string"
+                },
+                "post_count": {
                   "type": "integer"
                 },
-                "n_24h": {
+                "first_post": {
+                  "type": "string"
+                },
+                "last_post": {
+                  "type": "string"
+                },
+                "vol_post_count": {
                   "type": "integer"
                 },
-                "chans": {
-                  "type": "integer"
-                },
-                "calls": {
-                  "type": "integer"
-                },
-                "puts": {
-                  "type": "integer"
-                }
-              },
-              "required": [
-                "ticker",
-                "n_60m",
-                "n_24h",
-                "chans",
-                "calls",
-                "puts"
-              ]
-            }
-          },
-          "calls": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "channel": {
-                  "type": "string"
-                },
-                "posted": {
-                  "type": "string"
-                },
-                "ticker": {
-                  "type": "string"
-                },
-                "kind": {
-                  "type": "string"
-                },
-                "side": {
-                  "type": [
-                    "null",
-                    "string"
-                  ]
-                },
-                "strike": {
-                  "type": [
-                    "null",
-                    "number"
-                  ]
-                },
-                "expiry": {
-                  "type": [
-                    "null",
-                    "string"
-                  ]
-                },
-                "entry_price": {
-                  "type": [
-                    "null",
-                    "number"
-                  ]
-                },
-                "action": {
-                  "type": "string"
-                },
-                "result_pct": {
-                  "type": [
-                    "null",
-                    "number"
-                  ]
-                },
-                "text": {
-                  "type": "string"
-                },
-                "parse_flags": {
+                "signals": {
                   "type": "array",
                   "items": {
-                    "type": "string"
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "share_url": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "instruments": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "direction": {
+                        "type": "string"
+                      },
+                      "levels": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "token": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "number"
+                            },
+                            "context": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "token",
+                            "value",
+                            "context"
+                          ]
+                        }
+                      },
+                      "quote": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "date",
+                      "id",
+                      "share_url",
+                      "title",
+                      "instruments",
+                      "direction",
+                      "levels",
+                      "quote"
+                    ]
                   }
                 }
               },
               "required": [
-                "channel",
-                "posted",
-                "ticker",
-                "kind",
-                "side",
-                "strike",
-                "expiry",
-                "entry_price",
-                "action",
-                "result_pct",
-                "text"
+                "handle",
+                "profile_id",
+                "post_count",
+                "first_post",
+                "last_post",
+                "vol_post_count",
+                "signals"
               ]
             }
           }
         },
         "required": [
-          "source",
           "generated_at",
-          "disclaimer",
-          "market",
-          "window_hours",
-          "refresh_hint_sec",
-          "channels_polled",
-          "channels_total",
-          "new_posts_this_run",
-          "live_note",
-          "count",
-          "hot_tickers",
-          "calls"
+          "traders"
         ],
-        "description": "Inferred from the built file api/funnel-live.json."
+        "description": "Inferred from the built file api/trader-signals.json."
       },
       "McpSchema": {
         "type": "object",
