@@ -157,7 +157,7 @@ python3 build_github_pages.py
 # 2. Sync to Coolify webroot
 rsync -avz --delete \
   --exclude '.git' --exclude '__pycache__' --exclude 'afterhour.zip' --exclude 'data/following' \
-  index.html default.conf sitemap.xml mcp_server.py api all stonks etfs whales shadow sitemap docs mcp \
+  index.html default.conf sitemap.xml mcp_server.py api all stonks etfs whales shadow sitemap docs mcp scamcheck scorecard signals live traders \
   coolify:/home/mph/apps/ah-portal/
 
 # 3. Restart container to ensure single-file bind mounts refresh
@@ -168,6 +168,8 @@ git add -A
 git commit -m "feat: update terminal, docs, and APIs"
 git push origin main
 ```
+
+**Build safety:** `build_github_pages.py` runs clean from a fresh clone but regenerates `api/openapi.json` and `docs/API.md` DEGRADED there, because gitignored inputs (`api/sentiment.json`, `api/ah-posts.json`, `api/funnel-live.json`, `data/telegram_funnel/{calls,posts_archive,option_paths}.jsonl`) and untracked `api/funnel-calls-full.*` are absent, so those paths are dropped from the spec and `funnel-calls/scorecard/fx-signals` shrink. Run the build only on the box with the full tree, and review `git diff --stat api/openapi.json docs/API.md` (paths should not disappear) before committing generated files. Trader source: `python3 pull_trader_posts.py --all` first, then the build.
 
 ### Forensic Autopsy Pipeline (Historical)
 - `python3 download_single_trader_lifetime.py <username>`: Pulls complete post history into `data/following/@<u>_all_posts.json` and markdown report.
